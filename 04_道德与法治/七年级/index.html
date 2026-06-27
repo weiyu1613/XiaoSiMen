@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初中7年级道德与法治 - 课件首页 | TeachAny</title>
+  <link rel="stylesheet" href="shared/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ====== v8.0 冲突修复（覆盖 shared/styles.css） ====== */
+    .accordion-body { max-height: none !important; overflow: visible !important; opacity: 1 !important; }
+    .accordion-body.open { max-height: none !important; }
+    .accordion-item { border: none !important; }
+    svg { width: auto !important; max-width: 100% !important; }
+    .accordion-header svg { width: auto !important; height: auto !important; }
+    :root {
+      --primary: #27ae60;
+      --primary-light: #2ecc71;
+      --primary-dark: #1e8449;
+      --secondary: #82e0aa;
+      --accent: #e74c3c;
+      --bg-light: #f0faf0;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-sm: 0 2px 8px rgba(39, 174, 96, 0.08);
+      --shadow-md: 0 4px 20px rgba(39, 174, 96, 0.12);
+      --shadow-lg: 0 8px 32px rgba(39, 174, 96, 0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(39,174,96,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+      color: white;
+      padding: 48px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero-icon { font-size: 48px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .hero-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; }
+    .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 20px; font-size: 0.85rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
+
+    .timeline-nav { background: white; padding: 16px 20px; box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100; }
+    .timeline-container { max-width: 1400px; margin: 0 auto; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+    .timeline-node { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; padding: 10px 16px; border-radius: 12px; transition: all 0.3s ease; border: 2px solid transparent; background: var(--bg-light); }
+    .timeline-node:hover { background: rgba(39,174,96,0.08); }
+    .timeline-node.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .timeline-node .t-num { font-size: 0.75rem; font-weight: 600; opacity: 0.7; }
+    .timeline-node .t-name { font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+    .timeline-node .t-icon { font-size: 24px; }
+    .timeline-node .t-count { font-size: 0.7rem; opacity: 0.8; }
+
+    .main-content { max-width: 1400px; margin: 0 auto; padding: 32px 20px; }
+
+    .accordion-item { background: white; border-radius: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid rgba(39, 174, 96, 0.08); }
+    .accordion-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; cursor: pointer; transition: all 0.3s ease; background: var(--bg-light); color: var(--text-dark); }
+    .accordion-header:hover { filter: brightness(0.97); }
+    .accordion-item.active .accordion-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+    .accordion-icon { width: 48px; height: 48px; background: rgba(39,174,96,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .accordion-item.active .accordion-icon { background: rgba(255,255,255,0.2); }
+    .accordion-info { flex: 1; }
+    .accordion-title { font-size: 1.2rem; font-weight: 700; }
+    .accordion-subtitle { font-size: 0.85rem; opacity: 0.85; margin-top: 2px; }
+    .accordion-meta { display: flex; gap: 16px; font-size: 0.85rem; margin-top: 6px; }
+    .accordion-meta span { display: flex; align-items: center; gap: 4px; }
+    .accordion-arrow { font-size: 20px; transition: transform 0.3s ease; }
+    .accordion-item.active .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .accordion-item.active .accordion-body { max-height: 2000px; }
+
+    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; padding: 20px 24px; }
+    .lesson-card { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: var(--bg-light); border-radius: 12px; text-decoration: none; color: var(--text-dark); transition: all 0.3s ease; border: 1px solid transparent; }
+    .lesson-card:hover { background: rgba(39,174,96,0.08); border-color: rgba(39,174,96,0.2); transform: translateX(6px); color: var(--primary); }
+    .lesson-num { width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .lesson-info { flex: 1; }
+    .lesson-title { font-size: 0.95rem; font-weight: 600; line-height: 1.4; }
+    .lesson-arrow { opacity: 0; transform: translateX(-8px); transition: all 0.3s ease; color: var(--primary); }
+    .lesson-card:hover .lesson-arrow { opacity: 1; transform: translateX(0); }
+
+    .unit-actions { display: flex; gap: 12px; padding: 0 24px 20px; }
+    .unit-btn { flex: 1; padding: 12px 18px; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .unit-btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; box-shadow: 0 4px 12px rgba(39,174,96,0.25); }
+    .unit-btn-primary:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(39,174,96,0.35); }
+
+    .footer { background: var(--text-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 40px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; margin-bottom: 8px; }
+    .footer-tech { display: flex; justify-content: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+    .footer-tech span { background: rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 16px; font-size: 0.8rem; }
+
+    * { -webkit-tap-highlight-color: transparent; }
+
+    @media (max-width: 1024px) {
+      .lessons-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+    }
+    @media (max-width: 768px) {
+      .hero-section { padding: 28px 16px; }
+      .hero-title { font-size: 1.5rem; }
+      .hero-subtitle { font-size: 0.9rem; }
+      .hero-icon { font-size: 36px; }
+      .hero-badge { padding: 6px 12px; font-size: 0.75rem; }
+      .hero-badges { gap: 8px; }
+      .timeline-nav { padding: 10px 12px; }
+      .timeline-container { gap: 6px; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+      .timeline-node { padding: 8px 12px; border-radius: 10px; gap: 4px; min-width: 72px; }
+      .timeline-node .t-icon { font-size: 20px; }
+      .timeline-node .t-num { font-size: 0.65rem; }
+      .timeline-node .t-name { font-size: 0.75rem; }
+      .main-content { padding: 16px 12px; }
+      .accordion-item { margin-bottom: 12px; border-radius: 12px; }
+      .accordion-header { padding: 14px 14px; gap: 12px; }
+      .accordion-icon { width: 40px; height: 40px; font-size: 20px; border-radius: 10px; }
+      .accordion-title { font-size: 1rem; }
+      .accordion-subtitle { font-size: 0.78rem; }
+      .accordion-meta { display: none; }
+      .accordion-arrow { font-size: 16px; }
+      .lessons-grid { grid-template-columns: 1fr; gap: 8px; padding: 14px; }
+      .lesson-card { padding: 14px 14px; gap: 12px; border-radius: 10px; }
+      .lesson-num { width: 28px; height: 28px; font-size: 0.75rem; }
+      .lesson-title { font-size: 0.9rem; }
+      .lesson-arrow { display: none; }
+      .unit-actions { padding: 0 14px 14px; gap: 8px; }
+      .unit-btn { padding: 12px 14px; font-size: 0.85rem; border-radius: 8px; }
+      .footer { padding: 24px 16px; margin-top: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">📖</div>
+      <h1 class="hero-title">初中7年级道德与法治</h1>
+      <p class="hero-subtitle">人教版 · 互动课件系统 · 全31课</p>
+      <div class="hero-badges">
+        <span class="hero-badge"><i class="fas fa-book"></i> 31节精品课件</span>
+        <span class="hero-badge"><i class="fas fa-brain"></i> AI智能学伴</span>
+        <span class="hero-badge"><i class="fas fa-chart-line"></i> 中考真题演练</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="timeline-nav">
+    <div class="timeline-container">
+      <div class="timeline-node active" data-unit="1">
+        <span class="t-icon">🌱</span><span class="t-num">第一单元</span><span class="t-name">成长的节拍</span><span class="t-count">4节</span>
+      </div>
+      <div class="timeline-node" data-unit="2">
+        <span class="t-icon">🤝</span><span class="t-num">第二单元</span><span class="t-name">友谊的天空</span><span class="t-count">4节</span>
+      </div>
+      <div class="timeline-node" data-unit="3">
+        <span class="t-icon">👨‍🏫</span><span class="t-num">第三单元</span><span class="t-name">师长情谊</span><span class="t-count">4节</span>
+      </div>
+      <div class="timeline-node" data-unit="4">
+        <span class="t-icon">🌟</span><span class="t-num">第四单元</span><span class="t-name">生命的思考</span><span class="t-count">4节</span>
+      </div>
+      <div class="timeline-node" data-unit="5">
+        <span class="t-icon">🌸</span><span class="t-num">第五单元</span><span class="t-name">青春时光</span><span class="t-count">3节</span>
+      </div>
+      <div class="timeline-node" data-unit="6">
+        <span class="t-icon">🎭</span><span class="t-num">第六单元</span><span class="t-name">情绪情感</span><span class="t-count">4节</span>
+      </div>
+      <div class="timeline-node" data-unit="7">
+        <span class="t-icon">👥</span><span class="t-num">第七单元</span><span class="t-name">集体成长</span><span class="t-count">4节</span>
+      </div>
+      <div class="timeline-node" data-unit="8">
+        <span class="t-icon">⚖️</span><span class="t-num">第八单元</span><span class="t-name">法治天地</span><span class="t-count">4节</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- 第一单元 -->
+    <div class="accordion-item active" id="unit-1">
+      <div class="accordion-header" onclick="toggleAccordion('unit-1')">
+        <div class="accordion-icon">🌱</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第一单元：成长的节拍（上册）</div>
+          <div class="accordion-subtitle">适应新环境，认识新自我</div>
+          <div class="accordion-meta"><span><i class="fas fa-book"></i> 4节课</span><span><i class="fas fa-clock"></i> 第1-4课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="01_d1zy/1.1_zxqq/zxqq.html" class="lesson-card"><span class="lesson-num">1</span><div class="lesson-info"><div class="lesson-title">中学序曲</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="01_d1zy/1.2_snyzm/snyzm.html" class="lesson-card"><span class="lesson-num">2</span><div class="lesson-info"><div class="lesson-title">少年有梦</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="01_d1zy/1.3_xxbcz/xxbcz.html" class="lesson-card"><span class="lesson-num">3</span><div class="lesson-info"><div class="lesson-title">学习伴成长</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="01_d1zy/1.4_xsxx/xsxx.html" class="lesson-card"><span class="lesson-num">4</span><div class="lesson-info"><div class="lesson-title">享受学习</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="01_d1zy/d1zy.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第二单元 -->
+    <div class="accordion-item" id="unit-2">
+      <div class="accordion-header" onclick="toggleAccordion('unit-2')">
+        <div class="accordion-icon">🤝</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第二单元：友谊的天空（上册）</div>
+          <div class="accordion-subtitle">认识友谊，呵护友谊</div>
+          <div class="accordion-meta"><span><i class="fas fa-book"></i> 4节课</span><span><i class="fas fa-clock"></i> 第5-8课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="02_d2yy/2.1_hpyzqz/hpyzqz.html" class="lesson-card"><span class="lesson-num">5</span><div class="lesson-info"><div class="lesson-title">和朋友在一起</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="02_d2yy/2.2_ssqqhy/ssqqhy.html" class="lesson-card"><span class="lesson-num">6</span><div class="lesson-info"><div class="lesson-title">深深浅浅话友谊</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="02_d2yy/2.3_ryyzzcq/ryyzzcq.html" class="lesson-card"><span class="lesson-num">7</span><div class="lesson-info"><div class="lesson-title">让友谊之树常青</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="02_d2yy/2.4_wsjyxxkj/wsjyxxkj.html" class="lesson-card"><span class="lesson-num">8</span><div class="lesson-info"><div class="lesson-title">网上交友新空间</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="02_d2yy/d2yy.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第三单元 -->
+    <div class="accordion-item" id="unit-3">
+      <div class="accordion-header" onclick="toggleAccordion('unit-3')">
+        <div class="accordion-icon">👨‍🏫</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第三单元：师长情谊（上册）</div>
+          <div class="accordion-subtitle">师生交往与家庭亲情</div>
+          <div class="accordion-meta"><span><i class="fas fa-book"></i> 4节课</span><span><i class="fas fa-clock"></i> 第9-12课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="03_d3sz/3.1_zjls/zjls.html" class="lesson-card"><span class="lesson-num">9</span><div class="lesson-info"><div class="lesson-title">走近老师</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="03_d3sz/3.2_srjw/srjw.html" class="lesson-card"><span class="lesson-num">10</span><div class="lesson-info"><div class="lesson-title">师生交往</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="03_d3sz/3.3_jdwy/jdwy.html" class="lesson-card"><span class="lesson-num">11</span><div class="lesson-info"><div class="lesson-title">家的意味</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="03_d3sz/3.4_azjrj/azjrj.html" class="lesson-card"><span class="lesson-num">12</span><div class="lesson-info"><div class="lesson-title">爱在家人间</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="03_d3sz/d3sz.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第四单元 -->
+    <div class="accordion-item" id="unit-4">
+      <div class="accordion-header" onclick="toggleAccordion('unit-4')">
+        <div class="accordion-icon">🌟</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第四单元：生命的思考（上册）</div>
+          <div class="accordion-subtitle">认识生命，敬畏生命</div>
+          <div class="accordion-meta"><span><i class="fas fa-book"></i> 4节课</span><span><i class="fas fa-clock"></i> 第13-16课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="04_d4sm/4.1_smkychml/smkychml.html" class="lesson-card"><span class="lesson-num">13</span><div class="lesson-info"><div class="lesson-title">生命可以永恒吗</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="04_d4sm/4.2_wjsm/wjsm.html" class="lesson-card"><span class="lesson-num">14</span><div class="lesson-info"><div class="lesson-title">敬畏生命</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="04_d4sm/4.3_shsm/shsm.html" class="lesson-card"><span class="lesson-num">15</span><div class="lesson-info"><div class="lesson-title">守护生命</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="04_d4sm/4.4_zfsmzf/zfsmzf.html" class="lesson-card"><span class="lesson-num">16</span><div class="lesson-info"><div class="lesson-title">绽放生命之花</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="04_d4sm/d4sm.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第五单元 -->
+    <div class="accordion-item" id="unit-5">
+      <div class="accordion-header" onclick="toggleAccordion('unit-5')">
+        <div class="accordion-icon">🌸</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第五单元：青春时光（下册）</div>
+          <div class="accordion-subtitle">拥抱青春，认识自我</div>
+          <div class="accordion-meta"><span><i class="fas fa-book"></i> 3节课</span><span><i class="fas fa-clock"></i> 第17-19课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="05_d5qcsg/5.1_qcyy/qcyy.html" class="lesson-card"><span class="lesson-num">17</span><div class="lesson-info"><div class="lesson-title">青春的邀约</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="05_d5qcsg/5.2_qcdezn/qcdezn.html" class="lesson-card"><span class="lesson-num">18</span><div class="lesson-info"><div class="lesson-title">青春的心弦</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="05_d5qcsg/5.3_qcdezz/qcdezz.html" class="lesson-card"><span class="lesson-num">19</span><div class="lesson-info"><div class="lesson-title">青春的证明</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="05_d5qcsg/d5qcsg.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第六单元 -->
+    <div class="accordion-item" id="unit-6">
+      <div class="accordion-header" onclick="toggleAccordion('unit-6')">
+        <div class="accordion-icon">🎭</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第六单元：做情绪情感的主人（下册）</div>
+          <div class="accordion-subtitle">管理情绪，培育情感</div>
+          <div class="accordion-meta"><span><i class="fas fa-book"></i> 4节课</span><span><i class="fas fa-clock"></i> 第20-23课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="06_d6zqjqr/6.1_qlzc/qlzc.html" class="lesson-card"><span class="lesson-num">20</span><div class="lesson-info"><div class="lesson-title">青春的情绪</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="06_d6zqjqr/6.2_tlqj/tlqj.html" class="lesson-card"><span class="lesson-num">21</span><div class="lesson-info"><div class="lesson-title">情绪的管理</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="06_d6zqjqr/6.3_ourj/ourj.html" class="lesson-card"><span class="lesson-num">22</span><div class="lesson-info"><div class="lesson-title">我们的情感世界</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="06_d6zqjqr/6.4_zqjqrqz/zqjqrqz.html" class="lesson-card"><span class="lesson-num">23</span><div class="lesson-info"><div class="lesson-title">在情感中成长</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="06_d6zqjqr/d6zqjqr.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第七单元 -->
+    <div class="accordion-item" id="unit-7">
+      <div class="accordion-header" onclick="toggleAccordion('unit-7')">
+        <div class="accordion-icon">👥</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第七单元：在集体中成长（下册）</div>
+          <div class="accordion-subtitle">融入集体，共建美好</div>
+          <div class="accordion-meta"><span><i class="fas fa-book"></i> 4节课</span><span><i class="fas fa-clock"></i> 第24-27课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="07_d7zjtzc/7.1_zjzds/zjzds.html" class="lesson-card"><span class="lesson-num">24</span><div class="lesson-info"><div class="lesson-title">集体生活邀请我</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="07_d7zjtzc/7.2_jzshj/jzshj.html" class="lesson-card"><span class="lesson-num">25</span><div class="lesson-info"><div class="lesson-title">集体生活成就我</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="07_d7zjtzc/7.3_dygd/dygd.html" class="lesson-card"><span class="lesson-num">26</span><div class="lesson-info"><div class="lesson-title">单音与和声</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="07_d7zjtzc/7.4_ygsyz/ygsyz.html" class="lesson-card"><span class="lesson-num">27</span><div class="lesson-info"><div class="lesson-title">节奏与旋律</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="07_d7zjtzc/d7zjtzc.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第八单元 -->
+    <div class="accordion-item" id="unit-8">
+      <div class="accordion-header" onclick="toggleAccordion('unit-8')">
+        <div class="accordion-icon">⚖️</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第八单元：走进法治天地（下册）</div>
+          <div class="accordion-subtitle">学法守法，依法维权</div>
+          <div class="accordion-meta"><span><i class="fas fa-book"></i> 4节课</span><span><i class="fas fa-clock"></i> 第28-31课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="08_d8zjfztd/8.1_smfyl/smfyl.html" class="lesson-card"><span class="lesson-num">28</span><div class="lesson-info"><div class="lesson-title">生活需要法律</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="08_d8zjfztd/8.2_fzyls/fzyls.html" class="lesson-card"><span class="lesson-num">29</span><div class="lesson-info"><div class="lesson-title">法律保障生活</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="08_d8zjfztd/8.3_lfyrwcn/lfyrwcn.html" class="lesson-card"><span class="lesson-num">30</span><div class="lesson-info"><div class="lesson-title">法律为我们护航</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="08_d8zjfztd/8.4_lfydw/lfydw.html" class="lesson-card"><span class="lesson-num">31</span><div class="lesson-info"><div class="lesson-title">我们与法律同行</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="08_d8zjfztd/d8zjfztd.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">初中7年级道德与法治互动课件系统 · 人教版 · TeachAny v7.14.0</p>
+    <div class="footer-tech">
+      <span><i class="fas fa-brain"></i> AI智能</span>
+      <span><i class="fas fa-chart-line"></i> 中考真题</span>
+      <span><i class="fas fa-mobile-alt"></i> 响应式设计</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAccordion(id) {
+      const item = document.getElementById(id);
+      const wasActive = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+      if (!wasActive) {
+        item.classList.add('active');
+        const nav = document.querySelector('.timeline-nav');
+        const navH = nav ? nav.offsetHeight : 0;
+        const itemTop = item.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: Math.max(0, itemTop - navH - 20), behavior: 'smooth' });
+      }
+      const unitNum = id.replace('unit-', '');
+      document.querySelectorAll('.timeline-node').forEach(node => {
+        node.classList.toggle('active', node.dataset.unit === unitNum);
+      });
+    }
+    document.querySelectorAll('.timeline-node').forEach(node => {
+      node.addEventListener('click', () => toggleAccordion('unit-' + node.dataset.unit));
+    });
+  </script>
+
+
+  <script src="shared/mascot.js?v=8.0"></script>
+</body>
+</html>

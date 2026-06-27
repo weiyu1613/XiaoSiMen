@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-terrain-elevation-8">
+  <meta name="course-title" content="2.1 地形地势">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-terrain-elevation">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v1.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>2.1 地形地势 | 初中8年级地理</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .terrain-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+      padding: 16px;
+      background: #f0f9ff;
+      border-radius: 12px;
+    }
+    
+    .terrain-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+    }
+    
+    .terrain-color {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .terrain-map {
+      background: #f0f9ff;
+      border: 2px solid #3498db;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+
+    .terrain-map svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .terrain-map-caption {
+      text-align: center;
+      color: #3498db;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    .terrain-card {
+      background: white;
+      border: 2px solid #3498db;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+    }
+
+    .terrain-card h3 {
+      color: #3498db;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terrain-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .terrain-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f9ff;
+      line-height: 1.8;
+    }
+
+    .terrain-list li:last-child {
+      border-bottom: none;
+    }
+
+    .terrain-list li strong {
+      color: #2980b9;
+    }
+
+    .elevation-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 20px 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border-radius: 12px;
+    }
+
+    .elevation-arrow .arrow {
+      font-size: 48px;
+      color: #3498db;
+    }
+
+    .elevation-arrow .text {
+      font-size: 18px;
+      color: #2980b9;
+      font-weight: bold;
+    }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e0f2fe; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #3498db, #85c1e9); width: 25%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #3498db; padding: 4px 20px; background: #f0f9ff; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #3498db; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #3498db; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #bae6fd; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1); }
+
+    /* NavBar styles */
+    .nav-bar { background: #f0f9ff; border-bottom: 2px solid #3498db; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #3498db; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #dbeafe; }
+    .nav-center { font-weight: 700; color: #3498db; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #3498db; text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #93c5fd;
+      background: #eff6ff; color: #1e40af; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.28);
+      color: #1e40af;
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+  
+    /* 测验选项 */
+    .quiz-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e0f2fe; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #93c5fd; background: #f0f9ff; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #3498db; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #eff6ff; border-left: 4px solid #3498db; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #3498db; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 页脚 */
+    .footer { background: #3498db; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .terrain-legend { flex-direction: column !important; gap: 8px !important; }
+      
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-mountain"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v1.0</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/4 节 · 25%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../dqydt.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <div class="nav-center">第二单元：中国的自然环境</div>
+    <a href="../02_d2zgrj/02_d2zgrj.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 返回</a>
+    <a href="2.2_qh/qh.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-mountain"></i> 八年级地理 · 第二单元</div>
+      <h1>地形地势<span>Terrain and Elevation</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解中国的地形特点、地势特征及其对生产生活的影响<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f0f9ff"/>
+        <!-- 中心主题：地形地势 -->
+        <circle cx="400" cy="150" r="60" fill="#3498db" stroke="#2980b9" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">地形地势</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#85c1e9" stroke="#3498db" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="14" fill="white">地形特点</text>
+        <line x1="190" y1="80" x2="340" y2="150" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#85c1e9" stroke="#3498db" stroke-width="2"/>
+        <text x="120" y="225" text-anchor="middle" font-size="14" fill="white">地势特征</text>
+        <line x1="190" y1="220" x2="340" y2="150" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#85c1e9" stroke="#3498db" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="14" fill="white">地形区</text>
+        <line x1="610" y1="80" x2="460" y2="150" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#85c1e9" stroke="#3498db" stroke-width="2"/>
+        <text x="680" y="225" text-anchor="middle" font-size="14" fill="white">地形影响</text>
+        <line x1="610" y1="220" x2="460" y2="150" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#3498db"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #3498db; font-size: 14px; text-align: center;">图2-2 地形地势知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #3498db; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="中国地形有什么特点？">🏔️ 中国地形有什么特点？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="中国地势有什么特征？">⬆️ 中国地势有什么特征？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="三大地形区是怎么分布的？">🗺️ 三大地形区是怎么分布的？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #3498db;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #3498db; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 掌握中国地形复杂多样、山区面积大的特点</li>
+          <li>✅ 理解中国地势西高东低、呈三级阶梯状分布</li>
+          <li>✅ 了解三大地形区的分布和特征</li>
+          <li>✅ 认识地形地势对气候、交通、生产生活的影响</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #3498db; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：地形特点 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国地形的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 平原多、山地少不符合中国实际！">
+            <span class="opt-letter">A</span> 平原多、山地少
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 复杂多样，山区面积广大
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 地形单一不是中国特点！">
+            <span class="opt-letter">C</span> 地形单一
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 复杂多样，山区面积广大</strong></p>
+          <p style="margin-top: 8px;">中国地形<strong>复杂多样</strong>，山区面积广大（占全国陆地面积的2/3以上）。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2：地势特征 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】中国地势的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 东高西低不是中国地势特征！">
+            <span class="opt-letter">A</span> 东高西低
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 南高北低也不是中国地势特征！">
+            <span class="opt-letter">B</span> 南高北低
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+            <span class="opt-letter">C</span> 西高东低，呈三级阶梯状分布
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 西高东低，呈三级阶梯状分布</strong></p>
+          <p style="margin-top: 8px;">中国地势<strong>西高东低</strong>，呈<strong>三级阶梯状</strong>分布。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3：三级阶梯 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】关于中国三级阶梯的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 第一级阶梯海拔在4000米以上，不是2000米！">
+            <span class="opt-letter">A</span> 第一级阶梯海拔在2000米以上
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 第二级阶梯海拔在1000-2000米，不是500-1000米！">
+            <span class="opt-letter">B</span> 第二级阶梯海拔在500-1000米
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 第三级阶梯海拔在500米以下
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 第三级阶梯海拔在500米以下</strong></p>
+          <p style="margin-top: 8px;"><strong>三级阶梯：</strong></p>
+          <ul style="padding-left: 20px; margin-top: 6px;">
+            <li>第一级：海拔在<strong>4000米以上</strong>（青藏高原）</li>
+            <li>第二级：海拔在<strong>1000-2000米</strong>（高原、盆地）</li>
+            <li>第三级：海拔在<strong>500米以下</strong>（平原、丘陵）</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 挑战题4：地形影响 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】地形地势对气候的影响，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+            <span class="opt-letter">A</span> 西高东低的地势使湿润气流难以深入内陆
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 西高东低的地势会使湿润气流更容易深入内陆！">
+            <span class="opt-letter">B</span> 西高东低的地势使湿润气流容易深入内陆
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 西高东低的地势不会使降水分布均匀！">
+            <span class="opt-letter">C</span> 西高东低的地势使降水分布均匀
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 西高东低的地势使湿润气流难以深入内陆</strong></p>
+          <p style="margin-top: 8px;"><strong>地形对气候的影响：</strong></p>
+          <ul style="padding-left: 20px; margin-top: 6px;">
+            <li>西高东低的地势使湿润气流难以深入内陆</li>
+            <li>使降水从东南沿海向西北内陆递减</li>
+            <li>造成气候复杂多样</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 地形特点 -->
+    <section class="section" id="section-terrain">
+      <h2 class="section-title"><span class="num">🏔️</span> 地形特点</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #3498db;">📖 地形复杂多样</h3>
+        <ul class="terrain-list">
+          <li><strong>五大类型：</strong>山地、高原、平原、盆地、丘陵</li>
+          <li><strong>山区面积：</strong>占全国陆地面积的<strong>2/3以上</strong></li>
+          <li><strong>山区优势：</strong>矿产资源丰富、林业资源丰富、旅游资源丰富</li>
+          <li><strong>山区劣势：</strong>交通不便、耕地少、自然灾害多（滑坡、泥石流）</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #3498db;">📏 地势西高东低</h3>
+        <div class="elevation-arrow">
+          <div class="arrow"><i class="fa-solid fa-arrow-up"></i></div>
+          <div class="text">西高东低</div>
+          <div class="arrow"><i class="fa-solid fa-arrow-up"></i></div>
+          <div class="text">三级阶梯</div>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 什么是山区？</div>
+          <p>山区包括<strong>山地、高原、丘陵</strong>。山区面积广大，虽然耕地少，但矿产资源、林业资源、旅游资源丰富。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 三级阶梯 -->
+    <section class="section" id="section-ladder">
+      <h2 class="section-title"><span class="num">⬆️</span> 三级阶梯</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #3498db;">📖 第一级阶梯</h3>
+        <ul class="terrain-list">
+          <li><strong>位置：</strong>西南部（青藏高原）</li>
+          <li><strong>海拔：</strong>在<strong>4000米以上</strong></li>
+          <li><strong>地形：</strong>高原为主</li>
+          <li><strong>名称：</strong>青藏高原（世界最高的大高原）</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #3498db;">📖 第二级阶梯</h3>
+        <ul class="terrain-list">
+          <li><strong>位置：</strong>青藏高原以东、以北</li>
+          <li><strong>海拔：</strong>在<strong>1000-2000米</strong></li>
+          <li><strong>地形：</strong>高原、盆地为主</li>
+          <li><strong>主要地形区：</strong>内蒙古高原、黄土高原、云贵高原、塔里木盆地、四川盆地</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #3498db;">📖 第三级阶梯</h3>
+        <ul class="terrain-list">
+          <li><strong>位置：</strong>第二级阶梯以东</li>
+          <li><strong>海拔：</strong>在<strong>500米以下</strong></li>
+          <li><strong>地形：</strong>平原、丘陵为主</li>
+          <li><strong>主要地形区：</strong>东北平原、华北平原、长江中下游平原、东南丘陵</li>
+        </ul>
+
+        <!-- SVG:三级阶梯示意图 -->
+        <div class="terrain-map">
+          <svg viewBox="0 0 600 250" width="600" height="250" xmlns="http://www.w3.org/2000/svg">
+            <!-- 第一级阶梯 -->
+            <rect x="20" y="30" width="130" height="180" rx="8" fill="#85c1e9" stroke="#3498db" stroke-width="2"/>
+            <text x="85" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a5276">第一级阶梯</text>
+            <text x="85" y="100" text-anchor="middle" font-size="11" fill="#1a5276">海拔4000米以上</text>
+            <text x="85" y="120" text-anchor="middle" font-size="11" fill="#1a5276">青藏高原</text>
+            <text x="85" y="160" text-anchor="middle" font-size="10" fill="#1a5276">世界最高</text>
+            <text x="85" y="175" text-anchor="middle" font-size="10" fill="#1a5276">大高原</text>
+            
+            <!-- 第二级阶梯 -->
+            <rect x="180" y="60" width="130" height="150" rx="8" fill="#bce0f4" stroke="#3498db" stroke-width="2"/>
+            <text x="245" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a5276">第二级阶梯</text>
+            <text x="245" y="120" text-anchor="middle" font-size="11" fill="#1a5276">海拔1000-2000米</text>
+            <text x="245" y="150" text-anchor="middle" font-size="10" fill="#1a5276">高原、盆地</text>
+            <text x="245" y="165" text-anchor="middle" font-size="10" fill="#1a5276">内蒙古、黄土、</text>
+            <text x="245" y="180" text-anchor="middle" font-size="10" fill="#1a5276">云贵、塔里木、</text>
+            <text x="245" y="195" text-anchor="middle" font-size="10" fill="#1a5276">四川盆地</text>
+            
+            <!-- 第三级阶梯 -->
+            <rect x="340" y="90" width="130" height="120" rx="8" fill="#d6eaf8" stroke="#3498db" stroke-width="2"/>
+            <text x="405" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a5276">第三级阶梯</text>
+            <text x="405" y="150" text-anchor="middle" font-size="11" fill="#1a5276">海拔500米以下</text>
+            <text x="405" y="170" text-anchor="middle" font-size="10" fill="#1a5276">平原、丘陵</text>
+            <text x="405" y="185" text-anchor="middle" font-size="10" fill="#1a5276">东北、华北、</text>
+            <text x="405" y="200" text-anchor="middle" font-size="10" fill="#1a5276">长江中下游</text>
+            
+            <!-- 箭头 -->
+            <text x="310" y="80" text-anchor="middle" font-size="12" fill="#3498db">↓ 约2000米</text>
+            <text x="470" y="120" text-anchor="middle" font-size="12" fill="#3498db">↓ 约1000米</text>
+          </svg>
+          <p class="terrain-map-caption">图2-3 中国地势三级阶梯示意图</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 三大地形区 -->
+    <section class="section" id="section-terrain-zone">
+      <h2 class="section-title"><span class="num">🗺️</span> 三大地形区</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #3498db;">📖 平原</h3>
+        <ul class="terrain-list">
+          <li><strong>东北平原：</strong>中国最大的平原，黑土丰富</li>
+          <li><strong>华北平原：</strong>黄河、海河、淮河冲积而成</li>
+          <li><strong>长江中下游平原：</strong>地势低平，水网密布</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #3498db;">📖 高原</h3>
+        <ul class="terrain-list">
+          <li><strong>青藏高原：</strong>世界最高的大高原，"世界屋脊"</li>
+          <li><strong>内蒙古高原：</strong>平坦开阔，草原广阔</li>
+          <li><strong>黄土高原：</strong>黄土深厚，水土流失严重</li>
+          <li><strong>云贵高原：</strong>喀斯特地貌，地形崎岖</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #3498db;">📖 盆地</h3>
+        <ul class="terrain-list">
+          <li><strong>塔里木盆地：</strong>中国最大的盆地，干旱</li>
+          <li><strong>四川盆地：</strong>紫色土壤，气候湿润</li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 地形区记忆</div>
+          <p><strong>记忆口诀：</strong>"青藏高原在世界屋脊，内蒙古高原平坦开阔，黄土高原黄土深厚，云贵高原喀斯特地貌，塔里木盆地中国最大，四川盆地紫色土壤"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 核心内容 - 地形影响 -->
+    <section class="section" id="section-impact">
+      <h2 class="section-title"><span class="num">⚡</span> 地形地势的影响</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #3498db;">📖 对气候的影响</h3>
+        <ul class="terrain-list">
+          <li><strong>湿润气流：</strong>难以深入内陆 → 降水从东南向西北递减</li>
+          <li><strong>气候类型：</strong>复杂多样（从热带到寒带，从湿润到干旱）</li>
+          <li><strong>季风影响：</strong>有利于海洋湿润气流深入内陆</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #3498db;">📖 对交通的影响</h3>
+        <ul class="terrain-list">
+          <li><strong>山区：</strong>交通不便，建设成本高</li>
+          <li><strong>平原：</strong>交通发达，建设成本低</li>
+          <li><strong>河流：</strong>天然水道，便于水上运输</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #3498db;">📖 对生产生活的影响</h3>
+        <ul class="terrain-list">
+          <li><strong>农业：</strong>平原适宜耕作，高原适宜放牧，山区适宜林业</li>
+          <li><strong>能源：</strong>山区水能资源丰富，盆地油气资源丰富</li>
+          <li><strong>旅游：</strong>山区风光秀丽，平原人文景观丰富</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 8: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #3498db; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国最大的平原是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 长江中下游平原不是最大的！">
+            <span class="opt-letter">A</span> 长江中下游平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 华北平原不是最大的！">
+            <span class="opt-letter">B</span> 华北平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+            <span class="opt-letter">C</span> 东北平原
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 东北平原</strong></p>
+          <p style="margin-top: 8px;">中国最大的平原是<strong>东北平原</strong>（包括三江平原、松嫩平原、辽河平原）。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·全国中考）中国地势西高东低，呈三级阶梯状分布，这有利于？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+            <span class="opt-letter">A</span> 沿海与内陆的经济文化交流
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 这会使湿润气流难以深入内陆，而不是容易深入！">
+            <span class="opt-letter">B</span> 湿润气流深入内陆
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 这不会使降水分布均匀！">
+            <span class="opt-letter">C</span> 降水分布均匀
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 沿海与内陆的经济文化交流</strong></p>
+          <p style="margin-top: 8px;">西高东低的地势使许多大河自西向东流，便于<strong>沿海与内陆的经济文化交流</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·全国中考）下列地形区中，位于第二级阶梯的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 东北平原位于第三级阶梯！">
+            <span class="opt-letter">A</span> 东北平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+            <span class="opt-letter">B</span> 四川盆地
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 青藏高原位于第一级阶梯！">
+            <span class="opt-letter">C</span> 青藏高原
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 四川盆地</strong></p>
+          <p style="margin-top: 8px;"><strong>第二级阶梯地形区：</strong>内蒙古高原、黄土高原、云贵高原、塔里木盆地、四川盆地。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：地形复杂多样</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 地形复杂多样（五大类型）</li>
+            <li>✅ 山区面积广大（占2/3以上）</li>
+            <li>✅ 山区优势：矿产资源、林业资源、旅游资源丰富</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：三级阶梯</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 第一级：4000米以上（青藏高原）</li>
+            <li>✅ 第二级：1000-2000米（高原、盆地）</li>
+            <li>✅ 第三级：500米以下（平原、丘陵）</li>
+          </ul>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：地形对气候的影响</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>西高东低的地势使湿润气流难以深入内陆，使降水从东南沿海向西北内陆递减。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：三大地形区</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>东北平原（最大）、华北平原（黄河冲积）、长江中下游平原（水网密布）、青藏高原（世界屋脊）、黄土高原（黄土深厚）、云贵高原（喀斯特地貌）。</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v1.0 | 适配人教版八年级地理课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 4,
+      currentSection: 1
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：中国地形有什么特点？</h3>
+      <p><strong>地形复杂多样：</strong>山地、高原、平原、盆地、丘陵五种类型齐全</p>
+      <p><strong>山区面积广大：</strong>占全国陆地面积的2/3以上</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：中国地势有什么特征？</h3>
+      <p><strong>西高东低：</strong>自西向东逐级下降</p>
+      <p><strong>三级阶梯：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>第一级：海拔4000米以上（青藏高原）</li>
+        <li>第二级：海拔1000-2000米（高原、盆地）</li>
+        <li>第三级：海拔500米以下（平原、丘陵）</li>
+      </ul>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：三大地形区是怎么分布的？</h3>
+      <p><strong>平原：</strong>东北平原（最大）、华北平原、长江中下游平原</p>
+      <p><strong>高原：</strong>青藏高原（世界屋脊）、内蒙古高原、黄土高原、云贵高原</p>
+      <p><strong>盆地：</strong>塔里木盆地（最大）、四川盆地</p>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《地形地势》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

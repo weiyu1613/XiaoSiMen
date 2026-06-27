@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五单元：从国共合作到国共对立 - 初中八年级历史</title>
+    <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8b4513;
+            --primary-light: #cd853f;
+            --primary-dark: #6b3410;
+            --secondary: #d4a574;
+            --accent: #e76f51;
+            --bg-light: #faf7f2;
+            --bg-card: #ffffff;
+            --text-dark: #2c1810;
+            --text-muted: #8b7355;
+            --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+            --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+            --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.16);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        /* ① 品牌栏 */
+        .brand-bar { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-md); }
+        .brand-logo { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; }
+
+        /* ② 进度条 */
+        .progress-container { background: white; padding: 12px 20px; border-bottom: 1px solid rgba(139,69,19,0.1); }
+        .progress-inner { max-width: 1200px; margin: 0 auto; }
+        .progress-info { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
+        .progress-track { height: 6px; background: #e8e0d5; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 75%; transition: width 0.3s ease; }
+
+        /* ③ 导航栏 */
+        .nav-bar { background: white; padding: 12px 20px; border-bottom: 1px solid rgba(139,69,19,0.1); position: sticky; top: 48px; z-index: 999; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 8px; overflow-x: auto; }
+        .nav-btn { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+        .nav-btn:hover { background: var(--bg-light); color: var(--primary); }
+        .nav-btn.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+        .nav-center { font-weight: 600; color: var(--primary); margin: 0 auto; }
+
+        /* ④ Hero */
+        .hero-section { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%); color: white; padding: 60px 20px 80px; text-align: center; position: relative; overflow: hidden; }
+        .hero-section::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .hero-icon { font-size: 56px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 16px; }
+        .hero-title { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero-subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 32px; }
+        .hero-cards { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+        .hero-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 20px 24px; min-width: 140px; }
+        .hero-card-icon { font-size: 28px; margin-bottom: 8px; }
+        .hero-card-label { font-size: 0.8rem; opacity: 0.9; margin-bottom: 4px; }
+        .hero-card-value { font-size: 1.1rem; font-weight: 600; }
+
+        /* SVG知识图 */
+        .knowledge-map-section { background: white; padding: 40px 20px; margin-top: -40px; position: relative; z-index: 10; border-radius: 24px 24px 0 0; }
+        .knowledge-map-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .knowledge-map-title { font-size: 1.2rem; color: var(--primary); margin-bottom: 24px; font-weight: 600; }
+
+        /* ⑤ 锚点 */
+        .anchor-section { padding: 40px 20px; background: var(--bg-light); }
+        .anchor-inner { max-width: 1200px; margin: 0 auto; }
+        .anchor-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .anchor-title h2 { font-size: 1.3rem; color: var(--primary); }
+        .anchor-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .anchor-btn { background: white; border: 2px solid var(--secondary); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.3s; font-size: 0.95rem; color: var(--text-dark); text-align: left; display: flex; align-items: center; gap: 10px; }
+        .anchor-btn:hover { border-color: var(--primary); background: var(--bg-light); transform: translateY(-2px); }
+        .anchor-btn i { color: var(--primary); }
+
+        /* 主内容 */
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .section { margin-bottom: 48px; }
+        .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: var(--shadow-md); }
+        .section-title-text h2 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+        .section-title-text p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* ⑥ 学习目标 */
+        .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .objective-card { background: white; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); border-left: 4px solid var(--primary); }
+        .objective-card h3 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+        .objective-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        /* 知识卡片 */
+        .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .knowledge-card { background: white; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); transition: all 0.3s; }
+        .knowledge-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .knowledge-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .knowledge-card p { color: var(--text-dark); font-size: 0.95rem; line-height: 1.8; }
+
+        /* 课时导航卡片 */
+        .lesson-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .lesson-card { background: white; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: all 0.3s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .lesson-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .lesson-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .lesson-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        .lesson-card .go-link { color: var(--primary); font-weight: 600; margin-top: 12px; display: inline-block; }
+
+        /* ⑦ 前测 */
+        .prequiz-section { background: white; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-sm); margin-bottom: 48px; }
+        .prequiz-section h2 { color: var(--primary); margin-bottom: 24px; font-size: 1.4rem; }
+        .quiz-question { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #f0f0f0; }
+        .quiz-question:last-child { border-bottom: none; margin-bottom: 0; }
+        .quiz-question h4 { color: var(--text-dark); margin-bottom: 16px; font-size: 1rem; font-weight: 600; }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .quiz-option { padding: 14px 18px; background: var(--bg-light); border: 2px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 0.95rem; display: flex; align-items: center; gap: 12px; }
+        .quiz-option:hover { border-color: var(--primary-light); background: white; }
+        .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+        .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+        .opt-letter { width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; flex-shrink: 0; }
+        .quiz-option.correct .opt-letter { background: #10b981; }
+        .quiz-option.wrong .opt-letter { background: #ef4444; }
+        .feedback { margin-top: 12px; padding: 14px 18px; border-radius: 10px; font-size: 0.9rem; display: none; line-height: 1.6; }
+        .feedback.show { display: block; }
+        .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+        .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+        /* ⑩ 必考分析 */
+        .exam-section { background: linear-gradient(135deg, #faf7f2, #f5ede3); border-radius: 20px; padding: 32px; margin-bottom: 48px; }
+        .exam-section h2 { color: var(--primary); margin-bottom: 24px; font-size: 1.4rem; }
+        .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .exam-card { background: white; border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); }
+        .exam-card h4 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+        .exam-card p { font-size: 0.9rem; line-height: 1.6; color: var(--text-dark); }
+        .exam-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 6px; }
+        .badge-must { background: #fee2e2; color: #991b1b; }
+        .badge-important { background: #fef3c7; color: #92400e; }
+
+        /* 页脚 */
+        .footer { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 40px 20px; text-align: center; }
+        .footer p { opacity: 0.9; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.8rem; }
+            .hero-cards { flex-direction: column; align-items: center; }
+            .nav-center { display: none; }
+            .knowledge-grid, .objectives-grid, .exam-grid, .lesson-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ① 品牌栏 -->
+<div class="brand-bar">
+    <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+</div>
+
+<!-- ② 进度条 -->
+<div class="progress-container">
+    <div class="progress-inner">
+        <div class="progress-info"><span>第五单元</span><span>学习进度 75%</span></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+</div>
+
+<!-- ③ 导航栏 -->
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
+        <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
+        <span class="nav-center">八年级上册 · 第五单元</span>
+        <a href="../04_d4xsd/d4xsd.html" class="nav-btn"><i class="fas fa-arrow-left"></i> 上一单元</a>
+        <a href="../06_d6zhn/d6zhn.html" class="nav-btn">下一单元 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</nav>
+
+<!-- ④ Hero区 -->
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-icon">🤝</div>
+        <div class="hero-badge">初中历史八年级上册 · 第五单元</div>
+        <h1 class="hero-title">从国共合作到国共对立</h1>
+        <p class="hero-subtitle">1924-1936年 · 国共两党关系的历史转折</p>
+        <div class="hero-cards">
+            <div class="hero-card">
+                <div class="hero-card-icon">📅</div>
+                <div class="hero-card-label">时间跨度</div>
+                <div class="hero-card-value">1924-1936</div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">📖</div>
+                <div class="hero-card-label">课时数量</div>
+                <div class="hero-card-value">3课时</div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">🔑</div>
+                <div class="hero-card-label">核心事件</div>
+                <div class="hero-card-value">国共合作→对立</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SVG知识图 -->
+<section class="knowledge-map-section">
+    <div class="knowledge-map-inner">
+        <div class="knowledge-map-title"><i class="fas fa-sitemap"></i> 单元知识结构图</div>
+        <svg viewBox="0 0 900 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+            <rect width="900" height="280" fill="#faf7f2" rx="16"/>
+            <circle cx="450" cy="140" r="60" fill="url(#centerGrad)" stroke="#8b4513" stroke-width="3"/>
+            <text x="450" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="white">从国共合作</text>
+            <text x="450" y="155" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">到国共对立</text>
+            <rect x="50" y="50" width="160" height="65" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="130" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">国共合作</text>
+            <text x="130" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">黄埔军校·北伐</text>
+            <line x1="210" y1="82" x2="390" y2="120" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <rect x="50" y="165" width="160" height="65" rx="12" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="130" y="195" text-anchor="middle" font-size="13" font-weight="bold" fill="white">武装起义</text>
+            <text x="130" y="215" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">南昌·井冈山</text>
+            <line x1="210" y1="197" x2="390" y2="155" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <rect x="690" y="50" width="160" height="65" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="770" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">红军长征</text>
+            <text x="770" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">战略转移</text>
+            <line x1="690" y1="82" x2="510" y2="120" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <rect x="690" y="165" width="160" height="65" rx="12" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="770" y="195" text-anchor="middle" font-size="13" font-weight="bold" fill="white">遵义会议</text>
+            <text x="770" y="215" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">生死转折点</text>
+            <line x1="690" y1="197" x2="510" y2="155" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <defs>
+                <linearGradient id="centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8b4513"/>
+                    <stop offset="100%" style="stop-color:#cd853f"/>
+                </linearGradient>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+                </marker>
+            </defs>
+        </svg>
+    </div>
+</section>
+
+<!-- ⑤ 锚点 -->
+<section class="anchor-section" id="anchors">
+    <div class="anchor-inner">
+        <div class="anchor-title"><i class="fas fa-anchor" style="color: var(--primary); font-size: 1.3rem;"></i><h2>快速导航</h2></div>
+        <div class="anchor-points">
+            <button class="anchor-btn" onclick="scrollToSection("objectives")"><i class="fas fa-bullseye"></i> 单元目标</button>
+            <button class="anchor-btn" onclick="scrollToSection("overview")"><i class="fas fa-info-circle"></i> 时代背景</button>
+            <button class="anchor-btn" onclick="scrollToSection("lessons")"><i class="fa-solid fa-landmark"></i> 课时导航</button>
+            <button class="anchor-btn" onclick="scrollToSection("prequiz")"><i class="fas fa-question-circle"></i> 单元测试</button>
+        </div>
+    </div>
+</section>
+
+<!-- 主内容 -->
+<main class="main-content">
+
+    <!-- ⑥ 单元目标 -->
+    <section class="section" id="objectives">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+            <div class="section-title-text"><h2>单元目标</h2><p>本单元学习重点与要求</p></div>
+        </div>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 了解背景</h3>
+                <p>了解国共第一次合作的背景、过程和破裂原因，认识北伐战争的历史意义。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 掌握过程</h3>
+                <p>掌握南昌起义、秋收起义、井冈山革命根据地创建的基本史实，理解"农村包围城市"道路的开辟。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 认识意义</h3>
+                <p>认识红军长征的原因、经过和意义，理解遵义会议的伟大历史转折作用。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 分析评价</h3>
+                <p>客观评价国共两党关系变化对中国革命的影响，认识中国共产党探索革命道路的艰辛历程。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 单元概述 -->
+    <section class="section" id="overview">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+            <div class="section-title-text"><h2>时代背景</h2><p>从国共合作到国共对立的历史脉络</p></div>
+        </div>
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <h3><i class="fas fa-flag"></i> 历史背景</h3>
+                <p>1924年，在苏联和共产国际帮助下，国民党一大召开，第一次国共合作正式形成。1926年北伐战争开始，基本推翻北洋军阀统治。1927年蒋介石、汪精卫先后叛变革命，国共合作破裂，进入十年对峙时期。</p>
+            </div>
+            <div class="knowledge-card">
+                <h3><i class="fas fa-route"></i> 历程演变</h3>
+                <p><strong>合作阶段</strong>（1924-1927）：国民党一大→黄埔军校→北伐战争<br><strong>对立阶段</strong>（1927-1936）：四一二政变→南昌起义→井冈山道路→红军长征</p>
+            </div>
+            <div class="knowledge-card">
+                <h3><i class="fas fa-lightbulb"></i> 历史意义</h3>
+                <p>本单元是中国共产党从幼年走向成熟的关键时期，井冈山道路的开辟标志着毛泽东思想开始形成，遵义会议则是党的历史上生死攸关的转折点。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课时导航 -->
+    <section class="section" id="lessons">
+        <div class="section-header">
+            <div class="section-icon"><i class="fa-solid fa-landmark"></i></div>
+            <div class="section-title-text"><h2>课时导航</h2><p>点击卡片开始学习</p></div>
+        </div>
+        <div class="lesson-cards">
+            <a href="5.1_gqhz/gqhz.html" class="lesson-card">
+                <h3><i class="fas fa-handshake"></i> 第1课 国共合作与北伐战争</h3>
+                <p><strong>时间：</strong>1924-1927年</p>
+                <p><strong>核心：</strong>国民党一大、黄埔军校、北伐战争</p>
+                <p><strong>结果：</strong>国共合作破裂，大革命失败</p>
+                <p class="go-link"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+            <a href="5.2_ngzj/ngzj.html" class="lesson-card">
+                <h3><i class="fas fa-mountain"></i> 第2课 毛泽东开辟井冈山道路</h3>
+                <p><strong>时间：</strong>1927-1930年</p>
+                <p><strong>核心：</strong>南昌起义、秋收起义、井冈山根据地</p>
+                <p><strong>意义：</strong>开辟"农村包围城市"革命道路</p>
+                <p class="go-link"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+            <a href="5.3_zgdl/zgdl.html" class="lesson-card">
+                <h3><i class="fas fa-hiking"></i> 第3课 中国工农红军长征</h3>
+                <p><strong>时间：</strong>1934-1936年</p>
+                <p><strong>核心：</strong>长征原因、遵义会议、长征胜利</p>
+                <p><strong>意义：</strong>中国革命转危为安的关键</p>
+                <p class="go-link"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="prequiz">
+        <div class="prequiz-section">
+            <h2><i class="fas fa-question-circle"></i> 单元前测</h2>
+            <div class="quiz-question">
+                <h4>1. 国共第一次合作正式形成的标志是？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。中共一大是1921年召开的，标志着中国共产党诞生，不是国共合作形成的标志。">A. 中共一大召开</button>
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1924年，中国国民党第一次全国代表大会召开，标志着国共第一次合作正式形成。">B. 国民党一大召开</button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。黄埔军校建立是国共合作的成果之一，不是合作形成的标志。">C. 黄埔军校建立</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="quiz-question">
+                <h4>2. 北伐战争的主要对象是？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。北伐战争的主要对象是北洋军阀，不是清政府。">A. 清政府</button>
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！北伐战争的主要对象是北洋军阀吴佩孚、孙传芳、张作霖。">B. 北洋军阀</button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。日本侵略者不是北伐战争的主要对象。">C. 日本侵略者</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="quiz-question">
+                <h4>3. 井冈山革命根据地创建的意义是？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。井冈山根据地是农村革命根据地，不是城市起义的地点。">A. 城市起义的地点</button>
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！井冈山革命根据地的创建，开辟了"农村包围城市、武装夺取政权"的正确革命道路。">B. 开辟农村包围城市道路</button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。长征是在井冈山根据地创建之后发生的历史事件。">C. 红军长征的起点</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑩ 必考分析 -->
+    <section class="section" id="exam">
+        <div class="exam-section">
+            <h2><i class="fas fa-chart-line"></i> 单元必考分析</h2>
+            <div class="exam-grid">
+                <div class="exam-card">
+                    <h4><span class="exam-badge badge-must">必考</span> 国民党一大</h4>
+                    <p><strong>考点：</strong>1924年召开，国共第一次合作正式形成。</p>
+                    <p style="margin-top:8px;"><strong>考法：</strong>选择题直接考查时间或意义。</p>
+                </div>
+                <div class="exam-card">
+                    <h4><span class="exam-badge badge-must">必考</span> 北伐战争</h4>
+                    <p><strong>考点：</strong>1926年开始，对象吴佩孚、孙传芳、张作霖，基本推翻北洋军阀统治。</p>
+                    <p style="margin-top:8px;"><strong>考法：</strong>选择题考查对象或意义。</p>
+                </div>
+                <div class="exam-card">
+                    <h4><span class="exam-badge badge-important">常考</span> 井冈山道路</h4>
+                    <p><strong>考点：</strong>"农村包围城市、武装夺取政权"的革命道路。</p>
+                    <p style="margin-top:8px;"><strong>考法：</strong>材料分析题考查道路开辟的意义。</p>
+                </div>
+                <div class="exam-card">
+                    <h4><span class="exam-badge badge-important">常考</span> 遵义会议</h4>
+                    <p><strong>考点：</strong>1935年召开，党的历史上生死攸关的转折点。</p>
+                    <p style="margin-top:8px;"><strong>考法：</strong>选择题或材料题考查意义。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <p>初中历史八年级上册 · 第五单元 从国共合作到国共对立</p>
+    <div class="footer-links">
+        <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+        <a href="../../index.html"><i class="fas fa-list"></i> 章节目录</a>
+    </div>
+    <p style="margin-top:20px;opacity:0.7;font-size:0.85rem;">© 2026 TeachAny 互动课件 v7.14</p>
+</footer>
+
+<script>
+function scrollToSection(id) {
+    const element = document.getElementById(id);
+    if (element) { element.scrollIntoView({ behavior: "smooth", block: "start" }); }
+}
+
+// 前测交互
+function initPrequiz() {
+    const questions = document.querySelectorAll(".quiz-question");
+    questions.forEach(q => {
+        const options = q.querySelectorAll(".quiz-option");
+        const feedback = q.querySelector(".feedback");
+        options.forEach(opt => {
+            opt.addEventListener("click", function() {
+                const isCorrect = this.dataset.correct === "true";
+                const feedbackText = this.dataset.feedback;
+                options.forEach(o => {
+                    if (o.dataset.correct === "true") o.classList.add("correct");
+                    else if (o === this && !isCorrect) o.classList.add("wrong");
+                });
+                feedback.innerHTML = feedbackText;
+                feedback.className = "feedback show " + (isCorrect ? "correct-fb" : "wrong-fb");
+            });
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    initPrequiz();
+    window.addEventListener("scroll", function() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        document.querySelector(".progress-fill").style.width = progress + "%";
+    });
+});
+</script>
+
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

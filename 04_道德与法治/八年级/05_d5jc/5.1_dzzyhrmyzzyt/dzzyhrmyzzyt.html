@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="daofa-8-u5-5.1">
+  <meta name="course-title" content="5.1 公民权利的保障书">
+  <meta name="course-subject" content="daofa">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="daofa-8-u5-5.1">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v1.0.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>5.1 公民权利的保障书 | 八年级道德与法治</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    :root {
+      --primary: #1565c0;
+      --primary-light: #42a5f5;
+      --primary-dark: #0d47a1;
+    }
+    
+    /* NavBar styles */
+    .nav-bar { background: #e3f2fd; border-bottom: 2px solid #1565c0; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #1565c0; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #bbdefb; }
+    .nav-center { font-weight: 700; color: #1565c0; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #1565c0, #42a5f5); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e3f2fd; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #1565c0, #42a5f5); width: 12%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #1565c0; padding: 4px 20px; background: #e3f2fd; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #1565c0; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #1565c0; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #bbdefb; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #bbdefb; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(21,101,192,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #bbdefb, #e3f2fd); border: 2px solid #90caf9; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #0d47a1; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #90caf9, #bbdefb); border-color: #42a5f5; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #1565c0, #42a5f5); color: white; border-color: #1565c0; }
+
+    /* 测验选项 */
+    .quiz-box { background: #e3f2fd; border: 1px solid #bbdefb; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e3f2fd; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #90caf9; background: #e3f2fd; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #1565c0; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #e3f2fd; border-left: 4px solid #1565c0; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #1565c0; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fff3e0; border-left: 4px solid #ff9800; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #e65100; margin-bottom: 8px; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #e3f2fd; border: 1px solid #bbdefb; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #1565c0; text-align: center; }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #90caf9;
+      background: #e3f2fd; color: #0d47a1; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(21,101,192,0.1); border: 1px solid rgba(21,101,192,0.28);
+      color: #0d47a1;
+    }
+
+    /* 页脚 */
+    .footer { background: #1565c0; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div>
+    <div class="brand-tag">互动课件 v1.0</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d5jc.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第一单元：坚持宪法至上</div>
+    <a href="#" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../5.2_zgabdzc/zgabdzc.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-scale-balanced"></i> 八年级下册 · 第一单元</div>
+      <h1>5.1 公民权利的保障书<span>Guarantee of Rights</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：认识宪法的核心价值追求，理解宪法保障公民权利<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic">
+<figure style="margin:24px auto 0;max-width:980px"><svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#e3f2fd"/><defs><marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0,10 3,0 6" fill="#1565c0"/></marker></defs>
+<circle cx="400" cy="150" r="60" fill="#1565c0" stroke="#0d47a1" stroke-width="3"/><text x="400" y="155" text-anchor="middle" font-size="16" font-weight="bold" fill="white">权利保障</text>
+<rect x="50" y="50" width="140" height="60" rx="10" fill="#42a5f5" stroke="#1565c0" stroke-width="2"/><text x="120" y="85" text-anchor="middle" font-size="14" fill="white">宪法价值</text>
+<line x1="190" y1="80" x2="340" y2="150" stroke="#1565c0" stroke-width="2" marker-end="url(#arrowhead)"/>
+<rect x="50" y="190" width="140" height="60" rx="10" fill="#1565c0" stroke="#1565c0" stroke-width="2"/><text x="120" y="225" text-anchor="middle" font-size="14" fill="white">公民权利</text>
+<line x1="190" y1="220" x2="340" y2="150" stroke="#1565c0" stroke-width="2" marker-end="url(#arrowhead)"/>
+<rect x="610" y="50" width="140" height="60" rx="10" fill="#42a5f5" stroke="#1565c0" stroke-width="2"/><text x="680" y="85" text-anchor="middle" font-size="14" fill="white">人权保障</text>
+<line x1="610" y1="80" x2="460" y2="150" stroke="#1565c0" stroke-width="2" marker-end="url(#arrowhead)"/>
+</svg><figcaption style="margin-top:10px;color:#1565c0;font-size:14px;text-align:center">知识结构图</figcaption></figure>
+</section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #1565c0; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+<button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="宪法的核心价值是什么？">🏠 宪法的核心价值是什么？</button>
+<button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="宪法如何保障公民权利？">🎭 宪法如何保障公民权利？</button>
+<button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="宪法与人权的关系？">🤝 宪法与人权的关系？</button>
+</div>
+        <label style="display:block; margin-top: 18px; color: #1565c0;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #1565c0; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+<li>✅ 了解宪法的基本价值</li>
+<li>✅ 理解宪法保障公民权利</li>
+<li>✅ 认识宪法与人权的关系</li>
+<li>✅ 增强宪法意识</li>
+</ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #1565c0; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】我们的生活离不开社会，主要体现在？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 这只是其中一方面，社会生活是多方面的！">
+            <span class="opt-letter">A</span> 只需要物质生活
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 包括物质生活和精神生活
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 社会生活包括学校、社区等各方面，不仅限于家庭！">
+            <span class="opt-letter">C</span> 只需要家庭生活
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 包括物质生活和精神生活</strong></p>
+          <p style="margin-top: 8px;">社会生活包括<strong>物质生活</strong>（衣食住行等）和<strong>精神生活</strong>（文化、教育、娱乐等），是多方面的。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】下列属于社会生活的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 睡觉是个人行为，不属于社会生活！">
+            <span class="opt-letter">A</span> 在家睡觉
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 参加社区志愿服务
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 独自看书是个人行为，不属于社会生活！">
+            <span class="opt-letter">C</span> 独自看书
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 参加社区志愿服务</strong></p>
+          <p style="margin-top: 8px;"><strong>社会生活</strong>是指人与人之间相互作用的活动，参加社区志愿服务属于社会生活。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】关于个人与社会的关系，下列说法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 个人与社会是相互依存的关系，个人离不开社会！">
+            <span class="opt-letter">A</span> 个人可以脱离社会独立生存
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 这种说法过于绝对，个人与社会是相互影响的！">
+            <span class="opt-letter">B</span> 社会对个人只有约束作用
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 个人是社会的有机组成部分
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 个人是社会的有机组成部分</strong></p>
+          <p style="margin-top: 8px;"><strong>个人与社会的关系：</strong>个人是社会的有机组成部分，人的生存和发展离不开社会。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】"人的本质不是单个人所固有的抽象物，在其现实性上，它是一切社会关系的总和。"这句话说明了？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+            <span class="opt-letter">A</span> 人是社会的人
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这句话强调的是人的社会性，而不是人的独立性！">
+            <span class="opt-letter">B</span> 人可以脱离社会而存在
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 社会关系是人存在的方式，不是可有可无的！">
+            <span class="opt-letter">C</span> 社会关系对人来说可有可无
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 人是社会的人</strong></p>
+          <p style="margin-top: 8px;">马克思的这句话说明<strong>人是社会的人</strong>，人的本质在于社会性，人不能脱离社会而存在。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 感受社会生活 -->
+    <section class="section" id="section-feel">
+      <h2 class="section-title"><span class="num">🌍</span> 感受社会生活</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #1565c0;">📖 社会生活的丰富多彩</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>物质生活</strong>：衣食住行、购物消费、就业创业等</li>
+          <li><strong>精神生活</strong>：文化教育、艺术欣赏、休闲娱乐等</li>
+          <li><strong>政治生活</strong>：参与选举、民主监督、公共事务管理等</li>
+        </ul>
+
+        <!-- SVG:社会生活示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+            <!-- 中心：社会生活 -->
+            <ellipse cx="300" cy="150" rx="80" ry="50" fill="#1565c0" stroke="#0d47a1" stroke-width="3"/>
+            <text x="300" y="155" text-anchor="middle" font-size="16" font-weight="bold" fill="white">社会生活</text>
+            
+            <!-- 物质生活 -->
+            <rect x="50" y="40" width="120" height="50" rx="8" fill="#42a5f5" stroke="#1565c0" stroke-width="2"/>
+            <text x="110" y="70" text-anchor="middle" font-size="14" fill="white">物质生活</text>
+            <line x1="170" y1="65" x2="220" y2="120" stroke="#1565c0" stroke-width="2"/>
+            
+            <!-- 精神生活 -->
+            <rect x="50" y="210" width="120" height="50" rx="8" fill="#42a5f5" stroke="#1565c0" stroke-width="2"/>
+            <text x="110" y="240" text-anchor="middle" font-size="14" fill="white">精神生活</text>
+            <line x1="170" y1="235" x2="220" y2="180" stroke="#1565c0" stroke-width="2"/>
+            
+            <!-- 政治生活 -->
+            <rect x="430" y="40" width="120" height="50" rx="8" fill="#42a5f5" stroke="#1565c0" stroke-width="2"/>
+            <text x="490" y="70" text-anchor="middle" font-size="14" fill="white">政治生活</text>
+            <line x1="430" y1="65" x2="380" y2="120" stroke="#1565c0" stroke-width="2"/>
+            
+            <!-- 社区生活 -->
+            <rect x="430" y="210" width="120" height="50" rx="8" fill="#42a5f5" stroke="#1565c0" stroke-width="2"/>
+            <text x="490" y="240" text-anchor="middle" font-size="14" fill="white">社区生活</text>
+            <line x1="430" y1="235" x2="380" y2="180" stroke="#1565c0" stroke-width="2"/>
+            
+            <text x="300" y="280" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565c0">社会生活的丰富多彩</text>
+          </svg>
+          <p class="svg-caption">图1-2 社会生活示意图</p>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 社会生活的特点</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>🌍 <strong>多样性</strong>：社会生活内容丰富多彩</li>
+            <li>🔗 <strong>联系性</strong>：各种社会生活相互联系</li>
+            <li>👥 <strong>参与性</strong>：每个人都是社会生活的参与者</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 我们都是社会的一员 -->
+    <section class="section" id="section-member">
+      <h2 class="section-title"><span class="num">👥</span> 我们都是社会的一员</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #1565c0;">📖 个人与社会的关系</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>个人是社会的<strong>有机组成部分</strong></li>
+          <li>人的生存和发展<strong>离不开社会</strong></li>
+          <li>人的成长是不断<strong>社会化</strong>的过程</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 社会化</div>
+          <p><strong>社会化</strong>是指个人学习社会知识、获得社会规范、形成社会行为的过程。</p>
+          <p style="margin-top: 8px;"><strong>表现：</strong>从自然人成长为社会人的过程。</p>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>考试陷阱：</strong>"个人可以脱离社会而独立存在" → 错误！</p>
+          <p style="margin-top: 6px;"><strong>正确认识：</strong>个人是社会的有机组成部分，人的生存和发展离不开社会。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 人的成长离不开社会 -->
+    <section class="section" id="section-growth">
+      <h2 class="section-title"><span class="num">🌟</span> 人的成长离不开社会</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #1565c0;">📖 社会对个人成长的作用</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>提供物质条件</strong>：衣食住行等基本生活保障</li>
+          <li><strong>提供精神滋养</strong>：文化、教育、知识传承</li>
+          <li><strong>提供发展平台</strong>：就业、创业、实现自我价值</li>
+          <li><strong>提供人际关系</strong>：家庭、朋友、同事等社会关系</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 亲社会行为</div>
+          <p><strong>亲社会行为</strong>是指有益于他人和社会的行为，如帮助他人、参与公益活动等。</p>
+          <p style="margin-top: 8px;"><strong>意义：</strong>有利于培养社会责任感，促进个人成长和社会和谐。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 后测 -->
+    <section class="section" <section class="section" id="section-core1"><h2 class="section-title"><span class="num">📜</span> 宪法的核心价值</h2><div class="card"><div class="concept-box"><div class="label">核心概念</div><p>我国宪法的核心价值追求是<strong>规范国家权力运行以保障公民权利</strong>。</p></div><div class="warn-box"><div class="label">⚠️ 高频考点</div><p>宪法是公民权利的<strong>保障书</strong>。宪法通过<strong>确认国家性质</strong>、<strong>规定国家根本制度</strong>、<strong>保障公民基本权利</strong>来维护人民利益。</p></div></div></section>
+<section class="section" id="section-core2"><h2 class="section-title"><span class="num">⚖️</span> 宪法保障公民权利</h2><div class="card"><ul style="padding-left:20px;line-height:1.8"><li><strong>确认权利</strong>：宪法确认公民的各项基本权利</li><li><strong>规范权力</strong>：宪法规范国家权力的运行</li><li><strong>救济途径</strong>：宪法提供权利救济的法律途径</li></ul></div></section>
+<section class="section" id="section-core3"><h2 class="section-title"><span class="num">🤝</span> 宪法与人权</h2><div class="card"><div class="concept-box"><div class="label">核心概念</div><p><strong>人权</strong>是指每个人作为人应当享有的权利。尊重和保障人权是我国的宪法原则。</p></div></div></section>
+id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #1565c0; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】社会生活的内容非常丰富，包括？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 社会生活不仅包括物质生活，还包括精神生活！">
+            <span class="opt-letter">A</span> 只有物质生活
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 物质生活和精神生活
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 社会生活不仅限于娱乐活动！">
+            <span class="opt-letter">C</span> 只有娱乐活动
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 物质生活和精神生活</strong></p>
+          <p style="margin-top: 8px;">社会生活包括<strong>物质生活</strong>和<strong>精神生活</strong>两大方面，内容丰富多彩。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·北京中考）"人的成长离不开社会"，这说明？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fff3e0;color:#e65100;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 人不能脱离社会独立生存！">
+            <span class="opt-letter">A</span> 人可以脱离社会独立生存
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 人的成长需要社会提供条件
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 社会对个人成长有重要作用，不是可有可无的！">
+            <span class="opt-letter">C</span> 社会对个人成长没有影响
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 人的成长需要社会提供条件</strong></p>
+          <p style="margin-top: 8px;">人的成长<strong>离不开社会</strong>，社会为个人提供物质条件、精神滋养和发展平台。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·江苏中考）下列行为属于亲社会行为的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fff3e0;color:#e65100;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 沉迷网络游戏是不良行为，不是亲社会行为！">
+            <span class="opt-letter">A</span> 沉迷网络游戏
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 随地吐痰是不文明行为，不是亲社会行为！">
+            <span class="opt-letter">B</span> 随地吐痰
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 参加社区志愿服务
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 参加社区志愿服务</strong></p>
+          <p style="margin-top: 8px;"><strong>亲社会行为</strong>是指有益于他人和社会的行为，参加社区志愿服务是典型的亲社会行为。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);border:1px solid #90caf9;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#1565c0;">1</span>
+            <strong style="color:#0d47a1;font-size:15px;">🔥 最高频考点：社会生活的丰富多彩</strong>
+            <span class="exam-tag" style="background:#1565c0;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 社会生活包括<strong>物质生活</strong>和<strong>精神生活</strong></li>
+            <li>✅ 社会生活是<strong>丰富多彩</strong>的</li>
+            <li>✅ 每个人都是社会生活的<strong>参与者</strong></li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);border:1px solid #ffb74d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#ff9800;">2</span>
+            <strong style="color:#e65100;font-size:15px;">⚡ 高频考点：个人与社会的关系</strong>
+            <span class="exam-tag" style="background:#ff9800;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>个人是社会的<strong>有机组成部分</strong>，人的生存和发展<strong>离不开社会</strong>。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border:1px solid #81c784;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#4caf50;">3</span>
+            <strong style="color:#2e7d32;font-size:15px;">📍 常考考点：社会化</strong>
+            <span class="exam-tag" style="background:#4caf50;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong><strong>社会化</strong>是个人学习社会知识、获得社会规范、形成社会行为的过程。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);border:1px solid #f48fb1;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#e91e63;">4</span>
+            <strong style="font-size:15px;color:#c2185b;">📍 常考考点：亲社会行为</strong>
+            <span class="exam-tag" style="background:#e91e63;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong><strong>亲社会行为</strong>是指有益于他人和社会的行为，如帮助他人、参与公益活动等。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中道德与法治互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v1.0.0 | 适配部编版八年级道德与法治课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 9,
+      currentSection: 1
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `<h3>问题1：宪法的核心价值是什么？</h3><p>让我们在下面的内容中一起探索。</p>`;
+    
+    anchorContents[2] = `<h3>问题2：宪法如何保障公民权利？</h3><p>让我们在下面的内容中一起探索。</p>`;
+    
+    anchorContents[3] = `<h3>问题3：宪法与人权的关系？</h3><p>让我们在下面的内容中一起探索。</p>`;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《我与社会》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

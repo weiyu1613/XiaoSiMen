@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="bio-bacteria-fungi-human-8">
+  <meta name="course-title" content="细菌和真菌与人类的关系">
+  <meta name="course-subject" content="biology">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="bio-bacteria-fungi-human">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+
+  <title>细菌和真菌与人类的关系 | 初中8年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-sm: 0 2px 8px rgba(46,125,50,0.08);
+      --shadow-md: 0 4px 20px rgba(46,125,50,0.12);
+      --shadow-lg: 0 8px 32px rgba(46,125,50,0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(46,125,50,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    /* ====== 品牌栏 ====== */
+    .brand-bar {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .brand-logo { font-weight: 700; font-size: 15px; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 20px; font-size: 11px; }
+
+    /* ====== 进度条 ====== */
+    .progress-bar { background: rgba(46,125,50,0.08); height: 6px; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--secondary)); transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); font-weight: 600; padding: 4px 20px; background: var(--bg-light); }
+
+    /* ====== 导航栏 ====== */
+    .nav-bar {
+      background: var(--bg-light);
+      border-bottom: 2px solid var(--primary);
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 8px; max-width: 1200px; margin: 0 auto; padding: 0 16px; flex-wrap: wrap; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
+    .nav-btn:hover { background: rgba(46,125,50,0.08); }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* ====== Hero区 ====== */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero .container { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); color: white; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.3); }
+    .hero h1 { font-size: 2rem; font-weight: 800; margin: 12px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+    .hero h1 span { display: block; font-size: 1rem; font-weight: 600; opacity: 0.9; margin-top: 6px; }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-top: 12px; }
+
+    /* ====== 知识结构图（figure包裹） ====== */
+    .hero-knowledge-svg { margin: 24px auto 0; }
+    .hero-knowledge-svg figure { margin: 0; }
+    .hero-knowledge-svg figure > svg { max-width: 100%; height: auto; }
+    .hero-knowledge-svg figcaption { margin-top: 12px; color: rgba(255,255,255,0.8); font-size: 14px; text-align: center; }
+
+    /* ====== 主内容区 ====== */
+    .main-content { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; }
+
+    /* ====== 章节标题 ====== */
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 36px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid rgba(46,125,50,0.15);
+      padding-bottom: 10px;
+    }
+
+    /* ====== 卡片 ====== */
+    .card { background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid rgba(46,125,50,0.08); }
+    .card h4 { color: var(--primary); margin-bottom: 12px; font-size: 15px; }
+
+    /* ====== 探究问题锚点 ====== */
+    .anchor-hint { color: var(--primary); margin-bottom: 16px; font-size: 14px; }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, rgba(46,125,50,0.08), rgba(46,125,50,0.04)); border: 2px solid var(--primary-light); border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, rgba(46,125,50,0.15), rgba(46,125,50,0.08)); border-color: var(--primary); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .anchor-display { margin-top: 20px; min-height: 80px; }
+    .anchor-display h3 { color: var(--primary); font-size: 16px; margin-bottom: 12px; }
+    #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28); color: var(--primary-dark); font-size: 14px; }
+    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid var(--primary-light); background: var(--bg-light); color: var(--primary-dark); padding: 12px 14px; font-size: 15px; margin-top: 8px; }
+
+    /* ====== 学习目标 ====== */
+    #objectives .card ul { list-style: none; padding: 0; line-height: 2.2; }
+    #objectives .card li { font-size: 15px; display: flex; align-items: flex-start; gap: 8px; }
+    #objectives .card li::before { content: '✅'; flex-shrink: 0; }
+
+    /* ====== 难度标签 ====== */
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* ====== 测验题 ====== */
+    .quiz-box { background: var(--bg-light); border: 1px solid rgba(46,125,50,0.12); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: var(--card-bg); border: 2px solid rgba(46,125,50,0.12); border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; display: flex; align-items: flex-start; gap: 10px; }
+    .quiz-option:hover { border-color: var(--primary-light); background: rgba(46,125,50,0.04); }
+    .quiz-option .opt-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; min-width: 24px; background: var(--primary-light); color: white; border-radius: 50%; font-weight: 700; font-size: 12px; flex-shrink: 0; }
+    .quiz-option.correct { background: #e8f5e9; border-color: var(--success); }
+    .quiz-option.correct .opt-letter { background: var(--success); }
+    .quiz-option.wrong { background: #fdecea; border-color: var(--danger); }
+    .quiz-option.wrong .opt-letter { background: var(--danger); }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; display: none; font-size: 14px; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #e8f5e9; color: #065f46; border: 1px solid var(--success); }
+    .feedback.wrong-fb { background: #fdecea; color: #991b1b; border: 1px solid var(--danger); }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    /* ====== 概念框 ====== */
+    .concept-box { background: rgba(46,125,50,0.06); border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; font-size: 13px; }
+
+    /* ====== 警告框 ====== */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; font-size: 13px; }
+
+    /* ====== 互动：拖拽 ====== */
+    .drag-container { display: flex; gap: 16px; margin: 20px 0; flex-wrap: wrap; }
+    .drag-item { padding: 10px 16px; background: white; border: 2px solid var(--primary-light); border-radius: 8px; cursor: grab; font-size: 14px; user-select: none; transition: all 0.2s; }
+    .drag-item:hover { border-color: var(--primary); background: var(--bg-light); }
+    .drop-zone { min-height: 120px; padding: 16px; border: 2px dashed var(--primary-light); border-radius: 12px; flex: 1; min-width: 200px; background: rgba(46,125,50,0.02); transition: all 0.2s; }
+    .drop-zone.active { border-color: var(--primary); background: rgba(46,125,50,0.05); }
+    .drop-zone h4 { color: var(--primary); margin-bottom: 8px; font-size: 14px; }
+
+    /* ====== 示例网格 ====== */
+    .example-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+    .example-card { background: var(--bg-light); border-radius: 10px; padding: 14px; border: 1px solid rgba(46,125,50,0.1); }
+    .example-card h5 { color: var(--primary); margin-bottom: 6px; font-size: 14px; font-weight: 700; }
+    .example-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ====== 考点卡片 ====== */
+    .exam-card { background: var(--bg-light); border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* ====== 页脚 ====== */
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    .footer-text { opacity: 0.9; font-size: 13px; }
+    .footer-modules { display: flex; justify-content: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+    .footer-module { background: rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 16px; font-size: 13px; }
+
+    /* ====== 响应式 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px; }
+      .hero h1 { font-size: 1.4rem; }
+      .hero-subtitle { font-size: 0.88rem; }
+      .section-title { font-size: 1.15rem; }
+      .card { border-radius: 12px; padding: 14px; }
+      .anchor-points { flex-direction: column; gap: 6px; }
+      .anchor-btn { min-width: unset; width: 100%; font-size: 0.82rem; }
+      .quiz-option { padding: 12px 12px; font-size: 0.88rem; }
+      .nav-inner { flex-wrap: wrap; gap: 6px; justify-content: center; }
+      .nav-center { width: 100%; order: -1; text-align: center; font-size: 0.85rem; padding: 2px 0 4px; flex: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- 2. 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+  <div class="progress-label">第1/1节 · 细菌和真菌与人类的关系 · 已完成 100%</div>
+
+  <!-- 3. 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../xjhzrlr.html" class="nav-btn"><i class="fa-solid fa-book"></i> 章目录</a>
+      <a href="../xjhzrlr.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <div class="nav-center">第24课 · 细菌和真菌与人类的关系</div>
+      <a href="../xjhzrlr.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- 4. Hero区 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-leaf"></i> 人教版 · 八年级生物 · 第7章</div>
+      <h1>细菌和真菌与人类的关系<span>Bacteria, Fungi &amp; Human</span></h1>
+      <p class="hero-subtitle">认识微生物的利与弊，学会合理利用有益微生物，预防有害微生物的危害</p>
+
+      <!-- Hero知识结构图（figure包裹，符合模板） -->
+      <div class="hero-knowledge-svg">
+        <figure>
+          <svg viewBox="0 0 600 220" width="600" height="220" xmlns="http://www.w3.org/2000/svg">
+            <rect width="600" height="220" fill="rgba(255,255,255,0.1)" rx="12"/>
+            <!-- 中心节点 -->
+            <rect x="225" y="90" width="150" height="40" rx="20" fill="rgba(255,255,255,0.95)" class="knowledge-node"/>
+            <text x="300" y="115" text-anchor="middle" fill="#2e7d32" font-size="13" font-weight="700">细菌和真菌与人类的关系</text>
+            <!-- 连接线 + 分支 -->
+            <line x1="225" y1="110" x2="90" y2="65" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+            <rect x="10" y="45" width="100" height="30" rx="15" fill="rgba(76,175,80,0.9)" class="knowledge-node"/>
+            <text x="60" y="65" text-anchor="middle" fill="white" font-size="12" font-weight="600">有益应用</text>
+            <line x1="375" y1="110" x2="510" y2="65" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+            <rect x="490" y="45" width="100" height="30" rx="15" fill="rgba(239,68,68,0.9)" class="knowledge-node"/>
+            <text x="540" y="65" text-anchor="middle" fill="white" font-size="12" font-weight="600">有害影响</text>
+            <line x1="225" y1="130" x2="90" y2="175" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+            <rect x="10" y="155" width="100" height="30" rx="15" fill="rgba(245,158,11,0.9)" class="knowledge-node"/>
+            <text x="60" y="175" text-anchor="middle" fill="white" font-size="12" font-weight="600">食品应用</text>
+            <line x1="375" y1="130" x2="510" y2="175" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+            <rect x="490" y="155" width="100" height="30" rx="15" fill="rgba(16,185,129,0.9)" class="knowledge-node"/>
+            <text x="540" y="175" text-anchor="middle" fill="white" font-size="12" font-weight="600">医药应用</text>
+          </svg>
+          <figcaption>图1 细菌和真菌与人类的关系知识结构图</figcaption>
+        </figure>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容 -->
+  <main class="main-content">
+
+    <!-- 5. 探究问题锚点 -->
+    <div class="section-title">
+      <span style="background:var(--primary);color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">🎯</span>
+      探究问题
+    </div>
+    <p class="anchor-hint">先选一个你关心的问题，后面的内容和AI学伴都会围绕它来帮你推进。</p>
+    <div class="card">
+      <div class="anchor-points">
+        <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="细菌和真菌对人类是有益还是有害？">🤔 细菌和真菌对人类是有益还是有害？</button>
+        <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="为什么有些食物放久了会变质，有些却能保存很久？">🍞 为什么有些食物放久了会变质，有些却能保存很久？</button>
+        <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="怎样预防细菌和真菌引起的疾病？">🛡️ 怎样预防细菌和真菌引起的疾病？</button>
+      </div>
+      <label style="display:block;margin-top:18px;color:var(--primary);">
+        我有自己的问题
+        <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+      </label>
+      <div class="anchor-display" id="anchor-display">
+        <p style="color:var(--primary);text-align:center;">👆 点击上方按钮查看问题</p>
+      </div>
+      <p id="anchor-feedback"></p>
+    </div>
+
+    <!-- 6. 学习目标 -->
+    <div class="section-title">
+      <span style="background:var(--primary);color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">🎯</span>
+      学习目标
+    </div>
+    <div id="objectives">
+      <div class="card">
+        <ul>
+          <li>知道细菌和真菌在食品制作、医药卫生、环境保护等方面的应用</li>
+          <li>了解细菌和真菌引起的常见疾病，知道预防措施</li>
+          <li>能区分有益微生物和有害微生物，形成科学态度</li>
+          <li>掌握食品保存的原理和方法</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 7. 前测 · 4题（难度递进） -->
+    <div class="section-title">
+      <span style="background:var(--primary);color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">📝</span>
+      前测 · 基础检测
+    </div>
+    <p style="color:var(--primary);margin-bottom:16px;font-size:14px;">
+      难度递进：
+      <span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> →
+      <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> →
+      <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star-half-stroke"></i> 挑战</span>
+    </p>
+
+    <!-- 前测题1（基础） -->
+    <div class="quiz-box" id="pre-test-1">
+      <p style="font-weight:600;margin-bottom:12px;">
+        1. 下列食品制作中，利用酵母菌发酵的是（  ）
+        <span class="difficulty-badge difficulty-基础">基础</span>
+      </p>
+      <div class="quiz-option" data-correct="false" data-feedback="酸奶是利用乳酸菌发酵制作的，不是酵母菌。">
+        <span class="opt-letter">A</span>
+        <span>酸奶</span>
+      </div>
+      <div class="quiz-option" data-correct="true" data-feedback="正确！酵母菌发酵产生二氧化碳，使馒头、面包松软多孔。">
+        <span class="opt-letter">B</span>
+        <span>馒头</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="泡菜是利用乳酸菌发酵制作的，不是酵母菌。">
+        <span class="opt-letter">C</span>
+        <span>泡菜</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="醋是利用醋酸菌发酵制作的，不是酵母菌。">
+        <span class="opt-letter">D</span>
+        <span>醋</span>
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-explanation">
+        <div class="explain-title">详细解析</div>
+        <p>酵母菌在无氧时分解葡萄糖产生酒精和二氧化碳，二氧化碳遇热膨胀形成孔隙，使馒头、面包松软多孔。</p>
+      </div>
+    </div>
+
+    <!-- 前测题2（基础） -->
+    <div class="quiz-box" id="pre-test-2">
+      <p style="font-weight:600;margin-bottom:12px;">
+        2. 制作酸奶和泡菜主要利用的微生物是（  ）
+        <span class="difficulty-badge difficulty-基础">基础</span>
+      </p>
+      <div class="quiz-option" data-correct="false" data-feedback="酵母菌用于制作馒头、面包，不用于酸奶和泡菜。">
+        <span class="opt-letter">A</span>
+        <span>酵母菌</span>
+      </div>
+      <div class="quiz-option" data-correct="true" data-feedback="正确！乳酸菌发酵产生乳酸，使奶制品和蔬菜变酸并形成特殊风味。">
+        <span class="opt-letter">B</span>
+        <span>乳酸菌</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="醋酸菌用于制醋，不用于酸奶和泡菜。">
+        <span class="opt-letter">C</span>
+        <span>醋酸菌</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="青霉菌用于生产青霉素，不用于制作酸奶和泡菜。">
+        <span class="opt-letter">D</span>
+        <span>青霉菌</span>
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-explanation">
+        <div class="explain-title">详细解析</div>
+        <p>乳酸菌是细菌，在无氧条件下将葡萄糖分解为乳酸，乳酸抑制其他杂菌生长，同时使食品产生酸味。</p>
+      </div>
+    </div>
+
+    <!-- 前测题3（提高） -->
+    <div class="quiz-box" id="pre-test-3">
+      <p style="font-weight:600;margin-bottom:12px;">
+        3. 下列微生物中，属于真菌的是（  ）
+        <span class="difficulty-badge difficulty-提高">提高</span>
+      </p>
+      <div class="quiz-option" data-correct="false" data-feedback="结核杆菌是细菌，不是真菌。">
+        <span class="opt-letter">A</span>
+        <span>结核杆菌</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="乳酸菌是细菌，不是真菌。">
+        <span class="opt-letter">B</span>
+        <span>乳酸菌</span>
+      </div>
+      <div class="quiz-option" data-correct="true" data-feedback="正确！酵母菌是单细胞真菌，具有真正的细胞核。">
+        <span class="opt-letter">C</span>
+        <span>酵母菌</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="醋酸菌是细菌，不是真菌。">
+        <span class="opt-letter">D</span>
+        <span>醋酸菌</span>
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-explanation">
+        <div class="explain-title">详细解析</div>
+        <p>真菌细胞有真正的细胞核，酵母菌、霉菌、蘑菇都属于真菌；细菌没有成形的细胞核，属于原核生物。</p>
+      </div>
+    </div>
+
+    <!-- 前测题4（挑战） -->
+    <div class="quiz-box" id="pre-test-4">
+      <p style="font-weight:600;margin-bottom:12px;">
+        4. 青霉素是一种抗生素，它是由哪种微生物产生的？（  ）
+        <span class="difficulty-badge difficulty-挑战">挑战</span>
+      </p>
+      <div class="quiz-option" data-correct="false" data-feedback="酵母菌用于食品发酵，不产生青霉素。">
+        <span class="opt-letter">A</span>
+        <span>酵母菌</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="乳酸菌用于食品发酵，不产生青霉素。">
+        <span class="opt-letter">B</span>
+        <span>乳酸菌</span>
+      </div>
+      <div class="quiz-option" data-correct="true" data-feedback="正确！青霉菌是一种真菌，其代谢产物青霉素能抑制细菌细胞壁的合成。">
+        <span class="opt-letter">C</span>
+        <span>青霉菌</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="醋酸菌是细菌，不是真菌，不产生青霉素。">
+        <span class="opt-letter">D</span>
+        <span>醋酸菌</span>
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-explanation">
+        <div class="explain-title">详细解析</div>
+        <p>青霉素是1928年弗莱明发现的，由青霉菌产生，能破坏细菌细胞壁，是临床上广泛使用的抗生素。</p>
+      </div>
+    </div>
+
+    <!-- 8. 核心知识讲解 -->
+    <div id="sec1">
+      <div class="section-title">
+        <span style="background:var(--primary);color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">1</span>
+        一、细菌和真菌的有益应用
+      </div>
+
+      <!-- 概念框 -->
+      <div class="concept-box">
+        <div class="label">📖 核心概念</div>
+        <p>细菌和真菌在食品制作、医药卫生、环境保护等方面对人类有重要作用。酵母菌、乳酸菌、醋酸菌、青霉菌等是常见的有益微生物。</p>
+      </div>
+
+      <!-- 互动：拖拽分类 -->
+      <div class="card">
+        <h4><i class="fas fa-hand-pointer"></i> 互动：微生物分类（拖拽到对应区域）</h4>
+        <div class="drag-container">
+          <div class="drag-item" draggable="true" data-type="beneficial">酵母菌</div>
+          <div class="drag-item" draggable="true" data-type="harmful">足癣真菌</div>
+          <div class="drag-item" draggable="true" data-type="beneficial">乳酸菌</div>
+          <div class="drag-item" draggable="true" data-type="harmful">结核杆菌</div>
+          <div class="drag-item" draggable="true" data-type="beneficial">青霉菌</div>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <div class="drop-zone" id="beneficial-zone"><h4><i class="fa-solid fa-check-circle"></i> 有益微生物</h4></div>
+          <div class="drop-zone" id="harmful-zone"><h4><i class="fa-solid fa-times-circle"></i> 有害微生物</h4></div>
+        </div>
+      </div>
+
+      <!-- 食品制作应用 -->
+      <div class="card">
+        <h4><i class="fas fa-utensils"></i> 食品制作中的应用</h4>
+        <div class="example-grid">
+          <div class="example-card">
+            <h5>🍞 酵母菌 · 馒头、面包</h5>
+            <p>发酵产生CO₂，使食品松软多孔；无氧发酵产生酒精，可用于酿酒。</p>
+          </div>
+          <div class="example-card">
+            <h5>🥛 乳酸菌 · 酸奶、泡菜</h5>
+            <p>发酵产生乳酸，抑制杂菌生长，形成特殊风味，延长保存时间。</p>
+          </div>
+          <div class="example-card">
+            <h5>🍶 醋酸菌 · 醋</h5>
+            <p>将酒精进一步氧化为醋酸，是食醋生产的主要菌种。</p>
+          </div>
+          <div class="example-card">
+            <h5>🧀 霉菌 · 腐乳、酱油</h5>
+            <p>分解蛋白质，产生鲜味物质，形成特殊口感与风味。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 医药应用 -->
+      <div class="card">
+        <h4><i class="fas fa-prescription-bottle-medical"></i> 医药应用</h4>
+        <div class="example-grid">
+          <div class="example-card">
+            <h5>💊 青霉素</h5>
+            <p>由青霉菌产生，抑制细菌细胞壁合成，用于治疗细菌感染。</p>
+          </div>
+          <div class="example-card">
+            <h5>🦠 链霉素</h5>
+            <p>由灰色链霉菌产生，用于治疗结核病等细菌感染疾病。</p>
+          </div>
+          <div class="example-card">
+            <h5>🧬 胰岛素</h5>
+            <p>利用大肠杆菌基因工程生产，用于治疗糖尿病。</p>
+          </div>
+          <div class="example-card">
+            <h5>💉 疫苗生产</h5>
+            <p>利用微生物发酵技术生产乙肝疫苗、流感疫苗等。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sec2">
+      <div class="section-title">
+        <span style="background:#ef4444;color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">2</span>
+        二、细菌和真菌引起的疾病
+      </div>
+
+      <div class="card">
+        <h4><i class="fas fa-virus"></i> 引起人类和动植物疾病</h4>
+        <div class="example-grid">
+          <div class="example-card">
+            <h5>🦠 足癣（真菌）</h5>
+            <p>红色毛癣菌等侵犯皮肤角质层，引起瘙痒、脱皮，需用抗真菌药物治疗。</p>
+          </div>
+          <div class="example-card">
+            <h5>🦠 肺结核（细菌）</h5>
+            <p>结核杆菌感染肺部，引起咳嗽、咯血，接种卡介苗可有效预防。</p>
+          </div>
+          <div class="example-card">
+            <h5>🦠 细菌性痢疾（细菌）</h5>
+            <p>痢疾杆菌感染肠道，引起腹泻、发热，注意饮食卫生可预防。</p>
+          </div>
+          <div class="example-card">
+            <h5>🌾 小麦叶锈病（真菌）</h5>
+            <p>锈菌感染小麦叶片，导致减产，是农业真菌病害的代表。</p>
+          </div>
+        </div>
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>真菌和细菌是两类不同的微生物：真菌有真正的细胞核（真核），细菌没有成形的细胞核（原核）。治疗用药也不同：抗菌用抗生素，杀真菌用抗真菌药。</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="sec3">
+      <div class="section-title">
+        <span style="background:#f59e0b;color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">3</span>
+        三、利用微生物制作食品
+      </div>
+
+      <div class="concept-box">
+        <div class="label">📖 核心概念</div>
+        <p><strong>食品保存原理：</strong>把食品内的细菌和真菌<strong>杀死</strong>或<strong>抑制它们的生长和繁殖</strong>，就能延长食品保存时间。</p>
+      </div>
+
+      <div class="card">
+        <h4><i class="fas fa-utensils"></i> 食品保存方法</h4>
+        <div class="example-grid">
+          <div class="example-card">
+            <h5>❄️ 低温保存</h5>
+            <p>冰箱冷藏（4℃以下），抑制微生物繁殖，但不能杀死微生物。</p>
+          </div>
+          <div class="example-card">
+            <h5>🔥 高温灭菌</h5>
+            <p>巴氏消毒法（60-70℃）杀死有害微生物，如巴氏杀菌乳。</p>
+          </div>
+          <div class="example-card">
+            <h5>☀️ 脱水保存</h5>
+            <p>晒干、烘干去除水分，阻止微生物生长，如干香菇、牛肉干。</p>
+          </div>
+          <div class="example-card">
+            <h5>🏺 密封罐装</h5>
+            <p>隔绝空气，防止外界微生物进入，如罐头食品。</p>
+          </div>
+          <div class="example-card">
+            <h5>🧂 盐渍保存</h5>
+            <p>高浓度盐溶液抑制微生物生长，如咸鱼、腊肉。</p>
+          </div>
+          <div class="example-card">
+            <h5>🍬 糖渍保存</h5>
+            <p>高浓度糖溶液形成渗透压抑制微生物，如果酱、蜜饯。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sec4">
+      <div class="section-title">
+        <span style="background:#8b5cf6;color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">4</span>
+        四、预防微生物引起的疾病
+      </div>
+
+      <div class="card">
+        <h4><i class="fas fa-shield-virus"></i> 预防措施</h4>
+        <div class="example-grid">
+          <div class="example-card">
+            <h5>🧼 讲究卫生</h5>
+            <p>勤洗手、保持环境清洁，正确处理垃圾，减少病原体传播。</p>
+          </div>
+          <div class="example-card">
+            <h5>💉 接种疫苗</h5>
+            <p>如卡介苗（预防结核）、脊灰疫苗，建立特异性免疫保护。</p>
+          </div>
+          <div class="example-card">
+            <h5>🏃 加强锻炼</h5>
+            <p>增强体质，提高非特异性免疫力，是抵抗病原体的基础。</p>
+          </div>
+          <div class="example-card">
+            <h5>💊 规范用药</h5>
+            <p>细菌感染→抗生素；真菌感染→抗真菌药；对症用药，不滥用。</p>
+          </div>
+          <div class="example-card">
+            <h5>🍎 均衡营养</h5>
+            <p>合理膳食，为免疫系统提供充足能量和营养素。</p>
+          </div>
+          <div class="example-card">
+            <h5>😷 佩戴口罩</h5>
+            <p>呼吸道传染病流行期佩戴口罩，阻断飞沫传播途径。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 后测 · 4题 -->
+    <div class="section-title">
+      <span style="background:var(--primary);color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">📝</span>
+      后测 · 能力提升
+    </div>
+
+    <div class="quiz-box" id="post-test-1">
+      <p style="font-weight:600;margin-bottom:12px;">
+        1. 下列疾病中，由真菌感染引起的是（  ）
+        <span class="difficulty-badge difficulty-提高">提高</span>
+        <span class="exam-tag" style="background:#ef4444;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:white;margin-left:8px;">中考真题</span>
+      </p>
+      <div class="quiz-option" data-correct="false" data-feedback="肺结核是由结核杆菌（细菌）引起的，不是真菌。">
+        <span class="opt-letter">A</span>
+        <span>肺结核</span>
+      </div>
+      <div class="quiz-option" data-correct="true" data-feedback="正确！足癣是由红色毛癣菌等真菌侵犯皮肤引起的。">
+        <span class="opt-letter">B</span>
+        <span>足癣</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="细菌性痢疾是由痢疾杆菌（细菌）引起的，不是真菌。">
+        <span class="opt-letter">C</span>
+        <span>细菌性痢疾</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="流感是由流感病毒引起的，不是真菌。">
+        <span class="opt-letter">D</span>
+        <span>流感</span>
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-explanation">
+        <div class="explain-title">详细解析</div>
+        <p>真菌可以侵犯人体的皮肤、指甲、肺部等部位，引起足癣、甲癣、真菌性肺炎等疾病，治疗时需要用抗真菌药物。</p>
+      </div>
+    </div>
+
+    <div class="quiz-box" id="post-test-2">
+      <p style="font-weight:600;margin-bottom:12px;">
+        2. 下列微生物应用对应关系错误的是（  ）
+        <span class="difficulty-badge difficulty-挑战">挑战</span>
+      </p>
+      <div class="quiz-option" data-correct="false" data-feedback="对应关系正确，酵母菌确实用于制作馒头、面包。">
+        <span class="opt-letter">A</span>
+        <span>酵母菌 — 制作馒头、面包</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="对应关系正确，乳酸菌确实用于制作酸奶、泡菜。">
+        <span class="opt-letter">B</span>
+        <span>乳酸菌 — 制作酸奶、泡菜</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="对应关系正确，青霉菌确实能产生青霉素。">
+        <span class="opt-letter">C</span>
+        <span>青霉菌 — 产生青霉素</span>
+      </div>
+      <div class="quiz-option" data-correct="true" data-feedback="正确！酵母菌是真菌，不是细菌，所以归类错误。">
+        <span class="opt-letter">D</span>
+        <span>酵母菌 — 属于细菌，可用于酿酒</span>
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-explanation">
+        <div class="explain-title">详细解析</div>
+        <p>酵母菌是单细胞真菌，有真正的细胞核；细菌没有成形的细胞核。酵母菌在无氧条件下分解葡萄糖产生酒精，可用于酿酒。</p>
+      </div>
+    </div>
+
+    <div class="quiz-box" id="post-test-3">
+      <p style="font-weight:600;margin-bottom:12px;">
+        3. 防止食品腐败的主要原理是（  ）
+        <span class="difficulty-badge difficulty-基础">基础</span>
+      </p>
+      <div class="quiz-option" data-correct="false" data-feedback="杀死微生物只是其中一个原理，不够全面。">
+        <span class="opt-letter">A</span>
+        <span>仅仅杀死食品中的微生物</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="增加营养与防止腐败无关。">
+        <span class="opt-letter">B</span>
+        <span>增加食品的营养成分</span>
+      </div>
+      <div class="quiz-option" data-correct="true" data-feedback="正确！防止腐败有两大原理：杀死微生物，或抑制其生长和繁殖。">
+        <span class="opt-letter">C</span>
+        <span>杀死或抑制微生物的生长和繁殖</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="低温保存只是抑制，高温灭菌才是杀死，两者原理不同。">
+        <span class="opt-letter">D</span>
+        <span>仅仅降低食品的温度</span>
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-explanation">
+        <div class="explain-title">详细解析</div>
+        <p>食品腐败主要由细菌和真菌引起，防止腐败的方法包括：高温灭菌（巴氏消毒）、低温抑制（冷藏）、脱水、密封、加防腐剂（抑制生长）等。</p>
+      </div>
+    </div>
+
+    <div class="quiz-box" id="post-test-4">
+      <p style="font-weight:600;margin-bottom:12px;">
+        4. 下列生物中，不属于细菌的是（  ）
+        <span class="difficulty-badge difficulty-提高">提高</span>
+      </p>
+      <div class="quiz-option" data-correct="false" data-feedback="结核杆菌是细菌，归属于细菌界。">
+        <span class="opt-letter">A</span>
+        <span>结核杆菌</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="乳酸菌是细菌，归属于细菌界。">
+        <span class="opt-letter">B</span>
+        <span>乳酸菌</span>
+      </div>
+      <div class="quiz-option" data-correct="true" data-feedback="正确！蘑菇是真菌，具有真正的细胞核，不属于细菌。">
+        <span class="opt-letter">C</span>
+        <span>蘑菇</span>
+      </div>
+      <div class="quiz-option" data-correct="false" data-feedback="醋酸菌是细菌，归属于细菌界。">
+        <span class="opt-letter">D</span>
+        <span>醋酸菌</span>
+      </div>
+      <div class="feedback"></div>
+      <div class="answer-explanation">
+        <div class="explain-title">详细解析</div>
+        <p>细菌是原核生物，没有成形的细胞核，如结核杆菌、乳酸菌、醋酸菌；真菌是真核生物，有真正的细胞核，如酵母菌、青霉菌、蘑菇。</p>
+      </div>
+    </div>
+
+    <!-- 10. 必考分析 -->
+    <div class="section-title">
+      <span style="background:#f59e0b;color:white;width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">📊</span>
+      必考分析
+    </div>
+
+    <div class="exam-card">
+      <div class="exam-card-header">
+        <div class="exam-card-num" style="background:var(--primary);">1</div>
+        <h4 style="font-size:16px;font-weight:700;">考频：★★★★★（高频考点）</h4>
+        <span class="exam-tag" style="background:var(--primary);">选择题</span>
+      </div>
+      <p style="margin-bottom:10px;"><strong>必背结论：</strong>酵母菌用于制作馒头、面包、酿酒；乳酸菌用于制作酸奶、泡菜；醋酸菌用于制醋；青霉菌产生青霉素。</p>
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <p>注意区分：酵母菌是真菌，乳酸菌是细菌；青霉素是真菌（青霉菌）产生的，不是细菌产生的。</p>
+      </div>
+    </div>
+
+    <div class="exam-card">
+      <div class="exam-card-header">
+        <div class="exam-card-num" style="background:#ef4444;">2</div>
+        <h4 style="font-size:16px;font-weight:700;">考频：★★★★☆（常考）</h4>
+        <span class="exam-tag" style="background:#ef4444;">选择题</span>
+      </div>
+      <p style="margin-bottom:10px;"><strong>必背结论：</strong>食品保存原理 = 杀死或抑制微生物的生长和繁殖。方法包括：高温灭菌、低温冷藏、脱水干燥、密封罐装。</p>
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <p>低温保存只是抑制微生物繁殖（不是杀死），高温灭菌才是彻底杀死微生物，两种方法的原理不同。</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中8年级生物 · 第7章 细菌和真菌与人类的关系 · TeachAny v7.14.0</p>
+    <div class="footer-modules">
+      <span class="footer-module"><i class="fas fa-brain"></i> AI学伴</span>
+      <span class="footer-module"><i class="fas fa-sitemap"></i> 知识图谱</span>
+      <span class="footer-module"><i class="fas fa-chalkboard-teacher"></i> 导师卡片</span>
+    </div>
+  </footer>
+
+  <script>
+    /* =============================================
+       探究问题模块 JS
+       ============================================= */
+    let anchorContents = {};
+    anchorContents[1] = `<h3>📍 问题1：细菌和真菌对人类是有益还是有害？</h3>
+      <p><strong>答案是——两者兼有！</strong>关键看具体是哪种微生物、用在什么场景。</p>
+      <p style="margin-top:10px;"><strong>👍 有益的一面：</strong></p>
+      <ul style="line-height:2;">
+        <li>🍞 <strong>食品制作</strong>：酵母菌做馒头/面包/酿酒，乳酸菌做酸奶/泡菜，醋酸菌制醋，霉菌做腐乳/酱油</li>
+        <li>💊 <strong>医药应用</strong>：青霉菌产生青霉素（抗生素），可治疗细菌感染</li>
+        <li>🌍 <strong>环境保护</strong>：细菌和真菌分解枯枝落叶、动物遗体，促进物质循环</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>👎 有害的一面：</strong></p>
+      <ul style="line-height:2;">
+        <li>🦠 <strong>引起疾病</strong>：结核杆菌→肺结核，皮肤癣菌→足癣</li>
+        <li>🥴 <strong>使食品腐败</strong>：细菌和真菌在食品上大量繁殖，导致食物变质</li>
+      </ul>
+      <p style="margin-top:10px;">👉 <strong>后续章节将分别详细展开有益应用和有害影响。</strong></p>`;
+    anchorContents[2] = `<h3>📍 问题2：为什么有些食物放久了会变质，有些却能保存很久？</h3>
+      <p><strong>核心原因：食物变质 = 细菌和真菌在食物上大量繁殖。</strong></p>
+      <p style="margin-top:10px;">所以保存食物的原理就是：<strong>杀死微生物 或 抑制微生物的生长和繁殖</strong>。</p>
+      <p style="margin-top:10px;"><strong>常见保存方法：</strong></p>
+      <ul style="line-height:2;">
+        <li>❄️ <strong>低温</strong>：冰箱冷藏，抑制微生物繁殖</li>
+        <li>🔥 <strong>高温灭菌</strong>：巴氏消毒法，杀死有害微生物</li>
+        <li>☀️ <strong>脱水</strong>：晒干/烘干，去除水分阻止微生物生长</li>
+        <li>🏺 <strong>密封</strong>：隔绝空气，防止外界微生物进入</li>
+        <li>🧂 <strong>盐渍/糖渍</strong>：高渗透压抑制微生物</li>
+      </ul>
+      <p style="margin-top:10px;">👉 <strong>反过来，我们也可以主动利用微生物来制作酸奶、馒头等食品——这就是"化敌为友"！</strong></p>`;
+    anchorContents[3] = `<h3>📍 问题3：怎样预防细菌和真菌引起的疾病？</h3>
+      <p><strong>预防微生物引起的疾病，从切断传播途径和增强自身抵抗力入手：</strong></p>
+      <ul style="line-height:2;">
+        <li>🧼 <strong>讲究个人卫生</strong>：勤洗手、勤换衣、保持环境清洁</li>
+        <li>💉 <strong>接种疫苗</strong>：如卡介苗（预防结核），建立特异性免疫</li>
+        <li>🏃 <strong>加强锻炼</strong>：增强体质，提高非特异性免疫力</li>
+        <li>🍎 <strong>均衡营养</strong>：合理膳食，为免疫系统提供充足能量</li>
+        <li>💊 <strong>规范用药</strong>：细菌感染→抗生素；真菌感染→抗真菌药；不滥用</li>
+      </ul>`;
+
+    function selectAnchor(btn, id) {
+      document.querySelectorAll('.anchor-btn').forEach(function(i) { i.classList.remove('selected'); });
+      btn.classList.add('selected');
+      document.getElementById('anchor-display').innerHTML = anchorContents[id];
+      var fb = document.getElementById('anchor-feedback');
+      if (fb) {
+        fb.textContent = '✅ 你选择了：' + btn.getAttribute('data-anchor-choice');
+        fb.style.display = 'block';
+      }
+      window.__TEACHANY_LEARNER_QUESTION__ = btn.getAttribute('data-anchor-choice') || '';
+      var sectionMap = {1:'sec1', 2:'sec3', 3:'sec4'};
+      var target = document.getElementById(sectionMap[id]);
+      if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    function handleCustomQuestion(q) {
+      if (q.trim()) {
+        document.getElementById('anchor-display').innerHTML = '<h3>📍 你的问题：' + q + '</h3><p>很好的问题！让我们在课件中寻找答案，也可以点击下方AI学伴一起探讨。</p>';
+        var fb = document.getElementById('anchor-feedback');
+        if (fb) {
+          fb.textContent = '你的问题：' + q;
+          fb.style.display = 'block';
+        }
+        window.__TEACHANY_LEARNER_QUESTION__ = q;
+      }
+    }
+
+    /* =============================================
+       选择题交互
+       ============================================= */
+    document.querySelectorAll('.quiz-option').forEach(function(option) {
+      option.addEventListener('click', function() {
+        var parent = this.parentElement;
+        var isCorrect = this.dataset.correct === 'true';
+        var feedback = parent.querySelector('.feedback');
+        var explanation = parent.querySelector('.answer-explanation');
+
+        parent.querySelectorAll('.quiz-option').forEach(function(opt) {
+          opt.classList.remove('correct', 'wrong');
+        });
+
+        if (isCorrect) {
+          this.classList.add('correct');
+          feedback.textContent = '✅ 回答正确！' + this.dataset.feedback;
+          feedback.className = 'feedback correct-fb show';
+        } else {
+          this.classList.add('wrong');
+          feedback.textContent = '❌ 回答错误！' + this.dataset.feedback;
+          feedback.className = 'feedback wrong-fb show';
+        }
+        explanation.classList.add('show');
+      });
+    });
+
+    /* =============================================
+       拖拽互动
+       ============================================= */
+    var draggedItem = null;
+    document.querySelectorAll('.drag-item').forEach(function(item) {
+      item.addEventListener('dragstart', function() {
+        draggedItem = this;
+        setTimeout(function() { this.style.opacity = '0.5'; }.bind(item), 0);
+      });
+      item.addEventListener('dragend', function() {
+        setTimeout(function() { this.style.opacity = '1'; }.bind(item), 0);
+        draggedItem = null;
+      });
+    });
+
+    document.querySelectorAll('.drop-zone').forEach(function(zone) {
+      zone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.classList.add('active');
+      });
+      zone.addEventListener('dragleave', function() {
+        this.classList.remove('active');
+      });
+      zone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.classList.remove('active');
+        if (draggedItem) {
+          this.appendChild(draggedItem);
+          var type = draggedItem.dataset.type;
+          var zoneId = this.id;
+          if ((type === 'beneficial' && zoneId === 'beneficial-zone') || (type === 'harmful' && zoneId === 'harmful-zone')) {
+            draggedItem.style.borderColor = '#10b981';
+            draggedItem.style.background = '#d1fae5';
+          } else {
+            draggedItem.style.borderColor = '#ef4444';
+            draggedItem.style.background = '#fee2e2';
+          }
+        }
+      });
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

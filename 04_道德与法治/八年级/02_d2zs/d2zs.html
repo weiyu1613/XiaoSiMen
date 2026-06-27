@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="course-id" content="daofa-8-u2">
+  <meta name="course-title" content="第二单元：遵守社会规则">
+  <meta name="course-subject" content="daofa">
+  <meta name="course-grade" content="middle-8">
+  <meta name="version" content="v7.14.0">
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6A1B9A;
+      --primary-light: #9C27B0;
+      --primary-dark: #4A148C;
+      --secondary: #CE93D8;
+      --bg-light: #F3E5F5;
+      --bg-card: #ffffff;
+      --text-dark: #1A1A2E;
+      --text-muted: #5D4E6D;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(106,27,154,0.05); }
+    ::-webkit-scrollbar-thumb { background: #CE93D8; border-radius: 3px; }
+
+    /* Hero */
+    .hero-unit {
+      background: linear-gradient(135deg, #6A1B9A, #9C27B0, #AB47BC);
+      color: white;
+      padding: 48px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-unit::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero-icon { font-size: 48px; margin-bottom: 16px; }
+    .hero-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; }
+    .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 20px; font-size: 0.85rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
+
+    /* Nav */
+    .top-nav {
+      background: white;
+      padding: 12px 20px;
+      box-shadow: 0 2px 8px rgba(106,27,154,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .top-nav a { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; }
+    .top-nav a:hover { background: #F3E5F5; }
+    .top-nav-center { color: var(--primary); font-weight: 700; font-size: 14px; }
+
+    /* Unit intro */
+    .unit-intro { max-width: 1200px; margin: 32px auto; padding: 0 20px; }
+    .intro-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px 28px;
+      border: 1px solid #E1BEE7;
+      box-shadow: 0 4px 16px rgba(106,27,154,0.1);
+    }
+    .intro-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
+    .intro-content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .intro-section h4 { color: var(--primary); margin-bottom: 10px; font-size: 1rem; }
+    .intro-section ul { list-style: none; padding: 0; line-height: 2; font-size: 14px; }
+    .intro-section ul li::before { content: "⚖️ "; }
+    .intro-connection { background: #F3E5F5; border-radius: 10px; padding: 16px; font-size: 14px; color: var(--text-muted); }
+
+    /* Lessons grid */
+    .lessons-section { max-width: 1200px; margin: 0 auto 32px; padding: 0 20px; }
+    .lessons-title { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #E1BEE7; }
+    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .lesson-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid #E1BEE7;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(106,27,154,0.08);
+    }
+    .lesson-card:hover {
+      border-color: var(--primary);
+      transform: translateX(6px);
+      box-shadow: 0 6px 20px rgba(106,27,154,0.2);
+      color: var(--primary);
+    }
+    .lesson-num {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700;
+    }
+    .lesson-header { display: flex; align-items: center; gap: 12px; }
+    .lesson-title { font-size: 1rem; font-weight: 600; line-height: 1.4; }
+    .lesson-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+    .lesson-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .lesson-tag { padding: 2px 8px; border-radius: 10px; font-size: 11px; background: #F3E5F5; color: var(--primary); }
+    .lesson-arrow { color: var(--primary); font-size: 18px; margin-top: auto; text-align: right; opacity: 0; transition: opacity 0.3s; }
+    .lesson-card:hover .lesson-arrow { opacity: 1; }
+
+    /* Footer */
+    .footer { background: var(--text-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 40px; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hero-unit { padding: 28px 14px; }
+      .hero-title { font-size: 1.4rem; }
+      .hero-icon { font-size: 36px; }
+      .intro-content { grid-template-columns: 1fr; }
+      .lessons-grid { grid-template-columns: 1fr; }
+      .top-nav { flex-direction: column; align-items: flex-start; }
+      .top-nav-center { order: -1; width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero-unit">
+    <div class="hero-content">
+      <div class="hero-icon">📏</div>
+      <h1 class="hero-title">第二单元：遵守社会规则</h1>
+      <p class="hero-subtitle">人教版 · 八年级道德与法治上册 · 第5-12课</p>
+      <div class="hero-badges">
+        <span class="hero-badge"><i class="fas fa-scale-balanced"></i> 8节精品课件</span>
+        <span class="hero-badge"><i class="fas fa-brain"></i> AI智能学伴</span>
+        <span class="hero-badge"><i class="fas fa-chart-line"></i> 中考真题演练</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav class="top-nav">
+    <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+    <div class="top-nav-center">第二单元 · 遵守社会规则</div>
+    <a href="../01_d1zjsh/d1zjsh.html">第1单元 <i class="fas fa-chevron-left"></i></a>
+    <a href="../03_d3yd/d3yd.html"><i class="fas fa-chevron-right"></i> 第3单元</a>
+  </nav>
+
+  <!-- Unit intro -->
+  <div class="unit-intro">
+    <div class="intro-card">
+      <div class="intro-title">📖 单元导学</div>
+      <div class="intro-content">
+        <div class="intro-section">
+          <h4>🎯 本单元要学什么？</h4>
+          <ul>
+            <li>社会秩序与社会规则的关系</li>
+            <li>道德、纪律、法律等不同规则的作用</li>
+            <li>尊重他人、以礼待人的行为要求</li>
+            <li>诚实守信的重要性和基本要求</li>
+            <li>违法与犯罪的区别与预防</li>
+            <li>善用法律武器保护自己</li>
+          </ul>
+        </div>
+        <div class="intro-section">
+          <h4>🔗 与其他单元的联系</h4>
+          <div class="intro-connection">
+            <p>本单元承接<strong>第一单元"走进社会生活"</strong>，在认识社会的基础上，进一步学习如何<strong>遵守社会规则</strong>，为第三单元"勇担社会责任"奠定基础。</p>
+            <p style="margin-top: 8px;">🔑 <strong>核心线索：</strong>社会秩序 → 社会规则 → 遵守规则 → 维护权益</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lessons -->
+  <div class="lessons-section">
+    <h2 class="lessons-title">📚 本单元课程</h2>
+    <div class="lessons-grid">
+      
+      <a href="2.1_whzx/whzx.html" class="lesson-card">
+        <div class="lesson-header">
+          <span class="lesson-num">5</span>
+          <div class="lesson-title">2.1 维护秩序</div>
+        </div>
+        <div class="lesson-desc">社会秩序的含义、分类、重要性及维护秩序的手段</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">社会秩序</span>
+          <span class="lesson-tag">规则关系</span>
+          <span class="lesson-tag">中考高频</span>
+        </div>
+        <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <a href="2.2_zsgz/zsgz.html" class="lesson-card">
+        <div class="lesson-header">
+          <span class="lesson-num">6</span>
+          <div class="lesson-title">2.2 遵守规则</div>
+        </div>
+        <div class="lesson-desc">社会规则的种类、为什么要遵守规则、如何自律</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">社会规则</span>
+          <span class="lesson-tag">自律</span>
+        </div>
+        <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <a href="2.3_zmtr/zsgz.html" class="lesson-card">
+        <div class="lesson-header">
+          <span class="lesson-num">7</span>
+          <div class="lesson-title">2.3 尊重他人</div>
+        </div>
+        <div class="lesson-desc">为什么要尊重他人，如何在生活中做到尊重他人</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">尊重</span>
+          <span class="lesson-tag">人际交往</span>
+        </div>
+        <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <a href="2.4_ylzr/zsgz.html" class="lesson-card">
+        <div class="lesson-header">
+          <span class="lesson-num">8</span>
+          <div class="lesson-title">2.4 以礼待人</div>
+        </div>
+        <div class="lesson-desc">文明礼仪的重要性，做文明有礼的中学生</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">文明礼貌</span>
+          <span class="lesson-tag">礼仪规范</span>
+        </div>
+        <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <a href="2.5_cxsm/zsgz.html" class="lesson-card">
+        <div class="lesson-header">
+          <span class="lesson-num">9</span>
+          <div class="lesson-title">2.5 诚实守信</div>
+        </div>
+        <div class="lesson-desc">诚信的价值，诚信与信任的关系，如何做到诚信</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">诚信</span>
+          <span class="lesson-tag">品德核心</span>
+        </div>
+        <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <a href="2.6_fkbw/zsgz.html" class="lesson-card">
+        <div class="lesson-header">
+          <span class="lesson-num">10</span>
+          <div class="lesson-title">2.6 法不可违</div>
+        </div>
+        <div class="lesson-desc">违法行为的种类与法律后果，区分违法与犯罪</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">法律底线</span>
+          <span class="lesson-tag">中考高频</span>
+        </div>
+        <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <a href="2.7_yfzf/zsgz.html" class="lesson-card">
+        <div class="lesson-header">
+          <span class="lesson-num">11</span>
+          <div class="lesson-title">2.7 预防犯罪</div>
+        </div>
+        <div class="lesson-desc">犯罪的基本特征，如何加强自我防范，远离犯罪</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">犯罪预防</span>
+          <span class="lesson-tag">自我防范</span>
+        </div>
+        <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <a href="2.8_syfl/zsgz.html" class="lesson-card">
+        <div class="lesson-header">
+          <span class="lesson-num">12</span>
+          <div class="lesson-title">2.8 善用法律</div>
+        </div>
+        <div class="lesson-desc">法律武器的种类，如何通过法律途径维护合法权益</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">法律救济</span>
+          <span class="lesson-tag">维权途径</span>
+        </div>
+        <div class="lesson-arrow"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>第二单元 · 遵守社会规则 · 初中八年级道德与法治 TeachAny v7.14.0</p>
+    <div style="margin-top: 12px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+      <span style="background:rgba(255,255,255,0.1);padding:5px 12px;border-radius:14px;font-size:12px;"><i class="fas fa-brain"></i> AI智能</span>
+      <span style="background:rgba(255,255,255,0.1);padding:5px 12px;border-radius:14px;font-size:12px;"><i class="fas fa-chart-line"></i> 中考真题</span>
+      <span style="background:rgba(255,255,255,0.1);padding:5px 12px;border-radius:14px;font-size:12px;"><i class="fas fa-mobile-alt"></i> 响应式</span>
+    </div>
+  </footer>
+
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

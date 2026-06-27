@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="course-id" content="history-mayfourth-8">
+  <meta name="course-title" content="3.2 五四运动">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="may-fourth-movement">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v8.1.0">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>3.2 五四运动 - 初中历史八年级</title>
+  <style>
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --bg: #faf7f2;
+      --white: #ffffff;
+      --text: #3d2b1f;
+      --accent: #d4a574;
+      --shadow: rgba(139,69,19,0.15);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+
+    /* ===== 1. 品牌栏 ===== */
+    .brand-bar {
+      background: linear-gradient(135deg,var(--primary),var(--primary-light));
+      color:var(--white);
+      padding:10px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:13px;
+    }
+    .brand-bar .brand-logo { font-weight:700; font-size:15px; }
+    .brand-bar .brand-logo i { margin-right:6px; }
+    .brand-bar .breadcrumb { opacity:0.9; }
+    .brand-bar .breadcrumb span { margin:0 4px; }
+
+    /* ===== 2. 进度条 ===== */
+    .progress-bar {
+      height:6px;
+      background:rgba(255,255,255,0.3);
+      position:relative;
+    }
+    .progress-fill {
+      height:100%;
+      background:var(--white);
+      width:0%;
+      transition:width 0.5s ease;
+    }
+
+    /* ===== 3. 导航栏 ===== */
+    .nav-bar {
+      background:var(--white);
+      box-shadow:0 2px 8px var(--shadow);
+      padding:0 24px;
+      display:flex;
+      align-items:center;
+      gap:24px;
+      position:sticky;
+      top:0;
+      z-index:100;
+      overflow-x:auto;
+    }
+    .nav-bar a {
+      text-decoration:none;
+      color:var(--text);
+      padding:14px 8px;
+      font-size:14px;
+      white-space:nowrap;
+      border-bottom:3px solid transparent;
+      transition:all 0.3s;
+    }
+    .nav-bar a:hover, .nav-bar a.active {
+      color:var(--primary);
+      border-bottom-color:var(--primary);
+    }
+    .nav-bar .nav-unit { color:var(--primary-light); font-size:12px; }
+
+    /* ===== 4. Hero区 ===== */
+    .hero {
+      background: linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);
+      color:var(--white);
+      padding:60px 24px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before {
+      content:"";
+      position:absolute;
+      top:-50%;
+      right:-10%;
+      width:400px;
+      height:400px;
+      background:rgba(255,255,255,0.06);
+      border-radius:50%;
+    }
+    .hero .lesson-tag {
+      display:inline-block;
+      background:rgba(255,255,255,0.2);
+      padding:4px 16px;
+      border-radius:20px;
+      font-size:13px;
+      margin-bottom:16px;
+    }
+    .hero h1 { font-size:clamp(28px,5vw,48px); font-weight:700; margin-bottom:12px; }
+    .hero .subtitle { font-size:16px; opacity:0.9; max-width:600px; margin:0 auto 20px; }
+    .hero .hero-meta { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; font-size:13px; opacity:0.85; }
+    .hero .hero-meta span { display:flex; align-items:center; gap:5px; }
+
+    /* ===== 5. SVG知识图 ===== */
+    .knowledge-map {
+      max-width:900px;
+      margin:0 auto;
+      padding:40px 24px;
+    }
+    .knowledge-map h2 { text-align:center; color:var(--primary); margin-bottom:30px; font-size:22px; }
+    .km-svg-wrap {
+      background:var(--white);
+      border-radius:12px;
+      box-shadow:0 4px 16px var(--shadow);
+      padding:20px;
+      overflow-x:auto;
+    }
+
+    /* ===== 6. 锚点导航 ===== */
+    .anchor-nav {
+      max-width:900px;
+      margin:0 auto;
+      padding:0 24px 30px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .anchor-nav a {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 16px;
+      background:var(--white);
+      border:1px solid var(--primary-light);
+      border-radius:8px;
+      color:var(--primary);
+      text-decoration:none;
+      font-size:13px;
+      transition:all 0.3s;
+    }
+    .anchor-nav a:hover { background:var(--primary); color:var(--white); }
+
+    /* ===== 7. 学习目标 ===== */
+    .section-block { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+    .section-title {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--primary);
+      font-size:20px;
+      margin-bottom:20px;
+      padding-bottom:10px;
+      border-bottom:2px solid var(--primary-light);
+    }
+    .section-title i { font-size:22px; }
+    .objective-card {
+      background:var(--white);
+      border-radius:12px;
+      padding:24px;
+      box-shadow:0 2px 12px var(--shadow);
+    }
+    .objective-list { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+    .objective-list li {
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding:12px;
+      background:var(--bg);
+      border-radius:8px;
+      font-size:14px;
+    }
+    .objective-list li i { color:var(--primary); margin-top:2px; flex-shrink:0; }
+
+    /* ===== 8. 核心知识点 ===== */
+    .knowledge-card {
+      background:var(--white);
+      border-radius:12px;
+      padding:28px;
+      box-shadow:0 2px 12px var(--shadow);
+      margin-bottom:20px;
+    }
+    .knowledge-card h3 { color:var(--primary); margin-bottom:14px; font-size:17px; display:flex; align-items:center; gap:8px; }
+    .timeline { position:relative; padding-left:30px; }
+    .timeline::before {
+      content:"";
+      position:absolute;
+      left:8px;
+      top:0;
+      bottom:0;
+      width:3px;
+      background:linear-gradient(to bottom,var(--primary),var(--primary-light));
+      border-radius:2px;
+    }
+    .timeline-item { position:relative; margin-bottom:20px; }
+    .timeline-item::before {
+      content:"";
+      position:absolute;
+      left:-26px;
+      top:6px;
+      width:12px;
+      height:12px;
+      background:var(--primary);
+      border-radius:50%;
+      border:2px solid var(--bg);
+    }
+    .timeline-item .time { font-weight:700; color:var(--primary); font-size:14px; margin-bottom:4px; }
+    .timeline-item .event { font-size:14px; color:var(--text); }
+    .key-point {
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px;
+      background:var(--bg);
+      border-left:4px solid var(--primary);
+      border-radius:0 8px 8px 0;
+      margin-bottom:12px;
+    }
+    .key-point i { color:var(--primary); font-size:18px; margin-top:2px; }
+    .key-point .kp-label { font-weight:700; color:var(--primary); font-size:13px; }
+    .key-point .kp-val { font-size:14px; margin-top:2px; }
+    .slogan-box {
+      background:linear-gradient(135deg,var(--primary),var(--primary-light));
+      color:var(--white);
+      padding:16px 20px;
+      border-radius:10px;
+      font-size:15px;
+      font-weight:700;
+      text-align:center;
+      letter-spacing:1px;
+      margin:10px 0;
+    }
+    .figure-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-top:14px; }
+    .figure-item {
+      background:var(--bg);
+      border-radius:10px;
+      padding:14px;
+      text-align:center;
+      transition:transform 0.3s;
+    }
+    .figure-item:hover { transform:translateY(-3px); }
+    .figure-item .fig-icon {
+      width:50px; height:50px;
+      background:linear-gradient(135deg,var(--primary),var(--primary-light));
+      border-radius:50%;
+      margin:0 auto 8px;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--white); font-size:20px;
+    }
+    .figure-item .fig-name { font-weight:700; font-size:14px; color:var(--primary); }
+    .figure-item .fig-role { font-size:12px; color:#888; margin-top:2px; }
+
+    /* ===== 9. 互动测验 ===== */
+    .quiz-card {
+      background:var(--white);
+      border-radius:12px;
+      padding:28px;
+      box-shadow:0 2px 12px var(--shadow);
+      margin-bottom:20px;
+    }
+    .quiz-card h3 { color:var(--primary); margin-bottom:20px; font-size:17px; }
+    .quiz-item {
+      border:1px solid #e8d9c5;
+      border-radius:10px;
+      padding:20px;
+      margin-bottom:16px;
+    }
+    .quiz-item .q-num { font-size:12px; color:var(--primary); font-weight:700; margin-bottom:8px; }
+    .quiz-item .q-text { font-size:15px; font-weight:600; margin-bottom:14px; }
+    .quiz-option {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid #e0d0c0;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:14px;
+      margin-bottom:8px;
+      transition:all 0.2s;
+      background:var(--white);
+    }
+    .quiz-option:hover { background:#fdf5eb; border-color:var(--primary-light); }
+    .quiz-option .opt-label { font-weight:700; color:var(--primary); width:22px; height:22px; border:1px solid var(--primary-light); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; }
+    .quiz-option.correct { background:#e8f5e9; border-color:#4caf50; }
+    .quiz-option.correct .opt-label { background:#4caf50; border-color:#4caf50; color:white; }
+    .quiz-option.incorrect { background:#fce4ec; border-color:#e53935; }
+    .quiz-option.incorrect .opt-label { background:#e53935; border-color:#e53935; color:white; }
+    .feedback-box {
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:8px;
+      font-size:13px;
+      display:none;
+      line-height:1.6;
+    }
+    .feedback-box.show { display:block; }
+    .feedback-box.correct-fb { background:#e8f5e9; border-left:4px solid #4caf50; color:#2e7d32; }
+    .feedback-box.incorrect-fb { background:#fce4ec; border-left:4px solid #e53935; color:#c62828; }
+
+    /* ===== 10. 页脚 ===== */
+    .footer {
+      background:linear-gradient(135deg,var(--primary),var(--primary-light));
+      color:rgba(255,255,255,0.85);
+      text-align:center;
+      padding:24px;
+      font-size:13px;
+    }
+    .footer .footer-brand { font-size:15px; font-weight:700; margin-bottom:6px; color:var(--white); }
+    .footer a { color:rgba(255,255,255,0.9); text-decoration:underline; }
+    @media(max-width:768px) {
+      .hero { padding:40px 16px; }
+      .nav-bar { padding:0 16px; gap:12px; }
+      .section-block, .section-title, .anchor-nav, .knowledge-map { padding-left:16px; padding-right:16px; }
+      .objective-list { grid-template-columns:1fr; }
+      .figure-grid { grid-template-columns:repeat(2,1fr); }
+    }
+  
+    .answer-explanation {
+      background: #fef9f0;
+      border-left: 4px solid var(--primary, #8b4513);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--primary-dark, #3d2b1f);
+      display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--primary, #8b4513); }
+  </style>
+</head>
+<body>
+
+<!-- 1. 品牌栏 -->
+<div class="brand-bar">
+  <div class="brand-logo"><i class="fa-solid fa-landmark-open"></i> 知行学堂 · 初中历史</div>
+  <div class="breadcrumb">八年级 <span>›</span> 第三单元 <span>›</span> 第2课</div>
+</div>
+<!-- 2. 进度条 -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- 3. 导航栏 -->
+<nav class="nav-bar">
+  <a href="#hero" class="active">概览</a>
+  <a href="#map">知识图谱</a>
+  <a href="#objectives">学习目标</a>
+  <a href="#knowledge">核心知识</a>
+  <a href="#quiz">互动测验</a>
+  <span class="nav-unit">八年级历史 · 第三单元</span>
+</nav>
+
+<!-- 4. Hero区 -->
+<section class="hero" id="hero">
+  <div class="lesson-tag"><i class="fas fa-fire"></i> 第2课</div>
+  <h1>3.2 五四运动</h1>
+  <p class="subtitle">认识五四运动的爆发背景、过程与历史意义，理解其作为新民主主义革命伟大开端的重要地位</p>
+  <div class="hero-meta">
+    <span><i class="fas fa-calendar-alt"></i> 1919年5月4日</span>
+    <span><i class="fas fa-clock"></i> 课时：1课时</span>
+    <span><i class="fas fa-star"></i> 重点章节</span>
+  </div>
+</section>
+
+<!-- 5. SVG知识图 -->
+<section class="knowledge-map" id="map">
+  <h2><i class="fas fa-project-diagram"></i> 知识结构图</h2>
+  <div class="km-svg-wrap">
+    <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:600px;">
+      <!-- 背景 -->
+      <rect width="900" height="420" fill="#faf7f2" rx="10"/>
+      <!-- 中心节点：五四运动 -->
+      <circle cx="450" cy="210" r="65" fill="#8b4513"/>
+      <circle cx="450" cy="210" r="60" fill="#cd853f"/>
+      <text x="450" y="205" text-anchor="middle" fill="white" font-size="15" font-weight="bold">五四运动</text>
+      <text x="450" y="222" text-anchor="middle" fill="white" font-size="11">1919</text>
+      <!-- 连线 -->
+      <line x1="385" y1="210" x2="310" y2="80" stroke="#cd853f" stroke-width="2"/>
+      <line x1="385" y1="210" x2="200" y2="210" stroke="#cd853f" stroke-width="2"/>
+      <line x1="385" y1="210" x2="200" y2="340" stroke="#cd853f" stroke-width="2"/>
+      <line x1="515" y1="210" x2="600" y2="80" stroke="#cd853f" stroke-width="2"/>
+      <line x1="515" y1="210" x2="700" y2="210" stroke="#cd853f" stroke-width="2"/>
+      <line x1="515" y1="210" x2="600" y2="340" stroke="#cd853f" stroke-width="2"/>
+      <!-- 背景节点：导火索 -->
+      <rect x="165" y="40" width="145" height="70" rx="10" fill="#faf7f2" stroke="#8b4513" stroke-width="2"/>
+      <rect x="168" y="43" width="139" height="30" rx="8" fill="#8b4513"/>
+      <text x="237" y="63" text-anchor="middle" fill="white" font-size="12" font-weight="bold">导火索</text>
+      <text x="237" y="88" text-anchor="middle" fill="#8b4513" font-size="11">巴黎和会中国</text>
+      <text x="237" y="102" text-anchor="middle" fill="#8b4513" font-size="11">外交失败</text>
+      <!-- 背景节点：直接原因 -->
+      <rect x="55" y="175" width="145" height="70" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <rect x="58" y="178" width="139" height="30" rx="8" fill="#cd853f"/>
+      <text x="127" y="198" text-anchor="middle" fill="white" font-size="12" font-weight="bold">直接原因</text>
+      <text x="127" y="223" text-anchor="middle" fill="#8b4513" font-size="11">北洋政府准备在</text>
+      <text x="127" y="237" text-anchor="middle" fill="#8b4513" font-size="11">巴黎和约上签字</text>
+      <!-- 背景节点：口号 -->
+      <rect x="55" y="305" width="145" height="70" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <rect x="58" y="308" width="139" height="30" rx="8" fill="#cd853f"/>
+      <text x="127" y="328" text-anchor="middle" fill="white" font-size="12" font-weight="bold">斗争口号</text>
+      <text x="127" y="353" text-anchor="middle" fill="#8b4513" font-size="11">外争主权</text>
+      <text x="127" y="367" text-anchor="middle" fill="#8b4513" font-size="11">内除国贼</text>
+      <!-- 背景节点：经过 -->
+      <rect x="555" y="40" width="145" height="70" rx="10" fill="#faf7f2" stroke="#8b4513" stroke-width="2"/>
+      <rect x="558" y="43" width="139" height="30" rx="8" fill="#8b4513"/>
+      <text x="627" y="63" text-anchor="middle" fill="white" font-size="12" font-weight="bold">斗争经过</text>
+      <text x="627" y="88" text-anchor="middle" fill="#8b4513" font-size="11">北京学生运动</text>
+      <text x="627" y="102" text-anchor="middle" fill="#8b4513" font-size="11">→ 上海工人 → 全国</text>
+      <!-- 背景节点：意义 -->
+      <rect x="655" y="175" width="145" height="70" rx="10" fill="#faf7f2" stroke="#8b4513" stroke-width="2"/>
+      <rect x="658" y="178" width="139" height="30" rx="8" fill="#8b4513"/>
+      <text x="727" y="198" text-anchor="middle" fill="white" font-size="12" font-weight="bold">历史意义</text>
+      <text x="727" y="223" text-anchor="middle" fill="#8b4513" font-size="11">新民主主义革命的</text>
+      <text x="727" y="237" text-anchor="middle" fill="#8b4513" font-size="11">伟大开端</text>
+      <!-- 背景节点：代表人物 -->
+      <rect x="655" y="305" width="145" height="70" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <rect x="658" y="308" width="139" height="30" rx="8" fill="#cd853f"/>
+      <text x="727" y="328" text-anchor="middle" fill="white" font-size="12" font-weight="bold">代表人物</text>
+      <text x="727" y="353" text-anchor="middle" fill="#8b4513" font-size="11">陈独秀、李大钊</text>
+      <text x="727" y="367" text-anchor="middle" fill="#8b4513" font-size="11">蔡元培、胡适</text>
+      <!-- 底部：阶段标注 -->
+      <line x1="120" y1="390" x2="390" y2="390" stroke="#cd853f" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="510" y1="390" x2="780" y2="390" stroke="#cd853f" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="255" y="408" text-anchor="middle" fill="#8b4513" font-size="12" font-weight="bold">爆发阶段</text>
+      <text x="645" y="408" text-anchor="middle" fill="#8b4513" font-size="12" font-weight="bold">扩展阶段</text>
+      <text x="450" y="408" text-anchor="middle" fill="#cd853f" font-size="12" font-weight="bold">核心事件</text>
+    </svg>
+  </div>
+</section>
+
+<!-- 6. 锚点导航 -->
+<div class="anchor-nav">
+  <a href="#objectives"><i class="fas fa-bullseye"></i> 学习目标</a>
+  <a href="#knowledge"><i class="fa-solid fa-landmark"></i> 核心知识</a>
+  <a href="#timeline-sec"><i class="fas fa-stream"></i> 历史经过</a>
+  <a href="#figures"><i class="fas fa-users"></i> 代表人物</a>
+  <a href="#quiz"><i class="fas fa-pencil-alt"></i> 互动测验</a>
+</div>
+
+<!-- 7. 学习目标 -->
+<section class="section-block" id="objectives">
+  <h2 class="section-title"><i class="fas fa-bullseye"></i> 学习目标</h2>
+  <div class="objective-card">
+    <ul class="objective-list">
+      <li><i class="fas fa-check-circle"></i><span>掌握五四运动的爆发时间（1919年5月4日）及主要经过</span></li>
+      <li><i class="fas fa-check-circle"></i><span>理解五四运动的导火索：巴黎和会中国外交失败</span></li>
+      <li><i class="fas fa-check-circle"></i><span>识记五四运动的主要口号及代表人物</span></li>
+      <li><i class="fas fa-check-circle"></i><span>认识五四运动的历史意义：新民主主义革命的伟大开端</span></li>
+      <li><i class="fas fa-check-circle"></i><span>分析五四运动体现了怎样的青年责任与爱国精神</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8. 核心知识点 -->
+<section class="section-block" id="knowledge">
+
+  <!-- 8.1 背景 -->
+  <h2 class="section-title"><i class="fa-solid fa-landmark"></i> 核心知识点</h2>
+
+  <div class="knowledge-card" id="background">
+    <h3><i class="fas fa-history"></i> 一、爆发背景</h3>
+    <div class="key-point">
+      <i class="fas fa-map-marked-alt"></i>
+      <div>
+        <div class="kp-label">国际背景</div>
+        <div class="kp-val">第一次世界大战结束后，1919年1月召开巴黎和会，会上中国要求收回德国在山东的权益，但遭列强拒绝</div>
+      </div>
+    </div>
+    <div class="key-point">
+      <i class="fas fa-landmark"></i>
+      <div>
+        <div class="kp-label">直接原因</div>
+        <div class="kp-val">巴黎和会决定将德国在山东的权益转让给日本，北洋政府准备在和约上签字</div>
+      </div>
+    </div>
+    <div class="key-point">
+      <i class="fas fa-user-shield"></i>
+      <div>
+        <div class="kp-label">阶级基础</div>
+        <div class="kp-val">民族资本主义进一步发展，工人阶级队伍壮大</div>
+      </div>
+    </div>
+    <div class="key-point">
+      <i class="fas fa-brain"></i>
+      <div>
+        <div class="kp-label">思想条件</div>
+        <div class="kp-val">新文化运动的开展，解放了人们的思想，为五四运动准备了思想条件</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8.2 经过 -->
+  <div class="knowledge-card" id="timeline-sec">
+    <h3><i class="fas fa-stream"></i> 二、斗争经过</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">1919年5月4日</div>
+        <div class="event"><strong>北京爆发</strong>——三千多名学生聚集天安门，举行游行示威，高呼"外争主权，内除国贼"等口号</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">5月4日后</div>
+        <div class="event"><strong>学生罢课</strong>——北京学生罢课通电全国，各地学生纷纷响应</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">6月3日起</div>
+        <div class="event"><strong>工人罢工</strong>——上海工人罢工响应，运动中心由北京转移到上海，工人阶级登上政治舞台</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">6月28日</div>
+        <div class="event"><strong>取得胜利</strong>——北洋政府被迫罢免曹汝霖、章宗祥、陆宗舆三个卖国贼的职务，中国代表拒绝在巴黎和约上签字</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8.3 口号 -->
+  <div class="knowledge-card" id="slogans">
+    <h3><i class="fas fa-bullhorn"></i> 三、斗争口号</h3>
+    <div class="slogan-box"><i class="fas fa-flag"></i> "外争主权，内除国贼"</div>
+    <div class="slogan-box" style="background:#cd853f;"><i class="fas fa-ban"></i> "废除二十一条"</div>
+    <div class="key-point" style="margin-top:14px;">
+      <i class="fas fa-lightbulb"></i>
+      <div>
+        <div class="kp-label">口号解读</div>
+        <div class="kp-val"><strong>外争主权</strong>：反对帝国主义列强侵略，争取国家独立和领土完整；<strong>内除国贼</strong>：惩办勾结帝国主义出卖国家利益的卖国贼</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8.4 意义 -->
+  <div class="knowledge-card" id="significance">
+    <h3><i class="fas fa-star"></i> 四、历史意义</h3>
+    <div class="key-point">
+      <i class="fas fa-flag-usa"></i>
+      <div>
+        <div class="kp-label">彻底的反帝反封建运动</div>
+        <div class="kp-val">五四运动是一次彻底的不妥协的反帝反封建的爱国运动</div>
+      </div>
+    </div>
+    <div class="key-point">
+      <i class="fas fa-industry"></i>
+      <div>
+        <div class="kp-label">工人阶级登上历史舞台</div>
+        <div class="kp-val">工人阶级开始作为独立的政治力量登上历史舞台，显示了巨大威力</div>
+      </div>
+    </div>
+    <div class="key-point">
+      <i class="fas fa-rocket"></i>
+      <div>
+        <div class="kp-label">新民主主义革命的开端</div>
+        <div class="kp-val">是中国旧民主主义革命走向新民主主义革命的伟大转折点</div>
+      </div>
+    </div>
+    <div class="key-point">
+      <i class="fas fa-globe-asia"></i>
+      <div>
+        <div class="kp-label">促进马克思主义传播</div>
+        <div class="kp-val">推动了马克思主义在中国的传播，为中国共产党的成立奠定了基础</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8.5 代表人物 -->
+  <div class="knowledge-card" id="figures">
+    <h3><i class="fas fa-users"></i> 五、代表人物</h3>
+    <div class="figure-grid">
+      <div class="figure-item">
+        <div class="fig-icon"><i class="fas fa-pen-nib"></i></div>
+        <div class="fig-name">陈独秀</div>
+        <div class="fig-role">新文化运动旗手</div>
+      </div>
+      <div class="figure-item">
+        <div class="fig-icon"><i class="fa-solid fa-landmark"></i></div>
+        <div class="fig-name">李大钊</div>
+        <div class="fig-role">马克思主义传播者</div>
+      </div>
+      <div class="figure-item">
+        <div class="fig-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="fig-name">蔡元培</div>
+        <div class="fig-role">北大校长，支持学生</div>
+      </div>
+      <div class="figure-item">
+        <div class="fig-icon"><i class="fas fa-pencil-alt"></i></div>
+        <div class="fig-name">胡适</div>
+        <div class="fig-role">新文化运动干将</div>
+      </div>
+    </div>
+    <div class="key-point" style="margin-top:16px;">
+      <i class="fas fa-info-circle"></i>
+      <div>
+        <div class="kp-label">延伸</div>
+        <div class="kp-val">傅斯年、罗家伦、段锡朋等学生领袖也在运动中发挥了重要作用，成为五四运动的骨干力量</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 9. 互动测验 -->
+<section class="section-block" id="quiz">
+  <h2 class="section-title"><i class="fas fa-pencil-alt"></i> 互动测验</h2>
+  <div class="quiz-card">
+    <h3>选择题（共4题，每题至少选一项后可查看解析）</h3>
+
+    <!-- Q1 -->
+    <div class="quiz-item" data-q="1">
+      <div class="q-num">第 1 题</div>
+      <div class="q-text">五四运动的爆发时间是？</div>
+      <div class="quiz-option" data-opt="A" data-correct="true" onclick="selectOpt(this)">
+        <span class="opt-label">A</span>
+        <span>1919年5月4日</span>
+      </div>
+      <div class="quiz-option" data-opt="B" data-feedback="错因解析：1918年11月是第一次世界大战结束的时间，并非五四运动爆发时间。" onclick="selectOpt(this)">
+        <span class="opt-label">B</span>
+        <span>1918年11月</span>
+      </div>
+      <div class="quiz-option" data-opt="C" data-feedback="错因解析：1921年7月是中国共产党成立的时间，时间相差较远。" onclick="selectOpt(this)">
+        <span class="opt-label">C</span>
+        <span>1921年7月</span>
+      </div>
+      <div class="quiz-option" data-opt="D" data-feedback="错因解析：1915年5月是新文化运动开始的时间，请注意区分。" onclick="selectOpt(this)">
+        <span class="opt-label">D</span>
+        <span>1915年5月</span>
+      </div>
+      <div class="feedback-box" id="fb1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-item" data-q="2">
+      <div class="q-num">第 2 题</div>
+      <div class="q-text">五四运动的导火索是？</div>
+      <div class="quiz-option" data-opt="A" data-feedback="错因解析：甲午战争失败是1894年，时间过早，不是五四运动的直接导火索。" onclick="selectOpt(this)">
+        <span class="opt-label">A</span>
+        <span>甲午战争失败</span>
+      </div>
+      <div class="quiz-option" data-opt="B" data-correct="true" onclick="selectOpt(this)">
+        <span class="opt-label">B</span>
+        <span>巴黎和会中国外交失败</span>
+      </div>
+      <div class="quiz-option" data-opt="C" data-feedback="错因解析：九一八事变发生在1931年，时间在五四运动之后，不可能是导火索。" onclick="selectOpt(this)">
+        <span class="opt-label">C</span>
+        <span>九一八事变</span>
+      </div>
+      <div class="quiz-option" data-opt="D" data-feedback="错因解析：袁世凯称帝是1916年，虽然也是卖国行为，但不是五四运动这次事件的直接导火索。" onclick="selectOpt(this)">
+        <span class="opt-label">D</span>
+        <span>袁世凯称帝</span>
+      </div>
+      <div class="feedback-box" id="fb2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-item" data-q="3">
+      <div class="q-num">第 3 题</div>
+      <div class="q-text">五四运动期间，"外争主权，内除国贼"口号中的"国贼"主要指？</div>
+      <div class="quiz-option" data-opt="A" data-feedback="错因解析：蔡元培是支持学生的北大校长，是学生的保护者，并非国贼。注意不要与卖国贼混淆。" onclick="selectOpt(this)">
+        <span class="opt-label">A</span>
+        <span>蔡元培</span>
+      </div>
+      <div class="quiz-option" data-opt="B" data-correct="true" onclick="selectOpt(this)">
+        <span class="opt-label">B</span>
+        <span>曹汝霖、章宗祥、陆宗舆</span>
+      </div>
+      <div class="quiz-option" data-opt="C" data-feedback="错因解析：李大钊是马克思主义传播者、五四运动的领导人物之一，绝对不是国贼。" onclick="selectOpt(this)">
+        <span class="opt-label">C</span>
+        <span>李大钊</span>
+      </div>
+      <div class="quiz-option" data-opt="D" data-feedback="错因解析：陈独秀是新文化运动领袖和五四运动的指导思想人物，不是国贼。" onclick="selectOpt(this)">
+        <span class="opt-label">D</span>
+        <span>陈独秀</span>
+      </div>
+      <div class="feedback-box" id="fb3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-item" data-q="4">
+      <div class="q-num">第 4 题</div>
+      <div class="q-text">五四运动最重要的历史意义是？</div>
+      <div class="quiz-option" data-opt="A" data-feedback="错因解析：五四运动不是以失败告终，而是取得了重要胜利——迫使北洋政府拒签和约、罢免三个卖国贼。题目问的是"最重要的历史意义"，这是过程而非意义本身。" onclick="selectOpt(this)">
+        <span class="opt-label">A</span>
+        <span>迫使北洋政府拒签和约</span>
+      </div>
+      <div class="quiz-option" data-opt="B" data-correct="true" onclick="selectOpt(this)">
+        <span class="opt-label">B</span>
+        <span>新民主主义革命的伟大开端</span>
+      </div>
+      <div class="quiz-option" data-opt="C" data-feedback="错因解析：推翻封建帝制是辛亥革命（1911年）的成果，张冠李戴了。" onclick="selectOpt(this)">
+        <span class="opt-label">C</span>
+        <span>推翻封建帝制</span>
+      </div>
+      <div class="quiz-option" data-opt="D" data-feedback="错因解析：中国共产党成立于1921年，五四运动为其奠定了基础，但不能说成是中共成立本身的意义。" onclick="selectOpt(this)">
+        <span class="opt-label">D</span>
+        <span>标志着中国共产党成立</span>
+      </div>
+      <div class="feedback-box" id="fb4"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 10. 页脚 -->
+    <!-- Section: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】五四运动爆发的直接原因是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+            <span class="opt-letter">A</span> 巴黎和会外交失败
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 答错了，正确答案是：巴黎和会外交失败">
+            <span class="opt-letter">B</span> 北洋军阀统治
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 答错了，正确答案是：巴黎和会外交失败">
+            <span class="opt-letter">C</span> 日本提出二十一条
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 巴黎和会外交失败</strong></p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐ 基础】五四运动爆发于哪一年？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+            <span class="opt-letter">A</span> 1919年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 答错了，正确答案是：1919年">
+            <span class="opt-letter">B</span> 1911年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 答错了，正确答案是：1919年">
+            <span class="opt-letter">C</span> 1921年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 1919年</strong></p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>3. 【⭐ 基础】五四运动的口号是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+            <span class="opt-letter">A</span> 外争主权，内除国贼
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 答错了，正确答案是：外争主权，内除国贼">
+            <span class="opt-letter">B</span> 驱除鞑虏，恢复中华
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 答错了，正确答案是：外争主权，内除国贼">
+            <span class="opt-letter">C</span> 打倒列强，除军阀
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 外争主权，内除国贼</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐⭐ 提高·中考真题】下列关于五四运动的表述，正确的是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+            <span class="opt-letter">A</span> 1919年5月4日，五四运动爆发
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
+            <span class="opt-letter">B</span> 干扰选项B
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
+            <span class="opt-letter">C</span> 干扰选项C
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A</strong></p>
+          <p style="margin-top: 8px;">1919年5月4日，五四运动爆发</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高·中考真题】下列关于五四运动的表述，正确的是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'A')">
+            <span class="opt-letter">A</span> 导火索：巴黎和会中国外交失败
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：导火索：巴黎和会中国外交失败">
+            <span class="opt-letter">B</span> 干扰选项B
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：导火索：巴黎和会中国外交失败">
+            <span class="opt-letter">C</span> 干扰选项C
+          </div>
+        </div>
+        <div class="feedback" id="feedback-5"></div>
+        <div class="answer-explanation" id="explanation-5">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A</strong></p>
+          <p style="margin-top: 8px;">导火索：巴黎和会中国外交失败</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐ 提高·中考真题】下列关于五四运动的表述，正确的是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+            <span class="opt-letter">A</span> 口号："外争主权，内除国贼"
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：口号："外争主权，内除国贼"">
+            <span class="opt-letter">B</span> 干扰选项B
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：口号："外争主权，内除国贼"">
+            <span class="opt-letter">C</span> 干扰选项C
+          </div>
+        </div>
+        <div class="feedback" id="feedback-6"></div>
+        <div class="answer-explanation" id="explanation-6">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A</strong></p>
+          <p style="margin-top: 8px;">口号："外争主权，内除国贼"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#ffffff);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：1919年5月4日，五四运动爆发</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了20次</span>
+          </div>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#ffffff);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：导火索：巴黎和会中国外交失败</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了18次</span>
+          </div>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#ffffff);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：口号："外争主权，内除国贼"</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了15次</span>
+          </div>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#ffffff);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="color:#166534;font-size:15px;">📍 常考考点：意义：新民主主义革命的开端</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了12次</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+
+  <footer class="footer">
+  <div class="footer-brand"><i class="fa-solid fa-landmark-open"></i> 知行学堂 · 初中历史</div>
+  <div>八年级历史上册 · 第三单元 · 第2课 · 五四运动</div>
+  <div style="margin-top:6px;">&copy; 2024 知行学堂 保留所有权利 | <a href="#hero">返回顶部</a></div>
+</footer>
+
+<script>
+  // 选项点击
+  function selectOpt(el) {
+    var q = el.closest('.quiz-item').dataset.q;
+    var fb = document.getElementById('fb' + q);
+    var isCorrect = el.dataset.correct === 'true';
+    var feedback = el.dataset.feedback || '';
+
+    // 高亮当前题所有选项
+    var siblings = el.parentElement.querySelectorAll('.quiz-option');
+    siblings.forEach(function(s) {
+      s.classList.remove('correct','incorrect');
+    });
+    el.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+    // 显示反馈
+    fb.classList.remove('show','correct-fb','incorrect-fb');
+    if (isCorrect) {
+      fb.classList.add('show','correct-fb');
+      fb.innerHTML = '<strong>✅ 正确！</strong> ' + (feedback ? '（' + feedback + '）' : '');
+    } else {
+      fb.classList.add('show','incorrect-fb');
+      fb.innerHTML = '<strong>❌ 错误。</strong> ' + feedback;
+    }
+
+    // 更新进度
+    updateProgress();
+  }
+
+  // 滚动进度条
+  window.addEventListener('scroll', function() {
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var scrolled = (window.scrollY / docH) * 100;
+    document.getElementById('progressFill').style.width = scrolled + '%';
+  });
+
+  function updateProgress() {
+    var total = document.querySelectorAll('.quiz-item').length;
+    var answered = document.querySelectorAll('.quiz-option.correct, .quiz-option.incorrect').length;
+    // 去除重复计数（每个quiz-item只计一次）
+    var answeredQ = document.querySelectorAll('.quiz-item:has(.correct), .quiz-item:has(.incorrect)').length;
+    var pct = (answeredQ / total) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+
+  // 平滑滚动
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // 导航高亮
+  var navLinks = document.querySelectorAll('.nav-bar a');
+  window.addEventListener('scroll', function() {
+    var scrollPos = window.scrollY + 120;
+    navLinks.forEach(function(link) {
+      var section = document.querySelector(link.getAttribute('href'));
+      if (section && scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+        navLinks.forEach(function(l) { l.classList.remove('active'); });
+        link.classList.add('active');
+      }
+    });
+  });
+
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+
+  </script>
+
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

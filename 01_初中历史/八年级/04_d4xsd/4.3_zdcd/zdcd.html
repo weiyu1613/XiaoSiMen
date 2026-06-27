@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="hist-open-door-8">
+  <meta name="course-title" content="4.3 对外开放">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="hist-open-door">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>4.3 对外开放 | 初中八年级历史</title>
+  
+  <style>
+    /* ========== 棕色系配色变量 ========== */
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-bg: #faf7f2;
+      --primary-dark: #654321;
+      --accent: #a0522d;
+    }
+    
+    /* ========== 本课件专属样式 ========== */
+    .history-svg {
+      background: var(--primary-bg);
+      border: 1px solid var(--primary-light);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .timeline-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .timeline-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .timeline-table td {
+      padding: 10px;
+      border: 1px solid var(--primary-light);
+      text-align: center;
+    }
+    
+    .timeline-table tr:nth-child(even) { background: var(--primary-bg); }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: var(--primary-bg); border: 1px solid var(--primary-light); border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid var(--primary-light);
+      background: var(--primary-bg); color: var(--primary-dark); padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(139,69,19,0.1); border: 1px solid rgba(139,69,19,0.28);
+      color: var(--primary);
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+  
+    /* NavBar styles */
+    .nav-bar { background: var(--primary-bg); border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #f0e6d6; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e0d5c5; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 12%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: var(--primary-bg); }
+
+    /* 品牌栏 */
+    .brand-bar { background: var(--primary); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-light); }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid var(--primary-light); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(139,69,19,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f0e6d6, var(--primary-bg)); border: 2px solid var(--primary-light); border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #e0d5c5, #f0e6d6); border-color: var(--primary); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+
+    /* 测验选项 */
+    .quiz-box { background: var(--primary-bg); border: 1px solid var(--primary-light); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e0d5c5; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: var(--primary-light); background: var(--primary-bg); }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #fef9f3; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 页脚 */
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+
+      .timeline-table { display: block !important; overflow-x: auto !important; font-size: 12px !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 1. 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-landmark-open"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== 2. 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
+  
+  <!-- ========== 3. 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d4xsd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第四单元：伟大的历史转折</div>
+    <a href="#" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../4.4_ggkd/ggkd.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== 4. Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-clock-rotate-left"></i> 八年级历史 · 第四单元</div>
+      <h1>4.3 对外开放<span>Opening Up Policy</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解改革开放的历史进程，理解对外开放的重要意义<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== 5. SVG知识图 ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#faf7f2"/>
+        <!-- 中心主题：对外开放 -->
+        <circle cx="400" cy="150" r="60" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">对外开放</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="14" fill="white">经济特区</text>
+        <line x1="190" y1="80" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="225" text-anchor="middle" font-size="14" fill="white">开放格局</text>
+        <line x1="190" y1="220" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="14" fill="white">历史意义</text>
+        <line x1="610" y1="80" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="225" text-anchor="middle" font-size="14" fill="white">影响与作用</text>
+        <line x1="610" y1="220" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #8b4513; font-size: 14px; text-align: center;">图4-1 对外开放知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 6. 锚点 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="经济特区是什么时候设立的？有哪些？">🏢 经济特区是什么时候设立的？有哪些？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="对外开放的格局是怎样形成的？">📈 对外开放的格局是怎样形成的？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="对外开放有什么历史意义？">🌟 对外开放有什么历史意义？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #8b4513;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #8b4513; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- ========== 7. 学习目标 ========== -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道对外开放的开始时间和标志性事件</li>
+          <li>✅ 了解经济特区的设立和作用</li>
+          <li>✅ 掌握对外开放格局的形成过程</li>
+          <li>✅ 理解对外开放的历史意义</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- ========== 8. 核心知识点（必须补上） ========== -->
+    <section class="section" id="core-knowledge">
+      <h2 class="section-title"><span class="num">📚</span> 核心知识点</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 一、经济特区的设立</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>时间：</strong>1980年</li>
+          <li><strong>首批经济特区：</strong>深圳、珠海、汕头、厦门</li>
+          <li><strong>1988年：</strong>海南岛经济特区成立</li>
+          <li><strong>作用：</strong>引进外资、技术和管理经验，推动改革开放</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 经济特区</div>
+          <p>经济特区是国家为了吸引外资、引进先进技术和管理经验而设立的<strong>特殊经济政策区域</strong>。</p>
+          <p style="margin-top: 6px;">特区实行<strong>特殊的经济政策和管理体制</strong>，在税收、外汇、进出口等方面享有优惠政策。</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 二、对外开放格局的形成</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>第一步：</strong>设立经济特区（1980年）</li>
+          <li><strong>第二步：</strong>开放14个沿海港口城市（1984年）</li>
+          <li><strong>第三步：</strong>开辟沿海经济开放区（1985年）</li>
+          <li><strong>第四步：</strong>对外开放向内地扩展</li>
+        </ul>
+
+        <!-- SVG:对外开放格局示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+            <!-- 对外开放格局示意图 -->
+            <rect x="50" y="50" width="500" height="300" fill="#faf7f2" stroke="#8b4513" stroke-width="2"/>
+            
+            <!-- 标题 -->
+            <text x="300" y="80" text-anchor="middle" font-size="20" font-weight="bold" fill="#8b4513">对外开放格局形成过程</text>
+            
+            <!-- 步骤1 -->
+            <rect x="100" y="120" width="400" height="50" fill="#cd853f" stroke="#8b4513" stroke-width="2" rx="10"/>
+            <text x="300" y="150" text-anchor="middle" font-size="16" fill="white">1980年：设立经济特区（深圳、珠海、汕头、厦门）</text>
+            
+            <!-- 步骤2 -->
+            <rect x="100" y="190" width="400" height="50" fill="#a0522d" stroke="#8b4513" stroke-width="2" rx="10"/>
+            <text x="300" y="220" text-anchor="middle" font-size="16" fill="white">1984年：开放14个沿海港口城市</text>
+            
+            <!-- 步骤3 -->
+            <rect x="100" y="260" width="400" height="50" fill="#cd853f" stroke="#8b4513" stroke-width="2" rx="10"/>
+            <text x="300" y="290" text-anchor="middle" font-size="16" fill="white">1985年：开辟沿海经济开放区</text>
+            
+            <!-- 步骤4 -->
+            <rect x="100" y="330" width="400" height="50" fill="#a0522d" stroke="#8b4513" stroke-width="2" rx="10"/>
+            <text x="300" y="360" text-anchor="middle" font-size="16" fill="white">逐步向内地扩展，形成全方位对外开放格局</text>
+            
+            <!-- 箭头 -->
+            <line x1="300" y1="170" x2="300" y2="190" stroke="#8b4513" stroke-width="3" marker-end="url(#arrowbrown)"/>
+            <line x1="300" y1="240" x2="300" y2="260" stroke="#8b4513" stroke-width="3" marker-end="url(#arrowbrown)"/>
+            <line x1="300" y1="310" x2="300" y2="330" stroke="#8b4513" stroke-width="3" marker-end="url(#arrowbrown)"/>
+            
+            <defs>
+              <marker id="arrowbrown" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="svg-caption">图4-2 对外开放格局形成过程示意图</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 三、对外开放的历史意义</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>形成了<strong>全方位、多层次、宽领域</strong>的对外开放格局</li>
+          <li>促进了<strong>经济发展</strong>，增强了综合国力</li>
+          <li>推动了<strong>科技进步</strong>和产业结构升级</li>
+          <li>提高了<strong>人民生活水平</strong></li>
+          <li>提升了中国的<strong>国际地位</strong></li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"特区→沿海城市→沿海开放区→内地"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"对外开放就是完全依赖外国"→ 错误！对外开放是在独立自主基础上的开放！</p>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 对外开放格局</div>
+          <p><strong>全方位：</strong>对世界上所有类型的国家开放</p>
+          <p><strong>多层次：</strong>从经济特区到沿海开放城市，再到沿海经济开放区，最后到内地，形成不同层次的开放</p>
+          <p><strong>宽领域：</strong>不仅在经济领域开放，还包括科技、教育、文化等领域</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：经济特区设立时间 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】我国最早设立的经济特区是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+            <span class="opt-letter">A</span> 1980年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 1984年是开放14个沿海港口城市的时间，不是设立经济特区的时间！">
+            <span class="opt-letter">B</span> 1984年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1988年是海南岛经济特区成立的时间，不是最早设立经济特区的时间！">
+            <span class="opt-letter">C</span> 1988年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 1980年</strong></p>
+          <p style="margin-top: 8px;">1980年，我国设立了<strong>深圳、珠海、汕头、厦门</strong>四个经济特区，标志着对外开放的开始。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2：首批经济特区 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】下列城市中，不属于首批经济特区的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 深圳是首批经济特区之一！">
+            <span class="opt-letter">A</span> 深圳
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 珠海是首批经济特区之一！">
+            <span class="opt-letter">B</span> 珠海
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+            <span class="opt-letter">C</span> 海南
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 海南</strong></p>
+          <p style="margin-top: 8px;">首批经济特区是<strong>深圳、珠海、汕头、厦门</strong>（1980年）。海南岛经济特区成立于<strong>1988年</strong>，不属于首批。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3：对外开放格局 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】对外开放格局的形成顺序是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+            <span class="opt-letter">A</span> 经济特区→沿海开放城市→沿海经济开放区→内地
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 顺序错误！经济特区是最早设立的，不是最后！">
+            <span class="opt-letter">B</span> 沿海开放城市→经济特区→沿海经济开放区→内地
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 顺序错误！内地是最后才开放的！">
+            <span class="opt-letter">C</span> 内地→沿海经济开放区→沿海开放城市→经济特区
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 经济特区→沿海开放城市→沿海经济开放区→内地</strong></p>
+          <p style="margin-top: 8px;">对外开放格局的形成是一个<strong>从点到面、从沿海到内地</strong>的渐进过程。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4：对外开放意义 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】下列不属于对外开放历史意义的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 促进经济发展是对外开放的重要意义之一！">
+            <span class="opt-letter">A</span> 促进了经济发展
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 推动了科技进步是对外开放的重要意义之一！">
+            <span class="opt-letter">B</span> 推动了科技进步
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+            <span class="opt-letter">C</span> 导致了经济完全依赖外国
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 导致了经济完全依赖外国</strong></p>
+          <p style="margin-top: 8px;">对外开放是在<strong>独立自主、自力更生</strong>基础上的开放，目的是<strong>引进外资、技术和管理经验</strong>，不是完全依赖外国。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 互动测验 -->
+    <section class="section" id="section-quiz">
+      <h2 class="section-title"><span class="num">🎮</span> 互动测验</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">每道题都有详细的错因分析，答错了要认真学习哦！</p>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】学习历史课程，对我们的启示是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'A')">
+            <span class="opt-letter">A</span> 以史为鉴，面向未来
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 学习历史是为了从中吸取教训，不是无用之举！">
+            <span class="opt-letter">B</span> 历史已经过去，无需学习
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 学习历史需要思考和理解，不能只记事实！">
+            <span class="opt-letter">C</span> 只需记住事实，无需思考
+          </div>
+        </div>
+        <div class="feedback" id="feedback-20"></div>
+        <div class="answer-explanation" id="explanation-20">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 以史为鉴，面向未来</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】1980年设立的首批经济特区不包括？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 深圳是1980年设立的首批经济特区之一！">
+            <span class="opt-letter">A</span> 深圳
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 珠海是1980年设立的首批经济特区之一！">
+            <span class="opt-letter">B</span> 珠海
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+            <span class="opt-letter">C</span> 海南
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 海南</strong></p>
+          <p style="margin-top: 8px;">1980年设立的首批经济特区是<strong>深圳、珠海、汕头、厦门</strong>。海南岛经济特区成立于<strong>1988年</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）对外开放的第一步是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+            <span class="opt-letter">A</span> 设立经济特区
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 开放沿海港口城市是对外开放的第二步，不是第一步！">
+            <span class="opt-letter">B</span> 开放沿海港口城市
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 开辟沿海经济开放区是对外开放的第三步，不是第一步！">
+            <span class="opt-letter">C</span> 开辟沿海经济开放区
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 设立经济特区</strong></p>
+          <p style="margin-top: 8px;">对外开放的第一步是<strong>1980年设立经济特区</strong>，这是对外开放的<strong>起点和突破口</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·江苏中考）关于对外开放的意义，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 对外开放是在独立自主基础上的开放，不是依赖外国！">
+            <span class="opt-letter">A</span> 使中国经济完全依赖外国
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 对外开放是积极学习外国先进技术，不是拒绝交流！">
+            <span class="opt-letter">B</span> 导致中国拒绝与外国交流
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 形成了全方位、多层次、宽领域的对外开放格局
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 形成了全方位、多层次、宽领域的对外开放格局</strong></p>
+          <p style="margin-top: 8px;">对外开放的<strong>历史意义</strong>在于形成了<strong>全方位、多层次、宽领域</strong>的对外开放格局。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：经济特区的设立</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ <strong>1980年</strong>设立首批经济特区</li>
+            <li>✅ 首批经济特区：<strong>深圳、珠海、汕头、厦门</strong></li>
+            <li>✅ <strong>1988年</strong>海南岛经济特区成立</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：对外开放格局</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>对外开放格局形成顺序：<strong>经济特区→沿海开放城市→沿海经济开放区→内地</strong>。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：对外开放的历史意义</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>形成了<strong>全方位、多层次、宽领域</strong>的对外开放格局。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：深圳等经济特区的作用</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>引进<strong>外资、技术和管理经验</strong>，推动改革开放。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 10. 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版八年级历史课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 9,
+      currentSection: 1
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：经济特区是什么时候设立的？有哪些？</h3>
+      <p><strong>时间：</strong>1980年</p>
+      <p><strong>首批经济特区：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>深圳</li>
+        <li>珠海</li>
+        <li>汕头</li>
+        <li>厦门</li>
+      </ul>
+      <p><strong>1988年：</strong>海南岛经济特区成立</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：对外开放的格局是怎样形成的？</h3>
+      <p><strong>形成过程：</strong></p>
+      <ol style="padding-left:20px;line-height:1.8;">
+        <li>1980年：设立经济特区</li>
+        <li>1984年：开放14个沿海港口城市</li>
+        <li>1985年：开辟沿海经济开放区</li>
+        <li>逐步向内地扩展</li>
+      </ol>
+      <p><strong>记忆口诀：</strong>"特区→沿海城市→沿海开放区→内地"</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：对外开放有什么历史意义？</h3>
+      <p><strong>历史意义：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>形成了全方位、多层次、宽领域的对外开放格局</li>
+        <li>促进了经济发展，增强了综合国力</li>
+        <li>推动了科技进步和产业结构升级</li>
+        <li>提高了人民生活水平</li>
+        <li>提升了中国国际地位</li>
+      </ul>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《对外开放》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.1 尝试对生物进行分类 | 七年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #2e7d32; --primary-light: #4caf50; --primary-dark: #1b5e20; --bg-light: #f1f8e9; --text-dark: #1a1a2e; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 15px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); transition: width 0.3s; width: 0%; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 8px 0; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 6px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 6px; transition: all 0.2s; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary) 30%, var(--primary-light) 70%, #2e7d32 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1rem; opacity: 0.9; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 24px 0; }
+    .section-title { font-size: 1.4rem; color: var(--primary); margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.08); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border: 2px solid #a5d6a7; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #c8e6c9, #a5d6a7); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #a5d6a7; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; font-size: 12px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef9e7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 10px; font-size: 13px; color: var(--primary); text-align: center; }
+    .bio-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .bio-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px; text-align: center; }
+    .bio-table td { padding: 10px; border: 1px solid #c8e6c9; text-align: center; }
+    .bio-table tr:nth-child(even) { background: #f1f8e9; }
+    .difficulty-badge { display: inline-flex; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    @media (max-width: 768px) { .hero { padding: 24px 14px; } .hero h1 { font-size: 1.4rem; } .section { padding: 16px 0; } .section-title { font-size: 1.1rem; } .card { padding: 14px; border-radius: 10px; } .anchor-btn { min-width: 100%; } .quiz-option { font-size: 13px; padding: 10px 12px; } .bio-table { font-size: 12px; display: block; overflow-x: auto; } }
+  </style>
+</head>
+<body>
+  <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-sitemap"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 9/10 节 · 90%</div>
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
+    <div class="nav-center">第二单元：多种多样的生物</div>
+    <a href="../4.2_czdj/4.2_czdj.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+
+  <header class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-sitemap"></i> 七年级生物 · 第二单元</div>
+    <h1>4.1 尝试对生物进行分类</h1>
+    <p>📖 课标要求：尝试根据一定的特征对生物进行分类，说出生物分类的等级<br>🎯 预计用时：30分钟</p>
+  </header>
+
+  <section class="container section" style="padding-top:0;">
+    <figure style="margin: 24px auto 0; max-width: 900px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f1f8e9"/>
+        <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">生物分类等级（以狼和桃树为例）</text>
+        <text x="400" y="50" text-anchor="middle" font-size="13" fill="#2e7d32">从大到小：界→门→纲→目→科→属→种</text>
+        <!-- 狼 -->
+        <text x="200" y="75" text-anchor="middle" font-size="14" fill="#1565c0" font-weight="bold">狼</text>
+        <rect x="100" y="82" width="200" height="30" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+        <text x="200" y="102" text-anchor="middle" font-size="12" fill="#1565c0">动物界</text>
+        <rect x="120" y="118" width="160" height="30" rx="8" fill="#bbdefb" stroke="#1565c0" stroke-width="2"/>
+        <text x="200" y="138" text-anchor="middle" font-size="12" fill="#1565c0">脊索动物门</text>
+        <rect x="140" y="154" width="120" height="30" rx="8" fill="#90caf9" stroke="#1565c0" stroke-width="2"/>
+        <text x="200" y="174" text-anchor="middle" font-size="12" fill="#1565c0">哺乳纲</text>
+        <rect x="155" y="190" width="90" height="30" rx="8" fill="#64b5f6" stroke="#1565c0" stroke-width="2"/>
+        <text x="200" y="210" text-anchor="middle" font-size="12" fill="#1565c0">食肉目</text>
+        <rect x="165" y="226" width="70" height="30" rx="8" fill="#42a5f5" stroke="#1565c0" stroke-width="2"/>
+        <text x="200" y="246" text-anchor="middle" font-size="12" fill="white">犬科</text>
+        <rect x="172" y="262" width="56" height="28" rx="8" fill="#1e88e5" stroke="#1565c0" stroke-width="2"/>
+        <text x="200" y="281" text-anchor="middle" font-size="11" fill="white" font-weight="bold">狼 种</text>
+        <!-- 桃树 -->
+        <text x="600" y="75" text-anchor="middle" font-size="14" fill="#2e7d32" font-weight="bold">桃树</text>
+        <rect x="500" y="82" width="200" height="30" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="600" y="102" text-anchor="middle" font-size="12" fill="#2e7d32">植物界</text>
+        <rect x="520" y="118" width="160" height="30" rx="8" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2"/>
+        <text x="600" y="138" text-anchor="middle" font-size="12" fill="#2e7d32">被子植物门</text>
+        <rect x="540" y="154" width="120" height="30" rx="8" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+        <text x="600" y="174" text-anchor="middle" font-size="12" fill="#2e7d32">双子叶植物纲</text>
+        <rect x="555" y="190" width="90" height="30" rx="8" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+        <text x="600" y="210" text-anchor="middle" font-size="12" fill="#2e7d32">蔷薇目</text>
+        <rect x="565" y="226" width="70" height="30" rx="8" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="600" y="246" text-anchor="middle" font-size="12" fill="white">蔷薇科</text>
+        <rect x="572" y="262" width="56" height="28" rx="8" fill="#43a047" stroke="#2e7d32" stroke-width="2"/>
+        <text x="600" y="281" text-anchor="middle" font-size="11" fill="white" font-weight="bold">桃 种</text>
+        <text x="400" y="295" text-anchor="middle" font-size="12" fill="#5d6d7e">图4-1 生物分类等级示意（界→种，越往下分类越具体）</text>
+      </svg>
+    </figure>
+  </section>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="为什么要对生物进行分类？">📚 为什么要对生物进行分类？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="种是最基本的分类单位，什么是种？">🧬 种是最基本的分类单位，什么是种？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="猫和虎为什么是同一个属？">🐱 猫和虎为什么是同一个属？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--primary);">我自己的问题<input id="learner-question-input" placeholder="把你卡住的问题写在这里" style="width:100%;border-radius:12px;border:1px solid #a5d6a7;background:#f1f8e9;color:var(--primary-dark);padding:10px 14px;font-size:15px;margin-top:8px;"></label>
+        <div class="anchor-display" id="anchor-display" style="margin-top:20px;min-height:80px;"><p style="color:var(--primary);text-align:center;">👆 点击上方按钮查看问题</p></div>
+        <p id="anchor-feedback" style="display:none;margin-top:14px;padding:14px;border-radius:12px;background:rgba(46,125,50,0.1);border:1px solid rgba(46,125,50,0.28);color:var(--primary-dark);"></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2;">
+          <li>✅ 说出生物分类的意义</li>
+          <li>✅ 记住生物分类的七个等级（界门纲目科属种）</li>
+          <li>✅ 理解"种"是分类的最基本单位</li>
+          <li>✅ 学会根据特征对生物进行简单分类</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🔬</span> 前测</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】生物分类的最基本单位是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'A')" data-feedback="❌ 界不是最小单位！"><span class="opt-letter">A</span> 界</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'B')" data-feedback="❌ 科不是最小单位！"><span class="opt-letter">B</span> 科</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 0, 'C')"><span class="opt-letter">C</span> 种</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'D')" data-feedback="❌ 属不是最小单位！"><span class="opt-letter">D</span> 属</div>
+        <div class="feedback" id="feedback-0"></div>
+        <div class="answer-explanation" id="explanation-0"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 种</strong></p><p style="margin-top:8px;"><strong>种</strong>是生物分类的<strong>最基本单位</strong>。同种生物可以自由交配并产生可育后代，不同种之间存在生殖隔离。</p></div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】对生物进行分类的主要依据是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 用途不是主要分类依据！"><span class="opt-letter">A</span> 经济用途</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 生物的形态结构和生理功能等特征</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 生长环境不是主要依据！"><span class="opt-letter">C</span> 生活环境</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 个体大小不是分类依据！"><span class="opt-letter">D</span> 个体大小</div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 生物的形态结构和生理功能等特征</strong></p><p style="margin-top:8px;">生物分类的主要依据是<strong>生物的形态结构和生理功能等特征</strong>，反映生物之间的亲缘关系。经济用途、生长环境、个体大小都不是分类的主要依据。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">📚</span> 生物分类</h2>
+      <div class="card">
+        <div class="concept-box"><div class="label">核心概念 · 生物分类的意义</div>
+          <ul style="padding-left:20px;line-height:1.8;">
+            <li>🔍 <strong>便于识别：</strong>系统化命名，避免"同名异物"或"同物异名"</li>
+            <li>🌳 <strong>揭示亲缘关系：</strong>分类反映生物之间的亲缘远近</li>
+            <li>📖 <strong>便于研究：</strong>有条理地研究和利用生物资源</li>
+            <li>🧬 <strong>了解进化关系：</strong>分类系统反映生物进化历程</li>
+          </ul>
+        </div>
+
+        <div class="concept-box"><div class="label">核心概念 · 生物分类的七个等级（从大到小）</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+            <div style="background:#c62828;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">界</div>
+            <div style="color:var(--primary-dark);">→</div>
+            <div style="background:#1565c0;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">门</div>
+            <div style="color:var(--primary-dark);">→</div>
+            <div style="background:#4caf50;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">纲</div>
+            <div style="color:var(--primary-dark);">→</div>
+            <div style="background:#f59e0b;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">目</div>
+            <div style="color:var(--primary-dark);">→</div>
+            <div style="background:#7b1fa2;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">科</div>
+            <div style="color:var(--primary-dark);">→</div>
+            <div style="background:#00838f;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">属</div>
+            <div style="color:var(--primary-dark);">→</div>
+            <div style="background:#2e7d32;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">种</div>
+          </div>
+          <p style="margin-top:12px;font-size:14px;">💡 <strong>记忆口诀：</strong>界门纲目科属种（"界门纲目科属种"，谐音"借你钢锅属种"）</p>
+        </div>
+
+        <div class="concept-box"><div class="label">核心概念 · "种"的定义</div>
+          <p style="line-height:1.8;"><strong>种（物种）</strong>是分类的<strong>最基本单位</strong>。同种生物可以<strong>自由交配</strong>，并产生<strong>可育后代</strong>。不同种之间存在<strong>生殖隔离</strong>。</p>
+          <p style="margin-top:8px;padding:10px;background:#fff9c4;border-radius:8px;">🐺 例子：狼和狗可以交配，生下的狼狗还能继续繁殖（可育），所以狼和狗是同一物种的不同品种。但狼和猫不能交配（生殖隔离），所以不是同种。</p>
+        </div>
+
+        <div class="warn-box"><div class="label">⚠️ 易错警示</div>
+          <p><strong>误区：</strong>界是最大单位<br><strong>纠正：</strong>现代生物学采用<strong>三域系统</strong>：<strong>细菌域、古细菌域、真核生物域</strong>。界只是域下的最大单位。生物分类系统：域→界→门→纲→目→科→属→种。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">✅</span> 后测</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】生物分类的基本单位是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 科不是最小单位！"><span class="opt-letter">A</span> 科</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 属不是最小单位！"><span class="opt-letter">B</span> 属</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')"><span class="opt-letter">C</span> 种</div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 种</strong></p><p style="margin-top:8px;"><strong>种（物种）</strong>是生物分类的<strong>最基本单位</strong>。同种生物可以自由交配并产生可育后代。</p></div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】狼和狗的关系是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 同一物种（种相同，属可能相同或不同）</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 狼和狗可以交配产生后代！"><span class="opt-letter">B</span> 不同物种</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 狼和狗都是犬科动物！"><span class="opt-letter">C</span> 同一属</div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 同一物种</strong></p><p style="margin-top:8px;">狼和狗可以交配，产生的狼狗也能继续繁殖（可育后代），说明它们属于<strong>同一物种</strong>。但它们在<strong>属</strong>的分类上可能不同。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="exam-card-num" style="background:#dc2626;">1</span><strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：生物分类等级</strong><span style="color:white;background:#dc2626;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">近10年考了18次</span></div>
+          <p style="font-size:14px;line-height:1.7;"><strong>必背：</strong>界→门→纲→目→科→属→种（从大到小，越小越具体）。<strong>种</strong>是基本单位。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="teachany-ai-tutor-card"><div data-teachany-tutor-card></div></section>
+  </main>
+
+  <footer class="footer"><p>© 2024 TeachAny · 初中生物互动课件系统</p><p style="margin-top:8px;font-size:12px;">基于 TeachAny v7.14.0</p></footer>
+
+  <script>
+    var COURSE_INFO = { totalSections: 10, currentSection: 9 };
+    var anchorContents = {};
+    anchorContents[1] = '<h3>📚 问题1：为什么要对生物进行分类？</h3><p>生物分类便于<strong>识别</strong>（避免同名异物/同物异名）、揭示<strong>亲缘关系</strong>、便于<strong>研究</strong>和了解<strong>进化关系</strong>。目前已知的生物超过200万种，没有分类系统根本无法研究。</p>';
+    anchorContents[2] = '<h3>🧬 问题2：种是最基本的分类单位，什么是种？</h3><p><strong>种（物种）</strong>是生物分类的<strong>最基本单位</strong>。同种生物可以<strong>自由交配</strong>并产生<strong>可育后代</strong>，不同种之间存在<strong>生殖隔离</strong>。</p>';
+    anchorContents[3] = '<h3>🐱 问题3：猫和虎为什么是同一个属？</h3><p>猫（<em>Felis catus</em>）和虎（<em>Panthera tigris</em>）虽然不同种，但同属<strong>猫科</strong>，说明它们有较近的亲缘关系，在进化上有共同祖先。</p>';
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach(function(item) { item.classList.remove('selected'); });
+      btnElement.classList.add('selected');
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = anchorContents[id] || '';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = '你选择了：' + btnElement.getAttribute('data-anchor-choice'); feedback.style.display = 'block'; }
+    }
+    document.getElementById('learner-question-input') && document.getElementById('learner-question-input').addEventListener('input', function() {
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = '<h3>📍 你的问题：' + this.value + '</h3>';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = '你的问题：' + this.value; feedback.style.display = 'block'; }
+    });
+    function checkAnswer(element, isCorrect, questionNum) {
+      var parent = element.closest('.quiz-box');
+      var feedback = parent.querySelector('.feedback');
+      var explanation = document.getElementById('explanation-' + questionNum);
+      parent.querySelectorAll('.quiz-option').forEach(function(opt) { opt.classList.remove('correct', 'wrong'); });
+      if (isCorrect) { element.classList.add('correct'); if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong>'; feedback.className = 'feedback show correct-fb'; } if (explanation) explanation.classList.add('show'); }
+      else { element.classList.add('wrong'); if (feedback) { feedback.innerHTML = (element.dataset.feedback || '❌ 不对') + '<br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; } if (parent.querySelector('.quiz-option.correct') && explanation) explanation.classList.add('show'); }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var p = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      var pf = document.getElementById('progress-fill'); var pl = document.getElementById('progress-label');
+      if (pf) pf.style.width = p + '%';
+      if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

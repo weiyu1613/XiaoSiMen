@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第二单元：近代化的早期探索与民族危机 - 初中八年级历史</title>
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-dark: #6b3410;
+      --secondary: #d4a574;
+      --accent: #e76f51;
+      --bg-light: #faf7f2;
+      --bg-card: #ffffff;
+      --text-dark: #2c1810;
+      --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+      --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+      --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ====== 1. Brand Bar ====== */
+    .brand-bar {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+    }
+    .brand-logo { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; }
+
+    /* ====== 2. Progress Bar ====== */
+    .progress-container {
+      background: white;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(139,69,19,0.1);
+    }
+    .progress-inner { max-width: 1200px; margin: 0 auto; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
+    .progress-track { height: 6px; background: #e8e0d5; border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 50%; transition: width 0.3s ease; }
+
+    /* ====== 3. Nav Bar ====== */
+    .nav-bar {
+      background: white;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(139,69,19,0.1);
+      position: sticky;
+      top: 48px;
+      z-index: 999;
+    }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 8px; overflow-x: auto; }
+    .nav-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-btn:hover { background: var(--bg-light); color: var(--primary); }
+    .nav-btn.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+    .nav-center { font-weight: 600; color: var(--primary); margin: 0 auto; }
+
+    /* ====== 4. Hero Section ====== */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%);
+      color: white;
+      padding: 60px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-icon { font-size: 56px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 16px; }
+    .hero-title { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero-subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 32px; }
+
+    .hero-cards {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 20px 24px;
+      min-width: 140px;
+    }
+    .hero-card-icon { font-size: 28px; margin-bottom: 8px; }
+    .hero-card-label { font-size: 0.8rem; opacity: 0.9; margin-bottom: 4px; }
+    .hero-card-value { font-size: 1.1rem; font-weight: 600; }
+
+    /* ====== 5. Anchor Points ====== */
+    .anchor-section { padding: 40px 20px; background: var(--bg-light); }
+    .anchor-inner { max-width: 1200px; margin: 0 auto; }
+    .anchor-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .anchor-title h2 { font-size: 1.3rem; color: var(--primary); }
+    .anchor-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .anchor-btn {
+      background: white;
+      border: 2px solid var(--secondary);
+      border-radius: 12px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .anchor-btn:hover { border-color: var(--primary); background: var(--bg-light); transform: translateY(-2px); }
+    .anchor-btn i { color: var(--primary); }
+
+    /* ====== Main Content ====== */
+    .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .section { margin-bottom: 48px; }
+    .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .section-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      box-shadow: var(--shadow-md);
+    }
+    .section-title-text h2 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+    .section-title-text p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+    /* ====== 6. Objectives ====== */
+    .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .objective-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--primary);
+    }
+    .objective-card h3 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+    .objective-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ====== Knowledge Cards ====== */
+    .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .knowledge-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+    .knowledge-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .knowledge-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+    .knowledge-card p { color: var(--text-dark); font-size: 0.95rem; line-height: 1.8; margin-bottom: 8px; }
+    .knowledge-card ul { padding-left: 20px; color: var(--text-dark); }
+    .knowledge-card li { margin-bottom: 6px; line-height: 1.6; }
+
+    /* ====== ★ 历史科目特色1: 时间轴 ====== */
+    .timeline-section {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .timeline-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 32px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .timeline-container {
+      position: relative;
+      padding: 20px 0;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--primary), var(--primary-light));
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+    }
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .timeline-content {
+      width: 45%;
+      background: var(--bg-light);
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid var(--secondary);
+      transition: all 0.3s;
+    }
+    .timeline-content:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+    .timeline-year {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .timeline-event {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      border: 4px solid white;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: var(--shadow-md);
+      z-index: 2;
+    }
+
+    /* ====== ★ 历史科目特色2: 事件连线图 ====== */
+    .connection-map {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .connection-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .connection-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .connection-box {
+      background: linear-gradient(135deg, var(--bg-light), white);
+      border: 2px solid var(--secondary);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .connection-box:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .connection-box h4 {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+    .connection-box p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .connection-arrow {
+      font-size: 2rem;
+      color: var(--primary-light);
+    }
+
+    /* ====== ★ 历史科目特色3: 材料分析框 ====== */
+    .material-analysis {
+      background: linear-gradient(135deg, #fffef7, #fff9e6);
+      border: 3px solid var(--primary-light);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .material-analysis::before {
+      content: '📜 史料研读';
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--primary-light);
+      color: white;
+      padding: 4px 16px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .material-content {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-dark);
+      font-style: italic;
+      margin-bottom: 16px;
+      padding: 16px;
+      background: white;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+    }
+    .material-question {
+      background: var(--bg-light);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+    .material-question h5 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    .material-question p {
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+
+    /* ====== ★ 历史科目特色4: 对比表格 ====== */
+    .comparison-table-wrapper {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      overflow-x: auto;
+      margin-bottom: 32px;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.9rem;
+    }
+    .comparison-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 16px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .comparison-table th:first-child {
+      border-radius: 12px 0 0 0;
+    }
+    .comparison-table th:last-child {
+      border-radius: 0 12px 0 0;
+    }
+    .comparison-table td {
+      padding: 14px;
+      border-bottom: 1px solid #f0e6d8;
+      text-align: center;
+      color: var(--text-dark);
+    }
+    .comparison-table tr:nth-child(even) td {
+      background: var(--bg-light);
+    }
+    .comparison-table tr:last-child td:first-child {
+      border-radius: 0 0 0 12px;
+    }
+    .comparison-table tr:last-child td:last-child {
+      border-radius: 0 0 12px 0;
+    }
+    .comparison-table tr:hover td {
+      background: rgba(205, 133, 63, 0.1);
+    }
+
+    /* ====== ★ 历史科目特色5: 概念框 ====== */
+    .concept-box {
+      background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+      border: 2px solid #4a90d9;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .concept-box::before {
+      content: '💡 概念辨析';
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      background: #4a90d9;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .concept-title {
+      font-size: 1.1rem;
+      color: #2c5282;
+      margin-bottom: 12px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    .concept-content {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
+
+    /* ====== ★ 历史科目特色6: 警告框 ====== */
+    .warning-box {
+      background: linear-gradient(135deg, #fff5f5, #fee2e2);
+      border: 3px solid #ef4444;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .warning-box::before {
+      content: '⚠️ 易错警示';
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      background: #ef4444;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .warning-title {
+      font-size: 1rem;
+      color: #991b1b;
+      margin-bottom: 12px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    .warning-content {
+      font-size: 0.95rem;
+      color: #7f1d1d;
+      line-height: 1.7;
+    }
+    .warning-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 12px;
+    }
+    .warning-list li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+    .warning-list li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: #ef4444;
+      font-weight: bold;
+    }
+
+    /* ====== ★ 历史科目特色7: SVG图解 ====== */
+    .svg-diagram-section {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .svg-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* ====== Quiz Section ====== */
+    .quiz-section { background: white; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-sm); }
+    .quiz-question { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #f0f0f0; }
+    .quiz-question:last-child { border-bottom: none; margin-bottom: 0; }
+    .quiz-question h4 { color: var(--text-dark); margin-bottom: 16px; font-size: 1rem; font-weight: 600; }
+    .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+    .quiz-option {
+      padding: 14px 18px;
+      background: var(--bg-light);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .quiz-option:hover { border-color: var(--primary-light); background: white; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; flex-shrink: 0; }
+    .quiz-option.correct .opt-letter { background: #10b981; }
+    .quiz-option.wrong .opt-letter { background: #ef4444; }
+    .feedback { margin-top: 12px; padding: 14px 18px; border-radius: 10px; font-size: 0.9rem; display: none; line-height: 1.6; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* ====== ★ 历史科目特色8: data-feedback数据反馈 ====== */
+    .data-feedback-section {
+      background: linear-gradient(135deg, var(--bg-light), white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      margin-top: 24px;
+    }
+    .data-feedback-title {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .data-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .data-stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .data-stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .data-stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .data-progress-ring {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .progress-ring {
+      width: 120px;
+      height: 120px;
+      position: relative;
+    }
+    .progress-ring circle {
+      fill: none;
+      stroke-width: 10;
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+    .progress-ring .bg {
+      stroke: #e8e0d5;
+    }
+    .progress-ring .progress {
+      stroke: var(--primary);
+      stroke-linecap: round;
+      stroke-dasharray: 314;
+      stroke-dashoffset: 157;
+      transition: stroke-dashoffset 0.5s ease;
+    }
+    .progress-ring-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .progress-ring-percent {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .progress-ring-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ====== Footer ====== */
+    .footer {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .footer p { opacity: 0.9; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; }
+    .footer-links a:hover { color: white; }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 1.8rem; }
+      .hero-cards { flex-direction: column; align-items: center; }
+      .nav-center { display: none; }
+      .knowledge-grid, .objectives-grid { grid-template-columns: 1fr; }
+      .quiz-section { padding: 20px; }
+      .timeline-item:nth-child(odd), .timeline-item:nth-child(even) {
+        flex-direction: column;
+      }
+      .timeline-line {
+        left: 20px;
+      }
+      .timeline-content {
+        width: calc(100% - 50px);
+        margin-left: 50px;
+      }
+      .timeline-dot {
+        left: 20px;
+      }
+      .connection-grid {
+        grid-template-columns: 1fr;
+      }
+      .connection-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. Brand Bar -->
+<div class="brand-bar">
+  <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
+  <div class="brand-tag">互动课件 v2.0</div>
+</div>
+
+<!-- 2. Progress Bar -->
+<div class="progress-container">
+  <div class="progress-inner">
+    <div class="progress-info">
+      <span>第二单元</span>
+      <span>学习进度 50%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill"></div></div>
+  </div>
+</div>
+
+<!-- 3. Nav Bar -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
+    <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
+    <span class="nav-center">八年级上册 · 第二单元</span>
+    <a href="#pretest" class="nav-btn"><i class="fas fa-clipboard-check"></i> 前测</a>
+    <a href="#posttest" class="nav-btn"><i class="fas fa-tasks"></i> 后测</a>
+  </div>
+</nav>
+
+<!-- 4. Hero Section -->
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-icon">📚</div>
+    <div class="hero-badge">初中八年级历史上册 · 第二单元</div>
+    <h1 class="hero-title">近代化的早期探索与民族危机</h1>
+    <p class="hero-subtitle">1861-1911年 · 从洋务运动到辛亥革命</p>
+    
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-icon">📅</div>
+        <div class="hero-card-label">时间跨度</div>
+        <div class="hero-card-value">50年</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">📖</div>
+        <div class="hero-card-label">课时数量</div>
+        <div class="hero-card-value">4课时</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">⏱️</div>
+        <div class="hero-card-label">预计学时</div>
+        <div class="hero-card-value">8学时</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🎯</div>
+        <div class="hero-card-label">核心事件</div>
+        <div class="hero-card-value">4大事件</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ★ 历史科目特色7: SVG图解 - 知识结构图 -->
+<section class="svg-diagram-section">
+  <div class="svg-title"><i class="fas fa-sitemap"></i> 单元知识结构图</div>
+  <svg viewBox="0 0 900 380" width="100%" height="380" xmlns="http://www.w3.org/2000/svg">
+    <rect width="900" height="380" fill="#faf7f2" rx="16"/>
+    
+    <!-- Center: 近代化探索 -->
+    <circle cx="450" cy="190" r="80" fill="url(#centerGrad)" stroke="#8b4513" stroke-width="3"/>
+    <text x="450" y="180" text-anchor="middle" font-size="18" font-weight="bold" fill="white">近代化探索</text>
+    <text x="450" y="205" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)">1861-1911</text>
+    
+    <!-- Branch 1: 洋务运动 -->
+    <rect x="30" y="50" width="170" height="90" rx="14" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+    <text x="115" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="white">洋务运动</text>
+    <text x="115" y="105" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">1861-1895</text>
+    <text x="115" y="125" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.8)">自强求富 · 技术层面</text>
+    <line x1="200" y1="95" x2="370" y2="150" stroke="#8b4513" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+    
+    <!-- Branch 2: 甲午战争 -->
+    <rect x="30" y="240" width="170" height="90" rx="14" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+    <text x="115" y="275" text-anchor="middle" font-size="15" font-weight="bold" fill="white">甲午战争</text>
+    <text x="115" y="295" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">1894-1895</text>
+    <text x="115" y="315" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.8)">民族危机加深</text>
+    <line x1="200" y1="285" x2="370" y2="230" stroke="#8b4513" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+    
+    <!-- Branch 3: 戊戌变法 -->
+    <rect x="700" y="50" width="170" height="90" rx="14" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+    <text x="785" y="85" text-anchor="middle" font-size="15" font-weight="bold" fill="white">戊戌变法</text>
+    <text x="785" y="105" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">1898年</text>
+    <text x="785" y="125" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.8)">制度尝试 · 思想启蒙</text>
+    <line x1="700" y1="95" x2="530" y2="150" stroke="#8b4513" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+    
+    <!-- Branch 4: 辛亥革命 -->
+    <rect x="700" y="240" width="170" height="90" rx="14" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+    <text x="785" y="275" text-anchor="middle" font-size="15" font-weight="bold" fill="white">辛亥革命</text>
+    <text x="785" y="295" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">1911年</text>
+    <text x="785" y="315" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.8)">制度革命 · 民主共和</text>
+    <line x1="700" y1="285" x2="530" y2="230" stroke="#8b4513" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+    
+    <!-- 时间箭头 -->
+    <defs>
+      <linearGradient id="centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#8b4513"/>
+        <stop offset="100%" style="stop-color:#cd853f"/>
+      </linearGradient>
+      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+        <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+      </marker>
+    </defs>
+  </svg>
+</section>
+
+<!-- 5. Anchor Points -->
+<section class="anchor-section" id="anchors">
+  <div class="anchor-inner">
+    <div class="anchor-title">
+      <i class="fas fa-anchor" style="color: var(--primary); font-size: 1.3rem;"></i>
+      <h2>快速导航</h2>
+    </div>
+    <div class="anchor-points">
+      <button class="anchor-btn" onclick="scrollToSection('objectives')"><i class="fas fa-bullseye"></i> 学习目标</button>
+      <button class="anchor-btn" onclick="scrollToSection('pretest')"><i class="fas fa-clipboard-check"></i> 前测评估</button>
+      <button class="anchor-btn" onclick="scrollToSection('timeline')"><i class="fas fa-clock"></i> 时间轴</button>
+      <button class="anchor-btn" onclick="scrollToSection('overview')"><i class="fas fa-info-circle"></i> 单元概述</button>
+      <button class="anchor-btn" onclick="scrollToSection('lessons')"><i class="fa-solid fa-landmark"></i> 课时导航</button>
+      <button class="anchor-btn" onclick="scrollToSection('posttest')"><i class="fas fa-tasks"></i> 后测检验</button>
+      <button class="anchor-btn" onclick="scrollToSection('exam-analysis')"><i class="fas fa-chart-line"></i> 必考分析</button>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<main class="main-content">
+
+  <!-- 6. Objectives 学习目标 -->
+  <section class="section" id="objectives">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+      <div class="section-title-text">
+        <h2>学习目标</h2>
+        <p>本单元核心学习要求</p>
+      </div>
+    </div>
+    <div class="objectives-grid">
+      <div class="objective-card">
+        <h3><i class="fas fa-history"></i> 了解背景</h3>
+        <p>了解洋务运动、戊戌变法、辛亥革命的历史背景，认识近代中国面临的民族危机。</p>
+      </div>
+      <div class="objective-card">
+        <h3><i class="fas fa-tasks"></i> 掌握过程</h3>
+        <p>掌握各次探索运动的主要内容、代表人物、重要事件及其历史意义。</p>
+      </div>
+      <div class="objective-card">
+        <h3><i class="fas fa-balance-scale"></i> 分析比较</h3>
+        <p>比较洋务运动、戊戌变法、辛亥革命的异同，理解近代化探索的艰难历程。</p>
+      </div>
+      <div class="objective-card">
+        <h3><i class="fas fa-lightbulb"></i> 评价认识</h3>
+        <p>客观评价各次探索运动的成败得失，认识中国人民不屈不挠的奋斗精神。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ 历史科目特色1: 时间轴 -->
+  <section class="section" id="timeline">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-clock"></i></div>
+      <div class="section-title-text">
+        <h2>历史时间轴</h2>
+        <p>近代化探索的重要时间节点</p>
+      </div>
+    </div>
+    <div class="timeline-section">
+      <div class="timeline-title">📅 1861-1911 近代化探索时间轴</div>
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">1861</div>
+            <div class="timeline-event">洋务运动开始</div>
+            <div class="timeline-desc">曾国藩创办安庆内军械所，标志着洋务运动的开端。</div>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">1894-1895</div>
+            <div class="timeline-event">甲午中日战争</div>
+            <div class="timeline-desc">日本发动侵华战争，签订《马关条约》，民族危机空前严重。</div>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">1898</div>
+            <div class="timeline-event">戊戌变法</div>
+            <div class="timeline-desc">康有为、梁启超推动变法，历时103天，起到思想启蒙作用。</div>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">1911</div>
+            <div class="timeline-event">辛亥革命</div>
+            <div class="timeline-desc">孙中山领导的革命推翻清朝，建立中华民国。</div>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ 历史科目特色2: 事件连线图 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-project-diagram"></i></div>
+      <div class="section-title-text">
+        <h2>事件因果关系</h2>
+        <p>近代化探索的内在联系</p>
+      </div>
+    </div>
+    <div class="connection-map">
+      <div class="connection-title">🔗 近代化探索的演进路径</div>
+      <div class="connection-grid">
+        <div class="connection-box">
+          <h4>技术层面</h4>
+          <p><strong>洋务运动</strong></p>
+          <p>学习西方技术</p>
+          <p>自强求富</p>
+          <p style="margin-top: 8px; color: #ef4444; font-size: 0.8rem;">→ 失败：未触及制度</p>
+        </div>
+        <div class="connection-arrow">→</div>
+        <div class="connection-box">
+          <h4>制度层面（改良）</h4>
+          <p><strong>戊戌变法</strong></p>
+          <p>学习西方制度</p>
+          <p>君主立宪</p>
+          <p style="margin-top: 8px; color: #ef4444; font-size: 0.8rem;">→ 失败：封建势力反对</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin: 24px 0; font-size: 2rem; color: var(--primary-light);">↓</div>
+      <div class="connection-grid">
+        <div class="connection-box">
+          <h4>制度层面（革命）</h4>
+          <p><strong>辛亥革命</strong></p>
+          <p>推翻封建帝制</p>
+          <p>民主共和</p>
+          <p style="margin-top: 8px; color: #10b981; font-size: 0.8rem;">→ 部分成功：推翻帝制</p>
+        </div>
+        <div class="connection-arrow">→</div>
+        <div class="connection-box">
+          <h4>历史启示</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">半殖民地半封建的中国，<br/>需要新的阶级力量和道路<br/>实现民族独立和人民解放</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unit Overview -->
+  <section class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+      <div class="section-title-text">
+        <h2>单元概述</h2>
+        <p>近代化的艰难探索</p>
+      </div>
+    </div>
+    <div class="knowledge-grid">
+      <div class="knowledge-card">
+        <h3><i class="fas fa-flag"></i> 时代背景</h3>
+        <p>19世纪60年代至20世纪初，面对西方列强的侵略和民族危机的加深，中国人民开始了艰难的近代化探索。从学习西方技术到学习西方制度，探索逐步深入。</p>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-route"></i> 探索历程</h3>
+        <p><strong>洋务运动</strong>（技术层面）→ <strong>戊戌变法</strong>（制度层面尝试）→ <strong>辛亥革命</strong>（制度层面革命），体现了中国近代化探索由浅入深、由表及里的发展轨迹。</p>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-lightbulb"></i> 历史启示</h3>
+        <p>在半殖民地半封建的中国，地主阶级的自救运动和资产阶级的改良道路都走不通。中国需要新的阶级力量和新的道路来实现民族独立和人民解放。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ 历史科目特色3: 材料分析框 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-scroll"></i></div>
+      <div class="section-title-text">
+        <h2>史料研读</h2>
+        <p>从历史材料中理解历史</p>
+      </div>
+    </div>
+    <div class="material-analysis">
+      <div class="material-content">
+        "中国文武制度，事事远出西人之上，独火器万不能及。……中国欲自强，则莫如学习外国之利器，欲学习外国之利器，则莫如觅制器之器，师其法而不必尽用其人。"<br/>
+        <span style="float: right; font-size: 0.85rem;">—— 李鸿章《致总理衙门书》（1864年）</span>
+      </div>
+      <div class="material-question">
+        <h5>🤔 思考问题：</h5>
+        <p>1. 这段材料反映了洋务派的什么思想？</p>
+        <p>2. 洋务派认为"中国文武制度，事事远出西人之上"，这种认识有什么局限性？</p>
+        <p>3. 结合所学知识，分析洋务运动失败的根本原因是什么？</p>
+      </div>
+    </div>
+
+    <div class="material-analysis">
+      <div class="material-content">
+        "自十九世纪末以来，中国社会就处于剧烈的动荡之中。从洋务运动到戊戌变法，从义和团运动到辛亥革命，中国人民为了挽救民族危亡，进行了不屈不挠的斗争。这些斗争虽然未能改变中国半殖民地半封建的性质，但为中国的进步开辟了道路。"<br/>
+        <span style="float: right; font-size: 0.85rem;">—— 摘编自《中国近代史》</span>
+      </div>
+      <div class="material-question">
+        <h5>🤔 思考问题：</h5>
+        <p>1. 材料中提到的几次探索运动分别属于什么阶级的运动？</p>
+        <p>2. 为什么这些斗争"未能改变中国半殖民地半封建的性质"？</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ 历史科目特色5: 概念框 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-lightbulb"></i></div>
+      <div class="section-title-text">
+        <h2>概念辨析</h2>
+        <p>准确理解历史概念</p>
+      </div>
+    </div>
+    <div class="concept-box">
+      <div class="concept-title">近代化 vs 现代化</div>
+      <div class="concept-content">
+        <p><strong>近代化：</strong>指从传统的农业社会向近代工业社会转变的历史过程。在中国近代史上，主要指19世纪60年代到20世纪初，学习西方的科学技术、政治制度、思想文化的过程。</p>
+        <p style="margin-top: 12px;"><strong>现代化：</strong>指以现代工业、科学技术为推动力，实现由传统农业社会向现代工业社会的转变过程。在中国，现代化通常指新中国成立后，特别是改革开放以来的发展进程。</p>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <div class="concept-title">改革 vs 革命</div>
+      <div class="concept-content">
+        <p><strong>改革：</strong>指在现有制度框架内，通过自上而下的方式，对政治、经济、文化等方面进行调整和改进。如戊戌变法就是在清朝统治框架内进行的改革尝试。</p>
+        <p style="margin-top: 12px;"><strong>革命：</strong>指通过暴力手段推翻现有政权和制度，建立新的政治秩序。如辛亥革命就是通过武装起义推翻清朝统治。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ 历史科目特色4: 对比表格 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-table"></i></div>
+      <div class="section-title-text">
+        <h2>对比分析</h2>
+        <p>三次探索运动的异同比较</p>
+      </div>
+    </div>
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>洋务运动</th>
+            <th>戊戌变法</th>
+            <th>辛亥革命</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>时间</strong></td>
+            <td>1861-1895</td>
+            <td>1898（103天）</td>
+            <td>1911</td>
+          </tr>
+          <tr>
+            <td><strong>领导阶级</strong></td>
+            <td>地主阶级洋务派</td>
+            <td>资产阶级维新派</td>
+            <td>资产阶级革命派</td>
+          </tr>
+          <tr>
+            <td><strong>代表人物</strong></td>
+            <td>曾国藩、李鸿章、左宗棠、张之洞</td>
+            <td>康有为、梁启超、谭嗣同</td>
+            <td>孙中山、黄兴</td>
+          </tr>
+          <tr>
+            <td><strong>主要内容</strong></td>
+            <td>创办军事、民用工业；筹建海军；兴办新式学堂</td>
+            <td>改革政治、经济、军事、文化教育制度</td>
+            <td>推翻清朝统治；建立中华民国</td>
+          </tr>
+          <tr>
+            <td><strong>学习层面</strong></td>
+            <td>技术层面（器物）</td>
+            <td>制度层面（改良）</td>
+            <td>制度层面（革命）</td>
+          </tr>
+          <tr>
+            <td><strong>结果</strong></td>
+            <td>失败（甲午战争战败）</td>
+            <td>失败（慈禧发动政变）</td>
+            <td>推翻帝制，但果实被袁世凯窃取</td>
+          </tr>
+          <tr>
+            <td><strong>历史意义</strong></td>
+            <td>开启近代化；培养人才；促进民族资本主义产生</td>
+            <td>思想启蒙；促进人民觉醒</td>
+            <td>结束封建帝制；民主共和观念深入人心</td>
+          </tr>
+          <tr>
+            <td><strong>失败原因</strong></td>
+            <td colspan="3" style="text-align: left; padding-left: 16px;">
+              都未改变中国半殖民地半封建的社会性质；<br/>
+              洋务运动：未触及封建制度；<br/>
+              戊戌变法：封建顽固势力强大；<br/>
+              辛亥革命：资产阶级软弱性和妥协性
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ★ 历史科目特色6: 警告框 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-exclamation-triangle"></i></div>
+      <div class="section-title-text">
+        <h2>易错警示</h2>
+        <p>考试常见错误辨析</p>
+      </div>
+    </div>
+    <div class="warning-box">
+      <div class="warning-title">❌ 常见错误观点</div>
+      <div class="warning-content">
+        <ul class="warning-list">
+          <li><strong>错误：</strong>洋务运动使中国富强起来。<br/>
+            <span style="color: #10b981;">✓ 正确：</span>洋务运动没有使中国富强起来，甲午战争的惨败宣告了洋务运动的破产。</li>
+          <li><strong>错误：</strong>辛亥革命彻底改变了中国半殖民地半封建的社会性质。<br/>
+            <span style="color: #10b981;">✓ 正确：</span>辛亥革命推翻了清朝统治，但没有改变中国半殖民地半封建的社会性质。</li>
+          <li><strong>错误：</strong>戊戌变法和辛亥革命的性质相同。<br/>
+            <span style="color: #10b981;">✓ 正确：</span>戊戌变法是资产阶级改良运动，辛亥革命是资产阶级民主革命，性质不同。</li>
+          <li><strong>错误：</strong>洋务运动、戊戌变法、辛亥革命都是失败的，没有意义。<br/>
+            <span style="color: #10b981;">✓ 正确：</span>虽然都失败了，但都推动了中国近代化进程，具有历史进步意义。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lessons -->
+  <section class="section" id="lessons">
+    <div class="section-header">
+      <div class="section-icon"><i class="fa-solid fa-landmark"></i></div>
+      <div class="section-title-text">
+        <h2>课时导航</h2>
+        <p>点击卡片开始学习</p>
+      </div>
+    </div>
+    <div class="knowledge-grid">
+      <a href="2.1_yjwz/yjwz.html" class="knowledge-card" style="text-decoration: none; color: inherit;">
+        <h3><i class="fas fa-industry"></i> 第1课 洋务运动</h3>
+        <p><strong>时间：</strong>1861-1895年</p>
+        <p><strong>口号：</strong>自强、求富</p>
+        <p><strong>代表人物：</strong>曾国藩、李鸿章、左宗棠、张之洞</p>
+        <p style="margin-top: 12px; color: var(--primary);"><i class="fas fa-arrow-right"></i> 开始学习</p>
+      </a>
+      <a href="2.2_jwbd/jwbd.html" class="knowledge-card" style="text-decoration: none; color: inherit;">
+        <h3><i class="fas fa-ship"></i> 第2课 甲午中日战争</h3>
+        <p><strong>时间：</strong>1894-1895年</p>
+        <p><strong>重要战役：</strong>黄海海战、威海卫之战</p>
+        <p><strong>结果：</strong>签订《马关条约》，民族危机加深</p>
+        <p style="margin-top: 12px; color: var(--primary);"><i class="fas fa-arrow-right"></i> 开始学习</p>
+      </a>
+      <a href="2.3_xchd/xchd.html" class="knowledge-card" style="text-decoration: none; color: inherit;">
+        <h3><i class="fas fa-scroll"></i> 第3课 辛亥革命</h3>
+        <p><strong>时间：</strong>1911年</p>
+        <p><strong>领导人：</strong>孙中山</p>
+        <p><strong>意义：</strong>推翻清朝，建立中华民国</p>
+        <p style="margin-top: 12px; color: var(--primary);"><i class="fas fa-arrow-right"></i> 开始学习</p>
+      </a>
+      <a href="2.4_yhtm/yhtm.html" class="knowledge-card" style="text-decoration: none; color: inherit;">
+        <h3><i class="fas fa-balance-scale"></i> 第4课 戊戌变法</h3>
+        <p><strong>时间：</strong>1898年（103天）</p>
+        <p><strong>代表人物：</strong>康有为、梁启超</p>
+        <p><strong>意义：</strong>思想启蒙运动</p>
+        <p style="margin-top: 12px; color: var(--primary);"><i class="fas fa-arrow-right"></i> 开始学习</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 7. 前测 Pretest -->
+  <section class="section" id="pretest">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg, #10b981, #34d399);"><i class="fas fa-clipboard-check"></i></div>
+      <div class="section-title-text">
+        <h2 style="color: #047857;">前测评估</h2>
+        <p>学习前的基础知识检测</p>
+      </div>
+    </div>
+    <div class="quiz-section" style="border: 2px solid #10b981;">
+      <p style="font-size: 0.95rem; color: #047857; margin-bottom: 20px; background: #d1fae5; padding: 12px 16px; border-radius: 10px;">
+        <i class="fas fa-info-circle"></i> <strong>说明：</strong>请先完成以下前测题目，了解自己的知识基础，然后开始单元学习。
+      </p>
+      
+      <div class="quiz-question">
+        <h4>1. 你知道中国近代史开始于哪一年吗？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1840年鸦片战争是中国近代史的开端。">
+            <span class="opt-letter">A</span> 1840年
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1860年是第二次鸦片战争结束的年份。">
+            <span class="opt-letter">B</span> 1860年
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1900年是八国联军侵华的年份。">
+            <span class="opt-letter">C</span> 1900年
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 前测不作评分。正确答案是1840年鸦片战争，标志着中国近代史的开端。现在开始本单元学习吧！">
+            <span class="opt-letter">D</span> 不确定
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="quiz-question">
+        <h4>2. 你听说过"洋务运动"吗？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 很好！你已经有一些基础，继续学习会更有收获。">
+            <span class="opt-letter">A</span> 听说过，了解一些内容
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 没关系！本单元会系统学习洋务运动。">
+            <span class="opt-letter">B</span> 听说过，但不太了解
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 没关系！本单元会系统学习洋务运动。">
+            <span class="opt-letter">C</span> 没听说过
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 让我们一起学习洋务运动的历史。">
+            <span class="opt-letter">D</span> 不确定
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="quiz-question">
+        <h4>3. 你知道辛亥革命的历史意义吗？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 很棒！你已经掌握了辛亥革命的重要意义。">
+            <span class="opt-letter">A</span> 推翻了清朝统治，建立了中华民国
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 继续学习，你会更深入了解辛亥革命。">
+            <span class="opt-letter">B</span> 知道一些，但不太清楚
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 没关系！本单元会系统学习辛亥革命。">
+            <span class="opt-letter">C</span> 不太了解
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 本单元会详细讲解辛亥革命。">
+            <span class="opt-letter">D</span> 完全不知道
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 后测 Posttest -->
+  <section class="section" id="posttest">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);"><i class="fas fa-tasks"></i></div>
+      <div class="section-title-text">
+        <h2 style="color: #1e40af;">后测检验</h2>
+        <p>学习后的成果检测</p>
+      </div>
+    </div>
+    <div class="quiz-section" style="border: 2px solid #3b82f6;">
+      <p style="font-size: 0.95rem; color: #1e40af; margin-bottom: 20px; background: #dbeafe; padding: 12px 16px; border-radius: 10px;">
+        <i class="fas fa-info-circle"></i> <strong>说明：</strong>完成本单元学习后，请完成以下后测题目，检验学习成果。
+      </p>
+
+      <div class="quiz-question">
+        <h4>1. 中国近代化的开端是什么运动？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动（1861-1895年）是中国近代化的开端，主张"师夷长技以自强"。">
+            <span class="opt-letter">A</span> 洋务运动
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。戊戌变法发生在1898年，比洋务运动晚，不是近代化的开端。正确答案是洋务运动。">
+            <span class="opt-letter">B</span> 戊戌变法
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命发生在1911年，推翻了清朝统治，但不是近代化的开端。正确答案是洋务运动。">
+            <span class="opt-letter">C</span> 辛亥革命
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。新文化运动发生在1915年之后，是思想文化领域的革新运动。正确答案是洋务运动。">
+            <span class="opt-letter">D</span> 新文化运动
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="quiz-question">
+        <h4>2. 下列哪一项不是洋务运动的内容？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。创办军事工业是洋务运动"自强"阶段的主要内容，如江南制造总局。正确答案是C。">
+            <span class="opt-letter">A</span> 创办军事工业
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。创办民用工业是洋务运动"求富"阶段的内容，如轮船招商局。正确答案是C。">
+            <span class="opt-letter">B</span> 创办民用工业
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！废除科举制度是戊戌变法的内容，不是洋务运动的内容。洋务运动时期仍然维持科举制度。">
+            <span class="opt-letter">C</span> 废除科举制度
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。筹建近代海军是洋务运动的重要内容，建立了北洋、南洋、福建三支海军。正确答案是C。">
+            <span class="opt-letter">D</span> 筹建近代海军
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="quiz-question">
+        <h4>3. 戊戌变法最重要的历史意义是什么？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。戊戌变法最终失败，没有实现君主立宪。正确答案是C。">
+            <span class="opt-letter">A</span> 建立了君主立宪制度
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。推翻清朝统治的是辛亥革命，不是戊戌变法。正确答案是C。">
+            <span class="opt-letter">B</span> 推翻了清朝统治
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！戊戌变法虽然失败，但传播了资产阶级维新思想，批判了封建文化，是中国近代第一次思想启蒙运动。">
+            <span class="opt-letter">C</span> 起到了思想启蒙的作用
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。完成反帝反封建任务的是新民主主义革命，不是戊戌变法。正确答案是C。">
+            <span class="opt-letter">D</span> 完成了反帝反封建任务
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="quiz-question">
+        <h4>4. 辛亥革命的历史功绩不包括下列哪一项？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命确实推翻了清朝统治，这是它的历史功绩之一。正确答案是D。">
+            <span class="opt-letter">A</span> 推翻了清朝统治
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命结束了中国两千多年的封建帝制，建立了中华民国。正确答案是D。">
+            <span class="opt-letter">B</span> 结束了封建帝制
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命使民主共和的观念深入人心，这是它的重要历史意义。正确答案是D。">
+            <span class="opt-letter">C</span> 使民主共和观念深入人心
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！辛亥革命没有改变中国半殖民地半封建的社会性质，这是它的局限性。">
+            <span class="opt-letter">D</span> 改变了半殖民地半封建的社会性质
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="quiz-question">
+        <h4>5. 洋务运动、戊戌变法、辛亥革命的共同点是？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。只有辛亥革命推翻了清朝，洋务运动和戊戌变法都没有。正确答案是C。">
+            <span class="opt-letter">A</span> 都推翻了清朝统治
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。这三场运动最终都失败了，没有实现其目标。正确答案是C。">
+            <span class="opt-letter">B</span> 都取得了成功
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！这三场运动都推动了中国近代化进程，都具有一定的历史进步意义。">
+            <span class="opt-letter">C</span> 都推动了中国近代化进程
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。戊戌变法和辛亥革命触及了政治制度，洋务运动没有。正确答案是C。">
+            <span class="opt-letter">D</span> 都没有触及政治制度
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- ★ 历史科目特色8: data-feedback -->
+      <div class="data-feedback-section">
+        <div class="data-feedback-title"><i class="fas fa-chart-pie"></i> 学习成果统计</div>
+        <div class="data-stats">
+          <div class="data-stat-card">
+            <div class="data-stat-value" id="correct-count">0</div>
+            <div class="data-stat-label">正确题数</div>
+          </div>
+          <div class="data-stat-card">
+            <div class="data-stat-value" id="wrong-count">0</div>
+            <div class="data-stat-label">错误题数</div>
+          </div>
+          <div class="data-stat-card">
+            <div class="data-stat-value" id="accuracy-rate">0%</div>
+            <div class="data-stat-label">正确率</div>
+          </div>
+        </div>
+        <div class="data-progress-ring">
+          <svg class="progress-ring" width="120" height="120">
+            <circle class="bg" cx="60" cy="60" r="50"/>
+            <circle class="progress" cx="60" cy="60" r="50" id="progress-circle"/>
+          </svg>
+          <div class="progress-ring-text">
+            <div class="progress-ring-percent" id="ring-percent">0%</div>
+            <div class="progress-ring-label">完成度</div>
+          </div>
+        </div>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted);" id="feedback-message">
+          完成以上题目后，系统将自动统计你的学习成果。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. 必考分析 Exam Analysis -->
+  <section class="section" id="exam-analysis">
+    <div class="section-header">
+      <div class="section-icon" style="background: linear-gradient(135deg, #ef4444, #f87171);"><i class="fas fa-chart-line"></i></div>
+      <div class="section-title-text">
+        <h2 style="color: #b91c1c;">必考分析</h2>
+        <p>中考高频考点解析</p>
+      </div>
+    </div>
+    
+    <div class="warning-box" style="background: linear-gradient(135deg, #fff7ed, #ffedd5); border-color: #f97316;">
+      <div class="warning-title" style="color: #c2410c;">🔥 高频考点TOP 5</div>
+      <div class="warning-content" style="color: #7c2d12;">
+        <p style="margin-bottom: 12px;"><strong>【必考1】洋务运动</strong></p>
+        <p style="margin-left: 16px;">• 时间、口号（自强、求富）、代表人物</p>
+        <p style="margin-left: 16px;">• 内容：军事工业、民用工业、海军、新式学堂</p>
+        <p style="margin-left: 16px;">• 评价：近代化开端、促进作用、失败原因</p>
+        
+        <p style="margin-top: 16px; margin-bottom: 12px;"><strong>【必考2】甲午中日战争</strong></p>
+        <p style="margin-left: 16px;">• 时间：1894-1895年</p>
+        <p style="margin-left: 16px;">• 重要战役：黄海海战（邓世昌）、威海卫之战</p>
+        <p style="margin-left: 16px;">• 结果：《马关条约》内容及影响</p>
+        
+        <p style="margin-top: 16px; margin-bottom: 12px;"><strong>【必考3】戊戌变法</strong></p>
+        <p style="margin-left: 16px;">• 时间：1898年（103天）</p>
+        <p style="margin-left: 16px;">• 代表人物：康有为、梁启超、谭嗣同</p>
+        <p style="margin-left: 16px;">• 意义：思想启蒙作用</p>
+        
+        <p style="margin-top: 16px; margin-bottom: 12px;"><strong>【必考4】辛亥革命</strong></p>
+        <p style="margin-left: 16px;">• 时间：1911年</p>
+        <p style="margin-left: 16px;">• 领导人：孙中山</p>
+        <p style="margin-left: 16px;">• 意义：推翻帝制、民主共和观念</p>
+        <p style="margin-left: 16px;">• 局限性：未改变社会性质</p>
+        
+        <p style="margin-top: 16px; margin-bottom: 12px;"><strong>【必考5】三次运动比较</strong></p>
+        <p style="margin-left: 16px;">• 共同点：都推动近代化、都失败了</p>
+        <p style="margin-left: 16px;">• 不同点：领导阶级、学习层面、结果意义</p>
+      </div>
+    </div>
+
+    <div class="comparison-table-wrapper" style="margin-top: 24px;">
+      <h3 style="color: var(--primary); margin-bottom: 16px; font-size: 1.1rem;"><i class="fas fa-trophy"></i> 中考真题示例</h3>
+      <div class="quiz-question">
+        <h4>【真题】（2023年某市中考）阅读下列材料，回答问题：</h4>
+        <div class="material-analysis" style="margin-bottom: 16px;">
+          <div class="material-content">
+            材料一："中国文武制度，事事远出西人之上，独火器万不能及。……中国欲自强，则莫如学习外国之利器。"<br/>
+            材料二："变法之本，在育人才；人才之兴，在开学校；学校之立，在变科举。"<br/>
+            材料三："驱除鞑虏，恢复中华，创立民国，平均地权。"
+          </div>
+        </div>
+        <p style="margin-bottom: 12px; color: var(--text-dark);"><strong>问题：</strong></p>
+        <p style="margin-bottom: 8px; color: var(--text-dark);">（1）材料一反映的是什么运动？其根本目的是什么？</p>
+        <p style="margin-bottom: 8px; color: var(--text-dark);">（2）材料二反映的是什么运动？其最重要的历史意义是什么？</p>
+        <p style="margin-bottom: 8px; color: var(--text-dark);">（3）材料三是什么革命纲领？这场革命的历史功绩有哪些？</p>
+        
+        <div style="margin-top: 16px; background: #d1fae5; padding: 16px; border-radius: 12px; border: 1px solid #10b981;">
+          <h5 style="color: #047857; margin-bottom: 8px;">✓ 参考答案：</h5>
+          <p style="font-size: 0.9rem; color: #065f46; line-height: 1.6;">
+            （1）洋务运动。根本目的是维护清朝统治。<br/>
+            （2）戊戌变法。最重要的历史意义是起到了思想启蒙的作用。<br/>
+            （3）三民主义（同盟会纲领）。历史功绩：推翻了清朝统治；结束了中国两千多年的封建帝制；使民主共和的观念深入人心。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>初中历史八年级上册 · 第二单元 近代化的早期探索与民族危机</p>
+  <div class="footer-links">
+    <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+    <a href="../index.html"><i class="fas fa-list"></i> 章节目录</a>
+  </div>
+  <p style="margin-top: 20px; opacity: 0.7; font-size: 0.85rem;">© 2026 TeachAny 互动课件</p>
+</footer>
+
+<script>
+// Scroll to section
+function scrollToSection(id) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Quiz interaction
+function initQuiz() {
+  const questions = document.querySelectorAll('.quiz-question');
+  let totalAnswered = 0;
+  let correctCount = 0;
+  let wrongCount = 0;
+  
+  questions.forEach(q => {
+    const options = q.querySelectorAll('.quiz-option');
+    const feedback = q.querySelector('.feedback');
+    let answered = false;
+    
+    options.forEach(opt => {
+      opt.addEventListener('click', function() {
+        if (answered) return;
+        
+        const isCorrect = this.dataset.correct === 'true';
+        const feedbackText = this.dataset.feedback;
+        
+        // Show all options status
+        options.forEach(o => {
+          if (o.dataset.correct === 'true') {
+            o.classList.add('correct');
+          } else if (o === this && !isCorrect) {
+            o.classList.add('wrong');
+          }
+        });
+        
+        // Show feedback
+        feedback.innerHTML = feedbackText;
+        feedback.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+        
+        answered = true;
+        totalAnswered++;
+        
+        if (isCorrect) {
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        
+        // Update data feedback (only for posttest)
+        if (q.closest('#posttest')) {
+          updateDataFeedback();
+        }
+      });
+    });
+  });
+  
+  function updateDataFeedback() {
+    const posttestQuestions = document.querySelectorAll('#posttest .quiz-question');
+    const totalQuestions = posttestQuestions.length;
+    const answeredInPosttest = Array.from(posttestQuestions).filter(q => 
+      q.querySelector('.quiz-option.correct, .quiz-option.wrong')
+    ).length;
+    
+    if (answeredInPosttest > 0) {
+      const correctInPosttest = Array.from(posttestQuestions).filter(q => 
+        q.querySelector('.quiz-option.correct')
+      ).length;
+      const wrongInPosttest = answeredInPosttest - correctInPosttest;
+      const accuracy = Math.round((correctInPosttest / answeredInPosttest) * 100);
+      
+      document.getElementById('correct-count').textContent = correctInPosttest;
+      document.getElementById('wrong-count').textContent = wrongInPosttest;
+      document.getElementById('accuracy-rate').textContent = accuracy + '%';
+      document.getElementById('ring-percent').textContent = accuracy + '%';
+      
+      // Update progress ring
+      const circle = document.getElementById('progress-circle');
+      const circumference = 2 * Math.PI * 50;
+      const offset = circumference - (accuracy / 100) * circumference;
+      circle.style.strokeDasharray = circumference;
+      circle.style.strokeDashoffset = offset;
+      circle.style.stroke = accuracy >= 60 ? '#10b981' : '#ef4444';
+      
+      // Update feedback message
+      const message = document.getElementById('feedback-message');
+      if (accuracy >= 80) {
+        message.innerHTML = '🎉 <strong>优秀！</strong>你已经很好地掌握了本单元知识！';
+        message.style.color = '#047857';
+      } else if (accuracy >= 60) {
+        message.innerHTML = '👍 <strong>良好！</strong>继续加油，可以做得更好！';
+        message.style.color = '#0369a1';
+      } else {
+        message.innerHTML = '💪 <strong>继续努力！</strong>建议重新学习本单元内容。';
+        message.style.color = '#b91c1c';
+      }
+    }
+  }
+}
+
+// Update progress bar on scroll
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.querySelector('.progress-fill').style.width = progress + '%';
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  initQuiz();
+  window.addEventListener('scroll', updateProgress);
+});
+</script>
+
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

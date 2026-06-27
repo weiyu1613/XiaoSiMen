@@ -1,0 +1,1341 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3课 辛亥革命 - 初中历史八年级</title>
+    <style>
+        :root {
+            --red-dark: #6b3410;
+            --red-mid: #8b4513;
+            --red-light: #e84040;
+            --red-pale: #faf7f2;
+            --red-bg: #fff8f8;
+            --gold: #c8a000;
+            --gold-light: #ffe680;
+            --text-dark: #2c2c2c;
+            --text-mid: #555;
+            --text-light: #888;
+            --shadow: rgba(199, 0, 0, 0.12);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            color: var(--text-dark);
+            background: var(--red-pale);
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        /* ========== 1. 品牌栏 ========== */
+        .brand-bar {
+            background: linear-gradient(135deg, var(--red-dark) 0%, var(--red-mid) 50%, var(--red-light) 100%);
+            color: #fff;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 16px var(--shadow);
+        }
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .brand-logo svg { width: 32px; height: 32px; }
+        .brand-title { font-size: 15px; opacity: 0.9; }
+        .brand-right { display: flex; align-items: center; gap: 16px; font-size: 13px; opacity: 0.85; }
+
+        /* ========== 2. 进度条 ========== */
+        .progress-bar-wrap {
+            position: sticky;
+            top: 56px;
+            z-index: 99;
+            background: #fff;
+            border-bottom: 1px solid #f0d0d0;
+        }
+        .progress-bar-inner {
+            height: 4px;
+            background: linear-gradient(90deg, var(--red-dark), var(--red-mid), var(--red-light));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .progress-label {
+            padding: 6px 24px 4px;
+            font-size: 12px;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ========== 3. 导航栏 ========== */
+        .nav-bar {
+            background: #fff;
+            border-bottom: 2px solid var(--red-mid);
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .nav-bar::-webkit-scrollbar { display: none; }
+        .nav-item {
+            padding: 12px 20px;
+            font-size: 14px;
+            color: var(--text-mid);
+            text-decoration: none;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .nav-item:hover, .nav-item.active {
+            color: var(--red-mid);
+            border-bottom-color: var(--red-mid);
+            background: var(--red-pale);
+        }
+
+        /* ========== 主容器 ========== */
+        .main-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* ========== 4. Hero区 + SVG知识图 ========== */
+        .hero-section {
+            background: linear-gradient(160deg, var(--red-dark) 0%, var(--red-mid) 55%, #7a0000 100%);
+            color: #fff;
+            padding: 48px 24px 40px;
+            border-radius: 0 0 24px 24px;
+            margin: 0 -20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 4px 16px;
+            font-size: 12px;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+        .hero-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .hero-subtitle {
+            font-size: 15px;
+            opacity: 0.85;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .hero-meta {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+        .hero-meta-item { display: flex; align-items: center; gap: 6px; }
+        .hero-meta-item svg { width: 16px; height: 16px; }
+
+        /* SVG知识结构图 */
+        .knowledge-graph {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 8px;
+        }
+        .knowledge-graph-title {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .knowledge-graph svg {
+            width: 100%;
+            height: auto;
+            max-height: 220px;
+        }
+
+        /* ========== 5. 锚点间距 ========== */
+        .anchor-section { scroll-margin-top: 140px; }
+
+        /* ========== 通用区块样式 ========== */
+        .section-block {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            margin-top: 20px;
+            box-shadow: 0 2px 12px var(--shadow);
+            border-left: 4px solid var(--red-mid);
+        }
+        .section-title {
+            font-size: 20px;
+            color: var(--red-mid);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--red-pale);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title svg { width: 22px; height: 22px; flex-shrink: 0; }
+        .section-title .num {
+            background: var(--red-mid);
+            color: #fff;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* ========== 6. 学习目标 ========== */
+        .objective-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+        .objective-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px 16px;
+            background: var(--red-bg);
+            border-radius: var(--radius-sm);
+            border: 1px solid #fde0e0;
+            font-size: 14px;
+        }
+        .objective-icon {
+            width: 28px; height: 28px;
+            background: var(--red-mid);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .objective-text strong { color: var(--red-mid); }
+
+        /* ========== 7. 前测 / 9. 后测 通用 ========== */
+        .quiz-section { background: #fff; border-radius: var(--radius); padding: 28px 24px; margin-top: 20px; box-shadow: 0 2px 12px var(--shadow); }
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--red-pale);
+        }
+        .quiz-badge {
+            background: linear-gradient(135deg, var(--red-dark), var(--red-mid));
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .quiz-card {
+            border: 1px solid #f0e0e0;
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin-bottom: 16px;
+            background: var(--red-bg);
+        }
+        .quiz-question {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            color: var(--text-dark);
+        }
+        .quiz-question span.q-num {
+            color: var(--red-mid);
+            margin-right: 6px;
+        }
+        .quiz-options { display: grid; gap: 10px; }
+        button.quiz-option {
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            border: 2px solid #e8d0d0;
+            border-radius: var(--radius-sm);
+            background: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+        button.quiz-option:hover:not(:disabled) {
+            border-color: var(--red-mid);
+            background: var(--red-pale);
+            transform: translateX(4px);
+        }
+        button.quiz-option.selected-correct {
+            border-color: #2e7d32;
+            background: #e8f5e9;
+            color: #1b5e20;
+        }
+        button.quiz-option.selected-wrong {
+            border-color: #c62828;
+            background: #ffebee;
+            color: #b71c1c;
+        }
+        .quiz-feedback {
+            display: none;
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct {
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            color: #1b5e20;
+        }
+        .quiz-feedback.wrong {
+            background: #fff3e0;
+            border: 1px solid #ffcc80;
+            color: #bf360c;
+        }
+        .quiz-score {
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--red-mid);
+            display: none;
+        }
+        .quiz-score.show { display: block; }
+        .quiz-score .big { font-size: 48px; font-weight: 900; }
+
+        /* ========== 8. 核心知识点 ========== */
+        .knowledge-block {
+            border: 1px solid #f0e0e0;
+            border-radius: var(--radius-sm);
+            padding: 18px;
+            margin-bottom: 16px;
+            background: var(--red-bg);
+        }
+        .knowledge-block h4 {
+            font-size: 15px;
+            color: var(--red-mid);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .knowledge-block h4 svg { width: 18px; height: 18px; }
+        .knowledge-block p, .knowledge-block li { font-size: 14px; color: var(--text-mid); line-height: 1.8; }
+        .knowledge-block ul { padding-left: 20px; }
+        .knowledge-block li { margin-bottom: 6px; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--red-pale), #fff0f0);
+            border: 1px solid #f5c0c0;
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 15px;
+            text-align: center;
+            color: var(--red-dark);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+            margin: 16px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--red-mid), var(--red-light));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px; top: 6px;
+            width: 14px; height: 14px;
+            background: var(--red-mid);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px var(--red-mid);
+        }
+        .timeline-date {
+            font-size: 13px;
+            color: var(--red-mid);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .timeline-content { font-size: 14px; color: var(--text-mid); }
+
+        .table-wrap { overflow-x: auto; margin: 16px 0; }
+        table.knowledge-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        table.knowledge-table th {
+            background: var(--red-mid);
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        table.knowledge-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f5e0e0;
+            color: var(--text-mid);
+            vertical-align: top;
+        }
+        table.knowledge-table tr:nth-child(even) td { background: var(--red-bg); }
+
+        /* ========== 10. 页脚 ========== */
+        .page-footer {
+            background: linear-gradient(135deg, var(--red-dark), #5a0000);
+            color: rgba(255,255,255,0.8);
+            padding: 32px 24px;
+            margin: 40px -20px 0;
+            border-radius: 24px 24px 0 0;
+            text-align: center;
+        }
+        .footer-brand { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .footer-info { font-size: 12px; line-height: 2; opacity: 0.7; }
+        .footer-divider { width: 60px; height: 3px; background: rgba(255,255,255,0.3); margin: 16px auto; border-radius: 2px; }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 24px; }
+            .hero-section { padding: 32px 16px 28px; border-radius: 0 0 16px 16px; }
+            .main-container { padding: 0 12px 40px; }
+            .section-block, .quiz-section { padding: 20px 16px; margin-top: 14px; }
+            .brand-right { display: none; }
+            .nav-item { padding: 12px 14px; font-size: 13px; }
+            .section-title { font-size: 17px; }
+            .quiz-options { grid-template-columns: 1fr; }
+            .hero-meta { gap: 14px; }
+            .knowledge-graph { padding: 12px; }
+        }
+        @media (min-width: 769px) {
+            .quiz-options { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+<body>
+
+<!-- ========== 1. 品牌栏 ========== -->
+<header class="brand-bar">
+    <div class="brand-logo">
+        <svg viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="15" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+            <path d="M16 6 L20 14 L28 14 L22 19 L24 27 L16 22 L8 27 L10 19 L4 14 L12 14 Z" fill="white" opacity="0.9"/>
+        </svg>
+        初中历史 · 八年级上册
+    </div>
+    <div class="brand-title">第2单元 · 近代化的探索</div>
+    <div class="brand-right">
+        <span>📅 2026年修订</span>
+    </div>
+</header>
+
+<!-- ========== 2. 进度条 ========== -->
+<div class="progress-bar-wrap">
+    <div class="progress-label">
+        <span>📖 课程进度</span>
+        <span id="progress-text">0%</span>
+    </div>
+    <div class="progress-bar-inner" id="progressBar"></div>
+</div>
+
+<!-- ========== 3. 导航栏 ========== -->
+<nav class="nav-bar" id="navBar">
+    <a class="nav-item active" data-target="hero">📚 课程概览</a>
+    <a class="nav-item" data-target="objective">🎯 学习目标</a>
+    <a class="nav-item" data-target="pretest">📝 前测练习</a>
+    <a class="nav-item" data-target="knowledge">📖 核心知识</a>
+    <a class="nav-item" data-target="posttest">✅ 后测练习</a>
+    <a class="nav-item" data-target="footer">ℹ️ 关于课程</a>
+</nav>
+
+<div class="main-container">
+
+    <!-- ========== 4. Hero区 + SVG知识结构图 ========== -->
+    <section class="hero-section anchor-section" id="hero">
+        <div class="hero-badge">🐉 初中历史 · 八年级上册</div>
+        <h1 class="hero-title">第3课 辛亥革命</h1>
+        <p class="hero-subtitle">推翻君主专制  建立民主共和<br>中华民族近代史上一次伟大的历史转折</p>
+        <div class="hero-meta">
+            <div class="hero-meta-item">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 011 1v2a1 1 0 11-2 0V8a1 1 0 011-1z"/></svg>
+                1911年10月10日
+            </div>
+            <div class="hero-meta-item">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/></svg>
+                领导人：孙中山
+            </div>
+            <div class="hero-meta-item">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+                三民主义
+            </div>
+        </div>
+
+        <!-- SVG知识结构图 -->
+        <div class="knowledge-graph">
+            <div class="knowledge-graph-title">📊 知识结构图</div>
+            <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- 背景虚线 -->
+                <line x1="200" y1="30" x2="200" y2="170" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="400" y1="30" x2="400" y2="170" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="600" y1="30" x2="600" y2="170" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
+
+                <!-- 连接线 -->
+                <path d="M155,100 L245,100" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+                <path d="M355,100 L445,100" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+                <path d="M555,100 L645,100" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+
+                <!-- 孙中山节点 -->
+                <rect x="50" y="72" width="110" height="56" rx="10" fill="rgba(255,255,255,0.95)" opacity="0.95"/>
+                <text x="105" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3410">孙中山</text>
+                <text x="105" y="112" text-anchor="middle" font-size="10" fill="#8b4513">中国民主革命先驱</text>
+
+                <!-- 三民主义节点 -->
+                <rect x="250" y="50" width="110" height="100" rx="10" fill="rgba(255,255,255,0.95)" opacity="0.95"/>
+                <text x="305" y="74" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3410">三民主义</text>
+                <line x1="265" y1="83" x2="345" y2="83" stroke="#e84040" stroke-width="1"/>
+                <text x="305" y="100" text-anchor="middle" font-size="10" fill="#8b4513">🗡 民族</text>
+                <text x="305" y="116" text-anchor="middle" font-size="10" fill="#8b4513">⚖ 民权</text>
+                <text x="305" y="132" text-anchor="middle" font-size="10" fill="#8b4513">🌾 民生</text>
+
+                <!-- 武昌起义节点 -->
+                <rect x="450" y="72" width="110" height="56" rx="10" fill="rgba(255,255,255,0.95)" opacity="0.95"/>
+                <text x="505" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3410">武昌起义</text>
+                <text x="505" y="112" text-anchor="middle" font-size="10" fill="#8b4513">1911.10.10</text>
+
+                <!-- 中华民国节点 -->
+                <rect x="650" y="72" width="120" height="56" rx="10" fill="rgba(255,220,50,0.95)" opacity="0.95"/>
+                <text x="710" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#6b3410">中华民国</text>
+                <text x="710" y="112" text-anchor="middle" font-size="10" fill="#8b4513">1912.1.1 成立</text>
+
+                <!-- 箭头（简化） -->
+                <polygon points="245,100 238,95 238,105" fill="rgba(255,255,255,0.7)"/>
+                <polygon points="445,100 438,95 438,105" fill="rgba(255,255,255,0.7)"/>
+                <polygon points="645,100 638,95 638,105" fill="rgba(255,255,255,0.7)"/>
+
+                <!-- 底部标签 -->
+                <text x="105" y="185" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.6)">革命领袖</text>
+                <text x="305" y="185" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.6)">革命纲领</text>
+                <text x="505" y="185" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.6)">起义爆发</text>
+                <text x="710" y="185" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.6)">共和建立</text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ========== 6. 学习目标 ========== -->
+    <section class="section-block anchor-section" id="objective">
+        <h2 class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+            课前 · 学习目标
+        </h2>
+        <ul class="objective-list">
+            <li class="objective-item">
+                <div class="objective-icon">1</div>
+                <div class="objective-text">
+                    掌握辛亥革命的时间、背景和<span style="color:var(--red-mid)">武昌起义</span>的经过，理解革命爆发的历史必然性。
+                </div>
+            </li>
+            <li class="objective-item">
+                <div class="objective-icon">2</div>
+                <div class="objective-text">
+                    识记<span style="color:var(--red-mid)">孙中山</span>的主要革命活动，理解<span style="color:var(--red-mid)">三民主义</span>的内涵及意义。
+                </div>
+            </li>
+            <li class="objective-item">
+                <div class="objective-icon">3</div>
+                <div class="objective-text">
+                    了解<span style="color:var(--red-mid)">中华民国成立</span>的过程，认识辛亥革命的历史意义与局限性。
+                </div>
+            </li>
+            <li class="objective-item">
+                <div class="objective-icon">4</div>
+                <div class="objective-text">
+                    培养历史唯物主义观念，理解民主共和观念在中国传播的进步意义。
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ========== 7. 前测练习 ========== -->
+    <section class="quiz-section anchor-section" id="pretest">
+        <div class="quiz-header">
+            <span class="quiz-badge">📝 前测</span>
+            <span style="font-size:15px;font-weight:700;color:var(--text-dark)">课前小测 · 检验预习效果</span>
+        </div>
+
+        <!-- 前测题1 -->
+        <div class="quiz-card" id="q1">
+            <div class="quiz-question"><span class="q-num">1.</span>辛亥革命爆发的地点是？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。广州是戊戌变法相关人物康有为、梁启超的主要活动地区，不是辛亥革命的爆发地。" onclick="checkAnswer(this)">A. 广州</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1911年10月10日，革命党人在武昌发动起义，迅速占领武汉三镇，史称"武昌起义"，标志着辛亥革命的爆发。" onclick="checkAnswer(this)">B. 武昌</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。上海是辛亥革命后重要的革命活动中心，但不是起义爆发的地点。" onclick="checkAnswer(this)">C. 上海</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。南京是1912年中华民国临时政府成立之地，不辛亥革命的爆发地点。" onclick="checkAnswer(this)">D. 南京</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <!-- 前测题2 -->
+        <div class="quiz-card" id="q2">
+            <div class="quiz-question"><span class="q-num">2.</span>"三民主义"不包括以下哪一项？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。民族主义是三民主义的重要组成部分之一，旨在推翻满清统治，实现民族独立。" onclick="checkAnswer(this)">A. 民族主义</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。民权主义是三民主义的核心之一，主张建立民主共和政体。" onclick="checkAnswer(this)">B. 民权主义</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。民生主义是三民主义的组成部分之一，关注人民的生活和经济利益。" onclick="checkAnswer(this)">C. 民生主义</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！三民主义包括民族、民权、民生三大主义。"民主集中"不属于三民主义，是政治体制原则。" onclick="checkAnswer(this)">D. 民主集中</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <!-- 前测题3 -->
+        <div class="quiz-card" id="q3">
+            <div class="quiz-question"><span class="q-num">3.</span>中华民国临时政府成立于？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1912年1月1日，中华民国临时政府在南京成立，孙中山就任临时大总统。" onclick="checkAnswer(this)">A. 1911年10月10日</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1911年12月是各省代表在南京召开会议的时间，临时政府尚未正式成立。" onclick="checkAnswer(this)">B. 1911年12月</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1912年1月1日，孙中山在南京就任中华民国临时大总统，标志着中华民国正式成立。" onclick="checkAnswer(this)">C. 1912年1月1日</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1912年4月是袁世凯窃取革命果实、迁都北京的时间。" onclick="checkAnswer(this)">D. 1912年4月</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <!-- 前测题4 -->
+        <div class="quiz-card" id="q4">
+            <div class="quiz-question"><span class="q-num">4.</span>辛亥革命的主要历史意义是？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命推翻了清朝统治，但并未实现国家完全独立，中国半殖民地半封建社会的性质没有根本改变。" onclick="checkAnswer(this)">A. 实现了国家完全独立</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！辛亥革命推翻了清王朝的统治，结束了两千多年的封建君主专制制度，建立了亚洲第一个民主共和国。" onclick="checkAnswer(this)">B. 推翻君主专制，建立民主共和</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命传播了民主共和观念，但其成果很快被袁世凯窃取，经济建设并非其主要意义。" onclick="checkAnswer(this)">C. 彻底改变了中国的经济面貌</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命推翻了封建帝制，而不是推翻马克思主义在中国的传播——后者是五四运动后的事。" onclick="checkAnswer(this)">D. 推翻了马克思主义</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <div class="quiz-score" id="pretest-score">
+            前测得分：<span class="big" id="pretest-big">0</span>/4
+        </div>
+    </section>
+
+    <!-- ========== 8. 核心知识点 ========== -->
+    <section class="section-block anchor-section" id="knowledge">
+        <h2 class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            核心知识点详解
+        </h2>
+
+        <!-- 知识块1：背景 -->
+        <div class="knowledge-block">
+            <h4>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                一、辛亥革命的历史背景
+            </h4>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">19世纪末 · 民族危机加深</div>
+                    <div class="timeline-content">甲午战争后，《马关条约》签订，列强掀起瓜分中国的狂潮，中华民族危机空前严重。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1894年 · 兴中会成立</div>
+                    <div class="timeline-content">孙中山在檀香山创立中国第一个资产阶级革命团体——兴中会，首次提出推翻清朝统治的主张。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1905年 · 同盟会成立</div>
+                    <div class="timeline-content">孙中山在日本东京成立中国同盟会，以"驱除鞑虏，恢复中华，创立民国，平均地权"为纲领，后阐发为三民主义。</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1911年 · 保路运动</div>
+                    <div class="timeline-content">清政府宣布"铁路国有"政策，出卖路权给帝国主义，激起全国人民强烈反对，成为辛亥革命的导火线。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 知识块2：三民主义 -->
+        <div class="knowledge-block">
+            <h4>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                二、三民主义——辛亥革命的指导思想
+            </h4>
+            <div class="table-wrap">
+                <table class="knowledge-table">
+                    <tr>
+                        <th>主义</th>
+                        <th>核心内容</th>
+                        <th>历史意义</th>
+                    </tr>
+                    <tr>
+                        <td><strong style="color:var(--red-mid)">民族主义</strong></td>
+                        <td>推翻满洲贵族的统治，反对民族压迫</td>
+                        <td>表达了各族人民争取民族平等的愿望</td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color:var(--red-mid)">民权主义</strong></td>
+                        <td>推翻封建帝制，建立民主共和国</td>
+                        <td>批判了君主专制，具有划时代意义</td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color:var(--red-mid)">民生主义</strong></td>
+                        <td>平均地权，解决土地问题</td>
+                        <td>关注人民经济利益，具有进步意义</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 知识块3：武昌起义 -->
+        <div class="knowledge-block">
+            <h4>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
+                三、武昌起义（1911年10月10日）
+            </h4>
+            <p>1911年10月10日，湖北革命团体文学社和共进会在武昌发动起义。经过一夜激战，起义军占领武昌城，随即控制了武汉三镇。起义军成立湖北军政府，推举新军协统（旅长）<strong>黎元洪</strong>为都督。</p>
+            <div class="highlight-box">🔥 武昌起义一声炮响，全国各地纷纷响应，清朝统治迅速瓦解！</div>
+            <p><strong>武昌起义的星星之火：</strong></p>
+            <ul>
+                <li>10月11日：湖北军政府成立，宣布废除清朝年号，建国号为"中华民国"。</li>
+                <li>11月下旬：全国15个省宣布脱离清朝独立。</li>
+                <li>12月：独立各省代表在南京开会，商讨组建临时政府。</li>
+            </ul>
+        </div>
+
+        <!-- 知识块4：中华民国成立 -->
+        <div class="knowledge-block">
+            <h4>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg>
+                四、中华民国成立
+            </h4>
+            <p>1912年1月1日，<strong>孙中山</strong>在南京就任中华民国临时大总统，发表就职誓词。</p>
+            <div class="highlight-box">🎉 1912年1月1日 —— 中华民国正式成立！</div>
+            <p><strong>中华民国成立的意义：</strong></p>
+            <ul>
+                <li>🏛 宣告了中华民国的正式成立，标志着中国历史上第一个民主共和国的诞生。</li>
+                <li>📜 1912年3月颁布《中华民国临时约法》，是中国第一部资产阶级共和国宪法性文件。</li>
+                <li>🌏 推动了亚洲地区民族民主革命运动的发展。</li>
+            </ul>
+            <div class="table-wrap">
+                <table class="knowledge-table">
+                    <tr>
+                        <th>对比项</th>
+                        <th>清朝</th>
+                        <th>中华民国</th>
+                    </tr>
+                    <tr>
+                        <td>政治体制</td>
+                        <td>君主专制</td>
+                        <td>民主共和（总统制）</td>
+                    </tr>
+                    <tr>
+                        <td>年号</td>
+                        <td>宣统</td>
+                        <td>民国纪元（1912年为民国元年）</td>
+                    </tr>
+                    <tr>
+                        <td>国旗</td>
+                        <td>龙旗</td>
+                        <td>五色旗（红黄蓝白黑）</td>
+                    </tr>
+                    <tr>
+                        <td>首都</td>
+                        <td>北京</td>
+                        <td>南京（后迁北京）</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 知识块5：历史意义 -->
+        <div class="knowledge-block">
+            <h4>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+                五、辛亥革命的历史意义与局限
+            </h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;">
+                <div style="background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:14px;">
+                    <div style="font-size:13px;font-weight:700;color:#1b5e20;margin-bottom:8px;">✅ 历史意义（进步性）</div>
+                    <ul style="font-size:13px;color:#2e7d32;padding-left:16px;line-height:1.9;">
+                        <li>推翻了两千多年的封建君主专制制度</li>
+                        <li>建立了亚洲第一个民主共和国</li>
+                        <li>传播了民主共和观念，解放了思想</li>
+                        <li>推动了中国社会的进步与发展</li>
+                    </ul>
+                </div>
+                <div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px;">
+                    <div style="font-size:13px;font-weight:700;color:#bf360c;margin-bottom:8px;">⚠️ 历史局限</div>
+                    <ul style="font-size:13px;color:#bf360c;padding-left:16px;line-height:1.9;">
+                        <li>革命果实被袁世凯窃取</li>
+                        <li>未彻底完成反帝反封建任务</li>
+                        <li>未能发动广大人民群众</li>
+                        <li>中国半殖民地半封建社会性质未改变</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 知识块6：重要人物 -->
+        <div class="knowledge-block">
+            <h4>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                六、重要人物
+            </h4>
+            <div class="table-wrap">
+                <table class="knowledge-table">
+                    <tr>
+                        <th>人物</th>
+                        <th>身份</th>
+                        <th>主要贡献</th>
+                    </tr>
+                    <tr>
+                        <td><strong style="color:var(--red-mid)">孙中山</strong></td>
+                        <td>中国民主革命先驱</td>
+                        <td>创立同盟会、提出三民主义、就任临时大总统</td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color:var(--red-mid)">黄兴</strong></td>
+                        <td>革命家</td>
+                        <td>协助孙中山策划多次起义</td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color:var(--red-mid)">宋教仁</strong></td>
+                        <td>革命家、政治家</td>
+                        <td>组建国民党，推动议会政治</td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color:var(--red-mid)">黎元洪</strong></td>
+                        <td>湖北军政府都督</td>
+                        <td>武昌起义后被推举为都督</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ========== 9. 后测练习 ========== -->
+    <section class="quiz-section anchor-section" id="posttest">
+        <div class="quiz-header">
+            <span class="quiz-badge">✅ 后测</span>
+            <span style="font-size:15px;font-weight:700;color:var(--text-dark)">课后练习 · 巩固核心知识</span>
+        </div>
+
+        <!-- 后测题1 -->
+        <div class="quiz-card" id="q5">
+            <div class="quiz-question"><span class="q-num">1.</span>中国同盟会成立的地点是？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误檀香山是孙中山创立兴中会的地方，不是同盟会成立的地点。" onclick="checkAnswer(this)">A. 檀香山</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1905年8月，孙中山在日本东京成立中国同盟会，这是中国第一个全国性资产阶级革命政党。" onclick="checkAnswer(this)">B. 日本东京</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。香港是孙中山早期革命活动的地方，但不是同盟会成立地点。" onclick="checkAnswer(this)">C. 香港</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。广州多次成为革命起义的地点，但不是同盟会成立地。" onclick="checkAnswer(this)">D. 广州</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <!-- 后测题2 -->
+        <div class="quiz-card" id="q6">
+            <div class="quiz-question"><span class="q-num">2.</span>辛亥革命结束的标志是？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1912年2月12日，清帝退位，结束了清朝268年的统治，也标志着辛亥革命政治目标的完成。" onclick="checkAnswer(this)">A. 武昌起义</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1912年1月1日中华民国成立时，革命尚未结束，清朝皇帝仍在位。" onclick="checkAnswer(this)">B. 中华民国成立</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1912年2月12日，清帝溥仪颁布退位诏书，清朝正式结束，封建君主专制制度在中国画上句号。" onclick="checkAnswer(this)">C. 清帝退位</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。袁世凯就任大总统是革命果实被窃取的标志，不是辛亥革命结束的标志。" onclick="checkAnswer(this)">D. 袁世凯就任大总统</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <!-- 后测题3 -->
+        <div class="quiz-card" id="q7">
+            <div class="quiz-question"><span class="q-num">3.</span>《中华民国临时约法》的性质是？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《临时约法》是中国第一部资产阶级共和国宪法性文件，不是封建性质的法律。" onclick="checkAnswer(this)">A. 封建性质的法律</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1912年3月颁布的《临时约法》是中国第一部资产阶级共和国宪法性文件，确立了民主共和的政治体制。" onclick="checkAnswer(this)">B. 资产阶级共和国宪法性文件</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《临时约法》是资产阶级性质的，不是社会主义类型的法律。" onclick="checkAnswer(this)">C. 社会主义类型的法律</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《临时约法》具有法律效力，是正式的宪法性文件，不是临时过渡性文件。" onclick="checkAnswer(this)">D. 没有任何法律效力的文件</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <!-- 后测题4 -->
+        <div class="quiz-card" id="q8">
+            <div class="quiz-question"><span class="q-num">4.</span>下列关于辛亥革命的评价，正确的是？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命没有彻底完成反帝反封建任务，半殖民地半封建社会性质没有根本改变。" onclick="checkAnswer(this)">A. 彻底完成了反帝反封建任务</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！辛亥革命推翻了封建君主专制制度，建立了民主共和国，但因资产阶级的软弱性，革命果实被袁世凯窃取，革命任务并未彻底完成。" onclick="checkAnswer(this)">B. 推翻了君主专制制度，但未彻底完成革命任务</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命具有重大历史意义，是20世纪中国社会的第一次巨变，不能说没有取得任何成果。" onclick="checkAnswer(this)">C. 辛亥革命没有取得任何成果</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命建立了中华民国，传播了民主共和观念，是中国近代史上一次伟大的历史变革。" onclick="checkAnswer(this)">D. 辛亥革命是完全失败的</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <!-- 后测题5（附加） -->
+        <div class="quiz-card" id="q9">
+            <div class="quiz-question"><span class="q-num">5.</span>"民族、民权、民生"三大主义合称为什么？</div>
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。"三大政策"是孙中山在国共合作时期提出的联俄、联共、扶助农工的政策。" onclick="checkAnswer(this)">A. 三大政策</button>
+                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！"民族、民权、民生"合称"三民主义"，是孙中山提出的资产阶级民主革命纲领，于1905年在《民报》发刊词中首次提出。" onclick="checkAnswer(this)">B. 三民主义</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。"民主共和"是革命后建立的国家制度，不是三民主义的别称。" onclick="checkAnswer(this)">C. 民主共和</button>
+                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。"平均地权"是三民主义中民生主义的内容，不是三者的合称。" onclick="checkAnswer(this)">D. 平均地权</button>
+            </div>
+            <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
+        </div>
+
+        <div class="quiz-score" id="posttest-score">
+            后测得分：<span class="big" id="posttest-big">0</span>/5
+        </div>
+    </section>
+
+</div>
+
+<!-- ========== 10. 页脚 ========== -->
+
+    <!-- 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】辛亥革命爆发于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1898年是戊戌变法的时间，不是辛亥革命！"><span class="opt-letter">A</span> 1898年</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 1911年</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1919年是五四运动的时间！"><span class="opt-letter">C</span> 1919年</div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 1911年</strong></p>
+          <p style="margin-top: 8px;">1911年10月10日<strong>武昌起义</strong>爆发，因这一年是农历辛亥年，史称"<strong>辛亥革命</strong>"。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】辛亥革命的领导人是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 孙中山</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 陈独秀是新文化运动和中国共产党早期领导人！"><span class="opt-letter">B</span> 陈独秀</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 李大钊是马克思主义传播者！"><span class="opt-letter">C</span> 李大钊</div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 孙中山</strong></p>
+          <p style="margin-top: 8px;">孙中山被称为"<strong>民主革命先行者</strong>"，创立兴中会、同盟会，提出三民主义思想，领导了辛亥革命。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 挑战】辛亥革命最大的历史意义是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 辛亥革命没有改变半殖民地半封建社会性质，这是它的局限性！"><span class="opt-letter">A</span> 结束了半殖民地社会</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 推翻清朝统治，结束了两千多年帝制</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 建立中华民国是成果之一，但不是最核心的意义！"><span class="opt-letter">C</span> 建立了中华民国</div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 推翻清朝统治，结束帝制</strong></p>
+          <p style="margin-top: 8px;">辛亥革命推翻了清王朝的统治，<strong>结束了中国两千多年的君主专制制度</strong>（封建帝制），建立了资产阶级共和国——中华民国。这是其最伟大的历史意义。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】武昌起义发生在哪座城市？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')"><span class="opt-letter">A</span> 武汉（武昌）</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 南京是后来中华民国临时政府所在地！"><span class="opt-letter">B</span> 南京</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 广州是黄花岗起义发生地！"><span class="opt-letter">C</span> 广州</div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 武汉（武昌）</strong></p>
+          <p style="margin-top: 8px;">1911年10月10日，革命党人在湖北<strong>武昌</strong>发动起义，随后占领汉阳、汉口，武汉三镇光复。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖北）辛亥革命失败的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 袁世凯窃取果实是表现，不是根本原因！"><span class="opt-letter">A</span> 袁世凯窃取革命果实</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 资产阶级的软弱性和妥协性</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 帝国主义干涉是外部原因，不是根本原因！"><span class="opt-letter">C</span> 帝国主义的干涉破坏</div>
+        </div>
+        <div class="feedback" id="feedback-5"></div>
+        <div class="answer-explanation" id="explanation-5">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 资产阶级的软弱性和妥协性</strong></p>
+          <p style="margin-top: 8px;">这是中考高频考点！资产阶级不敢发动群众、对帝国主义和封建势力妥协，导致革命果实被袁世凯窃取。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 挑战】中华民国成立于何时何地？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 1911年10月是武昌起义时间！"><span class="opt-letter">A</span> 1911年10月，武昌</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')"><span class="opt-letter">B</span> 1912年1月1日，南京</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 1912年是正确的，但地点不对！"><span class="opt-letter">C</span> 1912年，北京</div>
+        </div>
+        <div class="feedback" id="feedback-6"></div>
+        <div class="answer-explanation" id="explanation-6">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 1912年1月1日，南京</strong></p>
+          <p style="margin-top: 8px;"><strong>1912年1月1日</strong>，孙中山在<strong>南京</strong>宣誓就职，宣告<strong>中华民国临时政府</strong>成立。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：辛亥革命的时间与意义</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了22次</span>
+          </div>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:0;">
+            <li>✅ 时间：<strong>1911年10月10日</strong>（武昌起义）</li>
+            <li>✅ 意义：推翻清朝，<strong>结束两千多年君主专制</strong></li>
+            <li>✅ 成果：建立<strong>中华民国</strong>（1912.1.1南京）</li>
+          </ul>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：失败原因与局限性</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;">必背：根本原因是<strong>资产阶级的软弱性和妥协性</strong>；没有改变<strong>半殖民地半封建</strong>社会性质；没有完成反帝反封建任务。</p>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：三民主义</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;">必背：<strong>民族</strong>（推翻满清统治）、<strong>民权</strong>（建立共和国）、<strong>民生</strong>（平均地权）。是孙中山指导辛亥革命的纲领。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+
+
+    <!-- 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】辛亥革命爆发于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1898年是戊戌变法的时间，不是辛亥革命！"><span class="opt-letter">A</span> 1898年</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 1911年</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1919年是五四运动的时间！"><span class="opt-letter">C</span> 1919年</div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 1911年</strong></p>
+          <p style="margin-top: 8px;">1911年10月10日<strong>武昌起义</strong>爆发，因这一年是农历辛亥年，史称"<strong>辛亥革命</strong>"。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】辛亥革命的领导人是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 孙中山</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 陈独秀是新文化运动和中国共产党早期领导人！"><span class="opt-letter">B</span> 陈独秀</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 李大钊是马克思主义传播者！"><span class="opt-letter">C</span> 李大钊</div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 孙中山</strong></p>
+          <p style="margin-top: 8px;">孙中山被称为"<strong>民主革命先行者</strong>"，创立兴中会、同盟会，提出三民主义思想，领导了辛亥革命。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 挑战】辛亥革命最大的历史意义是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 辛亥革命没有改变半殖民地半封建社会性质，这是它的局限性！"><span class="opt-letter">A</span> 结束了半殖民地社会</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 推翻清朝统治，结束了两千多年帝制</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 建立中华民国是成果之一，但不是最核心的意义！"><span class="opt-letter">C</span> 建立了中华民国</div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 推翻清朝统治，结束帝制</strong></p>
+          <p style="margin-top: 8px;">辛亥革命推翻了清王朝的统治，<strong>结束了中国两千多年的君主专制制度</strong>（封建帝制），建立了资产阶级共和国——中华民国。这是其最伟大的历史意义。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】武昌起义发生在哪座城市？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')"><span class="opt-letter">A</span> 武汉（武昌）</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 南京是后来中华民国临时政府所在地！"><span class="opt-letter">B</span> 南京</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 广州是黄花岗起义发生地！"><span class="opt-letter">C</span> 广州</div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 武汉（武昌）</strong></p>
+          <p style="margin-top: 8px;">1911年10月10日，革命党人在湖北<strong>武昌</strong>发动起义，随后占领汉阳、汉口，武汉三镇光复。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖北）辛亥革命失败的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 袁世凯窃取果实是表现，不是根本原因！"><span class="opt-letter">A</span> 袁世凯窃取革命果实</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 资产阶级的软弱性和妥协性</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 帝国主义干涉是外部原因，不是根本原因！"><span class="opt-letter">C</span> 帝国主义的干涉破坏</div>
+        </div>
+        <div class="feedback" id="feedback-5"></div>
+        <div class="answer-explanation" id="explanation-5">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 资产阶级的软弱性和妥协性</strong></p>
+          <p style="margin-top: 8px;">这是中考高频考点！资产阶级不敢发动群众、对帝国主义和封建势力妥协，导致革命果实被袁世凯窃取。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 挑战】中华民国成立于何时何地？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 1911年10月是武昌起义时间！"><span class="opt-letter">A</span> 1911年10月，武昌</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')"><span class="opt-letter">B</span> 1912年1月1日，南京</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 1912年是正确的，但地点不对！"><span class="opt-letter">C</span> 1912年，北京</div>
+        </div>
+        <div class="feedback" id="feedback-6"></div>
+        <div class="answer-explanation" id="explanation-6">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 1912年1月1日，南京</strong></p>
+          <p style="margin-top: 8px;"><strong>1912年1月1日</strong>，孙中山在<strong>南京</strong>宣誓就职，宣告<strong>中华民国临时政府</strong>成立。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：辛亥革命的时间与意义</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了22次</span>
+          </div>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:0;">
+            <li>✅ 时间：<strong>1911年10月10日</strong>（武昌起义）</li>
+            <li>✅ 意义：推翻清朝，<strong>结束两千多年君主专制</strong></li>
+            <li>✅ 成果：建立<strong>中华民国</strong>（1912.1.1南京）</li>
+          </ul>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：失败原因与局限性</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;">必背：根本原因是<strong>资产阶级的软弱性和妥协性</strong>；没有改变<strong>半殖民地半封建</strong>社会性质；没有完成反帝反封建任务。</p>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：三民主义</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;">必背：<strong>民族</strong>（推翻满清统治）、<strong>民权</strong>（建立共和国）、<strong>民生</strong>（平均地权）。是孙中山指导辛亥革命的纲领。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+
+<footer class="page-footer" id="footer">
+    <div class="footer-brand">🐉 初中历史 · 八年级上册</div>
+    <div class="footer-divider"></div>
+    <div class="footer-info">
+        <p>第2单元 · 近代化的探索 · 第3课 辛亥革命</p>
+        <p>本课内容涵盖：武昌起义、三民主义、中华民国成立、历史意义</p>
+        <p>© 2026 课程资源 · 初中历史教学辅助材料</p>
+    </div>
+</footer>
+
+<!-- ========== 互动JS脚本 ========== -->
+<script>
+(function() {
+    'use strict';
+
+    // ===== 导航栏滚动高亮 =====
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.anchor-section');
+
+    function onScroll() {
+        let current = '';
+        sections.forEach(function(sec) {
+            const secTop = sec.offsetTop - 160;
+            if (window.scrollY >= secTop) {
+                current = sec.getAttribute('id');
+            }
+        });
+        navItems.forEach(function(item) {
+            item.classList.remove('active');
+            if (item.getAttribute('data-target') === current) {
+                item.classList.add('active');
+            }
+        });
+
+        // 进度条
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+        document.getElementById('progress-text').textContent = Math.round(scrolled) + '%';
+    }
+
+    window.addEventListener('scroll', onScroll);
+
+    // 导航点击跳转
+    navItems.forEach(function(item) {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            const target = document.getElementById(targetId);
+            if (target) {
+                const offset = targetId === 'hero' ? 0 : 140;
+                window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ===== 选择题答题逻辑 =====
+    window.checkAnswer = function(btn) {
+        var card = btn.closest('.quiz-card');
+        var options = card.querySelectorAll('.quiz-option');
+        var feedback = card.querySelector('.quiz-feedback');
+        var isCorrect = btn.getAttribute('data-correct') === 'true';
+        var feedbackText = btn.getAttribute('data-feedback') || '';
+
+        // 标记已选
+        options.forEach(function(opt) {
+            opt.disabled = true;
+            opt.style.opacity = '0.6';
+        });
+        btn.disabled = false;
+        btn.style.opacity = '1';
+
+        if (isCorrect) {
+            btn.classList.add('selected-correct');
+            feedback.className = 'quiz-feedback show correct';
+        } else {
+            btn.classList.add('selected-wrong');
+            // 高亮正确答案
+            options.forEach(function(opt) {
+                if (opt.getAttribute('data-correct') === 'true') {
+                    opt.classList.add('selected-correct');
+                    opt.disabled = false;
+                    opt.style.opacity = '1';
+                }
+            });
+            feedback.className = 'quiz-feedback show wrong';
+        }
+
+        feedback.innerHTML = feedbackText + '<p style="margin-top:8px;font-size:11px;color:#999;">点击此处关闭提示</p>';
+
+        // 计分
+        updateScore(card.parentElement.id);
+    };
+
+    function updateScore(sectionId) {
+        var section = document.getElementById(sectionId);
+        var scoreEl = sectionId === 'pretest' ? 'pretest-score' : 'posttest-score';
+        var bigEl = sectionId === 'pretest' ? 'pretest-big' : 'posttest-big';
+        var total = sectionId === 'pretest' ? 4 : 5;
+        var count = 0;
+
+        var cards = section.querySelectorAll('.quiz-card');
+        cards.forEach(function(card) {
+            var selected = card.querySelector('.selected-correct');
+            if (selected) count++;
+        });
+
+        var scoreElObj = document.getElementById(scoreEl);
+        var bigElObj = document.getElementById(bigEl);
+        if (scoreElObj) {
+            scoreElObj.classList.add('show');
+            if (bigElObj) bigElObj.textContent = count;
+        }
+    }
+})();
+</script>
+
+</body>
+</html>
+

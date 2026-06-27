@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第1课 洋务运动 - 初中八年级历史</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-dark: #6b3410;
+      --secondary: #d4a574;
+      --accent: #e76f51;
+      --bg-light: #faf7f2;
+      --bg-card: #ffffff;
+      --text-dark: #2c1810;
+      --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+      --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+      --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ====== Brand Bar ====== */
+    .brand-bar {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+    }
+    .brand-logo { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; }
+
+    /* ====== Progress Bar ====== */
+    .progress-container {
+      background: white;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(139,69,19,0.1);
+    }
+    .progress-inner { max-width: 1200px; margin: 0 auto; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
+    .progress-track { height: 6px; background: #e8e0d5; border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 10%; transition: width 0.3s ease; }
+
+    /* ====== Nav Bar ====== */
+    .nav-bar {
+      background: white;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(139,69,19,0.1);
+      position: sticky;
+      top: 48px;
+      z-index: 999;
+    }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 8px; overflow-x: auto; }
+    .nav-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-btn:hover { background: var(--bg-light); color: var(--primary); }
+    .nav-btn.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+    .nav-center { font-weight: 600; color: var(--primary); margin: 0 auto; }
+
+    /* ====== Hero Section ====== */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%);
+      color: white;
+      padding: 60px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-icon { font-size: 56px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 16px; }
+    .hero-title { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero-subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 32px; }
+    .hero-cards { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+    .hero-card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 20px 24px;
+      min-width: 140px;
+    }
+    .hero-card-icon { font-size: 28px; margin-bottom: 8px; }
+    .hero-card-label { font-size: 0.8rem; opacity: 0.9; margin-bottom: 4px; }
+    .hero-card-value { font-size: 1.1rem; font-weight: 600; }
+
+    /* ====== Knowledge Map ====== */
+    .knowledge-map-section {
+      background: white;
+      padding: 40px 20px;
+      margin-top: -40px;
+      position: relative;
+      z-index: 10;
+      border-radius: 24px 24px 0 0;
+    }
+    .knowledge-map-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .knowledge-map-title { font-size: 1.2rem; color: var(--primary); margin-bottom: 24px; font-weight: 600; }
+
+    /* ====== Anchor Points ====== */
+    .anchor-section { padding: 40px 20px; background: var(--bg-light); }
+    .anchor-inner { max-width: 1200px; margin: 0 auto; }
+    .anchor-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .anchor-title h2 { font-size: 1.3rem; color: var(--primary); }
+    .anchor-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .anchor-btn {
+      background: white;
+      border: 2px solid var(--secondary);
+      border-radius: 12px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: inherit;
+    }
+    .anchor-btn:hover { border-color: var(--primary); background: var(--bg-light); transform: translateY(-2px); }
+    .anchor-btn i { color: var(--primary); }
+
+    /* ====== Main Content ====== */
+    .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .section { margin-bottom: 48px; }
+    .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .section-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      box-shadow: var(--shadow-md);
+      flex-shrink: 0;
+    }
+    .section-title-text h2 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+    .section-title-text p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+    /* ====== Objectives ====== */
+    .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .objective-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--primary);
+    }
+    .objective-card h3 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+    .objective-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+    /* ====== Pre-Test Section ====== */
+    .pretest-section {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid var(--primary);
+    }
+    .pretest-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .pretest-badge {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 4px 14px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .pretest-note {
+      background: #fff3e0;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+    .pretest-note strong { color: var(--accent); }
+
+    /* ====== Quiz ====== */
+    .quiz-section { background: white; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-sm); }
+    .quiz-question { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #f0f0f0; }
+    .quiz-question:last-child { border-bottom: none; margin-bottom: 0; }
+    .quiz-question h4 { color: var(--text-dark); margin-bottom: 16px; font-size: 1rem; font-weight: 600; }
+    .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+    .quiz-option {
+      padding: 14px 18px;
+      background: var(--bg-light);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: inherit;
+    }
+    .quiz-option:hover { border-color: var(--primary-light); background: white; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; flex-shrink: 0; }
+    .quiz-option.correct .opt-letter { background: #10b981; }
+    .quiz-option.wrong .opt-letter { background: #ef4444; }
+    .feedback { margin-top: 12px; padding: 14px 18px; border-radius: 10px; font-size: 0.9rem; display: none; line-height: 1.7; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* ====== Knowledge Cards ====== */
+    .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .knowledge-card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+    .knowledge-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .knowledge-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+    .knowledge-card p { color: var(--text-dark); font-size: 0.95rem; line-height: 1.8; margin-bottom: 8px; }
+    .knowledge-card ul { padding-left: 20px; color: var(--text-dark); }
+    .knowledge-card li { margin-bottom: 6px; line-height: 1.6; }
+
+    /* ====== Concept Box ====== */
+    .concept-box {
+      background: linear-gradient(135deg, #8b4513, #cd853f);
+      color: white;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .concept-box::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      transform: translate(60px, -60px);
+    }
+    .concept-box-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+    .concept-box h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .concept-box p { font-size: 1rem; line-height: 1.8; opacity: 0.95; }
+    .concept-box .highlight { background: rgba(255,255,255,0.25); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+
+    /* ====== Timeline ====== */
+    .timeline-section {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .timeline-title { font-size: 1.2rem; color: var(--primary); font-weight: 700; margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding-left: 20px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .timeline-year {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .timeline-event { color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; }
+    .timeline-event strong { color: var(--primary-dark); }
+
+    /* ====== SVG Event Connections ====== */
+    .event-map-section {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .event-map-title { font-size: 1.2rem; color: var(--primary); font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+    /* ====== Comparison Table ====== */
+    .compare-section {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .compare-title { font-size: 1.2rem; color: var(--primary); font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    .compare-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .compare-table th:first-child { border-radius: 10px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 10px 0 0; }
+    .compare-table td { padding: 12px 16px; border-bottom: 1px solid #f0e8e0; vertical-align: top; line-height: 1.6; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: #fdf8f3; }
+    .compare-table td:first-child { font-weight: 600; color: var(--primary); }
+
+    /* ====== Material Analysis ====== */
+    .material-section {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+      border-left: 4px solid var(--primary);
+    }
+    .material-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .material-badge {
+      background: var(--bg-light);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--secondary);
+    }
+    .material-quote {
+      background: #fdf8f3;
+      border-left: 4px solid var(--primary-light);
+      padding: 16px 20px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
+    .material-source { text-align: right; font-size: 0.85rem; color: var(--text-muted); font-style: normal; margin-top: 8px; }
+    .material-questions h4 { color: var(--primary); font-size: 1rem; margin-bottom: 12px; }
+    .material-question { margin-bottom: 14px; padding: 14px; background: var(--bg-light); border-radius: 10px; }
+    .material-question p { margin-bottom: 8px; font-size: 0.95rem; }
+    .material-answer { display: none; padding: 12px; background: #d1fae5; border-radius: 8px; font-size: 0.9rem; color: #065f46; line-height: 1.6; }
+    .material-answer.show { display: block; }
+    .material-answer-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .material-answer-btn:hover { background: var(--primary-dark); }
+
+    /* ====== Warning Box ====== */
+    .warning-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-left: 5px solid #e76f51;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    .warning-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .warning-icon { font-size: 1.2rem; }
+    .warning-title { font-size: 1rem; font-weight: 700; color: #856404; }
+    .warning-content { font-size: 0.95rem; color: #856404; line-height: 1.8; }
+    .warning-content strong { color: #b45309; }
+
+    /* ====== Exam Analysis ====== */
+    .exam-section {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .exam-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .exam-badge { background: linear-gradient(135deg, var(--accent), #ff8a65); color: white; padding: 6px 16px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; }
+    .exam-freq { display: inline-flex; align-items: center; gap: 6px; background: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; margin-left: 8px; }
+    .exam-point-card {
+      background: var(--bg-light);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--primary);
+    }
+    .exam-point-card h4 { color: var(--primary); font-size: 1rem; margin-bottom: 10px; }
+    .exam-point-card p { color: var(--text-dark); font-size: 0.9rem; line-height: 1.7; margin-bottom: 10px; }
+    .exam-example {
+      background: white;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      border: 1px solid #e8e0d5;
+    }
+    .exam-example strong { color: var(--primary); }
+
+    /* ====== Footer ====== */
+    .footer {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .footer p { opacity: 0.9; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; }
+    .footer-links a:hover { color: white; }
+
+    /* ====== Section Divider ====== */
+    .section-divider {
+      text-align: center;
+      margin: 40px 0;
+      position: relative;
+    }
+    .section-divider::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--secondary), transparent);
+    }
+    .section-divider span {
+      background: var(--bg-light);
+      padding: 0 20px;
+      position: relative;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ====== Answer Explanation ====== */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    /* ====== Difficulty Badge ====== */
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* ====== Exam Card ====== */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* ====== Post-test ====== */
+    .posttest-section { background: white; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-sm); border-top: 4px solid var(--accent); }
+    .posttest-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .posttest-badge { background: linear-gradient(135deg, var(--accent), #ff8a65); color: white; padding: 4px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: 600; }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 1.8rem; }
+      .hero-cards { flex-direction: column; align-items: center; }
+      .nav-center { display: none; }
+      .knowledge-grid, .objectives-grid { grid-template-columns: 1fr; }
+      .quiz-section, .pretest-section, .posttest-section, .exam-section, .compare-section, .event-map-section, .timeline-section, .material-section { padding: 20px; }
+      .compare-table { font-size: 0.85rem; }
+      .compare-table th, .compare-table td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ① 品牌栏 -->
+<div class="brand-bar">
+  <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
+  <div class="brand-tag">互动课件 v2.0</div>
+</div>
+
+<!-- ② 进度条 -->
+<div class="progress-container">
+  <div class="progress-inner">
+    <div class="progress-info">
+      <span>第 1 / 4 课</span>
+      <span id="progress-text">学习进度 0%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+</div>
+
+<!-- ③ 导航栏 -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
+    <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
+    <span class="nav-center">八年级上册 · 第二单元</span>
+    <a href="../02_d2jdq.html" class="nav-btn"><i class="fas fa-arrow-left"></i> 单元</a>
+    <a href="../2.2_jwbd/jwbd.html" class="nav-btn">下一节 <i class="fas fa-arrow-right"></i></a>
+  </div>
+</nav>
+
+<!-- ④ Hero区 -->
+<section class="hero-section">
+  <div class="hero-content">
+    <div class="hero-icon">🏭</div>
+    <div class="hero-badge">初中八年级历史上册 · 第2单元第1课</div>
+    <h1 class="hero-title">洋务运动</h1>
+    <p class="hero-subtitle">1861-1895年 · 中国近代化的开端 · 自强求富的探索</p>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-icon">📅</div>
+        <div class="hero-card-label">时间</div>
+        <div class="hero-card-value">1861-1895</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">📢</div>
+        <div class="hero-card-label">口号</div>
+        <div class="hero-card-value">自强 · 求富</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">👥</div>
+        <div class="hero-card-label">代表人物</div>
+        <div class="hero-card-value">曾国藩 李鸿章</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">⏱️</div>
+        <div class="hero-card-label">历时</div>
+        <div class="hero-card-value">34年</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 知识结构图 -->
+<section class="knowledge-map-section">
+  <div class="knowledge-map-inner">
+    <div class="knowledge-map-title"><i class="fas fa-sitemap"></i> 知识结构图</div>
+    <svg viewBox="0 0 900 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="280" fill="#faf7f2" rx="16"/>
+      <circle cx="450" cy="140" r="60" fill="url(#centerGrad2)" stroke="#8b4513" stroke-width="3"/>
+      <text x="450" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="white">洋务运动</text>
+      <text x="450" y="155" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">1861-1895</text>
+      <rect x="50" y="50" width="140" height="70" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+      <text x="120" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">历史背景</text>
+      <text x="120" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">内忧外患</text>
+      <line x1="190" y1="85" x2="390" y2="120" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead2)"/>
+      <rect x="50" y="160" width="140" height="70" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+      <text x="120" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="white">自强阶段</text>
+      <text x="120" y="210" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">军事工业</text>
+      <line x1="190" y1="195" x2="390" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead2)"/>
+      <rect x="710" y="50" width="140" height="70" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+      <text x="780" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">求富阶段</text>
+      <text x="780" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">民用工业</text>
+      <line x1="710" y1="85" x2="510" y2="120" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead2)"/>
+      <rect x="710" y="160" width="140" height="70" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+      <text x="780" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="white">历史评价</text>
+      <text x="780" y="210" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">成败得失</text>
+      <line x1="710" y1="195" x2="510" y2="160" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead2)"/>
+      <defs>
+        <linearGradient id="centerGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#8b4513"/>
+          <stop offset="100%" style="stop-color:#cd853f"/>
+        </linearGradient>
+        <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+</section>
+
+<!-- ⑤ 探究锚点 -->
+<section class="anchor-section" id="anchors">
+  <div class="anchor-inner">
+    <div class="anchor-title">
+      <i class="fas fa-anchor" style="color: var(--primary); font-size: 1.3rem;"></i>
+      <h2>快速导航</h2>
+    </div>
+    <div class="anchor-points">
+      <button class="anchor-btn" onclick="scrollToSection('objectives')"><i class="fas fa-bullseye"></i> 学习目标</button>
+      <button class="anchor-btn" onclick="scrollToSection('pretest')"><i class="fas fa-clipboard-list"></i> 前测</button>
+      <button class="anchor-btn" onclick="scrollToSection('background')"><i class="fas fa-history"></i> 历史背景</button>
+      <button class="anchor-btn" onclick="scrollToSection('timeline')"><i class="fas fa-clock"></i> 时间轴</button>
+      <button class="anchor-btn" onclick="scrollToSection('self-strengthening')"><i class="fas fa-shield-alt"></i> 自强阶段</button>
+      <button class="anchor-btn" onclick="scrollToSection('wealth-seeking')"><i class="fas fa-coins"></i> 求富阶段</button>
+      <button class="anchor-btn" onclick="scrollToSection('figures')"><i class="fas fa-users"></i> 代表人物</button>
+      <button class="anchor-btn" onclick="scrollToSection('evaluation')"><i class="fas fa-balance-scale"></i> 历史评价</button>
+      <button class="anchor-btn" onclick="scrollToSection('posttest')"><i class="fas fa-question-circle"></i> 后测</button>
+      <button class="anchor-btn" onclick="scrollToSection('exam-analysis')"><i class="fas fa-star"></i> 必考分析</button>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ 学习目标 -->
+<main class="main-content">
+
+  <section class="section" id="objectives">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+      <div class="section-title-text">
+        <h2>学习目标</h2>
+        <p>明确本课学习重点与要求</p>
+      </div>
+    </div>
+    <div class="objectives-grid">
+      <div class="objective-card">
+        <h3><i class="fas fa-check-circle"></i> 了解背景</h3>
+        <p>理解洋务运动兴起的国际国内背景，认识第二次鸦片战争后民族危机的加深。</p>
+      </div>
+      <div class="objective-card">
+        <h3><i class="fas fa-check-circle"></i> 掌握内容</h3>
+        <p>掌握"自强""求富"两个阶段的主要内容，包括军事工业和民用工业的发展。</p>
+      </div>
+      <div class="objective-card">
+        <h3><i class="fas fa-check-circle"></i> 认识人物</h3>
+        <p>了解曾国藩、李鸿章、左宗棠、张之洞等洋务派代表人物的贡献。</p>
+      </div>
+      <div class="objective-card">
+        <h3><i class="fas fa-check-circle"></i> 分析评价</h3>
+        <p>客观评价洋务运动在中国近代化进程中的地位和作用，分析其失败原因。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ 前测 -->
+  <section class="section" id="section-prequiz">
+    <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+    <p style="color: var(--primary); margin-bottom: 16px;">
+      难度递进：<span class="difficulty-badge difficulty-基础"><i class="fas fa-star"></i> 基础</span> → 
+      <span class="difficulty-badge difficulty-提高"><i class="fas fa-star-half-alt"></i> 提高</span> → 
+      <span class="difficulty-badge difficulty-挑战"><i class="fas fa-star"></i> 挑战</span>
+    </p>
+    <div class="pretest-section">
+      <div class="pretest-header">
+        <span class="pretest-badge"><i class="fas fa-lightbulb"></i> 前测说明</span>
+      </div>
+      <div class="pretest-note">
+        <strong>💡 提示：</strong>这是课前小测，目的是了解你的预习情况。答题后点击选项查看详细解析，不确定也没关系，带着问题学习效果更好！
+      </div>
+
+      <!-- 前测题1 -->
+      <div class="quiz-question">
+        <h4>1. 洋务运动发生在哪个历史时期？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。鸦片战争（1840-1842）发生时洋务运动尚未开始，这一时期林则徐领导了抗英斗争。">
+            <span class="opt-letter">A</span> 鸦片战争时期（1840-1842年）
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。太平天国运动（1851-1864）是农民起义，洋务运动是在太平天国被镇压后兴起的。">
+            <span class="opt-letter">B</span> 太平天国时期（1851-1864年）
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动发生在19世纪60-90年代。1861年安庆内军械所的创办标志着洋务运动的开始。">
+            <span class="opt-letter">C</span> 19世纪60-90年代
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。甲午战争时期（1894-1895）是洋务运动的末期，此时运动已经走向破产。">
+            <span class="opt-letter">D</span> 甲午战争时期（1894-1895年）
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- 前测题2 -->
+      <div class="quiz-question">
+        <h4>2. 以下哪一口号属于洋务运动？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「师夷长技以制夷」是魏源在《海国图志》中提出的思想，是洋务运动的理论来源，但并非洋务运动本身的口号。">
+            <span class="opt-letter">A</span> 师夷长技以制夷
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「变法图强」是戊戌变法（1898年）的口号，由康有为、梁启超等人提出，比洋务运动晚。">
+            <span class="opt-letter">B</span> 变法图强
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动分为两个阶段：前期「自强」（创办军事工业），后期「求富」（创办民用工业）。这是洋务运动最核心的口号。">
+            <span class="opt-letter">C</span> 自强、求富
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「民主科学」是1915年新文化运动的口号，由陈独秀、李大钊等人提出，距洋务运动已过去50多年。">
+            <span class="opt-letter">D</span> 民主、科学
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- 前测题3 -->
+      <div class="quiz-question">
+        <h4>3. 洋务运动属于什么性质的运动？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。农民起义（如太平天国、义和团）的目的是推翻清朝统治，洋务运动恰恰是地主阶级为维护清朝统治而发起的。">
+            <span class="opt-letter">A</span> 农民起义运动
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动是地主阶级洋务派（曾国藩、李鸿章等）为了维护清朝封建统治而发起的自救运动，其根本目的是「中学为体，西学为用」。">
+            <span class="opt-letter">B</span> 地主阶级的自救运动
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。资产阶级维新运动（如戊戌变法）是由资产阶级改良派发起的，要求学习西方政治制度，与洋务运动有本质区别。">
+            <span class="opt-letter">C</span> 资产阶级维新运动
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。洋务运动虽然引进了西方技术，但其目的是维护封建制度，而非发展资本主义，因此不是资产阶级革命运动。">
+            <span class="opt-letter">D</span> 资产阶级革命运动
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分割线 -->
+  <div class="section-divider"><span>📖 核心内容学习</span></div>
+
+  <!-- 概念框（历史特色） -->
+  <div class="concept-box">
+    <div class="concept-box-label"><i class="fa-solid fa-landmark"></i> 核心概念</div>
+    <h3>什么是洋务运动？</h3>
+    <p>洋务运动是<span class="highlight">19世纪60-90年代</span>，在地主阶级洋务派领导下的一场<span class="highlight">自救运动</span>。洋务派主张在维护清朝封建统治的前提下，引进西方先进的科学技术，创办近代军事工业和民用工业，以期达到"<span class="highlight">自强</span>"和"<span class="highlight">求富</span>"的目标。</p>
+    <p style="margin-top: 10px;">洋务运动的口号是 <strong>"中学为体，西学为用"</strong>——即以中国的纲常伦理为根本，以西方先进技术为辅助。</p>
+  </div>
+
+  <!-- ⑧ 核心讲解：历史背景 -->
+  <section class="section" id="background">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-history"></i></div>
+      <div class="section-title-text">
+        <h2>一、历史背景</h2>
+        <p>内忧外患下的自救运动</p>
+      </div>
+    </div>
+    <div class="knowledge-grid">
+      <div class="knowledge-card">
+        <h3><i class="fas fa-globe"></i> 国际背景</h3>
+        <p>19世纪中期，西方列强完成工业革命，实力大增。英国成为"世界工厂"，法国、美国等国也迅速发展。列强加紧对外扩张，中国成为其侵略目标。</p>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-flag"></i> 国内背景</h3>
+        <p>两次鸦片战争（1840-1842、1856-1860）失败，签订《南京条约》《天津条约》《北京条约》等不平等条约，中国逐步沦为半殖民地半封建社会。</p>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-fire"></i> 统治危机</h3>
+        <p>太平天国运动（1851-1864）席卷大半个中国，严重动摇清王朝统治。清政府内忧外患，面临前所未有的统治危机。</p>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-lightbulb"></i> 思想基础</h3>
+        <p>魏源在《海国图志》中提出"师夷长技以制夷"，主张学习西方先进技术。这一思想为洋务运动提供了理论依据。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 时间轴（历史特色） -->
+  <section class="timeline-section" id="timeline">
+    <div class="timeline-title"><i class="fas fa-clock"></i> 洋务运动时间轴（1861-1895）</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1861年</div>
+        <div class="timeline-event"><strong>洋务运动开端</strong>：曾国藩创办<strong>安庆内军械所</strong>，中国近代第一个军事工业企业诞生。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1865年</div>
+        <div class="timeline-event"><strong>自强高峰</strong>：李鸿章在上海创办<strong>江南制造总局</strong>，成为当时国内最大的军事工业。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1866年</div>
+        <div class="timeline-event"><strong>造船工业</strong>：左宗棠在福州创办<strong>福州船政局</strong>，专门制造兵船和商船，培养航海人才。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1867年</div>
+        <div class="timeline-event"><strong>北方布局</strong>：崇厚在天津创办<strong>天津机器局</strong>，后由李鸿章接办，完善北方军工布局。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1872年</div>
+        <div class="timeline-event"><strong>求富开端</strong>：李鸿章创办<strong>轮船招商局</strong>，中国第一家近代轮船航运企业，标志着洋务运动进入"求富"阶段。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1878年</div>
+        <div class="timeline-event"><strong>能源与纺织</strong>：李鸿章创办<strong>开平矿务局</strong>（煤矿）和<strong>上海机器织布局</strong>（纺织），民用工业全面发展。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1888年</div>
+        <div class="timeline-event"><strong>北洋水师</strong>：清政府正式建立<strong>北洋水师</strong>，拥有主力舰船25艘，实力号称"亚洲第一"。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1890年</div>
+        <div class="timeline-event"><strong>钢铁工业</strong>：张之洞在湖北创办<strong>汉阳铁厂</strong>和<strong>湖北织布局</strong>，引进西方钢铁冶炼技术。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">📌 1894-1895年</div>
+        <div class="timeline-event"><strong>运动破产</strong>：<strong>甲午中日战争</strong>爆发，北洋水师全军覆没，洋务运动彻底破产，未能实现"自强""求富"的目标。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 事件连线SVG（历史特色） -->
+  <section class="event-map-section" id="event-map">
+    <div class="event-map-title"><i class="fas fa-project-diagram"></i> 洋务运动事件脉络图</div>
+    <svg viewBox="0 0 900 320" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background -->
+      <rect width="900" height="320" fill="#faf7f2" rx="16"/>
+
+      <!-- Arrow lines connecting events -->
+      <path d="M130 60 L260 100" stroke="#cd853f" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+      <path d="M260 100 L390 60" stroke="#cd853f" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+      <path d="M390 60 L520 100" stroke="#cd853f" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+      <path d="M520 100 L650 60" stroke="#cd853f" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+      <path d="M650 60 L780 100" stroke="#cd853f" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+
+      <path d="M130 170 L260 210" stroke="#8b4513" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+      <path d="M260 210 L390 170" stroke="#8b4513" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+      <path d="M390 170 L520 210" stroke="#8b4513" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+      <path d="M520 210 L650 170" stroke="#8b4513" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+      <path d="M650 170 L780 210" stroke="#8b4513" stroke-width="2.5" fill="none" marker-end="url(#arr3)"/>
+
+      <!-- Vertical connector -->
+      <line x1="455" y1="130" x2="455" y2="170" stroke="#e76f51" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arr3)"/>
+
+      <!-- Row 1: Causes (top) -->
+      <circle cx="65" cy="60" r="20" fill="#e76f51"/>
+      <text x="65" y="65" text-anchor="middle" font-size="20">🔥</text>
+      <rect x="95" y="35" width="135" height="50" rx="10" fill="#fff3e0" stroke="#e76f51" stroke-width="2"/>
+      <text x="162" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">外国侵略</text>
+      <text x="162" y="72" text-anchor="middle" font-size="10" fill="#856404">鸦片战争失败</text>
+
+      <circle cx="225" cy="100" r="20" fill="#e76f51"/>
+      <text x="225" y="105" text-anchor="middle" font-size="20">⚔️</text>
+      <rect x="255" y="75" width="135" height="50" rx="10" fill="#fff3e0" stroke="#e76f51" stroke-width="2"/>
+      <text x="322" y="97" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">国内动乱</text>
+      <text x="322" y="112" text-anchor="middle" font-size="10" fill="#856404">太平天国起义</text>
+
+      <circle cx="385" cy="60" r="20" fill="#8b4513"/>
+      <text x="385" y="65" text-anchor="middle" font-size="20">💡</text>
+      <rect x="415" y="35" width="135" height="50" rx="10" fill="#faf7f2" stroke="#8b4513" stroke-width="2"/>
+      <text x="482" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="#8b4513">思想萌发</text>
+      <text x="482" y="72" text-anchor="middle" font-size="10" fill="#6b3410">魏源"师夷长技"</text>
+
+      <circle cx="545" cy="100" r="20" fill="#cd853f"/>
+      <text x="545" y="105" text-anchor="middle" font-size="20">🏭</text>
+      <rect x="575" y="75" width="135" height="50" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <text x="642" y="97" text-anchor="middle" font-size="11" font-weight="bold" fill="#8b4513">洋务运动</text>
+      <text x="642" y="112" text-anchor="middle" font-size="10" fill="#6b3410">兴起（1861）</text>
+
+      <circle cx="715" cy="60" r="20" fill="#cd853f"/>
+      <text x="715" y="65" text-anchor="middle" font-size="20">⚡</text>
+      <rect x="745" y="35" width="130" height="50" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <text x="810" y="57" text-anchor="middle" font-size="11" font-weight="bold" fill="#8b4513">运动破产</text>
+      <text x="810" y="72" text-anchor="middle" font-size="10" fill="#6b3410">甲午战争失败</text>
+
+      <!-- Center label -->
+      <text x="455" y="152" text-anchor="middle" font-size="12" font-weight="bold" fill="#e76f51">原因</text>
+      <text x="455" y="205" text-anchor="middle" font-size="12" font-weight="bold" fill="#8b4513">经过</text>
+
+      <!-- Row 2: Development (bottom) -->
+      <circle cx="65" cy="170" r="20" fill="#cd853f"/>
+      <text x="65" y="175" text-anchor="middle" font-size="20">🛡️</text>
+      <rect x="95" y="145" width="135" height="50" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <text x="162" y="167" text-anchor="middle" font-size="11" font-weight="bold" fill="#8b4513">自强·军事工业</text>
+      <text x="162" y="182" text-anchor="middle" font-size="10" fill="#6b3410">1861-1870s</text>
+
+      <circle cx="225" cy="210" r="20" fill="#cd853f"/>
+      <text x="225" y="215" text-anchor="middle" font-size="20">⚓</text>
+      <rect x="255" y="185" width="135" height="50" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <text x="322" y="207" text-anchor="middle" font-size="11" font-weight="bold" fill="#8b4513">新式海军</text>
+      <text x="322" y="222" text-anchor="middle" font-size="10" fill="#6b3410">北洋/南洋/福建水师</text>
+
+      <circle cx="385" cy="170" r="20" fill="#cd853f"/>
+      <text x="385" y="175" text-anchor="middle" font-size="20">💰</text>
+      <rect x="415" y="145" width="135" height="50" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <text x="482" y="167" text-anchor="middle" font-size="11" font-weight="bold" fill="#8b4513">求富·民用工业</text>
+      <text x="482" y="182" text-anchor="middle" font-size="10" fill="#6b3410">1870s-1890s</text>
+
+      <circle cx="545" cy="210" r="20" fill="#cd853f"/>
+      <text x="545" y="215" text-anchor="middle" font-size="20">📚</text>
+      <rect x="575" y="185" width="135" height="50" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+      <text x="642" y="207" text-anchor="middle" font-size="11" font-weight="bold" fill="#8b4513">新式教育</text>
+      <text x="642" y="222" text-anchor="middle" font-size="10" fill="#6b3410">派遣留学生/新式学堂</text>
+
+      <circle cx="715" cy="170" r="20" fill="#6b3410"/>
+      <text x="715" y="175" text-anchor="middle" font-size="20">❌</text>
+      <rect x="745" y="145" width="130" height="50" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+      <text x="810" y="167" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">运动失败</text>
+      <text x="810" y="182" text-anchor="middle" font-size="10" fill="#7f1d1d">甲午战争北洋覆没</text>
+
+      <defs>
+        <marker id="arr3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+        </marker>
+      </defs>
+    </svg>
+  </section>
+
+  <!-- 自强阶段 -->
+  <section class="section" id="self-strengthening">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-shield-alt"></i></div>
+      <div class="section-title-text">
+        <h2>二、自强阶段（19世纪60-70年代）</h2>
+        <p>创办近代军事工业</p>
+      </div>
+    </div>
+    <div class="knowledge-grid">
+      <div class="knowledge-card">
+        <h3><i class="fas fa-industry"></i> 主要企业</h3>
+        <ul>
+          <li><strong>安庆内军械所</strong>（1861年）- 曾国藩创办，中国近代第一个军事工业</li>
+          <li><strong>江南制造总局</strong>（1865年）- 李鸿章创办，当时国内最大的军事工业</li>
+          <li><strong>福州船政局</strong>（1866年）- 左宗棠创办，专门制造轮船</li>
+          <li><strong>天津机器局</strong>（1867年）- 崇厚创办，后由李鸿章接办</li>
+        </ul>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-chess-rook"></i> 核心特点</h3>
+        <p><strong>官办性质：</strong>政府投资，封建衙门式管理</p>
+        <p><strong>产品用途：</strong>生产武器弹药，供应军队使用</p>
+        <p><strong>技术水平：</strong>引进西方机器设备和技术</p>
+        <p><strong>资金来源：</strong>政府拨款，不计成本</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 求富阶段 -->
+  <section class="section" id="wealth-seeking">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-coins"></i></div>
+      <div class="section-title-text">
+        <h2>三、求富阶段（19世纪70-90年代）</h2>
+        <p>创办近代民用工业</p>
+      </div>
+    </div>
+    <div class="knowledge-grid">
+      <div class="knowledge-card">
+        <h3><i class="fas fa-building"></i> 主要企业</h3>
+        <ul>
+          <li><strong>轮船招商局</strong>（1872年）- 李鸿章创办，中国第一家近代轮船公司</li>
+          <li><strong>开平矿务局</strong>（1878年）- 李鸿章创办，开采煤矿</li>
+          <li><strong>上海机器织布局</strong>（1878年）- 纺织工业</li>
+          <li><strong>汉阳铁厂</strong>（1890年）- 张之洞创办，中国第一个近代钢铁企业</li>
+          <li><strong>湖北织布局</strong>（1890年）- 张之洞创办</li>
+        </ul>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-chart-line"></i> 经营方式</h3>
+        <p><strong>官督商办：</strong>政府监督，商人出资经营</p>
+        <p><strong>官商合办：</strong>政府和商人共同出资</p>
+        <p><strong>产品流向：</strong>投放市场，追求利润</p>
+        <p><strong>目的：</strong>解决军事工业的资金、原料、运输问题</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 对比表格：洋务派vs顽固派（历史特色） -->
+  <section class="compare-section" id="compare">
+    <div class="compare-title"><i class="fas fa-balance-scale-left"></i> 洋务派 vs 顽固派 · 对比表格</div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>对比维度</th>
+          <th>🛠️ 洋务派</th>
+          <th>🏛️ 顽固派</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>代表人物</td>
+          <td>曾国藩、李鸿章、左宗棠、张之洞、奕訢</td>
+          <td>倭仁、徐桐、李鸿藻等</td>
+        </tr>
+        <tr>
+          <td>政治立场</td>
+          <td>地主阶级改革派，维护清朝统治</td>
+          <td>地主阶级守旧派，维护传统制度</td>
+        </tr>
+        <tr>
+          <td>对西方态度</td>
+          <td>主张学习西方先进技术（"师夷长技"）</td>
+          <td>坚决反对，认为学习西方是"以夷变夏"</td>
+        </tr>
+        <tr>
+          <td>核心主张</td>
+          <td>"中学为体，西学为用"——以纲常伦理为本，以技术为用</td>
+          <td>"立国之道，尚礼义不尚权谋，根本之图，在人心不在技艺"</td>
+        </tr>
+        <tr>
+          <td>改革措施</td>
+          <td>创办近代企业、建立新式海军、派遣留学生</td>
+          <td>坚持传统科举制度，反对任何变革</td>
+        </tr>
+        <tr>
+          <td>历史作用</td>
+          <td>推动中国近代化，引进了先进技术，培养了人才</td>
+          <td>阻挠改革，但客观上促使清廷重视洋务</td>
+        </tr>
+        <tr>
+          <td>局限性</td>
+          <td>只学技术不学制度，未能挽救清朝统治</td>
+          <td>盲目排外，阻碍社会进步</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 代表人物 -->
+  <section class="section" id="figures">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-users"></i></div>
+      <div class="section-title-text">
+        <h2>四、代表人物</h2>
+        <p>洋务派主要领导人</p>
+      </div>
+    </div>
+    <div class="knowledge-grid">
+      <div class="knowledge-card">
+        <h3><i class="fas fa-user-tie"></i> 曾国藩</h3>
+        <p>湖南湘乡人，湘军统帅。1861年创办<strong>安庆内军械所</strong>，是洋务运动的开端。主张"师夷长技"，是洋务派的精神领袖。</p>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-user-tie"></i> 李鸿章</h3>
+        <p>安徽合肥人，淮军统帅。创办<strong>江南制造总局</strong>、<strong>轮船招商局</strong>等众多企业，是洋务运动最主要的实践者。</p>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-user-tie"></i> 左宗棠</h3>
+        <p>湖南湘阴人。1866年创办<strong>福州船政局</strong>，培养造船和驾驶人才。后率军收复新疆，维护国家统一。</p>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-user-tie"></i> 张之洞</h3>
+        <p>河北南皮人。1890年创办<strong>汉阳铁厂</strong>、<strong>湖北织布局</strong>，提出"中学为体，西学为用"的著名主张。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 历史评价 -->
+  <section class="section" id="evaluation">
+    <div class="section-header">
+      <div class="section-icon"><i class="fas fa-balance-scale"></i></div>
+      <div class="section-title-text">
+        <h2>五、历史评价</h2>
+        <p>客观分析洋务运动的成败得失</p>
+      </div>
+    </div>
+
+    <!-- 警告框（历史特色） -->
+    <div class="warning-box">
+      <div class="warning-header">
+        <span class="warning-icon">⚠️</span>
+        <span class="warning-title">易错警示 · 洋务运动失败的根本原因</span>
+      </div>
+      <div class="warning-content">
+        <p><strong>⚡ 常见错误：</strong>很多同学认为洋务运动失败是因为甲午战争失败，这个说法不准确！</p>
+        <p><strong>✅ 正确理解：</strong></p>
+        <p>1. <strong>根本原因：</strong>洋务派只学习西方<strong>技术</strong>，不改变<strong>封建制度</strong>——"中学为体，西学为用"决定了它必然失败。清朝的封建专制制度没有改变，引进再多的技术也无法从根本上挽救危局。</p>
+        <p>2. <strong>直接原因：</strong>1894-1895年<strong>甲午中日战争</strong>中，北洋水师全军覆没，证明了洋务运动的失败。</p>
+        <p>3. <strong>其他原因：</strong>顽固派阻挠、管理腐败、官场倾轧、资金不足等。</p>
+        <p><strong>💡 区分：</strong>洋务运动≠戊戌变法！前者学习西方技术（器物），后者学习西方政治制度（制度）。</p>
+      </div>
+    </div>
+
+    <div class="knowledge-grid">
+      <div class="knowledge-card">
+        <h3><i class="fas fa-plus-circle"></i> 积极意义</h3>
+        <ul>
+          <li>引进了西方先进的生产技术，是中国近代化的开端</li>
+          <li>客观上促进了中国民族资本主义的产生和发展</li>
+          <li>培养了一批科技人才和技术工人</li>
+          <li>在一定程度上抵制了外国经济势力的扩张</li>
+          <li>开启了中国教育近代化的进程</li>
+        </ul>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-minus-circle"></i> 局限性</h3>
+        <ul>
+          <li><strong>根本目的：</strong>维护清朝封建统治，不是发展资本主义</li>
+          <li><strong>管理方式：</strong>封建衙门式管理，效率低下，腐败严重</li>
+          <li><strong>技术依赖：</strong>只引进技术，不学习制度，依赖外国</li>
+          <li><strong>结果：</strong>甲午战争失败，洋务运动破产</li>
+        </ul>
+      </div>
+      <div class="knowledge-card">
+        <h3><i class="fas fa-times-circle"></i> 失败原因</h3>
+        <p><strong>根本原因：</strong>只学习西方技术，不改变封建制度</p>
+        <p><strong>直接原因：</strong>甲午中日战争中北洋水师全军覆没</p>
+        <p><strong>其他原因：</strong>顽固派阻挠、管理腐败、资金不足等</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 材料分析题（历史特色） -->
+  <section class="material-section" id="material">
+    <div class="material-header">
+      <div class="material-badge"><i class="fas fa-file-alt"></i> 材料分析题</div>
+    </div>
+    <h3 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 16px;">📜 阅读下列材料，回答问题</h3>
+
+    <div class="material-quote">
+      "中国文武制度，事事远出西人之上，独火器万不能及……中国欲自强，则莫如学习外国利器。欲学习外国利器，则莫如觅制器之器，师其法而不必尽用其人。"
+      <div class="material-source">——李鸿章《致总理各国事务衙门函》</div>
+    </div>
+
+    <div class="material-questions">
+      <div class="material-question">
+        <p><strong>问题1：</strong>李鸿章认为中国与西方的差距主要在哪里？</p>
+        <button class="material-answer-btn" onclick="toggleAnswer(this)">查看答案</button>
+        <div class="material-answer">
+          <strong>参考答案：</strong>李鸿章认为中国在"火器"（武器装备）方面远不如西方，中国在政治制度（"文武制度"）等方面超过西方。因此，他主张通过学习外国的"利器"（武器）和"制器之器"（机器设备）来达到自强的目的。这体现了洋务派"中学为体，西学为用"的核心思想——即不改变中国的政治制度，只学习西方技术。
+        </div>
+      </div>
+      <div class="material-question">
+        <p><strong>问题2：</strong>从材料可以看出洋务运动的根本目的是什么？有何局限性？</p>
+        <button class="material-answer-btn" onclick="toggleAnswer(this)">查看答案</button>
+        <div class="material-answer">
+          <strong>参考答案：</strong><br>
+          <strong>根本目的：</strong>维护清朝的封建统治。李鸿章明确说"中国文武制度，事事远出西人之上"，说明洋务派认为中国的政治制度是好的，只需要学习技术。<br>
+          <strong>局限性：</strong>这种认识的局限性在于，洋务派没有认识到清朝衰落的根本原因是腐朽的封建制度，仅靠引进技术无法真正使中国富强。这一局限性最终导致洋务运动的失败。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分割线 -->
+  <div class="section-divider"><span>📝 课后测验</span></div>
+
+  <!-- ⑨ 后测 -->
+  <section class="section" id="section-postquiz">
+    <h2 class="section-title"><span class="num">📝</span> 后测：检验学习成果</h2>
+    <p style="color: var(--primary); margin-bottom: 16px;">
+      包含中考真题与高频考点，难度递进：<span class="difficulty-badge difficulty-基础"><i class="fas fa-star"></i> 基础</span> → 
+      <span class="difficulty-badge difficulty-提高"><i class="fas fa-star-half-alt"></i> 提高</span> → 
+      <span class="difficulty-badge difficulty-挑战"><i class="fas fa-star"></i> 挑战</span>
+    </p>
+    <div class="posttest-section">
+      <div class="posttest-header">
+        <span class="posttest-badge"><i class="fas fa-pencil-alt"></i> 后测</span>
+        <span style="color: var(--text-muted); font-size: 0.85rem;">共5题，每题20分</span>
+      </div>
+
+      <!-- 后测题1 -->
+      <div class="quiz-question">
+        <h4>1. 洋务运动的主要口号是什么？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「民主科学」是新文化运动（1915年）的口号，不是洋务运动。洋务运动的口号是「自强」「求富」。">
+            <span class="opt-letter">A</span> 民主、科学
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动前期口号是「自强」（创办军事工业），后期是「求富」（创办民用工业）。">
+            <span class="opt-letter">B</span> 自强、求富
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「变法图强」是戊戌变法（1898年）的口号，代表人物是康有为、梁启超。">
+            <span class="opt-letter">C</span> 变法图强
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「扶清灭洋」是义和团运动的口号，具有盲目排外性。">
+            <span class="opt-letter">D</span> 扶清灭洋
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- 后测题2 -->
+      <div class="quiz-question">
+        <h4>2. 洋务运动的根本目的是什么？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。洋务派并不主张推翻封建制度，而是要维护清朝统治。他们是地主阶级代表，不是农民起义领袖。">
+            <span class="opt-letter">A</span> 推翻封建制度
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。虽然洋务运动客观上促进了中国资本主义的发展，但这不是洋务派的根本目的。他们的出发点是维护清朝统治。">
+            <span class="opt-letter">B</span> 发展资本主义
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动的根本目的是通过学习西方先进技术，维护清朝的封建统治。「中学为体，西学为用」体现了这一点。">
+            <span class="opt-letter">C</span> 维护清朝统治
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。洋务运动主要是学习西方技术，不主张学习西方政治制度。学习西方政治制度的是后来的维新派和革命派。">
+            <span class="opt-letter">D</span> 学习西方制度
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- 后测题3 -->
+      <div class="quiz-question">
+        <h4>3. 下列哪项是洋务运动在"自强"阶段创办的？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！江南制造总局是1865年李鸿章在上海创办的军事工业，属于「自强」阶段，是当时国内最大的军事工业。">
+            <span class="opt-letter">A</span> 江南制造总局
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。轮船招商局是1872年李鸿章创办的民用工业，属于「求富」阶段，目的是解决军事工业的运输问题。">
+            <span class="opt-letter">B</span> 轮船招商局
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。汉阳铁厂是1890年张之洞在湖北创办的民用工业，属于「求富」阶段，是中国第一个近代钢铁企业。">
+            <span class="opt-letter">C</span> 汉阳铁厂
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。开平矿务局是1878年李鸿章创办的民用工业，属于「求富」阶段，主要开采煤矿。">
+            <span class="opt-letter">D</span> 开平矿务局
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- 后测题4 -->
+      <div class="quiz-question">
+        <h4>4. 洋务运动失败的标志是什么？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。鸦片战争（1840-1842）发生在洋务运动之前，是洋务运动兴起的背景之一。">
+            <span class="opt-letter">A</span> 鸦片战争失败
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。第二次鸦片战争（1856-1860）也发生在洋务运动之前，洋务运动正是为了应对这种危机而兴起的。">
+            <span class="opt-letter">B</span> 第二次鸦片战争失败
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1894-1895年甲午中日战争中，北洋水师全军覆没，标志着洋务运动的破产。洋务派「自强」「求富」的目标没有实现。">
+            <span class="opt-letter">C</span> 甲午中日战争失败
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。八国联军侵华（1900年）发生在洋务运动失败之后，导致《辛丑条约》签订。">
+            <span class="opt-letter">D</span> 八国联军侵华
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- 后测题5 -->
+      <div class="quiz-question">
+        <h4>5. 提出"中学为体，西学为用"主张的是哪位洋务派代表人物？</h4>
+        <div class="quiz-options">
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。曾国藩是洋务运动的开创者之一，创办安庆内军械所，但他没有明确提出这一主张。">
+            <span class="opt-letter">A</span> 曾国藩
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。李鸿章是洋务运动最主要的实践者，创办众多企业，但「中学为体，西学为用」不是他提出的。">
+            <span class="opt-letter">B</span> 李鸿章
+          </button>
+          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。左宗棠创办福州船政局，收复新疆，但他没有提出这一著名主张。">
+            <span class="opt-letter">C</span> 左宗棠
+          </button>
+          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！张之洞在《劝学篇》中明确提出「中学为体，西学为用」，主张在维护封建制度的前提下学习西方技术。">
+            <span class="opt-letter">D</span> 张之洞
+          </button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑩ 必考分析 -->
+  <section class="section" id="section-exam">
+    <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+    <div class="exam-section">
+
+      <!-- 考点1 -->
+      <div class="exam-point-card">
+        <h4>🏆 考点一：洋务运动的时间与背景</h4>
+        <p><strong>核心要点：</strong></p>
+        <p>洋务运动发生在<strong>19世纪60-90年代</strong>。背景是两次鸦片战争失败后，中国面临内忧（太平天国运动）外患（列强侵略）的严峻形势，清朝统治集团内部一部分官员认识到必须学习西方先进技术，才能挽救清朝统治。</p>
+        <div class="exam-example">
+          <strong>【真题示例】</strong>（2022年某市中考）19世纪60年代以后，洋务派掀起了一场"师夷长技"的运动。这场运动的根本目的是（ C ）<br>
+          A. 发展资本主义　B. 推翻清朝统治　<strong style="color:#10b981">C. 维护清朝统治</strong>　D. 抵制外国侵略
+        </div>
+      </div>
+
+      <!-- 考点2 -->
+      <div class="exam-point-card">
+        <h4>🏆 考点二：洋务运动的内容——"自强"与"求富"</h4>
+        <p><strong>核心要点：</strong></p>
+        <p>洋务运动分为两个阶段：</p>
+        <p>🔵 <strong>自强阶段（60-70年代）</strong>：以"自强"为口号，创办军事工业，如安庆内军械所、江南制造总局、福州船政局等，目的是制造枪炮兵船，巩固国防。</p>
+        <p>🟡 <strong>求富阶段（70-90年代）</strong>：以"求富"为口号，创办民用工业，如轮船招商局、开平矿务局、汉阳铁厂等，目的是积累资金，解决军事工业的困难。</p>
+        <div class="exam-example">
+          <strong>【真题示例】</strong>（2023年某省中考）下列选项中，属于洋务派在"求富"阶段创办的企业是（ B ）<br>
+          A. 安庆内军械所　<strong style="color:#10b981">B. 轮船招商局</strong>　C. 江南制造总局　D. 福州船政局
+        </div>
+      </div>
+
+      <!-- 考点3 -->
+      <div class="exam-point-card">
+        <h4>🏆 考点三：洋务运动的评价（最重要考点）</h4>
+        <p><strong>核心要点：</strong></p>
+        <p>评价洋务运动要从<strong>积极意义</strong>和<strong>局限性</strong>两方面分析：</p>
+        <p>✅ <strong>积极意义：</strong>洋务运动是中国近代化的开端；引进了西方先进技术；客观上促进了民族资本主义的产生；培养了近代人才；开启了中国教育近代化进程。</p>
+        <p>❌ <strong>局限性：</strong>根本目的是维护封建制度；只学习西方技术，不改变封建制度（根本原因）；甲午战争失败后运动宣告破产。</p>
+        <div class="exam-example">
+          <strong>【真题示例】</strong>（2023年某市中考）洋务运动破产的根本原因是（ D ）<br>
+          A. 顽固派的阻挠　B. 资金不足　C. 甲午战争失败　<strong style="color:#10b981">D. 只学习西方技术，不改变封建制度</strong>
+        </div>
+      </div>
+
+      <!-- 考点4 -->
+      <div class="exam-point-card">
+        <h4>🏆 考点四：洋务运动与近代化探索</h4>
+        <p><strong>核心要点：</strong></p>
+        <p>洋务运动是中国近代化探索的第一步。中国的近代化经历了三个阶段：</p>
+        <p>🔹 <strong>器物层面</strong>（洋务运动）：学习西方技术——失败</p>
+        <p>🔹 <strong>制度层面</strong>（戊戌变法、辛亥革命）：学习西方政治制度</p>
+        <p>🔹 <strong>思想层面</strong>（新文化运动）：学习西方思想文化</p>
+        <p>洋务运动的失败说明，只学习西方技术而不改变制度，是无法使中国真正富强的。</p>
+        <div class="exam-example">
+          <strong>【真题示例】</strong>（2022年某省中考）中国近代史上，先进中国人探索国家出路的过程是（ B ）<br>
+          A. 戊戌变法→洋务运动→辛亥革命<br>
+          B. 洋务运动→戊戌变法→辛亥革命<br>
+          <strong style="color:#10b981">C. 洋务运动→辛亥革命→戊戌变法</strong>　D. 辛亥革命→洋务运动→戊戌变法
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+
+  </main>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>初中历史八年级上册 · 第二单元 近代化的早期探索与民族危机</p>
+  <div class="footer-links">
+    <a href="../02_d2jdq.html"><i class="fas fa-arrow-left"></i> 返回单元</a>
+    <a href="../2.2_jwbd/jwbd.html">下一节 <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <p style="margin-top: 20px; opacity: 0.7; font-size: 0.85rem;">© 2026 TeachAny 互动课件</p>
+</footer>
+
+<script>
+// Scroll to section
+function scrollToSection(id) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Standard checkAnswer function (from reference template)
+function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+  const parent = element.closest('.quiz-box, .quiz-question, .posttest-section, .pretest-section');
+  if (!parent) return;
+  
+  const feedback = parent.querySelector('.feedback');
+  const explanation = document.getElementById('explanation-' + questionNum);
+  const allOptions = parent.querySelectorAll('.quiz-option');
+  
+  // Prevent re-answering
+  if (parent.dataset.answered === 'true') return;
+  parent.dataset.answered = 'true';
+  
+  // Mark options
+  allOptions.forEach(opt => {
+    opt.classList.remove('correct', 'wrong');
+    if (opt === element && isCorrect) {
+      opt.classList.add('correct');
+    } else if (opt === element && !isCorrect) {
+      opt.classList.add('wrong');
+    }
+    // Show correct answer
+    const optCorrect = opt.getAttribute('onclick') && opt.getAttribute('onclick').includes(', true,');
+    if (optCorrect) opt.classList.add('correct');
+  });
+  
+  // Show feedback
+  if (feedback) {
+    const feedbackText = isCorrect ? '✅ 答对了！' : (element.dataset.feedback || '❌ 答错了，看看解析吧！');
+    feedback.innerHTML = feedbackText;
+    feedback.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  }
+  
+  // Show explanation
+  if (explanation) {
+    explanation.classList.add('show');
+  }
+}
+
+// Quiz interaction (legacy - for existing questions)
+function initQuiz() {
+  const questions = document.querySelectorAll('.quiz-question');
+  questions.forEach(q => {
+    const options = q.querySelectorAll('.quiz-option');
+    const feedback = q.querySelector('.feedback');
+    let answered = false;
+
+    options.forEach(opt => {
+      opt.addEventListener('click', function() {
+        if (answered) return;
+        answered = true;
+        const isCorrect = this.dataset.correct === 'true';
+        const feedbackText = this.dataset.feedback;
+
+        options.forEach(o => {
+          if (o.dataset.correct === 'true') {
+            o.classList.add('correct');
+          } else if (o === this && !isCorrect) {
+            o.classList.add('wrong');
+          }
+        });
+
+        feedback.innerHTML = feedbackText;
+        feedback.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+      });
+    });
+  });
+}
+
+// Material answer toggle
+function toggleAnswer(btn) {
+  const answer = btn.nextElementSibling;
+  if (answer.classList.contains('show')) {
+    answer.classList.remove('show');
+    btn.textContent = '查看答案';
+  } else {
+    answer.classList.add('show');
+    btn.textContent = '收起答案';
+  }
+}
+
+// Update progress bar on scroll
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = Math.min(100, Math.round((scrollTop / docHeight) * 100));
+  document.getElementById('progress-fill').style.width = progress + '%';
+  document.getElementById('progress-text').textContent = '学习进度 ' + progress + '%';
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  initQuiz();
+  window.addEventListener('scroll', updateProgress);
+});
+</script>
+
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="hist-crisis-ww2-9">
+  <meta name="course-title" content="第11单元 经济大危机和第二次世界大战">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-9">
+  <meta name="teachany-node" content="hist-crisis-ww2">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14">
+  
+  <title>第11单元：经济大危机和第二次世界大战 | 初中9年级历史</title>
+  
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-dark: #6b3410;
+      --secondary: #d4a574;
+      --bg-light: #faf7f2;
+      --bg-card: #ffffff;
+      --text-dark: #2c1810;
+      --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+      --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+      --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.16);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(139,69,19,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    /* ========== 品牌栏 ========== */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+
+    /* ========== 进度条 ========== */
+    .progress-bar { height: 4px; background: #e8dcc8; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 0%; transition: width 1s ease; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: var(--bg-light); }
+
+    /* ========== 导航栏 ========== */
+    .nav-bar { background: white; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: rgba(139,69,19,0.1); }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* ========== Hero区 ========== */
+    .hero-section {
+      background: linear-gradient(135deg, #1a0a00 0%, #2d1500 30%, var(--primary) 70%, #8b4513 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-icon { font-size: 64px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .hero-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.4); letter-spacing: 3px; }
+    .hero-subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 24px; }
+
+    .dynasty-timeline {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin: 24px 0;
+      position: relative;
+    }
+    .dynasty-timeline::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    }
+    .timeline-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-dot {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.15);
+      border: 3px solid rgba(255,255,255,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .timeline-label { font-size: 0.85rem; font-weight: 600; opacity: 0.9; }
+
+    .progress-container { max-width: 600px; margin: 24px auto 0; text-align: left; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; opacity: 0.9; }
+    .progress-track { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
+    .progress-fill-animated { height: 100%; background: linear-gradient(90deg, #f0e68c, #ffd700, #ff8c00); border-radius: 4px; transition: width 1s ease; box-shadow: 0 0 12px rgba(255, 215, 0, 0.5); }
+
+    /* ========== 主内容区 ========== */
+    .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      box-shadow: var(--shadow-md);
+    }
+    .section-text h2 { font-size: 1.5rem; color: var(--primary); font-weight: 700; }
+    .section-text p { font-size: 0.9rem; color: var(--text-muted); }
+
+    .knowledge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .knowledge-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 18px 20px;
+      border: 1px solid rgba(139,69,19,0.1);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+    .knowledge-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .knowledge-card .k-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .knowledge-card .k-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .lesson-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(139, 69, 19, 0.08);
+      position: relative;
+    }
+    .lesson-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .lesson-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .lesson-card:hover::before { transform: scaleX(1); }
+    
+    .card-header {
+      padding: 20px 20px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .lesson-num {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(139,69,19,0.25);
+    }
+    .lesson-meta { flex: 1; }
+    .lesson-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .lesson-subtitle { font-size: 0.85rem; color: var(--text-muted); }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .status-制作中 {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #92400e;
+    }
+    
+    .card-body { padding: 0 20px 16px; }
+    .lesson-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    .card-footer {
+      padding: 16px 20px;
+      background: var(--bg-light);
+      border-top: 1px solid rgba(139,69,19,0.06);
+    }
+    .lesson-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .lesson-link::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    .lesson-link:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(139,69,19,0.35);
+    }
+    .lesson-link:active::after { width: 300px; height: 300px; }
+
+    /* ========== 页脚 ========== */
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 32px 20px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+    .footer-version { margin-top: 8px; font-size: 12px; opacity: 0.7; }
+
+    /* ========== 动画 ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .lesson-card:nth-child(1) { animation-delay: 0.1s; }
+    .lesson-card:nth-child(2) { animation-delay: 0.15s; }
+    .lesson-card:nth-child(3) { animation-delay: 0.2s; }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .hero-icon { font-size: 48px; }
+      .hero-title { font-size: 1.5rem; letter-spacing: 1px; }
+      .hero-subtitle { font-size: 0.9rem; }
+      .dynasty-timeline { flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .dynasty-timeline::before { display: none; }
+      .timeline-dot { width: 40px; height: 40px; font-size: 18px; }
+      .timeline-item { padding: 0 12px; }
+      .timeline-label { font-size: 0.75rem; }
+      .knowledge-grid { grid-template-columns: 1fr 1fr; }
+      .lessons-grid { grid-template-columns: 1fr; gap: 14px; }
+      .section-title { margin-bottom: 16px; }
+      .section-icon { width: 38px; height: 38px; font-size: 18px; }
+      .card-header { padding: 14px 14px 10px; }
+      .lesson-num { width: 34px; height: 34px; font-size: 0.88rem; }
+      .card-body { padding: 0 14px 12px; }
+      .card-footer { padding: 12px 14px; }
+      .footer { padding: 20px 14px; }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-section { padding: 40px 16px; }
+      .hero-icon { font-size: 36px; }
+      .hero-title { font-size: 1.25rem; }
+      .knowledge-grid { grid-template-columns: 1fr; }
+      .timeline-item { padding: 0 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo">
+      <i class="fa-solid fa-landmark"></i>
+      <span>TeachAny · 初中历史</span>
+    </div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第11单元 · 0/3 课时</div>
+
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-arrow-left"></i> 返回九年级</a>
+      <div class="nav-center">第11单元：经济大危机和第二次世界大战</div>
+      <a href="../12_d12de/d12de.html" class="nav-btn">下一单元 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ========== Hero区 ========== -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">⚔️</div>
+      <h1 class="hero-title">第11单元：经济大危机和第二次世界大战</h1>
+      <p class="hero-subtitle">九年级历史 · 下册</p>
+      
+      <div class="dynasty-timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot">📉</div>
+          <span class="timeline-label">1929大萧条</span>
+          <span style="font-size:0.75rem;opacity:0.7;">全球经济危机</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">⚡</div>
+          <span class="timeline-label">法西斯扩张</span>
+          <span style="font-size:0.75rem;opacity:0.7;">1930年代</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">🔥</div>
+          <span class="timeline-label">1939二战爆发</span>
+          <span style="font-size:0.75rem;opacity:0.7;">德国闪击波兰</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">🏆</div>
+          <span class="timeline-label">1945胜利</span>
+          <span style="font-size:0.75rem;opacity:0.7;">日本投降</span>
+        </div>
+      </div>
+      
+      <div class="progress-container">
+        <div class="progress-info">
+          <span><i class="fa-solid fa-landmark"></i> 学习进度</span>
+          <span id="hero-progress-text">0/3 课时</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill-animated" id="hero-progress-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== 主内容区 ========== -->
+  <main class="main-content">
+    
+    <!-- 知识点概览 -->
+    <div class="section-title">
+      <div class="section-icon"><i class="fas fa-lightbulb"></i></div>
+      <div class="section-text">
+        <h2>知识点概览</h2>
+        <p>本单元核心知识要点</p>
+      </div>
+    </div>
+    
+    <div class="knowledge-grid">
+      <div class="knowledge-card">
+        <div class="k-title"><i class="fas fa-chart-line" style="color:var(--primary)"></i> 经济危机</div>
+        <div class="k-desc">1929-1933年资本主义世界经济大危机，罗斯福新政开创国家干预经济新模式。</div>
+      </div>
+      <div class="knowledge-card">
+        <div class="k-title"><i class="fas fa-fire" style="color:var(--primary)"></i> 法西斯崛起</div>
+        <div class="k-desc">意大利、德国、日本相继建立法西斯专政，对外侵略扩张，引发二战。</div>
+      </div>
+      <div class="knowledge-card">
+        <div class="k-title"><i class="fas fa-globe" style="color:var(--primary)"></i> 第二次世界大战</div>
+        <div class="k-desc">人类历史上规模空前的全球战争，以反法西斯同盟的胜利告终。</div>
+      </div>
+      <div class="knowledge-card">
+        <div class="k-title"><i class="fas fa-handshake" style="color:var(--primary)"></i> 国际合作</div>
+        <div class="k-desc">雅尔塔会议、联合国成立，为战后国际新秩序奠定基础。</div>
+      </div>
+    </div>
+
+    <!-- 课程目录 -->
+    <div class="section-title">
+      <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="section-text">
+        <h2>课程目录</h2>
+        <p>点击卡片开始学习</p>
+      </div>
+    </div>
+    
+    <div class="lessons-grid">
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">1</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">罗斯福新政</div>
+            <div class="lesson-subtitle">第1课 · 11.1</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-spinner fa-spin"></i> 制作中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">1929年经济危机爆发，罗斯福实行"新政"，通过国家干预经济、整顿金融、调整工业等措施摆脱危机，对资本主义发展产生深远影响。</p>
+        </div>
+        <div class="card-footer">
+          <a href="11.1_sfdz/sfdz.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+        </div>
+      </div>
+      
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">2</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">法西斯国家的侵略扩张</div>
+            <div class="lesson-subtitle">第2课 · 11.2</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-spinner fa-spin"></i> 制作中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">意大利、德国、日本建立法西斯专政，对内实行独裁统治，对外发动侵略战争，严重威胁世界和平。</p>
+        </div>
+        <div class="card-footer">
+          <a href="11.2_fxsj/fxsj.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+        </div>
+      </div>
+      
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">3</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">第二次世界大战</div>
+            <div class="lesson-subtitle">第3课 · 11.3</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-spinner fa-spin"></i> 制作中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">1939年德国进攻波兰，二战全面爆发；世界反法西斯同盟建立；1945年德日相继投降，二战结束。</p>
+        </div>
+        <div class="card-footer">
+          <a href="11.3_dezz/dezz.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <p class="footer-text">© 2024 TeachAny · 初中历史互动课件系统</p>
+    <p class="footer-version">基于 TeachAny v7.14 | 适配人教版九年级历史课程标准 · 第11单元</p>
+  </footer>
+
+  <script>
+    // 课程配置
+    var COURSE_INFO = {
+      unitId: 'hist-crisis-ww2-9',
+      unitTitle: '第11单元：经济大危机和第二次世界大战',
+      totalLessons: 3,
+      lessons: [
+        { id: '11.1_sfdz', title: '罗斯福新政', path: '11.1_sfdz/sfdz.html' },
+        { id: '11.2_fxsj', title: '法西斯国家的侵略扩张', path: '11.2_fxsj/fxsj.html' },
+        { id: '11.3_dezz', title: '第二次世界大战', path: '11.3_dezz/dezz.html' }
+      ]
+    };
+
+    // 初始化进度（实际项目中应从本地存储或服务器读取）
+    function initProgress() {
+      var completed = 0; // 已完成课时数
+      var total = COURSE_INFO.totalLessons;
+      var percentage = (completed / total) * 100;
+      
+      // 更新顶部进度条
+      var topFill = document.getElementById('progress-fill');
+      var topLabel = document.getElementById('progress-label');
+      if (topFill) topFill.style.width = percentage + '%';
+      if (topLabel) topLabel.textContent = '第11单元 · ' + completed + '/' + total + ' 课时';
+      
+      // 更新Hero区进度
+      var heroFill = document.getElementById('hero-progress-fill');
+      var heroText = document.getElementById('hero-progress-text');
+      if (heroFill) heroFill.style.width = percentage + '%';
+      if (heroText) heroText.textContent = completed + '/' + total + ' 课时';
+    }
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      initProgress();
+      console.log('📚 第11单元页面加载完成（v7.14）');
+    });
+  </script>
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

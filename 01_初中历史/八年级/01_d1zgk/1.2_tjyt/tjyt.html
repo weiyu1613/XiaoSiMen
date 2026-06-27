@@ -1,0 +1,710 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="history-second-opium-war-8">
+  <meta name="course-title" content="第2课 第二次鸦片战争">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="history-second-opium-war">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14">
+
+  <title>第2课 第二次鸦片战争 | 初中8年级历史</title>
+
+  <style>
+    /* ========== 全局样式 ========== */
+    :root {
+      --primary: #8b4513;
+      --primary-light: #a0522d;
+      --primary-dark: #5a2d0c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      background: #f5f0eb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* 品牌栏 */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #d2b48c; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 66.66%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f5f0eb; }
+
+    /* 导航栏 */
+    .nav-bar { background: #f5f0eb; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #d2b48c; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge {
+      background: rgba(255,255,255,0.2);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #d2b48c; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(139,69,19,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn {
+      flex: 1; min-width: 200px; padding: 12px 16px;
+      background: linear-gradient(135deg, #d2b48c, #f5f0eb);
+      border: 2px solid #a0522d; border-radius: 10px;
+      cursor: pointer; font-size: 14px; font-weight: 600;
+      color: var(--primary-dark); transition: all 0.2s; text-align: center;
+    }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a0522d, #d2b48c); border-color: var(--primary); color: white; }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+
+    /* 测验选项 */
+    .quiz-box { background: #f5f0eb; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #d2b48c; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: var(--primary); background: #f5f0eb; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb; border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0; padding: 16px 20px;
+      margin-top: 12px; font-size: 14px; color: #78350f; display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    /* 概念框 */
+    .concept-box { background: #f5f0eb; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #f5f0eb; border: 1px solid #d2b48c; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+
+    /* 难度标签 */
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* 页脚 */
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+
+    /* 表格 */
+    .history-table {
+      width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;
+    }
+    .history-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; padding: 12px; text-align: center;
+    }
+    .history-table td { padding: 10px; border: 1px solid #d2b48c; text-align: center; }
+    .history-table tr:nth-child(even) { background: #f5f0eb; }
+
+    /* 手机端适配 */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .section { padding: 0 12px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .card { padding: 14px !important; }
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .quiz-option { font-size: 0.88rem !important; }
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+
+<body>
+
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 2/3 节 · 67%</div>
+
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d1zgk.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第一单元:中国开始沦为半殖民地半封建社会</div>
+    <a href="../1.1_yhzz/yhzz.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../1.3_ascz/ascz.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-landmark-open"></i> 八年级历史上册 · 第一单元</div>
+      <h1>第2课 第二次鸦片战争<span>Second Opium War</span></h1>
+      <p style="margin-top: 15px;">
+        📖 课标要求:了解第二次鸦片战争的原因、经过和影响<br>
+        🎯 预计用时:45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" style="margin-top: 24px;">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f5f0eb"/>
+        <!-- 中心主题:第二次鸦片战争 -->
+        <rect x="300" y="100" width="200" height="100" rx="15" fill="#8b4513" stroke="#5a2d0c" stroke-width="3"/>
+        <text x="400" y="140" text-anchor="middle" font-size="18" font-weight="bold" fill="white">第二次鸦片战争</text>
+        <text x="400" y="170" text-anchor="middle" font-size="14" fill="white">1856-1860</text>
+
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="14" fill="white">战争原因</text>
+        <line x1="190" y1="80" x2="300" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="225" text-anchor="middle" font-size="14" fill="white">战争罪行</text>
+        <line x1="190" y1="220" x2="300" y2="190" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="14" fill="white">战争结果</text>
+        <line x1="610" y1="80" x2="600" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="225" text-anchor="middle" font-size="14" fill="white">战争影响</text>
+        <line x1="610" y1="220" x2="600" y2="190" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: var(--primary); font-size: 14px; text-align: center;">图2-1 第二次鸦片战争知识结构图</figcaption>
+    </figure>
+  </section>
+
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="第二次鸦片战争是怎么爆发的?">📍 第二次鸦片战争是怎么爆发的?</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="英法联军犯下了哪些罪行?">🔥 英法联军犯下了哪些罪行?</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="《北京条约》有哪些内容?">📜 《北京条约》有哪些内容?</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)" style="width: 100%; border-radius: 12px; border: 1px solid #a0522d; background: #f5f0eb; color: var(--primary); padding: 12px 14px; font-size: 16px; margin-top: 8px;">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--primary); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 了解第二次鸦片战争爆发的原因</li>
+          <li>✅ 知道英法联军的侵华罪行</li>
+          <li>✅ 掌握《北京条约》的主要内容</li>
+          <li>✅ 认识第二次鸦片战争的影响</li>
+          <li>✅ 理解中国半殖民地化程度进一步加深</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测:检验先备知识</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        难度递进:<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> →
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> →
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】第二次鸦片战争爆发于哪一年?<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1840年是第一次鸦片战争爆发的时间,不是第二次鸦片战争!">
+            <span class="opt-letter">A</span> 1840年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 1856年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1860年是第二次鸦片战争结束的时间,不是爆发时间!">
+            <span class="opt-letter">C</span> 1860年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 1856年</strong></p>
+          <p style="margin-top: 8px;">第二次鸦片战争爆发于<strong>1856年</strong>,结束于1860年。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】火烧圆明园发生在哪一年?<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 1856年是第二次鸦片战争爆发的时间,不是火烧圆明园的时间!">
+            <span class="opt-letter">A</span> 1856年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 1860年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 1842年是第一次鸦片战争结束和《南京条约》签订的时间!">
+            <span class="opt-letter">C</span> 1842年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 1860年</strong></p>
+          <p style="margin-top: 8px;">1860年,<strong>英法联军</strong>火烧<strong>圆明园</strong>,犯下了滔天罪行。</p>
+        </div>
+      </div>
+
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】第二次鸦片战争中,火烧圆明园的是?<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 美国没有直接参与火烧圆明园!">
+            <span class="opt-letter">A</span> 美军
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+            <span class="opt-letter">B</span> 英法联军
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 八国联军侵华发生在1900年,不是第二次鸦片战争时期!">
+            <span class="opt-letter">C</span> 八国联军
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 英法联军</strong></p>
+          <p style="margin-top: 8px;">1860年,<strong>英法联军</strong>占领北京,火烧<strong>圆明园</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】第二次鸦片战争使中国半殖民地化程度?<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 第二次鸦片战争使中国半殖民地化程度进一步加深,不是开始沦为!">
+            <span class="opt-letter">A</span> 开始沦为半殖民地
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+            <span class="opt-letter">B</span> 进一步加深
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 完全沦为半殖民地半封建社会是《辛丑条约》的影响,不是第二次鸦片战争!">
+            <span class="opt-letter">C</span> 完全沦为半殖民地半封建社会
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 进一步加深</strong></p>
+          <p style="margin-top: 8px;">第二次鸦片战争使中国<strong>半殖民地化程度进一步加深</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 战争原因 -->
+    <section class="section" id="section-cause">
+      <h2 class="section-title"><span class="num">📖</span> 第二次鸦片战争的原因</h2>
+
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 战争背景</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>鸦片战争后,西方列强不满足既得利益</li>
+          <li>企图进一步<strong>打开中国市场</strong>,扩大侵略权益</li>
+          <li>英、法分别以<strong>"亚罗号事件"</strong>和<strong>"马神甫事件"</strong>为借口,发动战争</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 战争借口</div>
+          <p><strong>亚罗号事件:</strong>1856年,英国借口中国水师在<strong>亚罗号</strong>船上逮捕海盗,要求道歉。</p>
+          <p style="margin-top: 6px;"><strong>马神甫事件:</strong>1856年,法国借口<strong>马赖神甫</strong>在广西被杀,要求赔偿。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 战争罪行 -->
+    <section class="section" id="section-crimes">
+      <h2 class="section-title"><span class="num">🔥</span> 列强的侵华罪行</h2>
+
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 主要罪行</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>1860年,英法联军火烧圆明园</strong></li>
+          <li>抢劫圆明园中的<strong>奇珍异宝</strong></li>
+          <li>签订<strong>《北京条约》</strong>等一系列不平等条约</li>
+          <li>进一步<strong>割占中国领土</strong></li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀:</strong>"1856战又起,1860圆明园被烧;北京条约又割地,半殖民地化更 deepen"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱:</strong>"火烧圆明园的是八国联军"→ 错误!是<strong>英法联军</strong>(第二次鸦片战争时期)。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 《北京条约》 -->
+    <section class="section" id="section-treaty">
+      <h2 class="section-title"><span class="num">📜</span> 《北京条约》的主要内容</h2>
+
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 条约内容</h3>
+
+        <table class="history-table">
+          <tr><th>条款</th><th>主要内容</th><th>危害</th></tr>
+          <tr><td><strong>割地</strong></td><td>割<strong>九龙司地方一区</strong>给英国</td><td>进一步破坏中国领土主权</td></tr>
+          <tr><td><strong>赔款</strong></td><td>增加对英法的赔款</td><td>加重人民负担</td></tr>
+          <tr><td><strong>开埠</strong></td><td>增开<strong>天津</strong>为商埠</td><td>侵略势力深入到北方沿海</td></tr>
+          <tr><td><strong>其他</strong></td><td>允许华工出国</td><td>掠夺中国劳动力</td></tr>
+        </table>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 半殖民地化程度加深</div>
+          <p>第二次鸦片战争后,中国丧失的<strong>主权和领土</strong>更多,<strong>侵略势力</strong>从沿海深入到内地,中国半殖民地化程度<strong>进一步加深</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 核心内容 - 战争影响 -->
+    <section class="section" id="section-influence">
+      <h2 class="section-title"><span class="num">💥</span> 第二次鸦片战争的影响</h2>
+
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 主要影响</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>中国<strong>半殖民地化程度进一步加深</strong></li>
+          <li>中国的<strong>主权和领土完整</strong>遭到更大破坏</li>
+          <li>侵略势力从<strong>沿海</strong>深入到<strong>内地</strong></li>
+          <li>清政府被迫<strong>洋务运动</strong>,学习西方技术</li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">💡 答题技巧 · 影响类问题</div>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>比较第一次鸦片战争:</strong>程度"进一步加深",不是"开始沦为"</li>
+            <li><strong>注意关键词:</strong>"进一步加深"、"更多主权丧失"</li>
+            <li><strong>联系史实:</strong>结合《北京条约》内容进行说明</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 8: 互动测验 -->
+    <section class="section" id="section-interactive-quiz">
+      <h2 class="section-title"><span class="num">🎮</span> 互动测验</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        每道题都有详细的错因分析，答错了要认真学习哦！
+      </p>
+
+      <!-- 测验题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】第二次鸦片战争的借口是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'A')" data-feedback="❌ 虎门销烟是第一次鸦片战争的导火索，不是第二次鸦片战争的借口！">
+            <span class="opt-letter">A</span> 虎门销烟
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'B')">
+            <span class="opt-letter">B</span> 亚罗号事件和马神甫事件
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 义和团运动是八国联军侵华的借口，不是第二次鸦片战争的借口！">
+            <span class="opt-letter">C</span> 义和团运动
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'D')" data-feedback="❌ 五四运动是反帝反封建的爱国运动，不是第二次鸦片战争的借口！">
+            <span class="opt-letter">D</span> 五四运动
+          </div>
+        </div>
+        <div class="feedback" id="feedback-20"></div>
+        <div class="answer-explanation" id="explanation-20">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 亚罗号事件和马神甫事件</strong></p>
+          <p style="margin-top: 8px;">第二次鸦片战争的导火索是<strong>亚罗号事件</strong>（英国借口）和<strong>马神甫事件</strong>（法国借口）。</p>
+        </div>
+      </div>
+
+      <!-- 测验题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高】《北京条约》增开了哪个城市为商埠？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'A')" data-feedback="❌ 广州是《南京条约》开放的通商口岸，不是《北京条约》增开的商埠！">
+            <span class="opt-letter">A</span> 广州
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 21, 'B')">
+            <span class="opt-letter">B</span> 天津
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'C')" data-feedback="❌ 重庆是《马关条约》开放的通商口岸，不是《北京条约》增开的商埠！">
+            <span class="opt-letter">C</span> 重庆
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'D')" data-feedback="❌ 苏州是《马关条约》开放的通商口岸，不是《北京条约》增开的商埠！">
+            <span class="opt-letter">D</span> 苏州
+          </div>
+        </div>
+        <div class="feedback" id="feedback-21"></div>
+        <div class="answer-explanation" id="explanation-21">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 天津</strong></p>
+          <p style="margin-top: 8px;">《北京条约》规定：增开<strong>天津</strong>为商埠，使侵略势力深入到北方沿海。</p>
+        </div>
+      </div>
+
+      <!-- 测验题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战】第二次鸦片战争与第一次鸦片战争相比，最大的不同是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'A')" data-feedback="❌ 两次鸦片战争的根本原因相同，都是英国为打开中国市场！">
+            <span class="opt-letter">A</span> 爆发原因不同
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 22, 'B')">
+            <span class="opt-letter">B</span> 侵略国家不同
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'C')" data-feedback="❌ 两次鸦片战争都以中国战败告终，都签订了不平等条约！">
+            <span class="opt-letter">C</span> 战争结果不同
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'D')" data-feedback="❌ 两次鸦片战争都使中国半殖民地化程度加深，影响类似！">
+            <span class="opt-letter">D</span> 影响不同
+          </div>
+        </div>
+        <div class="feedback" id="feedback-22"></div>
+        <div class="answer-explanation" id="explanation-22">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 侵略国家不同</strong></p>
+          <p style="margin-top: 8px;">第一次鸦片战争只有<strong>英国</strong>侵略中国；第二次鸦片战争是<strong>英法联军</strong>共同侵略中国。</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 8: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测:检验学习成果</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        包含中考真题与高频考点分析,答错了会详细讲解错因!
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】《北京条约》割让的领土是?<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 香港岛是《南京条约》割让的,不是《北京条约》!">
+            <span class="opt-letter">A</span> 香港岛
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 九龙司地方一区
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 台湾岛是《马关条约》割让的,不是《北京条约》!">
+            <span class="opt-letter">C</span> 台湾岛
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 九龙司地方一区</strong></p>
+          <p style="margin-top: 8px;">《北京条约》规定:割<strong>九龙司地方一区</strong>给英国。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2(中考真题改编) -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】(2023·福建中考)火烧圆明园发生在哪次战争中?<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 第一次鸦片战争没有火烧圆明园的事件!">
+            <span class="opt-letter">A</span> 第一次鸦片战争
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 第二次鸦片战争
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 甲午战争没有火烧圆明园的事件!">
+            <span class="opt-letter">C</span> 甲午战争
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 第二次鸦片战争</strong></p>
+          <p style="margin-top: 8px;">1860年,<strong>英法联军</strong>在<strong>第二次鸦片战争</strong>中火烧圆明园。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3(中考真题改编) -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】(2022·安徽中考)第二次鸦片战争的影响是?<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 这是第一次鸦片战争的影响,不是第二次鸦片战争!">
+            <span class="opt-letter">A</span> 中国开始沦为半殖民地半封建社会
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+            <span class="opt-letter">B</span> 中国半殖民地化程度进一步加深
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 这是《辛丑条约》的影响,不是第二次鸦片战争!">
+            <span class="opt-letter">C</span> 中国完全沦为半殖民地半封建社会
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 中国半殖民地化程度进一步加深</strong></p>
+          <p style="margin-top: 8px;">第二次鸦片战争使中国<strong>半殖民地化程度进一步加深</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点:火烧圆明园</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了16次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论:</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 1860年,<strong>英法联军</strong>火烧圆明园</li>
+            <li>✅ 发生在<strong>第二次鸦片战争</strong>时期</li>
+            <li>✅ 是列强的滔天罪行</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点:《北京条约》内容</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了13次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背:</strong>割九龙司、增开天津、增加赔款。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点:战争时间</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了11次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背:</strong>第二次鸦片战争<strong>1856-1860年</strong>。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点:战争影响</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了9次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背:</strong>中国半殖民地化程度<strong>进一步加深</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+  
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>TeachAny 互动课件 · K12 智慧学习</p>
+  </footer>
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  <script src="../../shared/render.js"></script>
+</body>
+</html>

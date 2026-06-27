@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-china-regional-8">
+  <meta name="course-title" content="第五章 中国的地理差异">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-china-regional">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>第五章 中国的地理差异 | 初中8年级地理</title>
+  
+  <style>
+    :root {
+      --primary: #16a085;
+      --primary-light: #1abc9c;
+      --primary-dark: #0e6655;
+      --secondary: #76d7c4;
+      --bg-light: #e8f8f5;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-sm: 0 2px 8px rgba(22, 160, 133, 0.08);
+      --shadow-md: 0 4px 20px rgba(22, 160, 133, 0.12);
+      --shadow-lg: 0 8px 32px rgba(22, 160, 133, 0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(22, 160, 133, 0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    /* ====== 品牌栏 ====== */
+    .brand-bar {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { 
+      background: rgba(255,255,255,0.2); 
+      padding: 4px 12px; 
+      border-radius: 12px; 
+      font-size: 12px; 
+    }
+
+    /* ====== Hero Section ====== */
+    .hero-section {
+      background: linear-gradient(135deg, #0e6655 0%, var(--primary) 40%, var(--primary-light) 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+    .hero-icon { 
+      font-size: 64px; 
+      margin-bottom: 20px; 
+      animation: float 3s ease-in-out infinite; 
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 3px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      margin-bottom: 24px;
+    }
+
+    /* ====== 知识要点卡片 ====== */
+    .key-points {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .key-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.3);
+      min-width: 140px;
+    }
+
+    .key-point-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .key-point-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* ====== 进度条 ====== */
+    .progress-container {
+      max-width: 600px;
+      margin: 24px auto 0;
+      text-align: left;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ffffff, #d5f5e3);
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    /* ====== 主内容区 ====== */
+    .main-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* ====== 章节概述 ====== */
+    .chapter-overview {
+      background: linear-gradient(135deg, #e8f8f5, #d1f2eb);
+      border: 2px solid var(--primary);
+      border-radius: 16px;
+      padding: 30px;
+      margin: 30px 0;
+    }
+
+    .chapter-overview h2 {
+      color: var(--primary-dark);
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chapter-overview p {
+      color: var(--text-dark);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    /* ====== 统计卡片 ====== */
+    .chapter-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .stat-card {
+      background: white;
+      border: 2px solid var(--secondary);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .stat-card .number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .stat-card .label {
+      font-size: 0.9rem;
+      color: var(--primary-dark);
+      margin-top: 8px;
+    }
+
+    /* ====== 课程列表 ====== */
+    .section-title {
+      font-size: 1.6rem;
+      color: var(--primary-dark);
+      margin: 40px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lesson-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .lesson-item {
+      display: flex;
+      align-items: center;
+      padding: 18px 22px;
+      background: white;
+      border: 2px solid #a3e4d7;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .lesson-item:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      transform: translateX(8px);
+    }
+
+    .lesson-num {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      margin-right: 18px;
+      flex-shrink: 0;
+    }
+
+    .lesson-info {
+      flex: 1;
+    }
+
+    .lesson-info h3 {
+      color: var(--primary-dark);
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .lesson-info p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .lesson-arrow {
+      color: var(--primary);
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .lesson-item:hover .lesson-arrow {
+      transform: translateX(6px);
+    }
+
+    /* ====== 学习目标卡片 ====== */
+    .objectives-card {
+      background: white;
+      border: 2px solid var(--secondary);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 30px 0;
+    }
+
+    .objectives-card h3 {
+      color: var(--primary-dark);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .objectives-card ul {
+      padding-left: 20px;
+      line-height: 2;
+    }
+
+    .objectives-card li {
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    /* ====== 导航栏 ====== */
+    .nav-bar {
+      background: #d1f2eb;
+      border-bottom: 2px solid var(--primary);
+      padding: 12px 0;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .nav-center {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 15px;
+      text-align: center;
+      flex: 1;
+    }
+
+    /* ====== 页脚 ====== */
+    .footer {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .footer p { margin-bottom: 8px; }
+    .footer .small { font-size: 12px; opacity: 0.8; }
+
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero-section { padding: 30px 14px; }
+      .hero-title { font-size: 1.5rem; letter-spacing: 2px; }
+      .hero-subtitle { font-size: 0.9rem; }
+      .hero-icon { font-size: 48px; }
+      
+      .key-points { flex-direction: column; align-items: center; }
+      .key-point { min-width: 100%; max-width: 280px; }
+      
+      .main-content { padding: 20px 14px; }
+      .section-title { font-size: 1.2rem; }
+      
+      .lesson-item { padding: 14px 16px; }
+      .lesson-num { width: 36px; height: 36px; font-size: 16px; margin-right: 12px; }
+      .lesson-info h3 { font-size: 1rem; }
+      .lesson-info p { font-size: 0.8rem; }
+      
+      .chapter-stats { grid-template-columns: 1fr; }
+      .stat-card { padding: 18px; }
+      .stat-card .number { font-size: 2rem; }
+      
+      .nav-inner { flex-direction: column; gap: 8px; }
+      .nav-center { order: -1; width: 100%; margin-bottom: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-map"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-book"></i> 八年级目录</a>
+    <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <div class="nav-center">第五章 中国的地理差异</div>
+      <a href="../04_d4zg/d4zg.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 第四章</a>
+      <a href="../06_d6bf/d6bf.html" class="nav-btn">第六章 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">🌏</div>
+      <h1 class="hero-title">第五章 中国的地理差异</h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解中国地理差异，认识四大地理区域的自然与人文特征<br>
+        🎯 预计学时：4课时
+      </p>
+      
+      <!-- 知识要点 -->
+      <div class="key-points">
+        <div class="key-point">
+          <div class="key-point-icon">🏔️</div>
+          <div class="key-point-label">四大地理区域</div>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🌡️</div>
+          <div class="key-point-label">秦岭-淮河一线</div>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🌾</div>
+          <div class="key-point-label">北方地区</div>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🏔️</div>
+          <div class="key-point-label">南方地区</div>
+        </div>
+      </div>
+      
+      <!-- 进度条 -->
+      <div class="progress-container">
+        <div class="progress-info">
+          <span>本章学习进度</span>
+          <span id="progress-text">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 主内容区 ========== -->
+  <main class="main-content">
+    
+    <!-- 章节概述 -->
+    <div class="chapter-overview">
+      <h2><i class="fa-solid fa-book-open"></i> 章节概述</h2>
+      <p>
+        中国地域辽阔，自然环境复杂多样。本章从宏观视角认识中国的地理差异，以<strong>秦岭—淮河一线</strong>为核心，了解北方地区、南方地区、西北地区和青藏地区四大地理区域的划分依据及各自特征。通过对比分析，理解地理环境对人类生产生活的影响，树立因地制宜的发展观念。
+      </p>
+    </div>
+    
+    <!-- 统计卡片 -->
+    <div class="chapter-stats">
+      <div class="stat-card">
+        <div class="number">2</div>
+        <div class="label">核心课时</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">4</div>
+        <div class="label">地理区域</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">6</div>
+        <div class="label">必考知识点</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">15+</div>
+        <div class="label">中考真题</div>
+      </div>
+    </div>
+    
+    <!-- 课程列表 -->
+    <h2 class="section-title"><i class="fa-solid fa-list-ol"></i> 课程目录</h2>
+    
+    <ul class="lesson-list">
+      <li>
+        <a href="5.1_dqcy/dqcy.html" class="lesson-item">
+          <span class="lesson-num">1</span>
+          <div class="lesson-info">
+            <h3>5.1 中国的地理差异</h3>
+            <p>四大地理区域划分 · 秦岭-淮河一线 · 地理分界线</p>
+          </div>
+          <i class="fa-solid fa-chevron-right lesson-arrow"></i>
+        </a>
+      </li>
+      <li>
+        <a href="5.2_dqgy/dqgy.html" class="lesson-item">
+          <span class="lesson-num">2</span>
+          <div class="lesson-info">
+            <h3>5.2 四大地理区域比较</h3>
+            <p>北方地区 · 南方地区 · 西北地区 · 青藏地区</p>
+          </div>
+          <i class="fa-solid fa-chevron-right lesson-arrow"></i>
+        </a>
+      </li>
+    </ul>
+    
+    <!-- 学习目标 -->
+    <div class="objectives-card">
+      <h3><i class="fa-solid fa-bullseye"></i> 本章学习目标</h3>
+      <ul>
+        <li>✅ 了解中国地理环境的总体特征和区域差异</li>
+        <li>✅ 掌握秦岭—淮河一线的地理意义</li>
+        <li>✅ 理解四大地理区域的划分依据</li>
+        <li>✅ 比较四大地理区域的自然和人文特征</li>
+        <li>✅ 分析地理环境对生产生活的影响</li>
+        <li>✅ 树立因地制宜的可持续发展观念</li>
+      </ul>
+    </div>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+    <p class="small">基于 TeachAny v7.14.0 | 适配人教版八年级地理课程标准</p>
+  </footer>
+  
+  <script>
+    // 进度计算（可根据本地存储更新）
+    function updateProgress() {
+      const totalLessons = 2;
+      let completed = 0;
+      
+      // 从localStorage读取学习进度
+      try {
+        const progress = JSON.parse(localStorage.getItem('geo8-ch5-progress') || '{}');
+        completed = Object.values(progress).filter(v => v === true).length;
+      } catch (e) {}
+      
+      const percent = Math.round((completed / totalLessons) * 100);
+      document.getElementById('progress-fill').style.width = percent + '%';
+      document.getElementById('progress-text').textContent = percent + '%';
+    }
+    
+    document.addEventListener('DOMContentLoaded', updateProgress);
+  </script>
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

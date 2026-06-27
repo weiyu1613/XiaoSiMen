@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.4 北伐战争 - 初中历史八年级</title>
+  <style>
+    /* ========== 变量 & 重置 ========== */
+    :root {
+      --primary:   #8b4513;
+      --secondary: #cd853f;
+      --bg:        #faf7f2;
+      --text:      #3d2310;
+      --card:      #fff8f0;
+      --border:    #e8d5b0;
+      --shadow:    rgba(139,69,19,.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    img { max-width: 100%; }
+
+    /* ========== 1. 品牌栏 ========== */
+    .brand-bar {
+      background: linear-gradient(135deg, var(--primary) 0%, #6b3410 100%);
+      color: #fff;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+    .brand-bar .brand-logo {
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+    .brand-bar .brand-tag {
+      background: var(--secondary);
+      color: var(--primary);
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* ========== 2. 进度条 ========== */
+    .progress-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 4px;
+      background: var(--border);
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      width: 0%;
+      transition: width .15s ease;
+    }
+
+    /* ========== 3. 导航栏 ========== */
+    .nav-bar {
+      position: sticky;
+      top: 4px;
+      z-index: 99;
+      background: var(--card);
+      border-bottom: 2px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .nav-bar a {
+      padding: 12px 14px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+      transition: all .2s;
+      flex-shrink: 0;
+    }
+    .nav-bar a:hover, .nav-bar a.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* ========== 4. Hero区 ========== */
+    .hero {
+      background: linear-gradient(160deg, #6b3410 0%, var(--primary) 55%, var(--secondary) 100%);
+      color: #fff;
+      padding: 64px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner { position: relative; max-width: 760px; margin: 0 auto; }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 12px;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 800;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    .hero .subtitle {
+      font-size: 16px;
+      opacity: .88;
+      margin-bottom: 28px;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .badge-pill {
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ========== 5. SVG 知识图 ========== */
+    .section-wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+    .knowledge-svg-section {
+      padding: 56px 16px;
+      background: var(--card);
+    }
+    .knowledge-svg-section h2 {
+      text-align: center;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 32px;
+    }
+    .svg-container {
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    .svg-container svg { width: 100%; height: auto; display: block; }
+
+    /* ========== 6. 锚点 ========== */
+    .anchor-links {
+      padding: 32px 16px;
+      background: var(--bg);
+      text-align: center;
+    }
+    .anchor-links a {
+      display: inline-block;
+      margin: 6px 8px;
+      padding: 8px 18px;
+      border: 2px solid var(--border);
+      border-radius: 30px;
+      font-size: 13px;
+      color: var(--primary);
+      background: var(--card);
+      transition: all .2s;
+    }
+    .anchor-links a:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* ========== 7. 学习目标 ========== */
+    .objectives-section { padding: 56px 16px; }
+    .section-title {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+      margin: 10px auto 0;
+    }
+    .objectives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .obj-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 20px 20px 56px;
+      position: relative;
+      font-size: 14px;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+    .obj-card::before {
+      content: attr(data-num);
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      width: 28px;
+      height: 28px;
+      background: var(--secondary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* ========== 8. 核心知识点 ========== */
+    .core-section { padding: 56px 16px; background: var(--card); }
+    .知识点卡片 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
+    .知识卡 {
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 3px 14px var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .知识卡:hover { transform: translateY(-3px); box-shadow: 0 6px 24px var(--shadow); }
+    .知识卡-tag {
+      display: inline-block;
+      background: var(--secondary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .知识卡 h3 { font-size: 17px; color: var(--primary); margin-bottom: 10px; }
+    .知识卡 p, .知识卡 li { font-size: 14px; color: #5a3a1a; line-height: 1.8; }
+    .知识卡 ul { list-style: none; padding: 0; }
+    .知识卡 li { padding-left: 20px; position: relative; }
+    .知识卡 li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+      font-weight: 700;
+    }
+    .知识卡-highlight {
+      background: linear-gradient(135deg, #fff8f0, #fdf0dc);
+      border-left: 4px solid var(--secondary);
+      padding: 12px 16px;
+      border-radius: 0 10px 10px 0;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #6b3410;
+    }
+
+    /* 时间线 */
+    .timeline-section { padding: 40px 16px; max-width: 800px; margin: 0 auto; }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--secondary), var(--primary));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -22px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      background: var(--secondary);
+      border: 3px solid var(--bg);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--secondary);
+    }
+    .timeline-year {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .timeline-event { font-size: 14px; color: #5a3a1a; }
+
+    /* ========== 9. 互动测验 ========== */
+    .quiz-section { padding: 56px 16px; }
+    .quiz-intro {
+      text-align: center;
+      font-size: 14px;
+      color: #7a5a3a;
+      margin-bottom: 32px;
+      background: linear-gradient(135deg, #fff8f0, #fdf0dc);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 24px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .quiz-card {
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 3px 14px var(--shadow);
+    }
+    .quiz-num {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .quiz-q {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .quiz-options { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .quiz-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all .2s;
+      background: var(--bg);
+    }
+    .quiz-opt:hover:not([data-correct]) {
+      border-color: var(--secondary);
+      background: #fff8f0;
+    }
+    .quiz-opt[data-correct] {
+      border-color: #2e8b57;
+      background: #f0fff4;
+      color: #1a5c38;
+    }
+    .quiz-opt[data-wrong] {
+      border-color: #c0392b;
+      background: #fff5f5;
+      color: #8b1a1a;
+    }
+    .opt-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .quiz-feedback {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct {
+      background: #f0fff4;
+      border-left: 4px solid #2e8b57;
+      color: #1a5c38;
+    }
+    .quiz-feedback.wrong {
+      background: #fff5f5;
+      border-left: 4px solid #c0392b;
+      color: #8b1a1a;
+    }
+    .data-feedback { display: none; }
+
+    /* ========== 10. 页脚 ========== */
+    .footer {
+      background: linear-gradient(135deg, var(--primary) 0%, #6b3410 100%);
+      color: rgba(255,255,255,.75);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-brand { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 14px; }
+    .footer-links a { color: rgba(255,255,255,.7); font-size: 13px; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 12px; }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .hero { padding: 44px 16px 40px; }
+      .hero h1 { font-size: 26px; }
+      .nav-bar a { padding: 10px 10px; font-size: 13px; }
+      .section-title { font-size: 20px; }
+      .知识点卡片 { grid-template-columns: 1fr; }
+      .quiz-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 769px) {
+      .objectives-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  
+    .answer-explanation {
+      background: #fef9f0;
+      border-left: 4px solid var(--primary, #8b4513);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--primary-dark, #3d2b1f);
+      display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--primary, #8b4513); }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+<body>
+
+<!-- 1. 品牌栏 -->
+<header class="brand-bar">
+  <span class="brand-logo">📖 初中历史课件</span>
+  <span class="brand-tag">八年级 · 第三单元</span>
+</header>
+
+<!-- 2. 进度条 -->
+<div class="progress-bar"><div class="progress-fill" id="pBar"></div></div>
+
+<!-- 3. 导航栏 -->
+<nav class="nav-bar" id="navBar">
+  <a href="#hero">课程概览</a>
+  <a href="#svg-map">知识图谱</a>
+  <a href="#objectives">学习目标</a>
+  <a href="#core">核心知识点</a>
+  <a href="#timeline">历史时间线</a>
+  <a href="#quiz">互动测验</a>
+</nav>
+
+<!-- 4. Hero区 -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">初中历史 · 八年级上册 · 第三单元</div>
+    <h1>3.4 北伐战争</h1>
+    <p class="subtitle">1926—1927 · 国共合作 · 推翻军阀 · 走向革命</p>
+    <div class="hero-badges">
+      <span class="badge-pill">📅 1926—1927年</span>
+      <span class="badge-pill">🤝 国共第一次合作</span>
+      <span class="badge-pill">⚔️ 三路北伐</span>
+      <span class="badge-pill">🇨🇳 珠江→长江</span>
+    </div>
+  </div>
+</section>
+
+<!-- 5. SVG 知识图 -->
+<section class="knowledge-svg-section" id="svg-map">
+  <div class="section-wrap">
+    <h2 class="section-title">📊 知识结构图谱</h2>
+    <div class="svg-container">
+      <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="北伐战争知识结构图">
+        <defs>
+          <marker id="arrB" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#cd853f"/>
+          </marker>
+          <filter id="shadow"><feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="rgba(139,69,19,0.18)"/></filter>
+        </defs>
+
+        <!-- 中心节点 -->
+        <rect x="300" y="190" width="200" height="60" rx="14" fill="#8b4513" filter="url(#shadow)"/>
+        <text x="400" y="218" text-anchor="middle" fill="white" font-size="16" font-weight="bold">北伐战争</text>
+        <text x="400" y="236" text-anchor="middle" fill="#f0d9b5" font-size="12">1926—1927</text>
+
+        <!-- 左分支：背景 -->
+        <line x1="300" y1="220" x2="190" y2="160" stroke="#cd853f" stroke-width="2.5" marker-end="url(#arrB)"/>
+        <rect x="60" y="125" width="160" height="70" rx="10" fill="#cd853f" filter="url(#shadow)"/>
+        <text x="140" y="152" text-anchor="middle" fill="white" font-size="13" font-weight="bold">历史背景</text>
+        <text x="140" y="169" text-anchor="middle" fill="#f0d9b5" font-size="11">国共第一次合作</text>
+        <text x="140" y="184" text-anchor="middle" fill="#f0d9b5" font-size="11">1924 · 黄埔军校</text>
+
+        <!-- 左下分支：对象 -->
+        <line x1="290" y1="240" x2="190" y2="300" stroke="#cd853f" stroke-width="2.5" marker-end="url(#arrB)"/>
+        <rect x="60" y="265" width="160" height="70" rx="10" fill="#cd853f" filter="url(#shadow)"/>
+        <text x="140" y="292" text-anchor="middle" fill="white" font-size="13" font-weight="bold">北伐对象</text>
+        <text x="140" y="309" text-anchor="middle" fill="#f0d9b5" font-size="11">吴佩孚 · 孙传芳</text>
+        <text x="140" y="324" text-anchor="middle" fill="#f0d9b5" font-size="11">张作霖</text>
+
+        <!-- 右上分支：战场 -->
+        <line x1="500" y1="210" x2="600" y2="160" stroke="#cd853f" stroke-width="2.5" marker-end="url(#arrB)"/>
+        <rect x="520" y="125" width="160" height="70" rx="10" fill="#cd853f" filter="url(#shadow)"/>
+        <text x="600" y="152" text-anchor="middle" fill="white" font-size="13" font-weight="bold">战场形势</text>
+        <text x="600" y="169" text-anchor="middle" fill="#f0d9b5" font-size="11">珠江流域 → 长江流域</text>
+        <text x="600" y="184" text-anchor="middle" fill="#f0d9b5" font-size="11">不到半年推进</text>
+
+        <!-- 右下分支：结果 -->
+        <line x1="490" y1="240" x2="600" y2="300" stroke="#cd853f" stroke-width="2.5" marker-end="url(#arrB)"/>
+        <rect x="520" y="265" width="160" height="70" rx="10" fill="#cd853f" filter="url(#shadow)"/>
+        <text x="600" y="292" text-anchor="middle" fill="white" font-size="13" font-weight="bold">革命结果</text>
+        <text x="600" y="309" text-anchor="middle" fill="#f0d9b5" font-size="11">四一二 / 七一五政变</text>
+        <text x="600" y="324" text-anchor="middle" fill="#f0d9b5" font-size="11">国共合作破裂</text>
+
+        <!-- 三路北伐小卡片 -->
+        <rect x="310" y="370" width="180" height="56" rx="10" fill="#faf7f2" stroke="#cd853f" stroke-width="2"/>
+        <text x="400" y="393" text-anchor="middle" fill="#8b4513" font-size="12" font-weight="bold">三路北伐军队</text>
+        <text x="400" y="411" text-anchor="middle" fill="#8b4513" font-size="11">东路：指向福建、浙江</text>
+        <text x="400" y="423" text-anchor="middle" fill="#8b4513" font-size="11">中路：主攻湖南、湖北</text>
+
+        <!-- 连接线至三路 -->
+        <line x1="400" y1="250" x2="400" y2="370" stroke="#cd853f" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrB)"/>
+
+        <!-- 图例 -->
+        <rect x="10" y="10" width="14" height="14" rx="3" fill="#8b4513"/>
+        <text x="30" y="21" fill="#8b4513" font-size="11">核心概念</text>
+        <rect x="120" y="10" width="14" height="14" rx="3" fill="#cd853f"/>
+        <text x="140" y="21" fill="#cd853f" font-size="11">分支要素</text>
+        <line x1="210" y1="17" x2="260" y2="17" stroke="#cd853f" stroke-width="2" marker-end="url(#arrB)"/>
+        <text x="268" y="21" fill="#cd853f" font-size="11">逻辑关系</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 6. 锚点快捷导航 -->
+<div class="anchor-links">
+  <a href="#objectives">学习目标</a>
+  <a href="#core">核心知识点</a>
+  <a href="#timeline">历史时间线</a>
+  <a href="#quiz">互动测验</a>
+  <a href="#hero">返回顶部</a>
+</div>
+
+<!-- 7. 学习目标 -->
+<section class="objectives-section" id="objectives">
+  <div class="section-wrap">
+    <h2 class="section-title">🎯 学习目标</h2>
+    <div class="objectives-grid">
+      <div class="obj-card" data-num="1">
+        掌握北伐战争的<strong>目的、时间、对象</strong>，能准确陈述基本史实。
+      </div>
+      <div class="obj-card" data-num="2">
+        理解<strong>国共第一次合作</strong>的背景与意义，认识统一战线的重要性。
+      </div>
+      <div class="obj-card" data-num="3">
+        分析北伐战争的<strong>进展过程</strong>，理解"不到半年从珠江打到长江"的意义。
+      </div>
+      <div class="obj-card" data-num="4">
+        认识"四一二"和"七一五"政变，理解第一次国共合作破裂的原因与影响。
+      </div>
+      <div class="obj-card" data-num="5">
+        通过知识图谱和时间线，培养<strong>时空观念</strong>与历史思维能力。
+      </div>
+      <div class="obj-card" data-num="6">
+        能够区分三位军阀<strong>吴佩孚、孙传芳、张作霖</strong>的势力范围与结局。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. 核心知识点 -->
+<section class="core-section" id="core">
+  <div class="section-wrap">
+    <h2 class="section-title">📚 核心知识点</h2>
+    <div class="知识点卡片">
+
+      <!-- 卡片1：背景 -->
+      <div class="知识卡">
+        <span class="知识卡-tag">历史背景</span>
+        <h3>国共第一次合作</h3>
+        <ul>
+          <li>1924年1月，中国国民党第一次全国代表大会召开</li>
+          <li>标志国共第一次合作正式形成</li>
+          <li>同年5月，黄埔军校在广州建立</li>
+          <li>孙中山提出"联俄、联共、扶助农工"三大政策</li>
+        </ul>
+        <div class="知识卡-highlight">💡 国共合作为北伐战争奠定了政治和组织基础。</div>
+      </div>
+
+      <!-- 卡片2：对象 -->
+      <div class="知识卡">
+        <span class="知识卡-tag">北伐对象</span>
+        <h3>三大军阀</h3>
+        <ul>
+          <li><strong>吴佩孚</strong>：盘踞湖南、湖北，控制长江中游</li>
+          <li><strong>孙传芳</strong>：盘踞东南五省（江苏、浙江、安徽等）</li>
+          <li><strong>张作霖</strong>：盘踞东北和华北，以奉系军阀为代表</li>
+        </ul>
+        <div class="知识卡-highlight">💡 北伐军分三路进攻，其中<strong>中路</strong>为主攻方向，目标直指吴佩孚。</div>
+      </div>
+
+      <!-- 卡片3：过程 -->
+      <div class="知识卡">
+        <span class="知识卡-tag">战争进程</span>
+        <h3>三路北伐 · 势如破竹</h3>
+        <ul>
+          <li>1926年7月，国民革命军正式出师北伐</li>
+          <li><strong>东路</strong>：指向福建、浙江</li>
+          <li><strong>中路</strong>：主攻湖南、湖北（叶挺独立团战功卓著）</li>
+          <li>不到半年，革命势力从珠江流域推进到长江流域</li>
+          <li>攻克武汉、南昌等重镇</li>
+        </ul>
+        <div class="知识卡-highlight">⚡ 叶挺独立团在汀泗桥、贺胜桥战役中英勇善战，成为北伐先锋。</div>
+      </div>
+
+      <!-- 卡片4：失败 -->
+      <div class="知识卡">
+        <span class="知识卡-tag">革命转折</span>
+        <h3>国共合作破裂</h3>
+        <ul>
+          <li><strong>1927年4月12日</strong>：蒋介石在上海发动"四一二"政变</li>
+          <li>大肆屠杀共产党人和革命群众</li>
+          <li><strong>1927年7月15日</strong>：汪精卫在武汉发动"七一五"政变</li>
+          <li>第一次国共合作全面破裂</li>
+          <li>国民革命失败，北伐战争陷入僵局</li>
+        </ul>
+        <div class="知识卡-highlight">⚠️ 国共合作破裂标志着国民革命暂时失败，但为中国革命积累了宝贵经验。</div>
+      </div>
+
+      <!-- 卡片5：意义 -->
+      <div class="知识卡">
+        <span class="知识卡-tag">历史意义</span>
+        <h3>北伐战争的历史影响</h3>
+        <ul>
+          <li>基本推翻了北洋军阀的反动统治</li>
+          <li>沉重打击了帝国主义在华势力</li>
+          <li>唤醒民众革命意识，传播了革命思想</li>
+          <li>锻炼了中国共产党领导的人民武装力量</li>
+          <li>为后来的革命斗争积累了宝贵经验</li>
+        </ul>
+        <div class="知识卡-highlight">🌟 北伐战争虽然未能完成反帝反封建的历史任务，但为中国共产党独立领导革命奠定了基础。</div>
+      </div>
+
+      <!-- 卡片6：三路北伐 -->
+      <div class="知识卡">
+        <span class="知识卡-tag">军事部署</span>
+        <h3>三路北伐军队</h3>
+        <ul>
+          <li><strong>第一路（西路）</strong>：经湖南攻湖北，主攻吴佩孚</li>
+          <li><strong>第二路（中路）</strong>：经江西攻安徽、江苏，主攻孙传芳</li>
+          <li><strong>第三路（东路）</strong>：经福建攻浙江，配合中路作战</li>
+        </ul>
+        <div class="知识卡-highlight">📌 北伐军以黄埔军校师生为骨干，采用灵活战术，以少胜多，屡战屡胜。</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 历史时间线 -->
+<section class="timeline-section" id="timeline">
+  <div class="section-wrap">
+    <h2 class="section-title">⏱️ 历史时间线</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1924年1月</div>
+        <div class="timeline-event">中国国民党第一次全国代表大会召开，国共第一次合作正式形成</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1924年5月</div>
+        <div class="timeline-event">黄埔陆军军官学校（黄埔军校）在广州建立</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1926年7月</div>
+        <div class="timeline-event">国民革命军正式出师北伐，兵分三路讨伐军阀</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1926年9月</div>
+        <div class="timeline-event">北伐军攻克武汉，叶挺独立团战功卓著</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1926年11月</div>
+        <div class="timeline-event">北伐军攻克南昌，控制江西</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1926年底</div>
+        <div class="timeline-event">北伐军推进至长江流域，革命势力席卷半个中国</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1927年4月12日</div>
+        <div class="timeline-event">蒋介石发动"四一二"反革命政变，上海发生"四一二"大屠杀</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1927年7月15日</div>
+        <div class="timeline-event">汪精卫发动"七一五"反革命政变，国共合作全面破裂</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. 互动测验 -->
+<section class="quiz-section" id="quiz">
+  <div class="section-wrap">
+    <h2 class="section-title">✍️ 互动测验</h2>
+    <div class="quiz-intro">💬 选择正确答案，提交后查看错因解析。坚持作答，检验学习成果！</div>
+    <div class="quiz-grid">
+
+      <!-- Q1 -->
+      <div class="quiz-card" id="q1">
+        <div class="quiz-num">1</div>
+        <div class="quiz-q">北伐战争正式开始的时间是？</div>
+        <ul class="quiz-options" data-answer="B">
+          <li class="quiz-opt" data-opt="A">
+            <span class="opt-letter">A</span>
+            <span>1924年1月</span>
+          </li>
+          <li class="quiz-opt" data-opt="B">
+            <span class="opt-letter">B</span>
+            <span>1926年7月</span>
+          </li>
+          <li class="quiz-opt" data-opt="C">
+            <span class="opt-letter">C</span>
+            <span>1927年4月</span>
+          </li>
+          <li class="quiz-opt" data-opt="D">
+            <span class="opt-letter">D</span>
+            <span>1925年5月</span>
+          </li>
+        </ul>
+        <div class="data-feedback" data-correct="B">✅ 正确！1926年7月，国民革命军正式出师北伐。</div>
+        <div class="data-feedback" data-wrong="A">❌ 错因解析：1924年1月是中国国民党一大召开的时间，标志着国共第一次合作形成，而不是北伐战争开始的时间。</div>
+        <div class="data-feedback" data-wrong="C">❌ 错因解析：1927年4月是蒋介石发动"四一二"政变的时间，此时北伐战争已经进行并取得了重大进展。</div>
+        <div class="data-feedback" data-wrong="D">❌ 错因解析：1925年5月黄埔军校已建立，但北伐尚未开始。北伐正式开始于1926年7月。</div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-card" id="q2">
+        <div class="quiz-num">2</div>
+        <div class="quiz-q">北伐战争中，以下哪位人物不属于"三大军阀"之列？</div>
+        <ul class="quiz-options" data-answer="D">
+          <li class="quiz-opt" data-opt="A">
+            <span class="opt-letter">A</span>
+            <span>吴佩孚</span>
+          </li>
+          <li class="quiz-opt" data-opt="B">
+            <span class="opt-letter">B</span>
+            <span>孙传芳</span>
+          </li>
+          <li class="quiz-opt" data-opt="C">
+            <span class="opt-letter">C</span>
+            <span>张作霖</span>
+          </li>
+          <li class="quiz-opt" data-opt="D">
+            <span class="opt-letter">D</span>
+            <span>叶挺</span>
+          </li>
+        </ul>
+        <div class="data-feedback" data-correct="D">✅ 正确！叶挺是北伐军名将、独立团团长，属于革命阵营，不是北伐对象（军阀）。</div>
+        <div class="data-feedback" data-wrong="A">❌ 错因解析：吴佩孚是北洋军阀的主要代表之一，盘踞湖南、湖北，是北伐的主要对象之一，并非我方将领。</div>
+        <div class="data-feedback" data-wrong="B">❌ 错因解析：孙传芳是东南五省的军阀势力头目，与吴佩孚、张作霖并称为北伐的三大对象。</div>
+        <div class="data-feedback" data-wrong="C">❌ 错因解析：张作霖是奉系军阀首领，占据东北和华北，是北伐对象之一，但不是北伐军将领。</div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-card" id="q3">
+        <div class="quiz-num">3</div>
+        <div class="quiz-q">"四一二"政变发生在哪座城市？</div>
+        <ul class="quiz-options" data-answer="C">
+          <li class="quiz-opt" data-opt="A">
+            <span class="opt-letter">A</span>
+            <span>武汉</span>
+          </li>
+          <li class="quiz-opt" data-opt="B">
+            <span class="opt-letter">B</span>
+            <span>南京</span>
+          </li>
+          <li class="quiz-opt" data-opt="C">
+            <span class="opt-letter">C</span>
+            <span>上海</span>
+          </li>
+          <li class="quiz-opt" data-opt="D">
+            <span class="opt-letter">D</span>
+            <span>广州</span>
+          </li>
+        </ul>
+        <div class="data-feedback" data-correct="C">✅ 正确！"四一二"政变是1927年4月12日蒋介石在上海发动的反革命政变。</div>
+        <div class="data-feedback" data-wrong="A">❌ 错因解析：武汉是当时国民政府的所在地，但"四一二"政变发生在上海，由蒋介石在上海发动。</div>
+        <div class="data-feedback" data-wrong="B">❌ 错因解析：南京当时尚未成为政变中心。"四一二"政变发生在上海，是蒋介石背叛革命的标志性事件。</div>
+        <div class="data-feedback" data-wrong="D">❌ 错因解析：广州是国民革命的发源地和黄埔军校所在地，但"四一二"政变发生在上海。</div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-card" id="q4">
+        <div class="quiz-num">4</div>
+        <div class="quiz-q">北伐战争的主要成果是？</div>
+        <ul class="quiz-options" data-answer="B">
+          <li class="quiz-opt" data-opt="A">
+            <span class="opt-letter">A</span>
+            <span>彻底推翻了北洋军阀的统治</span>
+          </li>
+          <li class="quiz-opt" data-opt="B">
+            <span class="opt-letter">B</span>
+            <span>不到半年从珠江流域打到长江流域</span>
+          </li>
+          <li class="quiz-opt" data-opt="C">
+            <span class="opt-letter">C</span>
+            <span>完成了反帝反封建的历史任务</span>
+          </li>
+          <li class="quiz-opt" data-opt="D">
+            <span class="opt-letter">D</span>
+            <span>建立了稳固的全国统一政权</span>
+          </li>
+        </ul>
+        <div class="data-feedback" data-correct="B">✅ 正确！北伐战争在不到半年时间内，将革命势力从珠江流域推进到长江流域，取得重大进展。</div>
+        <div class="data-feedback" data-wrong="A">❌ 错因解析：北伐战争基本推翻了北洋军阀统治，但"彻底"一词过于绝对，且国共合作破裂后革命陷入僵局。</div>
+        <div class="data-feedback" data-wrong="C">❌ 错因解析：北伐战争并未完成反帝反封建的历史任务，因为国共合作破裂，革命被迫中断。</div>
+        <div class="data-feedback" data-wrong="D">❌ 错因解析：北伐战争因国共合作破裂而未能建立全国统一政权，后来国民党建立了专制政权。</div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-card" id="q5">
+        <div class="quiz-num">5</div>
+        <div class="quiz-q">国共第一次合作破裂的标志性事件是？</div>
+        <ul class="quiz-options" data-answer="D">
+          <li class="quiz-opt" data-opt="A">
+            <span class="opt-letter">A</span>
+            <span>黄埔军校的建立</span>
+          </li>
+          <li class="quiz-opt" data-opt="B">
+            <span class="opt-letter">B</span>
+            <span>北伐军攻克武汉</span>
+          </li>
+          <li class="quiz-opt" data-opt="C">
+            <span class="opt-letter">C</span>
+            <span>"四一二"政变</span>
+          </li>
+          <li class="quiz-opt" data-opt="D">
+            <span class="opt-letter">D</span>
+            <span>"四一二"政变和"七一五"政变</span>
+          </li>
+        </ul>
+        <div class="data-feedback" data-correct="D">✅ 正确！"四一二"政变和"七一五"政变共同标志着第一次国共合作全面破裂。</div>
+        <div class="data-feedback" data-wrong="A">❌ 错因解析：黄埔军校的建立是国共合作的成果之一，与合作破裂无关。</div>
+        <div class="data-feedback" data-wrong="B">❌ 错因解析：北伐军攻克武汉是北伐战争的胜利成果，是合作期间取得的战绩。</div>
+        <div class="data-feedback" data-wrong="C">❌ 错因解析："四一二"政变是国共破裂的重要开端，但标志国共合作全面破裂的是"七一五"政变，两者共同构成完整标志。</div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 10. 页脚 -->
+    <!-- Section: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】北伐战争开始于哪一年？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+            <span class="opt-letter">A</span> 1926年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 答错了，正确答案是：1926年">
+            <span class="opt-letter">B</span> 1924年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 答错了，正确答案是：1926年">
+            <span class="opt-letter">C</span> 1927年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 1926年</strong></p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐ 基础】北伐的主要对象是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+            <span class="opt-letter">A</span> 吴佩孚、孙传芳、张作霖
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 答错了，正确答案是：吴佩孚、孙传芳、张作霖">
+            <span class="opt-letter">B</span> 清政府、列强
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 答错了，正确答案是：吴佩孚、孙传芳、张作霖">
+            <span class="opt-letter">C</span> 国民党右派
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 吴佩孚、孙传芳、张作霖</strong></p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>3. 【⭐ 基础】北伐战争中被誉为"铁军"的是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+            <span class="opt-letter">A</span> 叶挺独立团
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 答错了，正确答案是：叶挺独立团">
+            <span class="opt-letter">B</span> 黄埔学生军
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 答错了，正确答案是：叶挺独立团">
+            <span class="opt-letter">C</span> 工农革命军
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 叶挺独立团</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐⭐ 提高·中考真题】下列关于北伐战争的表述，正确的是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+            <span class="opt-letter">A</span> 1926年，北伐战争开始
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：1926年，北伐战争开始">
+            <span class="opt-letter">B</span> 干扰选项B
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：1926年，北伐战争开始">
+            <span class="opt-letter">C</span> 干扰选项C
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A</strong></p>
+          <p style="margin-top: 8px;">1926年，北伐战争开始</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高·中考真题】下列关于北伐战争的表述，正确的是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'A')">
+            <span class="opt-letter">A</span> 主要对象：吴佩孚、孙传芳、张作霖
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：主要对象：吴佩孚、孙传芳、张作霖">
+            <span class="opt-letter">B</span> 干扰选项B
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：主要对象：吴佩孚、孙传芳、张作霖">
+            <span class="opt-letter">C</span> 干扰选项C
+          </div>
+        </div>
+        <div class="feedback" id="feedback-5"></div>
+        <div class="answer-explanation" id="explanation-5">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A</strong></p>
+          <p style="margin-top: 8px;">主要对象：吴佩孚、孙传芳、张作霖</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐ 提高·中考真题】下列关于北伐战争的表述，正确的是？</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+            <span class="opt-letter">A</span> 叶挺独立团被誉为"铁军"
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：叶挺独立团被誉为"铁军"">
+            <span class="opt-letter">B</span> 干扰选项B
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：叶挺独立团被誉为"铁军"">
+            <span class="opt-letter">C</span> 干扰选项C
+          </div>
+        </div>
+        <div class="feedback" id="feedback-6"></div>
+        <div class="answer-explanation" id="explanation-6">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A</strong></p>
+          <p style="margin-top: 8px;">叶挺独立团被誉为"铁军"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#ffffff);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：1926年，北伐战争开始</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了20次</span>
+          </div>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#ffffff);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：主要对象：吴佩孚、孙传芳、张作霖</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了18次</span>
+          </div>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#ffffff);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：叶挺独立团被誉为"铁军"</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了15次</span>
+          </div>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#ffffff);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="color:#166534;font-size:15px;">📍 常考考点：意义：基本推翻了北洋军阀的统治</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了12次</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+
+  <footer class="footer" id="footer">
+  <div class="footer-brand">📖 初中历史课件 · 八年级上册</div>
+  <div class="footer-links">
+    <a href="#hero">课程概览</a>
+    <a href="#svg-map">知识图谱</a>
+    <a href="#objectives">学习目标</a>
+    <a href="#core">核心知识点</a>
+    <a href="#timeline">历史时间线</a>
+    <a href="#quiz">互动测验</a>
+  </div>
+  <div class="footer-copy">© 2026 初中历史课件资源库 · 北伐战争 · 3.4</div>
+</footer>
+
+<script>
+/* ====== 进度条 ====== */
+const pBar = document.getElementById('pBar');
+const updateProgress = () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  pBar.style.width = docH > 0 ? (window.scrollY / docH * 100).toFixed(1) + '%' : '0%';
+};
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+/* ====== 导航高亮 ====== */
+const navLinks = document.querySelectorAll('.nav-bar a');
+const sections = document.querySelectorAll('section[id], div[id]');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`.nav-bar a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.25 });
+sections.forEach(s => { if (s.id) navObserver.observe(s); });
+
+/* ====== 测验交互 ====== */
+document.querySelectorAll('.quiz-card').forEach(card => {
+  const opts = card.querySelectorAll('.quiz-opt');
+  const correct = card.querySelector('.quiz-options').dataset.answer;
+  const feedbackArea = card.querySelector('.quiz-feedback');
+  const allFeedback = card.querySelectorAll('.data-feedback');
+
+  opts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (opt.classList.contains('locked')) return;
+      opts.forEach(o => o.classList.add('locked'));
+      const chosen = opt.dataset.opt;
+
+      opts.forEach(o => {
+        if (o.dataset.opt === correct) o.setAttribute('data-correct', '');
+        if (o.dataset.opt === chosen && o.dataset.opt !== correct) o.setAttribute('data-wrong', '');
+      });
+
+      allFeedback.forEach(fb => {
+        if (chosen === correct && fb.dataset.correct === correct) {
+          feedbackArea.textContent = fb.textContent;
+          feedbackArea.className = 'quiz-feedback show correct';
+        } else if (chosen !== correct && fb.dataset.wrong === chosen) {
+          feedbackArea.textContent = fb.textContent;
+          feedbackArea.className = 'quiz-feedback show wrong';
+        }
+      });
+    });
+  });
+});
+
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+
+  </script>
+</body>
+</html>

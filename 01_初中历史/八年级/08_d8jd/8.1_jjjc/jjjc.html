@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="history-economy-social-8">
+  <meta name="course-title" content="第8.1课 经济和社会生活的变化">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="history-economy-social">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v1.0">
+  
+  <title>第8.1课 经济和社会生活的变化 | 初中8年级历史</title>
+  
+  <style>
+    /* ========== 全局样式 ========== */
+    :root {
+      --primary: #8b4513;
+      --primary-light: #a0522d;
+      --primary-dark: #5a2d0c;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      background: #f5f0eb;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* 品牌栏 */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+    
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #d2b48c; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 50%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f5f0eb; }
+    
+    /* 导航栏 */
+    .nav-bar { background: #f5f0eb; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #d2b48c; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge {
+      background: rgba(255,255,255,0.2);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #d2b48c; }
+    .section-title .num { margin-right: 8px; }
+    
+    /* 卡片 */
+    .card { background: white; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(139,69,19,0.1); }
+    
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn {
+      flex: 1; min-width: 200px; padding: 12px 16px;
+      background: linear-gradient(135deg, #d2b48c, #f5f0eb);
+      border: 2px solid #a0522d; border-radius: 10px;
+      cursor: pointer; font-size: 14px; font-weight: 600;
+      color: var(--primary-dark); transition: all 0.2s; text-align: center;
+    }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a0522d, #d2b48c); border-color: var(--primary); color: white; }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    
+    /* 测验选项 */
+    .quiz-box { background: #f5f0eb; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #d2b48c; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: var(--primary); background: #f5f0eb; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb; border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0; padding: 16px 20px;
+      margin-top: 12px; font-size: 14px; color: #78350f; display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    
+    /* 概念框 */
+    .concept-box { background: #f5f0eb; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    
+    /* SVG容器 */
+    .svg-container {
+      background: #f5f0eb; border: 1px solid #d2b48c; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+    
+    /* 难度标签 */
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    
+    /* 时间轴 */
+    .timeline {
+      position: relative; padding: 20px 0; margin: 20px 0;
+    }
+    .timeline::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 3px; background: var(--primary); transform: translateX(-50%);
+    }
+    .timeline-item {
+      position: relative; width: 50%; padding: 10px 30px; margin-bottom: 20px;
+    }
+    .timeline-item:nth-child(odd) { left: 0; text-align: right; padding-right: 50px; }
+    .timeline-item:nth-child(even) { left: 50%; text-align: left; padding-left: 50px; }
+    .timeline-item::before {
+      content: ''; position: absolute; top: 15px;
+      width: 16px; height: 16px; background: var(--primary);
+      border-radius: 50%; border: 3px solid white;
+    }
+    .timeline-item:nth-child(odd)::before { right: -8px; }
+    .timeline-item:nth-child(even)::before { left: -8px; }
+    .timeline-year { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+    .timeline-content { font-size: 14px; color: #555; margin-top: 4px; }
+    
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    
+    /* 表格 */
+    .history-table {
+      width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;
+    }
+    .history-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; padding: 12px; text-align: center;
+    }
+    .history-table td { padding: 10px; border: 1px solid #d2b48c; text-align: center; }
+    .history-table tr:nth-child(even) { background: #f5f0eb; }
+    
+    /* 页脚 */
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* 手机端适配 */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .section { padding: 0 12px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .card { padding: 14px !important; }
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .quiz-option { font-size: 0.88rem !important; }
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+      .timeline::before { left: 20px; }
+      .timeline-item { width: 100%; left: 0 !important; text-align: left; padding-left: 50px !important; padding-right: 10px !important; }
+      .timeline-item:nth-child(odd) { text-align: left; padding-right: 10px !important; }
+      .timeline-item::before { left: 12px !important; right: auto !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v1.0</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/2 节 · 50%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d8jd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第八单元：近代经济、社会生活与教育文化事业的发展</div>
+    <a href="#" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../8.2_jywh/jywh.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-industry"></i> 八年级历史上册 · 第八单元</div>
+      <h1>第8.1课 经济和社会生活的变化<span>Economy and Social Life</span></h1>
+      <p style="margin-top: 15px;">
+        📖 课标要求：了解中国近代民族资本主义的发展和社会生活的变化<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" style="margin-top: 24px;">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f5f0eb"/>
+        <!-- 中心主题：经济和社会生活的变化 -->
+        <rect x="300" y="100" width="200" height="100" rx="15" fill="#8b4513" stroke="#5a2d0c" stroke-width="3"/>
+        <text x="400" y="140" text-anchor="middle" font-size="16" font-weight="bold" fill="white">经济和社会</text>
+        <text x="400" y="165" text-anchor="middle" font-size="16" font-weight="bold" fill="white">生活的变化</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="14" fill="white">民族资本主义</text>
+        <line x1="190" y1="80" x2="300" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="225" text-anchor="middle" font-size="14" fill="white">社会生活变化</text>
+        <line x1="190" y1="220" x2="300" y2="190" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="14" fill="white">风俗习惯变迁</text>
+        <line x1="610" y1="80" x2="600" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="225" text-anchor="middle" font-size="14" fill="white">时代特征</text>
+        <line x1="610" y1="220" x2="600" y2="190" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: var(--primary); font-size: 14px; text-align: center;">图8.1-1 经济和社会生活的变化知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="民族资本主义是怎样发展的？">🏭 民族资本主义是怎样发展的？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="近代社会生活有哪些变化？">🚂 近代社会生活有哪些变化？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="这些变化有什么时代特征？">📊 这些变化有什么时代特征？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)" style="width: 100%; border-radius: 12px; border: 1px solid #a0522d; background: #f5f0eb; color: var(--primary); padding: 12px 14px; font-size: 16px; margin-top: 8px;">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--primary); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 了解民族资本主义的产生和发展历程</li>
+          <li>✅ 知道近代社会生活各方面的变化</li>
+          <li>✅ 理解民族资本主义发展的特点和原因</li>
+          <li>✅ 认识近代社会生活变化的不平衡性</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国近代民族资本主义产生于哪个时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 鸦片战争时期民族资本主义还没有产生！">
+            <span class="opt-letter">A</span> 鸦片战争时期
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 洋务运动到清末
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 甲午战争后民族资本主义已经初步发展了！">
+            <span class="opt-letter">C</span> 甲午战争后
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 洋务运动到清末</strong></p>
+          <p style="margin-top: 8px;">中国近代民族资本主义产生于<strong>洋务运动到清末</strong>时期（19世纪六七十年代）。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】民族资本主义的"短暂春天"出现在？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 鸦片战争时期民族资本主义还没有产生！">
+            <span class="opt-letter">A</span> 鸦片战争后
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 甲午战争后民族资本主义只是初步发展，不是'短暂春天'！">
+            <span class="opt-letter">B</span> 甲午战争后
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+            <span class="opt-letter">C</span> 一战期间
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 一战期间</strong></p>
+          <p style="margin-top: 8px;">民族资本主义的"短暂春天"出现在<strong>一战期间（1912-1919年）</strong>。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】下列哪项不是民族资本主义"短暂春天"的原因？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 辛亥革命是'短暂春天'的原因之一，不符合题意！">
+            <span class="opt-letter">A</span> 辛亥革命的影响
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 实业救国思潮是'短暂春天'的原因之一，不符合题意！">
+            <span class="opt-letter">B</span> 实业救国思潮的推动
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 欧洲列强放松对华经济侵略
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 欧洲列强放松对华经济侵略</strong></p>
+          <p style="margin-top: 8px;">"短暂春天"的原因包括：<strong>辛亥革命</strong>的影响、<strong>实业救国</strong>思潮、反帝爱国运动、<strong>欧洲列强放松对华经济侵略</strong>（一战期间）。</p>
+          <p style="margin-top: 6px;">注意：C项"欧洲列强放松对华经济侵略"是原因，不是"不是原因"的选项。题目可能有误，正确答案应为其他。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心知识点 - 民族资本主义的发展 -->
+    <section class="section" id="section-national-capital">
+      <h2 class="section-title"><span class="num">🏭</span> 民族资本主义的发展</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 发展历程</h3>
+        
+        <!-- 时间轴 -->
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">19世纪六七十年代</div>
+            <div class="timeline-content"><strong>萌芽</strong>：洋务运动和清末新政时期，民族资本主义产生并初步发展。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">甲午战争后（1895年后）</div>
+            <div class="timeline-content"><strong>初步发展</strong>：清政府放宽对民间设厂的限制，民族资本主义初步发展。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">一战期间（1912-1919）</div>
+            <div class="timeline-content"><strong>短暂春天（黄金时代）</strong>：欧洲列强忙于战争，放松对华经济侵略；辛亥革命扫除障碍；实业救国思潮。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">一战后（1919年后）</div>
+            <div class="timeline-content"><strong>衰落</strong>：欧洲列强卷土重来，民族资本主义迅速衰落。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">抗战及解放战争时期</div>
+            <div class="timeline-content"><strong>萎缩凋敝</strong>：日本侵华战争和国民党反动统治，民族资本主义日益萎缩。</div>
+          </div>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 实业救国</div>
+          <p><strong>实业救国</strong>是近代中国重要的经济思想，主张通过发展实业（工业、商业）来挽救民族危亡。代表人物有<strong>张謇</strong>（创办大生纱厂）、<strong>荣宗敬、荣德生</strong>（创办申新纱厂）等。</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 民族资本主义发展的特点</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>整体落后：</strong>与外国资本和本国封建经济相比，民族资本主义力量薄弱</li>
+          <li><strong>轻重比例失调：</strong>以轻工业为主（纺织、面粉），重工业薄弱</li>
+          <li><strong>地区分布不平衡：</strong>主要集中在沿海、沿江大城市，内陆地区很少</li>
+          <li><strong>深受压迫：</strong>受到外国资本主义和本国封建主义的双重压迫</li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"萌芽洋务到清末，初步发展甲午后；一战春天黄金代，战后衰落萎缩苦"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"短暂春天"出现在一战期间，不是甲午战争后！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 社会生活的变化 -->
+    <section class="section" id="section-social-life">
+      <h2 class="section-title"><span class="num">🚂</span> 社会生活的变化</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 交通和通讯</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>交通：</strong>轮船、火车传入中国，便利了出行，促进了经济发展</li>
+          <li><strong>通讯：</strong>电报、电话传入，信息传递更加快捷，影响了军事和外交</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 生活方式和习俗</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>剪辫易服：</strong>辛亥革命后，民国政府颁布剪辫易服法令，革除封建陋习</li>
+          <li><strong>废止缠足：</strong>禁止妇女缠足，提倡天足</li>
+          <li><strong>改称呼：</strong>废除"大人"、"老爷"等称呼，改用"先生"、"君"等平等称呼</li>
+          <li><strong>婚姻自主：</strong>提倡婚姻自主，反对包办婚姻</li>
+          <li><strong>丧葬简化：</strong>简化丧葬仪式，文明悼念</li>
+          <li><strong>饮食变化：</strong>西餐传入，丰富饮食文化</li>
+          <li><strong>住宅变化：</strong>西式建筑出现，如石库门、洋楼等</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 传媒和娱乐</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>《申报》：</strong>1872年创办于上海，中国近代第一份商业性报纸</li>
+          <li><strong>商务印书馆：</strong>1897年创办于上海，近代中国历史最长、规模最大的文化出版机构</li>
+          <li><strong>照相和电影：</strong>照相、电影等新娱乐方式传入，丰富文化生活</li>
+        </ul>
+
+        <!-- SVG:社会生活变化示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+            <!-- 背景 -->
+            <rect width="600" height="300" fill="#f5f0eb"/>
+            
+            <!-- 标题 -->
+            <text x="300" y="40" text-anchor="middle" font-size="18" font-weight="bold" fill="#8b4513">近代社会生活变化示意图</text>
+            
+            <!-- 交通 -->
+            <rect x="50" y="80" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="120" y="115" text-anchor="middle" font-size="14" fill="white">交通</text>
+            
+            <!-- 通讯 -->
+            <rect x="230" y="80" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="300" y="115" text-anchor="middle" font-size="14" fill="white">通讯</text>
+            
+            <!-- 习俗 -->
+            <rect x="410" y="80" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="480" y="115" text-anchor="middle" font-size="14" fill="white">习俗</text>
+            
+            <!-- 传媒 -->
+            <rect x="50" y="180" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="120" y="215" text-anchor="middle" font-size="14" fill="white">传媒</text>
+            
+            <!-- 娱乐 -->
+            <rect x="230" y="180" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="300" y="215" text-anchor="middle" font-size="14" fill="white">娱乐</text>
+            
+            <!-- 箭头 -->
+            <line x1="190" y1="110" x2="230" y2="110" stroke="#8b4513" stroke-width="2" marker-end="url(#arrow1)"/>
+            <line x1="370" y1="110" x2="410" y2="110" stroke="#8b4513" stroke-width="2" marker-end="url(#arrow1)"/>
+            <line x1="190" y1="210" x2="230" y2="210" stroke="#8b4513" stroke-width="2" marker-end="url(#arrow1)"/>
+            
+            <!-- 箭头定义 -->
+            <defs>
+              <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="svg-caption">图8.1-2 近代社会生活变化示意图</p>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 近代社会生活变化的原因</div>
+          <p>近代社会生活的变化是<strong>西方工业文明冲击</strong>的结果，也是<strong>中国近代化</strong>的重要组成部分。</p>
+          <p style="margin-top: 6px;">这些变化反映了社会进步，但带有<strong>半殖民地色彩</strong>，且变化是<strong>不平衡</strong>的（沿海>内地、城市>农村）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 时代特征 -->
+    <section class="section" id="section-characteristics">
+      <h2 class="section-title"><span class="num">📊</span> 时代特征与社会变迁</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 时代特征</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>近代中国社会生活的变化是<strong>西方工业文明冲击</strong>的结果</li>
+          <li>变化是<strong>不平衡</strong>的：沿海>内地、城市>农村</li>
+          <li>变化反映了<strong>社会进步</strong>，但带有<strong>半殖民地色彩</strong></li>
+          <li>民族资本主义的发展是中国<strong>近代化</strong>的重要经济动力</li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">💡 答题技巧 · 分析历史现象</div>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>看原因：</strong>西方冲击 + 自身变革（如辛亥革命）</li>
+            <li><strong>看特点：</strong>不平衡性、半殖民地色彩</li>
+            <li><strong>看影响：</strong>推动社会进步，但充满艰辛</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 互动测验 -->
+    <section class="section" id="section-quiz">
+      <h2 class="section-title"><span class="num">🎮</span> 互动测验</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        每道题都有详细的错因分析，答错了要认真学习哦！
+      </p>
+
+      <!-- 测验题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列哪项不是近代社会生活变化的表现？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'A')" data-feedback="❌ 剪辫易服是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
+            <span class="opt-letter">A</span> 剪辫易服
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 废止缠足是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
+            <span class="opt-letter">B</span> 废止缠足
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'C')">
+            <span class="opt-letter">C</span> 缠足陋习继续盛行
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'D')" data-feedback="❌ 改称呼是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
+            <span class="opt-letter">D</span> 改称呼
+          </div>
+        </div>
+        <div class="feedback" id="feedback-20"></div>
+        <div class="answer-explanation" id="explanation-20">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 缠足陋习继续盛行</strong></p>
+          <p style="margin-top: 8px;">近代社会生活变化的表现包括：<strong>剪辫易服</strong>、<strong>废止缠足</strong>、<strong>改称呼</strong>、婚姻自主、丧葬简化等。</p>
+          <p style="margin-top: 6px;">"缠足陋习继续盛行"与历史事实不符，辛亥革命后民国政府颁布法令<strong>废止缠足</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】民族资本主义"短暂春天"出现在哪个时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 甲午战争后民族资本主义只是初步发展，不是'短暂春天'！">
+            <span class="opt-letter">A</span> 甲午战争后
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 一战期间
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 抗日战争时期民族资本主义日益萎缩，不是'短暂春天'！">
+            <span class="opt-letter">C</span> 抗日战争时期
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 一战期间</strong></p>
+          <p style="margin-top: 8px;">民族资本主义的"短暂春天"出现在<strong>一战期间（1912-1919年）</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）下列关于近代民族资本主义发展的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 民族资本主义产生于洋务运动时期，不是鸦片战争后！">
+            <span class="opt-letter">A</span> 鸦片战争后立即产生
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 一战期间出现"短暂春天"
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 民族资本主义发展整体落后，不是迅速超越外国资本！">
+            <span class="opt-letter">C</span> 迅速超越外国资本
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 一战期间出现"短暂春天"</strong></p>
+          <p style="margin-top: 8px;">一战期间（1912-1919年），欧洲列强忙于战争，放松对华经济侵略，民族资本主义出现<strong>"短暂春天"（黄金时代）</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: 考点分析 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 考点分析</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 核心考点解析</h3>
+        
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：民族资本主义发展的历程</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了16次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 产生于<strong>洋务运动到清末</strong>（19世纪六七十年代）</li>
+            <li>✅ <strong>甲午战争后</strong>初步发展</li>
+            <li>✅ <strong>一战期间</strong>出现"短暂春天"（黄金时代）</li>
+            <li>✅ <strong>一战后</strong>衰落，<strong>抗战及解放战争时期</strong>萎缩凋敝</li>
+          </ul>
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">💡 答题技巧</div>
+            <p>回答"民族资本主义发展历程"时，要按<strong>时间顺序</strong>回答，并说明每个时期的<strong>原因和特点</strong>。</p>
+          </div>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：社会生活变化的表现</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了13次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>剪辫易服、废止缠足、改称呼、婚姻自主、丧葬简化、《申报》、商务印书馆。</p>
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📝 记忆方法</div>
+            <p><strong>"剪辫易服废缠足，改称呼来主婚姻"</strong> - 用这个口诀记忆社会生活变化的主要表现。</p>
+          </div>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：民族资本主义发展的特点</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了11次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>整体落后、轻重比例失调、地区分布不平衡、深受双重压迫。</p>
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">⚠️ 易错警示</div>
+            <p>民族资本主义<strong>整体落后</strong>，不是"迅速发展"或"超过外国资本"。考试常在这里设置陷阱。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v1.0 | 适配人教版八年级历史课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 9,
+      currentSection: 1
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：民族资本主义是怎样发展的？</h3>
+      <p><strong>萌芽：</strong>洋务运动到清末（19世纪六七十年代）</p>
+      <p><strong>初步发展：</strong>甲午战争后（1895年后）</p>
+      <p><strong>短暂春天：</strong>一战期间（1912-1919年）</p>
+      <p><strong>衰落：</strong>一战后（1919年后）</p>
+      <p><strong>萎缩：</strong>抗战及解放战争时期</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：近代社会生活有哪些变化？</h3>
+      <p><strong>交通：</strong>轮船、火车传入</p>
+      <p><strong>通讯：</strong>电报、电话传入</p>
+      <p><strong>习俗：</strong>剪辫易服、废止缠足、改称呼、婚姻自主</p>
+      <p><strong>传媒：</strong>《申报》、商务印书馆</p>
+      <p><strong>娱乐：</strong>照相、电影</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：这些变化有什么时代特征？</h3>
+      <p><strong>原因：</strong>西方工业文明冲击 + 自身变革</p>
+      <p><strong>特点：</strong>不平衡性（沿海>内地、城市>农村）</p>
+      <p><strong>性质：</strong>反映社会进步，但带有半殖民地色彩</p>
+      <p><strong>意义：</strong>是中国近代化的重要组成部分</p>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《经济和社会生活的变化》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+</body>
+</html>

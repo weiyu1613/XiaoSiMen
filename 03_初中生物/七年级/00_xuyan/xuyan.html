@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绪言：与同学们谈生物学 | 初中生物七年级</title>
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* 本节特有样式 */
+    .intro-section { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 20px rgba(46,125,50,0.12); margin-bottom: 24px; }
+    .intro-section h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.4rem; }
+    .intro-section p { font-size: 15px; line-height: 2; color: #333; margin-bottom: 16px; }
+    .highlight-box { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left: 4px solid var(--primary); padding: 20px; border-radius: 0 12px 12px 0; margin: 20px 0; }
+    .highlight-box h3 { color: var(--primary-dark); margin-bottom: 12px; }
+    .quiz-box { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(46,125,50,0.12); }
+    .quiz-title { color: var(--primary); margin-bottom: 20px; font-size: 1.2rem; }
+    .question { margin-bottom: 20px; }
+    .question-text { font-weight: 600; margin-bottom: 10px; color: var(--text-dark); }
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 2px solid #c8e6c9;
+      background: #f1f8e9; color: var(--primary); padding: 12px 14px;
+      font-size: 15px; margin-top: 8px; font-family: inherit;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28);
+      color: var(--primary);
+    }
+
+    /* 知识图谱容器 */
+    .knowledge-map-section {
+      background: white; border-radius: 16px; padding: 30px;
+      box-shadow: 0 4px 20px rgba(46,125,50,0.12); margin-bottom: 24px;
+    }
+    .knowledge-map-section h2 { color: var(--primary); margin-bottom: 20px; font-size: 1.4rem; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+
+    /* AI学伴浮窗 */
+    .ai-tutor-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      width: 320px; max-height: 480px;
+      background: white; border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(46,125,50,0.25);
+      border: 2px solid var(--primary-light);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .ai-tutor-float.collapsed { max-height: 52px; }
+    .ai-tutor-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; padding: 12px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; flex-shrink: 0;
+    }
+    .ai-tutor-header h4 { margin: 0; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+    .ai-tutor-toggle { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
+    .ai-tutor-body { flex: 1; overflow-y: auto; padding: 16px; min-height: 200px; }
+    .ai-tutor-messages { margin-bottom: 12px; }
+    .ai-tutor-msg {
+      padding: 10px 14px; border-radius: 12px; margin-bottom: 8px;
+      font-size: 13px; line-height: 1.6; max-width: 85%;
+    }
+    .ai-tutor-msg.bot {
+      background: #f1f8e9; color: var(--text-dark);
+      border-bottom-left-radius: 4px;
+    }
+    .ai-tutor-msg.user {
+      background: var(--primary); color: white;
+      margin-left: auto; border-bottom-right-radius: 4px;
+    }
+    .ai-tutor-input-area {
+      display: flex; gap: 8px; padding: 12px 16px;
+      border-top: 1px solid #e8f5e9; flex-shrink: 0;
+    }
+    .ai-tutor-input {
+      flex: 1; padding: 8px 12px; border-radius: 8px;
+      border: 2px solid #c8e6c9; font-size: 13px; outline: none;
+      font-family: inherit;
+    }
+    .ai-tutor-input:focus { border-color: var(--primary); }
+    .ai-tutor-send {
+      padding: 8px 14px; border-radius: 8px;
+      background: var(--primary); color: white; border: none;
+      cursor: pointer; font-size: 13px; font-weight: 600;
+    }
+    .ai-tutor-send:hover { background: var(--primary-dark); }
+
+    /* 导师卡片 */
+    .tutor-card {
+      background: white; border-radius: 16px; padding: 24px;
+      box-shadow: 0 4px 20px rgba(46,125,50,0.12);
+      margin-bottom: 24px; display: flex; align-items: center; gap: 20px;
+      border: 2px solid #e8f5e9;
+    }
+    .tutor-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; flex-shrink: 0;
+      border: 3px solid var(--primary-light);
+    }
+    .tutor-info h3 { color: var(--primary); margin-bottom: 4px; font-size: 1.1rem; }
+    .tutor-info .tutor-subject { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px; }
+    .tutor-info p { font-size: 0.9rem; color: var(--text-dark); line-height: 1.6; }
+
+    /* 响应式AI学伴 */
+    @media (max-width: 768px) {
+      .ai-tutor-float { width: calc(100% - 32px); right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">绪言 · 0%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">七年级生物 · 绪言</div>
+      <span class="nav-btn" style="visibility:hidden;">上一节</span>
+      <a href="../03_zwwdsh/zwwdsh.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero区 + SVG知识图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-seedling"></i> 七年级生物 · 绪言</div>
+      <h1>绪言：与同学们谈生物学<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Introduction to Biology</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解生物学的研究对象和学习意义<br>
+        🎯 预计用时：30分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 280" width="800" height="280" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="280" fill="#f1f8e9"/>
+        <!-- 中心：生物学 -->
+        <rect x="300" y="100" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="135" text-anchor="middle" font-size="18" font-weight="bold" fill="white">生物学</text>
+        <text x="400" y="160" text-anchor="middle" font-size="13" fill="#c8e6c9">Biology</text>
+
+        <!-- 研究对象 -->
+        <rect x="40" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="68" text-anchor="middle" font-size="13" fill="white">研究对象</text>
+        <text x="120" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">植物·动物·微生物</text>
+        <text x="120" y="101" text-anchor="middle" font-size="10" fill="#e8f5e9">人体·生态</text>
+        <line x1="200" y1="70" x2="300" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- 研究内容 -->
+        <rect x="40" y="180" width="160" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="208" text-anchor="middle" font-size="13" fill="white">研究内容</text>
+        <text x="120" y="226" text-anchor="middle" font-size="10" fill="#e8f5e9">生命现象·活动规律</text>
+        <line x1="200" y1="210" x2="300" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- 学习意义 -->
+        <rect x="600" y="40" width="160" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="68" text-anchor="middle" font-size="13" fill="white">学习意义</text>
+        <text x="680" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">健康生活·环境保护</text>
+        <text x="680" y="101" text-anchor="middle" font-size="10" fill="#e8f5e9">科技发展</text>
+        <line x1="600" y1="70" x2="500" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <!-- 课程内容 -->
+        <rect x="600" y="180" width="160" height="60" rx="10" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="218" text-anchor="middle" font-size="13" fill="white">课程内容</text>
+        <text x="680" y="236" text-anchor="middle" font-size="10" fill="#e8f5e9">植物·人体·健康</text>
+        <line x1="600" y1="210" x2="500" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图0-1 生物学知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span>探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,'q1')">🌱 什么是生物学？研究什么？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,'q2')">🔬 为什么学习生物学？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,'q3')">📚 初中生物会学哪些内容？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-display" style="margin-top:20px;min-height:60px;">
+          <p style="color:var(--primary);text-align:center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 说出什么是生物学</li>
+          <li>✅ 列举生物学的研究对象</li>
+          <li>✅ 说明学习生物学的意义</li>
+          <li>✅ 了解初中生物的主要课程内容</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span>前测：检验先备知识</h2>
+      <p style="color:var(--primary);margin-bottom:16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> →
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> →
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列不属于生物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 猫是动物，属于生物。动物具有呼吸、运动、繁殖等生命活动特征。">
+            <span class="opt-letter">A</span> 猫
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 含羞草是植物，属于生物。它能对外界刺激作出反应（碰触后叶片闭合）。">
+            <span class="opt-letter">B</span> 含羞草
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+            <span class="opt-letter">C</span> 珊瑚（珊瑚礁的骨骼）
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 细菌是微生物，属于生物。细菌能进行呼吸、繁殖等生命活动。">
+            <span class="opt-letter">D</span> 细菌
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 珊瑚（珊瑚礁的骨骼）</strong></p>
+          <p style="margin-top:8px;">珊瑚虫是生物，但我们通常看到的珊瑚礁骨骼是珊瑚虫分泌的<strong>非生物产物</strong>。判断时要区分生物体本身和它的产物。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>2. 【⭐ 基础】生物的基本特征不包括？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 生物需要营养物质来维持生命活动，这是生物的基本特征之一。">
+            <span class="opt-letter">A</span> 需要营养物质
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 都能自由运动
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 生物都能对外界刺激作出反应，这叫应激性，是生物的基本特征之一。">
+            <span class="opt-letter">C</span> 能对外界刺激作出反应
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'D')" data-feedback="❌ 生物都能生长和繁殖，这是生物的基本特征之一。">
+            <span class="opt-letter">D</span> 能生长和繁殖
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 都能自由运动</strong></p>
+          <p style="margin-top:8px;">并非所有生物都能自由运动。例如<strong>植物</strong>（如树木）不能像动物那样移动，但它仍然具有生物的其他基本特征（呼吸、生长、繁殖、应激性等）。"能运动"不是生物的普遍特征。</p>
+        </div>
+      </div>
+
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>3. 【⭐⭐ 提高】下列属于生物共同特征的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 病毒没有细胞结构，但病毒仍然属于生物。所以"由细胞构成"不是所有生物的共同特征。">
+            <span class="opt-letter">A</span> 都由细胞构成
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 不是所有生物都能进行光合作用，动物是消费者，不能进行光合作用。">
+            <span class="opt-letter">B</span> 都能进行光合作用
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 都能进行呼吸
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'D')" data-feedback="❌ 只有部分生物能进行有性生殖，很多生物通过无性生殖繁殖。不是所有生物的共同特征。">
+            <span class="opt-letter">D</span> 都能进行有性生殖
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 都能进行呼吸</strong></p>
+          <p style="margin-top:8px;">所有生物都需要进行<strong>呼吸</strong>来获取能量，维持生命活动。注意：<strong>病毒没有细胞结构</strong>（A错误），<strong>动物不能光合作用</strong>（B错误），<strong>无性生殖也是一种繁殖方式</strong>（D不准确）。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4 -->
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】"种瓜得瓜，种豆得豆"描述的是生物的哪个特征？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 生长发育是生物从小到大的过程，"种瓜得瓜"强调的是亲子间的相似性，不是生长过程。">
+            <span class="opt-letter">A</span> 生长
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+            <span class="opt-letter">B</span> 遗传
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 变异是指亲子之间或子代个体之间的差异。"一母生九子，九子各不同"才是变异。">
+            <span class="opt-letter">C</span> 变异
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'D')" data-feedback="❌ 应激性是生物对外界刺激的反应，与"种瓜得瓜"描述的亲代与子代相似无关。">
+            <span class="opt-letter">D</span> 应激性
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 遗传</strong></p>
+          <p style="margin-top:8px;">"种瓜得瓜，种豆得豆"描述的是亲代与子代性状相似的现象，这属于<strong>遗传</strong>。<strong>遗传</strong>是生物将自身的特征传递给后代的能力。与之相对的是<strong>变异</strong>（"一母生九子，九子各不同"）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span>核心知识讲解</h2>
+
+      <!-- 知识点1：什么是生物学 -->
+      <div class="intro-section">
+        <h2>🌱 什么是生物学？</h2>
+        <p>生物学（Biology）是研究<strong>生命现象</strong>和<strong>生命活动规律</strong>的科学。</p>
+        <p>它的研究对象是<strong>生物</strong>，包括：</p>
+        <ul style="line-height:2;margin:12px 0;padding-left:20px;">
+          <li>🌿 植物</li>
+          <li>🐾 动物</li>
+          <li>🦠 微生物（细菌、真菌、病毒）</li>
+          <li>🧑 人类自身</li>
+        </ul>
+        <div class="highlight-box">
+          <div class="label">📖 概念框：生物的特征</div>
+          <p>生物具有以下共同特征：能进行呼吸、能排出废物、能对外界刺激作出反应、能生长和繁殖、有遗传和变异的特性、由细胞构成（除病毒外）。</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：为什么学习生物学 -->
+      <div class="intro-section">
+        <h2>🔬 为什么学习生物学？</h2>
+        <p>学习生物学有重要的意义：</p>
+        <ul style="line-height:2;margin:12px 0;padding-left:20px;">
+          <li>✅ 了解自己的身体，学会健康生活</li>
+          <li>✅ 认识自然界的奥秘，参与生态环境保护</li>
+          <li>✅ 理解科学技术与医学进步（如疫苗、基因工程）</li>
+          <li>✅ 培养科学思维和探究精神</li>
+        </ul>
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>生物学≠医学，但生物学是医学的基础。生物学也≠环境科学，但生物学是生态学的基础。</p>
+        </div>
+      </div>
+
+      <!-- 知识点3：初中生物课程内容 -->
+      <div class="intro-section">
+        <h2>📚 初中生物会学哪些内容？</h2>
+        <p>七年级生物（人教版）主要学习以下内容：</p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>单元</th>
+              <th>主要内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>绪言</strong></td><td>什么是生物学、为什么要学习生物学</td></tr>
+            <tr><td><strong>第一单元</strong></td><td>生物与细胞（认识生物、细胞是生命活动的基本单位、细胞怎样构成生物体）</td></tr>
+            <tr><td><strong>第二单元</strong></td><td>生物体的结构层次（从细胞到个体）</td></tr>
+            <tr><td><strong>第三单元</strong></td><td>植物的生活（种子萌发、植株生长、开花结果、蒸腾作用、光合作用、呼吸作用）</td></tr>
+            <tr><td><strong>第四单元</strong></td><td>人体生理与健康（生殖与发育、营养与消化、呼吸、血液循环、废物排出）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span>后测：检验学习成果</h2>
+      <p style="color:var(--primary);margin-bottom:16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列哪项不是生物的基本特征？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 生物确实能进行呼吸，这是所有生物共有的基本特征。">
+            <span class="opt-letter">A</span> 能进行呼吸
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 生物需要营养物质来维持生命，这是基本特征之一。">
+            <span class="opt-letter">B</span> 需要营养物质
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+            <span class="opt-letter">C</span> 都能自主移动
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'D')" data-feedback="❌ 生物都能排出体内产生的废物，这是基本特征之一。">
+            <span class="opt-letter">D</span> 能排出废物
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 都能自主移动</strong></p>
+          <p style="margin-top:8px;">植物不能自主移动位置，但仍然是生物。"自主移动"不是生物的基本特征。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题） -->
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖南中考改编）下列现象中，不属于生物特征的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 狗熊冬眠是生物对外界环境变化的适应性反应，属于应激性和生命节律特征。">
+            <span class="opt-letter">A</span> 狗熊冬眠
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 钟乳石慢慢长大
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 大雁南飞是生物对季节变化的行为反应，属于应激性。">
+            <span class="opt-letter">C</span> 大雁南飞
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'D')" data-feedback="❌ 鲤鱼产卵是生物的繁殖行为，属于生物的基本特征。">
+            <span class="opt-letter">D</span> 鲤鱼产卵
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 钟乳石慢慢长大</strong></p>
+          <p style="margin-top:8px;">钟乳石是<strong>非生物</strong>，它的"长大"是化学沉积的结果，不是生物的生长。其他选项都是生物的生命活动表现。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题） -->
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·广东中考改编）"一母生九子，九子各不同"，这句谚语说明的生物特征是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 遗传是亲子间的相似性。"种瓜得瓜，种豆得豆"描述的是遗传。">
+            <span class="opt-letter">A</span> 遗传
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 变异才是描述个体间差异的特征，但这个选项混淆了遗传和变异的概念表述。">
+            <span class="opt-letter">B</span> 生物都能产生后代
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 变异
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'D')" data-feedback="❌ 适应是生物对环境的适应，不是"九子各不同"的含义。">
+            <span class="opt-letter">D</span> 适应环境
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 变异</strong></p>
+          <p style="margin-top:8px;">"一母生九子，九子各不同"描述的是子代个体之间的<strong>差异</strong>，这属于<strong>变异</strong>。变异是生物的基本特征之一，与遗传（亲代与子代的相似性）相对应。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识图谱模块 -->
+    <section class="section" id="section-knowledge-map">
+      <h2 class="section-title"><span class="num">🗺️</span>知识图谱：从细胞到个体</h2>
+      <div class="knowledge-map-section">
+        <p style="color:var(--text-muted);margin-bottom:16px;">初中生物从微观到宏观，层层递进地认识生命。</p>
+        <div class="svg-container">
+          <svg viewBox="0 0 900 320" width="900" height="320" xmlns="http://www.w3.org/2000/svg">
+            <rect width="900" height="320" fill="#f1f8e9" rx="12"/>
+            <!-- 标题 -->
+            <text x="450" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#2e7d32">生物体的结构层次</text>
+
+            <!-- 细胞结构 -->
+            <rect x="20" y="100" width="130" height="80" rx="12" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+            <text x="85" y="133" text-anchor="middle" font-size="15" font-weight="bold" fill="white">细胞</text>
+            <text x="85" y="153" text-anchor="middle" font-size="11" fill="#e8f5e9">Cell</text>
+            <text x="85" y="168" text-anchor="middle" font-size="10" fill="#c8e6c9">生命活动的基本单位</text>
+
+            <!-- 箭头1 -->
+            <line x1="150" y1="140" x2="195" y2="140" stroke="#2e7d32" stroke-width="2.5" marker-end="url(#arrowK)"/>
+            <text x="172" y="132" text-anchor="middle" font-size="9" fill="#2e7d32">分裂</text>
+
+            <!-- 组织 -->
+            <rect x="195" y="100" width="130" height="80" rx="12" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+            <text x="260" y="133" text-anchor="middle" font-size="15" font-weight="bold" fill="white">组织</text>
+            <text x="260" y="153" text-anchor="middle" font-size="11" fill="#e8f5e9">Tissue</text>
+            <text x="260" y="168" text-anchor="middle" font-size="10" fill="#c8e6c9">形态功能相似的细胞群</text>
+
+            <!-- 箭头2 -->
+            <line x1="325" y1="140" x2="370" y2="140" stroke="#2e7d32" stroke-width="2.5" marker-end="url(#arrowK)"/>
+            <text x="347" y="132" text-anchor="middle" font-size="9" fill="#2e7d32">分化</text>
+
+            <!-- 器官 -->
+            <rect x="370" y="100" width="130" height="80" rx="12" fill="#388e3c" stroke="#1b5e20" stroke-width="2"/>
+            <text x="435" y="133" text-anchor="middle" font-size="15" font-weight="bold" fill="white">器官</text>
+            <text x="435" y="153" text-anchor="middle" font-size="11" fill="#e8f5e9">Organ</text>
+            <text x="435" y="168" text-anchor="middle" font-size="10" fill="#c8e6c9">多种组织构成</text>
+
+            <!-- 箭头3 -->
+            <line x1="500" y1="140" x2="545" y2="140" stroke="#2e7d32" stroke-width="2.5" marker-end="url(#arrowK)"/>
+            <text x="522" y="132" text-anchor="middle" font-size="9" fill="#2e7d32">组合</text>
+
+            <!-- 系统 -->
+            <rect x="545" y="100" width="130" height="80" rx="12" fill="#2e7d32" stroke="#1b5e20" stroke-width="2"/>
+            <text x="610" y="133" text-anchor="middle" font-size="15" font-weight="bold" fill="white">系统</text>
+            <text x="610" y="153" text-anchor="middle" font-size="11" fill="#e8f5e9">System</text>
+            <text x="610" y="168" text-anchor="middle" font-size="10" fill="#c8e6c9">多个器官协同工作</text>
+
+            <!-- 箭头4 -->
+            <line x1="675" y1="140" x2="720" y2="140" stroke="#2e7d32" stroke-width="2.5" marker-end="url(#arrowK)"/>
+            <text x="697" y="132" text-anchor="middle" font-size="9" fill="#2e7d32">构成</text>
+
+            <!-- 个体 -->
+            <rect x="720" y="80" width="150" height="120" rx="16" fill="#1b5e20" stroke="#0d3b12" stroke-width="3"/>
+            <text x="795" y="125" text-anchor="middle" font-size="18" font-weight="bold" fill="white">个体</text>
+            <text x="795" y="148" text-anchor="middle" font-size="12" fill="#c8e6c9">Organism</text>
+            <text x="795" y="170" text-anchor="middle" font-size="10" fill="#81c784">完整的生物体</text>
+            <text x="795" y="185" text-anchor="middle" font-size="10" fill="#81c784">（如人体）</text>
+
+            <!-- 补充说明 -->
+            <rect x="20" y="210" width="280" height="90" rx="10" fill="white" stroke="#81c784" stroke-width="1.5"/>
+            <text x="160" y="235" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">植物的结构层次</text>
+            <text x="160" y="258" text-anchor="middle" font-size="11" fill="#5d6d7e">细胞 → 组织 → 器官 → 植物体</text>
+            <text x="160" y="278" text-anchor="middle" font-size="10" fill="#5d6d7e">（注：植物没有"系统"这一层次）</text>
+
+            <rect x="340" y="210" width="280" height="90" rx="10" fill="white" stroke="#81c784" stroke-width="1.5"/>
+            <text x="480" y="235" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">动物（含人体）的结构层次</text>
+            <text x="480" y="258" text-anchor="middle" font-size="11" fill="#5d6d7e">细胞 → 组织 → 器官 → 系统 → 个体</text>
+            <text x="480" y="278" text-anchor="middle" font-size="10" fill="#5d6d7e">（动物有"系统"层次）</text>
+
+            <defs>
+              <marker id="arrowK" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="svg-caption">图0-2 生物体的结构层次知识图谱</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span>必考分析与考点总结</h2>
+
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：生物的基本特征</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 生物具有：呼吸、营养、排出废物、<strong>应激性</strong>、生长繁殖、遗传变异等特征</li>
+            <li>✅ <strong>"由细胞构成"</strong>不是所有生物的共同特征（病毒除外）</li>
+            <li>✅ <strong>"能运动"</strong>不是生物的共同特征（植物不能移动位置）</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：遗传与变异的辨析</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>"种瓜得瓜，种豆得豆"→<strong>遗传</strong>；"一母生九子，九子各不同"→<strong>变异</strong>。遗传是亲子相似，变异是亲子差异或子代个体间差异。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">3</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：生物与非生物的判断</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>珊瑚虫是生物，珊瑚骨骼是非生物；钟乳石不是生物；机器人不是生物。关键是看是否具备生命特征。</p>
+        </div>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 核心结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>生物学是研究生命现象和生命活动规律的科学</li>
+          <li>生物学的研究对象包括植物、动物、微生物和人类</li>
+          <li>学习生物学有助于健康生活、环境保护、理解科技进步</li>
+          <li>初中生物主要学习生物与细胞、生物体结构层次、植物生活、人体生理与健康</li>
+        </ol>
+      </div>
+
+      <div class="warn-box" style="margin-top:16px;">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="padding-left:20px;line-height:1.8;margin:0;">
+          <li>❌ 误认为所有生物都由细胞构成 → <strong>病毒无细胞结构</strong></li>
+          <li>❌ 误认为生物都能自主运动 → <strong>植物不能移动位置</strong></li>
+          <li>❌ 混淆遗传与变异 → <strong>遗传=相似，变异=差异</strong></li>
+          <li>❌ 混淆生物与生物产物 → <strong>珊瑚骨骼、钟乳石是非生物</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- AI学伴模块 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+
+    <!-- 导师卡片 -->
+    <section class="section" id="section-tutor-card">
+      <h2 class="section-title"><span class="num">👩‍🏫</span>你的学习导师</h2>
+      <div class="tutor-card">
+        <div class="tutor-avatar">🧬</div>
+        <div class="tutor-info">
+          <h3>生物导师</h3>
+          <div class="tutor-subject"><i class="fa-solid fa-flask"></i> 初中生物 · 七年级</div>
+          <p>专注初中生物教学多年，善于用生活中的例子帮助理解抽象概念。陪你一起探索生命的奥秘，从细胞到生态系统，让生物学习变得有趣又轻松！🌱</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- AI学伴浮窗 -->
+  <div class="ai-tutor-float" id="aiTutorFloat">
+    <div class="ai-tutor-header" onclick="toggleAiTutor()">
+      <h4><i class="fa-solid fa-robot"></i> AI学伴</h4>
+      <button class="ai-tutor-toggle" id="aiTutorToggle">▼</button>
+    </div>
+    <div class="ai-tutor-body" id="aiTutorBody">
+      <div class="ai-tutor-messages">
+        <div class="ai-tutor-msg bot">👋 你好！我是AI学伴，有什么关于生物学的问题都可以问我哦！比如："什么是生物的特征？"或"为什么要学生物？"</div>
+      </div>
+    </div>
+    <div class="ai-tutor-input-area">
+      <input class="ai-tutor-input" id="aiTutorInput" placeholder="输入你的问题..." onkeydown="if(event.key==='Enter')sendAiMsg()">
+      <button class="ai-tutor-send" onclick="sendAiMsg()">发送</button>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">初中7年级生物 · 绪言：与同学们谈生物学 · TeachAny v7.14.0</p>
+      <p style="margin-top:8px;font-size:12px;opacity:0.7;">基于 TeachAny v7.14.0 | 适配人教版七年级生物课程标准</p>
+    </div>
+  </footer>
+
+  <!-- 本节配置脚本 -->
+  <script>
+    /* ========== 配置章节信息 ========== */
+    window.totalSections = 1;
+    window.currentSection = 0;
+
+    /* ========== 锚点内容注册 ========== */
+    var anchorContents = {};
+    function registerAnchorContent(id, content) {
+      anchorContents[id] = content;
+    }
+
+    registerAnchorContent('q1', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌱 什么是生物学？研究什么？</h4><p>生物学是研究<strong>生命现象</strong>和<strong>生命活动规律</strong>的科学。研究对象包括植物、动物、微生物和人类。</p></div>');
+    registerAnchorContent('q2', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔬 为什么学习生物学？</h4><p>学习生物学可以：了解自己的身体、健康生活；认识自然奥秘、保护生态环境；理解科技进步；培养科学思维。</p></div>');
+    registerAnchorContent('q3', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📚 初中生物会学哪些内容？</h4><p>主要学习：生物与细胞、生物体结构层次、植物的生活、人体生理与健康。</p></div>');
+
+    /* ========== 问题锚点选择 ========== */
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach(function(item) { item.classList.remove('selected'); });
+      btnElement.classList.add('selected');
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = anchorContents[id] || '<p style="color:var(--primary);text-align:center;">👆 点击上方按钮查看问题</p>';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) {
+        feedback.textContent = '你选择了：' + btnElement.textContent.trim();
+        feedback.style.display = 'block';
+      }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.textContent.trim() || '';
+    }
+
+    /* ========== 自定义问题 ========== */
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        var display = document.getElementById('anchor-display');
+        if (display) display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📍 你的问题：' + question + '</h4><p>很好的问题！让我们在课件中寻找答案吧。</p></div>';
+        var feedback = document.getElementById('anchor-feedback');
+        if (feedback) {
+          feedback.textContent = '你的问题：' + question;
+          feedback.style.display = 'block';
+        }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      var parent = element.closest('.quiz-box');
+      var feedback = parent.querySelector('.feedback');
+      var explanation = document.getElementById('explanation-' + questionNum);
+      var allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(function(opt) { opt.classList.remove('correct', 'wrong'); });
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        var specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        var alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+
+    /* ========== AI学伴交互 ========== */
+    function toggleAiTutor() {
+      var floatEl = document.getElementById('aiTutorFloat');
+      var toggleBtn = document.getElementById('aiTutorToggle');
+      floatEl.classList.toggle('collapsed');
+      toggleBtn.textContent = floatEl.classList.contains('collapsed') ? '▲' : '▼';
+    }
+
+    function sendAiMsg() {
+      var input = document.getElementById('aiTutorInput');
+      var msg = input.value.trim();
+      if (!msg) return;
+      var messagesDiv = document.querySelector('.ai-tutor-messages');
+      messagesDiv.innerHTML += '<div class="ai-tutor-msg user">' + msg + '</div>';
+      input.value = '';
+      // 模拟回复
+      setTimeout(function() {
+        messagesDiv.innerHTML += '<div class="ai-tutor-msg bot">这是一个很好的问题！根据本课内容，你可以从"核心知识讲解"部分找到相关答案。如果还有疑问，可以点击上方的探究问题按钮哦～ 🌱</div>';
+        var body = document.getElementById('aiTutorBody');
+        body.scrollTop = body.scrollHeight;
+      }, 600);
+      var body = document.getElementById('aiTutorBody');
+      body.scrollTop = body.scrollHeight;
+    }
+
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      // 更新进度条
+      var pct = Math.round((window.currentSection / window.totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '绪言 · ' + pct + '%';
+      console.log('📚 《绪言：与同学们谈生物学》课件加载完成（v7.14）');
+    });
+  </script>
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

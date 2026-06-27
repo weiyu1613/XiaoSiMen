@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<style>
+/* ====== 手机端适配 ====== */
+@media (max-width: 768px) {
+    /* Hero / 课程标题 */
+    .hero { padding: 20px 14px !important; }
+    .hero h1 { font-size: 1.3rem !important; }
+    .hero-subtitle { font-size: 0.88rem !important; }
+    .hero-icon { font-size: 36px !important; }
+
+    /* 内容区段 */
+    .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+    .section h2 { font-size: 1.15rem !important; }
+    .section h3 { font-size: 1rem !important; }
+    .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+    /* 卡片 */
+    .card { border-radius: 12px !important; padding: 14px !important; }
+    .card-header { padding: 12px 14px !important; }
+    .card-body { padding: 0 14px 12px !important; }
+
+    /* 问题锚点 */
+    .anchor-points { flex-direction: column !important; gap: 6px !important; }
+    .anchor-btn {
+    width: 100% !important; padding: 10px 12px !important;
+    font-size: 0.82rem !important; justify-content: center !important;
+    border-radius: 8px !important;
+    }
+
+    /* 测验选项 */
+    .quiz-option {
+    padding: 12px 12px !important; font-size: 0.88rem !important;
+    border-radius: 10px !important;
+    }
+    .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+    /* SVG / 图表容器 */
+    .timeline-svg, .knowledge-map, .hero-graph {
+    padding: 12px !important; border-radius: 8px !important;
+    }
+    .timeline-svg svg, .knowledge-map svg, .hero-graph svg {
+    max-width: 100% !important; height: auto !important;
+    display: block !important; margin: 0 auto !important;
+    }
+
+    /* 表格（横滑） */
+    .comparison-table, .data-table, table {
+    display: block !important; overflow-x: auto !important;
+    font-size: 12px !important; -webkit-overflow-scrolling: touch !important;
+    }
+    .comparison-table th, .comparison-table td,
+    .data-table th, .data-table td {
+    padding: 6px 8px !important; white-space: nowrap !important;
+    }
+
+    /* 概念框 */
+    .concept-box {
+    padding: 12px 14px !important; font-size: 0.88rem !important;
+    margin: 10px 0 !important; border-radius: 0 10px 10px 0 !important;
+    }
+
+    /* AI学伴 */
+    .chat-panel { border-radius: 12px !important; margin: 12px !important; }
+    .chat-messages { max-height: 250px !important; }
+    .chat-input { font-size: 0.88rem !important; padding: 10px 12px !important; }
+    .chat-send { padding: 10px 14px !important; font-size: 0.82rem !important; }
+
+    /* 考点总结 */
+    .summary-box, .key-points {
+    padding: 12px 14px !important; font-size: 0.88rem !important;
+    border-radius: 10px !important;
+    }
+
+    /* Brand Bar */
+    .brand-bar { padding: 8px 10px !important; }
+    .brand-logo span { font-size: 0.82rem !important; }
+    .brand-tag { font-size: 0.68rem !important; padding: 2px 6px !important; }
+
+    /* 进度条 */
+    .progress-bar { height: 3px !important; }
+    .progress-label { font-size: 0.7rem !important; padding: 3px 10px !important; }
+
+    /* 页脚 */
+    .footer { padding: 16px 12px !important; margin-top: 20px !important; }
+
+    .quiz-option { padding: 10px !important; font-size: 0.82rem !important; }
+    .section p, .section li { font-size: 0.82rem !important; }
+}
+
+
+
+      /* 标题独占首行 */
+      /* 按钮均分2行，每行2个 */
+
+
+
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="course-id" content="hist-wenjing-7">
+  <meta name="course-title" content="第4课 文景之治">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="hist-wenjing">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>第4课 文景之治 | 初中7年级历史</title>
+  <style>
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    .svg-container { background: #fafcfb; border: 1px solid #e8dcc8; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #8b7355; text-align: center; }
+    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid #d2b48c; background: #fffaf0; color: #2c3e50; padding: 12px 14px; font-size: 16px; margin-top: 8px; }
+    #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.28); color: #92400e; }
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    .timeline { position: relative; padding-left: 30px; margin: 20px 0; }
+    .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: #8b4513; }
+    .timeline-item { position: relative; margin-bottom: 20px; }
+    .timeline-item::before { content: ''; position: absolute; left: -24px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #8b4513; border: 3px solid #fdf5e6; }
+    .timeline-item h4 { color: #8b4513; margin: 0 0 6px 0; }
+    .timeline-item p { margin: 0; font-size: 14px; color: #5a4a3a; }
+  </style>
+</head>
+<body>
+  <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">互动课件 v7.14</div></div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d3sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第三单元：秦汉时期</div>
+    <a href="../3.3_xjwcj/xjwcj.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../3.5_dhwxw/dhwxw.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+</div></nav>
+  <header class="hero"><div class="container">
+    <div class="hero-badge"><i class="fa-solid fa-landmark-open"></i> 七年级历史 · 第三单元</div>
+    <h1>第4课 文景之治<span>The Rule of Wen and Jing</span></h1>
+    <p class="hero-subtitle">📖 课标要求：知道"文景之治"的表现和历史意义<br>🎯 预计用时：45分钟</p>
+  </div></header>
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 280" width="800" height="280" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="280" fill="#fafcfb"/>
+        <circle cx="400" cy="140" r="60" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+        <text x="400" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="white">文景</text>
+        <text x="400" y="158" text-anchor="middle" font-size="14" fill="white">之治</text>
+        <rect x="50" y="40" width="140" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="75" text-anchor="middle" font-size="14" fill="white">汉文帝</text>
+        <line x1="190" y1="70" x2="340" y2="140" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowh)"/>
+        <rect x="50" y="180" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="215" text-anchor="middle" font-size="14" fill="white">汉景帝</text>
+        <line x1="190" y1="210" x2="340" y2="140" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowh)"/>
+        <rect x="610" y="40" width="140" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="75" text-anchor="middle" font-size="14" fill="white">休养生息</text>
+        <line x1="610" y1="70" x2="460" y2="140" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowh)"/>
+        <rect x="610" y="180" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="215" text-anchor="middle" font-size="14" fill="white">盛世局面</text>
+        <line x1="610" y1="210" x2="460" y2="140" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowh)"/>
+        <defs><marker id="arrowh" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="#8b4513"/></marker></defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #8b7355; font-size: 14px; text-align: center;">图3-6 文景之治知识结构图</figcaption>
+    </figure>
+  </section>
+  <main class="container">
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="文景之治是什么意思？">📖 文景之治是什么意思？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="文景之治有哪些表现？">🌾 文景之治有哪些表现？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="文景之治的历史意义是什么？">🌟 文景之治的历史意义是什么？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--text-light);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;"><p style="color: var(--text-light); text-align: center;">👆 点击上方按钮查看问题</p></div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道<strong>文景之治</strong>的含义（文帝、景帝）</li>
+          <li>✅ 了解<strong>文景之治</strong>的主要表现</li>
+          <li>✅ 理解<strong>文景之治</strong>的历史意义</li>
+          <li>✅ 认识<strong>休养生息</strong>政策的成效</li>
+        </ul>
+      </div>
+    </section>
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】"文景之治"发生在哪个朝代？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 文景之治是西汉的，不是秦朝！"><span class="opt-letter">A</span> 秦朝</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 西汉</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 文景之治是西汉的，不是东汉！"><span class="opt-letter">C</span> 东汉</div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 西汉</strong></p><p style="margin-top: 8px;"><strong>"文景之治"</strong>是指<strong>西汉汉文帝、汉景帝</strong>统治时期出现的<strong>盛世局面</strong>。</p></div>
+      </div>
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】"文景之治"的两位皇帝是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 汉文帝、汉景帝</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 汉武帝是景帝的儿子，不是'文景'！"><span class="opt-letter">B</span> 汉景帝、汉武帝</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 刘邦是汉高祖，不是'文景'！"><span class="opt-letter">C</span> 刘邦、汉文帝</div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 汉文帝、汉景帝</strong></p><p style="margin-top: 8px;"><strong>汉文帝刘恒</strong>（前180-前157年在位）、<strong>汉景帝刘启</strong>（前157-前141年在位），父子两代推行<strong>休养生息</strong>政策，出现盛世。</p></div>
+      </div>
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】"文景之治"局面出现的主要原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 罢黜百家是汉武帝的措施，不是文景时期！"><span class="opt-letter">A</span> 罢黜百家，独尊儒术</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 继续推行休养生息政策</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 文景时期没有实行推恩令，那是汉武帝的措施！"><span class="opt-letter">C</span> 颁布推恩令</div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 继续推行休养生息政策</strong></p><p style="margin-top: 8px;">文景两代<strong>继续推行</strong>刘邦开始的<strong>休养生息</strong>政策（减轻赋税、徭役），使社会经济得到恢复和发展。</p></div>
+      </div>
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】下列哪一项不属于"文景之治"的表现？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 减轻赋税是文景之治的表现，不符合题意！"><span class="opt-letter">A</span> 减轻赋税</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 国力增强是文景之治的表现，不符合题意！"><span class="opt-letter">B</span> 国力增强</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 颁布推恩令</div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 颁布推恩令</strong></p><p style="margin-top: 8px;"><strong>"推恩令"</strong>是<strong>汉武帝</strong>巩固大一统的措施，<strong>不是</strong>文景之治时期的内容。</p></div>
+      </div>
+    </section>
+    <section class="section" id="section-wenjing">
+      <h2 class="section-title"><span class="num">📖</span> 文景之治</h2>
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 什么是"文景之治"？</h3>
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 文景之治</div>
+          <p><strong>"文景之治"</strong>是指<strong>西汉汉文帝、汉景帝</strong>统治时期，继续推行<strong>休养生息</strong>政策，使社会经济得到恢复和发展，出现了<strong>盛世局面</strong>。</p>
+          <p style="margin-top: 8px;"><strong>时间：</strong>前180年（文帝即位）— 前141年（景帝去世）</p>
+        </div>
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 文景之治的主要表现</h3>
+        <div class="timeline">
+          <div class="timeline-item"><h4>减轻赋税</h4><p>文帝、景帝把赋税从"十五税一"降到"<strong>三十税一</strong>"，甚至<strong>免征</strong>赋税。</p></div>
+          <div class="timeline-item"><h4>减轻徭役</h4><p>减少征发民力，让农民有<strong>更多时间从事农业生产</strong>。</p></div>
+          <div class="timeline-item"><h4>提倡节俭</h4><p>文帝<strong>以身作则</strong>，宫室、园林等<strong>不做增加</strong>，衣服、车马等<strong>不尚奢华</strong>。</p></div>
+          <div class="timeline-item"><h4>社会稳定</h4><p>社会秩序安定，<strong>人口增长</strong>，<strong>国库充盈</strong>。</p></div>
+        </div>
+        <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 文景之治的表现</div><p>✅ <strong>经济：</strong>赋税减轻（三十税一），徭役减轻</p><p style="margin-top: 6px;">✅ <strong>政治：</strong>社会安定，人口增长</p><p style="margin-top: 6px;">✅ <strong>国力：</strong>国库充盈，为汉武帝大一统奠定基础</p></div>
+      </div>
+    </section>
+    <section class="section" id="section-significance">
+      <h2 class="section-title"><span class="num">🌟</span> 文景之治的历史意义</h2>
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 历史意义</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>① <strong>社会经济恢复和发展</strong>：农业生产发展，人民生活改善</li>
+          <li>② <strong>国力增强</strong>：国库充盈，为<strong>汉武帝巩固大一统</strong>奠定了<strong>物质基础</strong></li>
+          <li>③ <strong>社会安定</strong>：社会秩序良好，人口增加</li>
+          <li>④ <strong>盛世典范</strong>："文景之治"是中国历史上<strong>第一个有记载的盛世</strong></li>
+        </ul>
+        <div class="svg-container">
+          <svg viewBox="0 0 600 200" width="600" height="200" xmlns="http://www.w3.org/2000/svg">
+            <rect x="50" y="30" width="140" height="50" rx="8" fill="#8b4513" stroke="#654321" stroke-width="2"/>
+            <text x="120" y="62" text-anchor="middle" font-size="14" fill="white">休养生息</text>
+            <line x1="190" y1="55" x2="270" y2="100" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowb)"/>
+            <rect x="270" y="75" width="60" height="50" rx="8" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="300" y="107" text-anchor="middle" font-size="13" fill="white">文景之治</text>
+            <line x1="330" y1="100" x2="410" y2="100" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowb)"/>
+            <rect x="410" y="75" width="140" height="50" rx="8" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="480" y="107" text-anchor="middle" font-size="13" fill="white">汉武帝大一统</text>
+            <text x="300" y="170" text-anchor="middle" font-size="15" font-weight="bold" fill="#8b4513">政策延续 · 国力积累</text>
+            <defs><marker id="arrowb" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#8b4513"/></marker></defs>
+          </svg>
+          <p class="svg-caption">图3-7 从休养生息到文景之治再到汉武帝大一统</p>
+        </div>
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 文景之治的意义</div>
+          <p><strong>"文景之治"</strong>是中国历史上<strong>第一个有记载的盛世</strong>，为<strong>汉武帝巩固大一统</strong>奠定了<strong>坚实的物质基础</strong>。</p>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】"文景之治"出现在哪位皇帝统治时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 刘邦是汉高祖，不是'文景'！"><span class="opt-letter">A</span> 刘邦</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 汉文帝、汉景帝</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 汉武帝是景帝的儿子，不是'文景'！"><span class="opt-letter">C</span> 汉武帝</div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 汉文帝、汉景帝</strong></p><p style="margin-top: 8px;"><strong>"文景之治"</strong>是指<strong>西汉汉文帝刘恒、汉景帝刘启</strong>统治时期出现的盛世局面。</p></div>
+      </div>
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）"文景之治"时期推行的政策是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 休养生息</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ '独尊儒术'是汉武帝的措施，不是文景时期！"><span class="opt-letter">B</span> 独尊儒术</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ '推恩令'是汉武帝的措施，不是文景时期！"><span class="opt-letter">C</span> 推恩令</div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 休养生息</strong></p><p style="margin-top: 8px;">文景两代<strong>继续推行</strong>刘邦开始的<strong>休养生息</strong>政策，使社会经济得到恢复和发展，出现了"文景之治"的盛世局面。</p></div>
+      </div>
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）"文景之治"为哪位皇帝的大一统奠定了基础？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 秦始皇是秦朝的，不是汉朝的！"><span class="opt-letter">A</span> 秦始皇</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')"><span class="opt-letter">B</span> 汉武帝</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 光武帝是东汉的，不是西汉的！"><span class="opt-letter">C</span> 光武帝</div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 汉武帝</strong></p><p style="margin-top: 8px;"><strong>"文景之治"</strong>使西汉<strong>国力增强、国库充盈</strong>，为<strong>汉武帝巩固大一统</strong>奠定了<strong>坚实的物质基础</strong>。</p></div>
+      </div>
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"京师之钱累巨万，贯朽而不可校。太仓之粟陈陈相因，充溢露积于外，至腐败不可食。"——《史记·平准书》</div>
+        <p style="margin-bottom:10px;font-weight:600;">材料反映了哪个时期的盛世局面？</p>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料说'京师之钱累巨万'，不是指秦朝！"><span class="opt-letter">A</span> 秦朝</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')"><span class="opt-letter">B</span> 文景之治</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料没提到光武，不是指东汉！"><span class="opt-letter">C</span> 光武中兴</div>
+        </div>
+        <div class="feedback" id="feedback-13"></div>
+        <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 文景之治</strong></p><p style="margin-top: 8px;">材料描述了<strong>国库钱粮充盈</strong>的景象（"京师之钱累巨万"、"太仓之粟陈陈相因"），这反映的是<strong>"文景之治"</strong>时期的盛世局面。</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 材料分析题方法</div><ol style="padding-left: 20px; line-height: 1.8;"><li><strong>先读材料：</strong>理解材料意思（国库充盈、粮食多到腐烂）</li><li><strong>再联系课本：</strong>回忆"文景之治"的表现</li><li><strong>排除无中生有：</strong>材料没提到的选项不选</li></ol></div></div>
+      </div>
+    </section>
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;"><div class="exam-card-header"><span class="exam-card-num" style="background:#dc2626;">1</span><strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：文景之治的含义</strong><span class="exam-tag" style="background:#dc2626;">近10年考了20次</span></div><p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p><ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;"><li>✅ <strong>人物：</strong>汉文帝、汉景帝</li><li>✅ <strong>政策：</strong>继续推行休养生息政策</li><li>✅ <strong>结果：</strong>出现盛世局面</li></ul></div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;"><div class="exam-card-header"><span class="exam-card-num" style="background:#d97706;">2</span><strong style="color:#92400e;font-size:15px;">⚡ 高频考点：文景之治的表现</strong><span class="exam-tag" style="background:#d97706;">近10年考了18次</span></div><p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>赋税减轻（三十税一）、徭役减轻、提倡节俭、社会稳定、国库充盈。</p></div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;"><div class="exam-card-header"><span class="exam-card-num" style="background:#2563eb;">3</span><strong style="color:#1e40af;font-size:15px;">📍 常考考点：文景之治的意义</strong><span class="exam-tag" style="background:#2563eb;">近10年考了16次</span></div><p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>为<strong>汉武帝巩固大一统</strong>奠定了<strong>物质基础</strong>。</p></div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;"><div class="exam-card-header"><span style="font-size:18px;">📈</span><strong style="font-size:15px;color:#166534;">中考命题趋势分析</strong></div><table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:14px;"><tr style="background:#8b4513;color:white;"><th style="padding:8px;">题型</th><th style="padding:8px;">频率</th><th style="padding:8px;">考查方式</th><th style="padding:8px;">备考建议</th></tr><tr style="background:#fdf5e6;"><td style="padding:8px;border:1px solid #e8dcc8;">选择题</td><td style="padding:8px;border:1px solid #e8dcc8;">★★★★★</td><td style="padding:8px;border:1px solid #e8dcc8;">文景之治人物、表现</td><td style="padding:8px;border:1px solid #e8dcc8;">死记硬背"汉文帝""汉景帝"</td></tr><tr style="background:#fffaf0;"><td style="padding:8px;border:1px solid #e8dcc8;">填空题</td><td style="padding:8px;border:1px solid #e8dcc8;">★★★☆☆</td><td style="padding:8px;border:1px solid #e8dcc8;">填人物、政策名称</td><td style="padding:8px;border:1px solid #e8dcc8;">记住"三十税一""休养生息"</td></tr><tr style="background:#fdf5e6;"><td style="padding:8px;border:1px solid #e8dcc8;">材料题</td><td style="padding:8px;border:1px solid #e8dcc8;">★★★★☆</td><td style="padding:8px;border:1px solid #e8dcc8;">给《史记》材料分析盛世</td><td style="padding:8px;border:1px solid #e8dcc8;">掌握"国库充盈"的材料解读</td></tr></table></div>
+      </div>
+    </section>
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示"><div data-teachany-tutor-card></div></section>
+  </main>
+  <footer class="footer"><div class="container"><p>© 2024 TeachAny · 初中历史互动课件系统</p><p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版七年级历史课程标准</p></div></footer>
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  <script>
+    COURSE_INFO.totalSections = 8;
+    COURSE_INFO.currentSection = 1;
+    window.__TEACHANY_LEARNER_QUESTION__ = '';
+    window.__TEACHANY_TUTOR_CONFIG__ = {
+      courseId: 'hist-wenjing-7',
+      courseTitle: '第4课 文景之治',
+      subject: 'history', grade: '7',
+      nodeId: 'hist-wenjing',
+      lessonType: 'new-concept',
+      getLearnerQuestion: () => window.__TEACHANY_LEARNER_QUESTION__ || '',
+      getContext: () => { const current = document.querySelector('section.current-section') || (location.hash ? document.querySelector(location.hash) : null); return (current || document.body).innerText.slice(0, 3000); }
+    };
+    anchorContents[1] = `<h3>📍 问题1：文景之治是什么意思？</h3><p><strong>含义：</strong>"文景之治"是指<strong>西汉汉文帝、汉景帝</strong>统治时期，继续推行<strong>休养生息</strong>政策，使社会经济得到恢复和发展，出现了<strong>盛世局面</strong>。</p><p><strong>时间：</strong>前180年（文帝即位）— 前141年（景帝去世）</p><p style="margin-top: 12px;">💡 <strong>记忆口诀：</strong>"文帝景帝，休养生息，盛世来临"</p>`;
+    anchorContents[2] = `<h3>📍 问题2：文景之治有哪些表现？</h3><p><strong>表现：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li><strong>减轻赋税：</strong>三十税一，甚至免征</li><li><strong>减轻徭役：</strong>减少征发民力</li><li><strong>提倡节俭：</strong>文帝以身作则</li><li><strong>社会稳定：</strong>人口增长，国库充盈</li></ul><p style="margin-top: 12px;">🌾 <strong>智慧：</strong>"文景之治"的<strong>核心</strong>是<strong>让老百姓休养生息</strong>，减轻负担。</p>`;
+    anchorContents[3] = `<h3>📍 问题3：文景之治的历史意义是什么？</h3><p><strong>意义：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>① <strong>社会经济恢复和发展</strong></li><li>② <strong>国力增强</strong>，为汉武帝大一统奠定物质基础</li><li>③ <strong>社会安定</strong>，人口增长</li><li>④ 中国历史上<strong>第一个有记载的盛世</strong></li></ul><p style="margin-top: 12px;">🌟 <strong>评价：</strong>"文景之治"是<strong>盛世典范</strong>，对后世影响深远。</p>`;
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      initAnchorContents();
+      updateProgressBar();
+      console.log('📚 《文景之治》课件加载完成（v1.0）');
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>
+
+

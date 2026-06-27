@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第八单元：近代经济、社会生活与教育文化事业的发展 - 初中八年级历史</title>
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ========== 知识要点卡片 ========== */
+    .key-points {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 24px 0;
+      position: relative;
+      flex-wrap: wrap;
+    }
+    .key-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.3);
+      min-width: 120px;
+    }
+    .key-point-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .key-point-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* ========== 进度条（在Hero内） ========== */
+    .progress-container {
+      max-width: 600px;
+      margin: 24px auto 0;
+      text-align: left;
+    }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+    .progress-track {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f0e68c, #ffd700, #ff8c00);
+      border-radius: 4px;
+      transition: width 1s ease;
+      box-shadow: 0 0 12px rgba(255,215,0,0.5);
+    }
+
+    /* ========== 课时卡片网格 ========== */
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .lesson-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(139,69,19,0.08);
+      position: relative;
+    }
+    .lesson-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .lesson-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .lesson-card:hover::before { transform: scaleX(1); }
+
+    .card-header {
+      padding: 20px 20px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .lesson-num {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(139,69,19,0.25);
+    }
+    .lesson-meta { flex: 1; }
+    .lesson-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .lesson-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .card-body {
+      padding: 0 20px 16px;
+    }
+    .lesson-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .card-footer {
+      padding: 16px 20px;
+      background: var(--bg-light);
+      border-top: 1px solid rgba(139,69,19,0.06);
+    }
+    .lesson-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .lesson-link::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    .lesson-link:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(139,69,19,0.35);
+    }
+    .lesson-link:active::after {
+      width: 300px; height: 300px;
+    }
+
+    /* ========== 单元概览卡片 ========== */
+    .unit-overview {
+      background: linear-gradient(135deg, #fdf5e6, #f5e6d3);
+      border: 1px solid #d2b48c;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    .unit-overview h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+    .unit-overview p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 0.92rem;
+    }
+    .timeline-mini {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: var(--primary);
+      border: 1px solid #d2b48c;
+    }
+    .timeline-dot {
+      width: 8px; height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+
+    /* ========== 动画 ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .lesson-card:nth-child(1) { animation-delay: 0.1s; }
+    .lesson-card:nth-child(2) { animation-delay: 0.15s; }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .lessons-grid { grid-template-columns: 1fr; }
+      .key-points { gap: 12px; }
+      .key-point { padding: 12px; min-width: 100px; }
+      .timeline-mini { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <div class="nav-center">八年级上册 · 第八单元</div>
+      <a href="../../index.html" class="nav-btn">目录 <i class="fa-solid fa-list"></i></a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">🏭</div>
+      <div class="hero-badge">初中八年级历史上册 · 第八单元</div>
+      <h1 class="hero-title">近代经济、社会生活与教育文化事业的发展</h1>
+      <p class="hero-subtitle">19世纪末-20世纪初 · 从传统走向近代的艰难转型</p>
+
+      <!-- 知识要点 -->
+      <div class="key-points">
+        <div class="key-point">
+          <div class="key-point-icon">🏭</div>
+          <span class="key-point-label">民族工业</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🚂</div>
+          <span class="key-point-label">社会生活</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">📚</div>
+          <span class="key-point-label">教育文化</span>
+        </div>
+      </div>
+
+      <!-- 进度条 -->
+      <div class="progress-container">
+        <div class="progress-info">
+          <span><i class="fa-solid fa-landmark"></i> 学习进度</span>
+          <span>第8单元 · 2课时</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- 单元概览 -->
+    <div class="section-title">
+      <div class="section-icon"><i class="fas fa-map-marked-alt"></i></div>
+      <div class="section-text">
+        <h2>单元概览</h2>
+        <p>了解近代中国在经济、社会生活和思想文化方面的深刻变革</p>
+      </div>
+    </div>
+
+    <div class="unit-overview fade-in">
+      <h3><i class="fas fa-landmark"></i> 单元导语</h3>
+      <p>
+        鸦片战争后，随着西方列强的入侵，中国传统的小农经济开始解体。在民族危机日益加深的同时，中国社会也悄然发生着变化——民族资本主义产生并曲折发展，近代交通、通讯工具传入，社会习俗逐渐革新，新式教育和新闻出版事业兴起，文学艺术呈现出新的面貌。这些变化虽然带有半殖民地色彩，但客观上推动了中国社会的进步。
+      </p>
+      <div class="timeline-mini">
+        <div class="timeline-item"><span class="timeline-dot"></span>洋务运动（1860s）</div>
+        <div class="timeline-item"><span class="timeline-dot"></span>戊戌变法（1898）</div>
+        <div class="timeline-item"><span class="timeline-dot"></span>辛亥革命（1911）</div>
+        <div class="timeline-item"><span class="timeline-dot"></span>新文化运动（1915）</div>
+      </div>
+    </div>
+
+    <!-- 课程目录 -->
+    <div class="section-title">
+      <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="section-text">
+        <h2>课程目录</h2>
+        <p>点击卡片开始学习，掌握近代经济社会文化的变迁脉络</p>
+      </div>
+    </div>
+
+    <div class="lessons-grid">
+      <!-- 第1课 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">1</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">经济和社会生活的变化</div>
+            <div class="lesson-subtitle">第8.1课 · 民族工业与社会变迁</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">了解民族资本主义的产生与发展历程，认识近代以来人们在交通、通讯、生活方式和社会习俗等方面的变化，理解这些变化的时代特征。</p>
+        </div>
+        <div class="card-footer">
+          <a href="8.1_jjjc/jjjc.html" class="lesson-link">
+            <i class="fas fa-play-circle"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 第2课 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">2</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">教育文化事业的发展</div>
+            <div class="lesson-subtitle">第8.2课 · 新式教育与文艺成就</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">了解新式教育的发端过程，知道科举制度的废除；了解《申报》、商务印书馆等新闻出版事业的发展；掌握鲁迅等人的文学艺术成就和詹天佑等科学家的贡献。</p>
+        </div>
+        <div class="card-footer">
+          <a href="8.2_jywh/jywh.html" class="lesson-link">
+            <i class="fas fa-play-circle"></i> 开始学习
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-text">TeachAny · 初中历史互动课件 · v7.14.0</p>
+  </footer>
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

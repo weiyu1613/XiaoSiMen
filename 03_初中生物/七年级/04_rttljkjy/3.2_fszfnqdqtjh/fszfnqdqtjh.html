@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.2 发生在肺内的气体交换 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  <style>
+    /* 品牌栏 */
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 63.64%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+
+    /* 导航栏 */
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero区 */
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 主内容 */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; display: flex; align-items: center; gap: 12px; }
+    .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+
+    /* 锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+
+    /* 测验 */
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary-dark); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+
+    /* 警示框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 难度标签 */
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-base { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-raise { background: #ede9fe; color: #6d28d9; }
+    .difficulty-challenge { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+
+    /* 解析 */
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+
+    /* 中考卡片 */
+    .exam-card { background: linear-gradient(135deg, #fefce8, #fef9c3); border: 2px solid #f59e0b; border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .exam-card h3 { color: #92400e; margin-bottom: 12px; }
+    .exam-stat { display: inline-block; background: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+
+    /* 必背 */
+    .must-know { background: #d1fae5; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+
+    /* 表格 */
+    .compare-table { width:100%;border-collapse:collapse;margin:16px 0;font-size:14px; }
+    .compare-table th { padding:10px;border:1px solid #c8e6c9;background:var(--primary);color:white; }
+    .compare-table td { padding:8px;border:1px solid #c8e6c9; }
+    .compare-table tr:nth-child(even) td { background:#f1f8e9; }
+
+    /* 页脚 */
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .anchor-points { flex-direction: column; }
+      .anchor-btn { min-width: 100%; }
+      .nav-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">第 7 / 11 节 · 63.64%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../rttljkjy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第四单元：人体生理与健康</div>
+      <a href="../3.1_sxdwdkdcl/sxdwdkdcl.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../4.1_lddzz/lddzz.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero + SVG知识图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-lungs"></i> 七年级生物 · 第四单元</div>
+      <h1>3.2 发生在肺内的气体交换<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Gas Exchange in the Lungs</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：描述肺与外界的气体交换过程；描述肺泡与血液的气体交换过程<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f1f8e9"/>
+        <!-- 中心：肺内的气体交换 -->
+        <rect x="300" y="110" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="white">肺内的气体交换</text>
+        <text x="400" y="170" text-anchor="middle" font-size="12" fill="#c8e6c9">Gas Exchange in the Lungs</text>
+        
+        <!-- 肺通气 -->
+        <rect x="40" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="68" text-anchor="middle" font-size="13" fill="white">肺通气</text>
+        <text x="120" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">呼吸运动</text>
+        <line x1="200" y1="70" x2="300" y2="142" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 肺泡与血液的气体交换 -->
+        <rect x="40" y="200" width="160" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="228" text-anchor="middle" font-size="13" fill="white">肺泡与血液的气体交换</text>
+        <text x="120" y="246" text-anchor="middle" font-size="10" fill="#e8f5e9">氧气进入血液</text>
+        <line x1="200" y1="230" x2="300" y2="158" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 呼吸运动的过程 -->
+        <rect x="600" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="68" text-anchor="middle" font-size="13" fill="white">呼吸运动的过程</text>
+        <text x="680" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">吸气·呼气</text>
+        <line x1="600" y1="70" x2="500" y2="142" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 肺泡的结构特点 -->
+        <rect x="600" y="200" width="160" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="238" text-anchor="middle" font-size="13" fill="white">肺泡的结构特点</text>
+        <text x="680" y="256" text-anchor="middle" font-size="9" fill="#e8f5e9">多·薄·毛细血管丰富</text>
+        <line x1="600" y1="230" x2="500" y2="158" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图3-2 肺内气体交换知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span>探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="肺通气是如何实现的？">🫁 肺通气是如何实现的？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="肺泡与血液是如何进行气体交换的？">🔄 肺泡与血液是如何进行气体交换的？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="呼吸运动的过程是怎样的？">📈 呼吸运动的过程是怎样的？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 描述肺通气的过程（呼吸运动）</li>
+          <li>✅ 描述肺泡与血液的气体交换过程</li>
+          <li>✅ 说明肺泡的结构特点与气体交换功能相适应的特点</li>
+          <li>✅ 区分氧气和二氧化碳的运输方向</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span>课前检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
+
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 肺通气是通过（  ）实现的</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">A</span> 呼吸运动</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 气体扩散作用</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 血液循环</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 消化作用</div>
+        <div class="feedback" id="fb-1"></div>
+        <div class="answer-explanation" id="exp-1">
+          <strong>解析：</strong>肺通气（肺与外界的气体交换）是通过<strong>呼吸运动</strong>实现的。吸气时，肋间肌和膈肌收缩，胸廓扩大，肺扩张，气体进入肺；呼气时相反。
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 肺泡与血液的气体交换是通过（  ）实现的</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 呼吸运动</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">B</span> 气体扩散作用</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 主动运输</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 渗透作用</div>
+        <div class="feedback" id="fb-2"></div>
+        <div class="answer-explanation" id="exp-2">
+          <strong>解析：</strong>肺泡与血液的气体交换是通过<strong>气体扩散作用</strong>实现的：氧气从肺泡扩散到血液，二氧化碳从血液扩散到肺泡。
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关肺内气体交换的叙述，<strong>错误</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 吸气时，肋间肌和膈肌收缩</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 肺泡壁和毛细血管壁都很薄，有利于气体交换</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 氧气从血液扩散到肺泡</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 呼出的气体中，二氧化碳含量比吸入的气体高</div>
+        <div class="feedback" id="fb-3"></div>
+        <div class="answer-explanation" id="exp-3">
+          <strong>解析：</strong>C是错误的。氧气从<strong>肺泡扩散到血液</strong>，二氧化碳从<strong>血液扩散到肺泡</strong>。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span>核心知识讲解</h2>
+
+      <!-- 知识点1：肺通气（呼吸运动） -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">一、肺通气（呼吸运动）</h3>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>状态</th>
+              <th>肋间肌、膈肌</th>
+              <th>胸廓容积</th>
+              <th>肺内气压</th>
+              <th>气体进出</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="background:#f1f8e9;"><strong>吸气</strong></td><td>收缩</td><td>扩大</td><td>减小（低于大气压）</td><td>外界气体进入肺</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>呼气</strong></td><td>舒张</td><td>缩小</td><td>增大（高于大气压）</td><td>肺内气体排出体外</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <div class="label">📖 概念框：肺通气</div>
+          <p>肺通气是指<strong>肺与外界环境之间的气体交换过程</strong>，通过<strong>呼吸运动</strong>实现。</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：肺泡与血液的气体交换 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">二、肺泡与血液的气体交换</h3>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>🔄 <strong>原理</strong>：气体扩散作用（气体从浓度高的地方向浓度低的地方扩散）</li>
+          <li>📈 <strong>氧气扩散方向</strong>：肺泡 → 血液（肺泡中氧气浓度高，血液中氧气浓度低）</li>
+          <li>📉 <strong>二氧化碳扩散方向</strong>：血液 → 肺泡（血液中二氧化碳浓度高，肺泡中二氧化碳浓度低）</li>
+          <li>🩸 <strong>结果</strong>：血液由含氧少的静脉血变为含氧丰富的动脉血</li>
+        </ul>
+
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>① 氧气从<strong>肺泡扩散到血液</strong>，不是从血液扩散到肺泡；<br>
+          ② 肺泡与血液的气体交换发生在<strong>肺泡和毛细血管之间</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 知识点3：肺泡的结构特点（与气体交换功能相适应） -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">三、肺泡的结构特点（与气体交换功能相适应）</h3>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>📐 <strong>数量多</strong>：成人肺泡总数约3亿个，增加了气体交换的面积</li>
+          <li>🧬 <strong>壁薄</strong>：肺泡壁和毛细血管壁都只由<strong>一层上皮细胞</strong>构成，有利于气体通过</li>
+          <li>🩸 <strong>毛细血管丰富</strong>：肺泡外缠绕着丰富的毛细血管，有利于气体交换</li>
+        </ul>
+
+        <div class="concept-box">
+          <div class="label">📖 概念框：结构决定功能</div>
+          <p>肺泡的<strong>数量多</strong>、<strong>壁薄</strong>、<strong>毛细血管丰富</strong>等特点，都与<strong>气体交换功能</strong>相适应。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测（含中考真题） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">1. 下列关于呼吸运动的叙述，正确的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">A</span> 吸气时，肋间肌收缩，胸廓扩大</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 吸气时，肺内气压高于大气压</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 呼气时，膈肌收缩，膈顶部下降</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 呼气时，胸廓容积扩大</div>
+        <div class="feedback" id="fb-4"></div>
+        <div class="answer-explanation" id="exp-4">
+          <strong>解析：</strong>吸气时，肋间肌和膈肌<strong>收缩</strong>，胸廓<strong>扩大</strong>，肺内气压<strong>低于</strong>大气压，气体进入肺。
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】肺泡与血液的气体交换后，血液的变化是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 由动脉血变为静脉血</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">B</span> 由静脉血变为动脉血</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 氧气含量减少，二氧化碳含量增加</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 氧气含量增加，二氧化碳含量增加</div>
+        <div class="feedback" id="fb-5"></div>
+        <div class="answer-explanation" id="exp-5">
+          <strong>解析：</strong>肺泡与血液的气体交换后，血液中<strong>氧气含量增加</strong>，<strong>二氧化碳含量减少</strong>，由含氧少的静脉血变为含氧丰富的动脉血。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span>必考分析与考点总结</h2>
+
+      <div class="exam-card">
+        <h3>📊 考频统计</h3>
+        <p><span class="exam-stat">超高频</span>呼吸运动的过程（选择题）</p>
+        <p><span class="exam-stat">超高频</span>肺泡与血液的气体交换（选择题、简答题）</p>
+        <p><span class="exam-stat">高频</span>肺泡的结构特点（选择题）</p>
+        <p><span class="exam-stat">中频</span>气体扩散作用（选择题）</p>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 必背结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>肺通气通过<strong>呼吸运动</strong>实现：吸气时肋间肌、膈肌收缩，胸廓扩大；呼气时相反</li>
+          <li>肺泡与血液的气体交换通过<strong>气体扩散作用</strong>实现：氧气进入血液，二氧化碳进入肺泡</li>
+          <li>肺泡的结构特点（数量多、壁薄、毛细血管丰富）与<strong>气体交换功能</strong>相适应</li>
+          <li>气体交换后，血液由<strong>静脉血变为动脉血</strong></li>
+        </ol>
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="line-height:2;">
+          <li>❌ 误认为"氧气从血液扩散到肺泡"→ 实际是<strong>从肺泡扩散到血液</strong></li>
+          <li>❌ 误认为"吸气时肺内气压高于大气压"→ 实际<strong>低于大气压</strong></li>
+          <li>❌ 误认为"肺泡壁由多层细胞构成"→ 实际只由<strong>一层上皮细胞</strong>构成</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第四单元 人体生理与健康 · 第7节 发生在肺内的气体交换 · TeachAny v7.14.0</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 进度条更新
+    document.addEventListener('DOMContentLoaded', function() {
+      var totalSections = 11;
+      var currentSection = 7;
+      var pct = Math.round((currentSection / totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '第 ' + currentSection + ' / ' + totalSections + ' 节 · ' + pct + '%';
+    });
+
+    // 锚点选择
+    var anchorContents = {
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🫁 肺通气是如何实现的？</h4><p>肺通气通过<strong>呼吸运动</strong>实现。吸气时，肋间肌和膈肌收缩，胸廓扩大，肺内气压减小，外界气体进入肺；呼气时，肋间肌和膈肌舒张，胸廓缩小，肺内气压增大，肺内气体排出体外。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔄 肺泡与血液是如何进行气体交换的？</h4><p>通过<strong>气体扩散作用</strong>实现。氧气从肺泡扩散到血液，二氧化碳从血液扩散到肺泡。交换后，血液由静脉血变为动脉血。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📈 呼吸运动的过程是怎样的？</h4><p>吸气：肋间肌、膈肌收缩 → 胸廓扩大 → 肺扩张 → 肺内气压减小 → 气体进入肺；<br>呼气：肋间肌、膈肌舒张 → 胸廓缩小 → 肺回缩 → 肺内气压增大 → 气体排出肺。</p></div>'
+    };
+
+    function selectAnchor(btn, id) {
+      var btns = document.querySelectorAll('.anchor-btn');
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = anchorContents[id];
+      display.style.display = 'block';
+    }
+
+    function handleCustomQuestion(val) {
+      if (val.trim().length < 2) return;
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！肺内的气体交换是呼吸系统的核心功能，理解它有助于掌握整个呼吸过程。</p></div>';
+      display.style.display = 'block';
+    }
+
+    function checkAnswer(el, isCorrect, qNum) {
+      var parent = el.parentElement;
+      var options = parent.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.remove('correct', 'wrong');
+      }
+      if (isCorrect) {
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      var fb = document.getElementById('fb-' + qNum);
+      var exp = document.getElementById('exp-' + qNum);
+      if (isCorrect) {
+        fb.className = 'feedback correct-fb show';
+        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
+      } else {
+        fb.className = 'feedback wrong-fb show';
+        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
+      }
+      exp.classList.add('show');
+    }
+  </script>
+
+  <!-- 额外模块 -->
+  <script src="../../shared/extra-modules.js"></script>
+  <script>window.mentorData={name:'呼吸系统导师',title:'七年级生物 · 第三章',tag:'互动课件',intro:'专注呼吸系统与肺内气体交换，帮你掌握呼吸运动和气体交换的核心考点。'};</script>
+
+  <!-- AI学伴悬浮窗 -->
+  <div id="ai-partner-wrapper" style="position:fixed;bottom:20px;right:20px;z-index:9999;font-family:inherit;">
+    <button id="ai-partner-toggle" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#4caf50);border:none;cursor:pointer;color:white;font-size:22px;box-shadow:0 4px 16px rgba(46,125,50,0.4);display:flex;align-items:center;justify-content:center;">🌿</button>
+    <div id="ai-partner-box" style="display:none;position:absolute;bottom:70px;right:0;width:320px;background:white;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);border:2px solid #c8e6c9;overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;padding:12px 16px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">
+        <span>🌿 AI学伴 · 初中生物</span>
+        <button id="ai-partner-close" style="background:none;border:none;color:white;cursor:pointer;font-size:16px;">✕</button>
+      </div>
+      <div id="ai-partner-thread" style="height:220px;overflow-y:auto;padding:14px;font-size:13px;line-height:1.6;">
+        <div style="background:#e8f5e9;border-radius:12px;padding:10px 14px;margin-bottom:8px;color:#1b5e20;"><strong>🌿 AI学伴：</strong> 欢迎！关于呼吸系统和肺内气体交换的问题都可以问我～</div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid #e8f5e9;display:flex;gap:8px;">
+        <input id="ai-partner-input" placeholder="输入你的问题..." style="flex:1;border:1px solid #81c784;border-radius:20px;padding:8px 14px;font-size:13px;outline:none;">
+        <button id="ai-partner-send" style="background:#2e7d32;color:white;border:none;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:13px;">发送</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 导师卡片 -->
+  <div id="mentor-card-placeholder"></div>
+  <script>renderMentorCard('mentor-card-placeholder');</script>
+
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

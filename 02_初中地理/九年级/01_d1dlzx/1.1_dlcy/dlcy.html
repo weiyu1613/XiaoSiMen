@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="course-id" content="geo-9-dlcy">
+<meta name="course-title" content="1.1 地理差异">
+<meta name="course-subject" content="geography">
+<meta name="course-grade" content="middle-9">
+<meta name="teachany-node" content="geo-9-dlcy">
+<meta name="author" content="TeachAny">
+<meta name="version" content="v7.14.0">
+<link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>1.1 地理差异 | 初中9年级地理</title>
+<style>
+.earth-svg{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:20px}
+.latitude-longitude{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+.latitude-longitude th{background:linear-gradient(135deg,#2471a3,#3498db);color:white;padding:12px;text-align:center}
+.latitude-longitude td{padding:10px;border:1px solid #bae6fd;text-align:center}
+.latitude-longitude tr:nth-child(even){background:#f0f9ff}
+.answer-explanation{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:16px 20px;margin-top:12px;font-size:14px;color:#78350f;display:none}
+.answer-explanation.show{display:block}
+.answer-explanation .explain-title{font-weight:700;font-size:15px;margin-bottom:8px;color:#92400e}
+.difficulty-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:8px}
+.difficulty-基础{background:#dbeafe;color:#1d4ed8}
+.difficulty-提高{background:#ede9fe;color:#6d28d9}
+.difficulty-挑战{background:#fee2e2;color:#dc2626}
+.svg-container{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:20px;margin:20px 0;text-align:center}
+.svg-container svg{max-width:100%;height:auto}
+.svg-caption{margin-top:12px;font-size:14px;color:#2471a3;text-align:center}
+#learner-question-input{width:100%;border-radius:12px;border:1px solid #85c1e9;background:#ebf5fb;color:#1a5276;padding:12px 14px;font-size:16px;margin-top:8px}
+#anchor-feedback{margin-top:14px;padding:14px;border-radius:12px;background:rgba(52,152,219,0.1);border:1px solid rgba(52,152,219,0.28);color:#1a5276}
+.exam-card{border-radius:12px;padding:18px;margin-bottom:16px}
+.exam-card-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.exam-card-num{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white}
+.exam-tag{color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.nav-bar{background:#f0f9ff;border-bottom:2px solid #2471a3;padding:10px 0;margin-bottom:20px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;flex-wrap:wrap;gap:8px}
+.nav-btn{color:#2471a3;text-decoration:none;font-size:13px;font-weight:600;padding:6px 12px;border-radius:6px;transition:all 0.2s;white-space:nowrap}
+.nav-btn:hover{background:#dbeafe}
+.nav-center{font-weight:700;color:#2471a3;font-size:14px;text-align:center;flex:1}
+.hero{background:linear-gradient(135deg,#2471a3,#3498db);color:white;padding:40px 20px;text-align:center}
+.hero h1{font-size:2rem;margin:10px 0}
+.hero p{font-size:1.1rem;opacity:0.9}
+.hero-badge{background:rgba(255,255,255,0.2);display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;margin-bottom:10px}
+.hero-subtitle{margin-top:12px}
+.progress-bar{height:4px;background:#e0f2fe;position:relative}
+.progress-fill{height:100%;background:linear-gradient(90deg,#2471a3,#3498db);width:12%;transition:width 0.3s}
+.progress-label{font-size:12px;color:#2471a3;padding:4px 20px;background:#f0f9ff}
+.brand-bar{background:#2471a3;color:white;padding:10px 20px;display:flex;justify-content:space-between;align-items:center}
+.brand-logo{font-size:16px;font-weight:700}
+.brand-tag{background:rgba(255,255,255,0.2);padding:4px 10px;border-radius:12px;font-size:12px}
+.section-title{font-size:1.5rem;color:#2471a3;margin:30px 0 20px;padding-bottom:10px;border-bottom:2px solid #bae6fd}
+.section-title .num{margin-right:8px}
+.card{background:white;border:1px solid #bae6fd;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(36,113,163,0.1)}
+.anchor-points{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.anchor-btn{flex:1;min-width:200px;padding:12px 16px;background:linear-gradient(135deg,#dbeafe,#eff6ff);border:2px solid #85c1e9;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;color:#1a5276;transition:all 0.2s;text-align:center}
+.anchor-btn:hover{background:linear-gradient(135deg,#aed6f1,#d4efdf);border-color:#5dade2}
+.anchor-btn.selected{background:linear-gradient(135deg,#2471a3,#3498db);color:white;border-color:#2471a3}
+.quiz-box{background:#f0f9ff;border:1px solid #bae6fd;border-radius:12px;padding:20px;margin-bottom:20px}
+.quiz-option{padding:12px 16px;background:white;border:2px solid #e0f2fe;border-radius:10px;margin-bottom:10px;cursor:pointer;transition:all 0.2s;font-size:14px}
+.quiz-option:hover{border-color:#85c1e9;background:#f0f9ff}
+.quiz-option.correct{border-color:#10b981;background:#d1fae5}
+.quiz-option.wrong{border-color:#ef4444;background:#fee2e2}
+.opt-letter{display:inline-block;width:24px;height:24px;background:#2471a3;color:white;border-radius:50%;text-align:center;line-height:24px;font-weight:700;margin-right:8px}
+.feedback{margin-top:12px;padding:12px;border-radius:8px;font-size:14px;display:none}
+.feedback.show{display:block}
+.feedback.correct-fb{background:#d1fae5;color:#065f46;border:1px solid #10b981}
+.feedback.wrong-fb{background:#fee2e2;color:#991b1b;border:1px solid #ef4444}
+.concept-box{background:#ebf5fb;border-left:4px solid #2471a3;border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
+.concept-box .label{font-weight:700;color:#2471a3;margin-bottom:8px}
+.warn-box{background:#fef3c7;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
+.warn-box .label{font-weight:700;color:#92400e;margin-bottom:8px}
+.footer{background:#2471a3;color:white;padding:30px 20px;text-align:center;margin-top:40px}
+@media(max-width:768px){
+.hero{padding:20px 14px!important}
+.hero h1{font-size:1.3rem!important}
+.hero-subtitle{font-size:0.88rem!important}
+.section{padding:0 12px!important;margin-bottom:20px!important}
+.section-title{font-size:1.15rem!important}
+.section p,.section li{font-size:0.88rem!important;line-height:1.7!important}
+.card{border-radius:12px!important;padding:14px!important}
+.anchor-points{flex-direction:column!important;gap:6px!important}
+.anchor-btn{width:100%!important;padding:10px 12px!important;font-size:0.82rem!important;justify-content:center!important;border-radius:8px!important}
+.quiz-option{padding:12px 12px!important;font-size:0.88rem!important;border-radius:10px!important}
+.svg-container{padding:12px!important;border-radius:8px!important}
+.concept-box{padding:12px 14px!important;font-size:0.88rem!important}
+.warn-box{padding:12px 14px!important;font-size:0.88rem!important}
+.exam-card{padding:14px!important}
+.nav-inner{flex-direction:column!important;gap:6px!important}
+.latitude-longitude{display:block!important;overflow-x:auto!important;font-size:12px!important}
+}
+</style>
+</head>
+<body>
+<div class="brand-bar">
+<div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
+<div class="brand-tag">互动课件 v7.14</div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+<div class="progress-label" id="progress-label">第 1/2 节 · 50%</div>
+<nav class="nav-bar"><div class="nav-inner">
+<a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+<a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+<div class="nav-center">第一单元：中国的地理差异</div>
+<a href="#" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+<a href="../1.2_sdq/sdq.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+</div></nav>
+<header class="hero">
+<div class="container">
+<div class="hero-badge"><i class="fa-solid fa-globe"></i> 九年级地理 · 第一单元</div>
+<h1>1.1 地理差异<span>Geographical Differences</span></h1>
+<p class="hero-subtitle">📖 课标要求：了解我国地理差异的主要表现及成因<br>🎯 预计用时：45分钟</p>
+</div>
+</header>
+
+<section class="section" id="hero-infographic">
+<figure style="margin:24px auto 0;max-width:980px;">
+<svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="300" fill="#f0f9ff"/>
+<circle cx="400" cy="150" r="60" fill="#2471a3" stroke="#1a5276" stroke-width="3"/>
+<text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">地理差异</text>
+<rect x="50" y="50" width="140" height="60" rx="10" fill="#3498db" stroke="#2471a3" stroke-width="2"/>
+<text x="120" y="85" text-anchor="middle" font-size="14" fill="white">气温差异</text>
+<line x1="190" y1="80" x2="340" y2="150" stroke="#2471a3" stroke-width="2" marker-end="url(#arrowhead)"/>
+<rect x="50" y="190" width="140" height="60" rx="10" fill="#2e86c1" stroke="#2471a3" stroke-width="2"/>
+<text x="120" y="225" text-anchor="middle" font-size="14" fill="white">降水差异</text>
+<line x1="190" y1="220" x2="340" y2="150" stroke="#2471a3" stroke-width="2" marker-end="url(#arrowhead)"/>
+<rect x="610" y="50" width="140" height="60" rx="10" fill="#3498db" stroke="#2471a3" stroke-width="2"/>
+<text x="680" y="85" text-anchor="middle" font-size="14" fill="white">地势差异</text>
+<line x1="610" y1="80" x2="460" y2="150" stroke="#2471a3" stroke-width="2" marker-end="url(#arrowhead)"/>
+<rect x="610" y="190" width="140" height="60" rx="10" fill="#2e86c1" stroke="#2471a3" stroke-width="2"/>
+<text x="680" y="225" text-anchor="middle" font-size="14" fill="white">人文差异</text>
+<line x1="610" y1="220" x2="460" y2="150" stroke="#2471a3" stroke-width="2" marker-end="url(#arrowhead)"/>
+<defs><marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="#2471a3"/></marker></defs>
+</svg>
+<figcaption style="margin-top:10px;color:#2471a3;font-size:14px;text-align:center;">图1-1 地理差异知识结构图</figcaption>
+</figure>
+</section>
+
+<main class="container">
+<!-- 1. 探究问题 -->
+<section class="section" id="section-anchor">
+<h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+<p style="color:#2471a3;margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+<div class="card">
+<div class="anchor-points">
+<button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="我国气温分布有什么差异？">🌡️ 我国气温分布有什么差异？</button>
+<button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="我国降水分布有什么规律？">🌧️ 我国降水分布有什么规律？</button>
+<button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="地理差异对人们生活有何影响？">🏘️ 地理差异对人们生活有何影响？</button>
+</div>
+<label style="display:block;margin-top:18px;color:#2471a3;">我有自己的问题<input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)"></label>
+<div class="anchor-display" id="anchor-display" style="margin-top:20px;min-height:100px;"><p style="color:#2471a3;text-align:center;">👆 点击上方按钮查看问题</p></div>
+<p id="anchor-feedback" style="display:none;"></p>
+</div>
+</section>
+
+<!-- 2. 学习目标 -->
+<section class="section" id="objectives">
+<h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="card">
+<ul style="list-style:none;padding-left:0;line-height:2;">
+<li>✅ 了解我国气温、降水分布的主要差异</li>
+<li>✅ 理解我国地势三级阶梯对地理差异的影响</li>
+<li>✅ 掌握秦岭—淮河一线的地理意义</li>
+<li>✅ 认识地理差异对生产生活的影响</li>
+</ul>
+</div>
+</section>
+
+<!-- 3. 前测 -->
+<section class="section" id="section-prequiz">
+<h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+<p style="color:#2471a3;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
+
+<div class="quiz-box">
+<h3>1. 【⭐ 基础】我国冬季气温分布特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+<div class="quiz-options">
+<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 我国冬季南北温差大，不是普遍高温！"><span class="opt-letter">A</span> 南北普遍高温</div>
+<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 南北温差大，南方温暖北方寒冷</div>
+<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 北方不是炎热，冬季北方非常寒冷！"><span class="opt-letter">C</span> 北方炎热南方寒冷</div>
+</div>
+<div class="feedback" id="feedback-1"></div>
+<div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 南北温差大，南方温暖北方寒冷</strong></p><p style="margin-top:8px;">冬季，我国南北温差可达<strong>50℃</strong>以上。1月0℃等温线大致沿<strong>秦岭—淮河</strong>一线分布。</p></div>
+</div>
+
+<div class="quiz-box" style="margin-top:20px;">
+<h3>2. 【⭐⭐ 提高】我国降水的空间分布特点是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+<div class="quiz-options">
+<div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 我国降水不是从南向北递增！"><span class="opt-letter">A</span> 从南向北递增</div>
+<div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 从东南沿海向西北内陆递减</div>
+<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 降水不是从西向东递减！"><span class="opt-letter">C</span> 从西向东递减</div>
+</div>
+<div class="feedback" id="feedback-2"></div>
+<div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 从东南沿海向西北内陆递减</strong></p><p style="margin-top:8px;">我国降水受<strong>海陆位置</strong>和<strong>季风</strong>影响，东南沿海降水多，西北内陆降水少。</p></div>
+</div>
+
+<div class="quiz-box" style="margin-top:20px;">
+<h3>3. 【⭐⭐⭐ 挑战】秦岭—淮河一线是哪条等温线？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+<div class="quiz-options">
+<div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 20℃等温线在更南的位置！"><span class="opt-letter">A</span> 1月20℃等温线</div>
+<div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 1月0℃等温线</div>
+<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 10℃等温线位置偏北！"><span class="opt-letter">C</span> 1月10℃等温线</div>
+</div>
+<div class="feedback" id="feedback-3"></div>
+<div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 1月0℃等温线</strong></p><p style="margin-top:8px;">秦岭—淮河一线是我国<strong>1月0℃等温线</strong>经过的地方，也是<strong>800mm等降水量线</strong>经过的地方。</p></div>
+</div>
+</section>
+
+<!-- 4. 核心内容：气温差异 -->
+<section class="section" id="section-climate">
+<h2 class="section-title"><span class="num">🌡️</span> 气温差异</h2>
+<div class="card">
+<h3 style="margin-top:20px;color:#2471a3;">📖 冬季气温分布</h3>
+<ul style="padding-left:20px;line-height:1.8;">
+<li>冬季南北温差<strong>大</strong>：南北温差可达<strong>50℃</strong>以上</li>
+<li>北方：受<strong>冬季风</strong>影响大，寒冷干燥</li>
+<li>南方：受冬季风影响小，温暖湿润</li>
+<li>1月0℃等温线大致沿<strong>秦岭—淮河</strong>一线</li>
+</ul>
+<h3 style="margin-top:20px;color:#2471a3;">📖 夏季气温分布</h3>
+<ul style="padding-left:20px;line-height:1.8;">
+<li>夏季南北温差<strong>小</strong>：全国普遍高温</li>
+<li>除青藏高原外，大部分地区<strong>20℃</strong>以上</li>
+<li>最热的地方：<strong>吐鲁番</strong></li>
+<li>最凉爽的地方：<strong>青藏高原</strong>（地势高）</li>
+</ul>
+<div class="svg-container">
+<svg viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+<rect width="600" height="300" fill="#f0f9ff"/>
+<rect x="50" y="30" width="500" height="40" rx="8" fill="#e74c3c" opacity="0.8"/>
+<text x="300" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="white">北方冬季：-20℃~0℃</text>
+<rect x="50" y="90" width="500" height="40" rx="8" fill="#3498db" opacity="0.8"/>
+<text x="300" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="white">南方冬季：5℃~15℃</text>
+<rect x="50" y="160" width="500" height="40" rx="8" fill="#e67e22" opacity="0.8"/>
+<text x="300" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="white">北方夏季：20℃~28℃</text>
+<rect x="50" y="220" width="500" height="40" rx="8" fill="#e74c3c" opacity="0.8"/>
+<text x="300" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="white">南方夏季：28℃~35℃</text>
+<text x="300" y="285" text-anchor="middle" font-size="16" font-weight="bold" fill="#2471a3">我国冬夏气温对比</text>
+</svg>
+<p class="svg-caption">图1-2 我国冬夏气温对比示意</p>
+</div>
+</div>
+</section>
+
+<!-- 5. 核心内容：降水差异 -->
+<section class="section" id="section-precipitation">
+<h2 class="section-title"><span class="num">🌧️</span> 降水差异</h2>
+<div class="card">
+<h3 style="margin-top:20px;color:#2471a3;">📖 降水空间分布</h3>
+<ul style="padding-left:20px;line-height:1.8;">
+<li>总体趋势：从<strong>东南沿海</strong>向<strong>西北内陆</strong>递减</li>
+<li>最多：台湾<strong>火烧寮</strong>（年均6557mm）</li>
+<li>最少：吐鲁番<strong>托克逊</strong>（年均6mm）</li>
+</ul>
+<h3 style="margin-top:20px;color:#2471a3;">📖 降水时间分布</h3>
+<ul style="padding-left:20px;line-height:1.8;">
+<li>季节分配<strong>不均</strong>：夏秋多，冬春少</li>
+<li>年际变化<strong>大</strong>：不同年份降水差别大</li>
+</ul>
+<table class="latitude-longitude" style="margin-top:20px;">
+<tr><th>地区</th><th>年降水量</th><th>干湿状况</th></tr>
+<tr><td>东南沿海</td><td>&gt;1600mm</td><td>湿润</td></tr>
+<tr><td>长江中下游</td><td>800~1600mm</td><td>湿润/半湿润</td></tr>
+<tr><td>华北地区</td><td>400~800mm</td><td>半湿润</td></tr>
+<tr><td>西北内陆</td><td>&lt;400mm</td><td>半干旱/干旱</td></tr>
+</table>
+<div class="concept-box" style="margin-top:16px;">
+<div class="label">核心概念 · 秦岭—淮河一线的地理意义</div>
+<ul style="padding-left:20px;line-height:1.8;">
+<li>🌡️ 1月<strong>0℃</strong>等温线</li>
+<li>🌧️ <strong>800mm</strong>等降水量线</li>
+<li>🌾 暖温带与亚热带分界线</li>
+<li>💧 湿润区与半湿润区分界线</li>
+<li>🌾 水田与旱地分界线</li>
+<li>🌲 亚热带常绿阔叶林与温带落叶阔叶林分界线</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 6. 核心内容：地势差异 -->
+<section class="section" id="section-terrain">
+<h2 class="section-title"><span class="num">🏔️</span> 地势差异</h2>
+<div class="card">
+<h3 style="margin-top:20px;color:#2471a3;">📖 三级阶梯</h3>
+<ul style="padding-left:20px;line-height:1.8;">
+<li>第一级阶梯：青藏高原，海拔<strong>4000米</strong>以上</li>
+<li>第二级阶梯：高原和盆地，海拔<strong>1000~2000米</strong></li>
+<li>第三级阶梯：平原和丘陵，海拔<strong>500米</strong>以下</li>
+</ul>
+<div class="svg-container">
+<svg viewBox="0 0 700 250" width="700" height="250" xmlns="http://www.w3.org/2000/svg">
+<rect width="700" height="250" fill="#f0f9ff"/>
+<polygon points="50,200 200,50 350,120 500,160 650,180 650,200" fill="#3498db" stroke="#2471a3" stroke-width="2" opacity="0.3"/>
+<polyline points="50,200 200,50 350,120 500,160 650,180" fill="none" stroke="#2471a3" stroke-width="3"/>
+<text x="200" y="40" text-anchor="middle" font-size="12" fill="#2471a3" font-weight="bold">第一级阶梯</text>
+<text x="200" y="55" text-anchor="middle" font-size="10" fill="#2471a3">4000m以上</text>
+<text x="350" y="110" text-anchor="middle" font-size="12" fill="#2471a3" font-weight="bold">第二级阶梯</text>
+<text x="350" y="125" text-anchor="middle" font-size="10" fill="#2471a3">1000~2000m</text>
+<text x="575" y="155" text-anchor="middle" font-size="12" fill="#2471a3" font-weight="bold">第三级阶梯</text>
+<text x="575" y="170" text-anchor="middle" font-size="10" fill="#2471a3">500m以下</text>
+<text x="200" y="85" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="bold">昆仑山—祁连山—横断山</text>
+<text x="420" y="155" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="bold">大兴安岭—太行山—巫山—雪峰山</text>
+<text x="350" y="230" text-anchor="middle" font-size="14" fill="#2471a3" font-weight="bold">中国地势三级阶梯示意</text>
+</svg>
+<p class="svg-caption">图1-3 中国地势三级阶梯示意</p>
+</div>
+</div>
+</section>
+
+<!-- 7. 核心内容：人文差异 -->
+<section class="section" id="section-human">
+<h2 class="section-title"><span class="num">🏘️</span> 人文差异</h2>
+<div class="card">
+<table class="latitude-longitude">
+<tr><th>比较项目</th><th>南方地区</th><th>北方地区</th></tr>
+<tr><td><strong>主食</strong></td><td>米饭</td><td>面食</td></tr>
+<tr><td><strong>传统交通</strong></td><td>船（水运发达）</td><td>马车（陆路为主）</td></tr>
+<tr><td><strong>传统民居</strong></td><td>坡顶、通风散热</td><td>平顶、保暖防寒</td></tr>
+<tr><td><strong>农业类型</strong></td><td>水田农业</td><td>旱地农业</td></tr>
+<tr><td><strong>主要作物</strong></td><td>水稻、油菜、甘蔗</td><td>小麦、玉米、大豆</td></tr>
+</table>
+<div class="warn-box" style="margin-top:16px;">
+<div class="label">⚠️ 高频考点 · 易错警示</div>
+<p><strong>记忆要点：</strong>秦岭—淮河一线是<strong>南北方</strong>的分界线，它既是自然地理分界线，也是人文地理分界线。</p>
+<p style="margin-top:6px;"><strong>考试陷阱：</strong>"秦岭—淮河线是季风区与非季风区的分界线"→ 错误！季风区与非季风区的分界线是大兴安岭—阴山—贺兰山!</p>
+</div>
+</div>
+</section>
+
+<!-- 8. 后测 -->
+<section class="section" id="section-postquiz">
+<h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+<p style="color:#2471a3;margin-bottom:16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
+
+<div class="quiz-box">
+<h3>1. 【⭐ 基础】我国夏季气温分布特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+<div class="quiz-options">
+<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 夏季不是南北温差大，那是冬季特点！"><span class="opt-letter">A</span> 南北温差大</div>
+<div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 南北普遍高温</div>
+<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 西部不是低温，青藏高原除外全国普遍高温！"><span class="opt-letter">C</span> 东热西冷</div>
+</div>
+<div class="feedback" id="feedback-10"></div>
+<div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 南北普遍高温</strong></p><p style="margin-top:8px;">夏季全国普遍高温，南北温差小。青藏高原因海拔高而气温较低。</p></div>
+</div>
+
+<div class="quiz-box" style="margin-top:20px;">
+<h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）秦岭—淮河一线是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+<div class="quiz-options">
+<div class="quiz-option" onclick="checkAnswer(this,true,11,'A')"><span class="opt-letter">A</span> 湿润区与半湿润区分界线</div>
+<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 季风区与非季风区分界线是大兴安岭—阴山—贺兰山！"><span class="opt-letter">B</span> 季风区与非季风区分界线</div>
+<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 第二、三级阶梯分界线是大兴安岭—太行山—巫山—雪峰山！"><span class="opt-letter">C</span> 第二、三级阶梯分界线</div>
+</div>
+<div class="feedback" id="feedback-11"></div>
+<div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 湿润区与半湿润区分界线</strong></p><p style="margin-top:8px;">秦岭—淮河一线是800mm等降水量线，也是湿润区与半湿润区的分界线。</p></div>
+</div>
+
+<div class="quiz-box" style="margin-top:20px;">
+<h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·河南中考）造成我国南方与北方地理差异的主导因素是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+<div class="quiz-options">
+<div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 地形不是造成南北方差异的主导因素！"><span class="opt-letter">A</span> 地形因素</div>
+<div class="quiz-option" onclick="checkAnswer(this,true,12,'B')"><span class="opt-letter">B</span> 气候因素（纬度位置和季风）</div>
+<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 海陆位置不是造成南北差异的主导因素！"><span class="opt-letter">C</span> 海陆位置</div>
+</div>
+<div class="feedback" id="feedback-12"></div>
+<div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 气候因素（纬度位置和季风）</strong></p><p style="margin-top:8px;">南北方地理差异的主要原因是<strong>纬度位置</strong>（南北跨纬度大）和<strong>季风影响</strong>（冬季风对北方影响大）。</p></div>
+</div>
+</section>
+
+<!-- 9. 必考分析 -->
+<section class="section" id="section-exam">
+<h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+<div class="card">
+<div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+<div class="exam-card-header"><span class="exam-card-num" style="background:#dc2626;">1</span><strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：秦岭—淮河一线的地理意义</strong><span class="exam-tag" style="background:#dc2626;">近10年考了18次</span></div>
+<p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+<ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+<li>✅ 1月0℃等温线</li>
+<li>✅ 800mm等降水量线</li>
+<li>✅ 暖温带与亚热带分界线</li>
+<li>✅ 湿润区与半湿润区分界线</li>
+</ul>
+</div>
+<div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+<div class="exam-card-header"><span class="exam-card-num" style="background:#d97706;">2</span><strong style="color:#92400e;font-size:15px;">⚡ 高频考点：气温和降水的分布规律</strong><span class="exam-tag" style="background:#d97706;">近10年考了14次</span></div>
+<p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>冬季南北温差大，夏季普遍高温；降水从东南沿海向西北内陆递减。</p>
+</div>
+<div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+<div class="exam-card-header"><span class="exam-card-num" style="background:#2563eb;">3</span><strong style="color:#1e40af;font-size:15px;">📍 常考考点：三级阶梯与地理差异</strong><span class="exam-tag" style="background:#2563eb;">近10年考了10次</span></div>
+<p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>地势西高东低，呈三级阶梯状分布，阶梯交界处河流落差大、水能丰富。</p>
+</div>
+</div>
+</section>
+
+<!-- 10. AI学伴 -->
+<section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+<div data-teachany-tutor-card></div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="container">
+<p>© 2024 TeachAny · 初中地理互动课件系统</p>
+<p style="margin-top:8px;font-size:12px;">基于 TeachAny v7.14.0 | 适配人教版九年级地理课程标准</p>
+</div>
+</footer>
+
+<script>
+const COURSE_INFO={totalSections:2,currentSection:1};
+let anchorContents={};
+anchorContents[1]='<h3>📍 问题1：我国气温分布有什么差异？</h3><p><strong>冬季：</strong>南北温差大，南方温暖北方寒冷</p><p><strong>夏季：</strong>南北普遍高温（青藏高原除外）</p>';
+anchorContents[2]='<h3>📍 问题2：我国降水分布有什么规律？</h3><p><strong>空间：</strong>从东南沿海向西北内陆递减</p><p><strong>时间：</strong>夏秋多、冬春少，年际变化大</p>';
+anchorContents[3]='<h3>📍 问题3：地理差异对人们生活有何影响？</h3><p><strong>饮食：</strong>南米北面</p><p><strong>交通：</strong>南船北马</p><p><strong>民居：</strong>南方通风散热，北方保暖防寒</p>';
+function selectAnchor(btnElement,id){document.querySelectorAll('.anchor-btn').forEach((item)=>item.classList.remove('selected'));btnElement.classList.add('selected');const display=document.getElementById('anchor-display');display.innerHTML=anchorContents[id];const feedback=document.getElementById('anchor-feedback');if(feedback){feedback.textContent='你选择了：'+btnElement.getAttribute('data-anchor-choice');feedback.style.display='block'}window.__TEACHANY_LEARNER_QUESTION__=btnElement.getAttribute('data-anchor-choice')||''}
+function handleCustomQuestion(question){if(question.trim()){const display=document.getElementById('anchor-display');display.innerHTML='<h3>📍 你的问题：'+question+'</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>';const feedback=document.getElementById('anchor-feedback');if(feedback){feedback.textContent='你的问题：'+question;feedback.style.display='block'}window.__TEACHANY_LEARNER_QUESTION__=question}}
+function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=element.closest('.quiz-box');const feedback=parent.querySelector('.feedback');const explanation=document.getElementById('explanation-'+questionNum);const allOptions=parent.querySelectorAll('.quiz-option');allOptions.forEach(opt=>opt.classList.remove('correct','wrong'));if(isCorrect){element.classList.add('correct');if(feedback){feedback.innerHTML='<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';feedback.className='feedback show correct-fb'}if(explanation)explanation.classList.add('show')}else{element.classList.add('wrong');const specificFeedback=element.dataset.feedback||'❌ 不对哦，再想想！';if(feedback){feedback.innerHTML=specificFeedback+'<br><br>💡 换一个选项试试？';feedback.className='feedback show wrong-fb'}const alreadyCorrect=parent.querySelector('.quiz-option.correct');if(alreadyCorrect&&explanation)explanation.classList.add('show')}}
+document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《地理差异》课件加载完成（v1.0）')});
+function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
+</script>
+</body>
+</html>

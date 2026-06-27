@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="hist-beisong-zhengzhi-7">
+  <meta name="course-title" content="第1课 北宋的政治">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="hist-beisong-zhengzhi-7">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表（引用共享资源） -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  
+  <!-- 外部CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>第1课 北宋的政治 | 初中7年级历史</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .timeline-svg {
+      background: #fafcfb;
+      border: 1px solid #e8dcc8;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #8b4513, #cd853f);
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .comparison-table td {
+      padding: 10px;
+      border: 1px solid #e8dcc8;
+      text-align: center;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+      background: #fdf5e6;
+    }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show {
+      display: block;
+    }
+    
+    .answer-explanation .explain-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #92400e;
+    }
+
+    .difficulty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+    
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #fafcfb;
+      border: 1px solid #e8dcc8;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption {
+      margin-top: 12px; font-size: 14px; color: #8b7355; text-align: center;
+    }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #d2b48c;
+      background: #fffaf0; color: #2c3e50; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.28);
+      color: #92400e;
+    }
+
+    /* 考点卡片 */
+    .exam-card {
+      border-radius: 12px; padding: 18px; margin-bottom: 16px;
+    }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag {
+      color: white; padding: 2px 8px; border-radius: 4px;
+      font-size: 10px; font-weight: 700;
+    }
+
+/* ====== 手机端适配 ====== */
+@media (max-width: 768px) {
+    /* Hero / 课程标题 */
+    .hero { padding: 20px 14px !important; }
+    .hero h1 { font-size: 1.3rem !important; }
+    .hero-subtitle { font-size: 0.88rem !important; }
+    .hero-icon { font-size: 36px !important; }
+
+    /* 内容区段 */
+    .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+    .section h2 { font-size: 1.15rem !important; }
+    .section h3 { font-size: 1rem !important; }
+    .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+    /* 卡片 */
+    .card { border-radius: 12px !important; padding: 14px !important; }
+    .card-header { padding: 12px 14px !important; }
+    .card-body { padding: 0 14px 12px !important; }
+
+    /* 问题锚点 */
+    .anchor-points { flex-direction: column !important; gap: 6px !important; }
+    .anchor-btn {
+    width: 100% !important; padding: 10px 12px !important;
+    font-size: 0.82rem !important; justify-content: center !important;
+    border-radius: 8px !important;
+    }
+
+    /* 测验选项 */
+    .quiz-option {
+    padding: 12px 12px !important; font-size: 0.88rem !important;
+    border-radius: 10px !important;
+    }
+    .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+    /* SVG / 图表容器 */
+    .timeline-svg, .knowledge-map, .hero-graph {
+    padding: 12px !important; border-radius: 8px !important;
+    }
+    .timeline-svg svg, .knowledge-map svg, .hero-graph svg {
+    max-width: 100% !important; height: auto !important;
+    display: block !important; margin: 0 auto !important;
+    }
+
+    /* 表格（横滑） */
+    .comparison-table, .data-table, table {
+    display: block !important; overflow-x: auto !important;
+    font-size: 12px !important; -webkit-overflow-scrolling: touch !important;
+    }
+    .comparison-table th, .comparison-table td,
+    .data-table th, .data-table td {
+    padding: 6px 8px !important; white-space: nowrap !important;
+    }
+
+    /* 概念框 */
+    .concept-box {
+    padding: 12px 14px !important; font-size: 0.88rem !important;
+    margin: 10px 0 !important; border-radius: 0 10px 10px 0 !important;
+    }
+
+    /* AI学伴 */
+    .chat-panel { border-radius: 12px !important; margin: 12px !important; }
+    .chat-messages { max-height: 250px !important; }
+    .chat-input { font-size: 0.88rem !important; padding: 10px 12px !important; }
+    .chat-send { padding: 10px 14px !important; font-size: 0.82rem !important; }
+
+    /* 考点总结 */
+    .summary-box, .key-points {
+    padding: 12px 14px !important; font-size: 0.88rem !important;
+    border-radius: 10px !important;
+    }
+
+    /* Brand Bar */
+    .brand-bar { padding: 8px 10px !important; }
+    .brand-logo span { font-size: 0.82rem !important; }
+    .brand-tag { font-size: 0.68rem !important; padding: 2px 6px !important; }
+
+    /* 进度条 */
+    .progress-bar { height: 3px !important; }
+    .progress-label { font-size: 0.7rem !important; padding: 3px 10px !important; }
+
+    /* 页脚 */
+    .footer { padding: 16px 12px !important; margin-top: 20px !important; }
+
+    .quiz-option { padding: 10px !important; font-size: 0.82rem !important; }
+    .section p, .section li { font-size: 0.82rem !important; }
+}
+
+
+
+      /* 标题独占首行 */
+      /* 按钮均分2行，每行2个 */
+
+
+
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="container">
+      <div class="brand-logo">
+        <i class="fa-solid fa-landmark"></i>
+        <span>TeachAny · 初中历史</span>
+      </div>
+      <div class="brand-tag">互动课件 v7.14</div>
+    </div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d6sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <div class="nav-center">第六单元：辽宋夏金元时期</div>
+    <a href="../6.2_lxxbsbl/lxxbsbl.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+</div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-landmark-open"></i> 七年级历史 · 第六单元
+      </div>
+      <h1>
+        第1课 北宋的政治
+        <span>Northern Song Politics</span>
+      </h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解北宋的建立与中央集权制度的加强<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图(SVG内嵌) ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#fafcfb"/>
+        <circle cx="400" cy="150" r="60" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">北宋政治</text>
+        
+        <rect x="50" y="50" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="85" text-anchor="middle" font-size="14" fill="white">陈桥兵变</text>
+        <line x1="170" y1="80" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="225" text-anchor="middle" font-size="14" fill="white">中央集权</text>
+        <line x1="170" y1="220" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="50" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="85" text-anchor="middle" font-size="14" fill="white">重文轻武</text>
+        <line x1="630" y1="80" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="190" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="225" text-anchor="middle" font-size="14" fill="white">王安石变法</text>
+        <line x1="630" y1="220" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #8b7355; font-size: 14px; text-align: center;">图6-1 北宋政治知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 探究问题
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="北宋如何建立？">
+            🏛️ 北宋如何建立？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="中央集权如何加强？">
+            👑 中央集权如何加强？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="王安石变法为何失败？">
+            📜 王安石变法为何失败？
+          </button>
+        </div>
+
+        <!-- 自定义问题输入 -->
+        <label style="display:block; margin-top: 18px; color: var(--text-light);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+
+        <!-- 动态内容展示区 -->
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--text-light); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+
+        <!-- 反馈区域 -->
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 学习目标
+      </h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道北宋的建立过程和统一方针</li>
+          <li>✅ 了解宋太祖加强中央集权的措施</li>
+          <li>✅ 理解重文轻武政策的影响</li>
+          <li>✅ 掌握王安石变法的背景和内容</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title">
+        <span class="num">📝</span> 前测：检验先备知识
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】北宋的建立者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 赵构是南宋的建立者，不是北宋！">
+            <span class="opt-letter">A</span> 赵构
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 赵匡胤
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 赵光义是宋太宗，北宋第二位皇帝，不是建立者！">
+            <span class="opt-letter">C</span> 赵光义
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p>960年，后周大将<strong>赵匡胤</strong>在陈桥驿发动兵变，被部下拥立为皇帝，建立宋朝，定都东京（开封），史称<strong>北宋</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box">
+        <h3>2. 【⭐ 基础】"陈桥兵变"发生在哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 835年是甘露之变，不是陈桥兵变！">
+            <span class="opt-letter">A</span> 835年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 875年是黄巢起义，不是陈桥兵变！">
+            <span class="opt-letter">B</span> 875年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+            <span class="opt-letter">C</span> 960年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>960年</strong>，赵匡胤在陈桥驿发动兵变，黄袍加身，建立北宋。"陈桥兵变，黄袍加身"是历史典故。</p>
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐ 提高】宋太祖加强中央集权的核心措施是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 分封诸侯是西周制度，宋朝是中央集权！">
+            <span class="opt-letter">A</span> 分封诸侯
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 推行郡县制是秦朝制度，不是宋朝核心措施！">
+            <span class="opt-letter">B</span> 推行郡县制
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 杯酒释兵权
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p>宋太祖赵匡胤通过<strong>"杯酒释兵权"</strong>解除禁军将领及地方藩镇的兵权，加强中央集权，防止武将专权。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <h3>4. 【⭐⭐⭐ 挑战】北宋"重文轻武"政策的根本目的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 发展经济是目的之一，但不是根本目的！">
+            <span class="opt-letter">A</span> 发展经济
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+            <span class="opt-letter">B</span> 防止武将专权
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 提倡文学是表面现象，不是根本目的！">
+            <span class="opt-letter">C</span> 提倡文学
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p>北宋<strong>重文轻武</strong>政策的根本目的是<strong>防止武将专权</strong>。唐末五代藩镇割据、武将篡权的教训，使宋太祖决心削弱武将权力，重用文臣。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section4: 核心内容 -->
+    <section class="section" id="core-content">
+      <h2 class="section-title">
+        <span class="num">📚</span> 核心内容
+      </h2>
+      
+      <div class="card">
+        <h3>一、北宋的建立</h3>
+        <p><strong>时间</strong>：960年</p>
+        <p><strong>事件</strong>：陈桥兵变，黄袍加身</p>
+        <p><strong>人物</strong>：赵匡胤（宋太祖）</p>
+        <p><strong>都城</strong>：东京（开封）</p>
+        <p><strong>统一方针</strong>："先南后北"，陆续消灭割据政权</p>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <h3>二、加强中央集权的措施</h3>
+        <p><strong>1. 解除禁军将领兵权</strong>："杯酒释兵权"</p>
+        <p><strong>2. 削弱地方势力</strong>：文臣任知州，设通判分权</p>
+        <p><strong>3. 控制财政</strong>：设转运使，地方财赋收归中央</p>
+        <p><strong>4. 重文轻武</strong>：文人地位高于武将，抑制武将专权</p>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <h3>三、王安石变法</h3>
+        <p><strong>背景</strong>：北宋中期，财政困难，社会矛盾尖锐</p>
+        <p><strong>时间</strong>：1069年（宋神宗时期）</p>
+        <p><strong>目的</strong>：富国强兵</p>
+        <p><strong>主要措施</strong>：</p>
+        <ul>
+          <li>青苗法：政府贷款给农民，限制高利贷</li>
+          <li>募役法：以钱代役，减轻农民负担</li>
+          <li>方田均税法：清丈土地，按田征税</li>
+          <li>保甲法：组织民兵，加强地方治安</li>
+        </ul>
+        <p><strong>结果</strong>：遭到大官僚、大地主反对，最终失败</p>
+      </div>
+    </section>
+
+    <!-- Section5: 深入内容 -->
+    <section class="section" id="deep-content">
+      <h2 class="section-title">
+        <span class="num">🔍</span> 深入内容
+      </h2>
+      
+      <div class="card">
+        <h3>重文轻武政策的影响</h3>
+        <p><strong>积极影响</strong>：</p>
+        <ul>
+          <li>① 防止武将专权，巩固中央集权</li>
+          <li>② 文人政治成熟，科举制度完善</li>
+          <li>③ 文化繁荣，科技发达（宋词、宋画、印刷术）</li>
+        </ul>
+        <p><strong>消极影响</strong>：</p>
+        <ul>
+          <li>① 军队战斗力削弱，边防力量不足</li>
+          <li>② 官员冗多，财政负担沉重</li>
+          <li>③ 对辽、西夏、金战争屡败，屈辱求和</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <h3>王安石变法的失败原因</h3>
+        <p><strong>1. 触动大地主、大官僚利益</strong>：遭到强烈反对</p>
+        <p><strong>2. 用人不当</strong>：一些地方官执行偏差，加重农民负担</p>
+        <p><strong>3. 宋神宗去世</strong>：变法失去支持，最终被废除</p>
+        <p><strong>4. 措施过于激进</strong>：脱离当时社会实际</p>
+      </div>
+    </section>
+
+    <!-- Section6: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title">
+        <span class="num">📝</span> 后测：检验学习效果
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+        <span style="margin-left: 12px; color: var(--accent);">⚡ 含中考真题</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】北宋的都城是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 长安是唐朝都城，不是北宋！">
+            <span class="opt-letter">A</span> 长安
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 洛阳是东汉、曹魏等朝代都城，不是北宋！">
+            <span class="opt-letter">B</span> 洛阳
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'C')">
+            <span class="opt-letter">C</span> 东京（开封）
+          </div>
+        </div>
+        <div class="feedback" id="feedback-5"></div>
+        <div class="answer-explanation" id="explanation-5">
+          <div class="explain-title">📖 详细解析</div>
+          <p>北宋定都<strong>东京</strong>（今河南开封），又称汴京、汴梁。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box">
+        <h3>2. 【⭐ 基础】"杯酒释兵权"的故事与哪位皇帝有关？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+            <span class="opt-letter">A</span> 宋太祖
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 唐太宗是唐朝皇帝，与杯酒释兵权无关！">
+            <span class="opt-letter">B</span> 唐太宗
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 宋高宗是南宋皇帝，不是杯酒释兵权的主角！">
+            <span class="opt-letter">C</span> 宋高宗
+          </div>
+        </div>
+        <div class="feedback" id="feedback-6"></div>
+        <div class="answer-explanation" id="explanation-6">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>宋太祖赵匡胤</strong>通过"杯酒释兵权"和平解除禁军将领兵权，加强皇权，避免流血政变。</p>
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐ 提高】王安石变法的核心是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="❌ 发展农业是手段之一，不是核心！">
+            <span class="opt-letter">A</span> 发展农业
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'B')">
+            <span class="opt-letter">B</span> 富国强兵
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="❌ 加强边防是目的之一，但变法核心是富国强兵！">
+            <span class="opt-letter">C</span> 加强边防
+          </div>
+        </div>
+        <div class="feedback" id="feedback-7"></div>
+        <div class="answer-explanation" id="explanation-7">
+          <div class="explain-title">📖 详细解析</div>
+          <p>王安石变法的核心是<strong>富国强兵</strong>，通过改变祖宗之法，解决北宋中期的财政危机和军事弱势。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题（中考真题） -->
+      <div class="quiz-box">
+        <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】阅读材料，回答问题：<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div style="background: #f9fafb; border-left: 4px solid #8b4513; padding: 16px; margin-bottom: 16px; border-radius: 0 8px 8px 0;">
+          <p><strong>材料</strong>：</p>
+          <p>"太宗皇帝得天下，复用文士，制度立，礼乐兴……国初，取士甚宽，考官取之，天子诏之，宰相主之。"</p>
+          <p>——（宋）欧阳修</p>
+          <p><strong>问题</strong>：材料反映了北宋哪一政策？（　）</p>
+        </div>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'A')" data-feedback="❌ 重农抑商政策在秦朝就已经存在，不是北宋特有的！">
+            <span class="opt-letter">A</span> 重农抑商
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'B')">
+            <span class="opt-letter">B</span> 重文轻武
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 闭关锁国是明清政策，不是北宋！">
+            <span class="opt-letter">C</span> 闭关锁国
+          </div>
+        </div>
+        <div class="feedback" id="feedback-8"></div>
+        <div class="answer-explanation" id="explanation-8">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>答案：B（重文轻武）</strong></p>
+          <p><strong>解析</strong>：材料中的"复用文士""取士甚宽"反映了北宋<strong>重用文臣、压抑武将</strong>的"重文轻武"政策。</p>
+          <p><strong>中考考点</strong>：北宋重文轻武政策的表现和影响是高频考点。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section7: 考点总结 -->
+        <!-- Section 8: 必考分析与考点总结 -->
+      <section class="section" id="section-exam">
+        <h2 class="section-title">
+          <span class="num">🎯</span> 必考分析与考点总结
+        </h2>
+        
+        <div class="card">
+          <!-- 考点1:最高频 -->
+          <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+            <div class="exam-card-header">
+              <span class="exam-card-num" style="background:#dc2626;">1</span>
+              <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：北宋建立与陈桥兵变</strong>
+              <span class="exam-tag" style="background:#dc2626;">近10年考了8次</span>
+            </div>
+            <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+            <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+              <li>✅ <strong>960年</strong> → 赵匡胤发动陈桥兵变 ✅</li>
+              <li>✅ 建立<strong>北宋</strong>，定都<strong>东京</strong>（开封）✅</li>
+              <li>❌ "北宋建立于961年" → <strong>错误！</strong> ❌</li>
+            </ul>
+          </div>
+  
+          <!-- 考点2 -->
+          <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+            <div class="exam-card-header">
+              <span class="exam-card-num" style="background:#d97706;">2</span>
+              <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：杯酒释兵权</strong>
+              <span class="exam-tag" style="background:#d97706;">近10年考了6次</span>
+            </div>
+            <p style="font-size:14px;line-height:1.7;margin:0;"><strong>核心要点：</strong>宋太祖通过<strong>和平手段</strong>解除禁军将领兵权，加强<strong>中央集权</strong>，防止武将专权。</p>
+            <p style="font-size:13px;color:#666;margin:6px 0 0 0;">💡 <strong>考试陷阱：</strong>常问"杯酒释兵权的目的是什么？"答案：<strong>加强中央集权，防止武将政变</strong></p>
+          </div>
+  
+          <!-- 考点3 -->
+          <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+            <div class="exam-card-header">
+              <span class="exam-card-num" style="background:#2563eb;">3</span>
+              <strong style="color:#1e40af;font-size:15px;">📚 常考考点：重文轻武政策</strong>
+              <span class="exam-tag" style="background:#2563eb;">近10年考了5次</span>
+            </div>
+            <p style="font-size:14px;line-height:1.7;margin:0;"><strong>政策内容：</strong>重用文臣，抑制武将，提高<strong>文官地位</strong>。</p>
+            <p style="font-size:14px;line-height:1.7;margin:6px 0 0 0;"><strong>影响（两面性）：</strong></p>
+            <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+              <li>✅ 积极：防止政变，<strong>文化繁荣</strong>（宋词、宋画兴盛）</li>
+              <li>❌ 消极：军队战斗力<strong>削弱</strong>，导致北宋<strong>积贫积弱</strong></li>
+            </ul>
+          </div>
+  
+          <!-- 考点4 -->
+          <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+            <div class="exam-card-header">
+              <span class="exam-card-num" style="background:#16a34a;">4</span>
+              <strong style="font-size:15px;color:#166534;">📍 常考考点：王安石变法</strong>
+              <span class="exam-tag" style="background:#16a34a;">近10年考了4次</span>
+            </div>
+            <p style="font-size:14px;line-height:1.7;margin:0;"><strong>时间：</strong><strong>1069年</strong>，宋神宗支持王安石变法。</p>
+            <p style="font-size:14px;line-height:1.7;margin:6px 0 0 0;"><strong>目的：</strong><strong>富国强兵</strong>，解决北宋<strong>积贫积弱</strong>问题。</p>
+            <p style="font-size:14px;line-height:1.7;margin:6px 0 0 0;"><strong>结果：</strong>遭到<strong>大官僚、大地主</strong>反对，最终失败。</p>
+            <p style="font-size:13px;color:#666;margin:6px 0 0 0;">💡 <strong>考试常问：</strong>"王安石变法失败的根本原因是什么？"答案：<strong>触犯大地主大官僚利益</strong></p>
+          </div>
+  
+          <!-- 中考命题趋势 -->
+          <div class="exam-card" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff);border:1px solid #e879f9;">
+            <div class="exam-card-header">
+              <span style="font-size:18px;">📈</span>
+              <strong style="font-size:15px;color:#86198f;">中考命题趋势分析</strong>
+            </div>
+            <table class="comparison-table">
+              <tr style="background:#d946ef;color:white;"><th>题型</th><th>频率</th><th>考查方式</th><th>备考建议</th></tr>
+              <tr style="background:#fdf4ff;"><td>选择题</td><td>★★★★★</td><td>考查北宋建立时间、人物</td><td>死记960年、赵匡胤</td></tr>
+              <tr style="background:#ffffff;"><td>材料题</td><td>★★★☆☆</td><td>给一段文言文，分析政策影响</td><td>理解"重文轻武"的两面性</td></tr>
+              <tr style="background:#fdf4ff;"><td>简答题</td><td>★★☆☆☆</td><td>简述王安石变法的内容</td><td>背诵"富国强兵"目的</td></tr>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Section 9: AI 学伴（标准模块） -->
+      <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+        <h2 class="section-title">🤖 AI 学伴</h2>
+        <div data-teachany-tutor-card></div>
+      </section>
+
+    <!-- Section9: AI 学伴（标准模块） -->
+
+        <!-- Section 9: AI 学伴（标准模块） -->
+      
+
+  </main>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>TeachAny v7.14.0 · 初中7年级历史课件</p>
+      <p>本课件仅供学习使用 | © 2026 TeachAny</p>
+    </div>
+  </footer>
+
+  <!-- ========== JavaScript ========== -->
+  <script>
+    // ========== 全局状态 ==========
+    let currentAnchor = null;
+    let quizResults = {};
+
+    // ========== 进度条更新 ==========
+    function updateProgress() {
+      const sections = document.querySelectorAll('.section');
+      const total = sections.length;
+      let visible = 0;
+      sections.forEach(s => {
+        const rect = s.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) visible++;
+      });
+      const pct = Math.round((visible / total) * 100);
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-label').textContent = `已学 ${pct}% · ${visible}/${total} 节`;
+    }
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+
+    // ========== 问题锚点选择 ==========
+    function selectAnchor(btn, id) {
+      document.querySelectorAll('.anchor-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentAnchor = id;
+      
+      const display = document.getElementById('anchor-display');
+      const texts = {
+        1: '<div style="padding:16px; background:#fdf5e6; border-radius:8px;"><h4>🏛️ 你选择了：北宋如何建立？</h4><p>我们将围绕这个问题展开学习：</p><ul><li>陈桥兵变的过程</li><li>黄袍加身的含义</li><li>北宋统一的方针</li></ul></div>',
+        2: '<div style="padding:16px; background:#fdf5e6; border-radius:8px;"><h4>👑 你选择了：中央集权如何加强？</h4><p>我们将围绕这个问题展开学习：</p><ul><li>杯酒释兵权的故事</li><li>文臣任知州的制度</li><li>转运使的设置</li></ul></div>',
+        3: '<div style="padding:16px; background:#fdf5e6; border-radius:8px;"><h4>📜 你选择了：王安石变法为何失败？</h4><p>我们将围绕这个问题展开学习：</p><ul><li>变法的背景和目的</li><li>主要措施的内容</li><li>失败的原因分析</li></ul></div>'
+      };
+      display.innerHTML = texts[id] || '';
+      
+      const fb = document.getElementById('anchor-feedback');
+      fb.style.display = 'block';
+      fb.textContent = `✅ 已选择问题锚点：${btn.dataset.anchorChoice}`;
+    }
+
+    function handleCustomQuestion(val) {
+      if (!val.trim()) return;
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = `<div style="padding:16px; background:#fdf5e6; border-radius:8px;"><h4>💡 你自定义的问题是：</h4><p>${val}</p><p>AI学伴会围绕这个问题帮你学习！</p></div>`;
+    }
+
+    // ========== 测验逻辑 ==========
+        /* ========== 答案检查（支持反复尝试 + 答对了也能看错误选项讲解） ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+
+      // 先清除所有选项的高亮状态
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) {
+          feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+          feedback.className = 'feedback show correct-fb';
+        }
+        if (explanation) explanation.classList.add('show');
+        // 不禁用！答对了还能点错误选项看讲解
+
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) {
+          feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+          feedback.className = 'feedback show wrong-fb';
+        }
+        // 不禁用！可以一直尝试
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+  </script>
+    <!-- 标准模块脚本（必须） -->
+
+    <script src="../../shared/mascot.js?v=8.0"></script>
+  </body>
+</html>

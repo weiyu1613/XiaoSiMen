@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-nw-tibet-unit8">
+  <meta name="course-title" content="第五单元 西北地区和青藏地区">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-nw-tibet">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>第五单元 西北地区和青藏地区 | 初中8年级地理</title>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #334155; line-height: 1.6; }
+    
+    /* 品牌栏 */
+    .brand-bar {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: white;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(3,105,161,0.2);
+    }
+    .brand-left { display: flex; align-items: center; gap: 10px; }
+    .brand-logo { height: 32px; width: auto; }
+    .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+    .brand-course { font-size: 13px; opacity: 0.85; }
+
+    /* 导航 */
+    .main-nav {
+      background: white;
+      padding: 12px 24px;
+      display: flex;
+      gap: 16px;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: #475569;
+      font-size: 14px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-link:hover, .nav-link.active {
+      background: #0369a1;
+      color: white;
+    }
+
+    /* Hero */
+    .hero-section {
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #38bdf8 100%);
+      color: white;
+      padding: 60px 24px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+    .hero-title { font-size: 36px; font-weight: 800; margin-bottom: 12px; position: relative; }
+    .hero-subtitle { font-size: 18px; opacity: 0.9; position: relative; margin-bottom: 30px; }
+
+    /* 知识结构SVG */
+    .hero-svg-container {
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    /* 单元概览 */
+    .unit-overview {
+      max-width: 900px;
+      margin: -40px auto 40px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .overview-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .overview-header {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: white;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .overview-header h2 { font-size: 20px; }
+    .overview-badge {
+      background: rgba(255,255,255,0.25);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    /* 课时卡片 */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 24px;
+    }
+    .lesson-card {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .lesson-card:hover {
+      border-color: #0369a1;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(3,105,161,0.15);
+    }
+    .lesson-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    .lesson-card h3 { font-size: 17px; color: #1e293b; margin-bottom: 8px; }
+    .lesson-card p { font-size: 13px; color: #64748b; line-height: 1.6; }
+    .lesson-tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .tag-nw { background: #fef3c7; color: #92400e; }
+    .tag-qz { background: #d1fae5; color: #065f46; }
+
+    /* 学习路线 */
+    .learning-path {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+    .path-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .path-card h2 {
+      color: #0369a1;
+      font-size: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .path-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .path-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 180px;
+    }
+    .step-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .step-text { font-size: 13px; color: #475569; }
+    .step-arrow { color: #cbd5e1; font-size: 18px; }
+
+    /* 考点速览 */
+    .exam-preview {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+    .exam-card {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid #fde68a;
+    }
+    .exam-card h2 {
+      color: #92400e;
+      font-size: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .exam-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .exam-tag {
+      background: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #78350f;
+      border: 1px solid #fde68a;
+    }
+    .exam-tag strong { color: #dc2626; }
+
+    /* 页脚 */
+    footer {
+      background: #1e40af;
+      color: white;
+      text-align: center;
+      padding: 30px 24px;
+      margin-top: 40px;
+    }
+    footer p { font-size: 13px; opacity: 0.75; }
+
+    @media (max-width: 640px) {
+      .hero-title { font-size: 26px; }
+      .lesson-grid { grid-template-columns: 1fr; }
+      .path-steps { flex-direction: column; }
+      .step-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-left">
+      <img src="../shared/logo.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
+      <span class="brand-name">TeachAny 互动课件</span>
+    </div>
+    <div class="brand-right">
+      <span class="brand-course">初中地理 · 八年级下册</span>
+    </div>
+  </div>
+
+  <!-- 导航 -->
+  <nav class="main-nav">
+    <a href="../../index.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+    <a href="d8xb.html" class="nav-link active"><i class="fas fa-mountain"></i> 第五单元</a>
+  </nav>
+
+  <!-- Hero区 -->
+  <div class="hero-section">
+    <h1 class="hero-title">🏔️ 第五单元 西北地区和青藏地区</h1>
+    <p class="hero-subtitle">干旱与高寒的自然环境 · 绿洲农业与河谷农业 · 生态保护与可持续发展</p>
+    
+    <div class="hero-svg-container">
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <!-- 中心：第五单元 -->
+        <rect x="275" y="80" width="150" height="44" rx="22" fill="white" opacity="0.95"/>
+        <text x="350" y="107" text-anchor="middle" fill="#0369a1" font-size="14" font-weight="bold">西北+青藏地区</text>
+        
+        <!-- 左侧：西北地区分支 -->
+        <rect x="30" y="35" width="140" height="34" rx="17" fill="white" opacity="0.8"/>
+        <text x="100" y="57" text-anchor="middle" fill="#0369a1" font-size="12">自然特征与农业</text>
+        
+        <rect x="30" y="95" width="140" height="34" rx="17" fill="white" opacity="0.8"/>
+        <text x="100" y="117" text-anchor="middle" fill="#0369a1" font-size="12">塔里木盆地</text>
+        
+        <!-- 右侧：青藏地区分支 -->
+        <rect x="530" y="35" width="140" height="34" rx="17" fill="white" opacity="0.8"/>
+        <text x="600" y="57" text-anchor="middle" fill="#0369a1" font-size="12">青藏地区</text>
+        
+        <rect x="530" y="95" width="140" height="34" rx="17" fill="white" opacity="0.8"/>
+        <text x="600" y="117" text-anchor="middle" fill="#0369a1" font-size="12">三江源地区</text>
+        
+        <!-- 底部标签 -->
+        <rect x="250" y="165" width="100" height="26" rx="13" fill="rgba(255,255,255,0.6)"/>
+        <text x="300" y="183" text-anchor="middle" fill="#0369a1" font-size="11">干旱·高寒</text>
+        
+        <rect x="370" y="165" width="100" height="26" rx="13" fill="rgba(255,255,255,0.6)"/>
+        <text x="420" y="183" text-anchor="middle" fill="#0369a1" font-size="11">生态保护</text>
+        
+        <!-- 连接线 -->
+        <line x1="170" y1="52" x2="275" y2="95" stroke="white" stroke-width="2" opacity="0.5"/>
+        <line x1="170" y1="112" x2="275" y2="108" stroke="white" stroke-width="2" opacity="0.5"/>
+        <line x1="425" y1="95" x2="530" y2="52" stroke="white" stroke-width="2" opacity="0.5"/>
+        <line x1="425" y1="108" x2="530" y2="112" stroke="white" stroke-width="2" opacity="0.5"/>
+        <line x1="350" y1="124" x2="350" y2="165" stroke="white" stroke-width="2" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 课时卡片 -->
+  <div class="unit-overview">
+    <div class="overview-card">
+      <div class="overview-header">
+        <h2><i class="fas fa-book-open"></i> 本单元课时安排</h2>
+        <span class="overview-badge">共 4 课时</span>
+      </div>
+      <div class="lesson-grid">
+        <a href="8.1_xbq/8.1_xbq.html" class="lesson-card">
+          <div class="lesson-num">8.1</div>
+          <h3>自然特征与农业</h3>
+          <p>西北地区的地理位置、地形、气候、河流特征；灌溉农业与畜牧业分布</p>
+          <span class="lesson-tag tag-nw"><i class="fas fa-sun"></i> 西北地区</span>
+        </a>
+        <a href="8.2_xbq/8.2_xbq.html" class="lesson-card">
+          <div class="lesson-num">8.2</div>
+          <h3>干旱的宝地——塔里木盆地</h3>
+          <p>塔里木盆地的油气资源、绿洲农业、沙漠治理与西气东输工程</p>
+          <span class="lesson-tag tag-nw"><i class="fas fa-gas-pump"></i> 能源开发</span>
+        </a>
+        <a href="8.3_xbq/8.3_xbq.html" class="lesson-card">
+          <div class="lesson-num">8.3</div>
+          <h3>青藏地区</h3>
+          <p>"世界屋脊"的自然特征、高寒牧业、河谷农业、交通与城市发展</p>
+          <span class="lesson-tag tag-qz"><i class="fas fa-snowflake"></i> 青藏地区</span>
+        </a>
+        <a href="8.4_xbq/8.4_xbq.html" class="lesson-card">
+          <div class="lesson-num">8.4</div>
+          <h3>高原湿地——三江源地区</h3>
+          <p>三江源自然保护区、中华水塔、生态保护与可持续发展</p>
+          <span class="lesson-tag tag-qz"><i class="fas fa-water"></i> 生态保护</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 学习路径 -->
+  <div class="learning-path">
+    <div class="path-card">
+      <h2><i class="fas fa-route"></i> 推荐学习路径</h2>
+      <div class="path-steps">
+        <div class="path-step">
+          <div class="step-dot" style="background:#0369a1;">1</div>
+          <span class="step-text">认识西北地区的<br><strong>自然环境</strong></span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="path-step">
+          <div class="step-dot" style="background:#0284c7;">2</div>
+          <span class="step-text">探究塔里木盆地的<br><strong>资源开发</strong></span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="path-step">
+          <div class="step-dot" style="background:#38bdf8;">3</div>
+          <span class="step-text">走进青藏高原的<br><strong>高寒世界</strong></span>
+        </div>
+        <span class="step-arrow">→</span>
+        <div class="path-step">
+          <div class="step-dot" style="background:#10b981;">4</div>
+          <span class="step-text">守护三江源的<br><strong>生态屏障</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 高频考点 -->
+  <div class="exam-preview">
+    <div class="exam-card">
+      <h2><i class="fas fa-star"></i> 中考高频考点速览</h2>
+      <div class="exam-tags">
+        <div class="exam-tag">🌵 西北地区的<strong>干旱</strong>成因及影响</div>
+        <div class="exam-tag">💧 内流河与<strong>高山冰雪融水</strong></div>
+        <div class="exam-tag">🌾 灌溉农业（河西走廊、宁夏平原）</div>
+        <div class="exam-tag">⛽ 塔里木盆地<strong>油气资源</strong>与西气东输</div>
+        <div class="exam-tag">🏔️ 青藏高原"<strong>高寒</strong>"自然特征</div>
+        <div class="exam-tag">🐑 牦牛、青稞等<strong>特有物种</strong></div>
+        <div class="exam-tag">🌾 河谷农业（雅鲁藏布江谷地）</div>
+        <div class="exam-tag">💧 三江源——<strong>中华水塔</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer>
+    <p>TeachAny 互动课件系统 | 初中地理八年级下册</p>
+    <p style="margin-top:6px;">版本 v7.14.0 | 依据人教版教材制作</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.1 内战爆发 | 八年级历史</title>
+    <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8b4513;
+            --primary-light: #cd853f;
+            --primary-dark: #6b3410;
+            --bg-light: #faf7f2;
+            --text-dark: #2c1810;
+            --text-muted: #8b7355;
+            --correct: #10b981;
+            --wrong: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* ===== 品牌栏 ===== */
+        .brand-bar {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #fff;
+            padding: 8px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        .brand-bar .brand-left { display: flex; align-items: center; gap: 12px; }
+        .brand-bar .brand-logo { font-weight: 700; font-size: 16px; letter-spacing: 1px; }
+        .brand-bar .brand-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .brand-bar .brand-version { opacity: 0.7; font-size: 12px; }
+
+        /* ===== 进度条 ===== */
+        .progress-container {
+            background: #e8ddd0;
+            height: 6px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        .progress-info {
+            position: fixed;
+            top: 6px;
+            right: 16px;
+            background: var(--primary);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 0 0 8px 8px;
+            font-size: 12px;
+            z-index: 101;
+        }
+
+        /* ===== 导航栏 ===== */
+        .nav-bar {
+            background: #fff;
+            border-bottom: 1px solid #e8ddd0;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 6px;
+            z-index: 99;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.06);
+        }
+        .nav-bar .nav-left, .nav-bar .nav-right { display: flex; gap: 8px; align-items: center; }
+        .nav-btn {
+            background: var(--bg-light);
+            border: 1px solid #e8ddd0;
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover { background: var(--primary); color: #fff; }
+        .nav-btn i { margin-right: 4px; }
+        .nav-title { font-weight: 600; color: var(--primary-dark); font-size: 15px; }
+
+        /* ===== Hero区 ===== */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #fff;
+            padding: 60px 24px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M20 100 Q60 60 100 100 Q140 140 180 100' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='2'/%3E%3Cpath d='M0 140 Q40 100 80 140 Q120 180 160 140' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='50' r='3' fill='rgba(255,255,255,0.06)'/%3E%3Ccircle cx='150' cy='30' r='2' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E") repeat;
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+        .hero-section h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+        .hero-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .hero-card {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        .hero-card:hover { transform: translateY(-4px); }
+        .hero-card .card-icon { font-size: 28px; margin-bottom: 8px; }
+        .hero-card .card-label { font-size: 13px; opacity: 0.8; margin-bottom: 4px; }
+        .hero-card .card-value { font-size: 16px; font-weight: 600; }
+
+        /* ===== 知识结构图 ===== */
+        .knowledge-map-section {
+            padding: 48px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+        .knowledge-map-svg {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* ===== 探究问题锚点 ===== */
+        .anchor-section {
+            padding: 40px 24px;
+            background: linear-gradient(180deg, #f5ede3, var(--bg-light));
+        }
+        .anchor-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .anchor-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .anchor-btn {
+            background: #fff;
+            border: 2px solid var(--primary-light);
+            color: var(--primary);
+            padding: 10px 24px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .anchor-btn:hover { background: var(--primary); color: #fff; }
+        .anchor-input-box {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .anchor-input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 2px solid #e8ddd0;
+            border-radius: 24px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .anchor-input:focus { border-color: var(--primary); }
+        .anchor-submit {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* ===== 学习目标 ===== */
+        #objectives {
+            padding: 48px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .objective-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .objective-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+        .objective-card:hover { transform: translateY(-4px); }
+        .objective-card .obj-icon { font-size: 32px; margin-bottom: 12px; color: var(--primary); }
+        .objective-card h3 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; }
+        .objective-card ul { list-style: none; }
+        .objective-card li { font-size: 14px; color: var(--text-muted); padding: 3px 0; padding-left: 16px; position: relative; }
+        .objective-card li::before { content: '•'; position: absolute; left: 0; color: var(--primary-light); }
+
+        /* ===== 测验通用 ===== */
+        .prequiz-section, .postquiz-section {
+            padding: 48px 24px;
+            background: #f5ede3;
+        }
+        .quiz-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .quiz-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+        .quiz-badge.challenge { background: #e74c3c; }
+        .quiz-badge.exam { background: #c0392b; font-weight: 700; }
+        .quiz-question {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+        }
+        .quiz-question h4 { font-size: 16px; margin-bottom: 12px; color: var(--text-dark); }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-option {
+            padding: 10px 16px;
+            border: 2px solid #e8ddd0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            background: #fff;
+        }
+        .quiz-option:hover { border-color: var(--primary-light); background: var(--bg-light); }
+        .quiz-option.correct {
+            border-color: var(--correct);
+            background: #ecfdf5;
+            color: #065f46;
+        }
+        .quiz-option.wrong {
+            border-color: var(--wrong);
+            background: #fef2f2;
+            color: #991b1b;
+        }
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct-fb { background: #ecfdf5; border-left: 4px solid var(--correct); color: #065f46; }
+        .quiz-feedback.wrong-fb { background: #fef2f2; border-left: 4px solid var(--wrong); color: #991b1b; }
+
+        /* ===== 核心知识讲解 ===== */
+        #knowledge {
+            padding: 48px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 时间轴 */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary), var(--primary-light));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        .timeline-date {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 2px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .timeline-item h4 { font-size: 16px; color: var(--primary-dark); margin-bottom: 6px; }
+        .timeline-item p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+        /* 概念框 */
+        .concept-box {
+            background: linear-gradient(135deg, #faf7f2, #f5ede3);
+            border-left: 5px solid var(--primary);
+            border-radius: 0 16px 16px 0;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .concept-box h3 { font-size: 18px; color: var(--primary-dark); margin-bottom: 10px; }
+        .concept-box h3 i { margin-right: 8px; }
+        .concept-box p { font-size: 14px; color: var(--text-muted); }
+
+        /* 知识卡片网格 */
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .knowledge-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+            transition: transform 0.2s;
+        }
+        .knowledge-card:hover { transform: translateY(-4px); }
+        .knowledge-card .kc-icon { font-size: 28px; color: var(--primary); margin-bottom: 10px; }
+        .knowledge-card h4 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; }
+        .knowledge-card p { font-size: 14px; color: var(--text-muted); }
+
+        /* 警示框 */
+        .warn-box {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            border-radius: 0 16px 16px 0;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .warn-box h4 { color: #92400e; font-size: 16px; margin-bottom: 8px; }
+        .warn-box h4 i { margin-right: 6px; }
+        .warn-box p { font-size: 14px; color: #78350f; }
+
+        /* ===== 必考分析 ===== */
+        .exam-section {
+            padding: 48px 24px;
+            background: #f5ede3;
+        }
+        .exam-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .exam-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .badge-must {
+            position: absolute;
+            top: 12px;
+            right: -28px;
+            background: #ef4444;
+            color: #fff;
+            padding: 2px 32px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+        .badge-important {
+            position: absolute;
+            top: 12px;
+            right: -28px;
+            background: #f59e0b;
+            color: #fff;
+            padding: 2px 32px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+        .exam-card h4 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; margin-top: 8px; }
+        .exam-card .exam-point { font-size: 14px; color: var(--text-dark); margin-bottom: 6px; font-weight: 600; }
+        .exam-card .exam-method { font-size: 13px; color: var(--text-muted); }
+
+        /* ===== 页脚 ===== */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 32px 24px;
+        }
+        .footer p { font-size: 13px; margin-bottom: 8px; }
+        .footer a { color: rgba(255,255,255,0.9); text-decoration: none; margin: 0 12px; font-size: 13px; }
+        .footer a:hover { color: #fff; text-decoration: underline; }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 768px) {
+            .hero-cards { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 26px; }
+            .nav-bar { flex-wrap: wrap; gap: 8px; }
+            .nav-title { width: 100%; text-align: center; order: -1; }
+            .knowledge-grid { grid-template-columns: 1fr; }
+            .exam-grid { grid-template-columns: 1fr; }
+            .objective-grid { grid-template-columns: 1fr; }
+            .anchor-buttons { flex-direction: column; align-items: center; }
+            .timeline { padding-left: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 1. 品牌栏 -->
+<div class="brand-bar">
+    <div class="brand-left">
+        <span class="brand-logo"><i class="fa-solid fa-landmark-open"></i> TeachAny</span>
+        <span class="brand-tag">初中历史</span>
+    </div>
+    <span class="brand-version">v7.14</span>
+</div>
+
+<!-- 2. 进度条 -->
+<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="progress-info">第 1/2 节 · 50%</div>
+
+<!-- 3. 导航栏 -->
+<nav class="nav-bar">
+    <div class="nav-left">
+        <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
+        <a href="../d7jf.html" class="nav-btn"><i class="fas fa-layer-group"></i> 章节目录</a>
+    </div>
+    <span class="nav-title">7.1 内战爆发</span>
+    <div class="nav-right">
+        <a href="../../../06_d6zhn/6.5_krsh/krsh.html" class="nav-btn"><i class="fas fa-chevron-left"></i> 上一节</a>
+        <a href="../7.2_zjyb/zjyb.html" class="nav-btn">下一节 <i class="fas fa-chevron-right"></i></a>
+    </div>
+</nav>
+
+<!-- 4. Hero区 -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>🏛️ 内战爆发</h1>
+        <p class="hero-subtitle">第七单元 解放战争 · 第1课 | 1945—1946年</p>
+        <div class="hero-cards">
+            <div class="hero-card">
+                <div class="card-icon"><i class="fas fa-clock"></i></div>
+                <div class="card-label">时间跨度</div>
+                <div class="card-value">1945年—1946年<br>从抗战胜利到内战爆发</div>
+            </div>
+            <div class="hero-card">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <div class="card-label">关键人物</div>
+                <div class="card-value">毛泽东 · 蒋介石 · 周恩来<br>国共博弈的核心人物</div>
+            </div>
+            <div class="hero-card">
+                <div class="card-icon"><i class="fas fa-star"></i></div>
+                <div class="card-label">历史意义</div>
+                <div class="card-value">争取和平民主的斗争<br>人民力量经受严峻考验</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. 知识结构图 -->
+<section class="knowledge-map-section">
+    <h2 class="section-title"><i class="fas fa-project-diagram"></i> 知识结构图</h2>
+    <svg class="knowledge-map-svg" viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景装饰 -->
+        <defs>
+            <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#faf7f2;stop-opacity:1"/>
+                <stop offset="100%" style="stop-color:#f5ede3;stop-opacity:1"/>
+            </linearGradient>
+            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#8b4513;stop-opacity:1"/>
+                <stop offset="100%" style="stop-color:#cd853f;stop-opacity:1"/>
+            </linearGradient>
+            <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(139,69,19,0.15)"/>
+            </filter>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#cd853f"/>
+            </marker>
+        </defs>
+        <rect width="900" height="540" rx="16" fill="url(#bgGrad)"/>
+
+        <!-- 时间轴竖线 -->
+        <line x1="130" y1="50" x2="130" y2="470" stroke="url(#lineGrad)" stroke-width="4" stroke-linecap="round"/>
+
+        <!-- 时间节点 -->
+        <circle cx="130" cy="80" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+        <circle cx="130" cy="170" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+        <circle cx="130" cy="260" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+        <circle cx="130" cy="350" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+        <circle cx="130" cy="440" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+
+        <!-- 时间标签 -->
+        <text x="130" y="65" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1945.8</text>
+        <text x="130" y="155" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1945.10</text>
+        <text x="130" y="245" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1946.1</text>
+        <text x="130" y="335" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1946.6</text>
+        <text x="130" y="425" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1946—1947</text>
+
+        <!-- 事件卡片 -->
+        <!-- 重庆谈判 -->
+        <rect x="170" y="55" width="260" height="50" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="78" fill="#8b4513" font-size="14" font-weight="700">重庆谈判</text>
+        <text x="185" y="96" fill="#8b7355" font-size="12">毛泽东赴重庆谈判 → 争取和平民主</text>
+
+        <!-- 双十协定 -->
+        <rect x="170" y="145" width="260" height="50" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="168" fill="#8b4513" font-size="14" font-weight="700">签订《双十协定》</text>
+        <text x="185" y="186" fill="#8b7355" font-size="12">避免内战、建立独立自由富强新中国</text>
+
+        <!-- 全面内战爆发 -->
+        <rect x="170" y="235" width="260" height="50" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="258" fill="#8b4513" font-size="14" font-weight="700">全面内战爆发</text>
+        <text x="185" y="276" fill="#8b7355" font-size="12">国民党进攻中原解放区 → 全面内战</text>
+
+        <!-- 粉碎全面进攻 -->
+        <rect x="170" y="325" width="260" height="50" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="348" fill="#8b4513" font-size="14" font-weight="700">粉碎全面进攻</text>
+        <text x="185" y="366" fill="#8b7355" font-size="12">1946下半年，歼灭大量国民党军</text>
+
+        <!-- 粉碎重点进攻 -->
+        <rect x="170" y="415" width="260" height="50" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="438" fill="#8b4513" font-size="14" font-weight="700">粉碎重点进攻</text>
+        <text x="185" y="456" fill="#8b7355" font-size="12">1947春，陕北、山东战场胜利</text>
+
+        <!-- 因果箭头 -->
+        <path d="M300 105 Q300 125 300 145" stroke="#cd853f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+        <path d="M300 195 Q300 215 300 235" stroke="#cd853f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+        <path d="M300 285 Q300 305 300 325" stroke="#cd853f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+        <path d="M300 375 Q300 395 300 415" stroke="#cd853f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+        <!-- 右侧：关键人物卡片 -->
+        <rect x="500" y="55" width="200" height="50" rx="12" fill="#e3f2fd" filter="url(#shadow)" stroke="#42a5f5" stroke-width="1"/>
+        <text x="515" y="76" fill="#1565c0" font-size="13" font-weight="700">👤 毛泽东</text>
+        <text x="515" y="94" fill="#546e7a" font-size="11">赴重庆谈判，争取和平民主</text>
+
+        <rect x="500" y="145" width="200" height="50" rx="12" fill="#fff3e0" filter="url(#shadow)" stroke="#cd853f" stroke-width="1"/>
+        <text x="515" y="166" fill="#6b3410" font-size="13" font-weight="700">👤 蒋介石</text>
+        <text x="515" y="184" fill="#8b7355" font-size="11">假和平真内战，三次电邀毛泽东</text>
+
+        <rect x="500" y="235" width="200" height="50" rx="12" fill="#e8f5e9" filter="url(#shadow)" stroke="#66bb6a" stroke-width="1"/>
+        <text x="515" y="256" fill="#2e7d32" font-size="13" font-weight="700">🤝 周恩来</text>
+        <text x="515" y="274" fill="#558b2f" font-size="11">协助谈判，推动和平进程</text>
+
+        <!-- 连线：人物→事件 -->
+        <line x1="500" y1="80" x2="430" y2="80" stroke="#42a5f5" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="500" y1="170" x2="430" y2="170" stroke="#cd853f" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="500" y1="260" x2="430" y2="260" stroke="#66bb6a" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+        <!-- 底部结论 -->
+        <rect x="250" y="490" width="400" height="36" rx="18" fill="#8b4513" filter="url(#shadow)"/>
+        <text x="450" y="514" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">🎯 人民解放军粉碎国民党进攻</text>
+    </svg>
+</section>
+
+<!-- 6. 探究问题锚点 -->
+<section class="anchor-section">
+    <div class="anchor-inner">
+        <h2 class="section-title"><i class="fas fa-search"></i> 探究问题</h2>
+        <div class="anchor-buttons">
+            <button class="anchor-btn" onclick="scrollToSection('knowledge')"><i class="fas fa-question-circle"></i> 蒋介石为什么三次电邀毛泽东？</button>
+            <button class="anchor-btn" onclick="scrollToSection('knowledge')"><i class="fas fa-question-circle"></i> 毛泽东为什么"弥天大勇"赴重庆？</button>
+            <button class="anchor-btn" onclick="scrollToSection('knowledge')"><i class="fas fa-question-circle"></i> 国民党为什么敢于发动全面内战？</button>
+        </div>
+        <div class="anchor-input-box">
+            <input type="text" class="anchor-input" placeholder="输入你自己的探究问题…">
+            <button class="anchor-submit"><i class="fas fa-paper-plane"></i> 提问</button>
+        </div>
+    </div>
+</section>
+
+<!-- 7. 学习目标 -->
+<section id="objectives">
+    <h2 class="section-title"><i class="fas fa-bullseye"></i> 学习目标</h2>
+    <div class="objective-grid">
+        <div class="objective-card">
+            <div class="obj-icon"><i class="fa-solid fa-landmark"></i></div>
+            <h3>知识与技能</h3>
+            <ul>
+                <li>了解重庆谈判、《双十协定》、政治协商会议的基本史实</li>
+                <li>掌握全面内战爆发的标志和经过</li>
+                <li>认识人民解放军粉碎国民党进攻的史实</li>
+            </ul>
+        </div>
+        <div class="objective-card">
+            <div class="obj-icon"><i class="fas fa-cogs"></i></div>
+            <h3>过程与方法</h3>
+            <ul>
+                <li>通过时间轴梳理1945—1946年重大事件</li>
+                <li>分析国民党"假和平真内战"的策略与实质</li>
+                <li>运用史料理解中共争取和平的努力</li>
+            </ul>
+        </div>
+        <div class="objective-card">
+            <div class="obj-icon"><i class="fas fa-heart"></i></div>
+            <h3>情感态度价值观</h3>
+            <ul>
+                <li>感受毛泽东赴重庆谈判的"弥天大勇"</li>
+                <li>认识中国共产党争取和平民主的诚意</li>
+                <li>体会人民力量在历史转折中的关键作用</li>
+            </ul>
+        </div>
+        <div class="objective-card">
+            <div class="obj-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>核心素养</h3>
+            <ul>
+                <li>唯物史观：从阶级利益和人民力量角度分析内战原因</li>
+                <li>历史解释：辩证评价重庆谈判的历史意义</li>
+                <li>史料实证：通过史实区分"和平诚意"与"战争准备"</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 8. 前测 -->
+<section class="prequiz-section">
+    <div class="quiz-inner">
+        <h2 class="section-title"><i class="fas fa-pen"></i> 课前检测</h2>
+
+        <div class="quiz-question" data-correct="B" data-feedback='{"A":"蒋介石内心并不真心希望和平建国。他坚持一党专政，不愿与中共分享政权，和平建国只是表面文章。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"蒋介石对和谈并无诚意，他电邀毛泽东的真实目的是为内战准备争取时间、争取政治主动。","D":"国际压力虽有，但不是蒋介石电邀毛泽东的主要原因。真正目的是争取内战准备时间，在政治上争取主动。"}'>
+            <span class="quiz-badge">基础</span>
+            <h4>1. 日本投降后，蒋介石三次电邀毛泽东赴重庆谈判的真实目的是？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 和平建国，共商国是</div>
+                <div class="quiz-option" data-value="B">B. 争取内战准备时间，在政治上争取主动</div>
+                <div class="quiz-option" data-value="C">C. 真心诚意与中共和谈</div>
+                <div class="quiz-option" data-value="D">D. 屈服于国际社会的压力</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="B" data-feedback='{"A":"停战协定并非重庆谈判的主要成果。重庆谈判的直接成果是《双十协定》，停战协定是在后续军事冲突中达成的。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"政治协商会议是在《双十协定》签订后（1946年1月）召开的，不是重庆谈判的直接成果。","D":"共同纲领是1949年中国人民政治协商会议制定的，与重庆谈判无关。"}'>
+            <span class="quiz-badge">提高</span>
+            <h4>2. 重庆谈判中，国共双方达成的重要成果是？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 停战协定</div>
+                <div class="quiz-option" data-value="B">B. 《双十协定》</div>
+                <div class="quiz-option" data-value="C">C. 政治协商会议决议</div>
+                <div class="quiz-option" data-value="D">D. 共同纲领</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="B" data-feedback='{"A":"重庆谈判破裂后并未立即爆发全面内战，国民党还在继续准备。全面内战的爆发有明确的时间和军事标志。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"撕毁双十协定是全面内战爆发的背景和原因之一，但不是爆发标志。标志是具体的军事行动。","D":"国民党占领延安发生在1947年3月，是重点进攻阶段的标志性事件，而非全面内战开始的标志。"}'>
+            <span class="quiz-badge challenge">挑战</span>
+            <h4>3. 全面内战爆发的标志是？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 重庆谈判破裂</div>
+                <div class="quiz-option" data-value="B">B. 1946年6月，国民党军队大举进攻中原解放区</div>
+                <div class="quiz-option" data-value="C">C. 国民党撕毁《双十协定》</div>
+                <div class="quiz-option" data-value="D">D. 国民党军队占领延安</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 9. 核心知识讲解 -->
+<section id="knowledge">
+    <h2 class="section-title"><i class="fa-solid fa-landmark-reader"></i> 核心知识讲解</h2>
+
+    <!-- 时间轴 -->
+    <div class="timeline">
+        <div class="timeline-item">
+            <span class="timeline-date">1945年8月</span>
+            <h4>重庆谈判</h4>
+            <p>抗日战争胜利后，中国人民渴望建立一个独立、民主、富强的新中国。蒋介石三次电邀毛泽东赴重庆谈判。为了争取和平民主，<strong>毛泽东</strong>在周恩来、王若飞陪同下赴重庆，进行了举世瞩目的<strong>重庆谈判</strong>。</p>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-date">1945年10月10日</span>
+            <h4>签订《双十协定》</h4>
+            <p>经过43天的艰苦谈判，国共双方签订<strong>《政府与中共代表会谈纪要》</strong>，即<strong>《双十协定》</strong>。协定规定：坚决避免内战，建立独立、自由和富强的新中国。但国民党始终不承认解放区的民主政权和人民军队的合法地位。</p>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-date">1946年1月</span>
+            <h4>政治协商会议</h4>
+            <p>在重庆召开<strong>政治协商会议</strong>。参加会议的有国民党、共产党、民主同盟和无党派人士的代表。会议通过了有利于人民的决议，包括改组国民政府、整编军队、制定宪法等。但国民党很快撕毁了这些决议。</p>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-date">1946年6月</span>
+            <h4>全面内战爆发</h4>
+            <p>国民党军队在<strong>美帝国主义</strong>支持下，以22万军队大举进攻<strong>中原解放区</strong>，全面内战爆发。此后，国民党军队又向其他解放区发动大举进攻，妄图在3—6个月内消灭人民解放军。</p>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-date">1946下半年—1947年春</span>
+            <h4>粉碎国民党进攻</h4>
+            <p>面对国民党军队的全面进攻和重点进攻，人民解放军采取<strong>集中优势兵力，各个歼灭敌人</strong>的作战方针。经过苏中战役、定陶战役等，粉碎了国民党的<strong>全面进攻</strong>；又在陕北和山东战场粉碎了国民党的<strong>重点进攻</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 概念框 -->
+    <div class="concept-box">
+        <h3><i class="fas fa-key"></i> 核心概念：《双十协定》</h3>
+        <p>1945年10月10日，国共双方在重庆签署的会谈纪要。主要内容：坚决避免内战，建设独立、自由和富强的新中国；召开政治协商会议，讨论和平建国方案。<strong>注意</strong>：协定虽签订，但国民党很快撕毁协定，发动内战。《双十协定》的意义在于揭露了国民党假和平真内战的面目，使中共在政治上赢得了主动。</p>
+    </div>
+
+    <div class="concept-box">
+        <h3><i class="fas fa-key"></i> 核心概念：假和平真内战</h3>
+        <p>这是对蒋介石在抗战胜利后对共产党策略的精准概括。表面上看，蒋介石三次电邀毛泽东谈判、签订《双十协定》、召开政治协商会议，似乎在追求和平。但实际上，这一切都是为发动内战<strong>争取时间、准备条件</strong>。在此期间，国民党积极调兵遣将、接收日军武器装备、获得美国大量援助，为全面内战做好了充分准备。</p>
+    </div>
+
+    <!-- 知识卡片 -->
+    <div class="knowledge-grid">
+        <div class="knowledge-card">
+            <div class="kc-icon"><i class="fas fa-handshake"></i></div>
+            <h4>重庆谈判经过</h4>
+            <p>1945年8月28日，毛泽东在<strong>周恩来、王若飞</strong>陪同下从延安飞抵重庆。重庆各界人民对毛泽东的到来表示热烈欢迎，称颂其为"<strong>弥天大勇</strong>"。谈判历时43天，双方于10月10日签署《双十协定》。毛泽东的赴渝，有力地揭露了国民党"假和平真内战"的阴谋，使中共在政治上获得了极大的主动。</p>
+        </div>
+        <div class="knowledge-card">
+            <div class="kc-icon"><i class="fas fa-landmark"></i></div>
+            <h4>政治协商会议</h4>
+            <p>1946年1月10日，政治协商会议在重庆开幕。参加会议的除国共两党代表外，还有民主同盟、青年党和无党派人士的代表。会议通过了<strong>有利于人民的决议</strong>：改组国民政府、整编军队、召开国民大会、制定宪法等。然而，国民党六届二中全会很快推翻了这些决议，为发动全面内战制造了借口。</p>
+        </div>
+        <div class="knowledge-card">
+            <div class="kc-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>粉碎国民党进攻</h4>
+            <p><strong>全面进攻阶段</strong>（1946.6—1947.2）：解放军采取运动战方针，集中优势兵力歼灭敌人有生力量。经过8个月作战，歼灭敌人70多万，粉碎了全面进攻。<strong>重点进攻阶段</strong>（1947.3—1947.6）：国民党集中兵力进攻陕北（延安）和山东两个解放区。彭德怀率领西北野战军、陈毅率领华东野战军分别粉碎了敌人的重点进攻。</p>
+        </div>
+    </div>
+
+    <!-- 警示框 -->
+    <div class="warn-box">
+        <h4><i class="fas fa-exclamation-triangle"></i> 易错警示</h4>
+        <p><strong>❌ 易错点1：</strong>"《双十协定》签订后内战就停止了"——错！<strong>《双十协定》≠停止内战</strong>。协定签订后，国民党仍不断在局部地区挑起武装冲突，并在1946年6月发动了全面内战。</p>
+        <p><strong>❌ 易错点2：</strong>"政治协商会议通过了宪法"——错！<strong>政治协商会议≠制宪国民大会</strong>。政治协商会议只是通过了关于改组政府、整编军队等决议，宪法是后来国民党单方面召开的"制宪国大"通过的，中共和民盟拒绝参加。</p>
+        <p><strong>❌ 易错点3：</strong>"全面内战开始的标志是重庆谈判破裂"——不够准确。标志是<strong>1946年6月国民党进攻中原解放区</strong>，这是全面的军事进攻，不是局部冲突。</p>
+    </div>
+</section>
+
+<!-- 10. 后测 -->
+<section class="postquiz-section">
+    <div class="quiz-inner">
+        <h2 class="section-title"><i class="fas fa-check-circle"></i> 课后检测</h2>
+
+        <div class="quiz-question" data-correct="B" data-feedback='{"A":"周恩来是重庆谈判中共代表团的成员之一，但不是唯一代表。中共代表团由毛泽东、周恩来、王若飞三人组成。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"朱德是八路军总司令，没有参加重庆谈判。他当时在延安主持中央军委工作。","D":"刘少奇在毛泽东赴重庆谈判期间留在延安主持中共中央日常工作，没有参加重庆谈判。"}'>
+            <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
+            <h4>1.（中考真题）1945年重庆谈判中，中共代表团的成员是？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 周恩来</div>
+                <div class="quiz-option" data-value="B">B. 毛泽东、周恩来、王若飞</div>
+                <div class="quiz-option" data-value="C">C. 朱德</div>
+                <div class="quiz-option" data-value="D">D. 刘少奇</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="B" data-feedback='{"A":"1945年是重庆谈判和《双十协定》签订的时间，全面内战尚未爆发。全面内战开始于1946年6月。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"1947年全面内战已经进入第二年，人民解放军开始战略反攻。全面内战开始于1946年。","D":"1948年解放战争已进入战略决战阶段（三大战役），远早于全面内战爆发的1946年。"}'>
+            <h4>2. 国民党撕毁《双十协定》和政协决议，发动全面内战开始于哪一年？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 1945年</div>
+                <div class="quiz-option" data-value="B">B. 1946年</div>
+                <div class="quiz-option" data-value="C">C. 1947年</div>
+                <div class="quiz-option" data-value="D">D. 1948年</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="B" data-feedback='{"A":"毛泽东赴重庆并非向国民党妥协。恰恰相反，是为了揭露国民党假和平真内战的阴谋，在政治上争取主动。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"中共坚决不交出人民军队，这是谈判中双方的根本分歧之一。毛泽东赴渝正是为了争取人民军队的合法地位。","D":"中共从未承认国民党的独裁统治。重庆谈判的目的是争取和平民主、建立联合政府，而非承认国民党一党专政。"}'>
+            <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
+            <h4>3.（中考真题）毛泽东赴重庆谈判的根本目的是？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 向国民党妥协让步</div>
+                <div class="quiz-option" data-value="B">B. 争取和平民主，揭露国民党假和平真内战的面目</div>
+                <div class="quiz-option" data-value="C">C. 交出人民军队</div>
+                <div class="quiz-option" data-value="D">D. 承认国民党的统治地位</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 11. 必考分析 -->
+<section class="exam-section">
+    <div class="exam-inner">
+        <h2 class="section-title"><i class="fas fa-trophy"></i> 必考分析</h2>
+        <div class="exam-grid">
+            <div class="exam-card">
+                <div class="badge-must">必考</div>
+                <h4>重庆谈判</h4>
+                <p class="exam-point">考点：背景、过程、意义</p>
+                <p class="exam-method">考法：选择题考查中共代表团成员（毛泽东、周恩来、王若飞）；材料分析题考查毛泽东"弥天大勇"的含义及赴渝的目的；常与西安事变中周恩来的谈判进行对比。</p>
+            </div>
+            <div class="exam-card">
+                <div class="badge-must">必考</div>
+                <h4>《双十协定》</h4>
+                <p class="exam-point">考点：内容、意义、被撕毁</p>
+                <p class="exam-method">考法：选择题考查协定名称及签署时间（1945.10.10）；材料题要求分析协定为何未能阻止内战爆发；易与政协决议混淆，注意区分。</p>
+            </div>
+            <div class="exam-card">
+                <div class="badge-important">常考</div>
+                <h4>全面内战爆发</h4>
+                <p class="exam-point">考点：时间、标志、经过</p>
+                <p class="exam-method">考法：选择题考查全面内战爆发的标志（1946.6进攻中原解放区）；与局部内战相区分；时间轴排序题常考。</p>
+            </div>
+            <div class="exam-card">
+                <div class="badge-important">常考</div>
+                <h4>粉碎国民党进攻</h4>
+                <p class="exam-point">考点：全面进攻、重点进攻的区别与粉碎</p>
+                <p class="exam-method">考法：选择题区分"全面进攻"与"重点进攻"的时间和目标；材料题分析人民解放军以少胜多的原因（运动战方针、集中优势兵力等）。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 12. AI学伴 -->
+<section id="teachany-tutor-card" style="padding:48px 24px;max-width:1100px;margin:0 auto">
+  <h2 class="section-title"><i class="fas fa-robot"></i> AI学伴 · 智能辅导</h2>
+  <div style="background:linear-gradient(135deg,#faf7f2,#f5ede3);border:2px solid var(--primary-light);border-radius:16px;padding:28px;text-align:center">
+    <div style="font-size:56px;margin-bottom:12px">🎓</div>
+    <h3 style="color:var(--primary-dark);font-size:20px;margin-bottom:8px">关于「内战爆发」，有什么想问的？</h3>
+    <p style="color:var(--text-muted);font-size:14px;margin-bottom:20px">AI学伴可以帮你：梳理知识脉络、解答疑惑、分析考点、讲解难点</p>
+    <div style="background:white;border-radius:12px;padding:18px;margin-bottom:16px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto">
+      <p style="font-size:13px;color:var(--primary);margin-bottom:8px"><strong>💬 可以这样问：</strong></p>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">• 蒋介石为什么三次电邀毛泽东赴重庆？</p>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">• 毛泽东赴重庆谈判为什么被称为"弥天大勇"？</p>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">• 《双十协定》和政治协商会议决议有什么区别？</p>
+      <p style="font-size:13px;color:var(--text-muted)">• 人民解放军为什么能以少胜多粉碎国民党进攻？</p>
+    </div>
+    <button onclick="alert('AI学伴功能即将上线，敬请期待！')" style="background:var(--primary);color:white;border:none;padding:14px 32px;border-radius:24px;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(139,69,19,.3)">
+      <i class="fas fa-comment-dots"></i> 提问AI学伴
+    </button>
+  </div>
+</section>
+
+<!-- 13. 页脚 -->
+<footer class="footer">
+    <p>© 2026 TeachAny · 初中历史八年级上册 · 第七单元 第1课</p>
+    <div>
+        <a href="../../index.html"><i class="fas fa-home"></i> 首页</a>
+        <a href="../d7jf.html"><i class="fas fa-layer-group"></i> 章节目录</a>
+        <a href="../../../06_d6zhn/6.5_krsh/krsh.html"><i class="fas fa-arrow-left"></i> 上一节</a>
+        <a href="../7.2_zjyb/zjyb.html"><i class="fas fa-arrow-right"></i> 下一节</a>
+    </div>
+</footer>
+
+<script>
+// 平滑滚动
+function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// 测验初始化
+function initQuiz(sectionClass) {
+    const section = document.querySelector('.' + sectionClass);
+    if (!section) return;
+    const questions = section.querySelectorAll('.quiz-question');
+    questions.forEach(q => {
+        const correct = q.dataset.correct;
+        const feedbackData = JSON.parse(q.dataset.feedback);
+        const options = q.querySelectorAll('.quiz-option');
+        const feedbackEl = q.querySelector('.quiz-feedback');
+
+        options.forEach(opt => {
+            opt.addEventListener('click', function() {
+                if (q.classList.contains('answered')) return;
+                q.classList.add('answered');
+
+                const value = this.dataset.value;
+                const isCorrect = value === correct;
+
+                options.forEach(o => {
+                    if (o.dataset.value === correct) {
+                        o.classList.add('correct');
+                    }
+                    if (o.dataset.value === value && !isCorrect) {
+                        o.classList.add('wrong');
+                    }
+                    o.style.cursor = 'default';
+                });
+
+                if (isCorrect) {
+                    feedbackEl.className = 'quiz-feedback show correct-fb';
+                    feedbackEl.innerHTML = feedbackData[correct];
+                } else {
+                    feedbackEl.className = 'quiz-feedback show wrong-fb';
+                    feedbackEl.innerHTML = feedbackData[value] + '<br><strong>正确答案：' + correct + '</strong>';
+                }
+            });
+        });
+    });
+}
+
+// 滚动进度条
+function updateProgress() {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progressBar').style.width = progress + '%';
+}
+
+// 初始化
+document.addEventListener('DOMContentLoaded', function() {
+    initQuiz('prequiz-section');
+    initQuiz('postquiz-section');
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+});
+</script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

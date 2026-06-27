@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<!-- 
+  TeachAny 互动课件模板 - 带详细中文注释的学习版本
+  课件：第2课 原始农耕生活——半坡人与河姆渡人
+  作者：TeachAny
+  版本：v7.14.0
+  
+  本文件包含详细注释，帮助理解代码结构
+  实际使用时请使用 nysh.html（无注释版本）
+-->
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ==================== TeachAny 元数据（必须） ==================== -->
+  <meta name="course-id" content="hist-primitive-farming-7">  <!-- 唯一课件ID -->
+  <meta name="course-title" content="第2课 原始农耕生活——半坡人与河姆渡人">  <!-- 课件标题 -->
+  <meta name="course-subject" content="history">  <!-- 学科 -->
+  <meta name="course-grade" content="middle-7">  <!-- 年级 -->
+  <meta name="teachany-node" content="hist-primitive-farming">  <!-- 知识点节点ID -->
+  <meta name="author" content="TeachAny">  <!-- 作者 -->
+  <meta name="version" content="v7.14.0">  <!-- TeachAny版本 -->
+  
+  <!-- ==================== 样式表引用 ==================== -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">  <!-- 共享样式 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  <!-- 图标库 -->
+  
+  <title>第2课 原始农耕生活 | 初中7年级历史</title>
+  
+  <style>
+    /* ==================== 本课件专属样式 ==================== */
+    /* 注意：尽量使用 shared/styles.css 中的通用样式 */
+    /* 只有本课件特殊的样式才写在这里 */
+    
+    /* 时间线SVG容器 */
+    .timeline-svg {
+      background: #fafcfb;        /* 浅米色背景 */
+      border: 1px solid #e8dcc8; /* 浅棕色边框 */
+      border-radius: 8px;         /* 圆角 */
+      padding: 20px;              /* 内边距 */
+    }
+    
+    /* 对比表格样式（用于半坡人 vs 河姆渡人对比） */
+    .comparison-table {
+      width: 100%;               /* 占满容器宽度 */
+      border-collapse: collapse;   /* 边框合并 */
+      margin: 20px 0;            /* 上下边距 */
+      font-size: 14px;           /* 字体大小 */
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #8b4513, #cd853f); /* 棕色渐变背景 */
+      color: white;               /* 白色文字 */
+      padding: 12px;             /* 内边距 */
+      text-align: center;         /* 文字居中 */
+    }
+    
+    .comparison-table td {
+      padding: 10px;             /* 单元格内边距 */
+      border: 1px solid #e8dcc8; /* 浅棕色边框 */
+      text-align: center;         /* 文字居中 */
+    }
+    
+    .comparison-table tr:nth-child(even) {
+      background: #fdf5e6;       /* 偶数行浅色背景（斑马纹） */
+    }
+
+    /* ==================== 答案讲解区域样式 ==================== */
+    .answer-explanation {
+      background: #fffbeb;        /* 浅黄色背景 */
+      border-left: 4px solid #f59e0b; /* 左侧橙色边框 */
+      border-radius: 0 8px 8px 0;   /* 右侧圆角 */
+      padding: 16px 20px;        /* 内边距 */
+      margin-top: 12px;          /* 上边距 */
+      font-size: 14px;           /* 字体大小 */
+      color: #78350f;           /* 深棕色文字 */
+      display: none;              /* 默认隐藏 */
+    }
+    
+    .answer-explanation.show {
+      display: block;             /* 添加.show类后显示 */
+    }
+    
+    .answer-explanation .explain-title {
+      font-weight: 700;          /* 粗体 */
+      font-size: 15px;           /* 稍大字体 */
+      margin-bottom: 8px;        /* 下边距 */
+      color: #92400e;            /* 深橙色 */
+    }
+
+    /* ==================== 难度徽章样式 ==================== */
+    .difficulty-badge {
+      display: inline-flex;       /* 行内弹性布局 */
+      align-items: center;        /* 垂直居中 */
+      gap: 4px;                 /* 图标与文字间距 */
+      padding: 2px 8px;         /* 内边距 */
+      border-radius: 4px;        /* 圆角 */
+      font-size: 11px;           /* 小字体 */
+      font-weight: 700;          /* 粗体 */
+      margin-left: 8px;          /* 左间距 */
+    }
+    
+    /* 不同难度的颜色方案 */
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }  /* 蓝色：基础题 */
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }  /* 紫色：提高题 */
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }  /* 红色：挑战题 */
+
+    /* ==================== SVG容器样式 ==================== */
+    .svg-container {
+      background: #fafcfb;        /* 浅米色背景 */
+      border: 1px solid #e8dcc8; /* 浅棕色边框 */
+      border-radius: 8px;         /* 圆角 */
+      padding: 20px;              /* 内边距 */
+      margin: 20px 0;            /* 上下边距 */
+      text-align: center;          /* 内容居中 */
+    }
+    .svg-container svg { 
+      max-width: 100%;            /* SVG最大宽度不超过容器 */
+      height: auto;              /* 高度自动（保持宽高比） */
+    }
+    .svg-caption {
+      margin-top: 12px;          /* 上边距 */
+      font-size: 14px;           /* 字体大小 */
+      color: #8b7355;           /* 棕色文字 */
+      text-align: center;         /* 居中 */
+    }
+
+    /* ==================== 自定义问题输入样式 ==================== */
+    #learner-question-input {
+      width: 100%;               /* 占满容器宽度 */
+      border-radius: 12px;       /* 圆角 */
+      border: 1px solid #d2b48c; /* 浅棕色边框 */
+      background: #fffaf0;       /* 浅米色背景 */
+      color: #2c3e50;           /* 深灰色文字 */
+      padding: 12px 14px;       /* 内边距 */
+      font-size: 16px;           /* 字体大小 */
+      margin-top: 8px;           /* 上边距 */
+    }
+    #anchor-feedback {
+      margin-top: 14px;          /* 上边距 */
+      padding: 14px;             /* 内边距 */
+      border-radius: 12px;       /* 圆角 */
+      background: rgba(245,158,11,0.1); /* 半透明橙色背景 */
+      border: 1px solid rgba(245,158,11,0.28); /* 半透明橙色边框 */
+      color: #92400e;            /* 深橙色文字 */
+    }
+
+    /* ==================== 考点卡片样式 ==================== */
+    .exam-card {
+      border-radius: 12px;       /* 圆角 */
+      padding: 18px;             /* 内边距 */
+      margin-bottom: 16px;       /* 下边距 */
+    }
+    .exam-card-header { 
+      display: flex;              /* 弹性布局（横向排列） */
+      align-items: center;        /* 垂直居中 */
+      gap: 8px;                 /* 子元素间距 */
+      margin-bottom: 10px;        /* 下边距 */
+    }
+    .exam-card-num {
+      width: 24px;               /* 固定宽度 */
+      height: 24px;              /* 固定高度 */
+      border-radius: 50%;         /* 圆形 */
+      display: inline-flex;        /* 行内弹性布局 */
+      align-items: center;        /* 垂直居中 */
+      justify-content: center;    /* 水平居中 */
+      font-size: 12px;           /* 字体大小 */
+      font-weight: 700;           /* 粗体 */
+      color: white;               /* 白色文字 */
+    }
+    .exam-tag {
+      color: white;               /* 白色文字 */
+      padding: 2px 8px;         /* 内边距 */
+      border-radius: 4px;        /* 圆角 */
+      font-size: 10px;           /* 小字体 */
+      font-weight: 700;           /* 粗体 */
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ==================== 品牌栏（必须） ==================== -->
+  <div class="brand-bar">
+    <div class="container">
+      <div class="brand-logo">
+        <i class="fa-solid fa-landmark"></i>  <!-- 图标 -->
+        <span>TeachAny · 初中历史</span>  <!-- 品牌名称 -->
+      </div>
+      <div class="brand-tag">互动课件 v7.14</div>  <!-- 版本标签 -->
+    </div>
+  </div>
+  
+  <!-- ==================== 进度条（必须） ==================== -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>  <!-- 进度填充条 -->
+  </div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>  <!-- 进度文字 -->
+  
+  <!-- ==================== 导航栏（必须） ==================== -->
+  <nav class="nav-bar"><div class="nav-inner"><div class="nav-left" style="gap: 28px;"><a href="../../index.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-house"></i> 首页</a></div><div class="nav-left-center" style="gap: 28px;"><a href="../d1sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a></div><div class="nav-center">第一单元：史前时期</div><div class="nav-right" style="gap: 28px;"><a href="../1.1_bjr/bjr.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-chevron-left"></i> 上一节</a><a href="../1.3_ygcs/ygcs-with-comments.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a></div></div></nav>
+  
+  <!-- ==================== Hero区（必须） ==================== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-landmark-open"></i> 七年级历史 · 第一单元
+      </div>
+      <h1>
+        第2课 原始农耕生活——半坡人与河姆渡人
+        <span>Primitive Farming Life: Banpo and Hemudu</span>  <!-- 英文副标题 -->
+      </h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解半坡、河姆渡原始农耕生活，认识新石器时代特征<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ==================== Hero知识结构图（推荐） ==================== -->
+  <section class="section" id="hero-infographic" 
+           data-tts="hero-infographic"  <!-- TTS语音朗读标记 -->
+           data-tsh="知识结构主图 - 先看完整学习地图">  <!-- 学习提示 -->
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <!-- SVG: 原始农耕生活的知识结构图 -->
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#fafcfb"/>
+        <!-- 中心主题：原始农耕 -->
+        <circle cx="400" cy="150" r="60" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">原始农耕</text>
+        
+        <!-- 四个分支：半坡人、河姆渡人、农耕技术、历史意义 -->
+        <rect x="50" y="50" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="85" text-anchor="middle" font-size="14" fill="white">半坡人</text>
+        <line x1="170" y1="80" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="225" text-anchor="middle" font-size="14" fill="white">河姆渡人</text>
+        <line x1="170" y1="220" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="50" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="85" text-anchor="middle" font-size="14" fill="white">农耕技术</text>
+        <line x1="630" y1="80" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="190" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="225" text-anchor="middle" font-size="14" fill="white">历史意义</text>
+        <line x1="630" y1="220" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- SVG箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs></svg>
+      <figcaption style="margin-top: 10px; color: #8b7355; font-size: 14px; text-align: center;">图2-1 原始农耕生活知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ==================== 主内容区 ==================== -->
+  <main class="container">
+
+    <!-- ==================== Section 1: 问题锚点（增强版） ==================== -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 探究问题
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <!-- 预设问题按钮（第2课的问题） -->
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="半坡人和河姆渡人有什么不同？">
+            🏠 半坡人和河姆渡人有什么不同？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="原始农耕生活是什么样的？">
+            🌾 原始农耕生活是什么样的？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="新石器时代有哪些特征？">
+            🛠️ 新石器时代有哪些特征？
+          </button>
+        </div>
+
+        <!-- 自定义问题输入 -->
+        <label style="display:block; margin-top: 18px; color: var(--text-light);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+
+        <!-- 动态内容展示区 -->
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--text-light); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+
+        <!-- 反馈区域 -->
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- ==================== Section 2: 学习目标 ==================== -->
+    <section class="section" id="objectives">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 学习目标
+      </h2>
+      <div class="card">
+        <!-- 第2课的学习目标 -->
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道半坡遗址和河姆渡遗址的位置和时间</li>
+          <li>✅ 了解半坡人和河姆渡人的农耕生活</li>
+          <li>✅ 理解新石器时代的标志（磨制石器、人工取火、陶器）</li>
+          <li>✅ 能对比半坡人与河姆渡人的异同</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- ==================== Section 3: 前测 ==================== -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title">
+        <span class="num">📝</span> 前测：检验先备知识
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：半坡遗址位置 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】半坡遗址位于哪里？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <!-- onclick参数说明：
+               this: 当前点击的元素
+               true/false: 该选项是否正确
+               1: 题目编号（用于显示对应讲解）
+               'A': 选项字母（用于记录答案）
+          -->
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+            <span class="opt-letter">A</span> 陕西西安半坡村
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 浙江余姚是河姆渡遗址的位置，不是半坡！">
+            <span class="opt-letter">B</span> 浙江余姚河姆渡
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 北京周口店是北京人/山顶洞人遗址，属于旧石器时代！">
+            <span class="opt-letter">C</span> 北京周口店
+          </div>
+        </div>
+        <!-- 反馈区域：显示"答对/答错" -->
+        <div class="feedback" id="feedback-1"></div>
+        <!-- 详细讲解区域：答错后显示，答对后也可查看 -->
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 陕西西安半坡村</strong></p>
+          <p style="margin-top: 8px;">半坡遗址位于<strong>陕西省西安市半坡村</strong>，距今约<strong>6000年</strong>，是黄河流域原始农耕的代表。</p>
+          <!-- 知识拓展：对比表格 -->
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📚 知识拓展 · 中国新石器时代两大代表</div>
+            <table class="comparison-table">
+              <tr><th>名称</th><th>距今</th><th>地点</th><th>流域</th></tr>
+              <tr><td><strong>半坡人</strong></td><td>~6000年</td><td>陕西西安</td><td>黄河流域</td></tr>
+              <tr><td><strong>河姆渡人</strong></td><td>~7000年</td><td>浙江余姚</td><td>长江流域</td></tr>
+            </table>
+          </div>
+          <p style="margin-top: 10px; font-size: 13px; color: #666;">📖 人教版七上 第6页</p>
+        </div>
+      </div>
+
+      <!-- 基础题2：时代判断 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】半坡人和河姆渡人处于什么时代？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 旧石器时代使用打制石器，半坡/河姆渡人使用的是磨制石器！">
+            <span class="opt-letter">A</span> 旧石器时代
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 新石器时代
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 铁器时代是春秋战国时期才开始的，远晚于半坡/河姆渡！">
+            <span class="opt-letter">C</span> 铁器时代
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 新石器时代</strong></p>
+          <p style="margin-top: 8px;">半坡人和河姆渡人都处于<strong>新石器时代</strong>，标志是：<strong>磨制石器、人工取火、制作陶器、原始农耕</strong>。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3：作物与房屋对比 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】下列关于半坡人与河姆渡人的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 半坡人种植粟（小米），水稻是河姆渡人种植的！">
+            <span class="opt-letter">A</span> 半坡人种植水稻，河姆渡人种植粟
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 半坡人住半地穴式房屋，干栏式是河姆渡人的！">
+            <span class="opt-letter">B</span> 半坡人住干栏式房屋
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 半坡人种植粟，河姆渡人种植水稻
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 半坡人种植粟，河姆渡人种植水稻</strong></p>
+          <p style="margin-top: 8px;">这是考试高频考点！必须记住：</p>
+          <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+            <li>✅ <strong>半坡人</strong>：种植<strong>粟（小米）</strong>，住<strong>半地穴式</strong>房屋</li>
+            <li>✅ <strong>河姆渡人</strong>：种植<strong>水稻</strong>，住<strong>干栏式</strong>房屋</li>
+          </ul>
+          <!-- 高频考点警示 -->
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">⚠️ 高频考点 · 易错警示</div>
+            <p><strong>记忆口诀：</strong>"半坡种粟住地下，河姆渡种稻住楼上"</p>
+            <p style="margin-top: 6px;"><strong>考试陷阱：</strong>问"下列哪一组合适？"，选项经常把作物和房屋颠倒配对！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 挑战题4：新石器 vs 旧石器 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】新石器时代与旧石器时代的核心区别是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 会不会用火不是核心区别！旧石器时代北京人就会使用天然火了。">
+            <span class="opt-letter">A</span> 是否会使用火
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 是否群居也不是核心区别！旧石器时代的北京人也群居。">
+            <span class="opt-letter">B</span> 是否群居生活
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+            <span class="opt-letter">C</span> 生产工具（打制 vs 磨制）和获取食物方式（采集狩猎 vs 农耕）
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 生产工具和获取食物方式</strong></p>
+          <p style="margin-top: 8px;">新石器时代的核心进步：</p>
+          <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+            <li>✅ <strong>工具</strong>：打制石器 → <strong>磨制石器</strong></li>
+            <li>✅ <strong>用火</strong>：天然火 → <strong>人工取火</strong></li>
+            <li>✅ <strong>食物</strong>：采集狩猎 → <strong>原始农耕</strong></li>
+            <li>✅ <strong>陶器</strong>：无陶器 → <strong>制作陶器</strong></li>
+          </ul>
+          <!-- 对比表格 -->
+          <div class="data-table" style="margin-top: 12px;">
+            <table class="comparison-table">
+              <tr><th>项目</th><th>旧石器时代</th><th>新石器时代</th></tr>
+              <tr><td>工具</td><td>打制石器</td><td>磨制石器</td></tr>
+              <tr><td>用火</td><td>天然火</td><td>人工取火</td></tr>
+              <tr><td>食物来源</td><td>采集、狩猎</td><td>农耕、饲养</td></tr>
+              <tr><td>陶器</td><td>无</td><td>有</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== Section 4: 核心内容 - 半坡人 ==================== -->
+    <section class="section" id="section-banpo">
+      <h2 class="section-title">
+        <span class="num">🏠</span> 半坡人的农耕生活
+      </h2>
+      
+      <div class="card">
+        <!-- SVG: 半坡人半地穴式房屋示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+            <!-- 半地穴式房屋：一半在地下 -->
+            <rect x="200" y="250" width="200" height="100" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+            <polygon points="200,250 300,150 400,250" fill="#cd853f" stroke="#654321" stroke-width="3"/>
+            <rect x="280" y="300" width="40" height="50" fill="#654321" stroke="#8b4513" stroke-width="2"/>
+            <text x="300" y="380" text-anchor="middle" font-size="16" font-weight="bold" fill="#8b4513">半地穴式房屋</text>
+            
+            <!-- 陶器 -->
+            <ellipse cx="100" cy="350" rx="30" ry="15" fill="#a0522d" stroke="#654321" stroke-width="2"/>
+            <rect x="85" y="300" width="30" height="50" fill="#a0522d" stroke="#654321" stroke-width="2"/>
+            <ellipse cx="100" cy="300" rx="15" ry="5" fill="#a0522d" stroke="#654321" stroke-width="2"/>
+            <text x="100" y="380" text-anchor="middle" font-size="14" fill="#8b4513">陶罐</text>
+            
+            <!-- 粟（小米） -->
+            <line x1="450" y1="320" x2="550" y2="320" stroke="#228b22" stroke-width="3"/>
+            <circle cx="500" cy="310" r="5" fill="#ffd700"/>
+            <text x="500" y="380" text-anchor="middle" font-size="14" fill="#8b4513">粟（小米）</text>
+            
+            <text x="300" y="50" text-anchor="middle" font-size="18" font-weight="bold" fill="#8b4513">半坡人生活场景</text>
+          </svg>
+          <p class="svg-caption">图2-2 半坡人生活场景复原图（半地穴式房屋、陶器、粟）</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 半坡人基本信息</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>时间：</strong>距今约6000年</li>
+          <li><strong>地点：</strong>陕西西安半坡村（黄河流域）</li>
+          <li><strong>作物：</strong>主要种植<strong>粟（小米）</strong></li>
+          <li><strong>房屋：</strong>居住在<strong>半地穴式</strong>房屋（一半在地下）</li>
+          <li><strong>陶器：</strong>制作<strong>彩陶</strong>（人面鱼纹彩陶盆是代表）</li>
+        </ul>
+
+        <!-- 核心概念框 -->
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 半地穴式房屋</div>
+          <p>半地穴式房屋：<strong>一半在地下，一半在地上</strong>，冬天保暖，夏天凉爽。体现了半坡人对自然环境的适应。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 更多Section（省略详细注释） ==================== -->
+    <!-- Section 5: 河姆渡人 -->
+    <!-- Section 6: 对比分析 -->
+    <!-- Section 7: 后测 -->
+    <!-- Section 8: 必考分析 -->
+
+    <!-- ==================== AI学伴（TeachAny标准模块） ==================== -->
+    <section class="section" id="teachany-ai-tutor-card" 
+             data-tts="ai-tutor" 
+             data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>  <!-- AI学伴挂载点 -->
+    </section>
+    
+  </main>
+  
+  <!-- ==================== 页脚（必须） ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">
+        基于 TeachAny v7.14.0 | 适配人教版七年级历史课程标准
+      </p>
+    </div>
+  </footer>
+  
+  <!-- ==================== JavaScript ==================== -->
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  
+  <!-- 本课件专属脚本 -->
+  <script>
+    /* ==================== 配置本课件信息 ==================== */
+    COURSE_INFO.totalSections = 8;  // 本课件有8个Section
+    COURSE_INFO.currentSection = 1; // 默认显示第1节
+
+    /* ==================== TeachAny AI学伴配置 ==================== */
+    window.__TEACHANY_LEARNER_QUESTION__ = '';  // 存储学生选择的问题
+    window.__TEACHANY_TUTOR_CONFIG__ = {
+      courseId: 'hist-primitive-farming-7',        // 课件ID
+      courseTitle: '第2课 原始农耕生活——半坡人与河姆渡人',
+      subject: 'history',                         // 学科
+      grade: '7',                                // 年级
+      nodeId: 'hist-primitive-farming',          // 知识点节点ID
+      lessonType: 'new-concept',                  // 课程类型
+      // 获取学生问题（用于AI学伴个性化提示）
+      getLearnerQuestion: () => window.__TEACHANY_LEARNER_QUESTION__ || '',
+      // 获取当前上下文（用于AI学伴理解当前学习内容）
+      getContext: () => {
+        const current = document.querySelector('section.current-section') || 
+                       (location.hash ? document.querySelector(location.hash) : null);
+        return (current || document.body).innerText.slice(0, 3000);  // 限制3000字符
+      }
+    };
+
+    /* ==================== 问题锚点内容（第2课的问题） ==================== */
+    anchorContents[1] = `
+      <h3>📍 问题1：半坡人和河姆渡人有什么不同？</h3>
+      <p>半坡人和河姆渡人是新石器时代的两大代表，主要区别：</p>
+      <table class="comparison-table" style="margin-top: 12px;">
+        <tr><th>项目</th><th>半坡人</th><th>河姆渡人</th></tr>
+        <tr><td><strong>地点</strong></td><td>陕西西安（黄河）</td><td>浙江余姚（长江）</td></tr>
+        <tr><td><strong>作物</strong></td><td>粟（小米）</td><td>水稻</td></tr>
+        <tr><td><strong>房屋</strong></td><td>半地穴式</td><td>干栏式</td></tr>
+        <tr><td><strong>陶器</strong></td><td>彩陶</td><td>黑陶</td></tr>
+      </table>
+      <p style="margin-top: 12px;">💡 <strong>记忆口诀：</strong>"半坡种粟住地下，河姆渡种稻住楼上。"</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：原始农耕生活是什么样的？</h3>
+      <p><strong>1. 生产工具：</strong>使用<strong>磨制石器</strong>（新石器时代），比打制石器更精细。</p>
+      <p><strong>2. 农耕活动：</strong>半坡人种植<strong>粟（小米）</strong>，河姆渡人种植<strong>水稻</strong>。</p>
+      <p><strong>3. 手工业：</strong>制作<strong>陶器</strong>（半坡彩陶、河姆渡黑陶）。</p>
+      <p><strong>4. 定居生活：</strong>建造固定房屋（半地穴式/干栏式），不再流浪。</p>
+      <p><strong>5. 饲养家畜：</strong>养猪、狗等家畜。</p>
+      <p style="margin-top: 12px;">🌾 <strong>历史意义：</strong>原始农耕让人类获得了稳定的食物来源，是文明起源的重要基础。</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：新石器时代有哪些特征？</h3>
+      <p><strong>新石器时代的四大标志：</strong></p>
+      <ul style="padding-left: 20px; margin-top: 12px; line-height: 1.8;">
+        <li><strong>磨制石器：</strong>工具更精细（对比旧石器时代的打制石器）</li>
+        <li><strong>人工取火：</strong>会自己生火（对比旧石器时代的天然火）</li>
+        <li><strong>制作陶器：</strong>能烧制陶器储存食物（旧石器时代没有陶器）</li>
+        <li><strong>原始农耕：</strong>种植作物、饲养家畜（对比旧石器时代的采集狩猎）</li>
+      </ul>
+      <p style="margin-top: 12px;">💡 <strong>记忆口诀：</strong>"新石器四标志：磨制石器、人工取火、制作陶器、原始农耕。"</p>
+    `;
+
+    /* ==================== 答案检查函数（与bjr.html相同） ==================== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');       // 找到当前题目容器
+      const feedback = parent.querySelector('.feedback'); // 找到反馈区域
+      const explanation = document.getElementById('explanation-' + questionNum); // 找到讲解区域
+      const allOptions = parent.querySelectorAll('.quiz-option'); // 所有选项
+
+      // 先清除所有选项的高亮状态
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        // 答对了
+        element.classList.add('correct');               // 高亮正确选项（绿色）
+        if (feedback) {
+          feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+          feedback.className = 'feedback show correct-fb'; // 显示正确反馈
+        }
+        if (explanation) explanation.classList.add('show'); // 显示详细讲解
+        // 不禁用！答对了还能点错误选项看讲解
+
+      } else {
+        // 答错了
+        element.classList.add('wrong');                 // 高亮错误选项（红色）
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) {
+          feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+          feedback.className = 'feedback show wrong-fb'; // 显示错误反馈
+        }
+        // 不禁用！可以一直尝试，直到答对
+        
+        // 如果已经有人答对过
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ==================== 初始化函数 ==================== */
+    document.addEventListener('DOMContentLoaded', function() {
+      initAnchorContents();    // 初始化问题锚点内容
+      updateProgressBar();     // 更新进度条
+      console.log('📚 《原始农耕生活》课件加载完成（v1.0：基于bjr.html框架）');
+    });
+  </script>
+
+  <!-- TeachAny标准模块脚本（必须） -->
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>
+
+<!-- 
+  第2课与第1课的主要区别：
+  ==========
+  1. 内容主题不同：
+     - 第1课：北京人（旧石器时代）
+     - 第2课：原始农耕生活（新石器时代）
+  
+  2. 问题锚点不同：
+     - 第1课：北京人长什么样？如何生活？为何重要？
+     - 第2课：半坡人和河姆渡人有什么不同？原始农耕生活是什么样的？新石器时代有哪些特征？
+  
+  3. SVG图示不同：
+     - 第1课：北京人复原图、打制石器、周口店遗址
+     - 第2课：半地穴式房屋、干栏式房屋、农耕场景
+  
+  4. 测验题目不同：
+     - 第1课：侧重北京人特征、用火能力、旧石器特征
+     - 第2课：侧重半坡/河姆渡对比、新石器标志、房屋类型
+  
+  学习建议：
+  ==========
+  1. 对比学习第1课和第2课的代码结构（非常相似）
+  2. 重点理解SVG图示如何直观展示历史概念
+  3. 学习如何设计难度递进的测验题目
+  4. 掌握"对比表格"在历史课件中的使用方法
+-->

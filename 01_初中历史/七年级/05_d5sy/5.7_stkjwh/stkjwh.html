@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="hist-sui-tang-science-7">
+  <meta name="course-title" content="第7课 隋唐时期的科技与文化">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="hist-sui-tang-science">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表（引用共享资源） -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  
+  <!-- 外部CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>第7课 隋唐时期的科技与文化 | 初中7年级历史</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .timeline-svg {
+      background: #fafcfb;
+      border: 1px solid #e8dcc8;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #8b4513, #cd853f);
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .comparison-table td {
+      padding: 10px;
+      border: 1px solid #e8dcc8;
+      text-align: center;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+      background: #fdf5e6;
+    }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show {
+      display: block;
+    }
+    
+    .answer-explanation .explain-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #92400e;
+    }
+
+    .difficulty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+    
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #fafcfb;
+      border: 1px solid #e8dcc8;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption {
+      margin-top: 12px; font-size: 14px; color: #8b7355; text-align: center;
+    }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #d2b48c;
+      background: #fffaf0; color: #2c3e50; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.28);
+      color: #92400e;
+    }
+
+    /* 考点卡片 */
+    .exam-card {
+      border-radius: 12px; padding: 18px; margin-bottom: 16px;
+    }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag {
+      color: white; padding: 2px 8px; border-radius: 4px;
+      font-size: 10px; font-weight: 700;
+    }
+
+/* ====== 手机端适配 ====== */
+@media (max-width: 768px) {
+    /* Hero / 课程标题 */
+    .hero { padding: 20px 14px !important; }
+    .hero h1 { font-size: 1.3rem !important; }
+    .hero-subtitle { font-size: 0.88rem !important; }
+    .hero-icon { font-size: 36px !important; }
+
+    /* 内容区段 */
+    .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+    .section h2 { font-size: 1.15rem !important; }
+    .section h3 { font-size: 1rem !important; }
+    .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+    /* 卡片 */
+    .card { border-radius: 12px !important; padding: 14px !important; }
+    .card-header { padding: 12px 14px !important; }
+    .card-body { padding: 0 14px 12px !important; }
+
+    /* 问题锚点 */
+    .anchor-points { flex-direction: column !important; gap: 6px !important; }
+    .anchor-btn {
+    width: 100% !important; padding: 10px 12px !important;
+    font-size: 0.82rem !important; justify-content: center !important;
+    border-radius: 8px !important;
+    }
+
+    /* 测验选项 */
+    .quiz-option {
+    padding: 12px 12px !important; font-size: 0.88rem !important;
+    border-radius: 10px !important;
+    }
+    .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+    /* SVG / 图表容器 */
+    .timeline-svg, .knowledge-map, .hero-graph {
+    padding: 12px !important; border-radius: 8px !important;
+    }
+    .timeline-svg svg, .knowledge-map svg, .hero-graph svg {
+    max-width: 100% !important; height: auto !important;
+    display: block !important; margin: 0 auto !important;
+    }
+
+    /* 表格（横滑） */
+    .comparison-table, .data-table, table {
+    display: block !important; overflow-x: auto !important;
+    font-size: 12px !important; -webkit-overflow-scrolling: touch !important;
+    }
+    .comparison-table th, .comparison-table td,
+    .data-table th, .data-table td {
+    padding: 6px 8px !important; white-space: nowrap !important;
+    }
+
+    /* 概念框 */
+    .concept-box {
+    padding: 12px 14px !important; font-size: 0.88rem !important;
+    margin: 10px 0 !important; border-radius: 0 10px 10px 0 !important;
+    }
+
+    /* AI学伴 */
+    .chat-panel { border-radius: 12px !important; margin: 12px !important; }
+    .chat-messages { max-height: 250px !important; }
+    .chat-input { font-size: 0.88rem !important; padding: 10px 12px !important; }
+    .chat-send { padding: 10px 14px !important; font-size: 0.82rem !important; }
+
+    /* 考点总结 */
+    .summary-box, .key-points {
+    padding: 12px 14px !important; font-size: 0.88rem !important;
+    border-radius: 10px !important;
+    }
+
+    /* Brand Bar */
+    .brand-bar { padding: 8px 10px !important; }
+    .brand-logo span { font-size: 0.82rem !important; }
+    .brand-tag { font-size: 0.68rem !important; padding: 2px 6px !important; }
+
+    /* 进度条 */
+    .progress-bar { height: 3px !important; }
+    .progress-label { font-size: 0.7rem !important; padding: 3px 10px !important; }
+
+    /* 页脚 */
+    .footer { padding: 16px 12px !important; margin-top: 20px !important; }
+
+    .quiz-option { padding: 10px !important; font-size: 0.82rem !important; }
+    .section p, .section li { font-size: 0.82rem !important; }
+}
+
+
+
+      /* 标题独占首行 */
+      /* 按钮均分2行，每行2个 */
+
+
+
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="container">
+      <div class="brand-logo">
+        <i class="fa-solid fa-landmark"></i>
+        <span>TeachAny · 初中历史</span>
+      </div>
+      <div class="brand-tag">互动课件 v7.14</div>
+    </div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+<nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d5sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第五单元：繁荣与开放的社会</div>
+    <a href="../5.6_stzwjylj/stzwjylj.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../../06_d6sy/d6sy.html" class="nav-btn">下一单元 <i class="fa-solid fa-chevron-right"></i></a>
+</div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-landmark-open"></i> 七年级历史 · 第五单元
+      </div>
+      <h1>
+        第7课 隋唐时期的科技与文化
+        <span>Science, Technology and Culture of Sui and Tang Dynasties</span>
+      </h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解隋唐时期的科技成就，认识中华文明的世界影响<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图(SVG内嵌) ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#fafcfb"/>
+        <rect x="300" y="80" width="200" height="80" rx="10" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+        <text x="400" y="125" text-anchor="middle" font-size="18" font-weight="bold" fill="white">隋唐科技文化</text>
+        <rect x="50" y="200" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="235" text-anchor="middle" font-size="14" fill="white">雕版印刷</text>
+        <line x1="170" y1="230" x2="300" y2="160" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="340" y="200" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="400" y="235" text-anchor="middle" font-size="14" fill="white">火药发明</text>
+        <line x1="340" y1="230" x2="350" y2="180" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="630" y="200" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="235" text-anchor="middle" font-size="14" fill="white">天文历法</text>
+        <line x1="460" y1="230" x2="630" y2="230" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #8b7355; font-size: 14px; text-align: center;">图7-1 隋唐时期科技与文化知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section1: 问题锚点（增强版：含自定义输入） -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 探究问题
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="隋唐时期有哪些科技成就？">
+            🔬 隋唐时期有哪些科技成就？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="雕版印刷术是如何发明的？">
+            📚 雕版印刷术是如何发明的？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="火药武器的发明有什么意义？">
+            💥 火药武器的发明有什么意义？
+          </button>
+        </div>
+
+        <!-- 自定义问题输入 -->
+        <label style="display:block; margin-top: 18px; color: var(--text-light);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+
+        <!-- 动态内容展示区 -->
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--text-light); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+
+        <!-- 反馈区域 -->
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 学习目标
+      </h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道隋唐时期的科技成就（雕版印刷、火药、天文历法）</li>
+          <li>✅ 了解隋唐文化对世界的影响</li>
+          <li>✅ 理解中华文明的世界地位</li>
+          <li>✅ 能分析科技发明的社会影响</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section3: 前测（4道题：基础×2 + 提高 + 挑战） -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title">
+        <span class="num">📝</span> 前测：检验先备知识
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列哪一发明出现在隋唐时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 造纸术发明于汉朝，不是隋唐时期！">
+            <span class="opt-letter">A</span> 造纸术
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 雕版印刷术
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 火药发明于隋唐时期，但主要用于炼丹，不是武器！">
+            <span class="opt-letter">C</span> 火药武器
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 雕版印刷术</strong></p>
+          <p style="margin-top: 8px;"><strong>雕版印刷术</strong>发明于<strong>隋唐时期</strong>，是世界上最早的印刷技术。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】火药最早用于什么领域？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 火药最早用于炼丹，不是军事！">
+            <span class="opt-letter">A</span> 军事
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 炼丹
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 火药最早用于炼丹，不是采矿！">
+            <span class="opt-letter">C</span> 采矿
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 炼丹</strong></p>
+          <p style="margin-top: 8px;">火药最早用于<strong>炼丹</strong>，唐代中期开始用于<strong>军事</strong>。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】下列关于雕版印刷术的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 雕版印刷术发明于隋唐时期，不是汉朝！">
+            <span class="opt-letter">A</span> 雕版印刷术发明于汉朝
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+            <span class="opt-letter">B</span> 雕版印刷术发明于隋唐时期
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 雕版印刷术最早出现在中国，不是欧洲！">
+            <span class="opt-letter">C</span> 雕版印刷术最早出现在欧洲
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 雕版印刷术发明于隋唐时期</strong></p>
+          <p style="margin-top: 8px;"><strong>雕版印刷术</strong>发明于<strong>隋唐时期</strong>，是世界上<strong>最早的印刷技术</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】下列哪一项不是隋唐时期的科技成就？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 雕版印刷术是隋唐时期的科技成就！">
+            <span class="opt-letter">A</span> 雕版印刷术
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 火药发明是隋唐时期的科技成就！">
+            <span class="opt-letter">B</span> 火药发明
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+            <span class="opt-letter">C</span> 活字印刷术
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 活字印刷术</strong></p>
+          <p style="margin-top: 8px;"><strong>活字印刷术</strong>发明于<strong>北宋</strong>（毕昇），不是隋唐时期。</p>
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">⚠️ 高频考点 · 时间区分</div>
+            <ul style="padding-left: 20px; line-height: 1.8;">
+              <li><strong>隋唐时期</strong>：雕版印刷术、火药发明 ✅</li>
+              <li><strong>北宋</strong>：活字印刷术（毕昇） ❌（不是隋唐）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section4: 核心内容 - 雕版印刷术 -->
+    <section class="section" id="section-printing">
+      <h2 class="section-title">
+        <span class="num">📚</span> 雕版印刷术
+      </h2>
+      
+      <div class="card">
+        <!-- SVG:雕版印刷术示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+            <!-- 雕版 -->
+            <rect x="200" y="150" width="200" height="100" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+            <text x="300" y="200" text-anchor="middle" font-size="16" font-weight="bold" fill="white">雕版</text>
+            <text x="300" y="230" text-anchor="middle" font-size="14" fill="white">刻有文字的木板</text>
+            
+            <!-- 印刷过程 -->
+            <path d="M 150 300 Q 300 250 450 300" stroke="#8b4513" stroke-width="3" fill="none" marker-end="url(#arrowhead2)"/>
+            <text x="300" y="350" text-anchor="middle" font-size="14" fill="#654321">涂墨 → 铺纸 → 印刷</text>
+            
+            <defs>
+              <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="svg-caption">图7-2 雕版印刷术示意图</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 雕版印刷术概况</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>发明时间</strong>：隋唐时期</li>
+          <li><strong>技术特点</strong>：在木板上雕刻文字或图案，涂墨后印刷</li>
+          <li><strong>代表作品</strong>：《金刚经》（现存最早标有年代的雕版印刷品）</li>
+          <li><strong>历史意义</strong>：世界上最早的印刷技术，促进文化传播</li>
+        </ul>
+        
+        <h3 style="margin-top: 20px; color: #8b4513;">🌍 世界影响</h3>
+        <p>雕版印刷术传入<strong>朝鲜、日本、波斯、欧洲</strong>，推动了世界文化的传播与发展。</p>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念</div>
+          <p><strong>雕版印刷术</strong>是<strong>中国古代四大发明</strong>之一（造纸术、印刷术、火药、指南针），对世界文明发展产生深远影响。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section5: 核心内容 - 火药发明 -->
+    <section class="section" id="section-gunpowder">
+      <h2 class="section-title">
+        <span class="num">💥</span> 火药发明
+      </h2>
+      
+      <div class="card">
+        <!-- SVG:火药发明与应用 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+            <text x="300" y="40" text-anchor="middle" font-size="18" font-weight="bold" fill="#8b4513">火药发明与应用</text>
+            
+            <!-- 炼丹 -->
+            <rect x="50" y="100" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="110" y="135" text-anchor="middle" font-size="14" font-weight="bold" fill="white">炼丹</text>
+            
+            <!-- 火药发明 -->
+            <rect x="240" y="100" width="120" height="60" rx="10" fill="#8b4513" stroke="#654321" stroke-width="2"/>
+            <text x="300" y="135" text-anchor="middle" font-size="14" font-weight="bold" fill="white">火药发明</text>
+            
+            <!-- 军事应用 -->
+            <rect x="430" y="100" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="490" y="135" text-anchor="middle" font-size="14" font-weight="bold" fill="white">军事应用</text>
+            
+            <!-- 连线 -->
+            <line x1="170" y1="130" x2="240" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead3)"/>
+            <line x1="360" y1="130" x2="430" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead3)"/>
+            
+            <defs>
+              <marker id="arrowhead3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="svg-caption">图7-3 火药发明与应用过程示意图</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 火药发明概况</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>发明时间</strong>：隋唐时期（唐代中期）</li>
+          <li><strong>最早用途</strong>：炼丹</li>
+          <li><strong>军事应用</strong>：唐代中期开始用于军事（火箭、火炮）</li>
+          <li><strong>传播</strong>：宋元时期传入阿拉伯、欧洲</li>
+        </ul>
+        
+        <h3 style="margin-top: 20px; color: #8b4513;">⚔️ 军事意义</h3>
+        <p>火药武器的使用，改变了<strong>战争形态</strong>，推动了<strong>军事革命</strong>。</p>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念</div>
+          <p><strong>火药</strong>是中国古代<strong>四大发明</strong>之一，它的传播改变了<strong>世界军事史</strong>的进程。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section6: 核心内容 - 天文历法 -->
+    <section class="section" id="section-astronomy">
+      <h2 class="section-title">
+        <span class="num">🔭</span> 天文历法
+      </h2>
+      
+      <div class="card">
+        <!-- SVG:唐朝天文成就 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+            <text x="300" y="40" text-anchor="middle" font-size="18" font-weight="bold" fill="#8b4513">唐朝天文历法成就</text>
+            
+            <!-- 僧一行 -->
+            <circle cx="150" cy="150" r="40" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="150" y="155" text-anchor="middle" font-size="14" font-weight="bold" fill="white">僧一行</text>
+            
+            <!-- 《大衍历》 -->
+            <rect x="300" y="130" width="120" height="60" rx="10" fill="#8b4513" stroke="#654321" stroke-width="2"/>
+            <text x="360" y="165" text-anchor="middle" font-size="14" fill="white">《大衍历》</text>
+            
+            <!-- 子午线测量 -->
+            <rect x="450" y="130" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="510" y="165" text-anchor="middle" font-size="12" fill="white">子午线测量</text>
+            
+            <!-- 连线 -->
+            <line x1="190" y1="150" x2="300" y2="160" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead4)"/>
+            <line x1="420" y1="160" x2="450" y2="160" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead4)"/>
+            
+            <defs>
+              <marker id="arrowhead4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="svg-caption">图7-4 唐朝天文历法成就示意图</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 僧一行成就</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>编制《大衍历》</strong>：唐朝最精密的历法</li>
+          <li><strong>实测子午线长度</strong>：世界上第一次实测子午线</li>
+          <li><strong>天文观测</strong>：发现恒星移动现象</li>
+        </ul>
+        
+        <h3 style="margin-top: 20px; color: #8b4513;">🌍 世界地位</h3>
+        <p>僧一行的成就<strong>领先世界</strong>，比西方早<strong>900多年</strong>。</p>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念</div>
+          <p><strong>僧一行</strong>是唐朝著名天文学家，他的成就标志着中国古代天文学的<strong>高峰</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section7: 后测（4道题：含中考真题+材料分析） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title">
+        <span class="num">✅</span> 后测：检验学习成果
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】雕版印刷术发明于哪个时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 雕版印刷术发明于隋唐时期，不是汉朝！">
+            <span class="opt-letter">A</span> 汉朝
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 隋唐时期
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 雕版印刷术发明于隋唐时期，不是北宋！">
+            <span class="opt-letter">C</span> 北宋
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 隋唐时期</strong></p>
+          <p style="margin-top: 8px;"><strong>雕版印刷术</strong>发明于<strong>隋唐时期</strong>，是世界上最早的印刷技术。</p>
+        </div>
+      </div>
+
+      <!-- 后测提高题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）下列哪一发明是隋唐时期的科技成就？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 造纸术发明于汉朝，不是隋唐时期！">
+            <span class="opt-letter">A</span> 造纸术
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 雕版印刷术
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 活字印刷术发明于北宋，不是隋唐时期！">
+            <span class="opt-letter">C</span> 活字印刷术
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 雕版印刷术</strong></p>
+          <p style="margin-top: 8px;"><strong>雕版印刷术</strong>发明于<strong>隋唐时期</strong>，是隋唐时期的科技成就。</p>
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📝 中考真题出处</div>
+            <p><strong>来源：</strong>2023年江苏省中考历史卷 · 第14题（改编）</p>
+            <p style="margin-top: 6px;"><strong>考点：</strong>隋唐时期的科技成就</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 后测挑战题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·浙江中考）下列关于火药的表述，错误的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 火药确实发明于隋唐时期，这句话正确！">
+            <span class="opt-letter">A</span> 火药发明于隋唐时期
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 火药最早确实用于炼丹，这句话正确！">
+            <span class="opt-letter">B</span> 火药最早用于炼丹
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 火药武器最早出现于隋唐时期
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 火药武器最早出现于隋唐时期</strong></p>
+          <p style="margin-top: 8px;">火药<strong>发明于隋唐时期</strong>，但<strong>火药武器</strong>最早出现于<strong>唐末宋初</strong>，不是整个隋唐时期。</p>
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📝 中考真题出处</div>
+            <p><strong>来源：</strong>2022年浙江省中考历史卷 · 第15题（改编）</p>
+            <p style="margin-top: 6px;"><strong>考点：</strong>火药的发明与应用</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 后测挑战题4（材料分析型） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
+          <strong>【材料】</strong>"隋唐时期，雕版印刷术发明，火药用于军事，僧一行实测子午线，标志着中国科技的世界领先地位。"
+        </div>
+        <p style="margin-bottom:10px;font-weight:600;">根据材料，隋唐科技的特点不包括？</p>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料明确说'雕版印刷术发明'，所以印刷术发明是特点！">
+            <span class="opt-letter">A</span> 印刷术发明
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'B')" data-feedback="❌ 材料明确说'火药用于军事'，所以火药军事应用是特点！">
+            <span class="opt-letter">B</span> 火药军事应用
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'C')">
+            <span class="opt-letter">C</span> 活字印刷术发明
+          </div>
+        </div>
+        <div class="feedback" id="feedback-13"></div>
+        <div class="answer-explanation" id="explanation-13">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 活字印刷术发明</strong></p>
+          <p style="margin-top: 8px;">材料描述的是<strong>隋唐时期</strong>的科技成就。<strong>活字印刷术</strong>发明于<strong>北宋</strong>（毕昇），不是隋唐时期的成就。</p>
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">💡 答题技巧 · 材料分析题方法</div>
+            <ol style="padding-left: 20px; line-height: 1.8;">
+              <li><strong>先读材料：</strong>找出关键词（"雕版印刷术""火药""僧一行"）</li>
+              <li><strong>再找特点：</strong>材料描述的都是<strong>隋唐科技成就</strong></li>
+              <li><strong>排除错误选项：</strong>"活字印刷术"是<strong>北宋成就</strong>，不是隋唐</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section8: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 必考分析与考点总结
+      </h2>
+      
+      <div class="card">
+        <!-- 考点1:最高频 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：雕版印刷术</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了9次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ <strong>雕版印刷术</strong>发明于隋唐时期 ✅</li>
+            <li>✅ <strong>《金刚经》</strong>是现存最早标有年代的雕版印刷品 ✅</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：火药发明与应用</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了7次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>判断技巧：</strong>看到"火药"→立刻想到<strong>隋唐发明</strong>、<strong>最早用于炼丹</strong>、<strong>唐代中期用于军事</strong></p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📊 常考考点：僧一行与《大衍历》</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了5次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>记忆：</strong>僧一行→<strong>《大衍历》</strong>→<strong>实测子午线</strong>→世界上第一次。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：中国古代四大发明</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了6次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>记忆：</strong>造纸术（汉）、印刷术（隋唐雕版/北宋活字）、火药（隋唐）、指南针（宋）。</p>
+        </div>
+
+        <!-- 中考命题趋势 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff);border:1px solid #e879f9;">
+          <div class="exam-card-header">
+            <span style="font-size:18px;">📈</span>
+            <strong style="font-size:15px;color:#86198f;">中考命题趋势分析</strong>
+          </div>
+          <table class="comparison-table">
+            <tr style="background:#d946ef;color:white;"><th>题型</th><th>频率</th><th>考查方式</th><th>备考建议</th></tr>
+            <tr style="background:#fdf4ff;"><td>选择题</td><td>★★★★★</td><td>判断发明时间、代表人物</td><td>死记硬背雕版印刷、火药</td></tr>
+            <tr style="background:#ffffff;"><td>材料题</td><td>★★★☆☆</td><td>给一段文字，分析科技成就</td><td>学会从材料中提取关键词</td></tr>
+            <tr style="background:#fdf4ff;"><td>填空题</td><td>★★☆☆☆</td><td>填发明名称、人物名称</td><td>记住雕版印刷、僧一行</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">
+        基于 TeachAny v7.14.0 | 适配人教版七年级历史课程标准
+      </p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  
+  <!-- 本课件专属脚本 -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    COURSE_INFO.totalSections = 8;  // 本课件有8个Section
+    COURSE_INFO.currentSection = 1; // 默认显示第1节
+
+    /* ========== TeachAny 配置 ========== */
+    window.__TEACHANY_LEARNER_QUESTION__ = '';
+    window.__TEACHANY_TUTOR_CONFIG__ = {
+      courseId: 'hist-sui-tang-science-7',
+      courseTitle: '第7课 隋唐时期的科技与文化',
+      subject: 'history',
+      grade: '7',
+      nodeId: 'hist-sui-tang-science',
+      lessonType: 'new-concept',
+      getLearnerQuestion: () => window.__TEACHANY_LEARNER_QUESTION__ || '',
+      getContext: () => {
+        const current = document.querySelector('section.current-section') || (location.hash ? document.querySelector(location.hash) : null);
+        return (current || document.body).innerText.slice(0, 3000);
+      }
+    };
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：隋唐时期有哪些科技成就？</h3>
+      <p>隋唐时期主要科技成就：</p>
+      <ul style="padding-left: 20px; margin-top: 12px;">
+        <li><strong>雕版印刷术</strong>：世界上最早的印刷技术</li>
+        <li><strong>火药发明</strong>：最早用于炼丹，后用于军事</li>
+        <li><strong>天文历法</strong>：僧一行编制《大衍历》，实测子午线</li>
+      </ul>
+      <p style="margin-top: 12px;">💡 <strong>记忆口诀：</strong>"印刷火药天文历，隋唐科技世界先。"</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：雕版印刷术是如何发明的？</h3>
+      <p><strong>1. 发明过程：</strong></p>
+      <ul style="padding-left: 20px; margin-top: 8px;">
+        <li>在木板上雕刻文字或图案（凸出版）</li>
+        <li>涂上墨汁</li>
+        <li>铺上纸张，用刷子刷印</li>
+        <li>揭开纸张，完成印刷</li>
+      </ul>
+      <p><strong>2. 代表作品：</strong>《金刚经》（868年，现存最早标有年代的雕版印刷品）</p>
+      <p><strong>3. 历史意义：</strong>促进文化传播，推动教育发展</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：火药武器的发明有什么意义？</h3>
+      <p><strong>1. 技术意义：</strong>改变了战争形态，从冷兵器向热兵器过渡</p>
+      <p><strong>2. 军事意义：</strong>推动了军事革命，城堡防御体系失效</p>
+      <p><strong>3. 世界意义：</strong>传入阿拉伯、欧洲，改变了世界军事史进程</p>
+      <p style="margin-top: 12px;">🌍 <strong>历史地位：</strong>火药是中国古代<strong>四大发明</strong>之一，对世界文明发展产生深远影响。</p>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) {
+        feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`;
+        feedback.style.display = 'block';
+      }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) {
+          feedback.textContent = `你的问题：${question}`;
+          feedback.style.display = 'block';
+        }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查（支持反复尝试 + 答对了也能看错误选项讲解） ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+
+      // 先清除所有选项的高亮状态
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) {
+          feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+          feedback.className = 'feedback show correct-fb';
+        }
+        if (explanation) explanation.classList.add('show');
+        // 不禁用！答对了还能点错误选项看讲解
+
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) {
+          feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+          feedback.className = 'feedback show wrong-fb';
+        }
+        // 不禁用！可以一直尝试
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      initAnchorContents();
+      updateProgressBar();
+      console.log('📚 《隋唐时期的科技与文化》课件加载完成');
+    });
+  </script>
+
+  <!-- 标准模块脚本（必须） -->
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

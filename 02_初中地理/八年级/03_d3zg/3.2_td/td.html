@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="course-id" content="geo-land-resource-8">
+    <meta name="course-title" content="3.2 土地资源">
+    <meta name="course-grade" content="middle-8">
+    <title>3.2 土地资源 - 八年级地理 - 中国的自然资源</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0369a1;
+            --primary-light: #0284c7;
+            --primary-dark: #075985;
+            --bg-color: #f0f9ff;
+            --text-color: #1e293b;
+            --border-color: #e0f2fe;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-color);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background 0.3s;
+        }
+
+        .navbar a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 4px;
+            margin: 1rem auto;
+            max-width: 400px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: white;
+            height: 100%;
+            width: 67%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            background: rgba(255,255,255,0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .knowledge-map {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .knowledge-map h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .knowledge-svg {
+            width: 100%;
+            height: 400px;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+        }
+
+        .anchors {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .anchors h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .anchor-item {
+            background: var(--bg-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .anchor-item:hover {
+            background: var(--border-color);
+            transform: translateX(5px);
+        }
+
+        .content-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .content-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .content-section h3 {
+            color: var(--primary-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .interactive-map {
+            width: 100%;
+            height: 500px;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .quiz-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-color);
+            border-radius: 0.5rem;
+        }
+
+        .quiz-options {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .quiz-options li {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options li:hover {
+            background: var(--border-color);
+            border-color: var(--primary-color);
+        }
+
+        .quiz-options li.correct {
+            background: #d1fae5;
+            border-color: var(--success-color);
+        }
+
+        .quiz-options li.incorrect {
+            background: #fee2e2;
+            border-color: var(--danger-color);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: var(--bg-color);
+        }
+
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .content-section,
+            .knowledge-map,
+            .anchors,
+            .quiz-section {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .knowledge-svg,
+            .interactive-map {
+                height: 300px;
+            }
+        }
+    </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div>
+            <a href="../../index.html">首页</a>
+            <a href="../d3zg.html">章节目录</a>
+            <a href="../3.1_zy/zy.html">上一节</a>
+            <a href="../3.3_sl/sl.html">下一节</a>
+        </div>
+        <div style="font-size: 0.9rem; opacity: 0.9;">
+            第三单元：中国的自然资源
+        </div>
+    </nav>
+
+    <!-- Hero区 -->
+    <div class="hero">
+        <h1>3.2 土地资源</h1>
+        <div class="subtitle">Land Resources</div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="progress-text">第 2/3 节 · 67%</div>
+        <div class="hero-meta">
+            <div class="meta-item">📚 八年级地理</div>
+            <div class="meta-item">⏱️ 预计用时：45分钟</div>
+            <div class="meta-item">🎯 课标要求：运用资料说出我国土地资源的主要特点</div>
+        </div>
+    </div>
+
+    <!-- 知识结构图 -->
+    <div class="knowledge-map">
+        <h2>📊 知识结构图</h2>
+        <svg class="knowledge-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- 中心节点：土地资源 -->
+            <circle cx="400" cy="200" r="60" fill="#0369a1" opacity="0.9"/>
+            <text x="400" y="200" text-anchor="middle" fill="white" font-size="18" font-weight="bold" dy="5">土地资源</text>
+            
+            <!-- 土地类型 -->
+            <circle cx="150" cy="100" r="45" fill="#0284c7" opacity="0.8"/>
+            <text x="150" y="100" text-anchor="middle" fill="white" font-size="14" dy="5">土地类型</text>
+            <line x1="355" y1="170" x2="195" y2="125" stroke="#0369a1" stroke-width="2"/>
+            
+            <rect x="70" y="50" width="60" height="25" fill="#0ea5e9" rx="5"/>
+            <text x="100" y="67" text-anchor="middle" fill="white" font-size="12">耕地</text>
+            <rect x="70" y="80" width="60" height="25" fill="#0ea5e9" rx="5"/>
+            <text x="100" y="97" text-anchor="middle" fill="white" font-size="12">林地</text>
+            <rect x="70" y="110" width="60" height="25" fill="#0ea5e9" rx="5"/>
+            <text x="100" y="127" text-anchor="middle" fill="white" font-size="12">草地</text>
+            <rect x="70" y="140" width="60" height="25" fill="#0ea5e9" rx="5"/>
+            <text x="100" y="157" text-anchor="middle" fill="white" font-size="12">建设用地</text>
+            
+            <!-- 分布特点 -->
+            <circle cx="650" cy="100" r="45" fill="#0284c7" opacity="0.8"/>
+            <text x="650" y="100" text-anchor="middle" fill="white" font-size="14" dy="5">分布特点</text>
+            <line x1="445" y1="170" x2="605" y2="125" stroke="#0369a1" stroke-width="2"/>
+            
+            <rect x="600" y="50" width="100" height="25" fill="#0ea5e9" rx="5"/>
+            <text x="650" y="67" text-anchor="middle" fill="white" font-size="12">耕地分布</text>
+            <rect x="600" y="80" width="100" height="25" fill="#0ea5e9" rx="5"/>
+            <text x="650" y="97" text-anchor="middle" fill="white" font-size="12">林地分布</text>
+            <rect x="600" y="110" width="100" height="25" fill="#0ea5e9" rx="5"/>
+            <text x="650" y="127" text-anchor="middle" fill="white" font-size="12">草地分布</text>
+            
+            <!-- 利用问题 -->
+            <circle cx="150" cy="300" r="45" fill="#0284c7" opacity="0.8"/>
+            <text x="150" y="300" text-anchor="middle" fill="white" font-size="14" dy="5">利用问题</text>
+            <line x1="355" y1="230" x2="195" y2="275" stroke="#0369a1" stroke-width="2"/>
+            
+            <rect x="50" y="260" width="80" height="25" fill="#f59e0b" rx="5"/>
+            <text x="90" y="277" text-anchor="middle" fill="white" font-size="12">水土流失</text>
+            <rect x="50" y="290" width="80" height="25" fill="#f59e0b" rx="5"/>
+            <text x="90" y="307" text-anchor="middle" fill="white" font-size="12">土地荒漠化</text>
+            <rect x="50" y="320" width="80" height="25" fill="#f59e0b" rx="5"/>
+            <text x="90" y="337" text-anchor="middle" fill="white" font-size="12">乱占耕地</text>
+            
+            <!-- 保护措施 -->
+            <circle cx="650" cy="300" r="45" fill="#0284c7" opacity="0.8"/>
+            <text x="650" y="300" text-anchor="middle" fill="white" font-size="14" dy="5">保护措施</text>
+            <line x1="445" y1="230" x2="605" y2="275" stroke="#0369a1" stroke-width="2"/>
+            
+            <rect x="580" y="260" width="140" height="25" fill="#10b981" rx="5"/>
+            <text x="650" y="277" text-anchor="middle" fill="white" font-size="12">基本国策</text>
+            <rect x="580" y="290" width="140" height="25" fill="#10b981" rx="5"/>
+            <text x="650" y="307" text-anchor="middle" fill="white" font-size="12">合理利用</text>
+            <rect x="580" y="320" width="140" height="25" fill="#10b981" rx="5"/>
+            <text x="650" y="337" text-anchor="middle" fill="white" font-size="12">切实保护耕地</text>
+        </svg>
+    </div>
+
+    <!-- 问题锚点 -->
+    <div class="anchors">
+        <h2>🎯 问题锚点</h2>
+        <div class="anchor-item" onclick="selectAnchor(0)">
+            <strong>问题 1：</strong>我国土地资源有哪些类型？各占多少比例？
+        </div>
+        <div class="anchor-item" onclick="selectAnchor(1)">
+            <strong>问题 2：</strong>我国土地资源的分布有什么特点？
+        </div>
+        <div class="anchor-item" onclick="selectAnchor(2)">
+            <strong>问题 3：</strong>如何合理利用和保护土地资源？
+        </div>
+    </div>
+
+    <!-- 教学内容 section 1: 土地资源的类型 -->
+    <div class="content-section" id="section1">
+        <h2>一、土地资源的类型</h2>
+        
+        <h3>1. 主要土地类型</h3>
+        <p>根据土地的用途及土地利用的状况，土地资源可分为耕地、林地、草地和建设用地等不同类型。</p>
+        
+        <div class="highlight-box">
+            <strong>📌 重要概念：</strong><br>
+            - <strong>耕地</strong>：用于种植农作物的土地<br>
+            - <strong>林地</strong>：生长乔木、竹类、灌木的土地<br>
+            - <strong>草地</strong>：生长草本植物为主的土地<br>
+            - <strong>建设用地</strong>：用于建造建筑物、构筑物的土地<br>
+            - <strong>难利用土地</strong>：沙漠、戈壁、石山、冰川等
+        </div>
+
+        <h3>2. 我国土地资源构成特点</h3>
+        <p>我国土地资源总量丰富，类型齐全，但各类土地所占比例不尽合理：</p>
+        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+            <li><strong>草地面积广大</strong>：约占国土面积的40%以上，居世界前列</li>
+            <li><strong>耕地比重小</strong>：仅占约12.6%，远低于世界平均水平</li>
+            <li><strong>难以利用的土地</strong>：如沙漠、戈壁、高寒荒漠等占比较大</li>
+        </ul>
+
+        <h3>3. 土地利用类型比例（2020年数据）</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>土地类型</th>
+                    <th>占全国土地总面积比例</th>
+                    <th>特点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>草地</td>
+                    <td>约41%</td>
+                    <td>面积最大，主要分布在西部和北部</td>
+                </tr>
+                <tr>
+                    <td>林地</td>
+                    <td>约23%</td>
+                    <td>主要分布在东北、西南山区</td>
+                </tr>
+                <tr>
+                    <td>耕地</td>
+                    <td>约12.6%</td>
+                    <td>比重小，优质耕地少</td>
+                </tr>
+                <tr>
+                    <td>建设用地</td>
+                    <td>约4%</td>
+                    <td>城镇、工矿、交通用地</td>
+                </tr>
+                <tr>
+                    <td>难利用土地</td>
+                    <td>约19%</td>
+                    <td>沙漠、戈壁、冰川、永久积雪等</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 教学内容 section 2: 土地资源的分布 -->
+    <div class="content-section" id="section2">
+        <h2>二、土地资源的分布特点</h2>
+
+        <h3>1. 耕地的分布</h3>
+        <p><strong>主要分布区</strong>：东部季风区的平原和低缓丘陵地区</p>
+        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+            <li><strong>北方</strong>：旱地为主（小麦、玉米）—— 华北平原、东北平原</li>
+            <li><strong>南方</strong>：水田为主（水稻）—— 长江中下游平原、珠江三角洲</li>
+        </ul>
+
+        <h3>2. 林地的分布</h3>
+        <p><strong>主要分布区</strong>：</p>
+        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+            <li><strong>东北林区</strong>：大兴安岭、小兴安岭、长白山（天然林）</li>
+            <li><strong>西南林区</strong>：横断山区、雅鲁藏布江大峡谷（天然林）</li>
+            <li><strong>东南林区</strong>：东南丘陵山地（人工林和次生林）</li>
+        </ul>
+
+        <h3>3. 草地的分布</h3>
+        <p><strong>主要分布区</strong>：北方、西部干旱和半干旱地区</p>
+        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+            <li><strong>内蒙古草原</strong>：温带草原，著名的畜牧业基地</li>
+            <li><strong>新疆牧区</strong>：山地草原和高寒草原</li>
+            <li><strong>青海、西藏牧区</strong>：高寒草原和草甸</li>
+        </ul>
+
+        <!-- SVG中国土地利用分布图 -->
+        <h3>🗺️ 中国土地利用类型分布示意图</h3>
+        <svg class="interactive-map" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <!-- 简化的中国地图轮廓 -->
+            <path d="M 300 100 L 500 80 L 650 150 L 700 250 L 680 350 L 600 400 L 500 450 L 400 480 L 300 450 L 200 400 L 150 300 L 180 200 L 250 120 Z" 
+                  fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+            
+            <!-- 耕地分布区 (东部) -->
+            <rect x="450" y="200" width="80" height="60" fill="#22c55e" opacity="0.7"/>
+            <text x="490" y="235" text-anchor="middle" fill="white" font-size="14" font-weight="bold">耕地</text>
+            <text x="490" y="250" text-anchor="middle" fill="white" font-size="12">（东部平原）</text>
+            
+            <!-- 林地分布区 (东北、西南) -->
+            <ellipse cx="350" cy="150" rx="50" ry="40" fill="#166534" opacity="0.7"/>
+            <text x="350" y="155" text-anchor="middle" fill="white" font-size="12" font-weight="bold">东北林区</text>
+            
+            <ellipse cx="200" cy="350" rx="45" ry="35" fill="#166534" opacity="0.7"/>
+            <text x="200" y="355" text-anchor="middle" fill="white" font-size="12" font-weight="bold">西南林区</text>
+            
+            <!-- 草地分布区 (西部、北部) -->
+            <rect x="100" y="150" width="120" height="80" fill="#a3e635" opacity="0.7"/>
+            <text x="160" y="195" text-anchor="middle" fill="white" font-size="14" font-weight="bold">草地</text>
+            <text x="160" y="210" text-anchor="middle" fill="white" font-size="12">（内蒙古、新疆）</text>
+            
+            <rect x="250" y="380" width="100" height="60" fill="#a3e635" opacity="0.7"/>
+            <text x="300" y="415" text-anchor="middle" fill="white" font-size="12" font-weight="bold">青藏草地</text>
+            
+            <!-- 难利用土地 (西北沙漠) -->
+            <rect x="80" y="250" width="90" height="70" fill="#d4d4d4" opacity="0.7"/>
+            <text x="125" y="290" text-anchor="middle" fill="white" font-size="12" font-weight="bold">难利用土地</text>
+            <text x="125" y="305" text-anchor="middle" fill="white" font-size="11">（沙漠、戈壁）</text>
+            
+            <!-- 图例 -->
+            <rect x="550" y="500" width="20" height="20" fill="#22c55e" opacity="0.7"/>
+            <text x="580" y="515" font-size="14">耕地</text>
+            
+            <rect x="550" y="530" width="20" height="20" fill="#166534" opacity="0.7"/>
+            <text x="580" y="545" font-size="14">林地</text>
+            
+            <rect x="650" y="500" width="20" height="20" fill="#a3e635" opacity="0.7"/>
+            <text x="680" y="515" font-size="14">草地</text>
+            
+            <rect x="650" y="530" width="20" height="20" fill="#d4d4d4" opacity="0.7"/>
+            <text x="680" y="545" font-size="14">难利用土地</text>
+        </svg>
+
+        <div class="highlight-box">
+            <strong>📍 读图指导：</strong><br>
+            1. 耕地集中分布在东部季风区，这里地形平坦、气候湿润、土壤肥沃<br>
+            2. 林地主要分布在山地、丘陵地区，对保持水土有重要作用<br>
+            3. 草地主要分布在非季风区，适合发展畜牧业<br>
+            4. 难利用土地主要分布在西北内陆干旱地区
+        </div>
+    </div>
+
+    <!-- 教学内容 section 3: 土地资源利用问题 -->
+    <div class="content-section" id="section3">
+        <h2>三、土地资源利用中存在的问题</h2>
+
+        <h3>1. 水土流失</h3>
+        <p><strong>分布地区</strong>：黄土高原、南方低山丘陵区</p>
+        <p><strong>原因</strong>：</p>
+        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+            <li>自然原因：降水集中夏季，多暴雨；地形坡度大；土质疏松</li>
+            <li>人为原因：滥砍滥伐，过度开垦，破坏植被</li>
+        </ul>
+        <p><strong>危害</strong>：土壤肥力下降，河流泥沙增多，生态环境恶化</p>
+
+        <h3>2. 土地荒漠化</h3>
+        <p><strong>分布地区</strong>：西北内陆干旱、半干旱地区（新疆、内蒙古、甘肃等）</p>
+        <p><strong>原因</strong>：</p>
+        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+            <li>自然原因：气候干旱，蒸发旺盛，风力作用强</li>
+            <li>人为原因：过度放牧，过度开垦，过度樵采，水资源不合理利用</li>
+        </ul>
+        <p><strong>危害</strong>：土地生产力下降，沙尘暴频发，生态环境恶化</p>
+
+        <h3>3. 乱占耕地</h3>
+        <p><strong>表现</strong>：</p>
+        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+            <li>城镇化建设占用大量耕地</li>
+            <li>工业、交通建设占用耕地</li>
+            <li>不合理占用：空心村、闲置土地</li>
+        </ul>
+        <p><strong>危害</strong>：耕地面积减少，威胁国家粮食安全</p>
+
+        <div class="highlight-box">
+            <strong>⚠️ 警示：</strong><br>
+            我国耕地后备资源严重不足，可开垦为耕地的荒地数量有限，且主要分布在西北干旱地区，质量不高。因此，保护现有耕地尤为重要！
+        </div>
+    </div>
+
+    <!-- 教学内容 section 4: 保护措施 -->
+    <div class="content-section" id="section4">
+        <h2>四、土地资源的保护对策</h2>
+
+        <h3>1. 基本国策</h3>
+        <div class="highlight-box" style="text-align: center; font-size: 1.2rem; padding: 1.5rem;">
+            <strong>🇨🇳 "十分珍惜和合理利用每一寸土地，切实保护耕地"</strong><br>
+            <span style="font-size: 0.9rem; margin-top: 0.5rem; display: inline-block;">—— 我国的基本国策</span>
+        </div>
+
+        <h3>2. 主要保护措施</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>问题</th>
+                    <th>保护措施</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>水土流失</td>
+                    <td>植树造林，退耕还林还草，修建梯田，修筑挡土坝</td>
+                </tr>
+                <tr>
+                    <td>土地荒漠化</td>
+                    <td>退耕还草，合理放牧，营造防护林，科学用水</td>
+                </tr>
+                <tr>
+                    <td>乱占耕地</td>
+                    <td>严格控制建设用地规模，守住18亿亩耕地红线</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3. 合理利用土地的途径</h3>
+        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+            <li><strong>因地制宜</strong>：根据土地类型合理布局（宜农则农、宜林则林、宜牧则牧）</li>
+            <li><strong>节约集约用地</strong>：提高土地利用效率，少占好地</li>
+            <li><strong>科学规划</strong>：统筹城乡用地，优化土地利用结构</li>
+            <li><strong>加强管理</strong>：完善土地管理法律法规，严格执法</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>📌 重要数字：18亿亩耕地红线</strong><br>
+            我国政府划定了18亿亩（约1.2亿公顷）耕地保护红线，这是保障国家粮食安全的底线，必须严防死守！
+        </div>
+    </div>
+
+    <!-- 读图判读型选择题 -->
+    <div class="quiz-section">
+        <h2>📝 课堂练习：读图判读</h2>
+        
+        <div class="quiz-question" id="quiz1">
+            <p><strong>题目 1：</strong>读"中国土地利用类型分布图"，回答下列问题。</p>
+            <p>我国耕地主要分布在（ ）</p>
+            <ul class="quiz-options">
+                <li onclick="checkAnswer(this, false, 'quiz1')">A. 西北部的内蒙古高原</li>
+                <li onclick="checkAnswer(this, true, 'quiz1')">B. 东部季风区的平原和盆地</li>
+                <li onclick="checkAnswer(this, false, 'quiz1')">C. 西部干旱地区</li>
+                <li onclick="checkAnswer(this, false, 'quiz1')">D. 青藏高原地区</li>
+            </ul>
+        </div>
+
+        <div class="quiz-question" id="quiz2">
+            <p><strong>题目 2：</strong>关于我国土地资源的叙述，正确的是（ ）</p>
+            <ul class="quiz-options">
+                <li onclick="checkAnswer(this, false, 'quiz2')">A. 耕地比重较大，约占国土面积的一半</li>
+                <li onclick="checkAnswer(this, false, 'quiz2')">B. 草地主要分布在东部地区</li>
+                <li onclick="checkAnswer(this, true, 'quiz2')">C. 林地主要分布在东北、西南和东南部山区</li>
+                <li onclick="checkAnswer(this, false, 'quiz2')">D. 难利用土地比重很小</li>
+            </ul>
+        </div>
+
+        <div class="quiz-question" id="quiz3">
+            <p><strong>题目 3：</strong>我国土地资源保护的基本国策是（ ）</p>
+            <ul class="quiz-options">
+                <li onclick="checkAnswer(this, false, 'quiz3')">A. 围湖造田，扩大耕地面积</li>
+                <li onclick="checkAnswer(this, false, 'quiz3')">B. 大力开垦荒地，增加耕地</li>
+                <li onclick="checkAnswer(this, true, 'quiz3')">C. 十分珍惜和合理利用每一寸土地，切实保护耕地</li>
+                <li onclick="checkAnswer(this, false, 'quiz3')">D. 优先发展工业，必要时占用耕地</li>
+            </ul>
+        </div>
+
+        <div class="quiz-question" id="quiz4">
+            <p><strong>题目 4（读图题）：</strong>读图判断，我国西北地区主要的土地类型是（ ）</p>
+            <ul class="quiz-options">
+                <li onclick="checkAnswer(this, false, 'quiz4')">A. 耕地为主</li>
+                <li onclick="checkAnswer(this, false, 'quiz4')">B. 林地为主</li>
+                <li onclick="checkAnswer(this, true, 'quiz4')">C. 草地和难利用土地为主</li>
+                <li onclick="checkAnswer(this, false, 'quiz4')">D. 建设用地为主</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 总结 -->
+    <div class="content-section">
+        <h2>📚 本课总结</h2>
+        <div class="highlight-box">
+            <strong>核心知识点回顾：</strong><br><br>
+            1. <strong>土地类型</strong>：耕地、林地、草地、建设用地、难利用土地<br>
+            2. <strong>构成特点</strong>：草地面积广大，耕地比重小<br>
+            3. <strong>分布规律</strong>：<br>
+               &nbsp;&nbsp;- 耕地 → 东部季风区（北方旱地、南方水田）<br>
+               &nbsp;&nbsp;- 林地 → 东北、西南、东南山区<br>
+               &nbsp;&nbsp;- 草地 → 西部、北部干旱半干旱区<br>
+            4. <strong>存在问题</strong>：水土流失、土地荒漠化、乱占耕地<br>
+            5. <strong>保护对策</strong>：基本国策 + 因地制宜 + 节约集约用地
+        </div>
+
+        <h3>🎯 课后思考</h3>
+        <p>1. 为什么我国要严守18亿亩耕地红线？请结合我国的国情分析。</p>
+        <p>2. 如果你的家乡存在土地资源利用不当的问题，你认为可以采取哪些措施？</p>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <p>© 2024 八年级地理课件 - 中国的自然资源</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="../../index.html">返回首页</a> |
+            <a href="../d3zg.html">章节目录</a> |
+            <a href="../3.1_zy/zy.html">上一节</a> |
+            <a href="../3.3_sl/sl.html">下一节</a>
+        </p>
+    </div>
+
+    <script>
+        // 问题锚点选择
+        function selectAnchor(index) {
+            const sections = ['section1', 'section2', 'section3'];
+            const sectionId = sections[index];
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                
+                // 高亮显示
+                section.style.borderLeft = '4px solid #0369a1';
+                setTimeout(() => {
+                    section.style.borderLeft = 'none';
+                }, 2000);
+            }
+        }
+
+        // 自定义问题处理
+        function handleCustomQuestion(question) {
+            console.log('Custom question:', question);
+            // 可扩展：连接到AI学伴
+        }
+
+        // 检查答案
+        function checkAnswer(element, isCorrect, quizId) {
+            const options = element.parentElement.querySelectorAll('li');
+            
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                setTimeout(() => {
+                    alert('✅ 回答正确！');
+                }, 100);
+            } else {
+                element.classList.add('incorrect');
+                setTimeout(() => {
+                    alert('❌ 回答错误，请再想想！');
+                    element.classList.remove('incorrect');
+                    element.style.pointerEvents = 'auto';
+                }, 100);
+            }
+        }
+
+        // 更新进度条
+        function updateProgressBar() {
+            const sections = document.querySelectorAll('.content-section');
+            const windowHeight = window.innerHeight;
+            let visibleCount = 0;
+
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    visibleCount++;
+                }
+            });
+
+            const progress = Math.min((visibleCount / sections.length) * 100, 100);
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+
+        // 监听滚动
+        window.addEventListener('scroll', updateProgressBar);
+
+        // 页面加载完成后初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('3.2 土地资源课件已加载');
+            updateProgressBar();
+        });
+    </script>
+</body>
+</html>

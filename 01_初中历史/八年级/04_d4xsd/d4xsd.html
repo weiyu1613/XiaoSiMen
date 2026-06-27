@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四单元：建设中国特色社会主义 - 初中八年级历史</title>
+    <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8b4513;
+            --primary-light: #cd853f;
+            --primary-dark: #6b3410;
+            --secondary: #d4a574;
+            --accent: #e76f51;
+            --bg-light: #faf7f2;
+            --bg-card: #ffffff;
+            --text-dark: #2c1810;
+            --text-muted: #8b7355;
+            --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+            --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+            --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.16);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* ====== Brand Bar ====== */
+        .brand-bar {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+        .brand-logo { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; }
+
+        /* ====== Progress Bar ====== */
+        .progress-container {
+            background: white;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(139,69,19,0.1);
+        }
+        .progress-inner { max-width: 1200px; margin: 0 auto; }
+        .progress-info { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
+        .progress-track { height: 6px; background: #e8e0d5; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 75%; transition: width 0.3s ease; }
+
+        /* ====== Nav Bar ====== */
+        .nav-bar {
+            background: white;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(139,69,19,0.1);
+            position: sticky;
+            top: 48px;
+            z-index: 999;
+        }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 8px; overflow-x: auto; }
+        .nav-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-btn:hover { background: var(--bg-light); color: var(--primary); }
+        .nav-btn.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+        .nav-center { font-weight: 600; color: var(--primary); margin: 0 auto; }
+
+        /* ====== Hero Section ====== */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%);
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .hero-icon { font-size: 56px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 16px; }
+        .hero-title { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero-subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 32px; }
+
+        .hero-cards {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        .hero-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 20px 24px;
+            min-width: 140px;
+        }
+        .hero-card-icon { font-size: 28px; margin-bottom: 8px; }
+        .hero-card-label { font-size: 0.8rem; opacity: 0.9; margin-bottom: 4px; }
+        .hero-card-value { font-size: 1.1rem; font-weight: 600; }
+
+        /* ====== SVG Knowledge Map ====== */
+        .knowledge-map-section {
+            background: white;
+            padding: 40px 20px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            border-radius: 24px 24px 0 0;
+        }
+        .knowledge-map-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .knowledge-map-title { font-size: 1.2rem; color: var(--primary); margin-bottom: 24px; font-weight: 600; }
+
+        /* ====== Anchor Points ====== */
+        .anchor-section { padding: 40px 20px; background: var(--bg-light); }
+        .anchor-inner { max-width: 1200px; margin: 0 auto; }
+        .anchor-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .anchor-title h2 { font-size: 1.3rem; color: var(--primary); }
+        .anchor-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .anchor-btn {
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .anchor-btn:hover { border-color: var(--primary); background: var(--bg-light); transform: translateY(-2px); }
+        .anchor-btn i { color: var(--primary); }
+
+        /* ====== Main Content ====== */
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .section { margin-bottom: 48px; }
+        .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .section-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: var(--shadow-md);
+        }
+        .section-title-text h2 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+        .section-title-text p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* ====== Objectives ====== */
+        .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .objective-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary);
+        }
+        .objective-card h3 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+        .objective-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        /* ====== Knowledge Cards ====== */
+        .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .knowledge-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+        .knowledge-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .knowledge-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .knowledge-card p { color: var(--text-dark); font-size: 0.95rem; line-height: 1.8; margin-bottom: 8px; }
+        .knowledge-card ul { padding-left: 20px; color: var(--text-dark); }
+        .knowledge-card li { margin-bottom: 6px; line-height: 1.6; }
+
+        /* ====== Quiz Section ====== */
+        .quiz-section { background: white; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-sm); }
+        .quiz-question { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #f0f0f0; }
+        .quiz-question:last-child { border-bottom: none; margin-bottom: 0; }
+        .quiz-question h4 { color: var(--text-dark); margin-bottom: 16px; font-size: 1rem; font-weight: 600; }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .quiz-option {
+            padding: 14px 18px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quiz-option:hover { border-color: var(--primary-light); background: white; }
+        .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+        .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+        .opt-letter { width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; flex-shrink: 0; }
+        .quiz-option.correct .opt-letter { background: #10b981; }
+        .quiz-option.wrong .opt-letter { background: #ef4444; }
+        .feedback { margin-top: 12px; padding: 14px 18px; border-radius: 10px; font-size: 0.9rem; display: none; line-height: 1.6; }
+        .feedback.show { display: block; }
+        .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+        .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+        /* ====== Footer ====== */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .footer p { opacity: 0.9; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: white; }
+
+        /* ====== Responsive ====== */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.8rem; }
+            .hero-cards { flex-direction: column; align-items: center; }
+            .nav-center { display: none; }
+            .knowledge-grid, .objectives-grid { grid-template-columns: 1fr; }
+            .quiz-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Brand Bar -->
+<div class="brand-bar">
+    <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v1.0</div>
+</div>
+
+<!-- Progress Bar -->
+<div class="progress-container">
+    <div class="progress-inner">
+        <div class="progress-info">
+            <span>第四单元</span>
+            <span>学习进度 75%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+</div>
+
+<!-- Nav Bar -->
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
+        <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
+        <span class="nav-center">八年级下册 · 第四单元</span>
+        <a href="../03_d3zcb/d3zcb.html" class="nav-btn"><i class="fas fa-arrow-left"></i> 上一单元</a>
+        <a href="../05_d5cg/index.html" class="nav-btn">下一单元 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-icon">🏗️</div>
+        <div class="hero-badge">初中八年级历史下册 · 第四单元</div>
+        <h1 class="hero-title">建设中国特色社会主义</h1>
+        <p class="hero-subtitle">1978-2012年 · 改革开放的伟大历程</p>
+        
+        <div class="hero-cards">
+            <div class="hero-card">
+                <div class="hero-card-icon">📅</div>
+                <div class="hero-card-label">时间跨度</div>
+                <div class="hero-card-value">1978-2012</div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">📖</div>
+                <div class="hero-card-label">课时数量</div>
+                <div class="hero-card-value">3课时</div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">⏱️</div>
+                <div class="hero-card-label">核心事件</div>
+                <div class="hero-card-value">改革开放</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SVG Knowledge Map -->
+<section class="knowledge-map-section">
+    <div class="knowledge-map-inner">
+        <div class="knowledge-map-title"><i class="fas fa-sitemap"></i> 单元知识结构图</div>
+        <svg viewBox="0 0 900 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+            <rect width="900" height="280" fill="#faf7f2" rx="16"/>
+            
+            <!-- Center: 建设中国特色社会主义 -->
+            <circle cx="450" cy="140" r="60" fill="url(#centerGrad)" stroke="#8b4513" stroke-width="3"/>
+            <text x="450" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="white">建设中国特色社会主义</text>
+            <text x="450" y="155" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">1978-2012</text>
+            
+            <!-- Branch 1: 农村改革 -->
+            <rect x="50" y="50" width="140" height="70" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="120" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">农村改革</text>
+            <text x="120" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">家庭联产承包</text>
+            <line x1="190" y1="85" x2="390" y2="120" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- Branch 2: 城市改革 -->
+            <rect x="50" y="160" width="140" height="70" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="120" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="white">城市改革</text>
+            <text x="120" y="210" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">企业自主权</text>
+            <line x1="190" y1="195" x2="390" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- Branch 3: 对外开放 -->
+            <rect x="710" y="50" width="140" height="70" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="780" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">对外开放</text>
+            <text x="780" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">经济特区</text>
+            <line x1="710" y1="85" x2="510" y2="120" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- Definitions -->
+            <defs>
+                <linearGradient id="centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8b4513"/>
+                    <stop offset="100%" style="stop-color:#cd853f"/>
+                </linearGradient>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+                </marker>
+            </defs>
+        </svg>
+    </div>
+</section>
+
+<!-- Anchor Points -->
+<section class="anchor-section" id="anchors">
+    <div class="anchor-inner">
+        <div class="anchor-title">
+            <i class="fas fa-anchor" style="color: var(--primary); font-size: 1.3rem;"></i>
+            <h2>快速导航</h2>
+        </div>
+        <div class="anchor-points">
+            <button class="anchor-btn" onclick="scrollToSection('objectives')"><i class="fas fa-bullseye"></i> 单元目标</button>
+            <button class="anchor-btn" onclick="scrollToSection('overview')"><i class="fas fa-info-circle"></i> 单元概述</button>
+            <button class="anchor-btn" onclick="scrollToSection('lessons')"><i class="fa-solid fa-landmark"></i> 课时导航</button>
+            <button class="anchor-btn" onclick="scrollToSection('quiz')"><i class="fas fa-question-circle"></i> 单元测试</button>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <!-- Objectives -->
+    <section class="section" id="objectives">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+            <div class="section-title-text">
+                <h2>单元目标</h2>
+                <p>本单元学习重点与要求</p>
+            </div>
+        </div>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 了解背景</h3>
+                <p>了解文化大革命结束后的思想解放和改革开放的历史背景。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 掌握过程</h3>
+                <p>掌握农村改革、城市改革、对外开放的主要内容和重大成就。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 认识意义</h3>
+                <p>认识改革开放对中国社会主义现代化建设的伟大意义。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 分析评价</h3>
+                <p>客观评价改革开放的成就与不足，理解中国特色社会主义道路。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="section" id="overview">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+            <div class="section-title-text">
+                <h2>单元概述</h2>
+                <p>建设中国特色社会主义的伟大历程</p>
+            </div>
+        </div>
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <h3><i class="fas fa-flag"></i> 历史背景</h3>
+                <p>1976年文化大革命结束后，中国面临向何处去的重大历史抉择。1978年真理标准大讨论解放了思想，为改革开放奠定了思想基础。</p>
+            </div>
+            <div class="knowledge-card">
+                <h3><i class="fas fa-route"></i> 改革历程</h3>
+                <p><strong>农村改革</strong>（家庭联产承包责任制）→ <strong>城市改革</strong>（企业自主权）→ <strong>对外开放</strong>（经济特区→沿海开放城市），形成了全方位、多层次、宽领域的开放格局。</p>
+            </div>
+            <div class="knowledge-card">
+                <h3><i class="fas fa-lightbulb"></i> 历史意义</h3>
+                <p>改革开放是决定当代中国命运的关键一招，成功开创和发展了中国特色社会主义，实现了中国经济社会的跨越式发展。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons -->
+    <section class="section" id="lessons">
+        <div class="section-header">
+            <div class="section-icon"><i class="fa-solid fa-landmark"></i></div>
+            <div class="section-title-text">
+                <h2>课时导航</h2>
+                <p>点击卡片开始学习</p>
+            </div>
+        </div>
+        <div class="knowledge-grid">
+            <a href="4.1_ysds/ysds.html" class="knowledge-card" style="text-decoration: none; color: inherit;">
+                <h3><i class="fas fa-seedling"></i> 第1课 农村改革</h3>
+                <p><strong>时间：</strong>1978年开始</p>
+                <p><strong>核心：</strong>家庭联产承包责任制</p>
+                <p><strong>地点：</strong>安徽凤阳小岗村率先试行</p>
+                <p style="margin-top: 12px; color: var(--primary);"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+            <a href="4.2_wqyb/wqyb.html" class="knowledge-card" style="text-decoration: none; color: inherit;">
+                <h3><i class="fas fa-building"></i> 第2课 城市经济体制改革</h3>
+                <p><strong>时间：</strong>1984年全面展开</p>
+                <p><strong>核心：</strong>增强企业活力，扩大企业自主权</p>
+                <p><strong>目标：</strong>建立社会主义市场经济体制</p>
+                <p style="margin-top: 12px; color: var(--primary);"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+            <a href="4.3_zdcd/zdcd.html" class="knowledge-card" style="text-decoration: none; color: inherit;">
+                <h3><i class="fas fa-globe"></i> 第3课 对外开放</h3>
+                <p><strong>时间：</strong>1980年设立经济特区</p>
+                <p><strong>格局：</strong>经济特区→沿海开放城市→沿海经济开放区→内地</p>
+                <p><strong>成就：</strong>形成全方位、多层次、宽领域的开放格局</p>
+                <p style="margin-top: 12px; color: var(--primary);"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Quiz -->
+    <section class="section" id="quiz">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-question-circle"></i></div>
+            <div class="section-title-text">
+                <h2>单元测试</h2>
+                <p>检验学习成果</p>
+            </div>
+        </div>
+        <div class="quiz-section">
+            <div class="quiz-question">
+                <h4>1. 改革开放的起点是哪一年？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1966年是文化大革命开始的年份，不是改革开放的起点。">
+                        <span class="opt-letter">A</span> 1966年
+                    </button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1976年是文化大革命结束的年份，改革开放尚未开始。">
+                        <span class="opt-letter">B</span> 1976年
+                    </button>
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1978年12月，中共十一届三中全会召开，作出了改革开放的伟大决策，标志着改革开放的开始。">
+                        <span class="opt-letter">C</span> 1978年
+                    </button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1980年是设立经济特区的年份，改革开放已经开始了。">
+                        <span class="opt-letter">D</span> 1980年
+                    </button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>2. 农村改革率先在哪个村试行？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1978年，安徽凤阳小岗村的18户农民秘密签订契约，试行'大包干'，开创了家庭联产承包责任制的先河。">
+                        <span class="opt-letter">A</span> 小岗村
+                    </button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。大寨村是农业学大寨运动的典型，不是农村改革率先试行的地方。">
+                        <span class="opt-letter">B</span> 大寨村
+                    </button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。华西村是共同富裕的典型，但不是家庭联产承包责任制的首发地。">
+                        <span class="opt-letter">C</span> 华西村
+                    </button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。南街村是集体经济的典型，与农村改革率先试行无关。">
+                        <span class="opt-letter">D</span> 南街村
+                    </button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>3. 我国第一个经济特区是哪个城市？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。上海浦东是1990年才开发开放的，不是第一个经济特区。">
+                        <span class="opt-letter">A</span> 上海
+                    </button>
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1980年，深圳、珠海、汕头、厦门设立为经济特区，其中深圳是第一个也是最成功的经济特区。">
+                        <span class="opt-letter">B</span> 深圳
+                    </button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。海南是1988年才建省并设立经济特区的，不是第一个。">
+                        <span class="opt-letter">C</span> 海南
+                    </button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。广州是对外开放城市，但不是第一个经济特区。">
+                        <span class="opt-letter">D</span> 广州
+                    </button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>初中历史八年级下册 · 第四单元 建设中国特色社会主义</p>
+    <div class="footer-links">
+        <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+        <a href="../../index.html"><i class="fas fa-list"></i> 章节目录</a>
+    </div>
+    <p style="margin-top: 20px; opacity: 0.7; font-size: 0.85rem;">© 2026 TeachAny 互动课件</p>
+</footer>
+
+<script>
+// Scroll to section
+function scrollToSection(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// Quiz interaction
+function initQuiz() {
+    const questions = document.querySelectorAll('.quiz-question');
+    
+    questions.forEach(q => {
+        const options = q.querySelectorAll('.quiz-option');
+        const feedback = q.querySelector('.feedback');
+        let answered = false;
+        
+        options.forEach(opt => {
+            opt.addEventListener('click', function() {
+                if (answered) return;
+                
+                const isCorrect = this.dataset.correct === 'true';
+                const feedbackText = this.dataset.feedback;
+                
+                // Show all options status
+                options.forEach(o => {
+                    if (o.dataset.correct === 'true') {
+                        o.classList.add('correct');
+                    } else if (o === this && !isCorrect) {
+                        o.classList.add('wrong');
+                    }
+                });
+                
+                // Show feedback
+                feedback.innerHTML = feedbackText;
+                feedback.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+                
+                answered = true;
+            });
+        });
+    });
+}
+
+// Update progress bar on scroll
+function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.querySelector('.progress-fill').style.width = progress + '%';
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    initQuiz();
+    window.addEventListener('scroll', updateProgress);
+});
+</script>
+
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

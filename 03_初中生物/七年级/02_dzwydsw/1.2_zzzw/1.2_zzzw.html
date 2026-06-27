@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.2 种子植物 | 七年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #2e7d32; --primary-light: #4caf50; --primary-dark: #1b5e20; --secondary: #81c784; --bg-light: #f1f8e9; --bg-card: #ffffff; --text-dark: #1a1a2e; --text-muted: #5d6d7e; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 15px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); transition: width 0.3s; width: 0%; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 8px 0; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 6px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 6px; transition: all 0.2s; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary) 30%, var(--primary-light) 70%, #2e7d32 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1rem; opacity: 0.9; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 24px 0; }
+    .section-title { font-size: 1.4rem; color: var(--primary); margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.08); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border: 2px solid #a5d6a7; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #c8e6c9, #a5d6a7); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #a5d6a7; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; font-size: 12px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef9e7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 10px; font-size: 13px; color: var(--primary); text-align: center; }
+    .bio-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .bio-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px; text-align: center; }
+    .bio-table td { padding: 10px; border: 1px solid #c8e6c9; text-align: center; }
+    .bio-table tr:nth-child(even) { background: #f1f8e9; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    @media (max-width: 768px) { .hero { padding: 24px 14px; } .hero h1 { font-size: 1.4rem; } .section { padding: 16px 0; } .section-title { font-size: 1.1rem; } .card { padding: 14px; border-radius: 10px; } .anchor-btn { min-width: 100%; } .quiz-option { font-size: 13px; padding: 10px 12px; } .svg-container { padding: 12px; } .bio-table { font-size: 12px; display: block; overflow-x: auto; } }
+  </style>
+</head>
+<body>
+  <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-seedling"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 2/10 节 · 20%</div>
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
+    <div class="nav-center">第二单元：多种多样的生物</div>
+    <a href="../2.1_wjjzdw/2.1_wjjzdw.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+
+  <header class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-seedling"></i> 七年级生物 · 第二单元</div>
+    <h1>1.2 种子植物</h1>
+    <p>📖 课标要求：识别当地常见种子植物，说出被子植物和裸子植物的主要特征<br>🎯 预计用时：30分钟</p>
+  </header>
+
+  <!-- Hero SVG -->
+  <section class="container section" style="padding-top:0;">
+    <figure style="margin: 24px auto 0; max-width: 900px;">
+      <svg viewBox="0 0 800 220" width="800" height="220" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="220" fill="#f1f8e9"/>
+        <circle cx="400" cy="110" r="50" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="white">种子植物</text>
+        <rect x="55" y="65" width="140" height="60" rx="10" fill="#c62828" stroke="#8b0000" stroke-width="2"/>
+        <text x="125" y="90" text-anchor="middle" font-size="13" fill="white" font-weight="bold">裸子植物</text>
+        <text x="125" y="108" text-anchor="middle" font-size="11" fill="white">种子裸露·无果皮</text>
+        <line x1="195" y1="95" x2="350" y2="110" stroke="#2e7d32" stroke-width="2" marker-end="url(#a1)"/>
+        <rect x="55" y="150" width="140" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="125" y="175" text-anchor="middle" font-size="13" fill="white" font-weight="bold">被子植物</text>
+        <text x="125" y="193" text-anchor="middle" font-size="11" fill="white">种子被果皮包被</text>
+        <line x1="195" y1="180" x2="350" y2="135" stroke="#2e7d32" stroke-width="2" marker-end="url(#a1)"/>
+        <rect x="605" y="65" width="140" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="675" y="90" text-anchor="middle" font-size="13" fill="white" font-weight="bold">繁殖方式</text>
+        <text x="675" y="108" text-anchor="middle" font-size="11" fill="white">种子繁殖</text>
+        <line x1="605" y1="95" x2="450" y2="110" stroke="#2e7d32" stroke-width="2" marker-end="url(#a1)"/>
+        <rect x="605" y="150" width="140" height="60" rx="10" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+        <text x="675" y="175" text-anchor="middle" font-size="13" fill="#1b5e20" font-weight="bold">代表植物</text>
+        <text x="675" y="193" text-anchor="middle" font-size="11" fill="#1b5e20">松·杉·柏·水稻</text>
+        <line x1="605" y1="180" x2="450" y2="135" stroke="#2e7d32" stroke-width="2" marker-end="url(#a1)"/>
+        <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#2e7d32"/></marker></defs>
+        <text x="400" y="208" text-anchor="middle" font-size="12" fill="#2e7d32">图1-5 种子植物分类结构图</text>
+      </svg>
+    </figure>
+  </section>
+
+  <main class="container">
+
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="裸子植物和被子植物的根本区别是什么？">🌿 裸子植物和被子植物的根本区别是什么？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="种子植物为什么能成为最高等的植物？">🌱 种子植物为什么能成为最高等的植物？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="花生是裸子植物还是被子植物？">🥜 花生是裸子植物还是被子植物？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--primary);">我自己的问题<input id="learner-question-input" placeholder="把你卡住的问题写在这里" style="width:100%;border-radius:12px;border:1px solid #a5d6a7;background:#f1f8e9;color:var(--primary-dark);padding:10px 14px;font-size:15px;margin-top:8px;"></label>
+        <div class="anchor-display" id="anchor-display" style="margin-top:20px;min-height:80px;"><p style="color:var(--primary);text-align:center;">👆 点击上方按钮查看问题</p></div>
+        <p id="anchor-feedback" style="display:none;margin-top:14px;padding:14px;border-radius:12px;background:rgba(46,125,50,0.1);border:1px solid rgba(46,125,50,0.28);color:var(--primary-dark);"></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2;">
+          <li>✅ 识别裸子植物和被子植物，说出主要区别</li>
+          <li>✅ 说出种子植物的六大器官及其功能</li>
+          <li>✅ 理解种子植物的繁殖优势</li>
+          <li>✅ 了解种子植物与人类生活的关系</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 前测 -->
+    <section class="section">
+      <h2 class="section-title"><span class="num">📝</span> 前测</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列属于被子植物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 松树是裸子植物，种子没有果皮包被！"><span class="opt-letter">A</span> 松树</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 水稻</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 银杏是裸子植物！"><span class="opt-letter">C</span> 银杏</div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 水稻</strong></p>
+          <p style="margin-top:8px;">水稻是<strong>被子植物</strong>，种子被果皮（谷壳）包被。松树和银杏都是<strong>裸子植物</strong>，种子裸露，没有果皮包被。</p>
+        </div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】裸子植物和被子植物的根本区别是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 种子是否被果皮包被</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 两者都有根茎叶！"><span class="opt-letter">B</span> 是否有根茎叶</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 两者都是种子繁殖！"><span class="opt-letter">C</span> 繁殖方式不同</div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 种子是否被果皮包被</strong></p>
+          <p style="margin-top:8px;"><strong>被子</strong>植物：种子被<strong>果皮</strong>包被（形成果实）；<strong>裸子</strong>植物：种子<strong>裸露</strong>，无果皮包被。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心知识 -->
+    <section class="section">
+      <h2 class="section-title"><span class="num">🌿</span> 种子植物概述</h2>
+      <div class="card">
+        <p style="line-height:1.8;margin-bottom:16px;">种子植物是<strong>植物界最高等</strong>的类群，以<strong>种子</strong>繁殖后代，分为被子植物和裸子植物两大类。</p>
+        <div class="svg-container">
+          <svg viewBox="0 0 600 200" width="600" height="200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="600" height="200" fill="#f1f8e9" rx="8"/>
+            <text x="300" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">种子植物六大器官</text>
+            <circle cx="300" cy="100" r="45" fill="#4caf50" stroke="#2e7d32" stroke-width="3"/>
+            <text x="300" y="105" text-anchor="middle" font-size="13" fill="white" font-weight="bold">种子植物</text>
+            <!-- 根 -->
+            <path d="M270,140 L260,180 L255,185 L265,180 Z" fill="#795548" stroke="#4e342e" stroke-width="2"/>
+            <text x="255" y="195" text-anchor="middle" font-size="11" fill="#5d4037">根</text>
+            <!-- 茎 -->
+            <line x1="300" y1="145" x2="300" y2="175" stroke="#795548" stroke-width="4"/>
+            <text x="300" y="190" text-anchor="middle" font-size="11" fill="#5d4037">茎</text>
+            <!-- 叶 -->
+            <path d="M345,145 Q380,120 390,140 Q380,160 345,150 Z" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+            <text x="392" y="145" text-anchor="middle" font-size="11" fill="#2e7d32">叶</text>
+            <!-- 花 -->
+            <circle cx="255" cy="130" r="15" fill="#e91e63" stroke="#c2185b" stroke-width="2"/>
+            <text x="255" y="120" text-anchor="middle" font-size="10" fill="#c2185b">花</text>
+            <!-- 果实 -->
+            <ellipse cx="345" cy="110" rx="20" ry="18" fill="#ff9800" stroke="#e65100" stroke-width="2"/>
+            <text x="345" y="115" text-anchor="middle" font-size="10" fill="#e65100">果实</text>
+            <!-- 种子 -->
+            <ellipse cx="370" cy="80" rx="12" ry="10" fill="#795548" stroke="#4e342e" stroke-width="2"/>
+            <text x="370" y="68" text-anchor="middle" font-size="10" fill="#5d4037">种子</text>
+            <text x="300" y="185" text-anchor="middle" font-size="11" fill="#5d6d7e">图1-6 种子植物的六大器官</text>
+          </svg>
+          <p class="svg-caption">图1-6 种子植物的六大器官（根、茎、叶、花、果实、种子）</p>
+        </div>
+        <div class="concept-box"><div class="label">核心概念 · 种子植物的六大器官</div>
+          <ul style="padding-left:20px;line-height:1.8;">
+            <li>🌱 <strong>营养器官：</strong>根（吸收水分无机盐）、茎（运输支持）、叶（光合作用）</li>
+            <li>🌸 <strong>繁殖器官：</strong>花（繁殖）、果实（保护种子）、种子（繁殖后代）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🌾</span> 裸子植物与被子植物</h2>
+      <div class="card">
+        <table class="bio-table">
+          <tr><th>比较项目</th><th>裸子植物</th><th>被子植物</th></tr>
+          <tr><td><strong>种子</strong></td><td>种子裸露，无果皮包被</td><td>种子被果皮包被，形成果实</td></tr>
+          <tr><td><strong>花和果实</strong></td><td>无花、无果实</td><td>有花、有果实</td></tr>
+          <tr><td><strong>代表植物</strong></td><td>松、杉、柏、银杏、苏铁</td><td>水稻、小麦、玉米、花生、苹果</td></tr>
+          <tr><td><strong>进化地位</strong></td><td>较原始</td><td>最高等</td></tr>
+        </table>
+        <div class="warn-box"><div class="label">⚠️ 易错警示 · 常见误区</div>
+          <p><strong>误区：</strong>裸子植物没有种子<br><strong>纠正：</strong>裸子植物<strong>有种子</strong>，只是种子<strong>裸露</strong>（没有被果皮包被）。</p>
+        </div>
+        <div class="concept-box"><div class="label">🏆 种子繁殖的优势</div>
+          <ul style="padding-left:20px;line-height:1.8;">
+            <li>🛡️ 种子有种皮保护，可抵御不良环境</li>
+            <li>💤 有些种子可休眠多年后再萌发</li>
+            <li>🦵 种子可借助风、水、动物传播到远处</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 后测 -->
+    <section class="section">
+      <h2 class="section-title"><span class="num">✅</span> 后测</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列属于裸子植物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 水稻是被子植物！"><span class="opt-letter">A</span> 水稻</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 雪松</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 苹果是被子植物！"><span class="opt-letter">C</span> 苹果</div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 雪松</strong></p><p style="margin-top:8px;">雪松是<strong>裸子植物</strong>，种子裸露。水稻和苹果都是<strong>被子植物</strong>。</p></div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2022·北京中考）花生去皮后，剥去的那层"红衣"是？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">📝 中考真题</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 果皮</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 种皮才是种子的皮！"><span class="opt-letter">B</span> 种皮</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 花生的可食用部分是子叶！"><span class="opt-letter">C</span> 子叶</div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 果皮</strong></p><p style="margin-top:8px;">花生是<strong>被子植物</strong>的果实。"红衣"是<strong>果皮</strong>（由子房壁发育而来），里面白色的部分是种子（种皮+子叶+胚）。</p></div>
+      </div>
+    </section>
+
+    <!-- 必考 -->
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="exam-card-num" style="background:#dc2626;">1</span><strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：裸子植物与被子植物的区别</strong><span style="color:white;background:#dc2626;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">近10年考了22次</span></div>
+          <p style="font-size:14px;line-height:1.7;"><strong>必背：</strong>裸子植物种子<strong>裸露</strong>，无果皮；被子植物种子被<strong>果皮</strong>包被，有花有果实。</p>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="exam-card-num" style="background:#d97706;">2</span><strong style="color:#92400e;font-size:15px;">⚡ 高频考点：种子植物六大器官</strong><span style="color:white;background:#d97706;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">近10年考了16次</span></div>
+          <p style="font-size:14px;line-height:1.7;"><strong>必背：</strong>营养器官（根茎叶）+ 繁殖器官（花果实种子）= 六大器官。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="teachany-ai-tutor-card"><div data-teachany-tutor-card></div></section>
+  </main>
+
+  <footer class="footer"><p>© 2024 TeachAny · 初中生物互动课件系统</p><p style="margin-top:8px;font-size:12px;">基于 TeachAny v7.14.0</p></footer>
+
+  <script>
+    var COURSE_INFO = { totalSections: 10, currentSection: 2 };
+    var anchorContents = {};
+    anchorContents[1] = '<h3>🌿 问题1：裸子植物和被子植物的根本区别是什么？</h3><p>区别在于种子是否被<strong>果皮</strong>包被。<strong>裸子</strong>：种子裸露；<strong>被子</strong>：种子被果皮包被，形成果实。</p>';
+    anchorContents[2] = '<h3>🌱 问题2：种子植物为什么能成为最高等的植物？</h3><p>种子植物以<strong>种子</strong>繁殖，种子有<strong>种皮保护</strong>，可在恶劣环境中休眠并传播到远方，适应能力最强。</p>';
+    anchorContents[3] = '<h3>🥜 问题3：花生是裸子植物还是被子植物？</h3><p>花生是<strong>被子植物</strong>！我们吃的花生米外面那层"红衣"是<strong>果皮</strong>，说明种子被果皮包被了。</p>';
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach(function(item) { item.classList.remove('selected'); });
+      btnElement.classList.add('selected');
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = anchorContents[id] || '';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = '你选择了：' + btnElement.getAttribute('data-anchor-choice'); feedback.style.display = 'block'; }
+    }
+    document.getElementById('learner-question-input') && document.getElementById('learner-question-input').addEventListener('input', function() {
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = '<h3>📍 你的问题：' + this.value + '</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = '你的问题：' + this.value; feedback.style.display = 'block'; }
+    });
+    function checkAnswer(element, isCorrect, questionNum) {
+      var parent = element.closest('.quiz-box');
+      var feedback = parent.querySelector('.feedback');
+      var explanation = document.getElementById('explanation-' + questionNum);
+      parent.querySelectorAll('.quiz-option').forEach(function(opt) { opt.classList.remove('correct', 'wrong'); });
+      if (isCorrect) { element.classList.add('correct'); if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong>'; feedback.className = 'feedback show correct-fb'; } if (explanation) explanation.classList.add('show'); }
+      else { element.classList.add('wrong'); if (feedback) { feedback.innerHTML = (element.dataset.feedback || '❌ 不对') + '<br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; } if (parent.querySelector('.quiz-option.correct') && explanation) explanation.classList.add('show'); }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var p = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      var pf = document.getElementById('progress-fill'); var pl = document.getElementById('progress-label');
+      if (pf) pf.style.width = p + '%';
+      if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

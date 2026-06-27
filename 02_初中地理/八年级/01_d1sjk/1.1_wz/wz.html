@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-china-location-8">
+  <meta name="course-title" content="1.1 中国的地理位置">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-china-location">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>1.1 中国的地理位置 | 初中8年级地理</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .location-card {
+      background: white;
+      border: 2px solid #3498db;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+    }
+    
+    .location-card h3 {
+      color: #3498db;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .location-diagram {
+      background: #f0f9ff;
+      border: 2px solid #3498db;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .location-diagram svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e0f2fe; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #3498db, #85c1e9); width: 33%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #3498db; padding: 4px 20px; background: #f0f9ff; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #3498db; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #3498db; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #bae6fd; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #dbeafe, #eff6ff); border: 2px solid #93c5fd; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1e40af; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #bfdbfe, #dbeafe); border-color: #60a5fa; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #3498db, #2980b9); color: white; border-color: #3498db; }
+
+    /* 测验选项 */
+    .quiz-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e0f2fe; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #93c5fd; background: #f0f9ff; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #3498db; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #eff6ff; border-left: 4px solid #3498db; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #3498db; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+  
+    /* NavBar styles */
+    .nav-bar { background: #f0f9ff; border-bottom: 2px solid #3498db; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #3498db; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #dbeafe; }
+    .nav-center { font-weight: 700; color: #3498db; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 页脚 */
+    .footer { background: #3498db; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/3 节 · 33%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d1sjk.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第一章：中国的疆域与行政区划</div>
+    <a href="#" class="nav-btn" style="visibility:hidden;"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../1.2_renkou/renkou.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-map-location-dot"></i> 八年级地理 · 第一章</div>
+      <h1>1.1 中国的地理位置<span>China's Geographic Location</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：运用地图说出我国的地理位置及其特点<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f0f9ff"/>
+        <!-- 中心主题 -->
+        <circle cx="400" cy="150" r="60" fill="#3498db" stroke="#2980b9" stroke-width="3"/>
+        <text x="400" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="white">中国的</text>
+        <text x="400" y="165" text-anchor="middle" font-size="16" font-weight="bold" fill="white">地理位置</text>
+        
+        <!-- 三个分支 -->
+        <rect x="50" y="50" width="160" height="70" rx="10" fill="#0ea5e9" stroke="#3498db" stroke-width="2"/>
+        <text x="130" y="80" text-anchor="middle" font-size="14" fill="white">半球位置</text>
+        <text x="130" y="100" text-anchor="middle" font-size="12" fill="white">（北半球/东半球）</text>
+        <line x1="210" y1="85" x2="340" y2="150" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="180" width="160" height="70" rx="10" fill="#0284c7" stroke="#3498db" stroke-width="2"/>
+        <text x="130" y="210" text-anchor="middle" font-size="14" fill="white">纬度位置</text>
+        <text x="130" y="230" text-anchor="middle" font-size="12" fill="white">（大部分在北温带）</text>
+        <line x1="210" y1="215" x2="340" y2="150" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="590" y="110" width="160" height="80" rx="10" fill="#06b6d4" stroke="#3498db" stroke-width="2"/>
+        <text x="670" y="140" text-anchor="middle" font-size="14" fill="white">海陆位置</text>
+        <text x="670" y="160" text-anchor="middle" font-size="12" fill="white">（亚洲东部/太平洋西岸）</text>
+        <line x1="590" y1="150" x2="460" y2="150" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#3498db"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #3498db; font-size: 14px; text-align: center;">图1-1 中国的地理位置知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #3498db; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="中国在地球上的位置是怎样的？">🌏 中国在地球上的位置是怎样的？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="中国的纬度位置有什么优越性？">🌡️ 中国的纬度位置有什么优越性？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="中国的海陆位置有什么优越性？">🌊 中国的海陆位置有什么优越性？</button>
+        </div>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #3498db; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 掌握中国的半球位置（北半球、东半球）</li>
+          <li>✅ 了解中国的纬度位置及其优越性</li>
+          <li>✅ 掌握中国的海陆位置及其特点</li>
+          <li>✅ 学会分析地理位置的优越性</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #3498db; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：半球位置 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】从半球位置看，中国位于？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 中国位于东半球，不是西半球！">
+            <span class="opt-letter">A</span> 北半球、西半球
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 北半球、东半球
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 中国位于北半球，不是南半球！">
+            <span class="opt-letter">C</span> 南半球、东半球
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 北半球、东半球</strong></p>
+          <p style="margin-top: 8px;">中国位于<strong>北半球</strong>（赤道以北），<strong>东半球</strong>（20°W-160°E以东）。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2：纬度位置 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】从纬度位置看，中国大部分位于？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 中国没有位于热带的地区吗？当然有！云南、广东等地就有热带！">
+            <span class="opt-letter">A</span> 热带
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 北温带
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 中国没有位于寒带的地区，最北端约北纬53°！">
+            <span class="opt-letter">C</span> 北寒带
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 北温带</strong></p>
+          <p style="margin-top: 8px;">中国大部分地区位于<strong>北温带</strong>（北回归线与北极圈之间），小部分位于<strong>热带</strong>（北回归线以南），没有寒带。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3：海陆位置 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】从海陆位置看，中国位于？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 中国位于亚洲东部，不是西部！">
+            <span class="opt-letter">A</span> 亚洲西部、太平洋东岸
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 中国位于太平洋西岸，不是东岸！">
+            <span class="opt-letter">B</span> 亚洲东部、太平洋东岸
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 亚洲东部、太平洋西岸
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 亚洲东部、太平洋西岸</strong></p>
+          <p style="margin-top: 8px;">中国位于<strong>亚洲东部</strong>，<strong>太平洋西岸</strong>，是一个海陆兼备的国家。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4：位置优越性 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】中国纬度位置的优越性体现在？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+            <span class="opt-letter">A</span> 大部分位于北温带，四季分明，适宜人类居住
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这不是纬度位置的优越性，这是海陆位置的特点！">
+            <span class="opt-letter">B</span> 东临太平洋，便于发展海洋事业
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 这不是纬度位置的优越性！">
+            <span class="opt-letter">C</span> 陆上邻国众多，便于边境贸易
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 大部分位于北温带，四季分明，适宜人类居住</strong></p>
+          <p style="margin-top: 8px;"><strong>纬度位置的优越性：</strong>中国大部分位于<strong>北温带</strong>，四季分明，气候适宜，有利于农业生产和人类居住。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 半球位置 -->
+    <section class="section" id="section-hemisphere">
+      <h2 class="section-title"><span class="num">🌏</span> 半球位置</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #3498db;">📖 东西半球划分</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>东半球：</strong>20°W向东至160°E</li>
+          <li><strong>西半球：</strong>20°W向西至160°E</li>
+          <li><strong>中国位置：</strong>约73°E-135°E，位于<strong>东半球</strong></li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #3498db;">📖 南北半球划分</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>北半球：</strong>赤道以北（0°-90°N）</li>
+          <li><strong>南半球：</strong>赤道以南（0°-90°S）</li>
+          <li><strong>中国位置：</strong>约4°N-53°N，位于<strong>北半球</strong></li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心结论</div>
+          <p><strong>中国位于北半球、东半球。</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 纬度位置 -->
+    <section class="section" id="section-latitude">
+      <h2 class="section-title"><span class="num">🌡️</span> 纬度位置</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #3498db;">📖 中国的纬度范围</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>最北端：</strong>黑龙江省漠河以北的黑龙江主航道中心线（约53°N）</li>
+          <li><strong>最南端：</strong>海南省南沙群岛曾母暗沙（约4°N）</li>
+          <li><strong>北回归线：</strong>23.5°N，穿过云南、广东、广西、台湾</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">纬度位置特点</div>
+          <p><strong>大部分位于北温带</strong>（23.5°N-66.5°N），小部分位于<strong>热带</strong>（23.5°N以南），没有寒带。</p>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">💡 纬度位置的优越性</div>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>气候适宜：</strong>四季分明，有利于农业生产</li>
+            <li><strong>适宜居住：</strong>温度适中，有利于人类活动</li>
+            <li><strong>农业多样：</strong>热带、亚热带、温带作物都能种植</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 海陆位置 -->
+    <section class="section" id="section-sea-land">
+      <h2 class="section-title"><span class="num">🌊</span> 海陆位置</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #3498db;">📖 海陆位置特点</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>位于亚洲东部</strong>，太平洋西岸</li>
+          <li><strong>西部深入亚欧大陆内部</strong>，与许多国家接壤</li>
+          <li><strong>东部濒临太平洋</strong>，海域辽阔</li>
+          <li>是一个<strong>海陆兼备</strong>的国家</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">海陆位置的优越性</div>
+          <ol style="padding-left: 20px; line-height: 1.8; margin: 0;">
+            <li><strong>发展海洋事业：</strong>东部濒临太平洋，有利于发展海洋运输、海洋渔业等</li>
+            <li><strong>对外交往便利：</strong>东部海上交通便利，西部陆上可与他国往来</li>
+            <li><strong>气候影响：</strong>来自海洋的湿润气流带来丰沛降水</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #3498db; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国位于哪个半球？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 中国位于北半球，不是南半球！">
+            <span class="opt-letter">A</span> 南半球、西半球
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 中国位于东半球，不是西半球！">
+            <span class="opt-letter">B</span> 北半球、西半球
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+            <span class="opt-letter">C</span> 北半球、东半球
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 北半球、东半球</strong></p>
+          <p style="margin-top: 8px;">中国位于<strong>北半球</strong>（赤道以北）、<strong>东半球</strong>（20°W-160°E以东）。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）中国纬度位置的优越性主要体现在？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+            <span class="opt-letter">A</span> 大部分位于北温带，气候适宜
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 这是海陆位置的优越性，不是纬度位置！">
+            <span class="opt-letter">B</span> 东临太平洋，便于发展海洋事业
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 这是海陆位置的优越性，不是纬度位置！">
+            <span class="opt-letter">C</span> 陆上邻国众多，便于边境贸易
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 大部分位于北温带，气候适宜</strong></p>
+          <p style="margin-top: 8px;"><strong>纬度位置的优越性：</strong>中国大部分位于<strong>北温带</strong>，四季分明，气候适宜，有利于农业生产。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南中考）从海陆位置看，中国的特点是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 中国是一个海陆兼备的国家，不是内陆国！">
+            <span class="opt-letter">A</span> 内陆国
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 中国有广阔的海域，不是岛国！">
+            <span class="opt-letter">B</span> 岛国
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 海陆兼备的国家
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 海陆兼备的国家</strong></p>
+          <p style="margin-top: 8px;">中国位于<strong>亚洲东部、太平洋西岸</strong>，西部深入大陆内部，东部濒临海洋，是一个<strong>海陆兼备</strong>的国家。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：中国的半球位置</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong>中国位于<strong>北半球</strong>、<strong>东半球</strong>。</p>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：纬度位置及优越性</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>大部分位于<strong>北温带</strong>，小部分位于<strong>热带</strong>，没有寒带。四季分明，气候适宜。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：海陆位置及优越性</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>位于<strong>亚洲东部、太平洋西岸</strong>，是<strong>海陆兼备</strong>的国家。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：中国疆域四至点</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>最北端约<strong>53°N</strong>，最南端约<strong>4°N</strong>（曾母暗沙）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版八年级地理课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 3,
+      currentSection: 1
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>🌏 问题1：中国在地球上的位置是怎样的？</h3>
+      <p><strong>半球位置：</strong>北半球、东半球</p>
+      <p><strong>纬度位置：</strong>约4°N-53°N，大部分在北温带</p>
+      <p><strong>海陆位置：</strong>亚洲东部、太平洋西岸</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>🌡️ 问题2：中国的纬度位置有什么优越性？</h3>
+      <p><strong>主要特点：</strong>大部分位于北温带，四季分明</p>
+      <p><strong>优越性：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>气候适宜，有利于农业生产</li>
+        <li>温度适中，有利于人类居住</li>
+        <li>热带、亚热带、温带作物都能种植</li>
+      </ul>
+    `;
+    
+    anchorContents[3] = `
+      <h3>🌊 问题3：中国的海陆位置有什么优越性？</h3>
+      <p><strong>主要特点：</strong>亚洲东部、太平洋西岸，海陆兼备</p>
+      <p><strong>优越性：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>东部濒临太平洋，有利于发展海洋事业</li>
+        <li>东部海上、西部陆上交通便利</li>
+        <li>来自海洋的湿润气流带来丰沛降水</li>
+      </ul>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《中国的地理位置》课件加载完成（v7.14.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

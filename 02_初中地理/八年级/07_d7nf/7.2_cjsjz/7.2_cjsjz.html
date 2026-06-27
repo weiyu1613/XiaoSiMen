@@ -1,0 +1,800 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-south-region-72">
+  <meta name="course-title" content="7.2 &quot;鱼米之乡&quot;——长江三角洲地区">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-yangtze-delta">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>7.2 "鱼米之乡"——长江三角洲地区 | 八年级地理下册</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .delta-svg {
+      background: #eff6ff;
+      border: 1px solid #93c5fd;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .city-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .city-table th {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .city-table td {
+      padding: 10px;
+      border: 1px solid #93c5fd;
+      text-align: center;
+    }
+    
+    .city-table tr:nth-child(even) { background: #eff6ff; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #eff6ff; border: 1px solid #93c5fd; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #2563eb; text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #93c5fd;
+      background: #eff6ff; color: #1e40af; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.28);
+      color: #1e40af;
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* NavBar styles */
+    .nav-bar { background: #eff6ff; border-bottom: 2px solid #2563eb; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #2563eb; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #dbeafe; }
+    .nav-center { font-weight: 700; color: #2563eb; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #2563eb, #3b82f6); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #dbeafe; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #3b82f6); width: 50%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #2563eb; padding: 4px 20px; background: #eff6ff; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #2563eb; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #2563eb; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #93c5fd; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #93c5fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(37,99,235,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #dbeafe, #eff6ff); border: 2px solid #93c5fd; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1e40af; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #bfdbfe, #dbeafe); border-color: #60a5fa; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #2563eb, #3b82f6); color: white; border-color: #2563eb; }
+
+    /* 测验选项 */
+    .quiz-box { background: #eff6ff; border: 1px solid #93c5fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #bfdbfe; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #60a5fa; background: #eff6ff; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #2563eb; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #2563eb; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 页脚 */
+    .footer { background: #2563eb; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+
+      .city-table { display: block !important; overflow-x: auto !important; font-size: 12px !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-water"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 2/4 节 · 50%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../07_d7nf.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第七章：南方地区</div>
+    <a href="../7.1_zrny/7.1_zrny.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../7.3_xgam/7.3_xgam.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-water"></i> 八年级地理下册 · 第七章</div>
+      <h1>7.2 "鱼米之乡"——长江三角洲地区<span>Yangtze River Delta</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：运用地图描述长江三角洲地区的位置和范围，理解其"鱼米之乡"的原因<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 320" width="800" height="320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="320" fill="#eff6ff"/>
+        <!-- 中心主题：长江三角洲 -->
+        <circle cx="400" cy="160" r="60" fill="#2563eb" stroke="#1d4ed8" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="16" font-weight="bold" fill="white">长江三角洲</text>
+        <text x="400" y="175" text-anchor="middle" font-size="12" fill="white">鱼米之乡</text>
+        
+        <!-- 四个分支 -->
+        <rect x="30" y="50" width="140" height="60" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+        <text x="100" y="85" text-anchor="middle" font-size="14" fill="white">位置和范围</text>
+        <line x1="170" y1="80" x2="340" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="30" y="210" width="140" height="60" rx="10" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+        <text x="100" y="245" text-anchor="middle" font-size="14" fill="white">自然环境</text>
+        <line x1="170" y1="240" x2="340" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="50" width="140" height="60" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+        <text x="700" y="85" text-anchor="middle" font-size="14" fill="white">城市群</text>
+        <line x1="630" y1="80" x2="460" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="210" width="140" height="60" rx="10" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+        <text x="700" y="245" text-anchor="middle" font-size="13" fill="white">区域经济</text>
+        <line x1="630" y1="240" x2="460" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 自然环境子分支 -->
+        <text x="180" y="300" font-size="12" fill="#2563eb">平原为主，河网密布</text>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2563eb"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #2563eb; font-size: 14px; text-align: center;">图7-4 长江三角洲地区知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #2563eb; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="长江三角洲在哪？范围有多大？">🗺️ 长江三角洲在哪？范围有多大？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="为什么长江三角洲被称为鱼米之乡？">🐟 为什么长江三角洲被称为鱼米之乡？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="长江三角洲的城市群有什么特点？">🏙️ 长江三角洲的城市群有什么特点？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #2563eb;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #2563eb; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 运用地图说出长江三角洲地区的位置和范围</li>
+          <li>✅ 分析长江三角洲地区的自然环境特征</li>
+          <li>✅ 了解长江三角洲城市群的特点</li>
+          <li>✅ 理解长江三角洲地区区域经济的发展特点</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #2563eb; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：长江三角洲位置 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】长江三角洲位于长江的？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 长江上游是青藏高原和四川盆地地区！">
+            <span class="opt-letter">A</span> 上游
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 长江中游是湖北、湖南等地！">
+            <span class="opt-letter">B</span> 中游
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+            <span class="opt-letter">C</span> 下游
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 下游</strong></p>
+          <p style="margin-top: 8px;">长江三角洲位于<strong>长江下游</strong>，濒临<strong>黄海和东海</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2：长江三角洲地形 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】长江三角洲的地形以什么为主？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+            <span class="opt-letter">A</span> 平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 高原不是长江三角洲的主要地形，云贵高原才是高原地形！">
+            <span class="opt-letter">B</span> 高原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 山地不是长江三角洲的主要地形！">
+            <span class="opt-letter">C</span> 山地
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 平原</strong></p>
+          <p style="margin-top: 8px;">长江三角洲地形以<strong>平原</strong>为主，地势<strong>低平</strong>，<strong>河网密布</strong>。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3：城市群中心 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】长江三角洲城市群的中心是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 南京是江苏省省会，但不是长江三角洲城市群的中心！">
+            <span class="opt-letter">A</span> 南京
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+            <span class="opt-letter">B</span> 上海
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 杭州是浙江省省会，但不是长江三角洲城市群的中心！">
+            <span class="opt-letter">C</span> 杭州
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 上海</strong></p>
+          <p style="margin-top: 8px;"><strong>上海</strong>是长江三角洲城市群的中心，也是我国<strong>最大的城市</strong>和<strong>经济中心</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4：区域经济特点 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】长江三角洲地区区域经济的发展特点是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 内向型经济不符合长江三角洲的特点，这里是外向型经济！">
+            <span class="opt-letter">A</span> 内向型经济
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+            <span class="opt-letter">B</span> 外向型经济，一体化发展
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 单一农业经济不符合长江三角洲的特点，这里是综合性工业基地！">
+            <span class="opt-letter">C</span> 单一农业经济
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 外向型经济，一体化发展</strong></p>
+          <p style="margin-top: 8px;">长江三角洲地区发展<strong>外向型经济</strong>，城市间<strong>一体化发展</strong>，是我国最大的<strong>综合性工业基地</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 位置和范围 -->
+    <section class="section" id="section-location">
+      <h2 class="section-title"><span class="num">🗺️</span> 位置和范围</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #2563eb;">📖 长江三角洲的位置</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>位于<strong>长江下游</strong></li>
+          <li>濒临<strong>黄海和东海</strong></li>
+          <li>地处<strong>江海交汇</strong>之地</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #2563eb;">📖 长江三角洲的范围</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>主要包括<strong>上海市</strong>、<strong>江苏省南部</strong>和<strong>浙江省北部</strong></li>
+          <li>面积约<strong>10万平方千米</strong></li>
+        </ul>
+
+        <!-- SVG:长江三角洲位置示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+            <!-- 中国东部轮廓简化图 -->
+            <path d="M 100 150 Q 150 140, 200 160 Q 250 180, 300 170 Q 350 160, 400 180 Q 450 200, 480 220 Q 500 250, 520 280 Q 500 300, 480 310 Q 450 320, 400 300 Q 350 280, 300 290 Q 250 300, 200 280 Q 150 260, 120 240 Q 100 220, 100 150 Z" 
+                  fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+            
+            <!-- 长江 -->
+            <path d="M 150 200 Q 250 210, 350 220 Q 450 230, 500 250" stroke="#3b82f6" stroke-width="4" fill="none"/>
+            <text x="140" y="195" font-size="12" fill="#3b82f6">长江 ►</text>
+            
+            <!-- 标注长江三角洲 -->
+            <ellipse cx="430" cy="240" rx="80" ry="60" fill="#2563eb" stroke="#1d4ed8" stroke-width="2" opacity="0.7"/>
+            <text x="430" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="white">长江三角洲</text>
+            
+            <!-- 海域标注 -->
+            <text x="540" y="250" font-size="13" fill="#0ea5e9">东海</text>
+            <text x="540" y="180" font-size="13" fill="#0ea5e9">黄海</text>
+            
+            <!-- 主要城市 -->
+            <circle cx="440" cy="230" r="8" fill="#ef4444"/>
+            <text x="455" y="235" font-size="12" fill="#ef4444">上海</text>
+            
+            <circle cx="380" cy="220" r="6" fill="#f59e0b"/>
+            <text x="390" y="215" font-size="11" fill="#92400e">南京</text>
+            
+            <circle cx="420" cy="280" r="6" fill="#f59e0b"/>
+            <text x="430" y="290" font-size="11" fill="#92400e">杭州</text>
+            
+            <text x="300" y="370" text-anchor="middle" font-size="16" font-weight="bold" fill="#2563eb">长江三角洲位置示意图</text>
+          </svg>
+          <p class="svg-caption">图7-5 长江三角洲位置示意图</p>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 为什么长江三角洲被称为"鱼米之乡"？</div>
+          <p><strong>鱼</strong>：河网密布，淡水渔业发达</p>
+          <p><strong>米</strong>：平原广阔，水稻种植面积大，产量高</p>
+          <p style="margin-top: 6px;">气候温暖湿润、地形平坦、水源充足，有利于水稻种植和渔业发展。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 自然环境 -->
+    <section class="section" id="section-natural">
+      <h2 class="section-title"><span class="num">🌄</span> 自然环境特征</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #2563eb;">📖 地形特征</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>地形以<strong>平原</strong>为主</li>
+          <li>地势<strong>低平</strong></li>
+          <li><strong>河网密布</strong>，湖泊众多</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #2563eb;">📖 气候特征</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>属于<strong>亚热带季风气候</strong></li>
+          <li>气候<strong>温暖湿润</strong></li>
+          <li>降水<strong>丰沛</strong></li>
+          <li>雨热<strong>同期</strong></li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 长江三角洲的自然优势</div>
+          <p><strong>地形优势：</strong>平原广阔，土壤肥沃（水稻土），有利于耕作。</p>
+          <p><strong>水源优势：</strong>河网密布，湖泊众多，水源充足，有利于灌溉和淡水渔业。</p>
+          <p><strong>气候优势：</strong>温暖湿润，雨热同期，有利于农作物生长。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 城市群 -->
+    <section class="section" id="section-city">
+      <h2 class="section-title"><span class="num">🏙️</span> 城市群</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #2563eb;">📖 长江三角洲城市群的特点</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>是我国<strong>最大的城市群</strong></li>
+          <li><strong>上海</strong>是城市群的中心</li>
+          <li>包括<strong>上海、南京、杭州、苏州、无锡</strong>等城市</li>
+          <li>城市化水平<strong>高</strong></li>
+        </ul>
+
+        <!-- 主要城市表 -->
+        <table class="city-table" style="margin-top: 20px;">
+          <tr><th>城市</th><th>地位</th><th>特点</th></tr>
+          <tr><td><strong>上海</strong></td><td>中心城市</td><td>我国最大的城市和经济中心</td></tr>
+          <tr><td><strong>南京</strong></td><td>江苏省省会</td><td>历史文化名城</td></tr>
+          <tr><td><strong>杭州</strong></td><td>浙江省省会</td><td>著名的旅游城市</td></tr>
+          <tr><td><strong>苏州</strong></td><td>重要城市</td><td>园林城市，经济发达</td></tr>
+        </table>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 上海的地位和作用</div>
+          <p><strong>上海</strong>是长江三角洲城市群的中心，也是我国<strong>最大的城市</strong>、<strong>经济中心</strong>和<strong>国际金融中心</strong>。</p>
+          <p style="margin-top: 6px;">上海对长江三角洲乃至全国都有<strong>辐射带动作用</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 核心内容 - 区域经济 -->
+    <section class="section" id="section-economy">
+      <h2 class="section-title"><span class="num">💰</span> 区域经济</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #2563eb;">📖 区域经济的发展特点</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>发展<strong>外向型经济</strong></li>
+          <li>城市间<strong>一体化发展</strong></li>
+          <li>是我国最大的<strong>综合性工业基地</strong></li>
+          <li><strong>交通便利</strong>，拥有发达的铁路、公路、水运和航空网络</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #2563eb;">📖 区域一体化发展</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>交通一体化</strong>：高速铁路、城际铁路连接各城市</li>
+          <li><strong>市场一体化</strong>：商品、资本、人员自由流动</li>
+          <li><strong>产业一体化</strong>：产业分工协作，优势互补</li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"长江三角洲在上海，外向型经济一体化"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"长江三角洲是我国最大的重工业基地"→ 错误！长江三角洲是我国最大的<strong>综合性工业基地</strong>，辽中南地区才是重工业基地！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #2563eb; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】长江三角洲濒临哪两个海？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 渤海和黄海是北方沿海地区濒临的海域！">
+            <span class="opt-letter">A</span> 渤海和黄海
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 黄海和东海
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 东海和南海是南方沿海地区濒临的海域！">
+            <span class="opt-letter">C</span> 东海和南海
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 黄海和东海</strong></p>
+          <p style="margin-top: 8px;">长江三角洲位于长江下游，濒临<strong>黄海和东海</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）长江三角洲城市群的中心是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+            <span class="opt-letter">A</span> 上海
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 南京是江苏省省会，但不是长江三角洲城市群的中心！">
+            <span class="opt-letter">B</span> 南京
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 杭州是浙江省省会，但不是长江三角洲城市群的中心！">
+            <span class="opt-letter">C</span> 杭州
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 上海</strong></p>
+          <p style="margin-top: 8px;"><strong>上海</strong>是长江三角洲城市群的中心，也是我国<strong>最大的城市</strong>和<strong>经济中心</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·浙江中考）关于长江三角洲地区区域经济发展的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 长江三角洲发展的是外向型经济，不是内向型经济！">
+            <span class="opt-letter">A</span> 发展内向型经济
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 长江三角洲城市间是一体化发展，不是孤立发展！">
+            <span class="opt-letter">B</span> 城市间孤立发展
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 发展外向型经济，城市间一体化发展
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 发展外向型经济，城市间一体化发展</strong></p>
+          <p style="margin-top: 8px;">长江三角洲地区发展<strong>外向型经济</strong>，城市间<strong>一体化发展</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：长江三角洲的位置和范围</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了16次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 长江三角洲位于<strong>长江下游</strong>，濒临<strong>黄海和东海</strong></li>
+            <li>✅ 主要包括<strong>上海市</strong>、<strong>江苏省南部</strong>和<strong>浙江省北部</strong></li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：长江三角洲城市群</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了14次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong><strong>上海</strong>是长江三角洲城市群的中心，是我国<strong>最大的城市</strong>和<strong>经济中心</strong>。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：长江三角洲的区域经济</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>长江三角洲地区发展<strong>外向型经济</strong>，城市间<strong>一体化发展</strong>，是我国最大的<strong>综合性工业基地</strong>。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0f9ff,#eff6ff);border:1px solid #bae6fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#0369a1;">4</span>
+            <strong style="font-size:15px;color:#1e40af;">📍 常考考点："鱼米之乡"的成因</strong>
+            <span class="exam-tag" style="background:#0369a1;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>地形平坦、气候温暖湿润、河网密布，有利于<strong>水稻种植</strong>和<strong>淡水渔业</strong>发展。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版八年级地理下册课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 9,
+      currentSection: 2
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：长江三角洲在哪？范围有多大？</h3>
+      <p><strong>位置：</strong>长江下游，濒临黄海和东海</p>
+      <p><strong>范围：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>主要包括上海市、江苏省南部和浙江省北部</li>
+        <li>面积约10万平方千米</li>
+      </ul>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：为什么长江三角洲被称为鱼米之乡？</h3>
+      <p><strong>鱼：</strong>河网密布，淡水渔业发达</p>
+      <p><strong>米：</strong>平原广阔，水稻种植面积大，产量高</p>
+      <p><strong>成因：</strong>气候温暖湿润、地形平坦、水源充足，有利于水稻种植和渔业发展。</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：长江三角洲的城市群有什么特点？</h3>
+      <p><strong>特点：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>我国最大的城市群</li>
+        <li>上海是中心城市</li>
+        <li>城市化水平高</li>
+        <li>一体化发展</li>
+      </ul>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《"鱼米之乡"——长江三角洲地区》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+</body>
+</html>

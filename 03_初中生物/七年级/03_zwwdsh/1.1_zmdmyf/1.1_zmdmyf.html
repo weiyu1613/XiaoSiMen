@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.1 种子的萌发 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+    }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; margin: 0; }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 14.28%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary-dark); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-base { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-raise { background: #ede9fe; color: #6d28d9; }
+    .difficulty-challenge { background: #fee2e2; color: #dc2626; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid #81c784; background: #f1f8e9; color: var(--primary-dark); padding: 12px 14px; font-size: 16px; margin-top: 8px; }
+    #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28); color: var(--primary-dark); }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .exam-card { background: linear-gradient(135deg, #fefce8, #fef9c3); border: 2px solid #f59e0b; border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .exam-card h3 { color: #92400e; margin-bottom: 12px; }
+    .exam-stat { display: inline-block; background: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+    .must-know { background: #d1fae5; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .anchor-points { flex-direction: column; }
+      .anchor-btn { min-width: 100%; }
+      .nav-inner { flex-direction: column; }
+    }
+
+    /* AI学伴 悬浮按钮（绿色主题） */
+    .ai-companion-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      box-shadow: 0 6px 24px rgba(46,125,50,0.55);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .ai-companion-btn:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(46,125,50,0.7); }
+    .ai-companion-btn svg { width: 32px; height: 32px; }
+    /* AI学伴 弹窗 */
+    .ai-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .ai-modal-overlay.show { display: flex; }
+    .ai-modal {
+      background: white;
+      border-radius: 20px;
+      width: 420px;
+      max-height: 520px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+      overflow: hidden;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .ai-modal-header {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      color: white;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ai-modal-header h3 { margin: 0; font-size: 16px; }
+    .ai-modal-close {
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: white;
+      font-size: 22px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .ai-modal-close:hover { background: rgba(255,255,255,0.32); }
+    .ai-modal-body { padding: 20px 22px; max-height: 400px; overflow-y: auto; }
+    .ai-prompt { font-size: 13px; color: #5d6d7e; margin-bottom: 14px; }
+    .ai-q-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 11px 16px;
+      margin-bottom: 10px;
+      background: #f1f8e9;
+      border: 2px solid #c8e6c9;
+      border-radius: 12px;
+      font-size: 13.5px;
+      color: #1b5e20;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    .ai-q-btn:hover { background: #e8f5e9; border-color: #4caf50; }
+    .ai-answer {
+      display: none;
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #1a1a2e;
+    }
+    .ai-answer.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">第 1 / 7 节 · 14%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../zwwdsh.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第三单元：植物的生活</div>
+      <span class="nav-btn" style="visibility:hidden;"><i class="fa-solid fa-chevron-left"></i> 上一节</span>
+      <a href="../1.2_zwzdsd/1.2_zwzdsd.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero + SVG知识结构图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-seedling"></i> 七年级生物 · 第三单元</div>
+      <h1>1.1 种子的萌发<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Seed Germination</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：描述种子萌发的条件和过程<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识结构图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 260" width="800" height="260" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="260" fill="#f1f8e9"/>
+        <rect x="300" y="90" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="125" text-anchor="middle" font-size="18" font-weight="bold" fill="white">种子萌发</text>
+        <text x="400" y="150" text-anchor="middle" font-size="13" fill="#c8e6c9">Seed Germination</text>
+        <rect x="40" y="30" width="160" height="65" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="58" text-anchor="middle" font-size="13" fill="white">环境条件</text>
+        <text x="120" y="76" text-anchor="middle" font-size="11" fill="#e8f5e9">适宜温度</text>
+        <text x="120" y="92" text-anchor="middle" font-size="11" fill="#e8f5e9">一定水分</text>
+        <text x="120" y="108" text-anchor="middle" font-size="11" fill="#e8f5e9">充足空气</text>
+        <line x1="200" y1="62" x2="300" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        <rect x="40" y="165" width="160" height="65" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="193" text-anchor="middle" font-size="13" fill="white">自身条件</text>
+        <text x="120" y="211" text-anchor="middle" font-size="11" fill="#e8f5e9">完整胚</text>
+        <text x="120" y="227" text-anchor="middle" font-size="11" fill="#e8f5e9">存活胚</text>
+        <text x="120" y="243" text-anchor="middle" font-size="11" fill="#e8f5e9">度过休眠</text>
+        <line x1="200" y1="197" x2="300" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        <rect x="600" y="30" width="160" height="65" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="68" text-anchor="middle" font-size="14" fill="white">萌发过程</text>
+        <line x1="600" y1="62" x2="500" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        <rect x="600" y="165" width="160" height="65" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="203" text-anchor="middle" font-size="14" fill="white">幼苗生长</text>
+        <line x1="600" y1="197" x2="500" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图1-1 种子萌发知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span>探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="种子萌发需要哪些环境条件？">🌱 种子萌发需要哪些环境条件？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="种子自身要满足什么条件才能萌发？">🔬 种子自身要满足什么条件才能萌发？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="种子萌发的过程是怎样的？">📖 种子萌发的过程是怎样的？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 描述种子萌发的环境条件（适宜温度、一定水分、充足空气）</li>
+          <li>✅ 说明种子萌发的自身条件（胚完整、存活、度过休眠期）</li>
+          <li>✅ 描述种子萌发的过程（胚根→根，胚芽→茎和叶）</li>
+          <li>✅ 设计探究实验（对照实验、控制变量）</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span>课前检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
+
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 下列哪项不是种子萌发所需的环境条件？</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 适宜的温度</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 一定的水分</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">C</span> 充足的阳光</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 充足的空气</div>
+        <div class="feedback" id="fb-1"></div>
+        <div class="answer-explanation" id="exp-1">
+          <strong>解析：</strong>种子萌发的环境条件是适宜温度、一定水分、充足空气。阳光不是种子萌发必需的环境条件（有些种子在黑暗中也能萌发），但阳光会影响幼苗的生长。
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 在探究"种子萌发需要的外界条件"实验中，对照组应设置为（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 常温、干燥、空气充足</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">B</span> 低温、湿润、空气充足</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">C</span> 常温、湿润、空气充足</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 常温、湿润、缺乏空气</div>
+        <div class="feedback" id="fb-2"></div>
+        <div class="answer-explanation" id="exp-2">
+          <strong>解析：</strong>对照实验需要满足种子萌发的全部环境条件（适宜温度、一定水分、充足空气），作为对照组。其他组分别与对照组进行单一变量比较。
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关种子萌发的叙述，正确的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 种子萌发时，先突破种皮的是胚芽</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">B</span> 种子萌发需要自身条件具备且不在休眠期</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">C</span> 土壤为种子萌发提供有机物</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 播种后要覆盖地膜，主要是为了减少水分蒸发</div>
+        <div class="feedback" id="fb-3"></div>
+        <div class="answer-explanation" id="exp-3">
+          <strong>解析：</strong>A错误——种子萌发时，胚根先突破种皮发育成根；B正确——种子萌发需要完整的、活的胚，且度过休眠期；C错误——土壤不提供有机物，种子萌发初期靠子叶或胚乳提供营养；D不完全——覆膜主要目的是保温保湿，不仅是减少水分蒸发。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span>核心知识讲解</h2>
+
+      <!-- 知识点1：环境条件 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">一、种子萌发的环境条件</h3>
+        <p>种子萌发需要同时具备三个环境条件：</p>
+        <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;">
+          <thead>
+            <tr style="background:var(--primary);color:white;">
+              <th style="padding:10px;border:1px solid #c8e6c9;">条件</th>
+              <th style="padding:10px;border:1px solid #c8e6c9;">作用</th>
+              <th style="padding:10px;border:1px solid #c8e6c9;">实例</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">适宜的温度</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">激活酶活性</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">早春播种覆盖地膜</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">一定的水分</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">软化种皮，启动代谢</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">播种前浸种</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">充足的空气</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">提供氧气用于呼吸</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">播种要疏松土壤</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="concept-box">
+          <div class="label">📖 概念框：对照实验</div>
+          <p>对照实验要求除"研究的条件"外，其他条件都相同。例如：研究水分对种子萌发的影响时，两组唯一区别是"有水"和"无水"，温度、空气等条件必须完全相同。</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：自身条件 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">二、种子萌发的自身条件</h3>
+        <p>即使环境条件满足，以下自身条件不满足的种子也不会萌发：</p>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>🌱 <strong>胚必须是完整的</strong>——胚受损（如胚根断掉）的种子不能萌发</li>
+          <li>🌱 <strong>胚必须是活的（有生命力）</strong>——死胚（如煮熟的种子）不能萌发</li>
+          <li>🌱 <strong>种子必须度过休眠期</strong>——有些种子成熟后需要一段时间休眠才能萌发</li>
+        </ul>
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>胚乳或子叶受损的种子<strong>可以</strong>萌发，因为它们储存营养但不发育成新植株；但<strong>胚</strong>受损的种子<strong>不能</strong>萌发。</p>
+        </div>
+      </div>
+
+      <!-- 知识点3：萌发过程 SVG -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">三、种子萌发的过程</h3>
+        <div class="svg-container">
+          <svg viewBox="0 0 700 200" width="700" height="200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="700" height="200" fill="#f1f8e9"/>
+            <!-- 种子 -->
+            <ellipse cx="80" cy="120" rx="40" ry="25" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+            <text x="80" y="125" text-anchor="middle" font-size="12" fill="white">种子</text>
+            <path d="M 120 120 L 180 120" stroke="#2e7d32" stroke-width="3" marker-end="url(#arr)"/>
+            <!-- 吸水膨胀 -->
+            <ellipse cx="240" cy="120" rx="45" ry="30" fill="#a1887f" stroke="#5d4037" stroke-width="2"/>
+            <text x="240" y="125" text-anchor="middle" font-size="11" fill="white">吸水膨胀</text>
+            <path d="M 285 120 L 345 120" stroke="#2e7d32" stroke-width="3" marker-end="url(#arr)"/>
+            <!-- 胚根突破 -->
+            <ellipse cx="420" cy="120" rx="50" ry="35" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2"/>
+            <line x1="420" y1="155" x2="420" y2="185" stroke="#1b5e20" stroke-width="3"/>
+            <text x="420" y="175" text-anchor="middle" font-size="10" fill="#1b5e20">胚根→根</text>
+            <text x="420" y="125" text-anchor="middle" font-size="11" fill="#1b5e20">胚根突破</text>
+            <path d="M 470 120 L 530 120" stroke="#2e7d32" stroke-width="3" marker-end="url(#arr)"/>
+            <!-- 胚芽发育 -->
+            <ellipse cx="610" cy="100" rx="55" ry="40" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+            <line x1="610" y1="60" x2="610" y2="30" stroke="#1b5e20" stroke-width="3"/>
+            <text x="610" y="45" text-anchor="middle" font-size="10" fill="#1b5e20">胚芽→茎和叶</text>
+            <text x="610" y="105" text-anchor="middle" font-size="11" fill="#1b5e20">胚轴伸长</text>
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#2e7d32"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="svg-caption">图1-2 种子萌发过程示意图</div>
+        </div>
+        <ol style="line-height:2;margin-top:16px;">
+          <li>种子吸水膨胀，种皮变软</li>
+          <li>胚根先突破种皮，发育成<strong>根</strong></li>
+          <li>胚轴伸长，连接根和茎</li>
+          <li>胚芽发育成<strong>茎和叶</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测（含中考真题） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">1. 种子萌发时，最先突破种皮的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">A</span> 胚根</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 胚芽</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 子叶</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 胚轴</div>
+        <div class="feedback" id="fb-4"></div>
+        <div class="answer-explanation" id="exp-4">
+          <strong>解析：</strong>种子萌发过程中，胚根最先突破种皮，向下生长形成根；随后胚轴伸长，胚芽发育成茎和叶。
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】下列有关种子萌发和植株生长的叙述，<strong>错误</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 种子萌发需要适宜的温度、一定的水分和充足的空气</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">B</span> 幼根的生长主要靠分生区细胞分裂和伸长区细胞伸长</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">C</span> 植株生长只需要含氮、磷、钾的无机盐</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 一朵花中最重要的结构是雄蕊和雌蕊</div>
+        <div class="feedback" id="fb-5"></div>
+        <div class="answer-explanation" id="exp-5">
+          <strong>解析：</strong>C是错误的。植株生长需要多种无机盐，其中需要量最多的是含氮、磷、钾的无机盐，但不是"只需要"这三种。植物还需要钙、镁、硫等微量元素。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span>必考分析与考点总结</h2>
+
+      <div class="exam-card">
+        <h3>📊 考频统计</h3>
+        <p><span class="exam-stat">高频</span>种子萌发的条件（选择/实验探究题）</p>
+        <p><span class="exam-stat">中频</span>种子萌发的过程（选择题、填图题）</p>
+        <p><span class="exam-stat">低频</span>测定种子发芽率（实验题）</p>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 必背结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>种子萌发三条件：适宜温度 + 一定水分 + 充足空气（<strong>阳光不是必需条件</strong>）</li>
+          <li>种子萌发自身条件：胚完整 + 胚存活 + 度过休眠期</li>
+          <li>萌发过程：胚根→根，胚芽→茎和叶（<strong>胚根先突破种皮</strong>）</li>
+          <li>探究实验原则：控制变量、设置对照、重复实验</li>
+        </ol>
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="line-height:2;">
+          <li>❌ 误认为"胚乳/子叶受损的种子不能萌发"→ 可以萌发（它们只提供营养）</li>
+          <li>❌ 误认为"土壤为种子萌发提供营养"→ 种子萌发初期靠自身储存的有机物</li>
+          <li>❌ 误认为"光照是种子萌发的必要条件"→ 大多数植物种子萌发不需要光</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- 知识图谱 -->
+    <section class="kg-section" id="section-kg">
+      <div class="kg-title"><span>🗺️</span> 知识图谱 · 种子的萌发</div>
+      <div class="kg-svg-container">
+        <svg viewBox="0 0 700 220" width="700" height="220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="700" height="220" fill="#f1f8e9" rx="12"/>
+          <!-- 中心节点 -->
+          <rect x="270" y="70" width="160" height="80" rx="14" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+          <text x="350" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="white">种子的萌发</text>
+          <text x="350" y="130" text-anchor="middle" font-size="11" fill="#c8e6c9">核心知识图谱</text>
+          <!-- 分支1 -->
+          <rect x="40" y="30" width="130" height="50" rx="8" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+          <text x="105" y="58" text-anchor="middle" font-size="12" fill="white">概念理解</text>
+          <line x1="170" y1="55" x2="270" y2="95" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支2 -->
+          <rect x="40" y="140" width="130" height="50" rx="8" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+          <text x="105" y="168" text-anchor="middle" font-size="12" fill="white">实验探究</text>
+          <line x1="170" y1="165" x2="270" y2="125" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支3 -->
+          <rect x="530" y="30" width="130" height="50" rx="8" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+          <text x="595" y="58" text-anchor="middle" font-size="12" fill="white">中考考点</text>
+          <line x1="530" y1="55" x2="430" y2="95" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支4 -->
+          <rect x="530" y="140" width="130" height="50" rx="8" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+          <text x="595" y="168" text-anchor="middle" font-size="12" fill="#1b5e20">易错警示</text>
+          <line x1="530" y1="165" x2="430" y2="125" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <defs>
+            <marker id="kgr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#2e7d32"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="kg-caption">图 · 种子的萌发 知识图谱（点击各分支可跳转对应模块）</div>
+      </div>
+      <div class="kg-legend">
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#4caf50;"></div>概念理解</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#388e3c;"></div>实验探究</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#66bb6a;"></div>中考考点</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#81c784;"></div>易错警示</div>
+      </div>
+    </section>
+
+    <!-- 导师卡片 -->
+    <div class="mentor-card">
+      <div class="mentor-avatar">🌿</div>
+      <div class="mentor-info">
+        <div class="mentor-name">李老师 · 生物学科导师</div>
+        <div class="mentor-title">人教版七年级生物 · 第三单元备课组长</div>
+        <div class="mentor-bio">
+          专注初中生物教学 12 年，擅长将抽象的生物学概念转化为贴近生活的例子。
+          如果你对"种子的萌发"有任何疑问，欢迎随时提问！
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第三单元 植物的生活 · 第1节 种子的萌发 · TeachAny v7.14.0</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 进度条更新
+    document.addEventListener('DOMContentLoaded', function() {
+      var totalSections = 10;
+      var currentSection = 1;
+      var pct = Math.round((currentSection / totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '第 ' + currentSection + ' / ' + totalSections + ' 节 · ' + pct + '%';
+    });
+
+    // 锚点选择
+    var anchorContents = {
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌱 种子萌发需要哪些环境条件？</h4><p>种子萌发需要三个环境条件：<strong>适宜的温度</strong>（激活酶活性）、<strong>一定的水分</strong>（软化种皮，启动代谢）、<strong>充足的空气</strong>（提供氧气用于呼吸作用）。这三个条件必须<strong>同时具备</strong>，缺一不可。例如，在干燥、低温、淹水的情况下，种子都不会萌发。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔬 种子自身要满足什么条件才能萌发？</h4><p>种子自身必须满足：<strong>胚是完整的</strong>（受损则无法发育）、<strong>胚是活的</strong>（有生命力，煮熟的种子不能萌发）、<strong>度过休眠期</strong>（有些种子成熟后需要休眠一段时间）。即使环境条件完美，自身条件不满足的种子也不会萌发。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📖 种子萌发的过程是怎样的？</h4><p>过程：①种子吸水膨胀→②<strong>胚根先突破种皮</strong>，发育成根→③胚轴伸长→④胚芽发育成茎和叶。注意：供给幼苗初期营养的是<strong>子叶</strong>（双子叶植物）或<strong>胚乳</strong>（单子叶植物），不是土壤！</p></div>'
+    };
+
+    function selectAnchor(btn, id) {
+      var btns = document.querySelectorAll('.anchor-btn');
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = anchorContents[id];
+      display.style.display = 'block';
+    }
+
+    function handleCustomQuestion(val) {
+      if (val.trim().length < 2) return;
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！种子萌发的条件、过程和实验设计都是中考常考点，建议结合对照实验的理解来深入思考。</p></div>';
+      display.style.display = 'block';
+    }
+
+    function checkAnswer(el, isCorrect, qNum) {
+      var parent = el.parentElement;
+      var options = parent.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.remove('correct', 'wrong');
+      }
+      if (isCorrect) {
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      var fb = document.getElementById('fb-' + qNum);
+      var exp = document.getElementById('exp-' + qNum);
+      if (isCorrect) {
+        fb.className = 'feedback correct-fb show';
+        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
+      } else {
+        fb.className = 'feedback wrong-fb show';
+        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
+      }
+      exp.classList.add('show');
+    }
+
+    // AI学伴 弹窗控制
+    function toggleAIModal() {
+      var m = document.getElementById('aiModal');
+      m.classList.toggle('show');
+    }
+    function showAIAnswer(btn, id) {
+      var ans = document.getElementById('ai-ans-' + id);
+      if (ans.classList.contains('show')) {
+        ans.classList.remove('show');
+      } else {
+        // 隐藏其他
+        var all = document.querySelectorAll('.ai-answer');
+        for (var i = 0; i < all.length; i++) all[i].classList.remove('show');
+        ans.classList.add('show');
+      }
+    }
+  </script>
+
+
+  <!-- AI学伴 悬浮按钮 -->
+  <button class="ai-companion-btn" onclick="toggleAIModal()" title="AI学伴 · 随时提问">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.2"/>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+            fill="white"/>
+    </svg>
+  </button>
+
+  <!-- AI学伴 弹窗 -->
+  <div class="ai-modal-overlay" id="aiModal" onclick="if(event.target===this)toggleAIModal()">
+    <div class="ai-modal">
+      <div class="ai-modal-header">
+        <h3>🤖 AI 学伴</h3>
+        <button class="ai-modal-close" onclick="toggleAIModal()">✕</button>
+      </div>
+      <div class="ai-modal-body">
+        <p class="ai-prompt">选一个问题，AI 学伴会帮你讲解：</p>
+        <button class="ai-q-btn" onclick="showAIAnswer(this,1)">💡 种子的萌发的核心概念是什么？</button>
+        <div class="ai-answer" id="ai-ans-1">请参考本课时的核心知识讲解，重点关注概念框和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,2)">📝 这一课时有哪些易错点？</button>
+        <div class="ai-answer" id="ai-ans-2">请查看本课时的"⚠️ 易错警示"框，里面总结了最容易出错的知识点。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,3)">🏆 中考常考哪些内容？</button>
+        <div class="ai-answer" id="ai-ans-3">请查看本课时的"🏆 必考分析与总结"模块，里面有考频统计和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,4)">🔍 如何区分相似概念？</button>
+        <div class="ai-answer" id="ai-ans-4">注意对比表格中的关键区别，特别是光合作用和呼吸作用的对比。</div>
+      </div>
+    </div>
+  </div>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

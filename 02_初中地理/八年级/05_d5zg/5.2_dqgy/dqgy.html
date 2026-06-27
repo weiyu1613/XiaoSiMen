@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-four-regions-8-2">
+  <meta name="course-title" content="5.2 四大地理区域比较">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-four-regions">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>5.2 四大地理区域比较 | 初中8年级地理</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    :root {
+      --primary: #16a085;
+      --primary-light: #1abc9c;
+      --primary-dark: #0e6655;
+      --secondary: #76d7c4;
+      --north: #e74c3c;
+      --south: #27ae60;
+      --northwest: #f39c12;
+      --qinghai: #3498db;
+    }
+    
+    .region-compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+    
+    .region-compare-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 14px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+    }
+    
+    .region-compare-table td {
+      padding: 12px;
+      border: 1px solid #a3e4d7;
+      text-align: center;
+    }
+    
+    .region-compare-table tr:nth-child(even) { background: #e8f8f5; }
+
+/* ====== 手机端适配 ====== */
+@media (max-width: 768px) {
+    .region-header-north { background: linear-gradient(135deg, #c0392b, #e74c3c) !important; }
+    .region-header-south { background: linear-gradient(135deg, #1e8449, #27ae60) !important; }
+    .region-header-northwest { background: linear-gradient(135deg, #d68910, #f39c12) !important; }
+    .region-header-qinghai { background: linear-gradient(135deg, #2980b9, #3498db) !important; }
+
+    /* 答案讲解区域 */
+}
+
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #e8f8f5; border: 1px solid #a3e4d7; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary-dark); text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid var(--secondary);
+      background: #e8f8f5; color: var(--primary-dark); padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(22, 160, 133, 0.1); border: 1px solid rgba(22, 160, 133, 0.28);
+      color: var(--primary-dark);
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    
+    /* 区域特色卡片 */
+    .region-card {
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .region-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .region-card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+    }
+    .region-card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .region-card-north { background: linear-gradient(135deg, #fef2f2, #fee2e2); border: 2px solid #fca5a5; }
+    .region-card-south { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; }
+    .region-card-northwest { background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px solid #fcd34d; }
+    .region-card-qinghai { background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 2px solid #93c5fd; }
+  
+    /* NavBar styles */
+    .nav-bar { background: #d1f2eb; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary-dark); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: var(--primary); color: white; }
+    .nav-center { font-weight: 700; color: var(--primary-dark); font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #a3e4d7; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #e8f8f5; }
+
+    /* 品牌栏 */
+    .brand-bar { background: var(--primary); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: var(--primary-dark); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #a3e4d7; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #a3e4d7; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(22, 160, 133, 0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #d1f2eb, #e8f8f5); border: 2px solid var(--secondary); border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a3e4d7, #d1f2eb); border-color: var(--primary); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary-dark); }
+
+    /* 测验选项 */
+    .quiz-box { background: #e8f8f5; border: 1px solid #a3e4d7; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #d1f2eb; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: var(--secondary); background: #e8f8f5; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #e8f8f5; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 页脚 */
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+
+      .region-compare-table { display: block !important; overflow-x: auto !important; font-size: 11px !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+      .region-card { padding: 14px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-map"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 2/2 节 · 100%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d5zg.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第五章：中国的地理差异</div>
+    <a href="../5.1_dqcy/dqcy.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../../06_d6bf/d6bf.html" class="nav-btn">下一章 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-globe-asia"></i> 八年级地理 · 第五章</div>
+      <h1>5.2 四大地理区域比较<span>Comparison of Four Geographic Regions</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：比较四大地理区域的自然与人文特征<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="400" fill="#e8f8f5"/>
+        
+        <!-- 中心：四大区域 -->
+        <rect x="300" y="150" width="200" height="100" rx="15" fill="#16a085" stroke="#0e6655" stroke-width="3"/>
+        <text x="400" y="205" text-anchor="middle" font-size="18" font-weight="bold" fill="white">四大地理区域</text>
+        
+        <!-- 北方地区 -->
+        <rect x="50" y="50" width="160" height="80" rx="12" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+        <text x="130" y="85" text-anchor="middle" font-size="14" fill="white">北方地区</text>
+        <text x="130" y="105" text-anchor="middle" font-size="11" fill="white">旱地·小麦</text>
+        <line x1="210" y1="90" x2="300" y2="175" stroke="#16a085" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 南方地区 -->
+        <rect x="50" y="270" width="160" height="80" rx="12" fill="#27ae60" stroke="#1e8449" stroke-width="2"/>
+        <text x="130" y="305" text-anchor="middle" font-size="14" fill="white">南方地区</text>
+        <text x="130" y="325" text-anchor="middle" font-size="11" fill="white">水田·水稻</text>
+        <line x1="210" y1="310" x2="300" y2="225" stroke="#16a085" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 西北地区 -->
+        <rect x="590" y="50" width="160" height="80" rx="12" fill="#f39c12" stroke="#d68910" stroke-width="2"/>
+        <text x="670" y="85" text-anchor="middle" font-size="14" fill="white">西北地区</text>
+        <text x="670" y="105" text-anchor="middle" font-size="11" fill="white">草原·牧业</text>
+        <line x1="590" y1="90" x2="500" y2="175" stroke="#16a085" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 青藏地区 -->
+        <rect x="590" y="270" width="160" height="80" rx="12" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+        <text x="670" y="305" text-anchor="middle" font-size="14" fill="white">青藏地区</text>
+        <text x="670" y="325" text-anchor="middle" font-size="11" fill="white">高寒·河谷农业</text>
+        <line x1="590" y1="310" x2="500" y2="225" stroke="#16a085" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#16a085"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #16a085; font-size: 14px; text-align: center;">图5-2 中国四大地理区域对比示意图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #0e6655; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="北方地区有什么特征？">🌾 北方地区有什么特征？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="南方和北方有什么差异？">🔄 南方和北方有什么差异？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="西北和青藏地区的特色是什么？">🏔️ 西北和青藏地区的特色是什么？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #0e6655;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #0e6655; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 比较四大地理区域的自然环境特征</li>
+          <li>✅ 理解各区域农业生产特点</li>
+          <li>✅ 分析地理环境对人类活动的影响</li>
+          <li>✅ 树立因地制宜的发展观念</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 四大区域特色卡片 -->
+    <section class="section" id="section-regions">
+      <h2 class="section-title"><span class="num">🗺️</span> 四大地理区域特色</h2>
+      
+      <!-- 北方地区 -->
+      <div class="region-card region-card-north">
+        <div class="region-card-header">
+          <div class="region-card-icon" style="background: #e74c3c;">🌾</div>
+          <div>
+            <div class="region-card-title" style="color: #991b1b;">北方地区</div>
+            <div style="font-size: 13px; color: #7f1d1d;">秦岭—淮河以北，大兴安岭以东</div>
+          </div>
+        </div>
+        <div style="font-size: 14px; line-height: 1.8;">
+          <p><strong>自然特征：</strong>平原广阔，温带季风气候，雨热同期</p>
+          <p><strong>农业特色：</strong>旱地为主，主要作物小麦、玉米、甜菜</p>
+          <p><strong>作物熟制：</strong>一年一熟或两年三熟</p>
+          <p><strong>典型景观：</strong>黄土高原、华北平原、东北平原</p>
+        </div>
+      </div>
+
+      <!-- 南方地区 -->
+      <div class="region-card region-card-south">
+        <div class="region-card-header">
+          <div class="region-card-icon" style="background: #27ae60;">🏞️</div>
+          <div>
+            <div class="region-card-title" style="color: #166534;">南方地区</div>
+            <div style="font-size: 13px; color: #14532d;">秦岭—淮河以南，青藏高原以东</div>
+          </div>
+        </div>
+        <div style="font-size: 14px; line-height: 1.8;">
+          <p><strong>自然特征：</strong>山地丘陵多，亚热带、热带季风气候</p>
+          <p><strong>农业特色：</strong>水田为主，主要作物水稻、油菜、甘蔗</p>
+          <p><strong>作物熟制：</strong>一年两熟至三熟</p>
+          <p><strong>典型景观：</strong>水乡、梯田、喀斯特地貌</p>
+        </div>
+      </div>
+
+      <!-- 西北地区 -->
+      <div class="region-card region-card-northwest">
+        <div class="region-card-header">
+          <div class="region-card-icon" style="background: #f39c12;">🐪</div>
+          <div>
+            <div class="region-card-title" style="color: #92400e;">西北地区</div>
+            <div style="font-size: 13px; color: #78350f;">大兴安岭以西，昆仑山—阿尔金山以北</div>
+          </div>
+        </div>
+        <div style="font-size: 14px; line-height: 1.8;">
+          <p><strong>自然特征：</strong>干旱为主，温带大陆性气候，降水稀少</p>
+          <p><strong>农业特色：</strong>灌溉农业、绿洲农业，主要作物棉花、瓜果</p>
+          <p><strong>牧业特色：</strong>内蒙古牧区、新疆牧区</p>
+          <p><strong>典型景观：</strong>草原、荒漠、戈壁</p>
+        </div>
+      </div>
+
+      <!-- 青藏地区 -->
+      <div class="region-card region-card-qinghai">
+        <div class="region-card-header">
+          <div class="region-card-icon" style="background: #3498db;">🏔️</div>
+          <div>
+            <div class="region-card-title" style="color: #1e40af;">青藏地区</div>
+            <div style="font-size: 13px; color: #1e3a8a;">昆仑山—祁连山以南，横断山以西</div>
+          </div>
+        </div>
+        <div style="font-size: 14px; line-height: 1.8;">
+          <p><strong>自然特征：</strong>高寒缺氧，高原山地气候，"世界屋脊"</p>
+          <p><strong>农业特色：</strong>河谷农业，主要作物青稞、小麦</p>
+          <p><strong>牧业特色：</strong>西藏牧区，主要牲畜牦牛、藏绵羊</p>
+          <p><strong>典型景观：</strong>雪山、冰川、高原湖泊</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 对比表格 -->
+    <section class="section" id="section-compare">
+      <h2 class="section-title"><span class="num">📊</span> 四大区域对比表</h2>
+      
+      <div class="card" style="overflow-x: auto;">
+        <table class="region-compare-table">
+          <tr>
+            <th>比较项目</th>
+            <th class="region-header-north">北方地区</th>
+            <th class="region-header-south">南方地区</th>
+            <th class="region-header-northwest">西北地区</th>
+            <th class="region-header-qinghai">青藏地区</th>
+          </tr>
+          <tr>
+            <td><strong>位置范围</strong></td>
+            <td>秦淮以北<br/>大兴安岭以东</td>
+            <td>秦淮以南<br/>青藏高原以东</td>
+            <td>大兴安岭以西<br/>昆仑山以北</td>
+            <td>昆仑山以南<br/>横断山以西</td>
+          </tr>
+          <tr>
+            <td><strong>地形特征</strong></td>
+            <td>平原、高原为主</td>
+            <td>山地、丘陵、平原</td>
+            <td>高原、盆地为主</td>
+            <td>高原、山地</td>
+          </tr>
+          <tr>
+            <td><strong>气候类型</strong></td>
+            <td>温带季风气候</td>
+            <td>亚热带、热带季风</td>
+            <td>温带大陆性气候</td>
+            <td>高原山地气候</td>
+          </tr>
+          <tr>
+            <td><strong>年降水量</strong></td>
+            <td>400-800mm</td>
+            <td>＞800mm</td>
+            <td>＜400mm</td>
+            <td>较少</td>
+          </tr>
+          <tr>
+            <td><strong>耕地类型</strong></td>
+            <td>旱地</td>
+            <td>水田</td>
+            <td>牧场/绿洲</td>
+            <td>河谷/牧场</td>
+          </tr>
+          <tr>
+            <td><strong>主要作物</strong></td>
+            <td>小麦、玉米</td>
+            <td>水稻、油菜</td>
+            <td>棉花、瓜果</td>
+            <td>青稞、小麦</td>
+          </tr>
+          <tr>
+            <td><strong>作物熟制</strong></td>
+            <td>一年一熟<br/>两年三熟</td>
+            <td>一年两熟<br/>一年三熟</td>
+            <td>一年一熟</td>
+            <td>一年一熟</td>
+          </tr>
+          <tr>
+            <td><strong>主要牲畜</strong></td>
+            <td>黄牛、马</td>
+            <td>水牛、猪</td>
+            <td>绵羊、马、骆驼</td>
+            <td>牦牛、藏绵羊</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 5: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #0e6655; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】秦岭—淮河一线以南的主要耕地类型是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 旱地是北方地区的耕地类型！">
+            <span class="opt-letter">A</span> 旱地
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 水田
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 沙漠不是耕地类型！">
+            <span class="opt-letter">C</span> 沙漠
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 水田</strong></p>
+          <p style="margin-top: 8px;">秦岭—淮河一线以南降水丰富，以<strong>水田</strong>为主；以北降水较少，以<strong>旱地</strong>为主。</p>
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高】下列农业特点与区域对应正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 北方地区是旱地小麦，不是水田水稻！">
+            <span class="opt-letter">A</span> 北方地区——水田水稻
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 西北地区——灌溉农业
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 青藏地区是高寒气候，不是热带！">
+            <span class="opt-letter">C</span> 青藏地区——热带作物
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 西北地区——灌溉农业</strong></p>
+          <p style="margin-top: 8px;"><strong>西北地区</strong>降水稀少，农业依赖<strong>灌溉</strong>，形成灌溉农业和绿洲农业。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战】青藏地区农业发展的限制性因素是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 青藏地区不缺水源！">
+            <span class="opt-letter">A</span> 水源不足
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 青藏地区土壤肥沃，不是限制因素！">
+            <span class="opt-letter">B</span> 土壤贫瘠
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 热量不足
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 热量不足</strong></p>
+          <p style="margin-top: 8px;"><strong>青藏地区</strong>海拔高，气温低，<strong>热量不足</strong>是农业发展的限制性因素，只能发展河谷农业。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #0e6655; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】我国四大地理区域中，跨经度最广的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 北方地区跨经度较广，但不是最广的！">
+            <span class="opt-letter">A</span> 北方地区
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 西北地区
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 青藏地区跨经度不是最广的！">
+            <span class="opt-letter">C</span> 青藏地区
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 西北地区</strong></p>
+          <p style="margin-top: 8px;"><strong>西北地区</strong>从大兴安岭到帕米尔高原，跨经度最广，东西距离最长。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖北中考）青藏地区发展农业最有利的条件是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 青藏地区降水稀少，不是有利条件！">
+            <span class="opt-letter">A</span> 降水丰富
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 光照充足，昼夜温差大
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 青藏地区地势高，不是有利条件！">
+            <span class="opt-letter">C</span> 地势低平
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 光照充足，昼夜温差大</strong></p>
+          <p style="margin-top: 8px;"><strong>青藏地区</strong>海拔高，空气稀薄，<strong>光照充足</strong>，昼夜温差大，有利于作物<strong>养分积累</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·安徽中考）关于四大地理区域的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 北方地区主要作物是小麦，不是水稻！">
+            <span class="opt-letter">A</span> 北方地区主要粮食作物是水稻
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 西北地区是干旱气候，不是湿润气候！">
+            <span class="opt-letter">B</span> 西北地区气候湿润
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 青藏地区是许多大河的发源地
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 青藏地区是许多大河的发源地</strong></p>
+          <p style="margin-top: 8px;"><strong>青藏地区</strong>是<strong>长江、黄河、澜沧江</strong>等大河的发源地，被称为"中华水塔"。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 必考分析 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：秦岭—淮河分界线</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了20次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>1月0℃等温线、800mm等降水量线、水田旱地分界线、暖温带与亚热带分界线。</p>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：四大区域特征比较</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>北方旱地小麦、南方水田水稻、西北灌溉农业、青藏河谷农业。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：区域限制性因素</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>西北地区限制因素是<strong>水源</strong>，青藏地区限制因素是<strong>热量</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版八年级地理课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 8,
+      currentSection: 2
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：北方地区有什么特征？</h3>
+      <p><strong>自然特征：</strong>平原广阔，温带季风气候，雨热同期。</p>
+      <p><strong>农业特色：</strong>旱地为主，主要作物小麦、玉米、甜菜。</p>
+      <p><strong>典型景观：</strong>黄土高原、华北平原、东北平原。</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：南方和北方有什么差异？</h3>
+      <p><strong>核心差异：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li><strong>耕地：</strong>北方旱地 vs 南方水田</li>
+        <li><strong>作物：</strong>北方小麦 vs 南方水稻</li>
+        <li><strong>熟制：</strong>北方一年一熟/两年三熟 vs 南方一年两熟/三熟</li>
+        <li><strong>气候：</strong>北方温带季风 vs 南方亚热带季风</li>
+      </ul>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：西北和青藏地区的特色是什么？</h3>
+      <p><strong>西北地区：</strong>干旱气候，灌溉农业，草原牧业，跨经度最广。</p>
+      <p><strong>青藏地区：</strong>高寒气候，河谷农业，高寒牧业，大河发源地。</p>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《四大地理区域比较》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

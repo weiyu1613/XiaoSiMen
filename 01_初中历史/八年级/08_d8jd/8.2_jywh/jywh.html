@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="history-edu-culture-8">
+  <meta name="course-title" content="第8.2课 教育文化事业的发展">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="history-edu-culture">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v1.0">
+  
+  <title>第8.2课 教育文化事业的发展 | 初中8年级历史</title>
+  
+  <style>
+    /* ========== 全局样式 ========== */
+    :root {
+      --primary: #8b4513;
+      --primary-light: #a0522d;
+      --primary-dark: #5a2d0c;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      background: #f5f0eb;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    /* 品牌栏 */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+    
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #d2b48c; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f5f0eb; }
+    
+    /* 导航栏 */
+    .nav-bar { background: #f5f0eb; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #d2b48c; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge {
+      background: rgba(255,255,255,0.2);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #d2b48c; }
+    .section-title .num { margin-right: 8px; }
+    
+    /* 卡片 */
+    .card { background: white; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(139,69,19,0.1); }
+    
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn {
+      flex: 1; min-width: 200px; padding: 12px 16px;
+      background: linear-gradient(135deg, #d2b48c, #f5f0eb);
+      border: 2px solid #a0522d; border-radius: 10px;
+      cursor: pointer; font-size: 14px; font-weight: 600;
+      color: var(--primary-dark); transition: all 0.2s; text-align: center;
+    }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a0522d, #d2b48c); border-color: var(--primary); color: white; }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    
+    /* 测验选项 */
+    .quiz-box { background: #f5f0eb; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #d2b48c; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: var(--primary); background: #f5f0eb; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb; border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0; padding: 16px 20px;
+      margin-top: 12px; font-size: 14px; color: #78350f; display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    
+    /* 概念框 */
+    .concept-box { background: #f5f0eb; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    
+    /* SVG容器 */
+    .svg-container {
+      background: #f5f0eb; border: 1px solid #d2b48c; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+    
+    /* 难度标签 */
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    
+    /* 时间轴 */
+    .timeline {
+      position: relative; padding: 20px 0; margin: 20px 0;
+    }
+    .timeline::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 3px; background: var(--primary); transform: translateX(-50%);
+    }
+    .timeline-item {
+      position: relative; width: 50%; padding: 10px 30px; margin-bottom: 20px;
+    }
+    .timeline-item:nth-child(odd) { left: 0; text-align: right; padding-right: 50px; }
+    .timeline-item:nth-child(even) { left: 50%; text-align: left; padding-left: 50px; }
+    .timeline-item::before {
+      content: ''; position: absolute; top: 15px;
+      width: 16px; height: 16px; background: var(--primary);
+      border-radius: 50%; border: 3px solid white;
+    }
+    .timeline-item:nth-child(odd)::before { right: -8px; }
+    .timeline-item:nth-child(even)::before { left: -8px; }
+    .timeline-year { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+    .timeline-content { font-size: 14px; color: #555; margin-top: 4px; }
+    
+    /* 人物卡片 */
+    .person-card {
+      background: linear-gradient(135deg, #f5f0eb, #d2b48c);
+      border: 1px solid #d2b48c; border-radius: 12px;
+      padding: 16px; margin-bottom: 16px;
+    }
+    .person-card .person-name { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .person-card .person-title { font-size: 0.9rem; color: #666; margin-bottom: 8px; }
+    .person-card .person-desc { font-size: 0.95rem; color: #333; line-height: 1.6; }
+    
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    
+    /* 表格 */
+    .history-table {
+      width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;
+    }
+    .history-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; padding: 12px; text-align: center;
+    }
+    .history-table td { padding: 10px; border: 1px solid #d2b48c; text-align: center; }
+    .history-table tr:nth-child(even) { background: #f5f0eb; }
+    
+    /* 页脚 */
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* 手机端适配 */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .section { padding: 0 12px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .card { padding: 14px !important; }
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .quiz-option { font-size: 0.88rem !important; }
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+      .timeline::before { left: 20px; }
+      .timeline-item { width: 100%; left: 0 !important; text-align: left; padding-left: 50px !important; padding-right: 10px !important; }
+      .timeline-item:nth-child(odd) { text-align: left; padding-right: 10px !important; }
+      .timeline-item::before { left: 12px !important; right: auto !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v1.0</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 2/2 节 · 100%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d8jd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第八单元：近代经济、社会生活与教育文化事业的发展</div>
+    <a href="../8.1_jjjc/jjjc.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="#" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-graduation-cap"></i> 八年级历史上册 · 第八单元</div>
+      <h1>第8.2课 教育文化事业的发展<span>Education and Culture Development</span></h1>
+      <p style="margin-top: 15px;">
+        📖 课标要求：了解新式教育、新闻出版事业和文学艺术的发展<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" style="margin-top: 24px;">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f5f0eb"/>
+        <!-- 中心主题：教育文化事业的发展 -->
+        <rect x="300" y="100" width="200" height="100" rx="15" fill="#8b4513" stroke="#5a2d0c" stroke-width="3"/>
+        <text x="400" y="140" text-anchor="middle" font-size="16" font-weight="bold" fill="white">教育文化</text>
+        <text x="400" y="165" text-anchor="middle" font-size="16" font-weight="bold" fill="white">事业的发展</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="14" fill="white">新式教育</text>
+        <line x1="190" y1="80" x2="300" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="225" text-anchor="middle" font-size="14" fill="white">新闻出版</text>
+        <line x1="190" y1="220" x2="300" y2="190" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="14" fill="white">文学艺术</text>
+        <line x1="610" y1="80" x2="600" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="225" text-anchor="middle" font-size="14" fill="white">科技思想</text>
+        <line x1="610" y1="220" x2="600" y2="190" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: var(--primary); font-size: 14px; text-align: center;">图8.2-1 教育文化事业的发展知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="新式教育是怎样发展的？">📚 新式教育是怎样发展的？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="新闻出版事业有哪些成就？">📰 新闻出版事业有哪些成就？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="文学艺术和科技有哪些代表人物？">🎨 文学艺术和科技有哪些代表人物？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)" style="width: 100%; border-radius: 12px; border: 1px solid #a0522d; background: #f5f0eb; color: var(--primary); padding: 12px 14px; font-size: 16px; margin-top: 8px;">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--primary); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 了解新式教育的发端过程</li>
+          <li>✅ 知道科举制度的废除</li>
+          <li>✅ 掌握新闻出版事业的发展</li>
+          <li>✅ 认识文学艺术和科技的成就</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国近代第一所新式学堂是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+            <span class="opt-letter">A</span> 京师同文馆
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是第一所新式学堂！">
+            <span class="opt-letter">B</span> 京师大学堂
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 北洋大学堂是天津大学的前身，不是第一所新式学堂！">
+            <span class="opt-letter">C</span> 北洋大学堂
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 京师同文馆</strong></p>
+          <p style="margin-top: 8px;">1862年，洋务派创办<strong>京师同文馆</strong>，是中国近代<strong>第一所新式学堂</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】科举制度废除于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 1898年是戊戌变法时期，京师大学堂创办，但科举制还没有废除！">
+            <span class="opt-letter">A</span> 1898年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 1905年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 1912年是中华民国成立，科举制早已废除！">
+            <span class="opt-letter">C</span> 1912年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 1905年</strong></p>
+          <p style="margin-top: 8px;">1905年，清政府谕令<strong>停止科举考试</strong>，存在了<strong>1300多年</strong>的科举制度正式废除。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】下列关于京师大学堂的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 京师同文馆是1862年创办的，京师大学堂是1898年创办的！">
+            <span class="opt-letter">A</span> 创办于1862年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+            <span class="opt-letter">B</span> 是北京大学的前身
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是洋务运动时期！">
+            <span class="opt-letter">C</span> 洋务派创办的
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 是北京大学的前身</strong></p>
+          <p style="margin-top: 8px;">1898年戊戌变法时期创办<strong>京师大学堂</strong>，是<strong>北京大学的前身</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心知识点 - 新式教育 -->
+    <section class="section" id="section-new-education">
+      <h2 class="section-title"><span class="num">📚</span> 新式教育的发端</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 新式教育的发展历程</h3>
+        
+        <!-- 时间轴 -->
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1862年</div>
+            <div class="timeline-content"><strong>京师同文馆</strong>创办，中国近代<strong>第一所新式学堂</strong>。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1898年</div>
+            <div class="timeline-content"><strong>京师大学堂</strong>创办（戊戌变法），<strong>北京大学前身</strong>。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1905年</div>
+            <div class="timeline-content">清政府谕令<strong>停止科举考试</strong>，<strong>科举制度废除</strong>（存在1300多年）。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">清末</div>
+            <div class="timeline-content">新式学堂遍布各地，<strong>留学风气渐开</strong>。</div>
+          </div>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 科举制度</div>
+          <p><strong>科举制度</strong>创立于<strong>隋朝</strong>，完善于<strong>唐朝</strong>，延续了<strong>1300多年</strong>，1905年被清政府废除。</p>
+          <p style="margin-top: 6px;">科举制度的废除是中国<strong>教育史上的一件大事</strong>，标志着现代教育体系的开端。</p>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"1862同文馆，1898大学堂；1905废科举，新式教育开新篇"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"京师同文馆是北京大学的前身"→ 错误！京师大学堂才是北京大学的前身！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 新闻出版业 -->
+    <section class="section" id="section-publishing">
+      <h2 class="section-title"><span class="num">📰</span> 新闻出版业的发展</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 《申报》</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>创办时间：</strong>1872年</li>
+          <li><strong>创办地点：</strong>上海</li>
+          <li><strong>地位：</strong>中国近代<strong>第一份商业性报纸</strong></li>
+          <li><strong>内容：</strong>刊载新闻、评论、广告等，深受大众欢迎</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 商务印书馆</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>创办时间：</strong>1897年</li>
+          <li><strong>创办地点：</strong>上海</li>
+          <li><strong>地位：</strong>中国近代<strong>历史最长、规模最大的文化出版机构</strong></li>
+          <li><strong>作用：</strong>推动文化传播和启蒙</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 新闻出版业的作用</div>
+          <p>新闻出版业的发展<strong>传播了先进文化</strong>，<strong>促进了思想启蒙</strong>，<strong>推动了社会进步</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 文学艺术成就 -->
+    <section class="section" id="section-literature-art">
+      <h2 class="section-title"><span class="num">🎨</span> 文学艺术的成就</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 文学：鲁迅</h3>
+        <div class="person-card">
+          <div class="person-name">鲁迅（1881-1936）</div>
+          <div class="person-title">文学家、思想家</div>
+          <div class="person-desc">
+            <strong>《狂人日记》（1918年）</strong>：中国现代文学<strong>第一篇白话小说</strong>，批判封建礼教"吃人"。<br>
+            <strong>其他作品：</strong>《阿Q正传》、《呐喊》、《彷徨》等。
+          </div>
+        </div>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 美术：徐悲鸿</h3>
+        <div class="person-card">
+          <div class="person-name">徐悲鸿（1895-1953）</div>
+          <div class="person-title">画家、美术教育家</div>
+          <div class="person-desc">
+            <strong>《愚公移山》</strong>：融合中西画法，象征中国人民的坚韧不拔。<br>
+            <strong>其他作品：</strong>《八骏图》等。
+          </div>
+        </div>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 音乐：《义勇军进行曲》</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>作曲：</strong>聂耳</li>
+          <li><strong>作词：</strong>田汉</li>
+          <li><strong>创作背景：</strong>抗日战争时期，激励中国人民奋勇抗战</li>
+          <li><strong>地位：</strong>后来成为<strong>中华人民共和国国歌</strong></li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 电影</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>《歌女红牡丹》（1931年）</strong>：中国<strong>第一部有声电影</strong></li>
+          <li><strong>《风云儿女》（1935年）</strong>：主题歌是《义勇军进行曲》</li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">💡 答题技巧 · 文学艺术成就</div>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>记人物：</strong>鲁迅（文学）、徐悲鸿（美术）、聂耳（音乐）</li>
+            <li><strong>记作品：</strong>《狂人日记》、《愚公移山》、《义勇军进行曲》</li>
+            <li><strong>记地位：</strong>第一部白话小说、第一部有声电影、国歌</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 核心内容 - 科学家与思想家 -->
+    <section class="section" id="section-scientists">
+      <h2 class="section-title"><span class="num">🔬</span> 科学家与思想家</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 詹天佑</h3>
+        <div class="person-card">
+          <div class="person-name">詹天佑（1861-1919）</div>
+          <div class="person-title">铁路工程师</div>
+          <div class="person-desc">
+            <strong>京张铁路（1905-1909年）</strong>：中国人<strong>自行设计和施工的第一条铁路</strong>。<br>
+            <strong>技术创新：</strong>"人字形线路"、"竖井施工法"。
+          </div>
+        </div>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 侯德榜</h3>
+        <div class="person-card">
+          <div class="person-name">侯德榜（1890-1974）</div>
+          <div class="person-title">化学家</div>
+          <div class="person-desc">
+            <strong>"侯氏制碱法"</strong>：打破西方对制碱技术的<strong>垄断</strong>。<br>
+            <strong>意义：</strong>为中国化学工业的发展作出重大贡献。
+          </div>
+        </div>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 魏源</h3>
+        <div class="person-card">
+          <div class="person-name">魏源（1794-1857）</div>
+          <div class="person-title">思想家</div>
+          <div class="person-desc">
+            <strong>《海国图志》</strong>：系统介绍世界各国地理、历史和科技。<br>
+            <strong>核心思想：</strong>"师夷长技以制夷"——学习西方先进技术，抵御外来侵略。
+          </div>
+        </div>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 严复</h3>
+        <div class="person-card">
+          <div class="person-name">严复（1854-1921）</div>
+          <div class="person-title">思想家、翻译家</div>
+          <div class="person-desc">
+            <strong>译《天演论》</strong>：引入达尔文进化论思想。<br>
+            <strong>核心思想：</strong>"物竞天择，适者生存"——警示中国人要奋发图强。
+          </div>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"詹天佑修京张路，侯德榜制碱法；魏源海国图志，严复天演论翻译"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"詹天佑设计了京张铁路的人字形线路"→ 正确！这是他的技术创新。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 互动测验 -->
+    <section class="section" id="section-quiz">
+      <h2 class="section-title"><span class="num">🎮</span> 互动测验</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        每道题都有详细的错因分析，答错了要认真学习哦！
+      </p>
+
+      <!-- 测验题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国近代第一份商业性报纸是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'A')">
+            <span class="opt-letter">A</span> 《申报》
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 《万国公报》是传教士创办的报刊，不是第一份商业性报纸！">
+            <span class="opt-letter">B</span> 《万国公报》
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 《时务报》是维新派创办的报刊，不是第一份商业性报纸！">
+            <span class="opt-letter">C</span> 《时务报》
+          </div>
+        </div>
+        <div class="feedback" id="feedback-20"></div>
+        <div class="answer-explanation" id="explanation-20">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 《申报》</strong></p>
+          <p style="margin-top: 8px;">1872年创办于上海的<strong>《申报》</strong>是中国近代<strong>第一份商业性报纸</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 测验题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高】京张铁路的设计者是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 21, 'A')">
+            <span class="opt-letter">A</span> 詹天佑
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'B')" data-feedback="❌ 侯德榜是化学家，发明了'侯氏制碱法'，不是铁路工程师！">
+            <span class="opt-letter">B</span> 侯德榜
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'C')" data-feedback="❌ 魏源是思想家，写了《海国图志》，不是铁路工程师！">
+            <span class="opt-letter">C</span> 魏源
+          </div>
+        </div>
+        <div class="feedback" id="feedback-21"></div>
+        <div class="answer-explanation" id="explanation-21">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 詹天佑</strong></p>
+          <p style="margin-top: 8px;"><strong>詹天佑</strong>设计并主持修建了<strong>京张铁路</strong>（1905-1909年），这是中国人<strong>自行设计和施工的第一条铁路</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 测验题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战】鲁迅的《狂人日记》发表于哪一年？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'A')" data-feedback="❌ 1915年是新文化运动开始的时间，不是《狂人日记》发表的时间！">
+            <span class="opt-letter">A</span> 1915年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'B')" data-feedback="❌ 1919年是五四运动的时间，不是《狂人日记》发表的时间！">
+            <span class="opt-letter">B</span> 1919年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 22, 'C')">
+            <span class="opt-letter">C</span> 1918年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-22"></div>
+        <div class="answer-explanation" id="explanation-22">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 1918年</strong></p>
+          <p style="margin-top: 8px;">1918年，鲁迅发表<strong>《狂人日记》</strong>，这是中国现代文学<strong>第一篇白话小说</strong>，批判封建礼教"吃人"。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】科举制度废除于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 1898年是戊戌变法时期，京师大学堂创办，但科举制还没有废除！">
+            <span class="opt-letter">A</span> 1898年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 1905年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 1912年是中华民国成立，科举制早已废除！">
+            <span class="opt-letter">C</span> 1912年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 1905年</strong></p>
+          <p style="margin-top: 8px;">1905年，清政府谕令<strong>停止科举考试</strong>，存在了<strong>1300多年</strong>的科举制度正式废除。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）下列关于京师大学堂的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 京师同文馆是1862年创办的，京师大学堂是1898年创办的！">
+            <span class="opt-letter">A</span> 创办于1862年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 是北京大学的前身
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是洋务运动时期！">
+            <span class="opt-letter">C</span> 洋务派创办的
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 是北京大学的前身</strong></p>
+          <p style="margin-top: 8px;">1898年戊戌变法时期创办<strong>京师大学堂</strong>，是<strong>北京大学的前身</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南中考）下列不属于鲁迅作品的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 《狂人日记》是鲁迅的作品，不符合题目要求（选择不属于的）！">
+            <span class="opt-letter">A</span> 《狂人日记》
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 《阿Q正传》是鲁迅的作品，不符合题目要求（选择不属于的）！">
+            <span class="opt-letter">B</span> 《阿Q正传》
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 《海国图志》
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 《海国图志》</strong></p>
+          <p style="margin-top: 8px;"><strong>《海国图志》</strong>是<strong>魏源</strong>的作品，不是鲁迅的作品。</p>
+          <p style="margin-top: 6px;">鲁迅的作品包括：<strong>《狂人日记》、《阿Q正传》、《呐喊》、《彷徨》</strong>等。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 10: 考点分析 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 考点分析</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 核心考点解析</h3>
+        
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：科举制度的废除</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了17次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 科举制度废除于<strong>1905年</strong></li>
+            <li>✅ 存在了<strong>1300多年</strong></li>
+            <li>✅ 是中国<strong>教育史上的一件大事</strong></li>
+          </ul>
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">💡 答题技巧</div>
+            <p>回答"科举制度"相关问题时，要记住<strong>1905年</strong>这个关键时间点。</p>
+          </div>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：新式教育的发展</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了14次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>1862年京师同文馆（第一所新式学堂）、1898年京师大学堂（北京大学前身）。</p>
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📝 记忆方法</div>
+            <p><strong>"1862同文馆，1898大学堂"</strong> - 用这个口诀记忆新式教育发展的两个关键时间点。</p>
+          </div>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：新闻出版事业</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>1872年《申报》（第一份商业性报纸）、1897年商务印书馆（历史最长、规模最大的文化出版机构）。</p>
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">⚠️ 易错警示</div>
+            <p>《申报》是<strong>商业性报纸</strong>，不是政府官报。商务印书馆是<strong>出版机构</strong>，不是报社。</p>
+          </div>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：文学艺术成就</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了11次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>鲁迅《狂人日记》（第一篇白话小说）、徐悲鸿《愚公移山》、聂耳《义勇军进行曲》。</p>
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📝 记忆方法</div>
+            <p><strong>"鲁迅狂人日记，徐悲鸿愚公移山，聂耳义勇军"</strong> - 用这个口诀记忆文学艺术成就。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v1.0 | 适配人教版八年级历史课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 10,
+      currentSection: 2
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：新式教育是怎样发展的？</h3>
+      <p><strong>1862年：</strong>京师同文馆（第一所新式学堂）</p>
+      <p><strong>1898年：</strong>京师大学堂（北京大学前身）</p>
+      <p><strong>1905年：</strong>科举制度废除</p>
+      <p><strong>清末：</strong>新式学堂遍布各地，留学风气渐开</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：新闻出版事业有哪些成就？</h3>
+      <p><strong>1872年：</strong>《申报》创办（第一份商业性报纸）</p>
+      <p><strong>1897年：</strong>商务印书馆创办（历史最长、规模最大的文化出版机构）</p>
+      <p><strong>作用：</strong>传播先进文化，促进思想启蒙，推动社会进步</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：文学艺术和科技有哪些代表人物？</h3>
+      <p><strong>文学：</strong>鲁迅（《狂人日记》）、</p>
+      <p><strong>美术：</strong>徐悲鸿（《愚公移山》）、</p>
+      <p><strong>音乐：</strong>聂耳（《义勇军进行曲》）、</p>
+      <p><strong>科技：</strong>詹天佑（京张铁路）、侯德榜（侯氏制碱法）</p>
+      <p><strong>思想：</strong>魏源（《海国图志》）、严复（《天演论》）</p>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《教育文化事业的发展》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.1 流动的组织——血液 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; }
+
+    /* 品牌栏 */
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 72.73%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+
+    /* 导航栏 */
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero区 */
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 主内容 */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; display: flex; align-items: center; gap: 12px; }
+    .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+
+    /* 锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+
+    /* 测验 */
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary-dark); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+
+    /* 警示框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 难度标签 */
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-base { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-raise { background: #ede9fe; color: #6d28d9; }
+    .difficulty-challenge { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+
+    /* 解析 */
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+
+    /* 中考卡片 */
+    .exam-card { background: linear-gradient(135deg, #fefce8, #fef9c3); border: 2px solid #f59e0b; border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .exam-card h3 { color: #92400e; margin-bottom: 12px; }
+    .exam-stat { display: inline-block; background: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+
+    /* 必背 */
+    .must-know { background: #d1fae5; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+
+    /* 表格 */
+    .compare-table { width:100%;border-collapse:collapse;margin:16px 0;font-size:14px; }
+    .compare-table th { padding:10px;border:1px solid #c8e6c9;background:var(--primary);color:white; }
+    .compare-table td { padding:8px;border:1px solid #c8e6c9; }
+    .compare-table tr:nth-child(even) td { background:#f1f8e9; }
+
+    /* 页脚 */
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .anchor-points { flex-direction: column; }
+      .anchor-btn { min-width: 100%; }
+      .nav-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">第 8 / 11 节 · 72.73%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../rttljkjy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第四单元：人体生理与健康</div>
+      <a href="../3.2_fszfnqdqtjh/fszfnqdqtjh.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../4.2_xldgd/xldgd.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero + SVG知识图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-droplet"></i> 七年级生物 · 第四单元</div>
+      <h1>4.1 流动的组织——血液<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Blood: The Fluid Tissue</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：描述血液的组成和功能；解读血常规化验单<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f1f8e9"/>
+        <!-- 中心：流动的组织——血液 -->
+        <rect x="300" y="110" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="white">流动的组织——血液</text>
+        <text x="400" y="170" text-anchor="middle" font-size="12" fill="#c8e6c9">Blood: The Fluid Tissue</text>
+        
+        <!-- 血液的组成 -->
+        <rect x="40" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="68" text-anchor="middle" font-size="13" fill="white">血液的组成</text>
+        <text x="120" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">血浆·血细胞</text>
+        <line x1="200" y1="70" x2="300" y2="142" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 血浆的功能 -->
+        <rect x="40" y="200" width="160" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="228" text-anchor="middle" font-size="13" fill="white">血浆的功能</text>
+        <text x="120" y="246" text-anchor="middle" font-size="10" fill="#e8f5e9">运载·运输·防御</text>
+        <line x1="200" y1="230" x2="300" y2="158" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 血细胞的功能 -->
+        <rect x="600" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="68" text-anchor="middle" font-size="13" fill="white">血细胞的功能</text>
+        <text x="680" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">红细胞·白细胞·血小板</text>
+        <line x1="600" y1="70" x2="500" y2="142" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 血常规化验单解读 -->
+        <rect x="600" y="200" width="160" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="238" text-anchor="middle" font-size="13" fill="white">血常规化验单解读</text>
+        <text x="680" y="256" text-anchor="middle" font-size="9" fill="#e8f5e9">贫血·炎症·血栓</text>
+        <line x1="600" y1="230" x2="500" y2="158" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图4-1 流动的组织——血液知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span>探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="血液由哪些成分组成？">🩸 血液由哪些成分组成？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="红细胞、白细胞、血小板的功能分别是什么？">🔬 三种血细胞的功能分别是什么？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="如何解读血常规化验单？">📊 如何解读血常规化验单？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 描述血液的组成（血浆、血细胞）</li>
+          <li>✅ 说明红细胞、白细胞、血小板的功能</li>
+          <li>✅ 解读血常规化验单，判断贫血、炎症等疾病</li>
+          <li>✅ 认同血液对人体健康的重要性</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span>课前检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
+
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 血液的组成包括（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">A</span> 血浆和血细胞</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 红细胞和白细胞</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 血浆和血小板</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 红细胞和血小板</div>
+        <div class="feedback" id="fb-1"></div>
+        <div class="answer-explanation" id="exp-1">
+          <strong>解析：</strong>血液由<strong>血浆</strong>（约占55%）和<strong>血细胞</strong>（约占45%，包括红细胞、白细胞、血小板）组成。
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 具有运输氧气功能的血细胞是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">A</span> 红细胞</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">B</span> 白细胞</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 血小板</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 血浆</div>
+        <div class="feedback" id="fb-2"></div>
+        <div class="answer-explanation" id="exp-2">
+          <strong>解析：</strong>红细胞富含<strong>血红蛋白</strong>，血红蛋白在含氧量高的地方容易与氧结合，在含氧量低的地方又容易与氧分离，因此红细胞具有运输氧气的功能。
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关血液的叙述，<strong>错误</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 红细胞能运输氧气</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 白细胞能吞噬病菌，防御疾病</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 血小板能促进止血，加速凝血，同时能运输氧气</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 血浆能运载血细胞，运输营养物质和废物</div>
+        <div class="feedback" id="fb-3"></div>
+        <div class="answer-explanation" id="exp-3">
+          <strong>解析：</strong>C是错误的。血小板的功能是<strong>促进止血，加速凝血</strong>，<strong>不能运输氧气</strong>。运输氧气是红细胞的功能。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span>核心知识讲解</h2>
+
+      <!-- 知识点1：血液的组成 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">一、血液的组成</h3>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>🩸 <strong>血浆</strong>（约占55%）：主要成分是<strong>水</strong>（约占90%），还有血浆蛋白、葡萄糖、氨基酸、无机盐等</li>
+          <li>🔬 <strong>血细胞</strong>（约占45%）：包括<strong>红细胞、白细胞、血小板</strong></li>
+        </ul>
+
+        <div class="concept-box">
+          <div class="label">📖 概念框：血液是组织</div>
+          <p>血液属于<strong>结缔组织</strong>，因为血液具有<strong>运输、防御、保护</strong>等功能，符合组织的定义。</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：血浆的功能 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">二、血浆的功能</h3>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>🚛 <strong>运载血细胞</strong>：血浆是血细胞的载体</li>
+          <li>🚚 <strong>运输营养物质和废物</strong>：将食物消化吸收的营养物质运输到全身各细胞，将细胞产生的废物（如二氧化碳、尿素）运输到肺、肾脏等器官排出体外</li>
+          <li>🛡️ <strong>防御功能</strong>：血浆中的血浆蛋白具有免疫作用</li>
+        </ul>
+      </div>
+
+      <!-- 知识点3：血细胞的功能 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">三、血细胞的功能</h3>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>血细胞种类</th>
+              <th>主要功能</th>
+              <th>异常时的病症</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="background:#f1f8e9;"><strong>红细胞</strong></td><td>运输氧气（含血红蛋白）</td><td>红细胞或血红蛋白过少→贫血</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>白细胞</strong></td><td>吞噬病菌，防御疾病</td><td>白细胞过多→炎症</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>血小板</strong></td><td>促进止血，加速凝血</td><td>血小板过少→止血困难；过多→血栓</td></tr>
+          </tbody>
+        </table>
+
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>① 红细胞运输氧气依赖于<strong>血红蛋白</strong>，血红蛋白是一种红色含<strong>铁</strong>的蛋白质；<br>
+          ② 白细胞有细胞核，成熟的红细胞和血小板<strong>没有细胞核</strong>；<br>
+          ③ 红细胞最多，白细胞最少。</p>
+        </div>
+      </div>
+
+      <!-- 知识点4：血常规化验单解读 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">四、血常规化验单解读</h3>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>🩸 <strong>红细胞计数（RBC）或血红蛋白含量（Hb）过低</strong> → 贫血（建议多吃含铁和蛋白质丰富的食物，如瘦肉、菠菜）</li>
+          <li>⚠️ <strong>白细胞计数（WBC）过高</strong> → 体内有炎症（如细菌感染）</li>
+          <li>🩹 <strong>血小板计数（PLT）过低</strong> → 止血困难；<strong>过高</strong> → 容易形成血栓</li>
+        </ul>
+
+        <div class="concept-box">
+          <div class="label">📖 概念框：贫血</div>
+          <p>贫血是指<strong>红细胞数量过少或血红蛋白含量过低</strong>的情况，患者会出现头晕、乏力等症状。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测（含中考真题） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">1. 当人体有炎症时，血常规化验单中哪项指标会明显升高？（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">A</span> 白细胞计数</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 红细胞计数</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 血小板计数</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 血红蛋白含量</div>
+        <div class="feedback" id="fb-4"></div>
+        <div class="answer-explanation" id="exp-4">
+          <strong>解析：</strong>白细胞的功能是<strong>吞噬病菌，防御疾病</strong>。当人体有炎症时，白细胞计数会明显升高，以吞噬更多的病菌。
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】下列有关血小板的叙述，正确的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">A</span> 血小板能促进止血，加速凝血</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">B</span> 血小板能运输氧气</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 血小板有细胞核</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 血小板数量过多会导致贫血</div>
+        <div class="feedback" id="fb-5"></div>
+        <div class="answer-explanation" id="exp-5">
+          <strong>解析：</strong>A是正确的。血小板的功能是<strong>促进止血，加速凝血</strong>；B错误，运输氧气是红细胞的功能；C错误，成熟的血小板没有细胞核；D错误，血小板数量过多会导致血栓，红细胞或血红蛋白过少才会导致贫血。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span>必考分析与考点总结</h2>
+
+      <div class="exam-card">
+        <h3>📊 考频统计</h3>
+        <p><span class="exam-stat">超高频</span>血液的组成（选择题）</p>
+        <p><span class="exam-stat">超高频</span>三种血细胞的功能（选择题）</p>
+        <p><span class="exam-stat">高频</span>血常规化验单解读（选择题、简答题）</p>
+        <p><span class="exam-stat">中频</span>贫血的原因及防治（选择题）</p>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 必背结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>血液由<strong>血浆</strong>和<strong>血细胞</strong>组成</li>
+          <li>红细胞功能：<strong>运输氧气</strong>（含血红蛋白）；异常→贫血</li>
+          <li>白细胞功能：<strong>吞噬病菌，防御疾病</strong>；异常→炎症</li>
+          <li>血小板功能：<strong>促进止血，加速凝血</strong>；异常→止血困难或血栓</li>
+          <li>贫血时应多吃含<strong>铁和蛋白质</strong>丰富的食物</li>
+        </ol>
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="line-height:2;">
+          <li>❌ 误认为"血小板能运输氧气"→ 实际是<strong>红细胞</strong>运输氧气</li>
+          <li>❌ 误认为"白细胞过少会导致贫血"→ 实际是<strong>红细胞或血红蛋白过少</strong>导致贫血</li>
+          <li>❌ 误认为"成熟的红细胞有细胞核"→ 实际<strong>成熟的红细胞没有细胞核</strong></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第四单元 人体生理与健康 · 第8节 流动的组织——血液 · TeachAny v7.14.0</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 进度条更新
+    document.addEventListener('DOMContentLoaded', function() {
+      var totalSections = 11;
+      var currentSection = 8;
+      var pct = Math.round((currentSection / totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '第 ' + currentSection + ' / ' + totalSections + ' 节 · ' + pct + '%';
+    });
+
+    // 锚点选择
+    var anchorContents = {
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🩸 血液由哪些成分组成？</h4><p>血液由<strong>血浆</strong>（约占55%，主要成分是水）和<strong>血细胞</strong>（约占45%，包括红细胞、白细胞、血小板）组成。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔬 三种血细胞的功能分别是什么？</h4><p>红细胞：运输氧气；白细胞：吞噬病菌，防御疾病；血小板：促进止血，加速凝血。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📊 如何解读血常规化验单？</h4><p>红细胞或血红蛋白过低→贫血；白细胞过高→炎症；血小板过低→止血困难，过高→血栓。</p></div>'
+    };
+
+    function selectAnchor(btn, id) {
+      var btns = document.querySelectorAll('.anchor-btn');
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = anchorContents[id];
+      display.style.display = 'block';
+    }
+
+    function handleCustomQuestion(val) {
+      if (val.trim().length < 2) return;
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！血液是人体的“生命之河”，了解它的组成和功能有助于我们理解很多疾病的原因。</p></div>';
+      display.style.display = 'block';
+    }
+
+    function checkAnswer(el, isCorrect, qNum) {
+      var parent = el.parentElement;
+      var options = parent.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.remove('correct', 'wrong');
+      }
+      if (isCorrect) {
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      var fb = document.getElementById('fb-' + qNum);
+      var exp = document.getElementById('exp-' + qNum);
+      if (isCorrect) {
+        fb.className = 'feedback correct-fb show';
+        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
+      } else {
+        fb.className = 'feedback wrong-fb show';
+        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
+      }
+      exp.classList.add('show');
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

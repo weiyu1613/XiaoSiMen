@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.4 病毒 | 七年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #2e7d32; --primary-light: #4caf50; --primary-dark: #1b5e20; --bg-light: #f1f8e9; --text-dark: #1a1a2e; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 15px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); transition: width 0.3s; width: 0%; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 8px 0; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 6px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 6px; transition: all 0.2s; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary) 30%, var(--primary-light) 70%, #2e7d32 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1rem; opacity: 0.9; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 24px 0; }
+    .section-title { font-size: 1.4rem; color: var(--primary); margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.08); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border: 2px solid #a5d6a7; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #c8e6c9, #a5d6a7); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #a5d6a7; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; font-size: 12px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef9e7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 10px; font-size: 13px; color: var(--primary); text-align: center; }
+    .bio-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .bio-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px; text-align: center; }
+    .bio-table td { padding: 10px; border: 1px solid #c8e6c9; text-align: center; }
+    .bio-table tr:nth-child(even) { background: #f1f8e9; }
+    .difficulty-badge { display: inline-flex; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    @media (max-width: 768px) { .hero { padding: 24px 14px; } .hero h1 { font-size: 1.4rem; } .section { padding: 16px 0; } .section-title { font-size: 1.1rem; } .card { padding: 14px; border-radius: 10px; } .anchor-btn { min-width: 100%; } .quiz-option { font-size: 13px; padding: 10px 12px; } .bio-table { font-size: 12px; display: block; overflow-x: auto; } }
+  </style>
+</head>
+<body>
+  <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-virus"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 8/10 节 · 80%</div>
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
+    <div class="nav-center">第二单元：多种多样的生物</div>
+    <a href="../4.1_csdwzwfl/4.1_csdwzwfl.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+
+  <header class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-virus"></i> 七年级生物 · 第二单元</div>
+    <h1>3.4 病毒</h1>
+    <p>📖 课标要求：描述病毒的主要特征，说出病毒与人类的关系<br>🎯 预计用时：25分钟</p>
+  </header>
+
+  <section class="container section" style="padding-top:0;">
+    <figure style="margin: 24px auto 0; max-width: 900px;">
+      <svg viewBox="0 0 800 220" width="800" height="220" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="220" fill="#f1f8e9"/>
+        <circle cx="400" cy="110" r="50" fill="#c62828" stroke="#8b0000" stroke-width="3"/>
+        <text x="400" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="white">病毒</text>
+        <rect x="55" y="55" width="145" height="60" rx="10" fill="#ef5350" stroke="#c62828" stroke-width="2"/>
+        <text x="127" y="80" text-anchor="middle" font-size="13" fill="white" font-weight="bold">结构特点</text>
+        <text x="127" y="97" text-anchor="middle" font-size="11" fill="white">无细胞结构</text>
+        <line x1="200" y1="85" x2="350" y2="110" stroke="#c62828" stroke-width="2" marker-end="url(#a7)"/>
+        <rect x="55" y="135" width="145" height="60" rx="10" fill="#ff7043" stroke="#e64a19" stroke-width="2"/>
+        <text x="127" y="160" text-anchor="middle" font-size="13" fill="white" font-weight="bold">生活方式</text>
+        <text x="127" y="177" text-anchor="middle" font-size="11" fill="white">寄生生活</text>
+        <line x1="200" y1="165" x2="350" y2="135" stroke="#c62828" stroke-width="2" marker-end="url(#a7)"/>
+        <rect x="600" y="55" width="145" height="60" rx="10" fill="#c62828" stroke="#8b0000" stroke-width="2"/>
+        <text x="672" y="80" text-anchor="middle" font-size="13" fill="white" font-weight="bold">主要类型</text>
+        <text x="672" y="97" text-anchor="middle" font-size="11" fill="white">动物·植物·细菌病毒</text>
+        <line x1="600" y1="85" x2="450" y2="110" stroke="#c62828" stroke-width="2" marker-end="url(#a7)"/>
+        <rect x="600" y="135" width="145" height="60" rx="10" fill="#ab47bc" stroke="#7b1fa2" stroke-width="2"/>
+        <text x="672" y="160" text-anchor="middle" font-size="13" fill="white" font-weight="bold">繁殖方式</text>
+        <text x="672" y="177" text-anchor="middle" font-size="11" fill="white">复制增殖</text>
+        <line x1="600" y1="165" x2="450" y2="135" stroke="#c62828" stroke-width="2" marker-end="url(#a7)"/>
+        <defs><marker id="a7" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#c62828"/></marker></defs>
+        <text x="400" y="208" text-anchor="middle" font-size="12" fill="#2e7d32">图3-5 病毒的知识结构图</text>
+      </svg>
+    </figure>
+  </section>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="病毒没有细胞结构为什么还是生物？">🦠 病毒没有细胞结构为什么还是生物？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="噬菌体是如何侵染细菌的？">🔬 噬菌体是如何侵染细菌的？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="病毒对人类只有害处吗？">💉 病毒对人类只有害处吗？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--primary);">我自己的问题<input id="learner-question-input" placeholder="把你卡住的问题写在这里" style="width:100%;border-radius:12px;border:1px solid #a5d6a7;background:#f1f8e9;color:var(--primary-dark);padding:10px 14px;font-size:15px;margin-top:8px;"></label>
+        <div class="anchor-display" id="anchor-display" style="margin-top:20px;min-height:80px;"><p style="color:var(--primary);text-align:center;">👆 点击上方按钮查看问题</p></div>
+        <p id="anchor-feedback" style="display:none;margin-top:14px;padding:14px;border-radius:12px;background:rgba(46,125,50,0.1);border:1px solid rgba(46,125,50,0.28);color:var(--primary-dark);"></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2;">
+          <li>✅ 描述病毒的主要特征（无细胞结构、寄生生活）</li>
+          <li>✅ 说出病毒的三种类型及其宿主</li>
+          <li>✅ 描述病毒侵染和繁殖的过程</li>
+          <li>✅ 了解病毒与人类的关系（有害+有益）</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🔬</span> 前测</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】病毒没有细胞结构，它由什么组成？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'A')" data-feedback="❌ 病毒没有细胞膜！"><span class="opt-letter">A</span> 细胞膜+细胞质+核酸</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 0, 'B')"><span class="opt-letter">B</span> 蛋白质外壳+核酸</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'C')" data-feedback="❌ 病毒没有细胞壁！"><span class="opt-letter">C</span> 细胞壁+核酸</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'D')" data-feedback="❌ 病毒没有细胞器！"><span class="opt-letter">D</span> 细胞膜+细胞器+核酸</div>
+        <div class="feedback" id="feedback-0"></div>
+        <div class="answer-explanation" id="explanation-0"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 蛋白质外壳+核酸</strong></p><p style="margin-top:8px;">病毒<strong>没有细胞结构</strong>，只由<strong>蛋白质外壳（衣壳）</strong>和内部<strong>核酸（DNA或RNA）</strong>组成。这是它与所有细胞生物的本质区别。</p></div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】病毒只能寄生在活细胞内，原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 病毒没有线粒体！"><span class="opt-letter">A</span> 病毒需要线粒体供能</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 病毒没有细胞结构，无法独立进行新陈代谢</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 病毒有核酸！"><span class="opt-letter">C</span> 病毒体内没有遗传物质</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 病毒有蛋白质！"><span class="opt-letter">D</span> 病毒不含蛋白质</div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 病毒没有细胞结构，无法独立进行新陈代谢</strong></p><p style="margin-top:8px;">病毒没有细胞结构，没有细胞器，无法独立进行<strong>新陈代谢</strong>。它必须利用宿主细胞的物质和能量来完成自我复制，这是它必须寄生在活细胞内的根本原因。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🦠</span> 病毒的主要特征</h2>
+      <div class="card">
+        <div class="concept-box"><div class="label">核心概念 · 病毒的特征（与细菌、真菌的本质区别）</div>
+          <ul style="padding-left:20px;line-height:1.8;">
+            <li>🚫 <strong>无细胞结构：</strong>只由蛋白质外壳（衣壳）+ 核酸（DNA或RNA）组成</li>
+            <li>🦠 <strong>专性寄生：</strong>必须寄生在活细胞内，不能独立生活</li>
+            <li>🔬 <strong>极其微小：</strong>必须用电子显微镜才能观察（一般几十到几百纳米）</li>
+            <li>🔄 <strong>繁殖方式：</strong>复制增殖（利用宿主细胞的物质和能量）</li>
+          </ul>
+        </div>
+
+        <div class="svg-container">
+          <svg viewBox="0 0 600 260" width="600" height="260" xmlns="http://www.w3.org/2000/svg">
+            <rect width="600" height="260" fill="#f1f8e9" rx="8"/>
+            <text x="300" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#1b5e20">病毒侵染细胞的过程（噬菌体侵染细菌）</text>
+            <!-- 步骤1：吸附 -->
+            <rect x="40" y="60" width="110" height="80" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+            <text x="95" y="82" text-anchor="middle" font-size="12" fill="#1565c0" font-weight="bold">1. 吸附</text>
+            <circle cx="95" cy="110" r="15" fill="#ff7043" stroke="#e64a19" stroke-width="2"/>
+            <text x="95" y="114" text-anchor="middle" font-size="8" fill="white">病毒</text>
+            <rect x="70" y="125" width="50" height="30" rx="5" fill="#1565c0"/>
+            <text x="95" y="142" text-anchor="middle" font-size="8" fill="white">细胞</text>
+            <line x1="95" y1="125" x2="95" y2="118" stroke="#c62828" stroke-width="2"/>
+            <text x="165" y="95" text-anchor="middle" font-size="20" fill="#1565c0">→</text>
+            <!-- 步骤2：注入 -->
+            <rect x="180" y="60" width="110" height="80" rx="8" fill="#fff3e0" stroke="#e64a19" stroke-width="2"/>
+            <text x="235" y="82" text-anchor="middle" font-size="12" fill="#e64a19" font-weight="bold">2. 注入</text>
+            <rect x="205" y="125" width="60" height="30" rx="5" fill="#1565c0"/>
+            <path d="M220,125 Q235,115 250,125" stroke="#c62828" stroke-width="2" fill="none"/>
+            <line x1="235" y1="125" x2="235" y2="115" stroke="#c62828" stroke-width="2"/>
+            <text x="305" y="95" text-anchor="middle" font-size="20" fill="#e64a19">→</text>
+            <!-- 步骤3：合成 -->
+            <rect x="320" y="60" width="110" height="80" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+            <text x="375" y="82" text-anchor="middle" font-size="12" fill="#2e7d32" font-weight="bold">3. 合成</text>
+            <rect x="345" y="125" width="60" height="30" rx="5" fill="#1565c0"/>
+            <text x="375" y="142" text-anchor="middle" font-size="8" fill="white">复制DNA+合成蛋白质</text>
+            <text x="445" y="95" text-anchor="middle" font-size="20" fill="#2e7d32">→</text>
+            <!-- 步骤4：装配+释放 -->
+            <rect x="460" y="60" width="110" height="80" rx="8" fill="#fce4ec" stroke="#c62828" stroke-width="2"/>
+            <text x="515" y="82" text-anchor="middle" font-size="12" fill="#c62828" font-weight="bold">4. 装配释放</text>
+            <rect x="490" y="125" width="60" height="30" rx="5" fill="#1565c0"/>
+            <circle cx="490" cy="110" r="10" fill="#ff7043"/>
+            <circle cx="510" cy="108" r="8" fill="#ff7043"/>
+            <circle cx="525" cy="112" r="9" fill="#ff7043"/>
+            <text x="515" y="220" text-anchor="middle" font-size="11" fill="#5d6d7e">图3-6 病毒侵染和繁殖过程（以噬菌体为例）</text>
+          </svg>
+          <p class="svg-caption">图3-6 病毒侵染和繁殖过程（以噬菌体为例）</p>
+        </div>
+
+        <table class="bio-table">
+          <tr><th>病毒类型</th><th>宿主</th><th>代表病毒</th><th>危害</th></tr>
+          <tr><td>动物病毒</td><td>动物细胞</td><td>流感病毒、乙肝病毒、狂犬病毒</td><td>动物疾病</td></tr>
+          <tr><td>植物病毒</td><td>植物细胞</td><td>烟草花叶病毒</td><td>农作物病害</td></tr>
+          <tr><td>细菌病毒（噬菌体）</td><td>细菌</td><td>T2噬菌体</td><td>细菌裂解</td></tr>
+        </table>
+
+        <div class="concept-box"><div class="label">💉 病毒与人类的关系</div>
+          <ul style="padding-left:20px;line-height:1.8;">
+            <li>❌ <strong>有害：</strong>引起多种疾病（流感、乙肝、艾滋病、SARS、新冠等）</li>
+            <li>✅ <strong>有益：</strong>噬菌体可治疗细菌感染（噬菌体疗法）；疫苗（减毒/灭活病毒）可预防疾病；基因工程载体</li>
+          </ul>
+        </div>
+
+        <div class="warn-box"><div class="label">⚠️ 易错警示</div>
+          <p><strong>误区：</strong>病毒不是生物<br><strong>纠正：</strong>病毒<strong>是生物</strong>！它能繁殖（复制增殖）和进化（变异），符合生物的基本特征。只是它没有细胞结构，必须寄生在活细胞内才能表现出生命活动。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">✅</span> 后测</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】病毒的结构组成是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 病毒没有细胞结构！"><span class="opt-letter">A</span> 细胞壁+细胞膜+核酸</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 蛋白质外壳+核酸</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 病毒没有细胞膜！"><span class="opt-letter">C</span> 细胞膜+细胞质+核酸</div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 蛋白质外壳+核酸</strong></p><p style="margin-top:8px;">病毒<strong>没有细胞结构</strong>，只由<strong>蛋白质外壳（衣壳）</strong>和内部<strong>核酸（DNA或RNA）</strong>组成。</p></div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】病毒只能寄生在活细胞内，原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 病毒没有细胞结构，无法独立完成新陈代谢</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 病毒有核酸！"><span class="opt-letter">B</span> 病毒没有核酸</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 病毒不需要所有物质！"><span class="opt-letter">C</span> 病毒需要所有营养物质</div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 病毒没有细胞结构，无法独立完成新陈代谢</strong></p><p style="margin-top:8px;">病毒没有细胞结构，无法独立进行<strong>新陈代谢</strong>。它必须利用宿主细胞的<strong>物质和能量</strong>来合成自身的蛋白质和核酸，完成繁殖。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="exam-card-num" style="background:#dc2626;">1</span><strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：病毒的结构与寄生生活</strong><span style="color:white;background:#dc2626;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">近10年考了20次</span></div>
+          <p style="font-size:14px;line-height:1.7;"><strong>必背：</strong>病毒=蛋白质外壳+核酸，无细胞结构，必须寄生在活细胞内才能生活和繁殖。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="teachany-ai-tutor-card"><div data-teachany-tutor-card></div></section>
+  </main>
+
+  <footer class="footer"><p>© 2024 TeachAny · 初中生物互动课件系统</p><p style="margin-top:8px;font-size:12px;">基于 TeachAny v7.14.0</p></footer>
+
+  <script>
+    var COURSE_INFO = { totalSections: 10, currentSection: 8 };
+    var anchorContents = {};
+    anchorContents[1] = '<h3>🦠 问题1：病毒没有细胞结构为什么还是生物？</h3><p>因为病毒能<strong>繁殖</strong>（利用宿主细胞复制自己）和<strong>进化</strong>（变异），符合生物的基本特征。只是没有细胞结构，必须寄生在活细胞内。</p>';
+    anchorContents[2] = '<h3>🔬 问题2：噬菌体是如何侵染细菌的？</h3><p>噬菌体侵染细菌的过程：①<strong>吸附</strong>（尾丝附着在细菌表面）→②<strong>注入</strong>（DNA注入细菌）→③<strong>合成</strong>（利用细菌的物质复制DNA、合成蛋白质）→④<strong>装配</strong>（组装成新噬菌体）→⑤<strong>释放</strong>（细菌裂解，释放新噬菌体）。</p>';
+    anchorContents[3] = '<h3>💉 问题3：病毒对人类只有害处吗？</h3><p>不是！病毒对人类也有益处：①<strong>噬菌体疗法</strong>可治疗耐药细菌感染；②<strong>疫苗</strong>（减毒/灭活病毒）可预防疾病；③<strong>基因工程</strong>中病毒可作为基因载体。</p>';
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach(function(item) { item.classList.remove('selected'); });
+      btnElement.classList.add('selected');
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = anchorContents[id] || '';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = '你选择了：' + btnElement.getAttribute('data-anchor-choice'); feedback.style.display = 'block'; }
+    }
+    document.getElementById('learner-question-input') && document.getElementById('learner-question-input').addEventListener('input', function() {
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = '<h3>📍 你的问题：' + this.value + '</h3>';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = '你的问题：' + this.value; feedback.style.display = 'block'; }
+    });
+    function checkAnswer(element, isCorrect, questionNum) {
+      var parent = element.closest('.quiz-box');
+      var feedback = parent.querySelector('.feedback');
+      var explanation = document.getElementById('explanation-' + questionNum);
+      parent.querySelectorAll('.quiz-option').forEach(function(opt) { opt.classList.remove('correct', 'wrong'); });
+      if (isCorrect) { element.classList.add('correct'); if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong>'; feedback.className = 'feedback show correct-fb'; } if (explanation) explanation.classList.add('show'); }
+      else { element.classList.add('wrong'); if (feedback) { feedback.innerHTML = (element.dataset.feedback || '❌ 不对') + '<br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; } if (parent.querySelector('.quiz-option.correct') && explanation) explanation.classList.add('show'); }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var p = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      var pf = document.getElementById('progress-fill'); var pl = document.getElementById('progress-label');
+      if (pf) pf.style.width = p + '%';
+      if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="hist-american-civil-war-9">
+  <meta name="course-title" content="8.3 美国内战">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-9">
+  <meta name="teachany-node" content="history-american-civil-war">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+
+  <title>8.3 美国内战 | 初中9年级历史</title>
+
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ========== 历史科目专属配色 ========== */
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-dark: #6b3410;
+      --secondary: #d4a574;
+      --accent: #d4a017;
+      --bg-light: #faf7f2;
+      --bg-card: #ffffff;
+      --text-dark: #2c1810;
+      --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+      --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+      --border-color: #e8dcc8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ========== ① 品牌栏 ========== */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+
+    /* ========== ② 进度条 ========== */
+    .progress-bar { height: 4px; background: #e8dcc8; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 75%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: var(--bg-light); }
+
+    /* ========== ③ 导航栏 ========== */
+    .nav-bar { background: white; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: rgba(139,69,19,0.1); }
+    .nav-btn.disabled { opacity: 0.4; pointer-events: none; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* ========== ④ Hero区 ========== */
+    .hero {
+      background: linear-gradient(135deg, #1a0a00 0%, var(--primary-dark) 30%, var(--primary) 70%, var(--primary-light) 100%);
+      color: white;
+      padding: 48px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; }
+
+    .svg-container { margin: 20px auto 0; max-width: 900px; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 10px; color: #8b7355; font-size: 14px; text-align: center; }
+
+    /* ========== 主内容区 ========== */
+    .section { max-width: 960px; margin: 0 auto 28px; padding: 0 20px; }
+    .card { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid var(--border-color); }
+    .card-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 14px 24px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .card-header .tag { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .card-body { padding: 20px 24px; }
+
+    /* ========== ⑤ 探究问题锚点 ========== */
+    .anchor-box { background: #f5e6d3; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; font-size: 15px; line-height: 1.8; }
+    .anchor-box strong { color: var(--primary); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f5e6d3, #faf7f2); border: 2px solid #d4a574; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #e8d4bc, #f5e6d3); border-color: var(--primary); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+
+    .custom-question { margin-top: 16px; }
+    .custom-question label { display: block; margin-bottom: 6px; color: var(--primary); font-weight: 600; }
+    .custom-question input { width: 100%; border-radius: 12px; border: 1px solid #d4a574; background: #faf7f2; color: var(--text-dark); padding: 12px 14px; font-size: 15px; }
+    .custom-question input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,69,19,0.1); }
+    .anchor-display { margin-top: 16px; padding: 16px; border-radius: 12px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.15); min-height: 80px; }
+    .anchor-display h4 { color: var(--primary); margin-bottom: 8px; }
+
+    /* ========== ⑥ 学习目标 ========== */
+    .objectives-list { list-style: none; padding: 0; margin: 0; }
+    .objectives-list li { padding: 10px 16px; border-bottom: 1px solid var(--border-color); display: flex; gap: 10px; align-items: flex-start; }
+    .objectives-list li:last-child { border-bottom: none; }
+    .objectives-list li::before { content: '✅'; font-size: 14px; }
+
+    /* ========== ⑦ 前测 & ⑨ 后测 ========== */
+    .quiz-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-color); }
+    .quiz-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .quiz-header .quiz-badge { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .quiz-body { padding: 10px 16px; }
+    .quiz-item { margin-bottom: 18px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+    .quiz-question { background: #f5e6d3; padding: 12px 16px; font-size: 15px; line-height: 1.6; }
+    .quiz-question .star { color: var(--accent); margin-right: 4px; }
+    .quiz-question .exam-tag { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 6px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    .quiz-options { padding: 10px 16px; }
+    .quiz-option { display: flex; align-items: center; padding: 10px 14px; border-radius: 8px; cursor: pointer; margin-bottom: 8px; border: 2px solid transparent; transition: all 0.2s; background: white; }
+    .quiz-option:hover { background: #faf7f2; border-color: #d4a574; }
+    .quiz-option input { margin-right: 10px; accent-color: var(--primary); transform: scale(1.1); }
+    .quiz-option label { cursor: pointer; flex: 1; font-size: 14px; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.correct label { color: #065f46; font-weight: 600; }
+    .quiz-option.wrong { background: #fee2e2; border-color: #ef4444; }
+    .quiz-option.wrong label { color: #991b1b; }
+    .opt-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; font-size: 12px; font-weight: 700; margin-right: 10px; flex-shrink: 0; }
+    .quiz-feedback { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .quiz-feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .answer-explanation { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .check-btn { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; padding: 10px 28px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 700; transition: all 0.2s; margin-top: 16px; }
+    .check-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,69,19,0.25); }
+
+    /* ========== ⑧ 核心知识讲解 ========== */
+    .knowledge-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border-color); }
+    .knowledge-header { background: var(--primary); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; }
+    .knowledge-body { padding: 20px 24px; }
+    .knowledge-body p { margin: 0 0 12px; line-height: 1.8; }
+    .knowledge-body p:last-child { margin-bottom: 0; }
+    .highlight { background: #f5e6d3; padding: 2px 6px; border-radius: 4px; font-weight: 700; color: var(--primary); }
+
+    /* 概念框 */
+    .concept-box { background: #faf7f2; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 对比表格 */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .compare-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px; text-align: center; }
+    .compare-table td { padding: 10px; border: 1px solid var(--border-color); text-align: center; }
+    .compare-table tr:nth-child(even) { background: #faf7f2; }
+
+    /* ========== ⑩ 必考分析与考点总结 ========== */
+    .exam-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .exam-card { border-radius: 12px; padding: 18px 20px; border-left: 4px solid var(--accent); background: #faf7f2; }
+    .exam-card h4 { color: var(--primary); margin: 0 0 8px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .exam-card p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--text-dark); }
+    .exam-tag { display: inline-flex; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 8px; }
+    .exam-tag.hot { background: #fee2e2; color: #dc2626; }
+    .exam-tag.high { background: #fef3c7; color: #92400e; }
+    .exam-tag.normal { background: #dbeafe; color: #1d4ed8; }
+
+    /* ========== AI学伴 ========== */
+    .ai-tutor { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; padding: 24px; color: white; margin-bottom: 20px; }
+    .ai-tutor h3 { margin: 0 0 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+    .ai-tutor p { margin: 0 0 10px; font-size: 14px; line-height: 1.7; opacity: 0.95; }
+    .ai-tutor .ai-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .ai-tutor button { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .ai-tutor button:hover { background: rgba(255,255,255,0.35); }
+
+    /* ========== 页脚 ========== */
+    .footer { background: var(--primary-dark); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    .footer p { margin: 0; opacity: 0.9; font-size: 14px; }
+    .footer .version { margin-top: 8px; font-size: 12px; opacity: 0.7; }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .hero { padding: 28px 14px; }
+      .hero h1 { font-size: 1.4rem; }
+      .hero-subtitle { font-size: 0.88rem; }
+      .section { padding: 0 12px; margin-bottom: 20px; }
+      .card-header { padding: 12px 14px; font-size: 15px; }
+      .card-body { padding: 14px; }
+      .anchor-points { flex-direction: column; gap: 6px; }
+      .anchor-btn { width: 100%; padding: 10px 12px; font-size: 0.82rem; }
+      .quiz-option { padding: 10px 12px; font-size: 0.88rem; }
+      .knowledge-body { padding: 14px; }
+      .exam-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== ① 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-scroll"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ========== ② 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+  <div class="progress-label">第 3/4 节 · 75%</div>
+
+  <!-- ========== ③ 导航栏 ========== -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第八单元：殖民地人民的反抗与资本主义扩展</div>
+      <a href="../8.2_eggg/eggg.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../8.4_rbmx/rbmx.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ========== ④ Hero区 ========== -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-landmark"></i> 九年级历史 · 第八单元</div>
+      <h1>📜 第8.3课 美国内战</h1>
+      <p class="hero-subtitle">📖 课标要求：知道林肯领导内战的主要史实，理解美国内战在美国历史发展中的重要作用；了解《解放黑人奴隶宣言》的主要内容<br>🎯 预计用时：45分钟</p>
+
+      <!-- SVG时间轴知识结构图 -->
+      <div class="svg-container">
+        <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" style="max-width:900px;display:block;margin:0 auto;">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <polygon points="0 0, 10 3, 0 6" fill="#d4a017"/>
+            </marker>
+          </defs>
+          <line x1="40" y1="60" x2="860" y2="60" stroke="#d4a017" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+          <circle cx="100" cy="60" r="18" fill="#d4a017" stroke="#fff" stroke-width="3"/>
+          <text x="100" y="105" text-anchor="middle" fill="#d4a017" font-size="11" font-weight="bold">1860</text>
+          <text x="100" y="30" text-anchor="middle" fill="#fff" font-size="10">林肯当选总统</text>
+
+          <circle cx="260" cy="60" r="14" fill="#a0522d" stroke="#d4a017" stroke-width="3"/>
+          <text x="260" y="105" text-anchor="middle" fill="#a0522d" font-size="11" font-weight="bold">1861.2</text>
+          <text x="260" y="30" text-anchor="middle" fill="#fff" font-size="10">南方7州脱离</text>
+
+          <circle cx="420" cy="60" r="22" fill="#d4a017" stroke="#fff" stroke-width="3"/>
+          <text x="420" y="105" text-anchor="middle" fill="#d4a017" font-size="11" font-weight="bold">1861.4</text>
+          <text x="420" y="30" text-anchor="middle" fill="#fff" font-size="10">内战爆发</text>
+
+          <circle cx="620" cy="60" r="18" fill="#a0522d" stroke="#d4a017" stroke-width="3"/>
+          <text x="620" y="105" text-anchor="middle" fill="#a0522d" font-size="11" font-weight="bold">1862.9</text>
+          <text x="620" y="30" text-anchor="middle" fill="#fff" font-size="10">解放宣言颁布</text>
+
+          <circle cx="800" cy="60" r="14" fill="#10b981" stroke="#fff" stroke-width="3"/>
+          <text x="800" y="105" text-anchor="middle" fill="#10b981" font-size="11" font-weight="bold">1865.4</text>
+          <text x="800" y="30" text-anchor="middle" fill="#fff" font-size="10">战争结束</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== 主内容区 ========== -->
+  <main>
+
+    <!-- ========== ⑤ 探究问题锚点 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🔍 探究问题</div>
+        <div class="card-body">
+          <p style="color: var(--primary); margin-bottom: 12px;">选择你关心的问题，后续内容将围绕问题展开讲解：</p>
+          <div class="anchor-points">
+            <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-question="美国内战爆发的根本原因是什么？">⚙️ 内战爆发的根本原因是什么？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-question="《解放黑人奴隶宣言》为何能成为战争转折点？">📋 解放宣言为何能扭转战局？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-question="为什么说美国内战是美国历史上第二次资产阶级革命？">🏆 为什么是第二次资产阶级革命？</button>
+          </div>
+          <div class="custom-question">
+            <label>我有自己的问题：</label>
+            <input type="text" id="custom-question-input" placeholder="输入你的问题..." oninput="handleCustomQuestion(this.value)">
+          </div>
+          <div class="anchor-display" id="anchor-display">
+            <p style="text-align: center; color: var(--text-muted);">👆 点击上方按钮或输入自己的问题</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑥ 学习目标 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🎯 学习目标 <span class="tag">课标要求</span></div>
+        <div class="card-body">
+          <ul class="objectives-list">
+            <li>知道美国内战爆发的背景（南北经济矛盾）</li>
+            <li>掌握林肯当选、南方脱离、内战爆发的过程</li>
+            <li>简述《解放黑人奴隶宣言》和《宅地法》的主要内容</li>
+            <li>理解《解放宣言》对战争进程的影响</li>
+            <li>总结美国内战的历史意义（第二次资产阶级革命）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑦ 前测 ========== -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">📝 课前自测 <span class="quiz-badge">点击选项查看解析</span></div>
+        <div class="quiz-body" id="pre-quiz">
+
+          <!-- 基础题1 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>美国内战爆发于？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'A')" data-feedback="">
+                <span class="opt-letter">A</span><label>A. 1861年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'B')" data-feedback="❌ 1860年是林肯当选总统的年份，不是战争爆发年份！">
+                <span class="opt-letter">B</span><label>B. 1860年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 1865年是战争结束的年份！">
+                <span class="opt-letter">C</span><label>C. 1865年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 1850年离内战爆发还有10年！">
+                <span class="opt-letter">D</span><label>D. 1850年</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre1"></div>
+            <div class="answer-explanation" id="explain-pre1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：A. 1861年</strong></p>
+              <p style="margin-top: 8px;">1861年4月，南方军队炮击萨姆特要塞，北方被迫应战，美国内战正式爆发。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📚 知识拓展 · 时间线</div>
+                <p><strong>1860年</strong>：林肯当选总统 → <strong>1861年2月</strong>：南方7州脱离联邦 → <strong>1861年4月</strong>：内战爆发</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 基础题2 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>《解放黑人奴隶宣言》颁布于？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 1860年林肯还未就任总统！">
+                <span class="opt-letter">A</span><label>A. 1860年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 1862年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 1863年是宣言正式生效的日期！">
+                <span class="opt-letter">C</span><label>C. 1863年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 1865年是战争结束的年份！">
+                <span class="opt-letter">D</span><label>D. 1865年</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre2"></div>
+            <div class="answer-explanation" id="explain-pre2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 1862年</strong></p>
+              <p style="margin-top: 8px;">1862年9月22日，林肯颁布《解放黑人奴隶宣言》，规定自1863年1月1日起，所有叛乱诸州的黑人奴隶永远获得自由。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 易错警示</div>
+                <p>注意区分：<strong>颁布</strong>是1862年9月，<strong>生效</strong>是1863年1月1日！</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 提高题3 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>美国内战爆发的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 林肯当选是直接原因/导火索，不是根本原因！">
+                <span class="opt-letter">A</span><label>A. 林肯当选总统</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'B')" data-feedback="❌ 南方脱离是战争爆发的过程，不是根本原因！">
+                <span class="opt-letter">B</span><label>B. 南方蓄奴州脱离联邦</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 南方奴隶制与北方资本主义制度的矛盾</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 英国干涉不是内战爆发的根本原因！">
+                <span class="opt-letter">D</span><label>D. 英国对美国的干涉</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre3"></div>
+            <div class="answer-explanation" id="explain-pre3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 南方奴隶制与北方资本主义制度的矛盾</strong></p>
+              <p style="margin-top: 8px;">根本原因是北方<strong>资本主义</strong>制度与南方<strong>奴隶制</strong>种植园经济之间的不可调和矛盾。导火索是林肯当选总统（南方担心利益受损）。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">💡 答题技巧</div>
+                <p><strong>根本原因</strong>：经济基础层面的矛盾（制度层面）<br><strong>直接原因/导火索</strong>：触发事件（林肯当选）</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 挑战题4 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>关于《解放黑人奴隶宣言》的表述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 宣言仅适用于叛乱诸州，不是全国范围立即废除！">
+                <span class="opt-letter">A</span><label>A. 宣布在全国范围内废除奴隶制</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 宣言由北方联邦政府发布，不是南方发布！">
+                <span class="opt-letter">B</span><label>B. 由南方叛乱诸州发布</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 宣言是战争爆发一年多后才颁布，不是立即发布！">
+                <span class="opt-letter">C</span><label>C. 于内战爆发后立即发布</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'D')" data-feedback="">
+                <span class="opt-letter">D</span><label>D. 从法律上限制了南方奴隶制的发展</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre4"></div>
+            <div class="answer-explanation" id="explain-pre4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：D. 从法律上限制了南方奴隶制的发展</strong></p>
+              <p style="margin-top: 8px;">《解放宣言》由林肯于1862年9月颁布，规定叛乱诸州的黑人奴隶自1863年1月1日起获得自由，使南方失去了大量劳动力，从法律上严重打击了南方奴隶制。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 常见陷阱</div>
+                <p>选项A含有"全国范围内"等绝对词，通常是错误选项。解放宣言只针对叛乱诸州，全国废除奴隶制是通过后来的<strong>宪法第13修正案（1865年）</strong>实现的。</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('pre-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑧ 核心知识讲解 ========== -->
+
+    <!-- 知识点1 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">一、战争背景——不可调和的南北矛盾</div>
+        <div class="knowledge-body">
+          <p>19世纪中期，美国<span class="highlight">北部</span>以资本主义工商业经济为主，主张提高关税、保护民族工业、发展自由劳动力市场；<span class="highlight">南部</span>以奴隶制种植园经济为主，强烈反对提高关税，极力将奴隶制扩展到新开辟的西部领土。</p>
+
+          <table class="compare-table">
+            <tr>
+              <th>对比项</th>
+              <th>北方（资本主义）</th>
+              <th>南方（奴隶制）</th>
+            </tr>
+            <tr>
+              <td><strong>经济制度</strong></td>
+              <td>工商业资本主义</td>
+              <td>奴隶制种植园</td>
+            </tr>
+            <tr>
+              <td><strong>劳动力</strong></td>
+              <td>自由雇佣劳动</td>
+              <td>黑人奴隶</td>
+            </tr>
+            <tr>
+              <td><strong>关税政策</strong></td>
+              <td>主张提高关税</td>
+              <td>反对提高关税</td>
+            </tr>
+            <tr>
+              <td><strong>核心诉求</strong></td>
+              <td>统一国内市场</td>
+              <td>扩大奴隶制领土</td>
+            </tr>
+          </table>
+
+          <div class="warn-box">
+            <div class="label">⚠️ 核心矛盾</div>
+            <p>南北方围绕<span class="highlight">关税、奴隶制扩展、西部土地分配</span>三大问题展开激烈斗争，矛盾日益尖锐，最终不可调和。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点2 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">二、战争爆发——1861年内战开始</div>
+        <div class="knowledge-body">
+          <p>📅 <strong>1860年</strong>：林肯当选美国总统，主张限制奴隶制扩张。南方蓄奴州担心利益受损，率先发难。</p>
+          <p>📅 <strong>1861年2月</strong>：南方7个蓄奴州宣布脱离联邦，组成"南方邦联"。</p>
+          <p>📅 <strong>1861年4月</strong>：南方军队炮击萨姆特要塞，北方被迫应战，美国内战正式爆发。</p>
+
+          <div class="svg-container" style="margin: 20px 0; text-align: center;">
+            <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+              <text x="350" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#8b4513">美国内战时间线</text>
+
+              <line x1="40" y1="100" x2="660" y2="100" stroke="#8b4513" stroke-width="3"/>
+
+              <circle cx="80" cy="100" r="20" fill="#1565c0" stroke="#fff" stroke-width="3"/>
+              <text x="80" y="105" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">1860</text>
+              <text x="80" y="155" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">林肯当选</text>
+              <text x="80" y="175" text-anchor="middle" fill="#555" font-size="11">南方担忧</text>
+
+              <circle cx="250" cy="100" r="18" fill="#c62828" stroke="#fff" stroke-width="3"/>
+              <text x="250" y="105" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">1861.2</text>
+              <text x="250" y="155" text-anchor="middle" fill="#c62828" font-size="12" font-weight="bold">7州脱离</text>
+              <text x="250" y="175" text-anchor="middle" fill="#555" font-size="11">邦联成立</text>
+
+              <circle cx="420" cy="100" r="24" fill="#d4a017" stroke="#fff" stroke-width="3"/>
+              <text x="420" y="105" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">1861.4</text>
+              <text x="420" y="155" text-anchor="middle" fill="#d4a017" font-size="12" font-weight="bold">内战爆发</text>
+              <text x="420" y="175" text-anchor="middle" fill="#555" font-size="11">萨姆特要塞</text>
+
+              <circle cx="590" cy="100" r="18" fill="#2e7d32" stroke="#fff" stroke-width="3"/>
+              <text x="590" y="105" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">1865.4</text>
+              <text x="590" y="155" text-anchor="middle" fill="#2e7d32" font-size="12" font-weight="bold">北方胜利</text>
+              <text x="590" y="175" text-anchor="middle" fill="#555" font-size="11">李投降</text>
+            </svg>
+          </div>
+
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 林肯</div>
+            <p><strong>亚伯拉罕·林肯</strong>（1809—1865），美国第16任总统。领导北方取得内战胜利，颁布《解放宣言》废除奴隶制，但于1865年4月14日在福特剧院被刺杀身亡。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点3 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">三、战争进程——转折与胜利</div>
+        <div class="knowledge-body">
+          <p><strong>初期形势（1861—1862）：</strong>战争初期，北方虽然在人口、工业、铁路等方面占优势，但南方军队凭借优秀将领和本土作战优势，连连得手。北方接连失利，士气低落。</p>
+
+          <div class="svg-container" style="margin: 20px 0; text-align: center;">
+            <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+              <text x="300" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#8b4513">战争进程：转折点</text>
+
+              <rect x="20" y="50" width="180" height="80" rx="10" fill="#c62828" stroke="#8b4513" stroke-width="2"/>
+              <text x="110" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="white">初期北方失利</text>
+              <text x="110" y="95" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)">将领不足、士气低落</text>
+              <text x="110" y="115" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)">南方本土作战优势</text>
+
+              <line x1="200" y1="90" x2="300" y2="90" stroke="#8b4513" stroke-width="3"/>
+              <text x="250" y="82" text-anchor="middle" font-size="11" fill="#654321">1862转折</text>
+
+              <rect x="300" y="50" width="280" height="80" rx="10" fill="#2e7d32" stroke="#8b4513" stroke-width="2"/>
+              <text x="440" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="white">解放宣言 + 宅地法</text>
+              <text x="440" y="95" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)">战争性质转变</text>
+              <text x="440" y="115" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.9)">黑人参战 + 农民支持</text>
+
+              <line x1="440" y1="130" x2="440" y2="170" stroke="#8b4513" stroke-width="2"/>
+              <rect x="300" y="170" width="280" height="30" rx="8" fill="#d4a017"/>
+              <text x="440" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="#654321">北方转入战略进攻 → 1865年胜利</text>
+            </svg>
+          </div>
+
+          <p>📘 <strong>《解放黑人奴隶宣言》（1862年9月22日）：</strong>规定自1863年1月1日起，所有叛乱诸州的黑人奴隶永远获得自由，成为联邦军队的合法士兵。</p>
+          <p>📘 <strong>《宅地法》（1862年5月）：</strong>规定凡年满21岁的美国公民，缴付10美元手续费，即可获得不超过160英亩的西部公有土地，定居并耕种5年后拥有所有权。</p>
+
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 解放宣言的意义</div>
+            <p><strong>军事层面：</strong>黑人奴隶获得自由后纷纷逃往北方，近20万黑人参战，南方生产力遭到严重破坏。<br><strong>性质层面：</strong>战争从"维护统一"转变为"争取自由"，获得广泛支持。<br><strong>国际层面：</strong>英法失去支持南方的借口。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点4 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">四、战争意义——美国第二次资产阶级革命</div>
+        <div class="knowledge-body">
+          <p>美国内战是美国历史上的<span class="highlight">第二次资产阶级革命</span>，具有深远的历史意义：</p>
+          <p>✅ <strong>维护了国家统一：</strong>粉碎南方分裂势力，捍卫联邦完整</p>
+          <p>✅ <strong>废除了奴隶制度：</strong>通过《解放宣言》和宪法第13修正案，彻底废除美国奴隶制</p>
+          <p>✅ <strong>促进了资本主义发展：</strong>消除奴隶制障碍，为美国资本主义高速发展创造条件</p>
+          <p>✅ <strong>推动了民主进步：</strong>黑人获得法律上的平等权利（宪法第14、15修正案）</p>
+
+          <div class="svg-container" style="margin: 20px 0; text-align: center;">
+            <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+              <text x="350" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#8b4513">两次资产阶级革命对比</text>
+
+              <rect x="20" y="50" width="260" height="110" rx="10" fill="#1565c0" stroke="#8b4513" stroke-width="2"/>
+              <text x="150" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="white">第一次：独立战争（1775-1783）</text>
+              <text x="150" y="95" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="12">任务：推翻英国殖民统治</text>
+              <text x="150" y="115" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="12">成果：建立资产阶级共和国</text>
+              <text x="150" y="135" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="12">矛盾：民族矛盾</text>
+
+              <line x1="280" y1="105" x2="420" y2="105" stroke="#8b4513" stroke-width="3"/>
+              <text x="350" y="98" text-anchor="middle" font-size="11" fill="#654321">两次革命</text>
+
+              <rect x="420" y="50" width="260" height="110" rx="10" fill="#8b4513" stroke="#8b4513" stroke-width="2"/>
+              <text x="550" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="white">第二次：美国内战（1861-1865）</text>
+              <text x="550" y="95" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="12">任务：废除奴隶制、维护统一</text>
+              <text x="550" y="115" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="12">成果：废除奴隶制、完善民主</text>
+              <text x="550" y="135" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="12">矛盾：阶级矛盾</text>
+            </svg>
+          </div>
+
+          <div class="warn-box">
+            <div class="label">⚠️ 高频考点 · 易错警示</div>
+            <p><strong>易混淆点：</strong>独立战争是"第一次资产阶级革命"——推翻英国殖民统治；内战是"第二次"——废除奴隶制，维护统一。两次革命都推动了美国资本主义的发展。</p>
+            <p style="margin-top: 8px;"><strong>答题公式：</strong>"美国内战是美国历史上的第二次资产阶级革命，维护了国家统一，废除了奴隶制，为资本主义发展扫清了障碍，推动了民主进步。"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点5 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">五、关键文件对比</div>
+        <div class="knowledge-body">
+          <table class="compare-table">
+            <tr>
+              <th>文件</th>
+              <th>时间</th>
+              <th>颁布者</th>
+              <th>核心内容</th>
+            </tr>
+            <tr>
+              <td><strong>《解放黑人奴隶宣言》</strong></td>
+              <td>1862年9月</td>
+              <td>林肯</td>
+              <td>叛乱诸州黑人奴隶获得自由</td>
+            </tr>
+            <tr>
+              <td><strong>《宅地法》</strong></td>
+              <td>1862年5月</td>
+              <td>林肯政府</td>
+              <td>10美元可获160英亩土地</td>
+            </tr>
+            <tr>
+              <td><strong>《宪法第13修正案》</strong></td>
+              <td>1865年</td>
+              <td>国会通过</td>
+              <td>全国范围内废除奴隶制</td>
+            </tr>
+          </table>
+
+          <div class="concept-box">
+            <div class="label">📌 核心结论 · 必背</div>
+            <p><strong>解放宣言</strong>与<strong>宪法第13修正案</strong>的区别：解放宣言仅针对叛乱诸州（军事措施）；第13修正案在全国范围内正式废除奴隶制（宪法修正）。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑨ 后测 ========== -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">✅ 课后巩固 <span class="quiz-badge">含中考真题</span></div>
+        <div class="quiz-body" id="post-quiz">
+
+          <!-- 后测基础题1 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2021·山东中考）美国内战爆发的根本原因是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 林肯当选是直接原因，不是根本原因！">
+                <span class="opt-letter">A</span><label>A. 林肯当选总统</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 北方资本主义与南方奴隶制矛盾的激化</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 英国干涉不是内战爆发的根本原因！">
+                <span class="opt-letter">C</span><label>C. 英国对美国的干涉</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 黑人要求解放是内战的结果，不是原因！">
+                <span class="opt-letter">D</span><label>D. 黑人要求解放</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post1"></div>
+            <div class="answer-explanation" id="explain-post1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 北方资本主义与南方奴隶制矛盾的激化</strong></p>
+              <p style="margin-top: 8px;">美国内战的根本原因是南北方两种经济制度（资本主义 vs 奴隶制）的不可调和矛盾。林肯当选只是导火索。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📝 中考真题出处</div>
+                <p><strong>来源：</strong>2021年山东省中考历史卷</p>
+                <p style="margin-top: 6px;"><strong>考点：</strong>内战爆发的根本原因（制度矛盾）</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 后测基础题2 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>《解放黑人奴隶宣言》是由谁颁布的？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'A')" data-feedback="">
+                <span class="opt-letter">A</span><label>A. 林肯</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ 华盛顿是独立战争时期的领导人！">
+                <span class="opt-letter">B</span><label>B. 华盛顿</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'C')" data-feedback="❌ 罗斯福是20世纪30年代的总统！">
+                <span class="opt-letter">C</span><label>C. 罗斯福</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 杰斐逊是独立宣言的起草者，不是内战时期的！">
+                <span class="opt-letter">D</span><label>D. 杰斐逊</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post2"></div>
+            <div class="answer-explanation" id="explain-post2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：A. 林肯</strong></p>
+              <p style="margin-top: 8px;">《解放黑人奴隶宣言》由美国总统亚伯拉罕·林肯于1862年9月22日颁布，是内战期间最重要的政策性文件之一。</p>
+            </div>
+          </div>
+
+          <!-- 后测提高题3 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2018·山东中考）美国内战的历史意义是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 独立战争已推翻英国殖民统治，内战没有涉及此内容！">
+                <span class="opt-letter">A</span><label>A. 摧毁了英国在美国的殖民统治</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'B')" data-feedback="❌ 美国建立的是联邦共和制，不是君主立宪制！">
+                <span class="opt-letter">B</span><label>B. 确立了君主立宪制</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 维护了国家统一，废除了奴隶制</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 社会主义国家是1917年俄国十月革命后建立的！">
+                <span class="opt-letter">D</span><label>D. 建立了世界上第一个社会主义国家</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post3"></div>
+            <div class="answer-explanation" id="explain-post3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 维护了国家统一，废除了奴隶制</strong></p>
+              <p style="margin-top: 8px;">美国内战的历史意义：维护了国家统一，废除了奴隶制，是美国历史上的第二次资产阶级革命。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 常见陷阱</div>
+                <p>"摧毁英国殖民统治"是<strong>独立战争</strong>的成果；"建立社会主义国家"是<strong>俄国十月革命</strong>的成果。注意区分不同历史事件的成果！</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 后测挑战题4 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>之所以说美国内战是美国历史上第二次资产阶级革命，主要因为它？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 推翻英国殖民统治是独立战争的内容！">
+                <span class="opt-letter">A</span><label>A. 推翻了英国的殖民统治</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 美国始终是联邦共和制，没有建立君主立宪制！">
+                <span class="opt-letter">B</span><label>B. 建立了君主立宪制</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 《独立宣言》是独立战争时期颁布的！">
+                <span class="opt-letter">C</span><label>C. 颁布了《独立宣言》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'D')" data-feedback="">
+                <span class="opt-letter">D</span><label>D. 废除了奴隶制，进一步完善了资本主义制度</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post4"></div>
+            <div class="answer-explanation" id="explain-post4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：D. 废除了奴隶制，进一步完善了资本主义制度</strong></p>
+              <p style="margin-top: 8px;">美国内战被称为"第二次资产阶级革命"的原因：独立战争（第一次）推翻了殖民统治，建立资产阶级共和制；内战（第二次）废除了奴隶制，消除了资本主义发展的障碍，进一步完善了资产阶级民主制度。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">💡 答题技巧 · 两次资产阶级革命</div>
+                <p><strong>第一次</strong>：独立战争 → 推翻殖民统治 → 建立共和制<br><strong>第二次</strong>：内战 → 废除奴隶制 → 完善共和制<br>共同点：都推动了美国资本主义的发展</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('post-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑩ 必考分析与考点总结 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🏆 必考分析与考点总结</div>
+        <div class="card-body">
+          <div class="exam-cards">
+            <div class="exam-card">
+              <h4>📍 战争爆发根本原因 <span class="exam-tag hot">高频</span></h4>
+              <p>南方奴隶制与北方资本主义制度的矛盾不可调和</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 林肯当选与内战爆发时间 <span class="exam-tag hot">高频</span></h4>
+              <p>1860年林肯当选 → 1861年内战爆发</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 解放宣言 <span class="exam-tag hot">高频</span></h4>
+              <p>1862年颁布，叛乱诸州奴隶获自由，扭转战局</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 战争历史意义 <span class="exam-tag hot">高频</span></h4>
+              <p>维护统一、废除奴隶制、第二次资产阶级革命</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 两次资产阶级革命对比 <span class="exam-tag high">重要</span></h4>
+              <p>独立战争 vs 内战：任务、成果、矛盾均不同</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 《宅地法》 <span class="exam-tag normal">常考</span></h4>
+              <p>10美元获160英亩土地，激发农民参军热情</p>
+            </div>
+          </div>
+
+          <div class="warn-box" style="margin-top: 16px;">
+            <div class="label">⚠️ 易错警示</div>
+            <p><strong>易错1：</strong>内战根本原因是制度矛盾，<strong>不是</strong>林肯当选！林肯当选是直接原因（导火索）！</p>
+            <p style="margin-top: 6px;"><strong>易错2：</strong>解放宣言<strong>颁布</strong>于1862年，<strong>生效</strong>于1863年！</p>
+            <p style="margin-top: 6px;"><strong>易错3：</strong>解放宣言<strong>不是</strong>全国废除奴隶制，全国废除是宪法第13修正案（1865年）！</p>
+            <p style="margin-top: 6px;"><strong>易错4：</strong>"推翻了英国殖民统治"是<strong>独立战争</strong>，不是内战！</p>
+            <p style="margin-top: 6px;"><strong>易错5：</strong>内战性质：<strong>第二次资产阶级革命</strong>，不是民族革命！</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== AI学伴 ========== -->
+    <section class="section">
+      <div class="ai-tutor">
+        <h3>🤖 AI学伴 · 智能助教</h3>
+        <p>学习本课过程中有任何疑问，都可以向AI学伴提问！</p>
+        <p>💡 <strong>推荐提问：</strong>本课重点是什么？帮我出题练习？为什么说内战是第二次资产阶级革命？</p>
+        <div class="ai-buttons">
+          <button>📚 帮我总结本课重点</button>
+          <button>🧠 出几道题考考我</button>
+          <button>🔗 内战和独立战争有什么关系？</button>
+          <button>📝 帮我记笔记</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+    <p class="version">基于 TeachAny v7.14.0 | 适配人教版九年级历史课程标准</p>
+  </footer>
+
+  <!-- ========== JavaScript ========== -->
+  <script src="../../shared/scripts.js?v=8.0"></script>
+
+  <!-- 本课件专属脚本 -->
+  <script>
+    /* ========== 问题锚点功能 ========== */
+    const anchorContents = {
+      1: `<h4>⚙️ 问题：内战爆发的根本原因是什么？</h4>
+        <p><strong>根本原因：</strong>南方奴隶制与北方资本主义制度的矛盾不可调和。</p>
+        <ul style="padding-left: 20px; margin-top: 10px; line-height: 1.8;">
+          <li>✅ <strong>关税之争：</strong>北方要提高关税保护工业，南方反对</li>
+          <li>✅ <strong>奴隶制扩展：</strong>南方要将奴隶制扩展到西部，北方反对</li>
+          <li>✅ <strong>西部土地：</strong>双方争夺新领土的控制权</li>
+        </ul>
+        <p style="margin-top: 12px;"><strong>直接原因（导火索）：</strong>1860年林肯当选总统，南方担心利益受损，率先脱离联邦。</p>`,
+      2: `<h4>📋 问题：解放宣言为何能扭转战局？</h4>
+        <p><strong>三个层面：</strong></p>
+        <ul style="padding-left: 20px; margin-top: 10px; line-height: 1.8;">
+          <li>✅ <strong>军事层面：</strong>近20万黑人参战，南方失去劳动力</li>
+          <li>✅ <strong>性质层面：</strong>从"维护统一"→"争取自由"，获得广泛支持</li>
+          <li>✅ <strong>国际层面：</strong>英法失去支持南方的借口</li>
+        </ul>
+        <p style="margin-top: 12px;">💡 <strong>结论：</strong>解放宣言从根本上扭转了战争局势，是内战的重要转折点！</p>`,
+      3: `<h4>🏆 问题：为什么是第二次资产阶级革命？</h4>
+        <p><strong>两次资产阶级革命对比：</strong></p>
+        <ul style="padding-left: 20px; margin-top: 10px; line-height: 1.8;">
+          <li>✅ <strong>第一次（独立战争）：</strong>推翻殖民统治 → 建立资产阶级共和制</li>
+          <li>✅ <strong>第二次（内战）：</strong>废除奴隶制 → 完善资产阶级民主制度</li>
+        </ul>
+        <p style="margin-top: 12px;"><strong>共同点：</strong>都扫除了资本主义发展的障碍，推动美国社会进步。</p>
+        <p style="margin-top: 8px;">💡 <strong>答题公式：</strong>"美国内战是美国历史上的第二次资产阶级革命，维护了国家统一，废除了奴隶制，为资本主义发展扫清了障碍。"</p>`
+    };
+
+    function selectAnchor(btn, id) {
+      document.querySelectorAll('.anchor-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('anchor-display').innerHTML = anchorContents[id];
+    }
+
+    function handleCustomQuestion(value) {
+      if (value.trim()) {
+        document.getElementById('anchor-display').innerHTML = `<h4>你的问题：${value}</h4><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+      }
+    }
+
+    /* ========== 答题检查功能 ========== */
+    function checkAnswer(element, isCorrect, questionId, optionLetter) {
+      const parent = element.closest('.quiz-item');
+      const feedback = parent.querySelector('.quiz-feedback');
+      const explanation = parent.querySelector('.answer-explanation');
+      const allOptions = parent.querySelectorAll('.quiz-option');
+
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+        feedback.className = 'quiz-feedback show correct-fb';
+        explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+        feedback.className = 'quiz-feedback show wrong-fb';
+      }
+    }
+
+    function checkAllQuiz(quizId) {
+      const quiz = document.getElementById(quizId);
+      quiz.querySelectorAll('.quiz-item').forEach(item => {
+        const correctOption = item.querySelector('.quiz-option[onclick*="true"]');
+        if (correctOption) {
+          correctOption.classList.add('correct');
+          const explanation = item.querySelector('.answer-explanation');
+          if (explanation) explanation.classList.add('show');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('📚 《美国内战》课件加载完成（v7.14.0）');
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

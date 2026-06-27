@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.2 青春期 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+    }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; margin: 0; }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 18.18%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary-dark); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-base { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-raise { background: #ede9fe; color: #6d28d9; }
+    .difficulty-challenge { background: #fee2e2; color: #dc2626; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid #81c784; background: #f1f8e9; color: var(--primary-dark); padding: 12px 14px; font-size: 16px; margin-top: 8px; }
+    #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28); color: var(--primary-dark); }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .exam-card { background: linear-gradient(135deg, #fefce8, #fef9c3); border: 2px solid #f59e0b; border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .exam-card h3 { color: #92400e; margin-bottom: 12px; }
+    .exam-stat { display: inline-block; background: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+    .must-know { background: #d1fae5; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+    .compare-table { width:100%;border-collapse:collapse;margin:16px 0;font-size:14px; }
+    .compare-table th { padding:10px;border:1px solid #c8e6c9;background:var(--primary);color:white; }
+    .compare-table td { padding:8px;border:1px solid #c8e6c9; }
+    .compare-table tr:nth-child(even) td { background:#f1f8e9; }
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .anchor-points { flex-direction: column; }
+      .anchor-btn { min-width: 100%; }
+      .nav-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">第 2 / 11 节 · 18.18%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../rttljkjy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第四单元：人体生理与健康</div>
+      <a href="../1.1_rdszyf/rdszyf.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../2.1_swwdzyywz/swwdzyywz.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero + SVG知识结构图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-person"></i> 七年级生物 · 第四单元</div>
+      <h1>1.2 青春期<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Adolescence</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：描述青春期的发育特点；养成青春期的卫生保健习惯<br>
+        🎯 预计用时：40分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识结构图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 240" width="800" height="240" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="240" fill="#f1f8e9"/>
+        <!-- 中心：青春期 -->
+        <rect x="300" y="80" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="115" text-anchor="middle" font-size="18" font-weight="bold" fill="white">青春期</text>
+        <text x="400" y="140" text-anchor="middle" font-size="12" fill="#c8e6c9">Adolescence</text>
+        
+        <!-- 生理变化 -->
+        <rect x="40" y="30" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="58" text-anchor="middle" font-size="13" fill="white">生理变化</text>
+        <text x="120" y="76" text-anchor="middle" font-size="10" fill="#e8f5e9">身高体重突增·性器官发育</text>
+        <line x1="200" y1="60" x2="300" y2="112" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 心理变化 -->
+        <rect x="40" y="165" width="160" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="193" text-anchor="middle" font-size="13" fill="white">心理变化</text>
+        <text x="120" y="211" text-anchor="middle" font-size="10" fill="#e8f5e9">独立意识·情绪波动</text>
+        <line x1="200" y1="195" x2="300" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 卫生保健 -->
+        <rect x="600" y="30" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="58" text-anchor="middle" font-size="13" fill="white">卫生保健</text>
+        <text x="680" y="76" text-anchor="middle" font-size="10" fill="#e8f5e9">营养·运动·心理调节</text>
+        <line x1="600" y1="60" x2="500" y2="112" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 青春期特点 -->
+        <rect x="600" y="165" width="160" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="203" text-anchor="middle" font-size="13" fill="white">青春期特点</text>
+        <text x="680" y="221" text-anchor="middle" font-size="9" fill="#e8f5e9">黄金发育期·可塑性强</text>
+        <line x1="600" y1="195" x2="500" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图1-2 青春期知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span>探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="青春期的生理变化有哪些？">📈 青春期的生理变化有哪些？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="青春期的心理变化有哪些？">🧠 青春期的心理变化有哪些？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="青春期如何做好卫生保健？">🩺 青春期如何做好卫生保健？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 描述青春期的生理变化（身高体重、性器官、第二性征）</li>
+          <li>✅ 描述青春期的心理变化特点</li>
+          <li>✅ 说明青春期卫生保健的重要性</li>
+          <li>✅ 养成青春期的良好生活习惯</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span>课前检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
+
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 青春期是指（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">A</span> 从童年到成年的过渡阶段</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span>  only 身高增长的时期</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span>  only 心理变化的时期</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span>  0-1岁的婴儿期</div>
+        <div class="feedback" id="fb-1"></div>
+        <div class="answer-explanation" id="exp-1">
+          <strong>解析：</strong>青春期是从<strong>童年到成年</strong>的过渡阶段，通常女孩从10-12岁开始，男孩从12-14岁开始。
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 青春期的显著特点是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 身高不再增长</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">B</span> 身高体重突增，性器官发育成熟</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 心理没有任何变化</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 不需要任何卫生保健</div>
+        <div class="feedback" id="fb-2"></div>
+        <div class="answer-explanation" id="exp-2">
+          <strong>解析：</strong>青春期的显著特点是<strong>身高体重突增</strong>，<strong>性器官迅速发育</strong>，并出现第二性征（如男生喉结突出、女生乳房发育）。
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关青春期的叙述，<strong>错误</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 青春期是学习的黄金时期</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 青春期要正确对待异性之间的交往</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 青春期只要关注学习成绩，不需要关注心理变化</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 青春期要养成良好的生活习惯</div>
+        <div class="feedback" id="fb-3"></div>
+        <div class="answer-explanation" id="exp-3">
+          <strong>解析：</strong>C是错误的。青春期<strong>心理变化很大</strong>，需要关注心理健康，学会调节情绪，正确对待异性交往。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span>核心知识讲解</h2>
+
+      <!-- 知识点1：青春期的生理变化 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">一、青春期的生理变化</h3>
+        <ol style="line-height:2;margin:12px 0;">
+          <li>📈 <strong>身高体重突增</strong>：主要是<strong>下肢骨</strong>迅速增长，是青春期最明显的特征</li>
+          <li>🧬 <strong>性器官迅速发育</strong>：睾丸/卵巢迅速发育，产生生殖细胞，分泌性激素</li>
+          <li>👦👧 <strong>第二性征出现</strong>：男生（喉结突出、声音变粗、胡须生长）；女生（乳房发育、声音变细、骨盆变宽）</li>
+          <li>🧠 <strong>大脑和内脏功能趋于完善</strong>：神经系统、心脏、肺功能明显增强</li>
+        </ol>
+
+        <div class="concept-box">
+          <div class="label">📖 概念框：第二性征</div>
+          <p>第二性征是指<strong>除生殖器官以外</strong>的性别特征，由<strong>性激素</strong>促进产生。进入青春期后，性激素分泌增加，第二性征逐渐明显。</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：青春期的心理变化 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">二、青春期的心理变化</h3>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>🧠 <strong>独立意识增强</strong>：希望自己做出决定，不希望被过度干涉</li>
+          <li>😤 <strong>情绪波动较大</strong>：容易冲动，情绪不稳定</li>
+          <li>🤝 <strong>开始关注异性</strong>：对异性产生好奇，愿意接近异性</li>
+          <li>🤔 <strong>自我意识增强</strong>：更加关注自己的形象和他人的评价</li>
+        </ul>
+
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>青春期的心理变化是<strong>正常</strong>的，不必过于紧张。遇到困惑时，应主动与老师、家长沟通，或者寻求心理辅导。</p>
+        </div>
+      </div>
+
+      <!-- 知识点3：青春期的卫生保健 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">三、青春期的卫生保健</h3>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>方面</th>
+              <th>卫生保健要点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="background:#f1f8e9;"><strong>营养</strong></td><td>均衡营养，多吃蛋白质、维生素，不挑食</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>运动</strong></td><td>每天保证1小时体育锻炼，增强体质</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>心理</strong></td><td>学会调节情绪，保持积极乐观的心态</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>卫生</strong></td><td>注意个人卫生，尤其是生殖器官卫生</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>作息</strong></td><td>保证充足睡眠（8-9小时/天），不熬夜</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测（含中考真题） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">1. 青春期的心理变化不包括（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 独立意识增强</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 情绪波动较大</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">C</span> 身高体重不再增长</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 开始关注异性</div>
+        <div class="feedback" id="fb-4"></div>
+        <div class="answer-explanation" id="exp-4">
+          <strong>解析：</strong>青春期<strong>身高体重会突增</strong>，而不是不再增长。A、B、D都是青春期心理变化的特点。
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】青春期要养成良好的生活习惯，下列说法错误的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 均衡营养，不挑食</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">B</span> 熬夜学习，减少睡眠时间</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 每天坚持体育锻炼</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 保持积极乐观的心态</div>
+        <div class="feedback" id="fb-5"></div>
+        <div class="answer-explanation" id="exp-5">
+          <strong>解析：</strong>青春期应保证<strong>充足睡眠</strong>（8-9小时/天），熬夜会影响生长发育和学习效率。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span>必考分析与考点总结</h2>
+
+      <div class="exam-card">
+        <h3>📊 考频统计</h3>
+        <p><span class="exam-stat">高频</span>青春期的生理变化特点（选择题）</p>
+        <p><span class="exam-stat">中频</span>青春期的心理变化（选择题、简答题）</p>
+        <p><span class="exam-stat">中频</span>青春期的卫生保健（选择题）</p>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 必背结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>青春期是从<strong>童年到成年</strong>的过渡阶段</li>
+          <li>青春期最显著的特点是<strong>身高体重突增</strong></li>
+          <li>青春期<strong>性器官迅速发育</strong>，出现第二性征</li>
+          <li>青春期心理变化：独立意识增强、情绪波动大、开始关注异性</li>
+          <li>青春期要养成良好的生活习惯（均衡营养、充足睡眠、体育锻炼）</li>
+        </ol>
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="line-height:2;">
+          <li>❌ 误认为"青春期身高不再增长"→ 实际是<strong>身高突增</strong>的时期</li>
+          <li>❌ 误认为"青春期只需要关注学习"→ 还需要关注<strong>心理变化</strong>和卫生保健</li>
+          <li>❌ 误认为"青春期不能与异性交往"→ 应<strong>正确对待</strong>异性交往，互相学习</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第四单元 人体生理与健康 · 第2节 青春期 · TeachAny v7.14.0</p>
+  </footer>
+
+  <!-- 额外模块 -->
+  <script src="../../shared/extra-modules.js"></script>
+  <script>window.mentorData={name:'青春期导师',title:'七年级生物 · 第一章',tag:'互动课件',intro:'专注青春期发育与健康，帮助你了解青春期的生理和心理变化。'};</script>
+
+  <!-- AI学伴悬浮窗 -->
+  <div id="ai-partner-wrapper" style="position:fixed;bottom:20px;right:20px;z-index:9999;font-family:inherit;">
+    <button id="ai-partner-toggle" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#4caf50);border:none;cursor:pointer;color:white;font-size:22px;box-shadow:0 4px 16px rgba(46,125,50,0.4);display:flex;align-items:center;justify-content:center;">🌿</button>
+    <div id="ai-partner-box" style="display:none;position:absolute;bottom:70px;right:0;width:320px;background:white;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);border:2px solid #c8e6c9;overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;padding:12px 16px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">
+        <span>🌿 AI学伴 · 初中生物</span>
+        <button id="ai-partner-close" style="background:none;border:none;color:white;cursor:pointer;font-size:16px;">✕</button>
+      </div>
+      <div id="ai-partner-thread" style="height:220px;overflow-y:auto;padding:14px;font-size:13px;line-height:1.6;">
+        <div style="background:#e8f5e9;border-radius:12px;padding:10px 14px;margin-bottom:8px;color:#1b5e20;"><strong>🌿 AI学伴：</strong> 欢迎！关于青春期的问题都可以问我～</div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid #e8f5e9;display:flex;gap:8px;">
+        <input id="ai-partner-input" placeholder="输入你的问题..." style="flex:1;border:1px solid #81c784;border-radius:20px;padding:8px 14px;font-size:13px;outline:none;">
+        <button id="ai-partner-send" style="background:#2e7d32;color:white;border:none;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:13px;">发送</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 导师卡片 -->
+  <div id="mentor-card-placeholder"></div>
+  <script>renderMentorCard('mentor-card-placeholder');</script>
+
+  <!-- JavaScript -->
+  <script>
+    // 进度条更新
+    document.addEventListener('DOMContentLoaded', function() {
+      var totalSections = 11;
+      var currentSection = 2;
+      var pct = Math.round((currentSection / totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '第 ' + currentSection + ' / ' + totalSections + ' 节 · ' + pct + '%';
+    });
+
+    // 锚点选择
+    var anchorContents = {
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📈 青春期的生理变化有哪些？</h4><p>青春期的生理变化包括：①<strong>身高体重突增</strong>；②<strong>性器官迅速发育</strong>，产生生殖细胞，分泌性激素；③<strong>第二性征出现</strong>（男生喉结突出、女生乳房发育）；④<strong>大脑和内脏功能趋于完善</strong>。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🧠 青春期的心理变化有哪些？</h4><p>青春期的心理变化包括：①<strong>独立意识增强</strong>；②<strong>情绪波动较大</strong>；③<strong>开始关注异性</strong>；④<strong>自我意识增强</strong>。这些心理变化都是正常的，遇到困惑时应主动与老师、家长沟通。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🩺 青春期如何做好卫生保健？</h4><p>青春期的卫生保健包括：①<strong>均衡营养</strong>，多吃蛋白质、维生素；②<strong>每天坚持体育锻炼</strong>；③<strong>保证充足睡眠</strong>（8-9小时/天）；④<strong>注意个人卫生</strong>；⑤<strong>保持积极乐观的心态</strong>，学会调节情绪。</p></div>'
+    };
+
+    function selectAnchor(btn, id) {
+      var btns = document.querySelectorAll('.anchor-btn');
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = anchorContents[id];
+      display.style.display = 'block';
+    }
+
+    function handleCustomQuestion(val) {
+      if (val.trim().length < 2) return;
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！青春期是人生的重要阶段，了解青春期的生理和心理变化，有助于你健康成长。</p></div>';
+      display.style.display = 'block';
+    }
+
+    function checkAnswer(el, isCorrect, qNum) {
+      var parent = el.parentElement;
+      var options = parent.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.remove('correct', 'wrong');
+      }
+      if (isCorrect) {
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      var fb = document.getElementById('fb-' + qNum);
+      var exp = document.getElementById('exp-' + qNum);
+      if (isCorrect) {
+        fb.className = 'feedback correct-fb show';
+        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
+      } else {
+        fb.className = 'feedback wrong-fb show';
+        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
+      }
+      exp.classList.add('show');
+    }
+  </script>
+
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

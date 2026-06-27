@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.3 合理营养与食品安全 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; }
+
+    /* 品牌栏 */
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 45.45%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+
+    /* 导航栏 */
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero区 */
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 主内容 */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; display: flex; align-items: center; gap: 12px; }
+    .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+
+    /* 锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+
+    /* 测验 */
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary-dark); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+
+    /* 警示框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 难度标签 */
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-base { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-raise { background: #ede9fe; color: #6d28d9; }
+    .difficulty-challenge { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+
+    /* 解析 */
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+
+    /* 中考卡片 */
+    .exam-card { background: linear-gradient(135deg, #fefce8, #fef9c3); border: 2px solid #f59e0b; border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .exam-card h3 { color: #92400e; margin-bottom: 12px; }
+    .exam-stat { display: inline-block; background: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+
+    /* 必背 */
+    .must-know { background: #d1fae5; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+
+    /* 表格 */
+    .compare-table { width:100%;border-collapse:collapse;margin:16px 0;font-size:14px; }
+    .compare-table th { padding:10px;border:1px solid #c8e6c9;background:var(--primary);color:white; }
+    .compare-table td { padding:8px;border:1px solid #c8e6c9; }
+    .compare-table tr:nth-child(even) td { background:#f1f8e9; }
+
+    /* 页脚 */
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .anchor-points { flex-direction: column; }
+      .anchor-btn { min-width: 100%; }
+      .nav-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">第 5 / 11 节 · 45.45%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../rttljkjy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第四单元：人体生理与健康</div>
+      <a href="../2.2_xhhs/xhhs.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../3.1_sxdwdkdcl/sxdwdkdcl.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero + SVG知识图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-utensils"></i> 七年级生物 · 第四单元</div>
+      <h1>2.3 合理营养与食品安全<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Rational Nutrition & Food Safety</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：关注合理营养和食品安全；设计一份营养合理的食谱<br>
+        🎯 预计用时：40分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 260" width="800" height="260" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="260" fill="#f1f8e9"/>
+        <!-- 中心：合理营养与食品安全 -->
+        <rect x="300" y="90" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="125" text-anchor="middle" font-size="16" font-weight="bold" fill="white">合理营养与食品安全</text>
+        <text x="400" y="150" text-anchor="middle" font-size="12" fill="#c8e6c9">Rational Nutrition & Food Safety</text>
+        
+        <!-- 合理营养 -->
+        <rect x="40" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="68" text-anchor="middle" font-size="13" fill="white">合理营养</text>
+        <text x="120" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">平衡膳食宝塔</text>
+        <line x1="200" y1="70" x2="300" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 食品安全 -->
+        <rect x="40" y="165" width="160" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="193" text-anchor="middle" font-size="13" fill="white">食品安全</text>
+        <text x="120" y="211" text-anchor="middle" font-size="10" fill="#e8f5e9">预防食物中毒</text>
+        <line x1="200" y1="195" x2="300" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 平衡膳食宝塔 -->
+        <rect x="600" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="68" text-anchor="middle" font-size="13" fill="white">平衡膳食宝塔</text>
+        <text x="680" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">谷物·蔬菜·肉类</text>
+        <line x1="600" y1="70" x2="500" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 健康习惯 -->
+        <rect x="600" y="165" width="160" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="203" text-anchor="middle" font-size="13" fill="white">健康习惯</text>
+        <text x="680" y="221" text-anchor="middle" font-size="9" fill="#e8f5e9">一日三餐·适量运动</text>
+        <line x1="600" y1="195" x2="500" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图2-3 合理营养与食品安全知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span>探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="什么是合理营养？如何做到合理营养？">🍽️ 什么是合理营养？如何做到合理营养？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="平衡膳食宝塔分几层？每层吃什么？">🏛️ 平衡膳食宝塔分几层？每层吃什么？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="食品安全要注意哪些问题？">⚠️ 食品安全要注意哪些问题？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 举例说明什么是合理营养</li>
+          <li>✅ 说出平衡膳食宝塔的分层及每层食物种类</li>
+          <li>✅ 关注食品安全，预防食物中毒</li>
+          <li>✅ 设计一份营养合理的食谱</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span>课前检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
+
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 下列做法中，属于合理营养的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">A</span> 均衡摄入谷物、蔬菜、肉类、水果</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 只吃肉类，不吃蔬菜</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 不吃早餐，午餐多吃</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 只喝饮料，不吃主食</div>
+        <div class="feedback" id="fb-1"></div>
+        <div class="answer-explanation" id="exp-1">
+          <strong>解析：</strong>合理营养是指<strong>全面而平衡</strong>的营养。“全面”指摄取的营养素种类要齐全；“平衡”指摄取的营养素量要合适。均衡摄入各类食物属于合理营养。
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 平衡膳食宝塔的最底层是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">A</span> 谷物类（米、面）</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">B</span> 蔬菜、水果类</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 肉类、蛋类</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 油脂类</div>
+        <div class="feedback" id="fb-2"></div>
+        <div class="answer-explanation" id="exp-2">
+          <strong>解析：</strong>平衡膳食宝塔从下到上分别是：谷物类（最底层，吃得最多）、蔬菜/水果类、肉类/蛋类/奶类、油脂类（最顶层，吃得最少）。
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关食品安全的叙述，<strong>错误</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 购买食品时要看生产日期和保质期</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 不吃发芽的马铃薯</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 可以随便吃野生蘑菇，不会中毒</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 生吃的蔬菜和水果要洗干净</div>
+        <div class="feedback" id="fb-3"></div>
+        <div class="answer-explanation" id="exp-3">
+          <strong>解析：</strong>C是错误的。很多野生蘑菇含有毒素，<strong>不能随意食用</strong>，否则可能引起食物中毒，甚至危及生命。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span>核心知识讲解</h2>
+
+      <!-- 知识点1：合理营养 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">一、合理营养</h3>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>🍽️ <strong>概念</strong>：指<strong>全面而平衡</strong>的营养</li>
+          <li>📏 <strong>“全面”</strong>：摄取的营养素<strong>种类要齐全</strong>（糖类、脂肪、蛋白质、水、无机盐、维生素都要有）</li>
+          <li>⚖️ <strong>“平衡”</strong>：摄取的营养素<strong>量要合适</strong>（不多也不少，比例合适）</li>
+          <li>🚫 <strong>不合理营养的表现</strong>：营养不良（如缺铁贫血、缺钙佝偻病）、营养过剩（如肥胖、高血压）</li>
+        </ul>
+
+        <div class="concept-box">
+          <div class="label">📖 概念框：合理营养的核心</div>
+          <p>合理营养 = <strong>种类齐全</strong> + <strong>比例合适</strong>，避免营养不良和营养过剩。</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：平衡膳食宝塔 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">二、平衡膳食宝塔（从下到上，摄入量逐渐减少）</h3>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>层级（从下到上）</th>
+              <th>食物种类</th>
+              <th>每日摄入量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="background:#f1f8e9;"><strong>第一层（最底层）</strong></td><td>谷物类（米、面、杂粮）</td><td>最多（250-400g）</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>第二层</strong></td><td>蔬菜、水果类</td><td>较多（蔬菜300-500g，水果200-350g）</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>第三层</strong></td><td>肉类、蛋类、奶类、豆类</td><td>适量（肉类40-75g，蛋类40-50g）</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>第四层</strong></td><td>奶类、豆类</td><td>适量（奶类300g）</td></tr>
+            <tr><td style="background:#f1f8e9;"><strong>第五层（最顶层）</strong></td><td>油脂类（植物油、动物油）</td><td>最少（25-30g）</td></tr>
+          </tbody>
+        </table>
+
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>① 谷物类是<strong>最主要的供能物质</strong>，应作为主食；<br>
+          ② 蔬菜和水果富含维生素、无机盐，应多吃；<br>
+          ③ 油脂类摄入过多容易引起肥胖，应少吃。</p>
+        </div>
+      </div>
+
+      <!-- 知识点3：食品安全 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">三、食品安全</h3>
+        <ol style="line-height:2;margin:12px 0;">
+          <li>🛒 <strong>购买食品时要注意</strong>：生产日期、保质期、生产厂家、营养成分表、QS标志（质量安全标志）</li>
+          <li>🍳 <strong>预防食物中毒</strong>：不吃发芽的马铃薯、有毒的野生蘑菇、未煮熟的豆角</li>
+          <li>🧼 <strong>生吃蔬菜水果要洗干净</strong>：去除表面的农药残留和细菌</li>
+          <li>🍽️ <strong>厨房卫生</strong>：生熟食物要分开处理，避免交叉污染</li>
+        </ol>
+
+        <div class="concept-box">
+          <div class="label">📖 概念框：食物中毒</div>
+          <p>食物中毒是指食用了<strong>有毒食物</strong>引起的急性疾病，可分为<strong>细菌性食物中毒</strong>（如吃了变质的食物）和<strong>非细菌性食物中毒</strong>（如吃了有毒的蘑菇、发芽的马铃薯）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测（含中考真题） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">1. 下列哪个做法不符合食品安全要求？（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 购买食品时看生产日期和保质期</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">B</span> 吃发芽的马铃薯</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 生吃蔬菜前洗干净</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 生熟食物分开处理</div>
+        <div class="feedback" id="fb-4"></div>
+        <div class="answer-explanation" id="exp-4">
+          <strong>解析：</strong>发芽的马铃薯含有<strong>龙葵素</strong>，有毒，不能吃。
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】设计一份合理的午餐食谱，下列组合<strong>最合理</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">A</span> 米饭、红烧肉、炒青菜、西红柿蛋汤</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">B</span> 炸鸡腿、薯条、可乐</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 方便面、火腿肠、辣条</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 馒头、咸菜、稀饭</div>
+        <div class="feedback" id="fb-5"></div>
+        <div class="answer-explanation" id="exp-5">
+          <strong>解析：</strong>A选项包含了谷物类（米饭）、肉类（红烧肉）、蔬菜类（炒青菜）、蛋类（西红柿蛋汤），营养全面均衡，最合理。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span>必考分析与考点总结</h2>
+
+      <div class="exam-card">
+        <h3>📊 考频统计</h3>
+        <p><span class="exam-stat">超高频</span>合理营养的概念（选择题）</p>
+        <p><span class="exam-stat">超高频</span>平衡膳食宝塔的分层及食物种类（选择题、简答题）</p>
+        <p><span class="exam-stat">高频</span>食品安全的常识（选择题）</p>
+        <p><span class="exam-stat">中频</span>设计合理的食谱（简答题）</p>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 必背结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>合理营养是指<strong>全面而平衡</strong>的营养</li>
+          <li>平衡膳食宝塔从下到上：<strong>谷物类 → 蔬菜/水果类 → 肉类/蛋类 → 奶类/豆类 → 油脂类</strong></li>
+          <li>购买食品时要看<strong>生产日期、保质期、QS标志</strong></li>
+          <li>不能吃<strong>发芽的马铃薯、有毒的野生蘑菇、未煮熟的豆角</strong>，预防食物中毒</li>
+        </ol>
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="line-height:2;">
+          <li>❌ 误认为"多吃肉类才是营养好"→ 实际要<strong>均衡摄入各类食物</strong></li>
+          <li>❌ 误认为"野生蘑菇都可以吃"→ 实际很多野生蘑菇<strong>有毒</strong>，不能随意食用</li>
+          <li>❌ 误认为"方便面、辣条是健康食品"→ 实际这些食品<strong>营养不全、添加剂多</strong>，不宜多吃</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第四单元 人体生理与健康 · 第5节 合理营养与食品安全 · TeachAny v7.14.0</p>
+  </footer>
+
+  <!-- 额外模块 -->
+  <script src="../../shared/extra-modules.js"></script>
+  <script>window.mentorData={name:'合理营养导师',title:'七年级生物 · 第二章',tag:'互动课件',intro:'专注平衡膳食与食品安全，帮助你掌握合理营养的核心考点。'};</script>
+
+  <!-- AI学伴悬浮窗 -->
+  <div id="ai-partner-wrapper" style="position:fixed;bottom:20px;right:20px;z-index:9999;font-family:inherit;">
+    <button id="ai-partner-toggle" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#4caf50);border:none;cursor:pointer;color:white;font-size:22px;box-shadow:0 4px 16px rgba(46,125,50,0.4);display:flex;align-items:center;justify-content:center;">🌿</button>
+    <div id="ai-partner-box" style="display:none;position:absolute;bottom:70px;right:0;width:320px;background:white;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);border:2px solid #c8e6c9;overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;padding:12px 16px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">
+        <span>🌿 AI学伴 · 初中生物</span>
+        <button id="ai-partner-close" style="background:none;border:none;color:white;cursor:pointer;font-size:16px;">✕</button>
+      </div>
+      <div id="ai-partner-thread" style="height:220px;overflow-y:auto;padding:14px;font-size:13px;line-height:1.6;">
+        <div style="background:#e8f5e9;border-radius:12px;padding:10px 14px;margin-bottom:8px;color:#1b5e20;"><strong>🌿 AI学伴：</strong> 欢迎！关于合理营养和食品安全的问题都可以问我～</div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid #e8f5e9;display:flex;gap:8px;">
+        <input id="ai-partner-input" placeholder="输入你的问题..." style="flex:1;border:1px solid #81c784;border-radius:20px;padding:8px 14px;font-size:13px;outline:none;">
+        <button id="ai-partner-send" style="background:#2e7d32;color:white;border:none;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:13px;">发送</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 导师卡片 -->
+  <div id="mentor-card-placeholder"></div>
+  <script>renderMentorCard('mentor-card-placeholder');</script>
+
+  <!-- JavaScript -->
+  <script>
+    // 进度条更新
+    document.addEventListener('DOMContentLoaded', function() {
+      var totalSections = 11;
+      var currentSection = 5;
+      var pct = Math.round((currentSection / totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '第 ' + currentSection + ' / ' + totalSections + ' 节 · ' + pct + '%';
+    });
+
+    // 锚点选择
+    var anchorContents = {
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🍽️ 什么是合理营养？如何做到合理营养？</h4><p>合理营养是指<strong>全面而平衡</strong>的营养。“全面”指营养素种类齐全；“平衡”指营养素量合适。做到合理营养要遵循<strong>平衡膳食宝塔</strong>，均衡摄入各类食物，避免挑食、偏食。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🏛️ 平衡膳食宝塔分几层？每层吃什么？</h4><p>平衡膳食宝塔分<strong>5层</strong>，从下到上分别是：第一层谷物类（米、面），第二层蔬菜/水果类，第三层肉类/蛋类，第四层奶类/豆类，第五层油脂类。越底层的食物吃得越多。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">⚠️ 食品安全要注意哪些问题？</h4><p>食品安全要注意：①购买食品看生产日期、保质期、QS标志；②不吃发芽马铃薯、有毒野生蘑菇；③生吃蔬菜、水果要洗干净；④生熟食物分开处理，避免交叉污染。</p></div>'
+    };
+
+    function selectAnchor(btn, id) {
+      var btns = document.querySelectorAll('.anchor-btn');
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = anchorContents[id];
+      display.style.display = 'block';
+    }
+
+    function handleCustomQuestion(val) {
+      if (val.trim().length < 2) return;
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！合理营养和食品安全直接关系到我们的身体健康，是中考常考的生活常识题。</p></div>';
+      display.style.display = 'block';
+    }
+
+    function checkAnswer(el, isCorrect, qNum) {
+      var parent = el.parentElement;
+      var options = parent.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.remove('correct', 'wrong');
+      }
+      if (isCorrect) {
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      var fb = document.getElementById('fb-' + qNum);
+      var exp = document.getElementById('exp-' + qNum);
+      if (isCorrect) {
+        fb.className = 'feedback correct-fb show';
+        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
+      } else {
+        fb.className = 'feedback wrong-fb show';
+        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
+      }
+      exp.classList.add('show');
+    }
+  </script>
+
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

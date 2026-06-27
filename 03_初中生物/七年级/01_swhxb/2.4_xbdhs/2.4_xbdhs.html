@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="bio-cell-life-7">
+  <meta name="course-title" content="2.4 细胞的生活">
+  <meta name="course-subject" content="biology">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="bio-cell-life">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>2.4 细胞的生活 | 七年级生物</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .cell-svg {
+      background: #f1f8e9;
+      border: 1px solid #a5d6a7;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .structure-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .structure-table th {
+      background: linear-gradient(135deg, #2e7d32, #388e3c);
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .structure-table td {
+      padding: 10px;
+      border: 1px solid #a5d6a7;
+      text-align: left;
+      vertical-align: top;
+    }
+    
+    .structure-table tr:nth-child(even) { background: #f1f8e9; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #e8f5e9; color: #1b5e20; }
+    .difficulty-提高 { background: #f3e5f5; color: #6a1b9a; }
+    .difficulty-挑战 { background: #ffebee; color: #c62828; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #f1f8e9; border: 1px solid #a5d6a7; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #2e7d32; text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #81c784;
+      background: #f1f8e9; color: #1b5e20; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28);
+      color: #1b5e20;
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+  
+    /* NavBar styles */
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid #2e7d32; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #2e7d32; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: #2e7d32; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #0a3d1a, #2e7d32, #388e3c); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #2e7d32, #388e3c); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #2e7d32; padding: 4px 20px; background: #f1f8e9; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #2e7d32; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #2e7d32; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #a5d6a7; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #a5d6a7; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1b5e20; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #c8e6c9, #e8f5e9); border-color: #4caf50; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #2e7d32, #388e3c); color: white; border-color: #2e7d32; }
+
+    /* 测验选项 */
+    .quiz-box { background: #f1f8e9; border: 1px solid #a5d6a7; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #27ae60; background: #e8f5e9; }
+    .quiz-option.wrong { border-color: #e74c3c; background: #ffebee; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #2e7d32; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #e8f5e9; color: #1b5e20; border: 1px solid #27ae60; }
+    .feedback.wrong-fb { background: #ffebee; color: #c62828; border: 1px solid #e74c3c; }
+
+    /* 概念框 */
+    .concept-box { background: #e8f5e9; border-left: 4px solid #2e7d32; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #2e7d32; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 页脚 */
+    .footer { background: #2e7d32; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+
+      .structure-table { display: block !important; overflow-x: auto !important; font-size: 12px !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-dna"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14.0</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 6/6 节 · 100%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../swhxb.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第一单元：生物和细胞</div>
+    <a href="../2.3_dwxb/2.3_dwxb.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <span class="nav-btn" style="opacity: 0.5; cursor: default;">已是最后一节 <i class="fa-solid fa-flag-checkered"></i></span>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-microscope"></i> 七年级生物 · 第一单元</div>
+      <h1>2.4 细胞的生活<span>Cell Life</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：说明细胞的生活需要物质和能量<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f1f8e9"/>
+        <!-- 中心主题：细胞的生活 -->
+        <circle cx="400" cy="150" r="60" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="140" text-anchor="middle" font-size="16" font-weight="bold" fill="white">细胞的</text>
+        <text x="400" y="165" text-anchor="middle" font-size="16" font-weight="bold" fill="white">生活</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="75" text-anchor="middle" font-size="13" fill="white">物质组成</text>
+        <text x="120" y="92" text-anchor="middle" font-size="11" fill="white">无机物/有机物</text>
+        <line x1="190" y1="80" x2="340" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="215" text-anchor="middle" font-size="13" fill="white">能量转换</text>
+        <text x="120" y="232" text-anchor="middle" font-size="11" fill="white">叶绿体/线粒体</text>
+        <line x1="190" y1="220" x2="340" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="75" text-anchor="middle" font-size="13" fill="white">细胞核的作用</text>
+        <text x="680" y="92" text-anchor="middle" font-size="11" fill="white">控制遗传和代谢</text>
+        <line x1="610" y1="80" x2="460" y2="120" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="215" text-anchor="middle" font-size="13" fill="white">细胞生长分裂</text>
+        <text x="680" y="232" text-anchor="middle" font-size="11" fill="white">生长→分裂→分化</text>
+        <line x1="610" y1="220" x2="460" y2="180" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #2e7d32; font-size: 14px; text-align: center;">图2-7 细胞的生活知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #2e7d32; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="细胞由哪些物质组成？">🧪 细胞由哪些物质组成？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="细胞怎样进行能量转换？">⚡ 细胞怎样进行能量转换？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="细胞核有什么作用？">🧬 细胞核有什么作用？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #2e7d32;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #2e7d32; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 说出细胞的物质组成</li>
+          <li>✅ 理解细胞的能量转换</li>
+          <li>✅ 说明细胞核的作用</li>
+          <li>✅ 了解细胞的生长、分裂和分化</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #2e7d32; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：物质组成 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列哪种物质属于有机物？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 水是无机物！">
+            <span class="opt-letter">A</span> 水
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 无机盐是无机物！">
+            <span class="opt-letter">B</span> 无机盐
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+            <span class="opt-letter">C</span> 糖类
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 糖类</strong></p>
+          <p style="margin-top: 8px;"><strong>解析：</strong></p>
+          <ul style="margin-top: 8px; padding-left: 20px;">
+            <li><strong>有机物</strong>：糖类、脂质、蛋白质、核酸（一般含碳）</li>
+            <li><strong>无机物</strong>：水、无机盐（一般不含碳）</li>
+            <li>糖类是<strong>有机物</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 基础题2：能量转换器 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】细胞的能量转换器是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 液泡不是能量转换器！液泡内含细胞液。">
+            <span class="opt-letter">A</span> 液泡
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 叶绿体和线粒体
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 细胞核不是能量转换器！细胞核控制遗传和代谢。">
+            <span class="opt-letter">C</span> 细胞核
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 叶绿体和线粒体</strong></p>
+          <p style="margin-top: 8px;"><strong>解析：</strong></p>
+          <ul style="margin-top: 8px; padding-left: 20px;">
+            <li><strong>叶绿体</strong>：光能 → 化学能（光合作用，储存能量）</li>
+            <li><strong>线粒体</strong>：化学能 → 生命活动能量（呼吸作用，释放能量）</li>
+            <li>两者都是<strong>能量转换器</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section4: 核心内容 - 细胞的物质组成 -->
+    <section class="section" id="section-cell-substance">
+      <h2 class="section-title"><span class="num">🧪</span> 细胞的物质组成</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #2e7d32;">📖 细胞中的物质</h3>
+        
+        <table class="structure-table">
+          <tr><th>类别</th><th>特点</th><th>举例</th></tr>
+          <tr><td><strong>无机物</strong></td><td>一般不含碳，分子小</td><td>水、无机盐</td></tr>
+          <tr><td><strong>有机物</strong></td><td>一般含碳，分子大</td><td>糖类、脂质、蛋白质、核酸</td></tr>
+        </table>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 物质进出细胞</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>细胞膜控制物质进出</strong>：有用物质进入，废物排出</li>
+            <li><strong>选择性</strong>：不是所有物质都能随意进出细胞</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section5: 核心内容 - 能量转换 -->
+    <section class="section" id="section-energy">
+      <h2 class="section-title"><span class="num">⚡</span> 细胞的能量转换</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #2e7d32;">📖 能量转换器</h3>
+        
+        <table class="structure-table">
+          <tr><th>细胞器</th><th>功能</th><th>能量转换</th><th>存在</th></tr>
+          <tr><td><strong>叶绿体</strong></td><td>光合作用</td><td>光能 → 化学能（储存能量）</td><td>植物细胞（绿色部分）</td></tr>
+          <tr><td><strong>线粒体</strong></td><td>呼吸作用</td><td>化学能 → 生命活动能量（释放能量）</td><td>动植物细胞共有</td></tr>
+        </table>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 能量转换的关系</div>
+          <p style="line-height: 1.8;">叶绿体<strong>储存</strong>能量，线粒体<strong>释放</strong>能量。两者共同作用，为细胞生命活动提供能量。</p>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 易错警示</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>所有活细胞都有线粒体</strong>：因为所有活细胞都需要能量</li>
+            <li><strong>只有植物细胞有叶绿体</strong>：而且是<strong>绿色部分</strong>的细胞才有（如叶肉细胞）</li>
+            <li><strong>根尖细胞无叶绿体</strong>：根尖细胞在地下，不见光，没有叶绿体</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section6: 核心内容 - 细胞核的作用 -->
+    <section class="section" id="section-nucleus">
+      <h2 class="section-title"><span class="num">🧬</span> 细胞核的作用</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #2e7d32;">📖 细胞核的功能</h3>
+        
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 细胞核是控制中心</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>控制遗传</strong>：细胞核内有<strong>遗传物质DNA</strong></li>
+            <li><strong>控制代谢</strong>：指导细胞生命活动</li>
+            <li><strong>克隆羊多莉</strong>：说明细胞核控制着生物的发育和遗传</li>
+          </ul>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #2e7d32;">📖 克隆羊多莉的启示</h3>
+        
+        <div class="svg-container">
+          <svg viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+            <!-- 背景 -->
+            <rect width="600" height="300" fill="#f1f8e9"/>
+            
+            <!-- 标题 -->
+            <text x="300" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#2e7d32">克隆羊多莉的培育过程</text>
+            
+            <!-- 供核母羊 -->
+            <ellipse cx="100" cy="100" rx="40" ry="30" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+            <text x="100" y="105" text-anchor="middle" font-size="12" fill="#1b5e20">供核母羊</text>
+            <text x="100" y="125" text-anchor="middle" font-size="10" fill="#2e7d32">提供细胞核</text>
+            
+            <!-- 供质母羊 -->
+            <ellipse cx="100" cy="220" rx="40" ry="30" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2"/>
+            <text x="100" y="225" text-anchor="middle" font-size="12" fill="#1b5e20">供质母羊</text>
+            <text x="100" y="245" text-anchor="middle" font-size="10" fill="#2e7d32">提供细胞质</text>
+            
+            <!-- 去核卵细胞 -->
+            <circle cx="250" cy="220" r="25" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+            <text x="250" y="225" text-anchor="middle" font-size="10" fill="#2e7d32">去核卵细胞</text>
+            
+            <!-- 融合细胞 -->
+            <circle cx="400" cy="160" r="35" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+            <circle cx="400" cy="130" r="10" fill="#2e7d32"/>
+            <text x="400" y="170" text-anchor="middle" font-size="12" fill="#1b5e20">融合细胞</text>
+            
+            <!-- 代孕母羊 -->
+            <ellipse cx="550" cy="160" rx="40" ry="30" fill="#c8e6c9" stroke="#2e7d32" stroke-width="2"/>
+            <text x="550" y="165" text-anchor="middle" font-size="12" fill="#1b5e20">代孕母羊</text>
+            
+            <!-- 箭头 -->
+            <line x1="140" y1="100" x2="230" y2="160" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead2)"/>
+            <line x1="140" y1="220" x2="225" y2="220" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead2)"/>
+            <line x1="340" y1="160" x2="365" y2="160" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead2)"/>
+            <line x1="435" y1="160" x2="510" y2="160" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead2)"/>
+            
+            <!-- 克隆羊多莉 -->
+            <ellipse cx="300" cy="280" rx="50" ry="20" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+            <text x="300" y="285" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">克隆羊多莉</text>
+            <line x1="400" y1="195" x2="320" y2="260" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5,5"/>
+            
+            <!-- 箭头定义 -->
+            <defs>
+              <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="svg-caption">图2-8 克隆羊多莉的培育过程</p>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 克隆羊多莉的遗传特性</div>
+          <p style="line-height: 1.8;">克隆羊多莉的遗传特性与<strong>供核母羊</strong>相似，说明<strong>细胞核控制遗传</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section7: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">📝</span> 后测：巩固与应用</h2>
+      
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【中考真题】克隆羊多莉的遗传特性与哪只羊相似？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 101, 'A')">
+            <span class="opt-letter">A</span> 供核母羊
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'B')" data-feedback="❌ 供质母羊只提供细胞质，不控制遗传！">
+            <span class="opt-letter">B</span> 供质母羊
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'C')" data-feedback="❌ 代孕母羊只提供胚胎发育场所，不提供遗传物质！">
+            <span class="opt-letter">C</span> 代孕母羊
+          </div>
+        </div>
+        <div class="feedback" id="feedback-101"></div>
+        <div class="answer-explanation" id="explanation-101">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 供核母羊</strong></p>
+          <p style="margin-top: 8px;"><strong>解析：</strong></p>
+          <ul style="margin-top: 8px; padding-left: 20px;">
+            <li>克隆羊多莉的细胞核来自<strong>供核母羊</strong></li>
+            <li>细胞核内有<strong>遗传物质DNA</strong>，控制遗传特性</li>
+            <li>所以多莉的遗传特性与<strong>供核母羊</strong>相似</li>
+            <li>这说明：<strong>细胞核控制生物的发育和遗传</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 后测题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【应用题】植物细胞和动物细胞都有的能量转换器是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'A')" data-feedback="❌ 叶绿体是植物细胞特有的，动物细胞没有！">
+            <span class="opt-letter">A</span> 叶绿体
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 102, 'B')">
+            <span class="opt-letter">B</span> 线粒体
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'C')" data-feedback="❌ 核糖体不是能量转换器！">
+            <span class="opt-letter">C</span> 核糖体
+          </div>
+        </div>
+        <div class="feedback" id="feedback-102"></div>
+        <div class="answer-explanation" id="explanation-102">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 线粒体</strong></p>
+          <p style="margin-top: 8px;"><strong>解析：</strong></p>
+          <ul style="margin-top: 8px; padding-left: 20px;">
+            <li><strong>叶绿体</strong>：<strong>植物细胞特有</strong>（仅绿色部分），动物细胞没有</li>
+            <li><strong>线粒体</strong>：<strong>动植物细胞共有</strong>，都是能量转换器</li>
+            <li>所以，植物细胞和动物细胞<strong>都有</strong>的能量转换器是<strong>线粒体</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section8: 必考分析 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">📊</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <h3 style="color: #2e7d32; margin-bottom: 16px;">📈 中考考频统计</h3>
+        
+        <div class="exam-card" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background: #2e7d32;">1</span>
+            <span class="exam-tag" style="background: #f59e0b;">高频考点</span>
+            <strong>能量转换器（叶绿体 vs 线粒体）</strong>
+          </div>
+          <p style="font-size: 14px; color: #1b5e20; margin-top: 8px;">
+            <strong>考频：</strong>★★★★★<br>
+            <strong>题型：</strong>选择题、填空题<br>
+            <strong>分值：</strong>2-3分
+          </p>
+        </div>
+
+        <div class="exam-card" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background: #4caf50;">2</span>
+            <span class="exam-tag" style="background: #3b82f6;">中频考点</span>
+            <strong>细胞核的功能</strong>
+          </div>
+          <p style="font-size: 14px; color: #1b5e20; margin-top: 8px;">
+            <strong>考频：</strong>★★★☆☆<br>
+            <strong>题型：</strong>选择题、简答题<br>
+            <strong>分值：</strong>2-4分
+          </p>
+        </div>
+
+        <h3 style="color: #2e7d32; margin: 24px 0 16px;">💡 必背结论</h3>
+        
+        <div class="concept-box" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+          <div class="label">✅ 结论1：能量转换器</div>
+          <p><strong>叶绿体</strong>：光能→化学能（光合作用，<strong>储存</strong>能量），<strong>植物细胞特有</strong>。<strong>线粒体</strong>：化学能→生命活动能量（呼吸作用，<strong>释放</strong>能量），<strong>动植物细胞共有</strong>。</p>
+        </div>
+
+        <div class="concept-box" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); margin-top: 12px;">
+          <div class="label">✅ 结论2：细胞核是控制中心</div>
+          <p>细胞核内有<strong>遗传物质DNA</strong>，控制生物的<strong>遗传</strong>和<strong>代谢</strong>。<strong>克隆羊多莉</strong>说明细胞核控制遗传。</p>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 易错警示</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>并非所有植物细胞都有叶绿体</strong>：只有<strong>绿色部分</strong>的细胞才有（如叶肉细胞），根尖细胞、表皮细胞没有叶绿体</li>
+            <li><strong>所有活细胞都有线粒体</strong>：因为所有活细胞都需要能量进行生命活动</li>
+            <li><strong>有机物 vs 无机物</strong>：有机物含碳（糖类、脂质、蛋白质、核酸）；无机物不含碳（水、无机盐）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <p class="footer-text">TeachAny 互动课件 · 初中生物 · 第一单元：生物和细胞</p>
+    <p style="margin-top: 8px; opacity: 0.8;">版本：v7.14.0 | 人教版 · 七年级上册</p>
+  </footer>
+
+  
+  <!-- ========== 知识图谱 ========== -->
+  <section class="section" id="knowledge-graph" style="margin-top: 30px;">
+    <h2 class="section-title"><span class="num">🕸️</span> 知识图谱</h2>
+    <div class="card">
+      <svg viewBox="0 0 800 400" width="100%" height="400" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景 -->
+        <rect width="800" height="400" fill="#f1f8e9"/>
+        
+        <!-- 中心节点 -->
+        <circle cx="400" cy="200" r="50" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="195" text-anchor="middle" font-size="14" font-weight="bold" fill="white">核心</text>
+        <text x="400" y="215" text-anchor="middle" font-size="14" font-weight="bold" fill="white">知识</text>
+        
+        <!-- 分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="12" fill="white">知识点1</text>
+        <line x1="190" y1="80" x2="350" y2="180" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <rect x="50" y="250" width="140" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="285" text-anchor="middle" font-size="12" fill="white">知识点2</text>
+        <line x1="190" y1="280" x2="350" y2="220" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="12" fill="white">知识点3</text>
+        <line x1="610" y1="80" x2="450" y2="180" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <rect x="610" y="250" width="140" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="285" text-anchor="middle" font-size="12" fill="white">知识点4</text>
+        <line x1="610" y1="280" x2="450" y2="220" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+        
+        <!-- 说明文字 -->
+        <text x="400" y="380" text-anchor="middle" font-size="12" fill="#2e7d32">图 知识图谱</text>
+      </svg>
+    </div>
+  </section>
+
+  
+  <!-- ========== 导师卡片 ========== -->
+  <section class="section" id="mentor-card" style="margin-top: 30px;">
+    <h2 class="section-title"><span class="num">👨🏫</span> 导师卡片</h2>
+    <div class="card" style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+      <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #2e7d32, #4caf50); display: flex; align-items: center; justify-content: center; font-size: 36px; color: white; flex-shrink: 0;">
+        👨🏫
+      </div>
+      <div style="flex: 1;">
+        <h3 style="color: #2e7d32; margin-bottom: 8px;">生物王老师</h3>
+        <p style="font-size: 14px; color: #5d6d7e; line-height: 1.6;">
+          专注初中生物教学10年，擅长将复杂的生物知识用生动的例子讲解。
+          引导学生观察生活、发现生物之美。
+        </p>
+        <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 12px; font-size: 12px;">📚 细胞生物学</span>
+          <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 12px; font-size: 12px;">🔬 显微镜操作</span>
+          <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 12px; font-size: 12px;">🌱 植物学</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== JavaScript ========== -->
+  <script>
+    window.currentSection = 6;
+    window.totalSections = 6;
+
+    // 问题锚点交互
+    function selectAnchor(btn, index) {
+      // 移除所有选中状态
+      document.querySelectorAll('.anchor-btn').forEach(b => b.classList.remove('selected'));
+      // 添加当前选中
+      btn.classList.add('selected');
+      
+      // 显示问题反馈
+      const feedback = document.getElementById('anchor-feedback');
+      const display = document.getElementById('anchor-display');
+      
+      const responses = {
+        1: `<div style="padding: 16px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28);">
+              <h4 style="color: #2e7d32; margin-bottom: 12px;">🧪 细胞的物质组成</h4>
+              <ul style="margin-top: 8px; padding-left: 20px; line-height: 1.8;">
+                <li><strong>无机物</strong>：水、无机盐（一般不含碳）</li>
+                <li><strong>有机物</strong>：糖类、脂质、蛋白质、核酸（一般含碳）</li>
+                <li><strong>细胞膜</strong>控制物质进出：有用物质进入，废物排出</li>
+              </ul>
+            </div>`,
+        2: `<div style="padding: 16px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28);">
+              <h4 style="color: #2e7d32; margin-bottom: 12px;">⚡ 细胞的能量转换</h4>
+              <ul style="margin-top: 8px; padding-left: 20px; line-height: 1.8;">
+                <li><strong>叶绿体</strong>：光能→化学能（光合作用，储存能量），<strong>植物细胞特有</strong></li>
+                <li><strong>线粒体</strong>：化学能→生命活动能量（呼吸作用，释放能量），<strong>动植物细胞共有</strong></li>
+                <li>两者都是<strong>能量转换器</strong></li>
+              </ul>
+            </div>`,
+        3: `<div style="padding: 16px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28);">
+              <h4 style="color: #2e7d32; margin-bottom: 12px;">🧬 细胞核的作用</h4>
+              <ul style="margin-top: 8px; padding-left: 20px; line-height: 1.8;">
+                <li><strong>控制遗传</strong>：细胞核内有遗传物质DNA</li>
+                <li><strong>控制代谢</strong>：指导细胞生命活动</li>
+                <li><strong>克隆羊多莉</strong>：遗传特性与供核母羊相似，说明细胞核控制遗传</li>
+              </ul>
+            </div>`
+      };
+      
+      display.innerHTML = responses[index];
+      feedback.style.display = 'none';
+    }
+
+    // 自定义问题处理
+    function handleCustomQuestion(value) {
+      if (value.trim()) {
+        const feedback = document.getElementById('anchor-feedback');
+        feedback.innerHTML = `<div style="padding: 14px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28);">
+          <p style="color: #2e7d32; font-weight: 700;">✅ 你的问题：${value}</p>
+          <p style="margin-top: 8px; color: #1b5e20;">请继续学习下面的内容，寻找答案。如果还有疑问，可以点击AI学伴获取帮助。</p>
+        </div>`;
+        feedback.style.display = 'block';
+      }
+    }
+
+    // 答案检查
+    function checkAnswer(option, isCorrect, questionNum, answer) {
+      // 找到同题所有选项
+      const options = option.parentElement.querySelectorAll('.quiz-option');
+      
+      // 清除之前的选择
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'wrong');
+      });
+      
+      // 标记当前选项
+      if (isCorrect) {
+        option.classList.add('correct');
+      } else {
+        option.classList.add('wrong');
+      }
+      
+      // 显示反馈
+      const feedback = document.getElementById('feedback-' + questionNum);
+      const explanation = document.getElementById('explanation-' + questionNum);
+      
+      if (isCorrect) {
+        feedback.innerHTML = '<p style="color: #1b5e20; font-weight: 700;">✅ 答对了！可以点错误选项看看错在哪。</p>';
+        feedback.className = 'feedback show correct-fb';
+      } else {
+        const wrongReason = option.getAttribute('data-feedback') || '❌ 这个选项不对，请再想想。';
+        feedback.innerHTML = '<p style="color: #c62828;">' + wrongReason + '</p>';
+        feedback.className = 'feedback show wrong-fb';
+      }
+      
+      // 显示详细解析
+      explanation.classList.add('show');
+      
+      // 如果答对了，还要给错误选项添加错误反馈
+      if (isCorrect) {
+        options.forEach(opt => {
+          if (!opt.classList.contains('correct')) {
+            opt.onclick = function() {
+              const wrongFeedback = this.getAttribute('data-feedback');
+              if (wrongFeedback) {
+                feedback.innerHTML = '<p style="color: #c62828;">' + wrongFeedback + '</p>';
+                feedback.className = 'feedback show wrong-fb';
+              }
+            };
+          }
+        });
+      }
+    }
+  
+    // AI学伴功能
+    function toggleAI() {
+      const panel = document.getElementById('ai-panel');
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function sendAI() {
+      const input = document.getElementById('ai-input');
+      const msg = input.value.trim();
+      if (!msg) return;
+      
+      const msgs = document.getElementById('ai-messages');
+      // 用户消息
+      msgs.innerHTML += `<div style="margin-bottom: 10px; text-align: right;"><span style="display: inline-block; padding: 8px 12px; background: #2e7d32; color: white; border-radius: 10px 10px 0 10px; font-size: 13px;">${msg}</span></div>`;
+      input.value = '';
+      
+      // 模拟AI回复
+      setTimeout(() => {
+        const replies = [
+          '很好的问题！让我们从课本中寻找答案 📖',
+          '这个问题可以这样理解：观察是科学探究的第一步 🔍',
+          '建议你结合生活中的例子来理解这个概念 🌱',
+          '记住生物有六大特征：需要营养、能呼吸、能排出废物、能对外界刺激作出反应、能生长和繁殖、有遗传变异特性 🧬'
+        ];
+        const reply = replies[Math.floor(Math.random() * replies.length)];
+        msgs.innerHTML += `<div style="margin-bottom: 10px;"><span style="display: inline-block; padding: 8px 12px; background: #f1f8e9; border-radius: 10px 10px 10px 0; font-size: 13px; color: #1b5e20;">${reply}</span></div>`;
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 800);
+      
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    // 进度条更新
+    function updateProgress() {
+      var pct = Math.round((window.currentSection / window.totalSections) * 100);
+      const fill = document.getElementById('progress-fill');
+      if (fill) fill.style.width = pct + '%';
+      const label = document.getElementById('progress-label');
+      if (label) label.textContent = '第' + window.currentSection + '/' + window.totalSections + '节 · ' + pct + '%';
+    }
+    updateProgress();
+
+  </script>
+
+
+  <!-- ========== AI学伴（右下角悬浮） ========== -->
+  <div id="ai-companion" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    <button onclick="toggleAI()" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2e7d32, #4caf50); color: white; border: none; box-shadow: 0 4px 12px rgba(46,125,50,0.4); cursor: pointer; font-size: 24px;">
+      🤖
+    </button>
+    <div id="ai-panel" style="display: none; position: absolute; bottom: 70px; right: 0; width: 320px; max-height: 420px; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); overflow: hidden;">
+      <div style="background: linear-gradient(135deg, #2e7d32, #4caf50); color: white; padding: 14px 18px; font-weight: 700; font-size: 15px;">
+        🤖 AI学伴 · 生物助手
+      </div>
+      <div id="ai-messages" style="padding: 14px; max-height: 280px; overflow-y: auto; font-size: 14px; line-height:1.6;">
+        <div style="margin-bottom: 10px; padding: 10px; background: #f1f8e9; border-radius: 10px;">
+          你好！我是你的生物AI学伴。有不懂的问题，随时问我哦~ 🌱
+        </div>
+      </div>
+      <div style="display: flex; border-top: 1px solid #e8f5e9;">
+        <input id="ai-input" placeholder="输入问题..." style="flex: 1; border: none; padding: 12px; font-size: 14px; outline: none;">
+        <button onclick="sendAI()" style="background: #2e7d32; color: white; border: none; padding: 0 16px; cursor: pointer;">发送</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

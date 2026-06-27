@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.1 农村改革 - 初中历史八年级</title>
+    <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8b4513;
+            --primary-light: #cd853f;
+            --primary-dark: #6b3410;
+            --bg-light: #faf7f2;
+            --bg-card: #ffffff;
+            --text-dark: #2c1810;
+            --text-muted: #8b7355;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* ====== ① 品牌栏 ====== */
+        .brand-bar {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .brand-logo { font-size: 1.1rem; font-weight: 700; }
+        .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; }
+
+        /* ====== ② 进度条 ====== */
+        .progress-container { background: white; padding: 12px 20px; border-bottom: 1px solid rgba(139,69,19,0.1); }
+        .progress-inner { max-width: 1200px; margin: 0 auto; }
+        .progress-info { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
+        .progress-track { height: 6px; background: #e8e0d5; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 25%; transition: width 0.3s ease; }
+
+        /* ====== ③ 导航栏 ====== */
+        .nav-bar {
+            background: white;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(139,69,19,0.1);
+            position: sticky;
+            top: 48px;
+            z-index: 999;
+        }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 8px; overflow-x: auto; }
+        .nav-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .nav-btn:hover { background: var(--bg-light); color: var(--primary); }
+        .nav-btn.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+        .nav-center { font-weight: 600; color: var(--primary); margin: 0 auto; }
+
+        /* ====== ④ Hero区 ====== */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%);
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 16px; }
+        .hero-title { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero-subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 32px; }
+
+        .hero-cards { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+        .hero-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 20px 24px;
+            min-width: 140px;
+        }
+        .hero-card-icon { font-size: 28px; margin-bottom: 8px; }
+        .hero-card-label { font-size: 0.8rem; opacity: 0.9; margin-bottom: 4px; }
+        .hero-card-value { font-size: 1.1rem; font-weight: 600; }
+
+        /* ====== SVG知识图 ====== */
+        .knowledge-map-section {
+            background: white;
+            padding: 40px 20px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            border-radius: 24px 24px 0 0;
+        }
+        .knowledge-map-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .knowledge-map-title { font-size: 1.2rem; color: var(--primary); margin-bottom: 24px; font-weight: 600; }
+
+        /* ====== ⑤ 探究问题锚点 ====== */
+        .anchor-section { padding: 40px 20px; background: var(--bg-light); }
+        .anchor-inner { max-width: 1200px; margin: 0 auto; }
+        .anchor-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .anchor-title h2 { font-size: 1.3rem; color: var(--primary); }
+        .anchor-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .anchor-btn {
+            background: white;
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .anchor-btn:hover { border-color: var(--primary); background: var(--bg-light); transform: translateY(-2px); }
+
+        /* ====== 主内容区 ====== */
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        /* ====== ⑥ 学习目标 ====== */
+        .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 48px; }
+        .objective-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+            border-left: 4px solid var(--primary);
+        }
+        .objective-card h3 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+        .objective-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        /* ====== ⑦ 前测 ====== */
+        .prequiz-section {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+            margin-bottom: 48px;
+        }
+        .prequiz-section h2 { color: var(--primary); margin-bottom: 24px; font-size: 1.4rem; }
+        .prequiz-question { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #f0f0f0; }
+        .prequiz-question:last-child { border-bottom: none; margin-bottom: 0; }
+        .prequiz-question h4 { color: var(--text-dark); margin-bottom: 16px; font-size: 1rem; }
+        .prequiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .prequiz-option {
+            padding: 14px 18px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .prequiz-option:hover { border-color: var(--primary-light); background: white; }
+        .prequiz-option.correct { border-color: #10b981; background: #d1fae5; }
+        .prequiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+        .opt-letter { width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; flex-shrink: 0; }
+        .prequiz-option.correct .opt-letter { background: #10b981; }
+        .prequiz-option.wrong .opt-letter { background: #ef4444; }
+        .feedback { margin-top: 12px; padding: 14px 18px; border-radius: 10px; font-size: 0.9rem; display: none; line-height: 1.6; }
+        .feedback.show { display: block; }
+        .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+        .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+        /* ====== ⑧ 核心知识讲解 ====== */
+        .section { margin-bottom: 48px; }
+        .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .section-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 4px 12px rgba(139,69,19,0.25);
+        }
+        .section-title-text h2 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+        .section-title-text p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+        .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .knowledge-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+            transition: all 0.3s;
+        }
+        .knowledge-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(139,69,19,0.16); }
+        .knowledge-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .knowledge-card ul { padding-left: 20px; }
+        .knowledge-card li { margin-bottom: 6px; line-height: 1.6; }
+
+        /* 时间轴 */
+        .timeline { position: relative; padding-left: 40px; margin: 24px 0; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary), var(--primary-light));
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .timeline-year { font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+        .timeline-title { font-size: 1.05rem; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+        .timeline-desc { font-size: 0.95rem; line-height: 1.6; color: var(--text-dark); }
+
+        /* 概念框 */
+        .concept-box {
+            background: linear-gradient(135deg, #faf7f2, #f5ede3);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .concept-box h4 { color: var(--primary); margin-bottom: 8px; font-size: 1.05rem; }
+        .concept-box p { font-size: 0.95rem; line-height: 1.6; }
+
+        /* 警告框 */
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .warning-box strong { color: #92400e; }
+
+        /* 对比表格 */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+        }
+        .compare-table th {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .compare-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .compare-table tr:last-child td { border-bottom: none; }
+
+        /* ====== ⑨ 后测 ====== */
+        .postquiz-section {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+            margin-bottom: 48px;
+        }
+        .postquiz-section h2 { color: var(--primary); margin-bottom: 24px; font-size: 1.4rem; }
+        .postquiz-question { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #f0f0f0; }
+        .postquiz-question:last-child { border-bottom: none; margin-bottom: 0; }
+        .postquiz-question h4 { color: var(--text-dark); margin-bottom: 16px; font-size: 1rem; }
+        .postquiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .postquiz-option {
+            padding: 14px 18px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .postquiz-option:hover { border-color: var(--primary-light); background: white; }
+        .postquiz-option.correct { border-color: #10b981; background: #d1fae5; }
+        .postquiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+
+        /* ====== ⑩ 必考分析 ====== */
+        .exam-section {
+            background: linear-gradient(135deg, #faf7f2, #f5ede3);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+        .exam-section h2 { color: var(--primary); margin-bottom: 24px; font-size: 1.4rem; }
+        .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .exam-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+        }
+        .exam-card h4 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+        .exam-card p { font-size: 0.9rem; line-height: 1.6; color: var(--text-dark); }
+        .exam-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        .badge-must { background: #fee2e2; color: #991b1b; }
+        .badge-important { background: #fef3c7; color: #92400e; }
+
+        /* ====== 页脚 ====== */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: white; }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.8rem; }
+            .hero-cards { flex-direction: column; align-items: center; }
+            .nav-center { display: none; }
+            .knowledge-grid, .objectives-grid, .exam-grid { grid-template-columns: 1fr; }
+            .prequiz-section, .postquiz-section, .exam-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ① 品牌栏 -->
+<div class="brand-bar">
+    <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">v7.14</div>
+</div>
+
+<!-- ② 进度条 -->
+<div class="progress-container">
+    <div class="progress-inner">
+        <div class="progress-info"><span>第 1/3 节</span><span>学习进度 25%</span></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+</div>
+
+<!-- ③ 导航栏 -->
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
+        <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
+        <span class="nav-center">八年级下册 · 第四单元第1课</span>
+        <a href="../d4xsd.html" class="nav-btn"><i class="fas fa-arrow-left"></i> 单元</a>
+        <a href="../4.2_wqyb/wqyb.html" class="nav-btn">下一节 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</nav>
+
+<!-- ④ Hero区 -->
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-badge">初中历史八年级下册 · 第四单元第1课</div>
+        <h1 class="hero-title">农村改革</h1>
+        <p class="hero-subtitle">1978年 · 家庭联产承包责任制 · 中国改革的突破口</p>
+        
+        <div class="hero-cards">
+            <div class="hero-card">
+                <div class="hero-card-icon">📅</div>
+                <div class="hero-card-label">开始时间</div>
+                <div class="hero-card-value">1978年</div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">📍</div>
+                <div class="hero-card-label">首发地点</div>
+                <div class="hero-card-value">安徽凤阳</div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">🔑</div>
+                <div class="hero-card-label">核心制度</div>
+                <div class="hero-card-value">家庭联产承包</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SVG知识图 -->
+<section class="knowledge-map-section">
+    <div class="knowledge-map-inner">
+        <div class="knowledge-map-title"><i class="fas fa-sitemap"></i> 本课知识结构图</div>
+        <svg viewBox="0 0 900 200" width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="900" height="200" fill="#faf7f2" rx="16"/>
+            
+            <!-- 中心：农村改革 -->
+            <circle cx="450" cy="100" r="50" fill="url(#centerGrad)" stroke="#8b4513" stroke-width="3"/>
+            <text x="450" y="95" text-anchor="middle" font-size="14" font-weight="bold" fill="white">农村改革</text>
+            <text x="450" y="113" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">1978年</text>
+            
+            <!-- 背景 -->
+            <rect x="50" y="30" width="140" height="50" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="120" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="white">改革背景</text>
+            <line x1="190" y1="55" x2="400" y2="85" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- 内容 -->
+            <rect x="50" y="120" width="140" height="50" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="120" y="145" text-anchor="middle" font-size="11" font-weight="bold" fill="white">家庭联产承包</text>
+            <line x1="190" y1="145" x2="400" y2="105" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- 意义 -->
+            <rect x="710" y="30" width="140" height="50" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="780" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="white">农村突破</text>
+            <line x1="710" y1="55" x2="500" y2="85" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <!-- 推动 -->
+            <rect x="710" y="120" width="140" height="50" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="780" y="145" text-anchor="middle" font-size="11" font-weight="bold" fill="white">推动城市改革</text>
+            <line x1="710" y1="145" x2="500" y2="105" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            
+            <defs>
+                <linearGradient id="centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8b4513"/>
+                    <stop offset="100%" style="stop-color:#cd853f"/>
+                </linearGradient>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+                </marker>
+            </defs>
+        </svg>
+    </div>
+</section>
+
+<!-- ⑤ 探究问题锚点 -->
+<section class="anchor-section" id="anchors">
+    <div class="anchor-inner">
+        <div class="anchor-title">
+            <i class="fas fa-anchor" style="color: var(--primary); font-size: 1.3rem;"></i>
+            <h2>探究问题</h2>
+        </div>
+        <div class="anchor-points">
+            <button class="anchor-btn" onclick="scrollToSection('prequiz')"><i class="fas fa-question-circle"></i> 课前思考</button>
+            <button class="anchor-btn" onclick="scrollToSection('knowledge')"><i class="fa-solid fa-landmark-open"></i> 改革过程</button>
+            <button class="anchor-btn" onclick="scrollToSection('postquiz')"><i class="fas fa-clipboard-check"></i> 课后检测</button>
+        </div>
+    </div>
+</section>
+
+<!-- 主内容 -->
+<main class="main-content">
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+            <div class="section-title-text">
+                <h2>学习目标</h2>
+                <p>本课学习重点</p>
+            </div>
+        </div>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 知识与技能</h3>
+                <p>了解农村改革的背景、过程和意义，掌握家庭联产承包责任制的主要内容。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 过程与方法</h3>
+                <p>通过时间轴和材料分析，理解农村改革率先突破的原因和影响。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 情感态度价值观</h3>
+                <p>认识改革开放是决定当代中国命运的关键一招，增强中国特色社会主义道路自信。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="prequiz-section" id="prequiz">
+        <h2><i class="fas fa-question-circle"></i> 课前思考（前测）</h2>
+        
+        <div class="prequiz-question">
+            <h4>1. 【基础】1978年，农村改革率先在哪个省开始？</h4>
+            <div class="prequiz-options">
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。河南省是农业大省，但不是农村改革率先开始的地方。">A. 河南省</button>
+                <button class="prequiz-option" data-correct="true" data-feedback="✅ 正确！1978年，安徽省凤阳县小岗村的18户农民秘密签订契约，试行'大包干'，开创了家庭联产承包责任制的先河。">B. 安徽省</button>
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。四川省也是早期农村改革的试点省份之一，但不是首发地。">C. 四川省</button>
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。广东省是对外开放的前沿，农村改革不是从那里开始的。">D. 广东省</button>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="prequiz-question">
+            <h4>2. 【提高】家庭联产承包责任制的核心是什么？</h4>
+            <div class="prequiz-options">
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。土地国有化是改革前的做法，不是家庭联产承包责任制的核心。">A. 土地国有化</button>
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。人民公社化是1958年开始的制度，家庭联产承包责任制是要打破这一体制。">B. 人民公社化</button>
+                <button class="prequiz-option" data-correct="true" data-feedback="✅ 正确！家庭联产承包责任制的核心是'包产到户、包干到户'，农民获得生产经营自主权，'交够国家的、留足集体的、剩下都是自己的'。">C. 包产到户、包干到户</button>
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。农业合作化是1950年代的制度，不是家庭联产承包责任制的核心。">D. 农业合作化</button>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="prequiz-question">
+            <h4>3. 【挑战】小岗村18户农民秘密签订契约的时间是什么时候？</h4>
+            <div class="prequiz-options">
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。1976年是文化大革命结束的年份，小岗村改革尚未开始。">A. 1976年</button>
+                <button class="prequiz-option" data-correct="true" data-feedback="✅ 正确！1978年11月24日，安徽省凤阳县小岗村18户农民秘密签订契约，按下红手印，试行'大包干'，揭开了农村改革的序幕。">B. 1978年</button>
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。1980年中央已开始肯定农村改革，但小岗村的秘密契约签订于1978年。">C. 1980年</button>
+                <button class="prequiz-option" data-correct="false" data-feedback="❌ 错误。1984年是城市经济体制改革全面展开的年份，不是小岗村契约签订时间。">D. 1984年</button>
+            </div>
+            <div class="feedback"></div>
+        </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="knowledge">
+        <div class="section-header">
+            <div class="section-icon"><i class="fa-solid fa-landmark-open"></i></div>
+            <div class="section-title-text">
+                <h2>核心知识讲解</h2>
+                <p>农村改革的背景、过程与意义</p>
+            </div>
+        </div>
+
+        <!-- 时间轴 -->
+        <h3 style="color: var(--primary); margin-bottom: 16px; font-size: 1.2rem;"><i class="fas fa-timeline"></i> 农村改革时间轴</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1978年11月</div>
+                <div class="timeline-title">小岗村秘密契约</div>
+                <div class="timeline-desc">安徽省凤阳县小岗村18户农民秘密签订契约，按下红手印，约定'大包干'，甘愿承担风险。这是中国农村改革的起点。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1979年</div>
+                <div class="timeline-title">小岗村粮食大丰收</div>
+                <div class="timeline-desc">实行'大包干'后，小岗村粮食产量相当于1966-1970年5年的总和，农民生活显著改善，证明了家庭联产承包责任制的优越性。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1980年5月</div>
+                <div class="timeline-title">邓小平肯定农村改革</div>
+                <div class="timeline-desc">邓小平发表《关于农村政策问题》的讲话，肯定农村改革的方向，为家庭联产承包责任制在全国推广奠定了政治基础。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1982年</div>
+                <div class="timeline-title">中央一号文件肯定包产到户</div>
+                <div class="timeline-desc">中共中央发出第一个'一号文件'，正式肯定家庭联产承包责任制，农村改革在全国迅速推广，到1984年全国基本实行。</div>
+            </div>
+        </div>
+
+        <!-- 概念框 -->
+        <div class="concept-box">
+            <h4><i class="fas fa-lightbulb"></i> 核心概念：家庭联产承包责任制</h4>
+            <p><strong>定义：</strong>在土地公有制基础上，将土地承包给农户，农户自主经营、自负盈亏，'交够国家的、留足集体的、剩下都是自己的'。</p>
+            <p style="margin-top: 8px;"><strong>特点：</strong>土地所有权归集体，经营权归农户，'两权分离'。</p>
+            <p style="margin-top: 8px;"><strong>意义：</strong>打破了'大锅饭'，调动了农民生产积极性，解放了农村生产力。</p>
+        </div>
+
+        <!-- 对比表格 -->
+        <h3 style="color: var(--primary); margin: 20px 0 16px; font-size: 1.2rem;"><i class="fas fa-balance-scale"></i> 改革前后对比</h3>
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>对比项</th>
+                    <th>改革前（人民公社）</th>
+                    <th>改革后（家庭联产承包）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>经营方式</strong></td>
+                    <td>集体统一经营，'大锅饭'</td>
+                    <td>家庭自主经营，'包产到户'</td>
+                </tr>
+                <tr>
+                    <td><strong>分配方式</strong></td>
+                    <td>平均主义，干多干少一个样</td>
+                    <td>多劳多得，'剩下都是自己的'</td>
+                </tr>
+                <tr>
+                    <td><strong>农民积极性</strong></td>
+                    <td>低下，出工不出力</td>
+                    <td>高涨，起早贪黑干</td>
+                </tr>
+                <tr>
+                    <td><strong>粮食产量</strong></td>
+                    <td>增长缓慢，甚至下降</td>
+                    <td>大幅增长，1984年达到历史高峰</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 知识卡片 -->
+        <div class="knowledge-grid" style="margin-top: 32px;">
+            <div class="knowledge-card">
+                <h3><i class="fas fa-flag"></i> 改革背景</h3>
+                <ul>
+                    <li>文化大革命结束后，农村经济停滞不前</li>
+                    <li>人民公社体制束缚农村生产力</li>
+                    <li>'大锅饭'导致农民生产积极性低下</li>
+                    <li>1978年真理标准大讨论解放了思想</li>
+                </ul>
+            </div>
+            <div class="knowledge-card">
+                <h3><i class="fas fa-seedling"></i> 改革过程</h3>
+                <ul>
+                    <li><strong>1978年</strong>：小岗村18户农民秘密契约</li>
+                    <li><strong>1979年</strong>：小岗村粮食大丰收，证明改革正确</li>
+                    <li><strong>1980年</strong>：邓小平肯定农村改革方向</li>
+                    <li><strong>1982年</strong>：中央一号文件肯定包产到户</li>
+                    <li><strong>1984年</strong>：全国基本实行家庭联产承包责任制</li>
+                </ul>
+            </div>
+            <div class="knowledge-card">
+                <h3><i class="fas fa-star"></i> 改革意义</h3>
+                <ul>
+                    <li>打破了'大锅饭'，调动了农民生产积极性</li>
+                    <li>解放了农村生产力，粮食产量大幅增长</li>
+                    <li>推动了城市经济体制改革</li>
+                    <li>为改革开放奠定了坚实基础</li>
+                    <li>是建设中国特色社会主义的伟大开端</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 警告框 -->
+        <div class="warning-box">
+            <strong><i class="fas fa-exclamation-triangle"></i> 易错警示：</strong><br>
+            1. 农村改革率先开始的地方是<strong>安徽省凤阳县小岗村</strong>，不是广东省！<br>
+            2. 家庭联产承包责任制是在<strong>土地公有制</strong>基础上的改革，不是土地私有化！<br>
+            3. 农村改革的时间是<strong>1978年</strong>，不是1980年！
+        </div>
+    </section>
+
+    <!-- ⑨ 后测 -->
+    <section class="postquiz-section" id="postquiz">
+        <h2><i class="fas fa-clipboard-check"></i> 课后检测（后测）</h2>
+        
+        <div class="postquiz-question">
+            <h4>1. 【中考真题改编】农村改革的基本起点是？</h4>
+            <div class="postquiz-options">
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。土地改革是1950-1952年进行的，不是农村改革的起点。">A. 土地改革</button>
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。农业合作化是1950年代中期进行的，不是农村改革的起点。">B. 农业合作化</button>
+                <button class="postquiz-option" data-correct="true" data-feedback="✅ 正确！1978年，安徽省凤阳县小岗村18户农民秘密签订契约，试行'大包干'，揭开了农村改革的序幕，是中国农村改革的基本起点。">C. 小岗村'大包干'</button>
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。兴办经济特区是1980年开始的对外开放措施，不是农村改革的起点。">D. 兴办经济特区</button>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="postquiz-question">
+            <h4>2. 【基础】家庭联产承包责任制的核心特点是？</h4>
+            <div class="postquiz-options">
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。土地私有化不符合中国国情，家庭联产承包责任制是在土地公有制基础上的改革。">A. 土地私有化</button>
+                <button class="postquiz-option" data-correct="true" data-feedback="✅ 正确！家庭联产承包责任制的核心是'两权分离'：土地所有权归集体，经营权归农户，'包产到户、包干到户'，'交够国家的、留足集体的、剩下都是自己的'。">B. 两权分离（所有权与经营权分离）</button>
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。土地国有化是改革前的做法，不是家庭联产承包责任制的核心特点。">C. 土地国有化</button>
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。平均分配是人民公社'大锅饭'的特点，家庭联产承包责任制是要打破平均主义。">D. 平均分配</button>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="postquiz-question">
+            <h4>3. 【提高】农村改革的历史意义是什么？</h4>
+            <div class="postquiz-options">
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。建立社会主义制度是1956年三大改造完成的意义，不是农村改革的意义。">A. 建立了社会主义制度</button>
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。确立社会主义市场经济体制改革目标的是1992年中共十四大，不是农村改革的意义。">B. 确立了社会主义市场经济体制目标</button>
+                <button class="postquiz-option" data-correct="true" data-feedback="✅ 正确！农村改革打破了'大锅饭'，调动了农民生产积极性，解放了农村生产力，推动了城市经济体制改革，为改革开放奠定了坚实基础，是建设中国特色社会主义的伟大开端。">C. 为改革开放奠定了坚实基础</button>
+                <button class="postquiz-option" data-correct="false" data-feedback="❌ 错误。加入世界贸易组织是2001年实现的，不是农村改革的意义。">D. 加入世界贸易组织</button>
+            </div>
+            <div class="feedback"></div>
+        </div>
+    </section>
+
+    <!-- ⑩ 必考分析 -->
+    <section class="exam-section" id="exam">
+        <h2><i class="fas fa-chart-line"></i> 必考分析与考点总结</h2>
+        
+        <div class="exam-grid">
+            <div class="exam-card">
+                <h4><span class="exam-badge badge-must">必考</span> 农村改革开始时间</h4>
+                <p><strong>考点：</strong>1978年，安徽省凤阳县小岗村18户农民秘密签订契约，试行'大包干'。</p>
+                <p style="margin-top: 8px;"><strong>考法：</strong>选择题、填空题，直接考查时间或地点。</p>
+            </div>
+            <div class="exam-card">
+                <h4><span class="exam-badge badge-must">必考</span> 家庭联产承包责任制的核心</h4>
+                <p><strong>考点：</strong>'两权分离'（土地所有权归集体，经营权归农户），'包产到户、包干到户'。</p>
+                <p style="margin-top: 8px;"><strong>考法：</strong>选择题、材料分析题，考查核心特点或意义。</p>
+            </div>
+            <div class="exam-card">
+                <h4><span class="exam-badge badge-important">常考</span> 农村改革的历史意义</h4>
+                <p><strong>考点：</strong>打破'大锅饭'，调动农民生产积极性，解放农村生产力，推动城市改革。</p>
+                <p style="margin-top: 8px;"><strong>考法：</strong>材料分析题、简答题，考查意义或影响。</p>
+            </div>
+            <div class="exam-card">
+                <h4><span class="exam-badge badge-important">常考</span> 小岗村精神</h4>
+                <p><strong>考点：</strong>敢为天下先、敢于创新、敢于担当的精神。</p>
+                <p style="margin-top: 8px;"><strong>考法：</strong>材料分析题，结合当代改革开放新举措考查。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+
+</main>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <p>初中历史八年级下册 · 第四单元第1课 农村改革</p>
+    <div class="footer-links">
+        <a href="../d4xsd.html"><i class="fas fa-arrow-left"></i> 返回单元</a>
+        <a href="../4.2_wqyb/wqyb.html">下一节 <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <p style="margin-top: 20px; opacity: 0.7; font-size: 0.85rem;">© 2026 TeachAny 互动课件 v7.14</p>
+</footer>
+
+<script>
+// 滚动到指定区域
+function scrollToSection(id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// checkAnswer函数 - 统一测验交互
+function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+    const parent = element.closest('.prequiz-question, .postquiz-question');
+    const feedback = parent.querySelector('.feedback');
+    const explanation = document.getElementById('explanation-' + questionNum);
+    const allOptions = parent.querySelectorAll('.prequiz-option, .postquiz-option');
+    
+    allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+    
+    if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) {
+            feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+            feedback.className = 'feedback show correct-fb';
+        }
+        if (explanation) explanation.classList.add('show');
+    } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) {
+            feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+            feedback.className = 'feedback show wrong-fb';
+        }
+        const alreadyCorrect = parent.querySelector('.prequiz-option.correct, .postquiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+    }
+}
+
+// 前测交互
+function initPrequiz() {
+    const questions = document.querySelectorAll('.prequiz-question');
+    
+    questions.forEach(q => {
+        const options = q.querySelectorAll('.prequiz-option');
+        const feedback = q.querySelector('.feedback');
+        let answered = false;
+        
+        options.forEach(opt => {
+            opt.addEventListener('click', function() {
+                if (answered) return;
+                
+                const isCorrect = this.dataset.correct === 'true';
+                const feedbackText = this.dataset.feedback;
+                
+                // 显示所有选项状态
+                options.forEach(o => {
+                    if (o.dataset.correct === 'true') {
+                        o.classList.add('correct');
+                    } else if (o === this && !isCorrect) {
+                        o.classList.add('wrong');
+                    }
+                });
+                
+                // 显示反馈
+                feedback.innerHTML = feedbackText;
+                feedback.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+                
+                answered = true;
+            });
+        });
+    });
+}
+
+// 后测交互
+function initPostquiz() {
+    const questions = document.querySelectorAll('.postquiz-question');
+    
+    questions.forEach(q => {
+        const options = q.querySelectorAll('.postquiz-option');
+        const feedback = q.querySelector('.feedback');
+        let answered = false;
+        
+        options.forEach(opt => {
+            opt.addEventListener('click', function() {
+                if (answered) return;
+                
+                const isCorrect = this.dataset.correct === 'true';
+                const feedbackText = this.dataset.feedback;
+                
+                // 显示所有选项状态
+                options.forEach(o => {
+                    if (o.dataset.correct === 'true') {
+                        o.classList.add('correct');
+                    } else if (o === this && !isCorrect) {
+                        o.classList.add('wrong');
+                    }
+                });
+                
+                // 显示反馈
+                feedback.innerHTML = feedbackText;
+                feedback.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+                
+                answered = true;
+            });
+        });
+    });
+}
+
+// 更新进度条
+function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.querySelector('.progress-fill').style.width = Math.min(progress, 100) + '%';
+}
+
+// 初始化
+document.addEventListener('DOMContentLoaded', function() {
+    initPrequiz();
+    initPostquiz();
+    window.addEventListener('scroll', updateProgress);
+});
+</script>
+
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="course-id" content="geo-topographic-map-7">
+  <meta name="course-title" content="1.4 地形图的判读">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="geo-topographic-map">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>1.4 地形图的判读 | 初中7年级地理</title>
+  
+  <style>
+    .topo-svg { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 20px; }
+    
+    .contour-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .contour-table th { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; padding: 12px; text-align: center; }
+    .contour-table td { padding: 10px; border: 1px solid #bae6fd; text-align: center; }
+    .contour-table tr:nth-child(even) { background: #f0f9ff; }
+
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    .svg-container { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #0369a1; text-align: center; }
+
+    .nav-bar { background: #f0f9ff; border-bottom: 2px solid #0369a1; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #0369a1; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #dbeafe; }
+    .nav-center { font-weight: 700; color: #0369a1; font-size: 14px; text-align: center; flex: 1; }
+
+    .hero { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; font-size: 1.1rem; opacity: 0.9; }
+
+    .progress-bar { height: 4px; background: #e0f2fe; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #0369a1, #0284c7); width: 50%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #0369a1; padding: 4px 20px; background: #f0f9ff; }
+
+    .brand-bar { background: #0369a1; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    .section-title { font-size: 1.5rem; color: #0369a1; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #bae6fd; }
+    .section-title .num { margin-right: 8px; }
+
+    .card { background: white; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(3,105,161,0.1); }
+
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #dbeafe, #eff6ff); border: 2px solid #93c5fd; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1e40af; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #bfdbfe, #dbeafe); border-color: #60a5fa; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; border-color: #0369a1; }
+
+    .quiz-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e0f2fe; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #93c5fd; background: #f0f9ff; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #0369a1; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    .concept-box { background: #eff6ff; border-left: 4px solid #0369a1; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    .footer { background: #0369a1; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    
+    @media (max-width: 768px) {
+      .anchor-points { flex-direction: column !important; }
+      .anchor-btn { width: 100% !important; }
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-mountain"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 4/8 节 · 50%</div>
+  
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../dqydt.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第一章：地球和地图</div>
+    <a href="../1.3_dtddy/dtddy.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../../02_lddhy/2.1_dzdhy/dzdhy.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-mountain"></i> 七年级地理 · 第一章</div>
+      <h1>1.4 地形图的判读<span>Topographic Map Reading</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：在地形图上识别五种主要地形类型<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <section class="section" id="hero-infographic">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f0f9ff"/>
+        <circle cx="400" cy="150" r="60" fill="#0369a1" stroke="#075985" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">地形图判读</text>
+        
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="14" fill="white">等高线</text>
+        <line x1="190" y1="80" x2="340" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+        <text x="120" y="225" text-anchor="middle" font-size="14" fill="white">五种地形</text>
+        <line x1="190" y1="220" x2="340" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="14" fill="white">坡度判断</text>
+        <line x1="610" y1="80" x2="460" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+        <text x="680" y="225" text-anchor="middle" font-size="14" fill="white">实际应用</text>
+        <line x1="610" y1="220" x2="460" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#0369a1"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #0369a1; font-size: 14px; text-align: center;">图1-5 地形图的判读知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <main class="container">
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="等高线是什么？怎么看？">🏔️ 等高线是什么？怎么看？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="五种地形类型怎么区分？">🌄 五种地形类型怎么区分？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="怎么用等高线判断坡度？">📐 怎么用等高线判断坡度？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #0369a1;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #0369a1; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 理解等高线的概念和特点</li>
+          <li>✅ 识别五种主要地形类型</li>
+          <li>✅ 学会用等高线判断坡度陡缓</li>
+          <li>✅ 了解地形图的实际应用</li>
+        </ul>
+      </div>
+    </section>
+    
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】等高线指的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 等高线不是海水深度相同的线，那是等深线！">
+            <span class="opt-letter">A</span> 海水深度相同的点连成的线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 海拔相同的点连成的线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 等高线不是经线！经线是连接南北两极的线！">
+            <span class="opt-letter">C</span> 经线
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 海拔相同的点连成的线</strong></p>
+          <p style="margin-top: 8px;"><strong>等高线</strong>是地图上<strong>海拔相同</strong>的点连接成的线。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】等高线越密集，表示坡度？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+            <span class="opt-letter">A</span> 越陡
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 等高线密集表示坡度陡，稀疏才表示坡度缓！">
+            <span class="opt-letter">B</span> 越缓
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 等高线密集与海拔高低无直接关系！">
+            <span class="opt-letter">C</span> 海拔越高
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 越陡</strong></p>
+          <p style="margin-top: 8px;">等高线<strong>越密集</strong>，表示坡度<strong>越陡</strong>；等高线<strong>越稀疏</strong>，表示坡度<strong>越缓</strong>。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】海拔500米以上，坡度陡峻、沟谷幽深的地形是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 平原海拔在200米以下，地势平坦！">
+            <span class="opt-letter">A</span> 平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 高原海拔500米以上，但地面坦荡或起伏不大！">
+            <span class="opt-letter">B</span> 高原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 山地
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'D')" data-feedback="❌ 丘陵海拔在500米以下，起伏和缓！">
+            <span class="opt-letter">D</span> 丘陵
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 山地</strong></p>
+          <p style="margin-top: 8px;"><strong>山地</strong>海拔在<strong>500米以上</strong>，坡度<strong>陡峻</strong>，沟谷幽深。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】等高线重合在一起的地形部位是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 山脊是等高线向低处凸出，不是重合！">
+            <span class="opt-letter">A</span> 山脊
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+            <span class="opt-letter">B</span> 陡崖
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 山谷是等高线向高处凸出，不是重合！">
+            <span class="opt-letter">C</span> 山谷
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'D')" data-feedback="❌ 鞍部是两山顶之间，不是等高线重合！">
+            <span class="opt-letter">D</span> 鞍部
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 陡崖</strong></p>
+          <p style="margin-top: 8px;"><strong>陡崖</strong>是等高线<strong>重合在一起</strong>的地形部位，表示坡度接近<strong>90°</strong>的悬崖峭壁。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-contour">
+      <h2 class="section-title"><span class="num">🏔️</span> 等高线的基本概念</h2>
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 等高线的定义</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>等高线：</strong>地图上<strong>海拔相同</strong>的点连接成的线</li>
+          <li><strong>等深线：</strong>地图上<strong>海水深度相同</strong>的点连接成的线</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 等高线特点</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>📏 <strong>同线等高：</strong>同一条等高线上各点海拔相同</li>
+            <li>📏 <strong>等高距相同：</strong>同一幅地图上等高距一般相同</li>
+            <li>📏 <strong>不相交：</strong>等高线一般不相交（除陡崖外）</li>
+            <li>📏 <strong>密陡疏缓：</strong>等高线越密集，坡度越陡</li>
+          </ul>
+        </div>
+
+        <div class="svg-container" style="margin-top: 20px;">
+          <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+            <!-- 等高线地形图SVG：等高线层层嵌套+标注 -->
+            <rect width="600" height="400" fill="#f0f9ff"/>
+            
+            <!-- 盆地（海拔低，棕色）背景 -->
+            <ellipse cx="300" cy="200" rx="270" ry="170" fill="#d4a017" stroke="#92400e" stroke-width="1" opacity="0.3"/>
+            
+            <!-- 等高线100m（最外圈） -->
+            <ellipse cx="300" cy="200" rx="250" ry="150" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+            <text x="530" y="130" font-size="12" fill="#15803d" font-weight="bold">100m</text>
+            
+            <!-- 等高线200m -->
+            <ellipse cx="300" cy="200" rx="210" ry="125" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+            <text x="490" y="160" font-size="12" fill="#15803d" font-weight="bold">200m</text>
+            
+            <!-- 等高线300m -->
+            <ellipse cx="300" cy="200" rx="170" ry="100" fill="none" stroke="#eab308" stroke-width="2.5"/>
+            <text x="450" y="190" font-size="12" fill="#a16207" font-weight="bold">300m</text>
+            
+            <!-- 等高线400m -->
+            <ellipse cx="300" cy="200" rx="130" ry="75" fill="none" stroke="#eab308" stroke-width="2.5"/>
+            <text x="410" y="210" font-size="12" fill="#a16207" font-weight="bold">400m</text>
+            
+            <!-- 等高线500m -->
+            <ellipse cx="300" cy="200" rx="90" ry="50" fill="none" stroke="#b45309" stroke-width="2.5"/>
+            <text x="370" y="230" font-size="12" fill="#92400e" font-weight="bold">500m</text>
+            
+            <!-- 等高线600m（最内圈） -->
+            <ellipse cx="300" cy="200" rx="50" ry="28" fill="none" stroke="#b45309" stroke-width="2.5"/>
+            <text x="335" y="250" font-size="12" fill="#92400e" font-weight="bold">600m</text>
+            
+            <!-- 山顶三角点 -->
+            <polygon points="300,165 305,185 295,185" fill="#dc2626" stroke="#991b1b" stroke-width="1"/>
+            <text x="305" y="160" font-size="11" fill="#dc2626" font-weight="bold">▲</text>
+            <text x="285" y="200" font-size="12" fill="#dc2626" font-weight="bold">山顶</text>
+            
+            <!-- 陡崖标注区域（左上角） -->
+            <rect x="20" y="30" width="150" height="80" fill="#fee2e2" stroke="#ef4444" stroke-width="2" rx="8"/>
+            <text x="95" y="55" text-anchor="middle" font-size="13" fill="#dc2626" font-weight="bold">陡崖（崖壁）</text>
+            <text x="95" y="73" text-anchor="middle" font-size="11" fill="#991b1b">等高线</text>
+            <text x="95" y="88" text-anchor="middle" font-size="11" fill="#991b1b">重叠/重合</text>
+            <line x1="170" y1="60" x2="200" y2="100" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+            
+            <!-- 陡崖示意（左侧锯齿） -->
+            <polyline points="60,110 70,100 60,90 70,80 60,70 70,60" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+            <text x="130" y="90" font-size="12" fill="#dc2626" font-weight="bold">陡崖</text>
+            
+            <!-- 山脊标注（右侧凸出） -->
+            <rect x="430" y="270" width="150" height="50" fill="#dcfce7" stroke="#16a34a" stroke-width="2" rx="8"/>
+            <text x="505" y="300" text-anchor="middle" font-size="13" fill="#15803d" font-weight="bold">山脊（分水岭）</text>
+            <line x1="430" y1="295" x2="390" y2="280" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,2"/>
+            <!-- 山脊等高线向低处凸出示意 -->
+            <path d="M 360 250 Q 390 230 420 250" fill="none" stroke="#22c55e" stroke-width="2"/>
+            <text x="370" y="265" font-size="11" fill="#15803d">等高线向</text>
+            <text x="370" y="280" font-size="11" fill="#15803d">低处凸出</text>
+            
+            <!-- 山谷标注（左下角） -->
+            <rect x="20" y="320" width="140" height="60" fill="#dbeafe" stroke="#2563eb" stroke-width="2" rx="8"/>
+            <text x="90" y="345" text-anchor="middle" font-size="13" fill="#1d4ed8" font-weight="bold">山谷（集水线）</text>
+            <text x="90" y="365" text-anchor="middle" font-size="11" fill="#1e40af">等高线向高处凸出</text>
+            <line x1="160" y1="350" x2="200" y2="320" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,2"/>
+            
+            <!-- 河流（山谷中） -->
+            <path d="M 150 320 Q 200 290 240 300 Q 270 305 290 295" fill="none" stroke="#0ea5e9" stroke-width="3"/>
+            <polygon points="290,295 283,290 285,300" fill="#0ea5e9"/>
+            <text x="180" y="310" font-size="11" fill="#0ea5e9" font-weight="bold">河流</text>
+            
+            <!-- 鞍部标注（两山顶之间） -->
+            <rect x="430" y="140" width="140" height="50" fill="#f0fdf4" stroke="#15803d" stroke-width="2" rx="8"/>
+            <text x="500" y="162" text-anchor="middle" font-size="13" fill="#15803d" font-weight="bold">鞍部</text>
+            <text x="500" y="178" text-anchor="middle" font-size="11" fill="#166534">两个山顶之间</text>
+            <line x1="430" y1="165" x2="390" y2="175" stroke="#15803d" stroke-width="2" stroke-dasharray="4,2"/>
+            
+            <!-- 盆地标注（右下角） -->
+            <rect x="450" y="310" width="130" height="50" fill="#fef3c7" stroke="#d97706" stroke-width="2" rx="8"/>
+            <text x="515" y="335" text-anchor="middle" font-size="13" fill="#92400e" font-weight="bold">盆地/洼地</text>
+            <text x="515" y="352" text-anchor="middle" font-size="11" fill="#78350f">中间低四周高</text>
+            <line x1="450" y1="335" x2="410" y2="320" stroke="#d97706" stroke-width="2" stroke-dasharray="4,2"/>
+            
+            <!-- 图例 -->
+            <rect x="200" y="355" width="200" height="35" fill="white" stroke="#bae6fd" stroke-width="1" rx="6"/>
+            <text x="300" y="372" text-anchor="middle" font-size="12" fill="#0369a1" font-weight="bold">等高线地形图判读要点</text>
+            <text x="300" y="386" text-anchor="middle" font-size="11" fill="#0369a1">闭合→山顶｜重合→陡崖｜向低凸→山脊｜向高凸→山谷</text>
+            
+            <text x="300" y="395" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">图1-6 等高线地形图判读</text>
+          </svg>
+          <p class="svg-caption">图1-6 等高线地形图（标注山顶、陡崖、山脊、山谷、鞍部、盆地）</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-terrain">
+      <h2 class="section-title"><span class="num">🌄</span> 五种主要地形类型</h2>
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 地形类型及特点</h3>
+        <table class="contour-table">
+          <tr><th>地形类型</th><th>海拔</th><th>地面起伏</th></tr>
+          <tr><td><strong>平原</strong></td><td>200米以下</td><td>平坦广阔</td></tr>
+          <tr><td><strong>高原</strong></td><td>500米以上</td><td>地面坦荡或起伏不大</td></tr>
+          <tr><td><strong>山地</strong></td><td>500米以上</td><td>坡度陡峻，沟谷幽深</td></tr>
+          <tr><td><strong>丘陵</strong></td><td>500米以下</td><td>起伏和缓</td></tr>
+          <tr><td><strong>盆地</strong></td><td>中间低，四周高</td><td>四周高，中间低</td></tr>
+        </table>
+
+        <div class="svg-container" style="margin-top: 20px;">
+          <svg viewBox="0 0 700 280" width="700" height="280" xmlns="http://www.w3.org/2000/svg">
+            <rect width="700" height="280" fill="#f0f9ff"/>
+            
+            <!-- 平原 -->
+            <rect x="20" y="150" width="120" height="60" fill="#86efac" stroke="#16a34a" stroke-width="2" rx="4"/>
+            <text x="80" y="165" text-anchor="middle" font-size="14" fill="#166534" font-weight="bold">平原</text>
+            <text x="80" y="182" text-anchor="middle" font-size="11" fill="#166534">海拔<200m</text>
+            <text x="80" y="196" text-anchor="middle" font-size="11" fill="#166534">平坦广阔</text>
+            <line x1="80" y1="150" x2="80" y2="135" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="80" y="130" text-anchor="middle" font-size="10" fill="#16a34a">H<200m</text>
+            
+            <!-- 高原 -->
+            <rect x="160" y="100" width="120" height="110" fill="#fca5a5" stroke="#dc2626" stroke-width="2" rx="4"/>
+            <text x="220" y="120" text-anchor="middle" font-size="14" fill="#991b1b" font-weight="bold">高原</text>
+            <text x="220" y="137" text-anchor="middle" font-size="11" fill="#991b1b">海拔>500m</text>
+            <text x="220" y="152" text-anchor="middle" font-size="11" fill="#991b1b">坦荡开阔</text>
+            <line x1="220" y1="100" x2="220" y2="80" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="220" y="75" text-anchor="middle" font-size="10" fill="#dc2626">H>500m</text>
+            
+            <!-- 山地 -->
+            <polygon points="340,50 370,210 310,210" fill="#d4a017" stroke="#92400e" stroke-width="2"/>
+            <text x="340" y="230" text-anchor="middle" font-size="14" fill="#78350f" font-weight="bold">山地</text>
+            <text x="340" y="247" text-anchor="middle" font-size="11" fill="#78350f">海拔>500m</text>
+            <text x="340" y="262" text-anchor="middle" font-size="11" fill="#78350f">坡陡沟深</text>
+            <text x="340" y="45" text-anchor="middle" font-size="10" fill="#92400e">▲</text>
+            <line x1="340" y1="50" x2="340" y2="30" stroke="#92400e" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="340" y="25" text-anchor="middle" font-size="10" fill="#92400e">H>500m</text>
+            
+            <!-- 丘陵 -->
+            <ellipse cx="500" cy="180" rx="60" ry="35" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+            <ellipse cx="480" cy="165" rx="40" ry="25" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+            <ellipse cx="520" cy="165" rx="40" ry="25" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+            <text x="500" y="230" text-anchor="middle" font-size="14" fill="#166534" font-weight="bold">丘陵</text>
+            <text x="500" y="247" text-anchor="middle" font-size="11" fill="#166534">200<H<500m</text>
+            <text x="500" y="262" text-anchor="middle" font-size="11" fill="#166534">起伏和缓</text>
+            <line x1="500" y1="145" x2="500" y2="125" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="500" y="120" text-anchor="middle" font-size="10" fill="#16a34a">H<500m</text>
+            
+            <!-- 盆地 -->
+            <ellipse cx="630" cy="160" rx="60" ry="70" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+            <ellipse cx="630" cy="160" rx="40" ry="45" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <ellipse cx="630" cy="160" rx="20" ry="22" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <text x="630" y="155" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">低</text>
+            <text x="630" y="175" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">低</text>
+            <text x="630" y="240" text-anchor="middle" font-size="14" fill="#92400e" font-weight="bold">盆地</text>
+            <text x="630" y="257" text-anchor="middle" font-size="11" fill="#92400e">中间低四周高</text>
+            
+            <text x="350" y="275" text-anchor="middle" font-size="14" font-weight="bold" fill="#0369a1">图1-7 五种地形类型对比</text>
+          </svg>
+          <p class="svg-caption">图1-7 五种地形类型海拔与起伏特征对比</p>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"<strong>平原低，高原高；山地陡，丘陵缓；盆地是中间低四周高</strong>"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱1：</strong>"丘陵海拔在500米以上"→ 错误！丘陵海拔在<strong>500米以下</strong>！</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱2：</strong>"高原海拔都在500米以上，坡度都很陡"→ 错误！高原<strong>地面坦荡</strong>，起伏不大！</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】海拔在500米以下，起伏和缓的地形是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 平原海拔在200米以下，不是500米以下！">
+            <span class="opt-letter">A</span> 平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 丘陵
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 山地海拔在500米以上，起伏陡峻！">
+            <span class="opt-letter">C</span> 山地
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'D')" data-feedback="❌ 盆地没有固定海拔范围！">
+            <span class="opt-letter">D</span> 盆地
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 丘陵</strong></p>
+          <p style="margin-top: 8px;"><strong>丘陵</strong>海拔在<strong>500米以下</strong>，地面<strong>起伏和缓</strong>。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2024·广东中考）等高线重合在一起，表示？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 山脊是等高线向低处凸出，不是重合！">
+            <span class="opt-letter">A</span> 山脊
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 陡崖
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 山谷是等高线向高处凸出，不是重合！">
+            <span class="opt-letter">C</span> 山谷
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'D')" data-feedback="❌ 鞍部是两山顶之间，不是等高线重合！">
+            <span class="opt-letter">D</span> 鞍部
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 陡崖</strong></p>
+          <p style="margin-top: 8px;"><strong>陡崖</strong>是等高线<strong>重合</strong>的地形部位，表示坡度接近<strong>90°</strong>的悬崖。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2023·北京中考）若A点在海拔200m等高线上，B点在海拔300m等高线上，两点间等高线稀疏，则A、B两地的实地距离？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 200m距离太短，海拔差是100m，不可能只相距几十米！">
+            <span class="opt-letter">A</span> 约50米
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 等高线稀疏意味着坡度缓，同样的高差需要更长的水平距离！">
+            <span class="opt-letter">B</span> 约100米
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 如果等高线密集才是几百米，等高线稀疏意味着坡度缓，水平距离会更长！">
+            <span class="opt-letter">C</span> 约500米
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'D')">
+            <span class="opt-letter">D</span> 约1000米以上
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：D. 约1000米以上</strong></p>
+          <p style="margin-top: 8px;"><strong>等高线稀疏</strong>说明坡度<strong>缓</strong>，海拔差100m的情况下，坡度越缓，水平距离<strong>越长</strong>，因此实地距离远超100m。</p>
+          <p style="margin-top: 6px;"><strong>解题关键：</strong>等高线<strong>密陡疏缓</strong>——陡的地方水平距离小，缓的地方水平距离大。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：等高线特点（密陡疏缓）</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了14次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 等高线<strong>越密集</strong>，坡度<strong>越陡</strong></li>
+            <li>✅ 等高线<strong>越稀疏</strong>，坡度<strong>越缓</strong></li>
+            <li>✅ 等高线<strong>重合</strong> → 陡崖</li>
+          </ul>
+        </div>
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：五种地形类型的海拔和特征</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了13次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 平原<200m，丘陵<500m</li>
+            <li>✅ 山地/高原>500m（山地陡峻，高原坦荡）</li>
+            <li>✅ 盆地：中间低，四周高</li>
+          </ul>
+        </div>
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：等高线地形图的判读与应用</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了11次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 山脊：等高线向<strong>低</strong>处凸出</li>
+            <li>✅ 山谷：等高线向<strong>高</strong>处凸出（有河流发育）</li>
+            <li>✅ 陡崖：等高线<strong>重合</strong></li>
+            <li>✅ 鞍部：两个山顶之间</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版七年级地理课程标准</p>
+    </div>
+  </footer>
+  
+  <script>
+    const COURSE_INFO = { totalSections: 9, currentSection: 4 };
+    let anchorContents = {};
+
+    anchorContents[1] = `<h3>📍 问题1：等高线是什么？怎么看？</h3><p><strong>定义：</strong>海拔相同的点连成的线</p><p><strong>特点：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>同线等高</li><li>等高距相同</li><li>一般不相交</li><li>密陡疏缓</li></ul>`;
+    anchorContents[2] = `<h3>📍 问题2：五种地形类型怎么区分？</h3><p><strong>五种地形：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>平原（200米以下）</li><li>高原（500米以上，坦荡）</li><li>山地（500米以上，陡峻）</li><li>丘陵（500米以下，和缓）</li><li>盆地（中间低四周高）</li></ul>`;
+    anchorContents[3] = `<h3>📍 问题3：怎么用等高线判断坡度？</h3><p><strong>规律：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>等高线密集 → 坡度陡</li><li>等高线稀疏 → 坡度缓</li></ul><p><strong>记忆口诀：</strong>"密陡疏缓"</p>`;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+      }
+    }
+
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+      console.log('📚 《地形图的判读》课件加载完成（v1.1）');
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

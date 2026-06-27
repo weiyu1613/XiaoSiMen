@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.4 植物在自然界中的作用 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+    }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; margin: 0; }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary-dark); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-base { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-raise { background: #ede9fe; color: #6d28d9; }
+    .difficulty-challenge { background: #fee2e2; color: #dc2626; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid #81c784; background: #f1f8e9; color: var(--primary-dark); padding: 12px 14px; font-size: 16px; margin-top: 8px; }
+    #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28); color: var(--primary-dark); }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .exam-card { background: linear-gradient(135deg, #fefce8, #fef9c3); border: 2px solid #f59e0b; border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .exam-card h3 { color: #92400e; margin-bottom: 12px; }
+    .exam-stat { display: inline-block; background: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+    .must-know { background: #d1fae5; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+    .role-card { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border: 2px solid #4caf50; border-radius: 12px; padding: 16px; margin: 12px 0; }
+    .role-card .role-title { font-size: 1.1rem; font-weight: 700; color: #1b5e20; margin-bottom: 8px; }
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .anchor-points { flex-direction: column; }
+      .anchor-btn { min-width: 100%; }
+      .nav-inner { flex-direction: column; }
+    }
+
+    /* AI学伴 悬浮按钮（绿色主题） */
+    .ai-companion-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      box-shadow: 0 6px 24px rgba(46,125,50,0.55);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .ai-companion-btn:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(46,125,50,0.7); }
+    .ai-companion-btn svg { width: 32px; height: 32px; }
+    /* AI学伴 弹窗 */
+    .ai-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .ai-modal-overlay.show { display: flex; }
+    .ai-modal {
+      background: white;
+      border-radius: 20px;
+      width: 420px;
+      max-height: 520px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+      overflow: hidden;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .ai-modal-header {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      color: white;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ai-modal-header h3 { margin: 0; font-size: 16px; }
+    .ai-modal-close {
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: white;
+      font-size: 22px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .ai-modal-close:hover { background: rgba(255,255,255,0.32); }
+    .ai-modal-body { padding: 20px 22px; max-height: 400px; overflow-y: auto; }
+    .ai-prompt { font-size: 13px; color: #5d6d7e; margin-bottom: 14px; }
+    .ai-q-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 11px 16px;
+      margin-bottom: 10px;
+      background: #f1f8e9;
+      border: 2px solid #c8e6c9;
+      border-radius: 12px;
+      font-size: 13.5px;
+      color: #1b5e20;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    .ai-q-btn:hover { background: #e8f5e9; border-color: #4caf50; }
+    .ai-answer {
+      display: none;
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #1a1a2e;
+    }
+    .ai-answer.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">第 7 / 7 节 · 100%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../zwwdsh.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第三单元：植物的生活</div>
+      <a href="../2.3_hxzy/2.3_hxzy.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../../index.html" class="nav-btn">返回首页 <i class="fa-solid fa-house"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero + SVG知识结构图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-seedling"></i> 七年级生物 · 第三单元</div>
+      <h1>2.4 植物在自然界中的作用<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Plant Roles in Nature</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：说明绿色植物在生物圈中的作用<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识结构图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 260" width="800" height="260" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="260" fill="#f1f8e9"/>
+        <!-- 中心：植物在自然界中的作用 -->
+        <rect x="300" y="90" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="125" text-anchor="middle" font-size="16" font-weight="bold" fill="white">植物在自然界中的作用</text>
+        <text x="400" y="150" text-anchor="middle" font-size="11" fill="#c8e6c9">Plant Roles in Nature</text>
+        
+        <!-- 提供有机物 -->
+        <rect x="40" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="68" text-anchor="middle" font-size="12" fill="white">提供有机物</text>
+        <text x="120" y="86" text-anchor="middle" font-size="9" fill="#e8f5e9">光合作用·食物链</text>
+        <line x1="200" y1="70" x2="300" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 维持碳—氧平衡 -->
+        <rect x="40" y="165" width="160" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="193" text-anchor="middle" font-size="12" fill="white">维持碳—氧平衡</text>
+        <text x="120" y="211" text-anchor="middle" font-size="9" fill="#e8f5e9">吸收CO₂·释放O₂</text>
+        <line x1="200" y1="195" x2="300" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 促进水循环 -->
+        <rect x="600" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="68" text-anchor="middle" font-size="12" fill="white">促进水循环</text>
+        <text x="680" y="86" text-anchor="middle" font-size="9" fill="#e8f5e9">蒸腾作用</text>
+        <line x1="600" y1="70" x2="500" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 保持水土 -->
+        <rect x="600" y="165" width="160" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="203" text-anchor="middle" font-size="12" fill="white">保持水土·防风固沙</text>
+        <text x="680" y="221" text-anchor="middle" font-size="9" fill="#e8f5e9">根系固土</text>
+        <line x1="600" y1="195" x2="500" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图2-6 植物在自然界中的作用知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span>探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="植物在自然界中有什么作用？">🌿 植物在自然界中有什么作用？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="植物如何维持碳—氧平衡？">🌱 植物如何维持碳—氧平衡？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="植物与生物圈的关系是什么？">🌍 植物与生物圈的关系是什么？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 说明植物是生物圈的"生产者"（通过光合作用制造有机物）</li>
+          <li>✅ 解释植物维持碳—氧平衡的作用（吸收CO₂，释放O₂）</li>
+          <li>✅ 说明植物促进水循环（蒸腾作用）</li>
+          <li>✅ 列举植物在防风固沙、保持水土方面的作用</li>
+          <li>✅ 认识植物与其他生物的关系（食物链、栖息地）</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span>课前检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
+
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 植物在生物圈中扮演的角色是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 消费者</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">B</span> 生产者</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 分解者</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 非生物成分</div>
+        <div class="feedback" id="fb-1"></div>
+        <div class="answer-explanation" id="exp-1">
+          <strong>解析：</strong>植物能够通过<strong>光合作用</strong>制造有机物，是生物圈中的<strong>生产者</strong>。消费者是动物，分解者是细菌和真菌。
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 植物维持碳—氧平衡的作用是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 吸收氧气，释放二氧化碳</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">B</span> 吸收二氧化碳，释放氧气</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 只吸收二氧化碳</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 只释放氧气</div>
+        <div class="feedback" id="fb-2"></div>
+        <div class="answer-explanation" id="exp-2">
+          <strong>解析：</strong>通过光合作用，植物<strong>吸收二氧化碳，释放氧气</strong>，从而维持大气中二氧化碳和氧气的<strong>平衡</strong>（碳—氧平衡）。
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关植物在自然界中的作用，<strong>错误</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 植物是生物圈中的生产者</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 植物通过蒸腾作用促进水循环</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 植物进行呼吸作用时会破坏碳—氧平衡</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 植物可以防风固沙、保持水土</div>
+        <div class="feedback" id="fb-3"></div>
+        <div class="answer-explanation" id="exp-3">
+          <strong>解析：</strong>C是错误的。呼吸作用虽然消耗氧气、释放二氧化碳，但植物光合作用吸收的二氧化碳远多于呼吸作用释放的，总体上<strong>维持碳—氧平衡</strong>。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span>核心知识讲解</h2>
+
+      <!-- 知识点1：植物是生产者 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">一、植物是生物圈的"生产者"</h3>
+        
+        <div class="role-card">
+          <div class="role-title">🌿 生产者（Producer）</div>
+          <p>植物通过<strong>光合作用</strong>制造有机物，不仅供给自身，还通过<strong>食物链</strong>传递给其他生物（动物、人类）。没有植物，生物圈将无法维持。</p>
+        </div>
+        
+        <div class="concept-box">
+          <div class="label">📖 概念框：食物链</div>
+          <p>食物链反映了生物之间的<strong>食物关系</strong>。植物是食物链的<strong>起点</strong>（第一营养级），例如：<br>
+          草 → 兔 → 狐（植物→植食动物→肉食动物）</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：维持碳—氧平衡 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">二、维持碳—氧平衡</h3>
+        
+        <div class="role-card">
+          <div class="role-title">🌱 碳—氧平衡（Carbon-Oxygen Balance）</div>
+          <p>植物通过光合作用<strong>吸收二氧化碳，释放氧气</strong>，使大气中二氧化碳和氧气的浓度保持<strong>相对稳定</strong>。<br>
+          随着工业发展，CO₂排放增加，植物在<strong>缓解温室效应</strong>中扮演重要角色。</p>
+        </div>
+        
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>植物<strong>既进行光合作用，也进行呼吸作用</strong>。但总体上（尤其是白天），光合作用吸收的CO₂远多于呼吸作用释放的CO₂，所以表现为<strong>维持碳—氧平衡</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 知识点3：促进水循环 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">三、促进水循环</h3>
+        
+        <div class="role-card">
+          <div class="role-title">💧 水循环（Water Cycle）</div>
+          <p>植物通过<strong>蒸腾作用</strong>将根部吸收的水分以水蒸气形式散失到大气中，参与<strong>水循环</strong>。<br>
+          一片森林就像一个"绿色水库"，能够增加降水量，调节气候。</p>
+        </div>
+      </div>
+
+      <!-- 知识点4：防风固沙、保持水土 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">四、防风固沙、保持水土</h3>
+        
+        <div class="role-card">
+          <div class="role-title">🌳 防风固沙 · 保持水土</div>
+          <ul style="line-height:2;margin:8px 0;">
+            <li>🌿 <strong>根系固土</strong>：植物根系牢牢抓住土壤，防止<strong>水土流失</strong></li>
+            <li>🌲 <strong>防风林</strong>：可以降低风速，防止<strong>土地沙漠化</strong></li>
+            <li>🌴 <strong>涵养水源</strong>：森林可以储存大量水分，防止干旱</li>
+          </ul>
+        </div>
+        
+        <div class="concept-box">
+          <div class="label">📖 概念框：三北防护林</div>
+          <p>中国的"<strong>三北防护林</strong>"工程是世界上最大的生态建设工程，目的是<strong>防风固沙、保持水土、改善生态环境</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 知识点5：与其他生物的关系 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">五、植物与其他生物的关系</h3>
+        <ul style="line-height:2;margin:12px 0;">
+          <li>🏠 <strong>提供栖息地</strong>：森林是地球上生物多样性最丰富的生态系统</li>
+          <li>🍎 <strong>提供食物</strong>：人类和动物的食物几乎都直接或间接来自植物</li>
+          <li>🫁 <strong>提供氧气</strong>：人类和动物呼吸需要的氧气主要来自植物</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测（含中考真题） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">1. 植物在生物圈中的作用是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 只提供食物</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">B</span> 提供有机物、维持碳—氧平衡、促进水循环</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 只进行光合作用</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 只提供氧气</div>
+        <div class="feedback" id="fb-4"></div>
+        <div class="answer-explanation" id="exp-4">
+          <strong>解析：</strong>植物在生物圈中有多重作用：①作为生产者提供有机物；②维持碳—氧平衡；③促进水循环；④防风固沙、保持水土；⑤提供栖息地和食物。
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】"大树底下好乘凉"说明植物可以（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 只进行光合作用</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">B</span> 调节气候、降温增湿</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 只提供氧气</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 只进行呼吸作用</div>
+        <div class="feedback" id="fb-5"></div>
+        <div class="answer-explanation" id="exp-5">
+          <strong>解析：</strong>"大树底下好乘凉"体现了植物对环境的调节作用：①<strong>蒸腾作用</strong>带走热量，降低温度；②叶片遮挡阳光；③增加空气湿度。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span>必考分析与考点总结</h2>
+
+      <div class="exam-card">
+        <h3>📊 考频统计</h3>
+        <p><span class="exam-stat">高频</span>植物是生产者（选择题）</p>
+        <p><span class="exam-stat">高频</span>碳—氧平衡（选择题、简答题）</p>
+        <p><span class="exam-stat">中频</span>促进水循环（选择题）</p>
+        <p><span class="exam-stat">中频</span>防风固沙、保持水土（选择题、综合题）</p>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 必背结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>植物是生物圈的<strong>生产者</strong>（通过光合作用制造有机物）</li>
+          <li>植物维持<strong>碳—氧平衡</strong>（吸收CO₂，释放O₂）</li>
+          <li>植物通过<strong>蒸腾作用</strong>促进<strong>水循环</strong></li>
+          <li>植物可以<strong>防风固沙、保持水土</strong>（根系固土）</li>
+          <li>植物为其他生物提供<strong>食物和栖息地</strong></li>
+        </ol>
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="line-height:2;">
+          <li>❌ 误认为"植物只进行光合作用"→ 植物<strong>既进行光合作用也进行呼吸作用</strong></li>
+          <li>❌ 误认为"呼吸作用破坏碳—氧平衡"→ 总体上是<strong>维持平衡</strong>（光合 &gt; 呼吸）</li>
+          <li>❌ 误认为"植物只提供氧气"→ 作用<strong>多方面</strong>（有机物、水循环、保持水土等）</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- 知识图谱 -->
+    <section class="kg-section" id="section-kg">
+      <div class="kg-title"><span>🗺️</span> 知识图谱 · 植物在自然界中的作用</div>
+      <div class="kg-svg-container">
+        <svg viewBox="0 0 700 220" width="700" height="220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="700" height="220" fill="#f1f8e9" rx="12"/>
+          <!-- 中心节点 -->
+          <rect x="270" y="70" width="160" height="80" rx="14" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+          <text x="350" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="white">植物在自然界中的作用</text>
+          <text x="350" y="130" text-anchor="middle" font-size="11" fill="#c8e6c9">核心知识图谱</text>
+          <!-- 分支1 -->
+          <rect x="40" y="30" width="130" height="50" rx="8" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+          <text x="105" y="58" text-anchor="middle" font-size="12" fill="white">概念理解</text>
+          <line x1="170" y1="55" x2="270" y2="95" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支2 -->
+          <rect x="40" y="140" width="130" height="50" rx="8" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+          <text x="105" y="168" text-anchor="middle" font-size="12" fill="white">实验探究</text>
+          <line x1="170" y1="165" x2="270" y2="125" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支3 -->
+          <rect x="530" y="30" width="130" height="50" rx="8" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+          <text x="595" y="58" text-anchor="middle" font-size="12" fill="white">中考考点</text>
+          <line x1="530" y1="55" x2="430" y2="95" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支4 -->
+          <rect x="530" y="140" width="130" height="50" rx="8" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+          <text x="595" y="168" text-anchor="middle" font-size="12" fill="#1b5e20">易错警示</text>
+          <line x1="530" y1="165" x2="430" y2="125" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <defs>
+            <marker id="kgr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#2e7d32"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="kg-caption">图 · 植物在自然界中的作用 知识图谱（点击各分支可跳转对应模块）</div>
+      </div>
+      <div class="kg-legend">
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#4caf50;"></div>概念理解</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#388e3c;"></div>实验探究</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#66bb6a;"></div>中考考点</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#81c784;"></div>易错警示</div>
+      </div>
+    </section>
+
+    <!-- 导师卡片 -->
+    <div class="mentor-card">
+      <div class="mentor-avatar">🌿</div>
+      <div class="mentor-info">
+        <div class="mentor-name">李老师 · 生物学科导师</div>
+        <div class="mentor-title">人教版七年级生物 · 第三单元备课组长</div>
+        <div class="mentor-bio">
+          专注初中生物教学 12 年，擅长将抽象的生物学概念转化为贴近生活的例子。
+          如果你对"植物在自然界中的作用"有任何疑问，欢迎随时提问！
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第三单元 植物的生活 · 第7节 植物在自然界中的作用 · TeachAny v7.14.0</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 进度条更新
+    document.addEventListener('DOMContentLoaded', function() {
+      var totalSections = 10;
+      var currentSection = 7;
+      var pct = Math.round((currentSection / totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '第 ' + currentSection + ' / ' + totalSections + ' 节 · ' + pct + '%';
+    });
+
+    // 锚点选择
+    var anchorContents = {
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌿 植物在自然界中有什么作用？</h4><p>植物在自然界中的作用：①<strong>生产者</strong>（制造有机物）；②<strong>维持碳—氧平衡</strong>（吸收CO₂，释放O₂）；③<strong>促进水循环</strong>（蒸腾作用）；④<strong>防风固沙、保持水土</strong>；⑤提供食物和栖息地。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌱 植物如何维持碳—氧平衡？</h4><p>植物通过<strong>光合作用</strong>吸收二氧化碳、释放氧气，使大气中CO₂和O₂的浓度保持<strong>相对稳定</strong>。虽然植物也进行呼吸作用（消耗O₂，释放CO₂），但总体上光合作用吸收的CO₂远多于呼吸作用释放的CO₂。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌍 植物与生物圈的关系是什么？</h4><p>植物是生物圈的<strong>基石</strong>：①作为生产者提供有机物；②维持碳—氧平衡；③促进水循环；④为其他生物提供<strong>食物和栖息地</strong>；⑤防风固沙、保持水土，改善生态环境。</p></div>'
+    };
+
+    function selectAnchor(btn, id) {
+      var btns = document.querySelectorAll('.anchor-btn');
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = anchorContents[id];
+      display.style.display = 'block';
+    }
+
+    function handleCustomQuestion(val) {
+      if (val.trim().length < 2) return;
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！植物在自然界中的作用是中考常考点，建议结合生态系统来理解。</p></div>';
+      display.style.display = 'block';
+    }
+
+    function checkAnswer(el, isCorrect, qNum) {
+      var parent = el.parentElement;
+      var options = parent.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.remove('correct', 'wrong');
+      }
+      if (isCorrect) {
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      var fb = document.getElementById('fb-' + qNum);
+      var exp = document.getElementById('exp-' + qNum);
+      if (isCorrect) {
+        fb.className = 'feedback correct-fb show';
+        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
+      } else {
+        fb.className = 'feedback wrong-fb show';
+        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
+      }
+      exp.classList.add('show');
+    }
+
+    // AI学伴 弹窗控制
+    function toggleAIModal() {
+      var m = document.getElementById('aiModal');
+      m.classList.toggle('show');
+    }
+    function showAIAnswer(btn, id) {
+      var ans = document.getElementById('ai-ans-' + id);
+      if (ans.classList.contains('show')) {
+        ans.classList.remove('show');
+      } else {
+        // 隐藏其他
+        var all = document.querySelectorAll('.ai-answer');
+        for (var i = 0; i < all.length; i++) all[i].classList.remove('show');
+        ans.classList.add('show');
+      }
+    }
+  </script>
+
+
+  <!-- AI学伴 悬浮按钮 -->
+  <button class="ai-companion-btn" onclick="toggleAIModal()" title="AI学伴 · 随时提问">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.2"/>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+            fill="white"/>
+    </svg>
+  </button>
+
+  <!-- AI学伴 弹窗 -->
+  <div class="ai-modal-overlay" id="aiModal" onclick="if(event.target===this)toggleAIModal()">
+    <div class="ai-modal">
+      <div class="ai-modal-header">
+        <h3>🤖 AI 学伴</h3>
+        <button class="ai-modal-close" onclick="toggleAIModal()">✕</button>
+      </div>
+      <div class="ai-modal-body">
+        <p class="ai-prompt">选一个问题，AI 学伴会帮你讲解：</p>
+        <button class="ai-q-btn" onclick="showAIAnswer(this,1)">💡 植物在自然界中的作用的核心概念是什么？</button>
+        <div class="ai-answer" id="ai-ans-1">请参考本课时的核心知识讲解，重点关注概念框和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,2)">📝 这一课时有哪些易错点？</button>
+        <div class="ai-answer" id="ai-ans-2">请查看本课时的"⚠️ 易错警示"框，里面总结了最容易出错的知识点。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,3)">🏆 中考常考哪些内容？</button>
+        <div class="ai-answer" id="ai-ans-3">请查看本课时的"🏆 必考分析与总结"模块，里面有考频统计和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,4)">🔍 如何区分相似概念？</button>
+        <div class="ai-answer" id="ai-ans-4">注意对比表格中的关键区别，特别是光合作用和呼吸作用的对比。</div>
+      </div>
+    </div>
+  </div>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

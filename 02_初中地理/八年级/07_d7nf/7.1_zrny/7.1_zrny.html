@@ -1,0 +1,819 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-south-region-71">
+  <meta name="course-title" content="7.1 自然特征与农业">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-south-region">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>7.1 自然特征与农业 | 八年级地理下册</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .region-svg {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .comparison-table td {
+      padding: 10px;
+      border: 1px solid #bae6fd;
+      text-align: center;
+    }
+    
+    .comparison-table tr:nth-child(even) { background: #f0f9ff; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #0369a1; text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #bae6fd;
+      background: #f0f9ff; color: #1e40af; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(22,163,74,0.1); border: 1px solid rgba(22,163,74,0.28);
+      color: #1e40af;
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* NavBar styles */
+    .nav-bar { background: #f0f9ff; border-bottom: 2px solid #0369a1; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #0369a1; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #eff6ff; }
+    .nav-center { font-weight: 700; color: #0369a1; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #eff6ff; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #0369a1, #0284c7); width: 25%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #0369a1; padding: 4px 20px; background: #f0f9ff; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #0369a1; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #0369a1; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #bae6fd; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(22,163,74,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #eff6ff, #f0f9ff); border: 2px solid #bae6fd; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1e40af; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #dbeafe, #eff6ff); border-color: #60a5fa; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; border-color: #0369a1; }
+
+    /* 测验选项 */
+    .quiz-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #dbeafe; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #60a5fa; background: #f0f9ff; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #0369a1; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #f0f9ff; border-left: 4px solid #0369a1; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 页脚 */
+    .footer { background: #0369a1; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+
+      .comparison-table { display: block !important; overflow-x: auto !important; font-size: 12px !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/4 节 · 25%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../07_d7nf.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第七章：南方地区</div>
+    <a href="#" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../7.2_cjsjz/7.2_cjsjz.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-leaf"></i> 八年级地理下册 · 第七章</div>
+      <h1>7.1 自然特征与农业<span>Natural Features and Agriculture</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：运用地图描述南方地区的自然地理特征，理解其对农业发展的影响<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 320" width="800" height="320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="320" fill="#f0f9ff"/>
+        <!-- 中心主题：南方地区 -->
+        <circle cx="400" cy="160" r="60" fill="#0369a1" stroke="#0c4a6e" stroke-width="3"/>
+        <text x="400" y="165" text-anchor="middle" font-size="18" font-weight="bold" fill="white">南方地区</text>
+        
+        <!-- 四个分支 -->
+        <rect x="30" y="50" width="140" height="60" rx="10" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+        <text x="100" y="85" text-anchor="middle" font-size="14" fill="white">位置和范围</text>
+        <line x1="170" y1="80" x2="340" y2="160" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="30" y="210" width="140" height="60" rx="10" fill="#0369a1" stroke="#0c4a6e" stroke-width="2"/>
+        <text x="100" y="245" text-anchor="middle" font-size="14" fill="white">自然特征</text>
+        <line x1="170" y1="240" x2="340" y2="160" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="50" width="140" height="60" rx="10" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+        <text x="700" y="85" text-anchor="middle" font-size="14" fill="white">农业特点</text>
+        <line x1="630" y1="80" x2="460" y2="160" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="210" width="140" height="60" rx="10" fill="#0369a1" stroke="#0c4a6e" stroke-width="2"/>
+        <text x="700" y="245" text-anchor="middle" font-size="13" fill="white">河流特征</text>
+        <line x1="630" y1="240" x2="460" y2="160" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 自然特征子分支 -->
+        <text x="200" y="300" font-size="12" fill="#0369a1">地形：西高东低，复杂多样</text>
+        <text x="200" y="320" font-size="12" fill="#0369a1">气候：亚热带季风气候</text>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#0369a1"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #0369a1; font-size: 14px; text-align: center;">图7-1 南方地区自然特征与农业知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="南方地区在哪？有什么自然特征？">🗺️ 南方地区在哪？有什么自然特征？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="南方地区的气候对农业有什么影响？">🌾 南方地区的气候对农业有什么影响？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="为什么南方地区是鱼米之乡？">🐟 为什么南方地区是鱼米之乡？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #0369a1;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #0369a1; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 运用地图说出南方地区的位置和范围</li>
+          <li>✅ 分析南方地区的地形、气候、河流等自然特征</li>
+          <li>✅ 理解南方地区农业发展的自然条件和特点</li>
+          <li>✅ 掌握南方地区是我国水稻主产区和淡水渔业最发达地区的成因</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：南方地区位置 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】南方地区位于？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 秦岭—淮河以北是北方地区！">
+            <span class="opt-letter">A</span> 秦岭—淮河以北
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 秦岭—淮河以南
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 大兴安岭以东是东部地区，但不是南方地区的准确定位！">
+            <span class="opt-letter">C</span> 大兴安岭以东
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 秦岭—淮河以南</strong></p>
+          <p style="margin-top: 8px;">南方地区位于<strong>秦岭—淮河以南</strong>、<strong>青藏高原以东</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2：南方地区气候 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】南方地区的气候类型是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 温带季风气候是北方地区的气候类型！">
+            <span class="opt-letter">A</span> 温带季风气候
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 亚热带季风气候
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 热带季风气候主要分布在我国云南南部和海南岛等地，不是南方地区的主要气候！">
+            <span class="opt-letter">C</span> 热带季风气候
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 亚热带季风气候</strong></p>
+          <p style="margin-top: 8px;">南方地区大部分属于<strong>亚热带季风气候</strong>，南部小部分地区属于<strong>热带季风气候</strong>。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3：地形特征 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】关于南方地区地形特征的描述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 西部是高原和盆地，不是以平原为主！">
+            <span class="opt-letter">A</span> 西部以平原为主
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 东部是平原和丘陵交错分布，不是以高原为主！">
+            <span class="opt-letter">B</span> 东部以高原为主
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 地形复杂多样，西部有高原和盆地，东部有平原和丘陵
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 地形复杂多样，西部有高原和盆地，东部有平原和丘陵</strong></p>
+          <p style="margin-top: 8px;">南方地区<strong>地形复杂多样</strong>：西部有<strong>云贵高原</strong>和<strong>四川盆地</strong>，东部有<strong>长江中下游平原</strong>和<strong>东南丘陵</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4：农业特点 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】南方地区是我国重要的？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 小麦主产区是北方地区，南方地区是水稻主产区！">
+            <span class="opt-letter">A</span> 小麦主产区
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+            <span class="opt-letter">B</span> 水稻主产区和淡水渔业最发达地区
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 甜菜主要分布在东北地区，不是南方地区！">
+            <span class="opt-letter">C</span> 甜菜主产区
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 水稻主产区和淡水渔业最发达地区</strong></p>
+          <p style="margin-top: 8px;">南方地区气候<strong>温暖湿润</strong>，降水<strong>丰沛</strong>，是我国<strong>水稻主产区</strong>和<strong>淡水渔业最发达</strong>的地区。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 位置和范围 -->
+    <section class="section" id="section-location">
+      <h2 class="section-title"><span class="num">🗺️</span> 位置和范围</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 南方地区的位置</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>位于<strong>秦岭—淮河以南</strong>、<strong>青藏高原以东</strong></li>
+          <li>东面和南面分别濒临<strong>黄海、东海和南海</strong></li>
+          <li>面积约占全国的<strong>25%</strong></li>
+        </ul>
+
+        <!-- SVG:南方地区位置示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+            <!-- 中国轮廓简化图 -->
+            <path d="M 300 100 Q 350 120, 380 150 Q 400 180, 390 200 Q 380 220, 400 250 Q 420 280, 410 300 Q 390 320, 370 330 Q 350 340, 330 320 Q 310 300, 300 280 Q 280 250, 270 220 Q 250 190, 260 160 Q 270 130, 300 100 Z" 
+                  fill="#eff6ff" stroke="#0369a1" stroke-width="2"/>
+            
+            <!-- 秦岭-淮河线 -->
+            <line x1="250" y1="180" x2="400" y2="180" stroke="#ef4444" stroke-width="3" stroke-dasharray="8,4"/>
+            <text x="410" y="185" font-size="14" fill="#ef4444">秦岭—淮河</text>
+            
+            <!-- 标注南方地区 -->
+            <rect x="300" y="200" width="120" height="60" rx="8" fill="#0369a1" stroke="#0c4a6e" stroke-width="2" opacity="0.8"/>
+            <text x="360" y="235" text-anchor="middle" font-size="16" font-weight="bold" fill="white">南方地区</text>
+            
+            <!-- 海域标注 -->
+            <text x="500" y="220" font-size="13" fill="#0ea5e9">黄海</text>
+            <text x="520" y="280" font-size="13" fill="#0ea5e9">东海</text>
+            <text x="510" y="350" font-size="13" fill="#0ea5e9">南海</text>
+            
+            <text x="300" y="380" text-anchor="middle" font-size="16" font-weight="bold" fill="#0369a1">南方地区位置示意图</text>
+          </svg>
+          <p class="svg-caption">图7-2 南方地区位置示意图</p>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 南方地区的范围</div>
+          <p>南方地区包括<strong>长江中下游地区</strong>、<strong>南部沿海地区</strong>和<strong>西南地区</strong>。</p>
+          <p style="margin-top: 6px;">主要省级行政区有：<strong>江苏、安徽、浙江、上海、湖北、湖南、江西、福建、广东、广西、海南、台湾、香港、澳门</strong>等。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 自然特征 -->
+    <section class="section" id="section-natural">
+      <h2 class="section-title"><span class="num">🌄</span> 自然特征</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 地形特征</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>地形<strong>复杂多样</strong></li>
+          <li><strong>西部</strong>：云贵高原、四川盆地</li>
+          <li><strong>东部</strong>：长江中下游平原、东南丘陵</li>
+          <li>地势<strong>西高东低</strong></li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 气候特征</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>大部分属于<strong>亚热带季风气候</strong></li>
+          <li>南部小部分地区属于<strong>热带季风气候</strong></li>
+          <li>气候特点：<strong>温暖湿润</strong>，<strong>降水丰沛</strong></li>
+          <li>1月平均气温在<strong>0℃以上</strong></li>
+          <li>年降水量在<strong>800毫米以上</strong></li>
+        </ul>
+
+        <!-- SVG:南方地区地形示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 350" width="600" height="350" xmlns="http://www.w3.org/2000/svg">
+            <!-- 地形剖面示意图 -->
+            <rect x="50" y="150" width="100" height="80" rx="5" fill="#a8a29e" stroke="#78716c" stroke-width="2"/>
+            <text x="100" y="195" text-anchor="middle" font-size="12" fill="white">云贵高原</text>
+            
+            <rect x="180" y="180" width="100" height="50" rx="5" fill="#d4d4d8" stroke="#a1a1aa" stroke-width="2"/>
+            <text x="230" y="210" text-anchor="middle" font-size="12" fill="white">四川盆地</text>
+            
+            <rect x="310" y="200" width="120" height="30" rx="5" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+            <text x="370" y="220" text-anchor="middle" font-size="12" fill="white">长江中下游平原</text>
+            
+            <ellipse cx="470" cy="220" rx="60" ry="40" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+            <text x="470" y="225" text-anchor="middle" font-size="12" fill="#92400e">东南丘陵</text>
+            
+            <!-- 地势箭头 -->
+            <text x="100" y="130" font-size="13" fill="#0369a1">西高 ►</text>
+            <text x="450" y="130" font-size="13" fill="#0369a1">► 东低</text>
+            <line x1="150" y1="135" x2="430" y2="135" stroke="#0369a1" stroke-width="2" marker-end="url(#arrow2)"/>
+            
+            <!-- 气候标注 -->
+            <rect x="200" y="50" width="200" height="50" rx="10" fill="#0ea5e9" stroke="#0284c7" stroke-width="2"/>
+            <text x="300" y="75" text-anchor="middle" font-size="14" fill="white">亚热带季风气候</text>
+            <text x="300" y="95" text-anchor="middle" font-size="12" fill="white">温暖湿润，降水丰沛</text>
+            
+            <text x="300" y="320" text-anchor="middle" font-size="16" font-weight="bold" fill="#0369a1">南方地区地形和气候示意图</text>
+            
+            <defs>
+              <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#0369a1"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="svg-caption">图7-3 南方地区地形和气候示意图</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 河流特征</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>河流<strong>水量充沛</strong></li>
+          <li><strong>汛期长</strong></li>
+          <li>含沙量<strong>小</strong></li>
+          <li>无<strong>结冰期</strong></li>
+          <li>主要河流：<strong>长江、珠江</strong>等</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 为什么南方地区河流水量充沛？</div>
+          <p>南方地区<strong>降水丰沛</strong>（年降水量800毫米以上），所以河流<strong>水量充沛</strong>。</p>
+          <p style="margin-top: 6px;">气温在<strong>0℃以上</strong>，所以河流<strong>无结冰期</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 农业特点 -->
+    <section class="section" id="section-agriculture">
+      <h2 class="section-title"><span class="num">🌾</span> 农业特点</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 农业发展的自然条件</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>气候</strong>：温暖湿润，雨热同期</li>
+          <li><strong>地形</strong>：平原广阔，土壤肥沃</li>
+          <li><strong>水源</strong>：河流众多，水源充足</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 农业特点</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>是我国<strong>水稻主产区</strong></li>
+          <li>是<strong>淡水渔业最发达</strong>的地区</li>
+          <li>主要农作物：<strong>水稻、油菜、甘蔗、茶叶</strong>等</li>
+          <li>热带作物：<strong>橡胶、椰子、咖啡</strong>等（南部地区）</li>
+        </ul>
+
+        <!-- 农业与自然环境关系表 -->
+        <table class="comparison-table" style="margin-top: 20px;">
+          <tr><th>自然要素</th><th>特点</th><th>对农业的影响</th></tr>
+          <tr><td><strong>气候</strong></td><td>温暖湿润，雨热同期</td><td>有利于水稻生长</td></tr>
+          <tr><td><strong>地形</strong></td><td>平原广阔，土壤肥沃</td><td>有利于耕作</td></tr>
+          <tr><td><strong>河流</strong></td><td>水量充沛，河网密布</td><td>有利于淡水渔业</td></tr>
+        </table>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"南方水稻油菜茶，淡水渔业顶呱呱"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"南方地区年降水量在400毫米以下"→ 错误！南方地区年降水量在<strong>800毫米以上</strong>！</p>
+        </div>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 为什么南方地区被称为"鱼米之乡"？</div>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>鱼</strong>：河网密布，淡水渔业发达</li>
+            <li><strong>米</strong>：水稻种植面积广，产量高</li>
+            <li>气候温暖湿润，地形平坦，水源充足，有利于水稻种植和渔业发展</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】南方地区1月平均气温在？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 0℃以下是北方地区的气温特点！">
+            <span class="opt-letter">A</span> 0℃以下
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 0℃以上
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 10℃以上不是南方地区1月平均气温的特点！">
+            <span class="opt-letter">C</span> 10℃以上
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 0℃以上</strong></p>
+          <p style="margin-top: 8px;">南方地区1月平均气温在<strong>0℃以上</strong>，这是南方地区与北方地区的重要区别。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）南方地区是我国重要的？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+            <span class="opt-letter">A</span> 水稻主产区
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 小麦主产区是北方地区，不是南方地区！">
+            <span class="opt-letter">B</span> 小麦主产区
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 甜菜主要分布在东北地区，不是南方地区！">
+            <span class="opt-letter">C</span> 甜菜主产区
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 水稻主产区</strong></p>
+          <p style="margin-top: 8px;">南方地区气候<strong>温暖湿润</strong>，是我国<strong>水稻主产区</strong>和<strong>淡水渔业最发达</strong>的地区。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南中考）关于南方地区河流特征的描述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 南方地区河流无结冰期，结冰期长是北方河流的特点！">
+            <span class="opt-letter">A</span> 有结冰期，结冰期长
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 南方地区河流水量充沛，含沙量小，水量小含沙量大是北方河流的特点！">
+            <span class="opt-letter">B</span> 水量小，含沙量大
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 水量充沛，汛期长，无结冰期
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 水量充沛，汛期长，无结冰期</strong></p>
+          <p style="margin-top: 8px;">南方地区河流<strong>水量充沛</strong>、<strong>汛期长</strong>、<strong>无结冰期</strong>、含沙量<strong>小</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：南方地区的位置和范围</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 南方地区位于<strong>秦岭—淮河以南</strong>、<strong>青藏高原以东</strong></li>
+            <li>✅ 东面和南面分别濒临<strong>黄海、东海和南海</strong></li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：南方地区的自然特征</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>气候<strong>温暖湿润</strong>（亚热带季风气候），地形<strong>复杂多样</strong>（西高东低），河流<strong>水量充沛、无结冰期</strong>。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：南方地区的农业特点</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>南方地区是我国<strong>水稻主产区</strong>和<strong>淡水渔业最发达</strong>的地区。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0f9ff,#eff6ff);border:1px solid #bae6fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#0369a1;">4</span>
+            <strong style="font-size:15px;color:#1e40af;">📍 常考考点："鱼米之乡"的成因</strong>
+            <span class="exam-tag" style="background:#0369a1;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>气候温暖湿润、地形平坦、水源充足，有利于<strong>水稻种植</strong>和<strong>淡水渔业</strong>发展。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版八年级地理下册课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 8,
+      currentSection: 1
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：南方地区在哪？有什么自然特征？</h3>
+      <p><strong>位置：</strong>秦岭—淮河以南、青藏高原以东</p>
+      <p><strong>自然特征：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>地形：西高东低，复杂多样</li>
+        <li>气候：亚热带季风气候，温暖湿润</li>
+        <li>河流：水量充沛，汛期长，无结冰期</li>
+      </ul>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：南方地区的气候对农业有什么影响？</h3>
+      <p><strong>气候特点：</strong>温暖湿润，雨热同期</p>
+      <p><strong>对农业的影响：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>有利于水稻生长 → 水稻主产区</li>
+        <li>降水丰沛，河网密布 → 淡水渔业发达</li>
+        <li>热量充足 → 一年两熟到三熟</li>
+      </ul>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：为什么南方地区是鱼米之乡？</h3>
+      <p><strong>鱼：</strong>河网密布，淡水渔业发达</p>
+      <p><strong>米：</strong>水稻种植面积广，产量高</p>
+      <p><strong>成因：</strong>气候温暖湿润、地形平坦、水源充足，有利于水稻种植和渔业发展。</p>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《自然特征与农业》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+</body>
+</html>

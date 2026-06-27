@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.3 开花和结果 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+    }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; margin: 0; }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 42.8%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary-dark); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-base { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-raise { background: #ede9fe; color: #6d28d9; }
+    .difficulty-challenge { background: #fee2e2; color: #dc2626; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid #81c784; background: #f1f8e9; color: var(--primary-dark); padding: 12px 14px; font-size: 16px; margin-top: 8px; }
+    #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28); color: var(--primary-dark); }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .exam-card { background: linear-gradient(135deg, #fefce8, #fef9c3); border: 2px solid #f59e0b; border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .exam-card h3 { color: #92400e; margin-bottom: 12px; }
+    .exam-stat { display: inline-block; background: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+    .must-know { background: #d1fae5; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+    .flower-structure-img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 16px rgba(46,125,50,0.15); }
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .anchor-points { flex-direction: column; }
+      .anchor-btn { min-width: 100%; }
+      .nav-inner { flex-direction: column; }
+    }
+
+    /* AI学伴 悬浮按钮（绿色主题） */
+    .ai-companion-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      box-shadow: 0 6px 24px rgba(46,125,50,0.55);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .ai-companion-btn:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(46,125,50,0.7); }
+    .ai-companion-btn svg { width: 32px; height: 32px; }
+    /* AI学伴 弹窗 */
+    .ai-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .ai-modal-overlay.show { display: flex; }
+    .ai-modal {
+      background: white;
+      border-radius: 20px;
+      width: 420px;
+      max-height: 520px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+      overflow: hidden;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .ai-modal-header {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      color: white;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ai-modal-header h3 { margin: 0; font-size: 16px; }
+    .ai-modal-close {
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: white;
+      font-size: 22px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .ai-modal-close:hover { background: rgba(255,255,255,0.32); }
+    .ai-modal-body { padding: 20px 22px; max-height: 400px; overflow-y: auto; }
+    .ai-prompt { font-size: 13px; color: #5d6d7e; margin-bottom: 14px; }
+    .ai-q-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 11px 16px;
+      margin-bottom: 10px;
+      background: #f1f8e9;
+      border: 2px solid #c8e6c9;
+      border-radius: 12px;
+      font-size: 13.5px;
+      color: #1b5e20;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    .ai-q-btn:hover { background: #e8f5e9; border-color: #4caf50; }
+    .ai-answer {
+      display: none;
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #1a1a2e;
+    }
+    .ai-answer.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">第 3 / 7 节 · 42.8%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../zwwdsh.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第三单元：植物的生活</div>
+      <a href="../1.2_zwzdsd/1.2_zwzdsd.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../2.1_sddlsyzs/2.1_sddlsyzs.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero + SVG知识结构图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-seedling"></i> 七年级生物 · 第三单元</div>
+      <h1>1.3 开花和结果<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Flowering and Fruiting</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：描述开花和结果的过程<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识结构图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 280" width="800" height="280" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="280" fill="#f1f8e9"/>
+        <!-- 中心：开花和结果 -->
+        <rect x="300" y="100" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="135" text-anchor="middle" font-size="18" font-weight="bold" fill="white">开花和结果</text>
+        <text x="400" y="160" text-anchor="middle" font-size="13" fill="#c8e6c9">Flowering &amp; Fruiting</text>
+        
+        <!-- 花的结构 -->
+        <rect x="40" y="40" width="140" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="110" y="65" text-anchor="middle" font-size="13" fill="white">花的结构</text>
+        <text x="110" y="83" text-anchor="middle" font-size="10" fill="#e8f5e9">雄蕊·雌蕊</text>
+        <text x="110" y="98" text-anchor="middle" font-size="10" fill="#e8f5e9">花瓣·萼片</text>
+        <line x1="180" y1="70" x2="300" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 传粉 -->
+        <rect x="40" y="180" width="140" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="110" y="205" text-anchor="middle" font-size="13" fill="white">传粉</text>
+        <text x="110" y="223" text-anchor="middle" font-size="10" fill="#e8f5e9">自花·异花</text>
+        <text x="110" y="238" text-anchor="middle" font-size="10" fill="#e8f5e9">昆虫·风力</text>
+        <line x1="180" y1="210" x2="300" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 受精 -->
+        <rect x="610" y="40" width="140" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="75" text-anchor="middle" font-size="14" fill="white">受精</text>
+        <line x1="610" y1="70" x2="500" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 果实和种子 -->
+        <rect x="610" y="180" width="140" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="215" text-anchor="middle" font-size="14" fill="white">果实和种子</text>
+        <line x1="610" y1="210" x2="500" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图1-3 开花和结果知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="花的基本结构是怎样的？">🌸 花的基本结构是怎样的？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="什么是传粉？有哪些方式？">🐝 什么是传粉？有哪些方式？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="受精过程是怎样的？果实和种子如何形成？">🔬 受精过程是怎样的？果实和种子如何形成？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 说出花的基本结构（雄蕊、雌蕊、花瓣、萼片）</li>
+          <li>✅ 描述传粉的方式（自花传粉、异花传粉）</li>
+          <li>✅ 说明受精的过程（花粉管、胚珠、双受精）</li>
+          <li>✅ 解释果实和种子的形成（子房→果实、胚珠→种子）</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 课前检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
+
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 花中最重要的结构是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 花瓣</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 萼片</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">C</span> 雄蕊和雌蕊</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 花托</div>
+        <div class="feedback" id="fb-1"></div>
+        <div class="answer-explanation" id="exp-1">
+          <strong>解析：</strong>雄蕊（产生花粉）和雌蕊（接受花粉，发育成果实）是花中最重要的结构，因为它们与生殖直接相关。花瓣和萼片主要起保护和支持作用。
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 异花传粉需要依靠外力，如（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 仅依靠昆虫</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">B</span> 仅依靠风力</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">C</span> 依靠昆虫或风力</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 依靠人工辅助</div>
+        <div class="feedback" id="fb-2"></div>
+        <div class="answer-explanation" id="exp-2">
+          <strong>解析：</strong>异花传粉可以依靠昆虫（虫媒花，如桃花）或风力（风媒花，如玉米、水稻）。有些植物还需要人工辅助传粉（如猕猴桃）。
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关开花和结果的叙述，<strong>错误</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 雄蕊由花药和花丝组成</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 受精完成后，子房发育成果实</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 所有的花都有雄蕊和雌蕊</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 胚珠发育成种子</div>
+        <div class="feedback" id="fb-3"></div>
+        <div class="answer-explanation" id="exp-3">
+          <strong>解析：</strong>C是错误的。有些花只有雄蕊（雄花）或只有雌蕊（雌花），称为"单性花"（如黄瓜、玉米）。两性花才同时具有雄蕊和雌蕊。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span> 核心知识讲解</h2>
+
+      <!-- 知识点1：花的基本结构（用详细SVG图解） -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">一、花的基本结构</h3>
+        
+        <!-- 详细SVG：花的结构剖面图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 700 400" width="700" height="400" xmlns="http://www.w3.org/2000/svg">
+            <rect width="700" height="400" fill="#f1f8e9"/>
+            
+            <!-- 花瓣 -->
+            <ellipse cx="350" cy="80" rx="120" ry="40" fill="#f8bbd0" stroke="#e91e63" stroke-width="2"/>
+            <text x="350" y="85" text-anchor="middle" font-size="14" fill="#880e4f">花瓣 (petal)</text>
+            
+            <!-- 萼片 -->
+            <ellipse cx="350" cy="130" rx="140" ry="30" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+            <text x="350" y="135" text-anchor="middle" font-size="13" fill="#1b5e20">萼片 (sepal)</text>
+            
+            <!-- 雄蕊（多个） -->
+            <g>
+              <line x1="300" y1="160" x2="300" y2="220" stroke="#f9a825" stroke-width="3"/>
+              <circle cx="300" cy="155" r="10" fill="#fdd835" stroke="#f9a825" stroke-width="2"/>
+              <text x="300" y="150" text-anchor="middle" font-size="9" fill="#f57f17">花药</text>
+              <text x="280" y="200" font-size="10" fill="#e65100">雄蕊</text>
+            </g>
+            <g>
+              <line x1="350" y1="160" x2="350" y2="220" stroke="#f9a825" stroke-width="3"/>
+              <circle cx="350" cy="155" r="10" fill="#fdd835" stroke="#f9a825" stroke-width="2"/>
+              <text x="350" y="150" text-anchor="middle" font-size="9" fill="#f57f17">花药</text>
+            </g>
+            <g>
+              <line x1="400" y1="160" x2="400" y2="220" stroke="#f9a825" stroke-width="3"/>
+              <circle cx="400" cy="155" r="10" fill="#fdd835" stroke="#f9a825" stroke-width="2"/>
+              <text x="400" y="150" text-anchor="middle" font-size="9" fill="#f57f17">花药</text>
+            </g>
+            <text x="440" y="190" font-size="10" fill="#e65100">雄蕊 = 花药 + 花丝</text>
+            
+            <!-- 雌蕊 -->
+            <g>
+              <!-- 柱头 -->
+              <ellipse cx="350" cy="250" rx="15" ry="10" fill="#ab47bc" stroke="#7b1fa2" stroke-width="2"/>
+              <text x="380" y="253" font-size="10" fill="#4a148c">柱头</text>
+              
+              <!-- 花柱 -->
+              <line x1="350" y1="260" x2="350" y2="300" stroke="#7b1fa2" stroke-width="4"/>
+              <text x="380" y="285" font-size="10" fill="#4a148c">花柱</text>
+              
+              <!-- 子房 -->
+              <ellipse cx="350" cy="330" rx="40" ry="30" fill="#ce93d8" stroke="#7b1fa2" stroke-width="2"/>
+              <text x="350" y="335" text-anchor="middle" font-size="11" fill="#4a148c">子房</text>
+              
+              <!-- 胚珠 -->
+              <circle cx="340" cy="330" r="6" fill="#f48fb1" stroke="#880e4f" stroke-width="1.5"/>
+              <circle cx="360" cy="330" r="6" fill="#f48fb1" stroke="#880e4f" stroke-width="1.5"/>
+              <text x="380" y="332" font-size="9" fill="#880e4f">胚珠</text>
+              
+              <text x="440" y="320" font-size="10" fill="#4a148c">雌蕊 = 柱头+花柱+子房</text>
+            </g>
+            
+            <!-- 花托 -->
+            <rect x="280" y="355" width="140" height="20" rx="5" fill="#8d6e63" stroke="#5d4037" stroke-width="2"/>
+            <text x="350" y="370" text-anchor="middle" font-size="11" fill="white">花托</text>
+            
+            <!-- 花柄 -->
+            <line x1="350" y1="375" x2="350" y2="400" stroke="#5d4037" stroke-width="5"/>
+            <text x="380" y="395" font-size="11" fill="#5d4037">花柄</text>
+          </svg>
+          <div class="svg-caption">图1-4 花的基本结构（剖面示意图）</div>
+        </div>
+        
+        <div class="concept-box">
+          <div class="label">📖 概念框：完全花与不完全花</div>
+          <p><strong>完全花</strong>：同时具有花萼、花冠、雄蕊、雌蕊四部分（如桃花、月季）。<br>
+          <strong>不完全花</strong>：缺少其中一部分或几部分（如南瓜花只有雄蕊或雌蕊，称为单性花）。</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：传粉 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">二、传粉</h3>
+        <p><strong>传粉</strong>：花粉从花药落到雌蕊柱头上的过程。</p>
+        
+        <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;">
+          <thead>
+            <tr style="background:var(--primary);color:white;">
+              <th style="padding:10px;border:1px solid #c8e6c9;">类型</th>
+              <th style="padding:10px;border:1px solid #c8e6c9;">定义</th>
+              <th style="padding:10px;border:1px solid #c8e6c9;">实例</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">自花传粉</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">花粉落到同一朵花的柱头上</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">小麦、水稻</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">异花传粉</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">花粉落到另一朵花的柱头上</td>
+              <td style="padding:8px;border:1px solid #c8e6c9;">桃花（虫媒）、玉米（风媒）</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="concept-box">
+          <div class="label">📖 概念框：虫媒花与风媒花</div>
+          <p><strong>虫媒花</strong>：颜色鲜艳、有花蜜和香味，吸引昆虫传粉（如桃花、油菜花）。<br>
+          <strong>风媒花</strong>：花粉多而轻，柱头有分叉或黏液，容易被风吹散（如玉米、水稻）。</p>
+        </div>
+      </div>
+
+      <!-- 知识点3：受精过程 + 果实和种子的形成 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">三、受精过程与果实和种子的形成</h3>
+        
+        <!-- 受精过程 SVG -->
+        <div class="svg-container">
+          <svg viewBox="0 0 700 200" width="700" height="200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="700" height="200" fill="#f1f8e9"/>
+            <!-- 步骤1：花粉落在柱头 -->
+            <circle cx="100" cy="80" r="8" fill="#fdd835" stroke="#f9a825" stroke-width="2"/>
+            <text x="100" y="85" text-anchor="middle" font-size="9" fill="#e65100">花粉</text>
+            <line x1="120" y1="80" x2="200" y2="80" stroke="#2e7d32" stroke-width="2" marker-end="url(#arr)"/>
+            <text x="160" y="70" text-anchor="middle" font-size="10" fill="#2e7d32">①落在柱头</text>
+            
+            <!-- 步骤2：花粉管萌发 -->
+            <line x1="250" y1="80" x2="250" y2="140" stroke="#f9a825" stroke-width="3" stroke-dasharray="5,3"/>
+            <text x="250" y="115" text-anchor="middle" font-size="10" fill="#2e7d32">②花粉管萌发</text>
+            <line x1="270" y1="140" x2="350" y2="140" stroke="#2e7d32" stroke-width="2" marker-end="url(#arr)"/>
+            
+            <!-- 步骤3：进入子房 -->
+            <text x="310" y="135" font-size="10" fill="#2e7d32">③进入子房</text>
+            <ellipse cx="420" cy="140" rx="50" ry="35" fill="#ce93d8" stroke="#7b1fa2" stroke-width="2"/>
+            <text x="420" y="145" text-anchor="middle" font-size="11" fill="#4a148c">子房</text>
+            <circle cx="410" cy="140" r="6" fill="#f48fb1" stroke="#880e4f" stroke-width="1.5"/>
+            <circle cx="430" cy="140" r="6" fill="#f48fb1" stroke="#880e4f" stroke-width="1.5"/>
+            <text x="460" y="142" font-size="9" fill="#880e4f">胚珠</text>
+            
+            <!-- 步骤4：双受精 -->
+            <text x="500" y="100" font-size="10" fill="#2e7d32">④精子+卵细胞→受精卵</text>
+            <text x="500" y="120" font-size="10" fill="#2e7d32">精子+极核→受精极核</text>
+            <text x="500" y="145" font-size="9" fill="#7b1fa2">（双受精，绿色植物特有）</text>
+            
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#2e7d32"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="svg-caption">图1-5 受精过程示意图</div>
+        </div>
+        
+        <p style="margin:12px 0;"><strong>双受精</strong>：一个精子与卵细胞结合形成受精卵，另一个精子与极核结合形成受精极核。这是<strong>绿色植物特有</strong>的现象。</p>
+        
+        <!-- 果实和种子的形成 -->
+        <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;">
+          <thead>
+            <tr style="background:var(--primary);color:white;">
+              <th style="padding:10px;border:1px solid #c8e6c9;">花的部位</th>
+              <th style="padding:10px;border:1px solid #c8e6c9;">发育成的结构</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">子房</td><td style="padding:8px;border:1px solid #c8e6c9;">果实</td></tr>
+            <tr><td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">子房壁</td><td style="padding:8px;border:1px solid #c8e6c9;">果皮</td></tr>
+            <tr><td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">胚珠</td><td style="padding:8px;border:1px solid #c8e6c9;">种子</td></tr>
+            <tr><td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">受精卵</td><td style="padding:8px;border:1px solid #c8e6c9;">胚</td></tr>
+          </tbody>
+        </table>
+        
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p>受精完成后，<strong>花瓣、雄蕊、柱头、花柱</strong>都凋落，只有<strong>子房</strong>继续发育成果实。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测（含中考真题） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 课后检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">1. 受精完成后，发育成果实的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 花瓣</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 雄蕊</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">C</span> 子房</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 胚珠</div>
+        <div class="feedback" id="fb-4"></div>
+        <div class="answer-explanation" id="exp-4">
+          <strong>解析：</strong>受精完成后，花瓣、雄蕊、柱头、花柱都凋落，只有<strong>子房</strong>继续发育成果实。子房壁发育成果皮，胚珠发育成种子。
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】桃花的雌蕊由下列哪几部分组成？（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 花药和花丝</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">B</span> 柱头、花柱和子房</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 花萼和花冠</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 花托和花柄</div>
+        <div class="feedback" id="fb-5"></div>
+        <div class="answer-explanation" id="exp-5">
+          <strong>解析：</strong>雌蕊由<strong>柱头</strong>（接受花粉）、<strong>花柱</strong>（花粉管生长的通道）、<strong>子房</strong>（发育成果实）三部分组成。花药和花丝是雄蕊的组成部分。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span> 必考分析与考点总结</h2>
+
+      <div class="exam-card">
+        <h3>📊 考频统计</h3>
+        <p><span class="exam-stat">高频</span>花的结构（填图题、选择题）</p>
+        <p><span class="exam-stat">高频</span>果实和种子的形成（选择题、填空题）</p>
+        <p><span class="exam-stat">中频</span>传粉方式（选择题）</p>
+        <p><span class="exam-stat">中频</span>双受精过程（选择题、简答题）</p>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 必背结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>花最重要的结构：<strong>雄蕊和雌蕊</strong>（与生殖直接相关）</li>
+          <li>雄蕊 = 花药（产生花粉）+ 花丝；雌蕊 = 柱头 + 花柱 + 子房</li>
+          <li>传粉方式：<strong>自花传粉</strong>和<strong>异花传粉</strong>（虫媒、风媒）</li>
+          <li><strong>双受精</strong>是绿色植物特有的现象（一个精子+卵细胞，另一个精子+极核）</li>
+          <li>子房→果实，胚珠→种子，受精卵→胚</li>
+        </ol>
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="line-height:2;">
+          <li>❌ 误认为"所有的花都有雄蕊和雌蕊"→ 单性花只有一种（如黄瓜花）</li>
+          <li>❌ 误认为"花瓣发育成果皮"→ 花瓣凋落，<strong>子房壁</strong>发育成果皮</li>
+          <li>❌ 混淆"受精"和"传粉"→ 传粉是花粉到柱头，受精是精子与卵细胞结合</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- 知识图谱 -->
+    <section class="kg-section" id="section-kg">
+      <div class="kg-title"><span>🗺️</span> 知识图谱 · 开花和结果</div>
+      <div class="kg-svg-container">
+        <svg viewBox="0 0 700 220" width="700" height="220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="700" height="220" fill="#f1f8e9" rx="12"/>
+          <!-- 中心节点 -->
+          <rect x="270" y="70" width="160" height="80" rx="14" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+          <text x="350" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="white">开花和结果</text>
+          <text x="350" y="130" text-anchor="middle" font-size="11" fill="#c8e6c9">核心知识图谱</text>
+          <!-- 分支1 -->
+          <rect x="40" y="30" width="130" height="50" rx="8" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+          <text x="105" y="58" text-anchor="middle" font-size="12" fill="white">概念理解</text>
+          <line x1="170" y1="55" x2="270" y2="95" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支2 -->
+          <rect x="40" y="140" width="130" height="50" rx="8" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+          <text x="105" y="168" text-anchor="middle" font-size="12" fill="white">实验探究</text>
+          <line x1="170" y1="165" x2="270" y2="125" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支3 -->
+          <rect x="530" y="30" width="130" height="50" rx="8" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+          <text x="595" y="58" text-anchor="middle" font-size="12" fill="white">中考考点</text>
+          <line x1="530" y1="55" x2="430" y2="95" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支4 -->
+          <rect x="530" y="140" width="130" height="50" rx="8" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+          <text x="595" y="168" text-anchor="middle" font-size="12" fill="#1b5e20">易错警示</text>
+          <line x1="530" y1="165" x2="430" y2="125" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <defs>
+            <marker id="kgr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#2e7d32"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="kg-caption">图 · 开花和结果 知识图谱（点击各分支可跳转对应模块）</div>
+      </div>
+      <div class="kg-legend">
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#4caf50;"></div>概念理解</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#388e3c;"></div>实验探究</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#66bb6a;"></div>中考考点</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#81c784;"></div>易错警示</div>
+      </div>
+    </section>
+
+    <!-- 导师卡片 -->
+    <div class="mentor-card">
+      <div class="mentor-avatar">🌿</div>
+      <div class="mentor-info">
+        <div class="mentor-name">李老师 · 生物学科导师</div>
+        <div class="mentor-title">人教版七年级生物 · 第三单元备课组长</div>
+        <div class="mentor-bio">
+          专注初中生物教学 12 年，擅长将抽象的生物学概念转化为贴近生活的例子。
+          如果你对"开花和结果"有任何疑问，欢迎随时提问！
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第三单元 植物的生活 · 第3节 开花和结果 · TeachAny v7.14.0</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 进度条更新
+    document.addEventListener('DOMContentLoaded', function() {
+      var totalSections = 10;
+      var currentSection = 3;
+      var pct = Math.round((currentSection / totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '第 ' + currentSection + ' / ' + totalSections + ' 节 · ' + pct + '%';
+    });
+
+    // 锚点选择
+    var anchorContents = {
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌸 花的基本结构是怎样的？</h4><p>花由<strong>花柄、花托、花萼、花冠、雄蕊、雌蕊</strong>组成。雄蕊由<strong>花药</strong>（产生花粉）和<strong>花丝</strong>组成；雌蕊由<strong>柱头</strong>（接受花粉）、<strong>花柱</strong>和<strong>子房</strong>（内有胚珠）组成。雄蕊和雌蕊是花最重要的结构。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🐝 什么是传粉？有哪些方式？</h4><p><strong>传粉</strong>是花粉从花药落到雌蕊柱头上的过程。方式有两种：<strong>自花传粉</strong>（花粉落到同一朵花的柱头，如小麦）和<strong>异花传粉</strong>（花粉落到另一朵花的柱头，依靠昆虫或风力，如桃花、玉米）。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔬 受精过程是怎样的？果实和种子如何形成？</h4><p><strong>受精过程</strong>：花粉落在柱头→萌发花粉管→进入子房→精子与卵细胞结合（<strong>双受精</strong>）。<br><strong>果实和种子形成</strong>：受精后，<strong>子房→果实</strong>，<strong>胚珠→种子</strong>，<strong>子房壁→果皮</strong>，<strong>受精卵→胚</strong>。</p></div>'
+    };
+
+    function selectAnchor(btn, id) {
+      var btns = document.querySelectorAll('.anchor-btn');
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = anchorContents[id];
+      display.style.display = 'block';
+    }
+
+    function handleCustomQuestion(val) {
+      if (val.trim().length < 2) return;
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！花的结构、传粉和受精是中考常考点，建议结合图解来理解记忆。</p></div>';
+      display.style.display = 'block';
+    }
+
+    function checkAnswer(el, isCorrect, qNum) {
+      var parent = el.parentElement;
+      var options = parent.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.remove('correct', 'wrong');
+      }
+      if (isCorrect) {
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      var fb = document.getElementById('fb-' + qNum);
+      var exp = document.getElementById('exp-' + qNum);
+      if (isCorrect) {
+        fb.className = 'feedback correct-fb show';
+        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
+      } else {
+        fb.className = 'feedback wrong-fb show';
+        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
+      }
+      exp.classList.add('show');
+    }
+
+    // AI学伴 弹窗控制
+    function toggleAIModal() {
+      var m = document.getElementById('aiModal');
+      m.classList.toggle('show');
+    }
+    function showAIAnswer(btn, id) {
+      var ans = document.getElementById('ai-ans-' + id);
+      if (ans.classList.contains('show')) {
+        ans.classList.remove('show');
+      } else {
+        // 隐藏其他
+        var all = document.querySelectorAll('.ai-answer');
+        for (var i = 0; i < all.length; i++) all[i].classList.remove('show');
+        ans.classList.add('show');
+      }
+    }
+  </script>
+
+
+  <!-- AI学伴 悬浮按钮 -->
+  <button class="ai-companion-btn" onclick="toggleAIModal()" title="AI学伴 · 随时提问">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.2"/>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+            fill="white"/>
+    </svg>
+  </button>
+
+  <!-- AI学伴 弹窗 -->
+  <div class="ai-modal-overlay" id="aiModal" onclick="if(event.target===this)toggleAIModal()">
+    <div class="ai-modal">
+      <div class="ai-modal-header">
+        <h3>🤖 AI 学伴</h3>
+        <button class="ai-modal-close" onclick="toggleAIModal()">✕</button>
+      </div>
+      <div class="ai-modal-body">
+        <p class="ai-prompt">选一个问题，AI 学伴会帮你讲解：</p>
+        <button class="ai-q-btn" onclick="showAIAnswer(this,1)">💡 开花和结果的核心概念是什么？</button>
+        <div class="ai-answer" id="ai-ans-1">请参考本课时的核心知识讲解，重点关注概念框和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,2)">📝 这一课时有哪些易错点？</button>
+        <div class="ai-answer" id="ai-ans-2">请查看本课时的"⚠️ 易错警示"框，里面总结了最容易出错的知识点。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,3)">🏆 中考常考哪些内容？</button>
+        <div class="ai-answer" id="ai-ans-3">请查看本课时的"🏆 必考分析与总结"模块，里面有考频统计和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,4)">🔍 如何区分相似概念？</button>
+        <div class="ai-answer" id="ai-ans-4">注意对比表格中的关键区别，特别是光合作用和呼吸作用的对比。</div>
+      </div>
+    </div>
+  </div>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

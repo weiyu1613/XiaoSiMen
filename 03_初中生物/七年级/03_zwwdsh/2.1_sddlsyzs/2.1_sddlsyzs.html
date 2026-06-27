@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.1 水的利用与散失 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+    }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; margin: 0; }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 57.1%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary-dark); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-base { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-raise { background: #ede9fe; color: #6d28d9; }
+    .difficulty-challenge { background: #fee2e2; color: #dc2626; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid #81c784; background: #f1f8e9; color: var(--primary-dark); padding: 12px 14px; font-size: 16px; margin-top: 8px; }
+    #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28); color: var(--primary-dark); }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .exam-card { background: linear-gradient(135deg, #fefce8, #fef9c3); border: 2px solid #f59e0b; border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .exam-card h3 { color: #92400e; margin-bottom: 12px; }
+    .exam-stat { display: inline-block; background: #f59e0b; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-right: 6px; }
+    .must-know { background: #d1fae5; border-left: 4px solid #10b981; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; }
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .anchor-points { flex-direction: column; }
+      .anchor-btn { min-width: 100%; }
+      .nav-inner { flex-direction: column; }
+    }
+
+    /* AI学伴 悬浮按钮（绿色主题） */
+    .ai-companion-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      box-shadow: 0 6px 24px rgba(46,125,50,0.55);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .ai-companion-btn:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(46,125,50,0.7); }
+    .ai-companion-btn svg { width: 32px; height: 32px; }
+    /* AI学伴 弹窗 */
+    .ai-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .ai-modal-overlay.show { display: flex; }
+    .ai-modal {
+      background: white;
+      border-radius: 20px;
+      width: 420px;
+      max-height: 520px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+      overflow: hidden;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .ai-modal-header {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      color: white;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ai-modal-header h3 { margin: 0; font-size: 16px; }
+    .ai-modal-close {
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: white;
+      font-size: 22px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .ai-modal-close:hover { background: rgba(255,255,255,0.32); }
+    .ai-modal-body { padding: 20px 22px; max-height: 400px; overflow-y: auto; }
+    .ai-prompt { font-size: 13px; color: #5d6d7e; margin-bottom: 14px; }
+    .ai-q-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 11px 16px;
+      margin-bottom: 10px;
+      background: #f1f8e9;
+      border: 2px solid #c8e6c9;
+      border-radius: 12px;
+      font-size: 13.5px;
+      color: #1b5e20;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    .ai-q-btn:hover { background: #e8f5e9; border-color: #4caf50; }
+    .ai-answer {
+      display: none;
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #1a1a2e;
+    }
+    .ai-answer.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">第 4 / 7 节 · 57.1%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../zwwdsh.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第三单元：植物的生活</div>
+      <a href="../1.3_khhjg/1.3_khhjg.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../2.2_gzhzy/2.2_gzhzy.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero + SVG知识结构图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-seedling"></i> 七年级生物 · 第三单元</div>
+      <h1>2.1 水的利用与散失<span style="font-size:1rem;opacity:0.8;margin-left:8px;">Water Use & Loss</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：描述绿色植物的蒸腾作用<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- SVG知识结构图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 260" width="800" height="260" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="260" fill="#f1f8e9"/>
+        <!-- 中心：水的利用与散失 -->
+        <rect x="300" y="90" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="125" text-anchor="middle" font-size="16" font-weight="bold" fill="white">水的利用与散失</text>
+        <text x="400" y="150" text-anchor="middle" font-size="12" fill="#c8e6c9">Water Use & Transpiration</text>
+        
+        <!-- 水的吸收 -->
+        <rect x="40" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="68" text-anchor="middle" font-size="13" fill="white">水的吸收</text>
+        <text x="120" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">根·成熟区</text>
+        <text x="120" y="102" text-anchor="middle" font-size="10" fill="#e8f5e9">根毛·渗透作用</text>
+        <line x1="200" y1="70" x2="300" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 水的运输 -->
+        <rect x="40" y="165" width="160" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="193" text-anchor="middle" font-size="13" fill="white">水的运输</text>
+        <text x="120" y="211" text-anchor="middle" font-size="10" fill="#e8f5e9">导管·木质部</text>
+        <text x="120" y="227" text-anchor="middle" font-size="10" fill="#e8f5e9">蒸腾拉力</text>
+        <line x1="200" y1="195" x2="300" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 蒸腾作用 -->
+        <rect x="600" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="68" text-anchor="middle" font-size="13" fill="white">蒸腾作用</text>
+        <text x="680" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">气孔·99%散失</text>
+        <text x="680" y="102" text-anchor="middle" font-size="10" fill="#e8f5e9">降温·拉力</text>
+        <line x1="600" y1="70" x2="500" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 意义 -->
+        <rect x="600" y="165" width="160" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="203" text-anchor="middle" font-size="13" fill="white">意义</text>
+        <text x="680" y="221" text-anchor="middle" font-size="10" fill="#e8f5e9">降温·运输·拉力</text>
+        <line x1="600" y1="195" x2="500" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图2-1 水的利用与散失知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ⑤ 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span>探究问题</h2>
+      <div class="card">
+        <p style="color:var(--primary);margin-bottom:16px;">先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。</p>
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this,1)" data-anchor-choice="植物吸收的水分99%用于什么？">💧 植物吸收的水分99%用于什么？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,2)" data-anchor-choice="蒸腾作用通过什么结构进行？">🌿 蒸腾作用通过什么结构进行？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this,3)" data-anchor-choice="蒸腾作用有什么意义？">🌱 蒸腾作用有什么意义？</button>
+        </div>
+        <label style="display:block;margin-top:18px;color:var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div id="anchor-feedback" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2.2;">
+          <li>✅ 描述植物吸收水分的部位（根尖成熟区、根毛）</li>
+          <li>✅ 说明水分在植物体内的运输途径（根→茎→叶，通过导管）</li>
+          <li>✅ 解释蒸腾作用的概念和意义</li>
+          <li>✅ 描述气孔的结构和功能（保卫细胞控制开闭）</li>
+          <li>✅ 说明影响蒸腾作用的因素（光照、温度、湿度、风）</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span>课前检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
+
+      <!-- 基础题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 植物吸收水分的主要部位是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 根冠</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 分生区</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">C</span> 成熟区</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 伸长区</div>
+        <div class="feedback" id="fb-1"></div>
+        <div class="answer-explanation" id="exp-1">
+          <strong>解析：</strong>根尖<strong>成熟区</strong>有大量的根毛，大大增加了吸收面积，是根吸收水分和无机盐的主要部位。
+        </div>
+      </div>
+
+      <!-- 提高题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 水分在植物体内运输的通道是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 筛管</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">B</span> 导管</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 形成层</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 髓</div>
+        <div class="feedback" id="fb-2"></div>
+        <div class="answer-explanation" id="exp-2">
+          <strong>解析：</strong><strong>导管</strong>位于木质部，是死细胞，上下连通形成中空的管道，负责运输水分和无机盐。筛管位于韧皮部，负责运输有机物。
+        </div>
+      </div>
+
+      <!-- 挑战题 -->
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关蒸腾作用的叙述，<strong>错误</strong>的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 蒸腾作用主要通过叶片的气孔进行</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 蒸腾作用能促进植物对水分的吸收和运输</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 植物吸收的水分大部分用于光合作用</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 气孔由保卫细胞控制开闭</div>
+        <div class="feedback" id="fb-3"></div>
+        <div class="answer-explanation" id="exp-3">
+          <strong>解析：</strong>C是错误的。植物吸收的水分只有约<strong>1%</strong>用于光合作用等生命活动，约<strong>99%</strong>通过蒸腾作用散失到大气中。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-knowledge">
+      <h2 class="section-title"><span class="num">📚</span>核心知识讲解</h2>
+
+      <!-- 知识点1：水的吸收和运输 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">一、水的吸收和运输</h3>
+        
+        <p><strong>吸收部位</strong>：根尖<strong>成熟区</strong>（有大量根毛，吸收面积大）</p>
+        <p><strong>运输途径</strong>：根 → 茎 → 叶（通过<strong>导管</strong>，位于木质部）</p>
+        <p><strong>运输动力</strong>：<strong>蒸腾拉力</strong>（蒸腾作用产生负压，拉动水分向上运输）</p>
+        
+        <div class="concept-box">
+          <div class="label">📖 概念框：导管与筛管</div>
+          <p><strong>导管</strong>：位于木质部，死细胞，运输<strong>水分和无机盐</strong>，方向<strong>向上</strong>。<br>
+          <strong>筛管</strong>：位于韧皮部，活细胞，运输<strong>有机物</strong>，方向<strong>向下</strong>（或双向）。</p>
+        </div>
+      </div>
+
+      <!-- 知识点2：蒸腾作用（SVG图解气孔） -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">二、蒸腾作用</h3>
+        
+        <p><strong>蒸腾作用</strong>：水分以<strong>气体</strong>状态从植物体内散失到体外的过程。</p>
+        <p><strong>主要部位</strong>：<strong>叶片</strong>（通过<strong>气孔</strong>）</p>
+        <p><strong>散失比例</strong>：吸收的水分约<strong>99%</strong>用于蒸腾作用，只有约<strong>1%</strong>用于光合作用等生命活动。</p>
+        
+        <!-- 气孔结构SVG -->
+        <div class="svg-container">
+          <svg viewBox="0 0 700 250" width="700" height="250" xmlns="http://www.w3.org/2000/svg">
+            <rect width="700" height="250" fill="#f1f8e9"/>
+            
+            <!-- 表皮细胞 -->
+            <rect x="50" y="100" width="600" height="60" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+            <text x="350" y="135" text-anchor="middle" font-size="14" fill="#1b5e20">表皮细胞</text>
+            
+            <!-- 气孔 -->
+            <ellipse cx="350" cy="130" rx="60" ry="20" fill="white" stroke="#1b5e20" stroke-width="2"/>
+            <text x="350" y="135" text-anchor="middle" font-size="12" fill="#1b5e20">气孔</text>
+            
+            <!-- 保卫细胞 -->
+            <ellipse cx="310" cy="130" rx="25" ry="18" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+            <ellipse cx="390" cy="130" rx="25" ry="18" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+            <text x="270" y="135" text-anchor="middle" font-size="10" fill="#1b5e20">保卫细胞</text>
+            <text x="430" y="135" text-anchor="middle" font-size="10" fill="#1b5e20">保卫细胞</text>
+            
+            <!-- 水分散失箭头 -->
+            <line x1="350" y1="110" x2="350" y2="70" stroke="#0288d1" stroke-width="3" marker-end="url(#arr)"/>
+            <text x="370" y="90" font-size="12" fill="#0277bd">水分散失</text>
+            
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#0288d1"/>
+              </marker>
+            </defs>
+          </svg>
+          <div class="svg-caption">图2-2 气孔结构示意图（保卫细胞控制开闭）</div>
+        </div>
+        
+        <div class="warn-box">
+          <div class="label">⚠️ 易错警示</div>
+          <p><strong>气孔</strong>是植物<strong>气体交换</strong>和<strong>水分散失</strong>的"门户"，由一对<strong>保卫细胞</strong>控制开闭。保卫细胞吸水膨胀时气孔张开，失水收缩时气孔关闭。</p>
+        </div>
+      </div>
+
+      <!-- 知识点3：蒸腾作用的意义 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">三、蒸腾作用的意义</h3>
+        <ol style="line-height:2;margin:12px 0;">
+          <li>🌡️ <strong>降低叶片温度</strong>（水分蒸发带走热量）</li>
+          <li>💧 <strong>拉动水分和无机盐的运输</strong>（蒸腾拉力）</li>
+          <li>🌪️ <strong>促进生物圈的水循环</strong>（水分返回大气）</li>
+        </ol>
+      </div>
+
+      <!-- 知识点4：影响蒸腾作用的因素 -->
+      <div class="card">
+        <h3 style="color:var(--primary);margin-bottom:12px;">四、影响蒸腾作用的因素</h3>
+        <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;">
+          <thead>
+            <tr style="background:var(--primary);color:white;">
+              <th style="padding:10px;border:1px solid #c8e6c9;">因素</th>
+              <th style="padding:10px;border:1px solid #c8e6c9;">影响</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">光照强度</td><td style="padding:8px;border:1px solid #c8e6c9;">光照越强，蒸腾作用越强</td></tr>
+            <tr><td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">环境温度</td><td style="padding:8px;border:1px solid #c8e6c9;">温度越高，蒸腾作用越强</td></tr>
+            <tr><td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">空气湿度</td><td style="padding:8px;border:1px solid #c8e6c9;">湿度越大，蒸腾作用越弱</td></tr>
+            <tr><td style="padding:8px;border:1px solid #c8e6c9;background:#f1f8e9;">空气流动</td><td style="padding:8px;border:1px solid #c8e6c9;">风越大，蒸腾作用越强</td></tr>
+          </tbody>
+        </table>
+        
+        <div class="concept-box">
+          <div class="label">📖 概念框：移栽植物时的措施</div>
+          <p>移栽植物时，常去掉部分枝叶、选择阴天或傍晚移栽、遮阴，都是为了<strong>降低蒸腾作用</strong>，减少水分散失，提高成活率。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测（含中考真题） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">1. 气孔的张开和闭合受什么控制？（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 表皮细胞</div>
+        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">B</span> 保卫细胞</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 叶肉细胞</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 导管细胞</div>
+        <div class="feedback" id="fb-4"></div>
+        <div class="answer-explanation" id="exp-4">
+          <strong>解析：</strong>气孔由一对<strong>保卫细胞</strong>控制开闭。保卫细胞吸水膨胀时气孔张开，失水收缩时气孔关闭。
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】移栽树木时，常剪去部分枝叶，主要目的是（  ）</p>
+        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">A</span> 降低蒸腾作用</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">B</span> 降低光合作用</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 减少呼吸作用</div>
+        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 方便运输</div>
+        <div class="feedback" id="fb-5"></div>
+        <div class="answer-explanation" id="exp-5">
+          <strong>解析：</strong>移栽植物时剪去部分枝叶，主要是为了<strong>降低蒸腾作用</strong>，减少水分散失，使植物在根系受损（吸收水分能力下降）的情况下保持水分平衡，提高成活率。
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🏆</span>必考分析与考点总结</h2>
+
+      <div class="exam-card">
+        <h3>📊 考频统计</h3>
+        <p><span class="exam-stat">高频</span>蒸腾作用的概念和意义（选择题、简答题）</p>
+        <p><span class="exam-stat">高频</span>气孔的结构和功能（选择题、填图题）</p>
+        <p><span class="exam-stat">中频</span>影响蒸腾作用的因素（选择题）</p>
+        <p><span class="exam-stat">中频</span>导管和筛管的功能区别（选择题）</p>
+      </div>
+
+      <div class="must-know">
+        <strong>🌟 必背结论</strong>
+        <ol style="margin-top:8px;line-height:2;">
+          <li>植物吸收的水分<strong>99%</strong>用于蒸腾作用，<strong>1%</strong>用于光合作用等</li>
+          <li>蒸腾作用主要通过<strong>叶片的气孔</strong>进行</li>
+          <li>气孔由<strong>保卫细胞</strong>控制开闭</li>
+          <li>蒸腾作用的意义：<strong>降温、拉动运输、促进水循环</strong></li>
+          <li>导管运输<strong>水分和无机盐</strong>（向上），筛管运输<strong>有机物</strong>（向下）</li>
+        </ol>
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 易错警示</div>
+        <ul style="line-height:2;">
+          <li>❌ 误认为"植物吸收的水分大部分用于光合作用"→ 99%用于蒸腾作用</li>
+          <li>❌ 误认为"表皮细胞控制气孔开闭"→ 是<strong>保卫细胞</strong>控制</li>
+          <li>❌ 混淆导管和筛管的功能→ 导管运水和无机盐，筛管运有机物</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- 知识图谱 -->
+    <section class="kg-section" id="section-kg">
+      <div class="kg-title"><span>🗺️</span> 知识图谱 · 水的利用与散失</div>
+      <div class="kg-svg-container">
+        <svg viewBox="0 0 700 220" width="700" height="220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="700" height="220" fill="#f1f8e9" rx="12"/>
+          <!-- 中心节点 -->
+          <rect x="270" y="70" width="160" height="80" rx="14" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+          <text x="350" y="108" text-anchor="middle" font-size="16" font-weight="bold" fill="white">水的利用与散失</text>
+          <text x="350" y="130" text-anchor="middle" font-size="11" fill="#c8e6c9">核心知识图谱</text>
+          <!-- 分支1 -->
+          <rect x="40" y="30" width="130" height="50" rx="8" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+          <text x="105" y="58" text-anchor="middle" font-size="12" fill="white">概念理解</text>
+          <line x1="170" y1="55" x2="270" y2="95" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支2 -->
+          <rect x="40" y="140" width="130" height="50" rx="8" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+          <text x="105" y="168" text-anchor="middle" font-size="12" fill="white">实验探究</text>
+          <line x1="170" y1="165" x2="270" y2="125" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支3 -->
+          <rect x="530" y="30" width="130" height="50" rx="8" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+          <text x="595" y="58" text-anchor="middle" font-size="12" fill="white">中考考点</text>
+          <line x1="530" y1="55" x2="430" y2="95" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <!-- 分支4 -->
+          <rect x="530" y="140" width="130" height="50" rx="8" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+          <text x="595" y="168" text-anchor="middle" font-size="12" fill="#1b5e20">易错警示</text>
+          <line x1="530" y1="165" x2="430" y2="125" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr)"/>
+          <defs>
+            <marker id="kgr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#2e7d32"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="kg-caption">图 · 水的利用与散失 知识图谱（点击各分支可跳转对应模块）</div>
+      </div>
+      <div class="kg-legend">
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#4caf50;"></div>概念理解</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#388e3c;"></div>实验探究</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#66bb6a;"></div>中考考点</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#81c784;"></div>易错警示</div>
+      </div>
+    </section>
+
+    <!-- 导师卡片 -->
+    <div class="mentor-card">
+      <div class="mentor-avatar">🌿</div>
+      <div class="mentor-info">
+        <div class="mentor-name">李老师 · 生物学科导师</div>
+        <div class="mentor-title">人教版七年级生物 · 第三单元备课组长</div>
+        <div class="mentor-bio">
+          专注初中生物教学 12 年，擅长将抽象的生物学概念转化为贴近生活的例子。
+          如果你对"水的利用与散失"有任何疑问，欢迎随时提问！
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第三单元 植物的生活 · 第4节 水的利用与散失 · TeachAny v7.14.0</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 进度条更新
+    document.addEventListener('DOMContentLoaded', function() {
+      var totalSections = 10;
+      var currentSection = 4;
+      var pct = Math.round((currentSection / totalSections) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = '第 ' + currentSection + ' / ' + totalSections + ' 节 · ' + pct + '%';
+    });
+
+    // 锚点选择
+    var anchorContents = {
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">💧 植物吸收的水分99%用于什么？</h4><p>植物吸收的水分只有约<strong>1%</strong>用于光合作用等生命活动，约<strong>99%</strong>通过<strong>蒸腾作用</strong>以气体状态散失到大气中。蒸腾作用通过<strong>叶片的气孔</strong>进行。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌿 蒸腾作用通过什么结构进行？</h4><p>蒸腾作用主要通过<strong>叶片的气孔</strong>进行。气孔是气体交换和水分散失的"门户"，由一对<strong>保卫细胞</strong>控制开闭。保卫细胞吸水膨胀时气孔张开，失水收缩时气孔关闭。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌱 蒸腾作用有什么意义？</h4><p>蒸腾作用的意义：①<strong>降低叶片温度</strong>（水分蒸发带走热量）；②<strong>拉动水分和无机盐的运输</strong>（蒸腾拉力）；③<strong>促进生物圈的水循环</strong>。</p></div>'
+    };
+
+    function selectAnchor(btn, id) {
+      var btns = document.querySelectorAll('.anchor-btn');
+      for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('selected'); }
+      btn.classList.add('selected');
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = anchorContents[id];
+      display.style.display = 'block';
+    }
+
+    function handleCustomQuestion(val) {
+      if (val.trim().length < 2) return;
+      var display = document.getElementById('anchor-feedback');
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！蒸腾作用是中考常考点，建议结合实验题来理解。</p></div>';
+      display.style.display = 'block';
+    }
+
+    function checkAnswer(el, isCorrect, qNum) {
+      var parent = el.parentElement;
+      var options = parent.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.remove('correct', 'wrong');
+      }
+      if (isCorrect) {
+        el.classList.add('correct');
+      } else {
+        el.classList.add('wrong');
+      }
+      var fb = document.getElementById('fb-' + qNum);
+      var exp = document.getElementById('exp-' + qNum);
+      if (isCorrect) {
+        fb.className = 'feedback correct-fb show';
+        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
+      } else {
+        fb.className = 'feedback wrong-fb show';
+        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
+      }
+      exp.classList.add('show');
+    }
+
+    // AI学伴 弹窗控制
+    function toggleAIModal() {
+      var m = document.getElementById('aiModal');
+      m.classList.toggle('show');
+    }
+    function showAIAnswer(btn, id) {
+      var ans = document.getElementById('ai-ans-' + id);
+      if (ans.classList.contains('show')) {
+        ans.classList.remove('show');
+      } else {
+        // 隐藏其他
+        var all = document.querySelectorAll('.ai-answer');
+        for (var i = 0; i < all.length; i++) all[i].classList.remove('show');
+        ans.classList.add('show');
+      }
+    }
+  </script>
+
+
+  <!-- AI学伴 悬浮按钮 -->
+  <button class="ai-companion-btn" onclick="toggleAIModal()" title="AI学伴 · 随时提问">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.2"/>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+            fill="white"/>
+    </svg>
+  </button>
+
+  <!-- AI学伴 弹窗 -->
+  <div class="ai-modal-overlay" id="aiModal" onclick="if(event.target===this)toggleAIModal()">
+    <div class="ai-modal">
+      <div class="ai-modal-header">
+        <h3>🤖 AI 学伴</h3>
+        <button class="ai-modal-close" onclick="toggleAIModal()">✕</button>
+      </div>
+      <div class="ai-modal-body">
+        <p class="ai-prompt">选一个问题，AI 学伴会帮你讲解：</p>
+        <button class="ai-q-btn" onclick="showAIAnswer(this,1)">💡 水的利用与散失的核心概念是什么？</button>
+        <div class="ai-answer" id="ai-ans-1">请参考本课时的核心知识讲解，重点关注概念框和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,2)">📝 这一课时有哪些易错点？</button>
+        <div class="ai-answer" id="ai-ans-2">请查看本课时的"⚠️ 易错警示"框，里面总结了最容易出错的知识点。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,3)">🏆 中考常考哪些内容？</button>
+        <div class="ai-answer" id="ai-ans-3">请查看本课时的"🏆 必考分析与总结"模块，里面有考频统计和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,4)">🔍 如何区分相似概念？</button>
+        <div class="ai-answer" id="ai-ans-4">注意对比表格中的关键区别，特别是光合作用和呼吸作用的对比。</div>
+      </div>
+    </div>
+  </div>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

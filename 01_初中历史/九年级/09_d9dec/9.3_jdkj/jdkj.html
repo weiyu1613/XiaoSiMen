@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="course-id" content="hist-jdkj-9">
+  <meta name="course-title" content="9.3 近代科学与文化">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-9">
+  <meta name="teachany-node" content="hist-jdkj">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+
+  <title>9.3 近代科学与文化 | 初中9年级历史</title>
+
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-dark: #6b3410;
+      --secondary: #d4a574;
+      --accent: #d4a017;
+      --bg-light: #faf7f2;
+      --bg-card: #ffffff;
+      --text-dark: #2c1810;
+      --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+      --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+      --border-color: #e8dcc8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ① 品牌栏 */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+
+    /* ② 进度条 */
+    .progress-bar { height: 4px; background: #e8dcc8; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 38%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: var(--bg-light); }
+
+    /* ③ 导航栏 */
+    .nav-bar { background: white; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: rgba(139,69,19,0.1); }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* ④ Hero区 */
+    .hero {
+      background: linear-gradient(135deg, #1a0a00 0%, var(--primary-dark) 30%, var(--primary) 70%, var(--primary-light) 100%);
+      color: white;
+      padding: 48px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; line-height: 1.8; }
+
+    .svg-container { margin: 20px auto 0; max-width: 900px; }
+    .svg-container svg { max-width: 100%; height: auto; }
+
+    /* 主内容区 */
+    .section { max-width: 960px; margin: 0 auto 28px; padding: 0 20px; }
+    .card { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid var(--border-color); }
+    .card-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 14px 24px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .card-header .tag { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .card-body { padding: 20px 24px; }
+
+    /* ⑤ 探究问题锚点 */
+    .anchor-box { background: #f5e6d3; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; font-size: 15px; line-height: 1.8; }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f5e6d3, #faf7f2); border: 2px solid #d4a574; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #e8d4bc, #f5e6d3); border-color: var(--primary); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .custom-question { margin-top: 16px; }
+    .custom-question label { display: block; margin-bottom: 6px; color: var(--primary); font-weight: 600; }
+    .custom-question input { width: 100%; border-radius: 12px; border: 1px solid #d4a574; background: #faf7f2; color: var(--text-dark); padding: 12px 14px; font-size: 15px; }
+    .custom-question input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,69,19,0.1); }
+    .anchor-display { margin-top: 16px; padding: 16px; border-radius: 12px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.15); min-height: 80px; }
+    .anchor-display h4 { color: var(--primary); margin-bottom: 8px; }
+
+    /* ⑥ 学习目标 */
+    .objectives-list { list-style: none; padding: 0; margin: 0; }
+    .objectives-list li { padding: 10px 16px; border-bottom: 1px solid var(--border-color); display: flex; gap: 10px; align-items: flex-start; }
+    .objectives-list li:last-child { border-bottom: none; }
+    .objectives-list li::before { content: '✅'; font-size: 14px; }
+
+    /* ⑦ 前测 & ⑨ 后测 */
+    .quiz-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-color); }
+    .quiz-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .quiz-header .quiz-badge { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .quiz-body { padding: 10px 16px; }
+    .quiz-item { margin-bottom: 18px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+    .quiz-question { background: #f5e6d3; padding: 12px 16px; font-size: 15px; line-height: 1.6; }
+    .quiz-question .star { color: var(--accent); margin-right: 4px; }
+    .quiz-question .exam-tag { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 6px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    .quiz-options { padding: 10px 16px; }
+    .quiz-option { display: flex; align-items: center; padding: 10px 14px; border-radius: 8px; cursor: pointer; margin-bottom: 8px; border: 2px solid transparent; transition: all 0.2s; background: white; }
+    .quiz-option:hover { background: #faf7f2; border-color: #d4a574; }
+    .quiz-option input { margin-right: 10px; accent-color: var(--primary); transform: scale(1.1); }
+    .quiz-option label { cursor: pointer; flex: 1; font-size: 14px; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.correct label { color: #065f46; font-weight: 600; }
+    .quiz-option.wrong { background: #fee2e2; border-color: #ef4444; }
+    .quiz-option.wrong label { color: #991b1b; }
+    .opt-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; font-size: 12px; font-weight: 700; margin-right: 10px; flex-shrink: 0; }
+    .quiz-feedback { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .quiz-feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .answer-explanation { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .check-btn { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; padding: 10px 28px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 700; transition: all 0.2s; margin-top: 16px; }
+    .check-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,69,19,0.25); }
+
+    /* ⑧ 核心知识讲解 */
+    .knowledge-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border-color); }
+    .knowledge-header { background: var(--primary); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; }
+    .knowledge-body { padding: 20px 24px; }
+    .knowledge-body p { margin: 0 0 12px; line-height: 1.8; }
+    .knowledge-body p:last-child { margin-bottom: 0; }
+    .highlight { background: #f5e6d3; padding: 2px 6px; border-radius: 4px; font-weight: 700; color: var(--primary); }
+
+    .concept-box { background: #faf7f2; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    .compare-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .compare-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px; text-align: center; }
+    .compare-table td { padding: 10px; border: 1px solid var(--border-color); text-align: center; }
+    .compare-table tr:nth-child(even) { background: #faf7f2; }
+
+    .timeline { position: relative; padding-left: 28px; margin: 16px 0; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--secondary); }
+    .tl-item { position: relative; margin-bottom: 18px; }
+    .tl-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; background: var(--primary); border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px var(--secondary); }
+    .tl-date { font-weight: 700; color: var(--primary); font-size: 14px; }
+    .tl-text { font-size: 14px; line-height: 1.7; margin-top: 4px; }
+
+    /* ⑩ 必考分析 */
+    .exam-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .exam-card { border-radius: 12px; padding: 18px 20px; border-left: 4px solid var(--accent); background: #faf7f2; }
+    .exam-card h4 { color: var(--primary); margin: 0 0 8px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .exam-card p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--text-dark); }
+    .exam-tag { display: inline-flex; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 8px; }
+    .exam-tag.hot { background: #fee2e2; color: #dc2626; }
+    .exam-tag.high { background: #fef3c7; color: #92400e; }
+    .exam-tag.normal { background: #dbeafe; color: #1d4ed8; }
+
+    /* AI学伴 */
+    .ai-tutor { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; padding: 24px; color: white; margin-bottom: 20px; }
+    .ai-tutor h3 { margin: 0 0 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+    .ai-tutor p { margin: 0 0 10px; font-size: 14px; line-height: 1.7; opacity: 0.95; }
+    .ai-tutor .ai-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .ai-tutor button { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .ai-tutor button:hover { background: rgba(255,255,255,0.35); }
+
+    /* 页脚 */
+    .footer { background: var(--primary-dark); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    .footer p { margin: 0; opacity: 0.9; font-size: 14px; }
+    .footer .version { margin-top: 8px; font-size: 12px; opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 28px 14px; }
+      .hero h1 { font-size: 1.4rem; }
+      .hero-subtitle { font-size: 0.88rem; }
+      .section { padding: 0 12px; margin-bottom: 20px; }
+      .card-header { padding: 12px 14px; font-size: 15px; }
+      .card-body { padding: 14px; }
+      .anchor-points { flex-direction: column; gap: 6px; }
+      .anchor-btn { width: 100%; padding: 10px 12px; font-size: 0.82rem; }
+      .quiz-option { padding: 10px 12px; font-size: 0.88rem; }
+      .knowledge-body { padding: 14px; }
+      .exam-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-scroll"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+  <div class="progress-label">第 3/8 节 · 38%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../d9dec.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第二单元：第二次工业革命和近代科学文化</div>
+      <a href="../9.2_wlsh/wlsh.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../d9dec.html" class="nav-btn">返回单元 <i class="fa-solid fa-list"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero区 -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-flask"></i> 九年级历史 · 第二单元</div>
+      <h1>🔬 第9.3课 近代科学与文化</h1>
+      <p class="hero-subtitle">📖 课标要求：了解近代科学家、文学艺术家及其成就，认识科学文化在社会发展中的作用<br>🎯 预计用时：45分钟</p>
+
+      <!-- SVG知识结构图 -->
+      <div class="svg-container">
+        <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;display:block;margin:0 auto;">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <polygon points="0 0, 10 3, 0 6" fill="#d4a017"/>
+            </marker>
+          </defs>
+
+          <circle cx="350" cy="100" r="55" fill="white" fill-opacity="0.95" stroke="#d4a574" stroke-width="2"/>
+          <text x="350" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#8b4513">近代科学与文化</text>
+          <text x="350" y="113" text-anchor="middle" font-size="11" fill="#6b4c35">18-19世纪</text>
+
+          <line x1="295" y1="65" x2="180" y2="35" stroke="#cd853f" stroke-width="2"/>
+          <rect x="40" y="10" width="130" height="50" rx="8" fill="#fdf6ee" stroke="#cd853f" stroke-width="1.5"/>
+          <text x="105" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">科学成就</text>
+          <text x="105" y="47" text-anchor="middle" font-size="10" fill="#6b4c35">牛顿·达尔文·爱因斯坦</text>
+
+          <line x1="295" y1="100" x2="180" y2="130" stroke="#cd853f" stroke-width="2"/>
+          <rect x="40" y="105" width="130" height="50" rx="8" fill="#fdf6ee" stroke="#cd853f" stroke-width="1.5"/>
+          <text x="105" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">文学成就</text>
+          <text x="105" y="142" text-anchor="middle" font-size="10" fill="#6b4c35">巴尔扎克·托尔斯泰</text>
+
+          <line x1="405" y1="65" x2="520" y2="35" stroke="#cd853f" stroke-width="2"/>
+          <rect x="530" y="10" width="130" height="50" rx="8" fill="#fdf6ee" stroke="#cd853f" stroke-width="1.5"/>
+          <text x="595" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">艺术成就</text>
+          <text x="595" y="47" text-anchor="middle" font-size="10" fill="#6b4c35">贝多芬·梵高·达·芬奇</text>
+
+          <line x1="405" y1="100" x2="520" y2="130" stroke="#cd853f" stroke-width="2"/>
+          <rect x="530" y="105" width="130" height="50" rx="8" fill="#fdf6ee" stroke="#cd853f" stroke-width="1.5"/>
+          <text x="595" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">社会影响</text>
+          <text x="595" y="142" text-anchor="middle" font-size="10" fill="#6b4c35">思想解放·科技推动</text>
+
+          <line x1="350" y1="155" x2="350" y2="190" stroke="#cd853f" stroke-width="2"/>
+          <rect x="250" y="192" width="200" height="30" rx="6" fill="#fdf6ee" stroke="#8b4513" stroke-width="1.5"/>
+          <text x="350" y="212" text-anchor="middle" font-size="11" fill="#8b4513">相互促进 · 推动社会进步</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ⑤ 探究问题锚点 -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🔍 探究问题</div>
+        <div class="card-body">
+          <p style="color: var(--primary); margin-bottom: 12px;">选择你关心的问题，后续内容将围绕问题展开讲解：</p>
+          <div class="anchor-points">
+            <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-question="牛顿、达尔文等科学家的主要成就是什么？">🔬 牛顿、达尔文的主要成就是什么？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-question="近代文学艺术有哪些代表人物？">📚 近代文学艺术有哪些代表人物？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-question="近代科学与文化有何社会影响？">🌍 近代科学与文化有何社会影响？</button>
+          </div>
+          <div class="custom-question">
+            <label>我有自己的问题：</label>
+            <input type="text" id="custom-question-input" placeholder="输入你的问题..." oninput="handleCustomQuestion(this.value)">
+          </div>
+          <div class="anchor-display" id="anchor-display">
+            <p style="text-align: center; color: var(--text-muted);">👆 点击上方按钮或输入自己的问题</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🎯 学习目标 <span class="tag">课标要求</span></div>
+        <div class="card-body">
+          <ul class="objectives-list">
+            <li>知道牛顿、达尔文等科学家的核心成就（万有引力/进化论）</li>
+            <li>了解巴尔扎克、托尔斯泰、莎士比亚等文学家的代表作</li>
+            <li>认识贝多芬、梵高、达·芬奇等艺术家的艺术风格与成就</li>
+            <li>理解近代科学与文化相互促进、共同推动社会进步的关系</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">📝 课前自测 <span class="quiz-badge">点击选项查看解析</span></div>
+        <div class="quiz-body" id="pre-quiz">
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>提出万有引力定律的科学家是？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'A')" data-feedback="">
+                <span class="opt-letter">A</span><label>A. 牛顿</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'B')" data-feedback="❌ 达尔文是生物学家，提出进化论，不是万有引力！">
+                <span class="opt-letter">B</span><label>B. 达尔文</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 爱因斯坦提出相对论，不是万有引力！">
+                <span class="opt-letter">C</span><label>C. 爱因斯坦</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 伽利略是天文学家，没有提出万有引力定律！">
+                <span class="opt-letter">D</span><label>D. 伽利略</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre1"></div>
+            <div class="answer-explanation" id="explain-pre1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：A. 牛顿</strong></p>
+              <p style="margin-top: 8px;"><strong>牛顿</strong>（英国，1643-1727）是近代物理学的奠基人，提出<strong>万有引力定律</strong>和<strong>三大运动定律</strong>，著有《自然哲学的数学原理》，奠定经典力学基础。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📚 知识拓展 · 牛顿核心成就</div>
+                <p><strong>万有引力定律：</strong>任何两个物体之间存在引力，与质量乘积成正比，与距离平方成反比</p>
+                <p style="margin-top: 6px;"><strong>三大运动定律：</strong>惯性定律、加速度定律、作用力与反作用力定律</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>下列哪部是巴尔扎克的代表作？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'A')" data-feedback="">
+                <span class="opt-letter">A</span><label>A. 《人间喜剧》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'B')" data-feedback="❌ 《战争与和平》是托尔斯泰的代表作！">
+                <span class="opt-letter">B</span><label>B. 《战争与和平》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 《哈姆雷特》是莎士比亚的代表作！">
+                <span class="opt-letter">C</span><label>C. 《哈姆雷特》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 《英雄交响曲》是贝多芬的音乐作品！">
+                <span class="opt-letter">D</span><label>D. 《英雄交响曲》</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre2"></div>
+            <div class="answer-explanation" id="explain-pre2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：A. 《人间喜剧》</strong></p>
+              <p style="margin-top: 8px;"><strong>巴尔扎克</strong>（法国）是19世纪法国现实主义文学家，《人间喜剧》被誉为"法国社会的百科全书"，包含90余部小说，描写了法国各阶层社会生活。</p>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>提出进化论的科学家是？<span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 牛顿是物理学家，提出万有引力定律，与进化论无关！">
+                <span class="opt-letter">A</span><label>A. 牛顿</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 达尔文</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'C')" data-feedback="❌ 贝多芬是音乐家，与进化论无关！">
+                <span class="opt-letter">C</span><label>C. 贝多芬</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 爱因斯坦是物理学家，提出相对论，与进化论无关！">
+                <span class="opt-letter">D</span><label>D. 爱因斯坦</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre3"></div>
+            <div class="answer-explanation" id="explain-pre3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 达尔文</strong></p>
+              <p style="margin-top: 8px;"><strong>达尔文</strong>（英国，1809-1882）发表《物种起源》，提出"物竞天择、适者生存"的进化论，打破了神学创世说的统治地位，为生物学的发展开辟了新道路。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 高频易错警示</div>
+                <p><strong>牛顿</strong>（物理学）→ 万有引力、运动定律</p>
+                <p><strong>达尔文</strong>（生物学）→ 进化论</p>
+                <p style="margin-top: 8px;">⚠️ 考试常将两者成就混淆！注意区分学科领域。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>贝多芬是哪一流派的音乐家？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 古典主义强调理性、规范，贝多芬虽属古典主义后期，但以浪漫主义风格闻名！">
+                <span class="opt-letter">A</span><label>A. 古典主义</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 浪漫主义</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 印象主义是19世纪末绘画/音乐流派，贝多芬早于印象主义！">
+                <span class="opt-letter">C</span><label>C. 印象主义</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'D')" data-feedback="❌ 现实主义是文学流派，不属于音乐！">
+                <span class="opt-letter">D</span><label>D. 现实主义</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre4"></div>
+            <div class="answer-explanation" id="explain-pre4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 浪漫主义</strong></p>
+              <p style="margin-top: 8px;"><strong>贝多芬</strong>（德国，1770-1827）是德国浪漫主义音乐家，代表作有《英雄交响曲》《命运交响曲》《田园交响曲》等，被誉为"乐圣"，开创浪漫主义音乐先河。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📌 浪漫主义音乐特点</div>
+                <p>强调情感、个性、想象，反对古典主义的理性束缚；代表作：贝多芬（德）、舒伯特（奥）、肖邦（波兰）</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('pre-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+
+    <!-- 知识点1：近代科学成就 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">一、近代科学成就</div>
+        <div class="knowledge-body">
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">牛顿（英国，1643-1727）</div>
+              <div class="tl-text"><strong>核心成就：</strong>万有引力定律、三大运动定律，著有《自然哲学的数学原理》，奠定<strong>经典力学</strong>基础，推动工业革命技术发展</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">达尔文（英国，1809-1882）</div>
+              <div class="tl-text"><strong>核心成就：</strong>发表《物种起源》，提出"物竞天择、适者生存"的<strong>进化论</strong>，打破神学创世说，为生物学和马克思主义哲学奠定基础</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">爱因斯坦（德裔美籍，1879-1955）</div>
+              <div class="tl-text"><strong>核心成就：</strong>提出<strong>相对论</strong>，揭示物质和能量的等价性（E=mc²），是现代物理学的两大支柱之一</div>
+            </div>
+          </div>
+
+          <div class="concept-box">
+            <div class="label">📌 核心辨析 · 达尔文进化论的历史意义</div>
+            <p>① 打破神学创世说的统治地位</p>
+            <p>② 为生物学的发展开辟新道路</p>
+            <p>③ 为马克思主义哲学提供自然史基础</p>
+            <p>④ 推动思想解放和社会进步</p>
+          </div>
+
+          <div class="warn-box">
+            <div class="label">⚠️ 易错警示</div>
+            <p><strong>牛顿</strong>——物理学领域——万有引力、运动定律</p>
+            <p style="margin-top: 4px;"><strong>达尔文</strong>——生物学领域——进化论</p>
+            <p style="margin-top: 8px;">两者成就经常在考试中混淆，需按学科领域区分记忆！</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点2：近代文学成就 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">二、近代文学成就</div>
+        <div class="knowledge-body">
+          <table class="compare-table">
+            <tr>
+              <th>文学家</th>
+              <th>国家</th>
+              <th>代表作</th>
+              <th>流派</th>
+            </tr>
+            <tr>
+              <td><strong>巴尔扎克</strong></td>
+              <td>法国</td>
+              <td>《人间喜剧》</td>
+              <td>现实主义</td>
+            </tr>
+            <tr>
+              <td><strong>托尔斯泰</strong></td>
+              <td>俄国</td>
+              <td>《战争与和平》</td>
+              <td>现实主义</td>
+            </tr>
+            <tr>
+              <td><strong>莎士比亚</strong></td>
+              <td>英国</td>
+              <td>《哈姆雷特》</td>
+              <td>文艺复兴</td>
+            </tr>
+          </table>
+
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 现实主义文学</div>
+            <p><strong>现实主义</strong>强调真实反映社会现实，批判社会黑暗与不公。巴尔扎克的《人间喜剧》描写法国社会各阶层，被誉为"法国社会的百科全书"；托尔斯泰的作品被称为"俄国革命的镜子"。</p>
+          </div>
+
+          <div class="warn-box">
+            <div class="label">⚠️ 常见混淆</div>
+            <p><strong>巴尔扎克</strong>（法）→《人间喜剧》→ 现实主义</p>
+            <p style="margin-top: 4px;"><strong>托尔斯泰</strong>（俄）→《战争与和平》→ 现实主义</p>
+            <p style="margin-top: 4px;"><strong>莎士比亚</strong>（英）→《哈姆雷特》→ 文艺复兴时期</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点3：近代艺术成就 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">三、近代艺术成就</div>
+        <div class="knowledge-body">
+          <table class="compare-table">
+            <tr>
+              <th>艺术家</th>
+              <th>国家</th>
+              <th>代表作</th>
+              <th>流派</th>
+            </tr>
+            <tr>
+              <td><strong>贝多芬</strong></td>
+              <td>德国</td>
+              <td>《英雄交响曲》《命运交响曲》</td>
+              <td>浪漫主义音乐</td>
+            </tr>
+            <tr>
+              <td><strong>梵高</strong></td>
+              <td>荷兰</td>
+              <td>《向日葵》《星夜》</td>
+              <td>印象派绘画</td>
+            </tr>
+            <tr>
+              <td><strong>达·芬奇</strong></td>
+              <td>意大利</td>
+              <td>《蒙娜丽莎》《最后的晚餐》</td>
+              <td>文艺复兴绘画</td>
+            </tr>
+          </table>
+
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 流派辨析</div>
+            <p><strong>浪漫主义</strong>：强调情感、个性、想象，反对理性束缚。代表人物：贝多芬、雨果。</p>
+            <p style="margin-top: 8px;"><strong>现实主义</strong>：反映社会现实，批判社会黑暗。代表人物：巴尔扎克、托尔斯泰。</p>
+            <p style="margin-top: 8px;"><strong>印象派</strong>：强调光与色的瞬间印象，追求户外写生的真实感。代表人物：梵高、莫奈。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点4：科学与文化的相互影响 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">四、科学与文化的相互影响</div>
+        <div class="knowledge-body">
+          <p>近代科学与文化相互促进，共同推动社会进步：</p>
+
+          <div class="concept-box">
+            <div class="label">📌 科学对文化的影响</div>
+            <p>① 科学进步为文学家、艺术家提供新的创作素材和思路</p>
+            <p>② 进化论打破神学束缚，推动现实主义文学的发展</p>
+            <p>③ 经典力学推动启蒙运动，促进理性主义文化的发展</p>
+          </div>
+
+          <div class="concept-box">
+            <div class="label">📌 文化对科学的影响</div>
+            <p>① 文学艺术中的人文精神，为科学研究提供思想自由的环境</p>
+            <p>② 浪漫主义强调个性，鼓励科学家大胆创新</p>
+            <p>③ 现实主义关注社会，推动科学成果向实际应用转化</p>
+          </div>
+
+          <div class="svg-container">
+            <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;display:block;margin:0 auto;">
+              <rect x="120" y="70" width="100" height="50" rx="10" fill="#8b4513"/>
+              <text x="170" y="100" text-anchor="middle" fill="white" font-size="14" font-weight="bold">科学</text>
+              <line x1="220" y1="95" x2="330" y2="95" stroke="#d4a017" stroke-width="3" marker-end="url(#arrowhead)"/>
+              <text x="275" y="85" text-anchor="middle" font-size="12" fill="#8b4513">推动</text>
+              <line x1="330" y1="95" x2="220" y2="95" stroke="#d4a017" stroke-width="3" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+              <text x="275" y="115" text-anchor="middle" font-size="12" fill="#8b4513">支撑</text>
+              <rect x="380" y="70" width="100" height="50" rx="10" fill="#cd853f"/>
+              <text x="430" y="100" text-anchor="middle" fill="white" font-size="14" font-weight="bold">文化</text>
+            </svg>
+            <p style="margin-top: 10px; text-align: center; font-size: 13px; color: var(--text-muted);">图：科学与文化的相互关系</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测 -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">✅ 课后巩固 <span class="quiz-badge">含中考真题</span></div>
+        <div class="quiz-body" id="post-quiz">
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>达尔文进化论的核心意义是？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 推动工业革命是牛顿力学的意义，不是进化论的！">
+                <span class="opt-letter">A</span><label>A. 推动工业革命的开展</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'B')" data-feedback="❌ 奠定经典力学是牛顿的贡献！">
+                <span class="opt-letter">B</span><label>B. 奠定经典力学基础</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 打破神学创世说，为生物学和哲学奠定基础</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 相对论是爱因斯坦的贡献！">
+                <span class="opt-letter">D</span><label>D. 提出相对论</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post1"></div>
+            <div class="answer-explanation" id="explain-post1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 打破神学创世说，为生物学和哲学奠定基础</strong></p>
+              <p style="margin-top: 8px;">达尔文进化论的核心意义在于：①打破神学创世说的统治地位；②为生物学发展开辟新道路；③为马克思主义哲学提供自然史基础。</p>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2023·山东中考）下列哪位科学家的成就打破了神学创世说？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 牛顿的成就是物理学，没有打破神学创世说！">
+                <span class="opt-letter">A</span><label>A. 牛顿</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 达尔文</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'C')" data-feedback="❌ 贝多芬是音乐家，与打破神学创世说无关！">
+                <span class="opt-letter">C</span><label>C. 贝多芬</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 爱因斯坦是现代物理学家，没有打破神学创世说！">
+                <span class="opt-letter">D</span><label>D. 爱因斯坦</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post2"></div>
+            <div class="answer-explanation" id="explain-post2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 达尔文</strong></p>
+              <p style="margin-top: 8px;">达尔文提出的进化论，证明了生物是进化而来的，打破了神学创世说的统治地位，是近代科学对神学的一次重大挑战。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📝 中考真题出处</div>
+                <p><strong>来源：</strong>2023年山东省中考历史卷</p>
+                <p style="margin-top: 6px;"><strong>考点：</strong>近代科学家的核心成就与社会影响</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>下列哪部作品是托尔斯泰的代表作？<span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 《人间喜剧》是巴尔扎克的作品！">
+                <span class="opt-letter">A</span><label>A. 《人间喜剧》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 《战争与和平》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'C')" data-feedback="❌ 《英雄交响曲》是贝多芬的音乐作品！">
+                <span class="opt-letter">C</span><label>C. 《英雄交响曲》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 《哈姆雷特》是莎士比亚的作品！">
+                <span class="opt-letter">D</span><label>D. 《哈姆雷特》</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post3"></div>
+            <div class="answer-explanation" id="explain-post3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 《战争与和平》</strong></p>
+              <p style="margin-top: 8px;"><strong>托尔斯泰</strong>是俄国现实主义文学家，被誉为"俄国革命的镜子"，代表作《战争与和平》《安娜·卡列尼娜》描写了俄国社会各阶层的生活。</p>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>梵高属于哪一绘画流派？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 文艺复兴绘画以达·芬奇、米开朗基罗为代表，梵高是19世纪画家！">
+                <span class="opt-letter">A</span><label>A. 文艺复兴</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 现实主义强调写实，梵高的作品充满主观情感和色彩，不属于现实主义！">
+                <span class="opt-letter">B</span><label>B. 现实主义</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 印象派</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'D')" data-feedback="❌ 浪漫主义强调情感和个性，贝多芬是浪漫主义音乐家，但梵高是画家！">
+                <span class="opt-letter">D</span><label>D. 浪漫主义</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post4"></div>
+            <div class="answer-explanation" id="explain-post4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 印象派</strong></p>
+              <p style="margin-top: 8px;"><strong>梵高</strong>（荷兰，1853-1890）是19世纪后期<strong>印象派</strong>画家，代表作《向日葵》《星夜》，以鲜明的色彩和强烈的情感表达著称，是后印象派的代表人物之一。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">💡 答题技巧 · 艺术家与流派对应</div>
+                <p>印象派：梵高（荷）、莫奈（法）——追求光与色的瞬间印象</p>
+                <p>浪漫主义：贝多芬（德）——强调情感与个性</p>
+                <p>现实主义：巴尔扎克（法）、托尔斯泰（俄）——反映社会现实</p>
+                <p>文艺复兴：达·芬奇（意）——14-17世纪</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('post-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🏆 必考分析与考点总结</div>
+        <div class="card-body">
+          <div class="exam-cards">
+            <div class="exam-card">
+              <h4>📍 牛顿核心成就 <span class="exam-tag hot">高频</span></h4>
+              <p>万有引力定律 + 三大运动定律 + 《自然哲学的数学原理》</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 达尔文核心成就 <span class="exam-tag hot">高频</span></h4>
+              <p>进化论 + 《物种起源》 + 打破神学创世说</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 巴尔扎克·托尔斯泰 <span class="exam-tag hot">高频</span></h4>
+              <p>巴尔扎克《人间喜剧》（法国·现实主义）<br>托尔斯泰《战争与和平》（俄国·现实主义）</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 贝多芬·梵高 <span class="exam-tag high">重要</span></h4>
+              <p>贝多芬《英雄交响曲》（德国·浪漫主义音乐）<br>梵高《向日葵》（荷兰·印象派绘画）</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 流派辨析 <span class="exam-tag hot">高频</span></h4>
+              <p>现实主义（文学）——巴尔扎克、托尔斯泰<br>浪漫主义（音乐）——贝多芬<br>印象派（绘画）——梵高、莫奈</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 科学与文化相互影响 <span class="exam-tag normal">常考</span></h4>
+              <p>科学进步推动文化发展，文化繁荣支撑科学创新</p>
+            </div>
+          </div>
+
+          <div class="warn-box" style="margin-top: 16px;">
+            <div class="label">⚠️ 高频易错警示</div>
+            <p><strong>易错1：</strong>混淆牛顿与达尔文的成就——按学科区分（物理 vs 生物）</p>
+            <p style="margin-top: 6px;"><strong>易错2：</strong>巴尔扎克（法）→《人间喜剧》vs 托尔斯泰（俄）→《战争与和平》</p>
+            <p style="margin-top: 6px;"><strong>易错3：</strong>贝多芬是"浪漫主义音乐家"而非"印象派"；梵高是"印象派画家"</p>
+            <p style="margin-top: 6px;"><strong>易错4：</strong>进化论的历史意义：打破神学创世说，不是推动工业革命</p>
+            <p style="margin-top: 6px;"><strong>易错5：</strong>印象派 ≠ 浪漫主义，注意音乐与绘画流派的区分</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section">
+      <div class="ai-tutor">
+        <h3>🤖 AI学伴 · 智能助教</h3>
+        <p>学习本课过程中有任何疑问，都可以向AI学伴提问！</p>
+        <p>💡 <strong>推荐提问：</strong>本课重点是什么？帮我出题练习？牛顿和达尔文的成就怎么区分？</p>
+        <div class="ai-buttons">
+          <button>📚 帮我总结本课重点</button>
+          <button>🧠 出几道题考考我</button>
+          <button>🔗 近代科学和文化有什么关系？</button>
+          <button>📝 帮我记笔记</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+    <p class="version">基于 TeachAny v7.14.0 | 适配人教版九年级历史课程标准</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  <script>
+    const anchorContents = {
+      1: `<h4>🔬 问题：牛顿、达尔文的主要成就是什么？</h4>
+        <p><strong>牛顿：</strong>万有引力定律、三大运动定律，奠定经典力学基础</p>
+        <p><strong>达尔文：</strong>进化论，打破神学创世说，为生物学奠基</p>
+        <p style="margin-top: 12px;">💡 <strong>记忆口诀：</strong>"牛顿物理达尔文生物，各司其职不要混。"</p>`,
+      2: `<h4>📚 问题：近代文学艺术有哪些代表人物？</h4>
+        <p><strong>文学：</strong>巴尔扎克（法·《人间喜剧》）、托尔斯泰（俄·《战争与和平》）</p>
+        <p><strong>音乐：</strong>贝多芬（德·《英雄交响曲》，浪漫主义）</p>
+        <p><strong>绘画：</strong>梵高（荷·《向日葵》，印象派）</p>
+        <p style="margin-top: 12px;">📚 <strong>总结：</strong>近代文化反映时代变革，批判现实，弘扬人文精神。</p>`,
+      3: `<h4>🌍 问题：近代科学与文化有何社会影响？</h4>
+        <p><strong>思想解放：</strong>进化论打破神学束缚，推动思想解放</p>
+        <p><strong>社会发展：</strong>科学进步推动工业革命，文化繁荣丰富精神生活</p>
+        <p><strong>相互促进：</strong>科学为文化提供素材，文化为科学提供自由思想环境</p>
+        <p style="margin-top: 12px;">🌍 <strong>总结：</strong>科学与文化相互促进，共同推动社会进步。</p>`
+    };
+
+    function selectAnchor(btn, id) {
+      document.querySelectorAll('.anchor-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('anchor-display').innerHTML = anchorContents[id];
+    }
+
+    function handleCustomQuestion(value) {
+      if (value.trim()) {
+        document.getElementById('anchor-display').innerHTML = `<h4>你的问题：${value}</h4><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+      }
+    }
+
+    function checkAnswer(element, isCorrect, questionId, optionLetter) {
+      const parent = element.closest('.quiz-item');
+      const feedback = parent.querySelector('.quiz-feedback');
+      const explanation = parent.querySelector('.answer-explanation');
+      parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('correct', 'wrong'));
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+        feedback.className = 'quiz-feedback show correct-fb';
+        explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        feedback.innerHTML = (element.dataset.feedback || '❌ 不对哦，再想想！') + '<br><br>💡 换一个选项试试？';
+        feedback.className = 'quiz-feedback show wrong-fb';
+      }
+    }
+
+    function checkAllQuiz(quizId) {
+      const quiz = document.getElementById(quizId);
+      quiz.querySelectorAll('.quiz-item').forEach(item => {
+        const correctOption = item.querySelector('.quiz-option[onclick*="true"]');
+        if (correctOption) {
+          correctOption.classList.add('correct');
+          const explanation = item.querySelector('.answer-explanation');
+          if (explanation) explanation.classList.add('show');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('📚 《近代科学与文化》课件加载完成（v7.14.0）');
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

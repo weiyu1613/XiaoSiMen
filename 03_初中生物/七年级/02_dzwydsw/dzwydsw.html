@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第二单元：多种多样的生物 - 七年级生物</title>
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-sm: 0 2px 8px rgba(46,125,50,0.08);
+      --shadow-md: 0 4px 20px rgba(46,125,50,0.12);
+      --shadow-lg: 0 8px 32px rgba(46,125,50,0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(46,125,50,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    /* ====== Hero Section ====== */
+    .hero-section {
+      background: linear-gradient(135deg, #0a3d1a 0%, #1b5e20 20%, var(--primary) 50%, #388e3c 80%, var(--primary-light) 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+    .hero-icon { font-size: 64px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 3px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .key-points { display: flex; justify-content: center; gap: 16px; margin: 24px 0; position: relative; flex-wrap: wrap; }
+    .key-point { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px; background: rgba(255,255,255,0.15); border-radius: 12px; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.3); min-width: 110px; }
+    .key-point-icon { width: 44px; height: 44px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .key-point-label { font-size: 0.82rem; font-weight: 600; opacity: 0.9; }
+
+    .progress-container { max-width: 600px; margin: 24px auto 0; text-align: left; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; opacity: 0.9; }
+    .progress-track { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #a5d6a7, #66bb6a, #43a047); border-radius: 4px; transition: width 1s ease; box-shadow: 0 0 12px rgba(129,199,132,0.5); }
+
+    /* ====== Nav Bar ====== */
+    .nav-bar { background: white; padding: 10px 20px; box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 12px; align-items: center; }
+    .nav-btn { padding: 7px 14px; border-radius: 8px; text-decoration: none; color: var(--text-dark); font-size: 0.88rem; font-weight: 600; transition: all 0.3s ease; display: flex; align-items: center; gap: 6px; }
+    .nav-btn:hover { background: var(--bg-light); color: var(--primary); }
+    .nav-center { flex: 1; text-align: center; font-size: 1rem; font-weight: 700; color: var(--primary); }
+
+    /* ====== Main Content ====== */
+    .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+    .section-title { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: var(--shadow-md); }
+    .section-text h2 { font-size: 1.5rem; color: var(--primary); font-weight: 700; }
+    .section-text p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ====== Lessons Grid ====== */
+    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+    .lesson-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(46,125,50,0.08);
+      position: relative;
+    }
+
+    .lesson-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .lesson-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .lesson-card:hover::before { transform: scaleX(1); }
+
+    .card-header { padding: 20px 20px 12px; display: flex; align-items: flex-start; gap: 14px; }
+
+    .lesson-num {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 700; flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(46,125,50,0.25);
+    }
+
+    .lesson-meta { flex: 1; }
+    .lesson-title { font-size: 1rem; font-weight: 700; color: var(--text-dark); line-height: 1.4; margin-bottom: 4px; }
+    .lesson-subtitle { font-size: 0.85rem; color: var(--text-muted); }
+
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700;
+    }
+    .status-完成 { background: linear-gradient(135deg, #d1fae5, #a7f3d0); color: #065f46; }
+    .status-制作中 { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; }
+
+    .card-body { padding: 0 20px 16px; }
+    .lesson-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+
+    .card-footer { padding: 16px 20px; background: var(--bg-light); border-top: 1px solid rgba(46,125,50,0.06); }
+
+    .lesson-link {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 12px 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; text-decoration: none; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease;
+      position: relative; overflow: hidden;
+    }
+
+    .lesson-link::after {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: rgba(255,255,255,0.2); border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+
+    .lesson-link:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(46,125,50,0.35);
+    }
+
+    /* ====== Footer ====== */
+    .footer { background: var(--text-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+
+    /* ====== Animations ====== */
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s ease forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    .lesson-card:nth-child(1) { animation-delay: 0.05s; }
+    .lesson-card:nth-child(2) { animation-delay: 0.1s; }
+    .lesson-card:nth-child(3) { animation-delay: 0.15s; }
+    .lesson-card:nth-child(4) { animation-delay: 0.2s; }
+    .lesson-card:nth-child(5) { animation-delay: 0.25s; }
+    .lesson-card:nth-child(6) { animation-delay: 0.3s; }
+    .lesson-card:nth-child(7) { animation-delay: 0.35s; }
+    .lesson-card:nth-child(8) { animation-delay: 0.4s; }
+    .lesson-card:nth-child(9) { animation-delay: 0.45s; }
+    .lesson-card:nth-child(10) { animation-delay: 0.5s; }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 768px) {
+      .hero-icon { font-size: 48px; }
+      .hero-title { font-size: 1.6rem; letter-spacing: 1px; }
+      .hero-subtitle { font-size: 0.9rem; }
+      .key-points { gap: 10px; }
+      .key-point { padding: 10px; min-width: 90px; }
+      .key-point-icon { width: 36px; height: 36px; font-size: 18px; }
+      .key-point-label { font-size: 0.72rem; }
+      .lessons-grid { grid-template-columns: 1fr; }
+      .nav-inner { flex-wrap: wrap; gap: 8px; }
+      .nav-center { order: -1; width: 100%; text-align: left; font-size: 0.9rem; }
+    }
+
+    * { -webkit-tap-highlight-color: transparent; }
+    a, button { -webkit-tap-highlight-color: rgba(46,125,50,0.08); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <div class="nav-center">第二单元：多种多样的生物</div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">🧬</div>
+      <h1 class="hero-title">第二单元：多种多样的生物</h1>
+      <p class="hero-subtitle">探索生物世界，认识生命的多样性</p>
+
+      <div class="key-points">
+        <div class="key-point">
+          <div class="key-point-icon">🌿</div>
+          <span class="key-point-label">藻类苔藓蕨类</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🌱</div>
+          <span class="key-point-label">种子植物</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🦐</div>
+          <span class="key-point-label">无脊椎动物</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🐟</div>
+          <span class="key-point-label">脊椎动物</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🦠</div>
+          <span class="key-point-label">微生物</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🔬</div>
+          <span class="key-point-label">生物分类</span>
+        </div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-info">
+          <span><i class="fas fa-book"></i> 学习进度</span>
+          <span>10/10 课时</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 0%;" id="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="section-title">
+      <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="section-text">
+        <h2>课程目录</h2>
+        <p>点击卡片开始学习 · 人教版七年级生物上册</p>
+      </div>
+    </div>
+
+    <div class="lessons-grid">
+
+      <!-- 1.1 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">1</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">1.1 藻类、苔藓植物和蕨类植物</div>
+            <div class="lesson-subtitle">第1课 · 低等植物的世界</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">认识藻类、苔藓和蕨类植物的形态结构与繁殖方式，理解它们与人类生活的关系。</p>
+        </div>
+        <div class="card-footer">
+          <a href="1.1_zdlryzwdl/1.1_zdlryzwdl.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 1.2 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">2</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">1.2 种子植物</div>
+            <div class="lesson-subtitle">第2课 · 最高等的植物</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">学习种子植物的器官结构，理解被子植物和裸子植物的区别及繁殖方式。</p>
+        </div>
+        <div class="card-footer">
+          <a href="1.2_zzzw/1.2_zzzw.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 2.1 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">3</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">2.1 无脊椎动物</div>
+            <div class="lesson-subtitle">第3课 · 动物界的无壳家族</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">认识腔肠动物、扁形动物、线形动物、环节动物、软体动物和节肢动物的主要特征。</p>
+        </div>
+        <div class="card-footer">
+          <a href="2.1_wjjzdw/2.1_wjjzdw.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 2.2 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">4</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">2.2 脊椎动物</div>
+            <div class="lesson-subtitle">第4课 · 有骨骼的动物</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">学习鱼类、两栖类、爬行类、鸟类和哺乳类动物的主要特征与代表生物。</p>
+        </div>
+        <div class="card-footer">
+          <a href="2.2_jjzwdw/2.2_jjzwdw.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 3.1 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">5</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">3.1 微生物的分布</div>
+            <div class="lesson-subtitle">第5课 · 看不见的世界</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">了解微生物的种类、分布特点及与人类生活的关系。</p>
+        </div>
+        <div class="card-footer">
+          <a href="3.1_wswdfb/3.1_wswdfb.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 3.2 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">6</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">3.2 细菌</div>
+            <div class="lesson-subtitle">第6课 · 单细胞原核生物</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">认识细菌的结构、营养方式、繁殖特点及其与疾病的关系。</p>
+        </div>
+        <div class="card-footer">
+          <a href="3.2_xxj/3.2_xxj.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 3.3 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">7</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">3.3 真菌</div>
+            <div class="lesson-subtitle">第7课 · 真核微生物</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">学习酵母菌、霉菌和大型真菌的结构、繁殖方式及与人类的关系。</p>
+        </div>
+        <div class="card-footer">
+          <a href="3.3_zj/3.3_zj.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 3.4 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">8</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">3.4 病毒</div>
+            <div class="lesson-subtitle">第8课 · 非细胞生物</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">了解病毒的结构、侵染过程、繁殖方式及其在疾病和生物防治中的应用。</p>
+        </div>
+        <div class="card-footer">
+          <a href="3.4_bd/3.4_bd.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 4.1 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">9</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">4.1 尝试对生物进行分类</div>
+            <div class="lesson-subtitle">第9课 · 生物分类的方法</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">学习生物分类的依据和基本方法，能根据特征对常见生物进行分类。</p>
+        </div>
+        <div class="card-footer">
+          <a href="4.1_csdwzwfl/4.1_csdwzwfl.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 4.2 -->
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">10</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">4.2 从种到界</div>
+            <div class="lesson-subtitle">第10课 · 生物分类的阶梯</div>
+          </div>
+          <span class="status-badge status-制作中"><i class="fas fa-pen"></i> 更新中</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">掌握生物分类的七个等级（界、门、纲、目、科、属、种），理解种的概念。</p>
+        </div>
+        <div class="card-footer">
+          <a href="4.2_czdj/4.2_czdj.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第二单元：多种多样的生物 · TeachAny v7.14.0</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var fill = document.getElementById('progress-fill');
+      if (fill) {
+        setTimeout(function() { fill.style.width = '0%'; }, 300);
+      }
+    });
+  </script>
+
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

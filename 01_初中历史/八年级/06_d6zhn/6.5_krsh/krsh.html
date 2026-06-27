@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6.5 抗日战争的胜利 | 八年级上册</title>
+<style>
+:root{--primary:#8b4513;--primary-light:#a0522d;--primary-dark:#6b3410;--accent:#d2691e;--bg:#fdf8f0;--bg-card:#fff9f0;--text:#3e2723;--text-light:#5d4037;--border:#d7ccc8;--green:#10b981;--green-bg:#d1fae5;--red:#ef4444;--red-bg:#fee2e2;--warn-bg:#fef3c7;--warn-border:#f59e0b;--shadow:0 2px 8px rgba(139,69,19,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* 品牌栏 */
+.brand{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;font-size:14px}
+.brand-left{display:flex;align-items:center;gap:8px}
+.brand-logo{font-size:20px}
+.brand-title{font-weight:700;letter-spacing:1px}
+.brand-right{opacity:.85;font-size:13px}
+
+/* 进度条 */
+.progress-wrap{background:#e8ddd0;height:6px;position:sticky;top:0;z-index:100}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));width:0;transition:width .3s}
+
+/* 导航sticky */
+.nav-sticky{position:sticky;top:6px;z-index:99;background:rgba(253,248,240,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:8px 24px;display:flex;align-items:center;gap:16px;font-size:14px}
+.nav-sticky a{padding:4px 12px;border-radius:4px;transition:background .2s}
+.nav-sticky a:hover{background:rgba(139,69,19,.1);text-decoration:none}
+.nav-current{font-weight:700;color:var(--primary)}
+.nav-progress{margin-left:auto;font-size:13px;color:var(--text-light);background:rgba(139,69,19,.08);padding:2px 10px;border-radius:10px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 40%,var(--accent) 100%);color:#fff;padding:60px 24px 48px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 60%);animation:heroGlow 8s ease-in-out infinite}
+@keyframes heroGlow{0%,100%{transform:translate(0,0)}50%{transform:translate(3%,3%)}}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.15);padding:4px 16px;border-radius:20px;font-size:13px;margin-bottom:16px;letter-spacing:1px}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:800;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hero h2{font-size:clamp(16px,2.5vw,22px);font-weight:400;opacity:.9;margin-bottom:20px}
+.hero-meta{display:flex;justify-content:center;gap:24px;font-size:14px;opacity:.8;flex-wrap:wrap}
+
+/* SVG知识结构图 */
+.structure{padding:40px 24px;max-width:900px;margin:0 auto}
+.structure h2{text-align:center;color:var(--primary);margin-bottom:24px;font-size:22px}
+.structure svg{width:100%;height:auto}
+
+/* 探究问题锚点 */
+.explore{padding:32px 24px;max-width:900px;margin:0 auto}
+.explore h2{color:var(--primary);margin-bottom:16px;font-size:20px}
+.explore-list{display:flex;flex-direction:column;gap:12px}
+.explore-item{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--primary);padding:14px 18px;border-radius:8px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px}
+.explore-item:hover{box-shadow:var(--shadow);transform:translateX(4px)}
+.explore-num{background:var(--primary);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.explore-custom{border-left-color:var(--accent);background:var(--warn-bg);margin-top:8px}
+.explore-custom input{border:none;background:transparent;flex:1;font-size:15px;color:var(--text);outline:none;font-family:inherit}
+
+/* 学习目标 */
+.objectives{padding:32px 24px;max-width:900px;margin:0 auto}
+.objectives h2{color:var(--primary);margin-bottom:16px;font-size:20px}
+.obj-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.obj-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:all .25s;position:relative;overflow:hidden}
+.obj-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.obj-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent))}
+.obj-icon{font-size:28px;margin-bottom:8px}
+.obj-card h3{font-size:16px;color:var(--primary);margin-bottom:6px}
+.obj-card p{font-size:14px;color:var(--text-light)}
+
+/* 测验通用 */
+.quiz{padding:32px 24px;max-width:900px;margin:0 auto}
+.quiz h2{color:var(--primary);margin-bottom:16px;font-size:20px}
+.quiz-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.quiz-level{display:inline-block;font-size:12px;padding:2px 10px;border-radius:10px;margin-bottom:10px;font-weight:600}
+.level-basic{background:#dbeafe;color:#1d4ed8}
+.level-improve{background:#fef3c7;color:#92400e}
+.level-challenge{background:#fce7f3;color:#9d174d}
+.level-zhongkao{background:#ede9fe;color:#6d28d9}
+.quiz-q{font-size:15px;font-weight:600;margin-bottom:12px}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{padding:10px 14px;border:2px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:14px}
+.quiz-opt:hover{border-color:var(--primary-light);background:rgba(139,69,19,.04)}
+.quiz-opt.selected{border-color:var(--primary);background:rgba(139,69,19,.08)}
+.quiz-opt.correct{border-color:var(--green);background:var(--green-bg)}
+.quiz-opt.wrong{border-color:var(--red);background:var(--red-bg)}
+.quiz-feedback{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:14px;display:none}
+.quiz-feedback.show{display:block}
+.feedback-correct{background:var(--green-bg);color:#065f46}
+.feedback-wrong{background:var(--red-bg);color:#991b1b}
+
+/* 核心知识 */
+.core{padding:32px 24px;max-width:900px;margin:0 auto}
+.core h2{color:var(--primary);margin-bottom:20px;font-size:20px}
+
+/* Timeline */
+.timeline{position:relative;padding-left:32px;margin-bottom:32px}
+.timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--primary),var(--accent),#d4a76a);border-radius:2px}
+.tl-item{position:relative;margin-bottom:24px;padding:14px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px}
+.tl-item::before{content:"";position:absolute;left:-26px;top:18px;width:14px;height:14px;border-radius:50%;background:var(--primary);border:3px solid var(--bg)}
+.tl-date{font-size:13px;color:var(--primary);font-weight:700;margin-bottom:4px}
+.tl-content{font-size:14px}
+
+/* Concept-box */
+.concept-box{background:linear-gradient(135deg,#fdf2e9,#f5e6d3);border:1px solid #e0c9b0;border-radius:12px;padding:20px;margin-bottom:20px}
+.concept-box h3{color:var(--primary);font-size:17px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.concept-box p,.concept-box ul{font-size:14px;color:var(--text-light)}
+.concept-box ul{padding-left:20px}
+.concept-box li{margin-bottom:4px}
+
+/* Knowledge-grid */
+.k-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:24px}
+.k-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;transition:all .2s}
+.k-card:hover{box-shadow:var(--shadow)}
+.k-card h4{color:var(--primary);font-size:15px;margin-bottom:6px}
+.k-card p{font-size:13px;color:var(--text-light)}
+
+/* Warn-box */
+.warn-box{background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:10px;padding:16px 18px;margin-bottom:24px}
+.warn-box h3{color:#92400e;font-size:15px;margin-bottom:6px}
+.warn-box p,.warn-box ul{font-size:14px;color:#78350f}
+.warn-box ul{padding-left:20px}
+.warn-box li{margin-bottom:3px}
+
+/* 必考分析 exam-card */
+.exam{padding:32px 24px;max-width:900px;margin:0 auto}
+.exam h2{color:var(--primary);margin-bottom:16px;font-size:20px}
+.exam-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.exam-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden;transition:all .25s}
+.exam-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.exam-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent))}
+.exam-tag{display:inline-block;background:var(--primary);color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;margin-bottom:10px}
+.exam-card h3{font-size:15px;color:var(--primary);margin-bottom:8px}
+.exam-card p{font-size:13px;color:var(--text-light);line-height:1.6}
+
+/* 页脚 */
+.footer{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:rgba(255,255,255,.8);padding:24px;text-align:center;font-size:13px;margin-top:40px}
+.footer a{color:rgba(255,255,255,.9)}
+
+/* 响应式 */
+@media(max-width:600px){
+  .hero{padding:40px 16px 32px}
+  .hero h1{font-size:26px}
+  .structure,.explore,.objectives,.quiz,.core,.exam{padding:24px 16px}
+  .obj-cards{grid-template-columns:1fr}
+  .k-grid{grid-template-columns:1fr}
+  .exam-cards{grid-template-columns:1fr}
+  .nav-sticky{font-size:12px;gap:8px;padding:6px 12px}
+}
+</style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+<body>
+
+<!-- 0. 品牌栏 -->
+<div class="brand">
+  <div class="brand-left"><span class="brand-logo">📖</span><span class="brand-title">初中历史 · 八年级上册</span></div>
+  <div class="brand-right">第六单元 中华民族的抗日战争</div>
+</div>
+
+<!-- 0b. 滚动进度条 -->
+<div style="position:fixed;top:0;left:0;width:0%;height:4px;background:linear-gradient(90deg,#8b4513,#d2691e);z-index:9999;transition:width .3s" id="ta-scroll-progress"></div>
+
+<!-- 进度条 -->
+<div class="progress-wrap"><div class="progress-bar" id="scrollProgress"></div></div>
+
+<!-- 导航sticky -->
+<div class="nav-sticky">
+  <a href="../d6zhn.html">🏠 单元</a>
+  <a href="../6.4_dqzz/dqzz.html">⬅ 上课</a>
+  <span class="nav-current">6.5 抗日战争的胜利</span>
+  <a href="../../../07_d7jf/d7jf.html">下课 ➡</a>
+  <span class="nav-progress">5/5 · 100%</span>
+</div>
+
+<!-- 0c. Hero区 -->
+<section class="hero" style="background:linear-gradient(135deg,#6b3410 0%,#8b4513 40%,#d2691e 100%);color:#fff;padding:60px 24px 48px;text-align:center;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 60%);pointer-events:none"></div>
+  <div style="position:relative;z-index:1">
+    <div style="display:inline-block;background:rgba(255,255,255,.15);padding:4px 16px;border-radius:20px;font-size:13px;margin-bottom:16px;letter-spacing:1px">🏛 第六单元 · 第5课</div>
+    <h1 style="font-size:clamp(28px,5vw,48px);font-weight:800;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.3)">抗日战争的胜利</h1>
+    <h2 style="font-size:clamp(16px,2.5vw,22px);font-weight:400;opacity:.9;margin-bottom:20px">1945 · 伟大胜利 历史转折</h2>
+    <div style="display:flex;justify-content:center;gap:24px;font-size:14px;opacity:.8;flex-wrap:wrap">
+      <span>📅 1945年</span>
+      <span>📍 延安 · 南京</span>
+      <span>🎯 近代第一次完全胜利</span>
+    </div>
+  </div>
+</section>
+
+<!-- SVG知识结构图 -->
+<section class="structure">
+  <h2>🗺 知识结构图</h2>
+  <svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei,sans-serif">
+    <!-- 中心 -->
+    <rect x="300" y="10" width="260" height="50" rx="25" fill="#8b4513"/>
+    <text x="430" y="42" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">抗日战争的胜利</text>
+    <!-- 分支线 -->
+    <line x1="370" y1="60" x2="130" y2="120" stroke="#8b4513" stroke-width="2"/>
+    <line x1="430" y1="60" x2="430" y2="120" stroke="#8b4513" stroke-width="2"/>
+    <line x1="490" y1="60" x2="680" y2="120" stroke="#8b4513" stroke-width="2"/>
+    <line x1="460" y1="60" x2="430" y2="280" stroke="#a0522d" stroke-width="2" stroke-dasharray="6,3"/>
+    <!-- 中共七大 -->
+    <rect x="20" y="120" width="220" height="44" rx="10" fill="#a0522d"/>
+    <text x="130" y="148" text-anchor="middle" fill="#fff" font-size="15" font-weight="600">一、中共七大</text>
+    <rect x="10" y="174" width="240" height="80" rx="8" fill="#fdf2e9" stroke="#e0c9b0"/>
+    <text x="130" y="196" text-anchor="middle" font-size="12" fill="#5d4037">1945.4 延安</text>
+    <text x="130" y="214" text-anchor="middle" font-size="12" fill="#5d4037">政治路线 · 毛泽东思想</text>
+    <text x="130" y="232" text-anchor="middle" font-size="12" fill="#5d4037">为胜利准备条件</text>
+    <!-- 日本投降 -->
+    <rect x="320" y="120" width="220" height="44" rx="10" fill="#a0522d"/>
+    <text x="430" y="148" text-anchor="middle" fill="#fff" font-size="15" font-weight="600">二、日本投降</text>
+    <rect x="310" y="174" width="240" height="80" rx="8" fill="#fdf2e9" stroke="#e0c9b0"/>
+    <text x="430" y="196" text-anchor="middle" font-size="12" fill="#5d4037">8.6/8.9 原子弹</text>
+    <text x="430" y="214" text-anchor="middle" font-size="12" fill="#5d4037">8.8 苏联出兵 · 全面反攻</text>
+    <text x="430" y="232" text-anchor="middle" font-size="12" fill="#5d4037">8.15 投降 · 9.2 签书</text>
+    <!-- 胜利原因 -->
+    <rect x="580" y="120" width="260" height="44" rx="10" fill="#a0522d"/>
+    <text x="710" y="148" text-anchor="middle" fill="#fff" font-size="15" font-weight="600">三、胜利原因</text>
+    <rect x="570" y="174" width="280" height="80" rx="8" fill="#fdf2e9" stroke="#e0c9b0"/>
+    <text x="710" y="196" text-anchor="middle" font-size="12" fill="#5d4037">根本：全民族抗战</text>
+    <text x="710" y="214" text-anchor="middle" font-size="12" fill="#5d4037">中流砥柱：中国共产党</text>
+    <text x="710" y="232" text-anchor="middle" font-size="12" fill="#5d4037">外部：世界反法西斯力量</text>
+    <!-- 历史意义 -->
+    <rect x="290" y="280" width="280" height="44" rx="10" fill="#8b4513"/>
+    <text x="430" y="308" text-anchor="middle" fill="#fff" font-size="15" font-weight="600">四、历史意义</text>
+    <rect x="260" y="334" width="340" height="80" rx="8" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="430" y="356" text-anchor="middle" font-size="12" fill="#78350f">★ 近代第一次完全胜利</text>
+    <text x="430" y="374" text-anchor="middle" font-size="12" fill="#78350f">★ 民族觉醒 · 凝聚力增强</text>
+    <text x="430" y="392" text-anchor="middle" font-size="12" fill="#78350f">★ 东方主战场 · 国际地位提高</text>
+  </svg>
+</section>
+
+<!-- 探究问题锚点 -->
+<section class="explore">
+  <h2>🔍 探究问题</h2>
+  <div class="explore-list">
+    <div class="explore-item" onclick="scrollToSection('core-7da')">
+      <span class="explore-num">1</span>
+      <span>中共七大为什么说"为抗战胜利准备了条件"？</span>
+    </div>
+    <div class="explore-item" onclick="scrollToSection('core-cause')">
+      <span class="explore-num">2</span>
+      <span>为什么说全民族抗战是胜利的根本原因？</span>
+    </div>
+    <div class="explore-item" onclick="scrollToSection('core-significance')">
+      <span class="explore-num">3</span>
+      <span>抗战胜利的"完全胜利"如何理解？与以往有何不同？</span>
+    </div>
+    <div class="explore-item explore-custom">
+      <span class="explore-num">✏</span>
+      <input type="text" placeholder="输入你自己的探究问题..." id="customQuestion" onkeydown="if(event.key==='Enter')scrollToSection('core-top')">
+    </div>
+  </div>
+</section>
+
+<!-- 学习目标 -->
+<section class="objectives">
+  <h2>🎯 学习目标</h2>
+  <div class="obj-cards">
+    <div class="obj-card">
+      <div class="obj-icon">📋</div>
+      <h3>了解史实</h3>
+      <p>掌握中共七大的时间、内容和意义；了解日本投降的过程与关键节点</p>
+    </div>
+    <div class="obj-card">
+      <div class="obj-icon">🔎</div>
+      <h3>分析原因</h3>
+      <p>理解抗战胜利的多重原因，认识全民族抗战和中共中流砥柱作用</p>
+    </div>
+    <div class="obj-card">
+      <div class="obj-icon">💡</div>
+      <h3>认识意义</h3>
+      <p>理解抗战胜利是近代以来第一次完全胜利的民族解放战争及其深远影响</p>
+    </div>
+  </div>
+</section>
+
+<!-- 前测 -->
+<section class="quiz" id="pre-quiz">
+  <h2>📝 前测 · 学前检测</h2>
+
+  <div class="quiz-item" data-quiz="pre1">
+    <span class="quiz-level level-basic">基础</span>
+    <div class="quiz-q">1. 中共七大召开的时间和地点是？</div>
+    <div class="quiz-opts">
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre1')">A. 1944年 · 重庆</div>
+      <div class="quiz-opt" data-answer="1" onclick="selectOpt(this,'pre1')">B. 1945年4月 · 延安</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre1')">C. 1945年8月 · 南京</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre1')">D. 1943年 · 西安</div>
+    </div>
+    <div class="quiz-feedback" id="fb-pre1"></div>
+  </div>
+
+  <div class="quiz-item" data-quiz="pre2">
+    <span class="quiz-level level-improve">提高</span>
+    <div class="quiz-q">2. 日本宣布无条件投降的时间是？</div>
+    <div class="quiz-opts">
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre2')">A. 1945年8月6日</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre2')">B. 1945年8月8日</div>
+      <div class="quiz-opt" data-answer="1" onclick="selectOpt(this,'pre2')">C. 1945年8月15日</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre2')">D. 1945年9月2日</div>
+    </div>
+    <div class="quiz-feedback" id="fb-pre2"></div>
+  </div>
+
+  <div class="quiz-item" data-quiz="pre3">
+    <span class="quiz-level level-challenge">挑战</span>
+    <div class="quiz-q">3. 抗日战争取得胜利的根本原因是？</div>
+    <div class="quiz-opts">
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre3')">A. 美国投下原子弹</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre3')">B. 苏联出兵东北</div>
+      <div class="quiz-opt" data-answer="1" onclick="selectOpt(this,'pre3')">C. 全民族抗战</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'pre3')">D. 国民党正面战场</div>
+    </div>
+    <div class="quiz-feedback" id="fb-pre3"></div>
+  </div>
+</section>
+
+<!-- 核心知识 -->
+<section class="core" id="core-top">
+
+  <h2>📚 核心知识</h2>
+
+  <!-- Timeline -->
+  <div class="timeline">
+    <div class="tl-item" id="core-7da">
+      <div class="tl-date">1945年4月</div>
+      <div class="tl-content"><strong>中共七大</strong>在延安召开。制定政治路线，确立毛泽东思想为党的指导思想，为争取抗战胜利和建设新中国做了准备。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1945年8月6日 / 9日</div>
+      <div class="tl-content">美国向日本<strong>广岛、长崎</strong>投下原子弹，加速日本失败。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1945年8月8日</div>
+      <div class="tl-content"><strong>苏联对日宣战</strong>，出兵中国东北，击溃日本关东军。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1945年8月9日</div>
+      <div class="tl-content">毛泽东发表《对日寇的最后一战》，中国军队展开<strong>全面反攻</strong>。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1945年8月15日</div>
+      <div class="tl-content">日本天皇宣布<strong>无条件投降</strong>！中国人民欢庆胜利！🎉</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">1945年9月2日</div>
+      <div class="tl-content">日本正式签署<strong>投降书</strong>，抗日战争暨世界反法西斯战争结束。</div>
+    </div>
+  </div>
+
+  <!-- Concept-box: 中共七大 -->
+  <div class="concept-box">
+    <h3>🏛 中共七大（1945.4 · 延安）</h3>
+    <p><strong>政治路线：</strong>放手发动群众，壮大人民力量，在中国共产党的领导下，打败日本侵略者，解放全国人民，建立一个新民主主义的中国。</p>
+    <ul>
+      <li>确立<strong>毛泽东思想</strong>为党的指导思想并写入党章</li>
+      <li>为争取抗战<strong>最后胜利</strong>准备了条件</li>
+      <li>为战后中国前途<strong>指明了方向</strong></li>
+    </ul>
+  </div>
+
+  <!-- Concept-box: 日本投降 -->
+  <div class="concept-box">
+    <h3>🏳 日本投降</h3>
+    <ul>
+      <li><strong>加速因素：</strong>美国原子弹（8.6 广岛 / 8.9 长崎）+ 苏联出兵东北（8.8）</li>
+      <li><strong>8月15日</strong>——日本宣布无条件投降</li>
+      <li><strong>9月2日</strong>——日本正式签署投降书（东京湾密苏里号军舰）</li>
+    </ul>
+  </div>
+
+  <!-- Knowledge-grid: 胜利原因 -->
+  <h3 id="core-cause" style="color:var(--primary);margin-bottom:12px">🔑 抗战胜利原因</h3>
+  <div class="k-grid">
+    <div class="k-card">
+      <h4>🛡 全民族抗战</h4>
+      <p><strong>根本原因</strong>。抗日民族统一战线建立，国共合作，全民参与。</p>
+    </div>
+    <div class="k-card">
+      <h4>⚓ 中共中流砥柱</h4>
+      <p>坚持抗战、坚持团结、坚持进步，敌后战场成为主战场。</p>
+    </div>
+    <div class="k-card">
+      <h4>🌍 反法西斯力量</h4>
+      <p>美、苏等国配合支持，形成国际合力打击日本法西斯。</p>
+    </div>
+    <div class="k-card">
+      <h4>🤝 华侨与国际支持</h4>
+      <p>海外华侨捐资支援，世界各国人民反法西斯团结。</p>
+    </div>
+  </div>
+
+  <!-- Warn-box -->
+  <div class="warn-box" id="core-significance">
+    <h3>⚠ 易错提醒</h3>
+    <ul>
+      <li><strong>"第一次完全胜利"</strong>≠"第一次胜利"——之前有过局部胜利（如台儿庄），但从未取得完全胜利</li>
+      <li><strong>根本原因</strong>是全民族抗战，不是原子弹或苏联出兵（这些是加速因素）</li>
+      <li><strong>8月15日</strong>是宣布投降，<strong>9月2日</strong>是签署投降书，二者不同</li>
+      <li>抗战胜利是<strong>民族解放战争</strong>的胜利，不是某一党派的胜利</li>
+    </ul>
+  </div>
+
+  <!-- Concept-box: 历史意义 -->
+  <div class="concept-box">
+    <h3>🎖 抗战胜利的历史意义</h3>
+    <ul>
+      <li>近代以来反抗外敌入侵<strong>第一次取得完全胜利</strong>的民族解放战争</li>
+      <li>促进了<strong>中华民族的觉醒</strong>，增强了民族凝聚力</li>
+      <li>为<strong>世界反法西斯战争</strong>作出巨大贡献——东方主战场</li>
+      <li>中国的<strong>国际地位</strong>大大提高</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 后测 -->
+<section class="quiz" id="post-quiz">
+  <h2>✅ 后测 · 学后检测</h2>
+
+  <div class="quiz-item" data-quiz="post1">
+    <span class="quiz-level level-basic">基础</span>
+    <div class="quiz-q">1. 中共七大为抗战胜利准备了条件，其最重要的成果是？</div>
+    <div class="quiz-opts">
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post1')">A. 确定了抗战方针</div>
+      <div class="quiz-opt" data-answer="1" onclick="selectOpt(this,'post1')">B. 确立毛泽东思想为指导思想</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post1')">C. 决定成立联合政府</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post1')">D. 通过了宪法草案</div>
+    </div>
+    <div class="quiz-feedback" id="fb-post1"></div>
+  </div>
+
+  <div class="quiz-item" data-quiz="post2">
+    <span class="quiz-level level-improve">提高</span>
+    <div class="quiz-q">2. 抗日战争取得胜利的根本原因是？</div>
+    <div class="quiz-opts">
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post2')">A. 美国投下原子弹</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post2')">B. 苏联红军出兵东北</div>
+      <div class="quiz-opt" data-answer="1" onclick="selectOpt(this,'post2')">C. 建立了抗日民族统一战线，实现了全民族抗战</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post2')">D. 国民党正面战场作战</div>
+    </div>
+    <div class="quiz-feedback" id="fb-post2"></div>
+  </div>
+
+  <div class="quiz-item" data-quiz="post3">
+    <span class="quiz-level level-zhongkao">中考真题</span>
+    <div class="quiz-q">3.（中考真题）抗日战争是中国近代以来反抗外敌入侵第一次取得完全胜利的民族解放战争。抗战胜利的最主要原因是？</div>
+    <div class="quiz-opts">
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post3')">A. 国际反法西斯力量的支持</div>
+      <div class="quiz-opt" data-answer="1" onclick="selectOpt(this,'post3')">B. 全民族抗战</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post3')">C. 中国共产党的领导</div>
+      <div class="quiz-opt" data-answer="0" onclick="selectOpt(this,'post3')">D. 正面战场的英勇抵抗</div>
+    </div>
+    <div class="quiz-feedback" id="fb-post3"></div>
+  </div>
+</section>
+
+<!-- 必考分析 -->
+<section class="exam">
+  <h2>🔥 必考分析</h2>
+  <div class="exam-cards">
+    <div class="exam-card">
+      <span class="exam-tag">必考①</span>
+      <h3>中共七大的意义</h3>
+      <p>① 制定政治路线：打败日本侵略者，建设新中国<br>② 确立毛泽东思想为指导思想<br>③ 为胜利准备条件，为战后指明方向<br>📌 关键词：<strong>政治路线 · 毛泽东思想 · 方向</strong></p>
+    </div>
+    <div class="exam-card">
+      <span class="exam-tag">必考②</span>
+      <h3>抗战胜利的原因分析</h3>
+      <p>① <strong>根本原因</strong>：全民族抗战（统一战线）<br>② <strong>中流砥柱</strong>：中国共产党<br>③ <strong>外部因素</strong>：世界反法西斯力量<br>⚠ 注意区分"根本原因"与"加速因素"</p>
+    </div>
+    <div class="exam-card">
+      <span class="exam-tag">必考③</span>
+      <h3>"第一次完全胜利"的理解</h3>
+      <p>近代以来历次反侵略战争（鸦片战争、甲午战争等）均以失败告终，<br>抗战是<strong>第一次</strong>取得<strong>完全胜利</strong>，<br>具有划时代意义，不可将"完全"二字遗漏。</p>
+    </div>
+    <div class="exam-card">
+      <span class="exam-tag">必考④</span>
+      <h3>抗战胜利的历史意义</h3>
+      <p>① 近代第一次完全胜利的民族解放战争<br>② 促进民族觉醒，增强凝聚力<br>③ 世界反法西斯东方主战场<br>④ 中国国际地位大大提高<br>📌 答题要<strong>四点齐全</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<!-- 99. AI学伴 -->
+<section style="padding:32px 24px;max-width:900px;margin:0 auto">
+  <h2 style="color:#8b4513;margin-bottom:16px;font-size:20px">🤖 AI学伴 · 智能辅导</h2>
+  <div style="background:linear-gradient(135deg,#fdf2e9,#fff5eb);border:2px solid #8b4513;border-radius:16px;padding:24px;text-align:center">
+    <div style="font-size:48px;margin-bottom:12px">🎓</div>
+    <h3 style="color:#8b4513;font-size:18px;margin-bottom:8px">有什么不懂的问题？问AI学伴！</h3>
+    <p style="color:#5d4037;font-size:14px;margin-bottom:16px">AI学伴可以帮你解答关于「抗日战争的胜利」的疑惑，梳理知识点，分析历史脉络。</p>
+    <div style="background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;text-align:left">
+      <p style="font-size:13px;color:#8b4513;margin-bottom:6px"><strong>💬 示例问题：</strong></p>
+      <p style="font-size:13px;color:#5d4037;margin-bottom:4px">• 中共七大为什么说"为抗战胜利准备了条件"？</p>
+      <p style="font-size:13px;color:#5d4037;margin-bottom:4px">• 抗战胜利的"完全胜利"如何理解？</p>
+      <p style="font-size:13px;color:#5d4037">• 全民族抗战为什么是胜利的根本原因？</p>
+    </div>
+    <button onclick="alert('AI学伴功能即将上线，敬请期待！')" style="background:#8b4513;color:#fff;border:none;padding:12px 28px;border-radius:24px;font-size:15px;font-weight:600;cursor:pointer">🤖 提问AI学伴</button>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>📖 初中历史 · 八年级上册 · 第六单元 · 第5课 抗日战争的胜利</p>
+  <p style="margin-top:6px"><a href="../d6zhn.html">返回单元页</a> · <a href="../6.4_dqzz/dqzz.html">上一节</a> · <a href="../../../07_d7jf/d7jf.html">下一节</a></p>
+</footer>
+
+<script>
+// 答案与反馈
+const quizData={
+  pre1:{correct:1,fb_correct:"✅ 答对了！中共七大1945年4月在延安召开，这是抗战即将胜利前夕的重要会议。",fb_wrong:"❌ 中共七大是1945年4月在延安召开的，注意区别于重庆谈判（1945年8月重庆）和日本投降签字（9月2日东京湾）。"},
+  pre2:{correct:2,fb_correct:"✅ 答对了！8月15日日本宣布无条件投降，9月2日才是正式签署投降书。",fb_wrong:"❌ 8月15日是日本宣布无条件投降的日子。8月6日是广岛原子弹，8月8日是苏联宣战，9月2日是签署投降书——注意区分这些关键日期。"},
+  pre3:{correct:2,fb_correct:"✅ 答对了！全民族抗战是根本原因，原子弹和苏联出兵只是加速因素。",fb_wrong:"❌ 根本原因是全民族抗战（抗日民族统一战线）。美国原子弹和苏联出兵是加速日本投降的外部因素，不是根本原因。国民党正面战场是全民族抗战的一部分，但不是根本原因的全部。"},
+  post1:{correct:1,fb_correct:"✅ 答对了！确立毛泽东思想为党的指导思想并写入党章，是中共七大最重要的成果。",fb_wrong:"❌ 中共七大最重要的成果是确立毛泽东思想为党的指导思想。抗战方针早在七七事变后就已确定；成立联合政府是政治协商会议的内容；宪法草案不属于七大。"},
+  post2:{correct:2,fb_correct:"✅ 答对了！建立抗日民族统一战线、实现全民族抗战是根本原因。",fb_wrong:"❌ 根本原因是建立了抗日民族统一战线，实现了全民族抗战。美国原子弹和苏联出兵是外部加速因素；国民党正面战场只是抗战的一个方面。"},
+  post3:{correct:1,fb_correct:"✅ 答对了！中考标准答案：全民族抗战是最主要原因。",fb_wrong:"❌ 这道中考题选B——全民族抗战。注意：C选项"中国共产党的领导"是中流砥柱作用，但"最主要原因"强调的是全民族共同抗战的合力，包括国共合作、军民一心，范围更广。"}
+};
+
+function selectOpt(el,quizId){
+  const item=el.closest('.quiz-item');
+  const opts=item.querySelectorAll('.quiz-opt');
+  const data=quizData[quizId];
+  const idx=Array.from(opts).indexOf(el);
+  opts.forEach(o=>{o.classList.remove('selected','correct','wrong');o.style.pointerEvents='none'});
+  const fb=document.getElementById('fb-'+quizId);
+  if(idx===data.correct){
+    el.classList.add('correct');
+    fb.className='quiz-feedback show feedback-correct';
+    fb.textContent=data.fb_correct;
+  }else{
+    el.classList.add('wrong');
+    opts[data.correct].classList.add('correct');
+    fb.className='quiz-feedback show feedback-wrong';
+    fb.textContent=data.fb_wrong;
+  }
+}
+
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'center'})}
+}
+
+// 滚动进度条
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  const pct=h>0?(window.scrollY/h)*100:0;
+  document.getElementById('scrollProgress').style.width=Math.min(pct,100)+'%';
+});
+</script>
+</body>
+</html>

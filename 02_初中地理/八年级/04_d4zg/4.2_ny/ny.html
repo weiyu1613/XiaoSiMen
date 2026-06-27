@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="course-id" content="geo-china-agriculture-8">
+  <meta name="course-title" content="4.2 农业">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-china-agriculture">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v8.1.0">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>4.2 农业 | 初中8年级地理</title>
+  <style>
+    .agriculture-types-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .agri-type-card {
+      background: linear-gradient(135deg, #dbeafe, #eff6ff);
+      border: 2px solid #93c5fd;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .agri-type-card:hover {
+      border-color: #0369a1;
+      box-shadow: 0 4px 12px rgba(3,105,161,0.2);
+      transform: translateY(-2px);
+    }
+    .agri-type-icon { font-size: 32px; margin-bottom: 8px; }
+    .agri-type-name { font-weight: 700; color: #0369a1; font-size: 14px; margin-bottom: 4px; }
+    .agri-type-desc { font-size: 12px; color: #64748b; }
+
+    .distribution-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    .distribution-table th {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: white;
+      padding: 12px 8px;
+      text-align: center;
+    }
+    .distribution-table td {
+      padding: 10px 8px;
+      border: 1px solid #bae6fd;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .distribution-table tr:nth-child(even) { background: #f0f9ff; }
+
+/* ====== 手机端适配 ====== */
+@media (max-width: 768px) {
+    .region-east { background: #d1fae5 !important; color: #065f46; }
+    .region-west { background: #fef9c3 !important; color: #713f12; }
+    .region-north { background: #dbeafe !important; color: #1e40af; }
+    .region-south { background: #fce7f3 !important; color: #9d174d; }
+}
+
+    .factor-card {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .factor-card.natural { border-left: 4px solid #10b981; }
+    .factor-card.social { border-left: 4px solid #f59e0b; }
+
+    .svg-container {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #0369a1; text-align: center; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #93c5fd;
+      background: #eff6ff; color: #1e40af; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.28); color: #1e40af; }
+
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    .nav-bar { background: #f0f9ff; border-bottom: 2px solid #0369a1; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #0369a1; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #dbeafe; }
+    .nav-center { font-weight: 700; color: #0369a1; font-size: 14px; text-align: center; flex: 1; }
+
+    .hero { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    .progress-bar { height: 4px; background: #e0f2fe; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #0369a1, #0284c7); width: 67%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #0369a1; padding: 4px 20px; background: #f0f9ff; }
+
+    .brand-bar { background: #0369a1; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    .section-title { font-size: 1.5rem; color: #0369a1; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #bae6fd; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(3,105,161,0.1); }
+
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #dbeafe, #eff6ff); border: 2px solid #93c5fd; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1e40af; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #bfdbfe, #dbeafe); border-color: #60a5fa; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; border-color: #0369a1; }
+
+    .quiz-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e0f2fe; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #93c5fd; background: #f0f9ff; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #0369a1; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    .concept-box { background: #eff6ff; border-left: 4px solid #0369a1; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    .match-quiz { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .match-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .match-item { flex: 1; min-width: 120px; padding: 10px 14px; border-radius: 10px; text-align: center; font-size: 13px; font-weight: 600; cursor: pointer; border: 2px solid #e0f2fe; background: white; transition: all 0.2s; }
+    .match-item:hover { border-color: #93c5fd; }
+    .match-item.selected { border-color: #0369a1; background: #dbeafe; color: #0369a1; }
+    .match-item.matched { border-color: #10b981; background: #d1fae5; color: #065f46; }
+    .match-arrow { color: #0369a1; font-size: 18px; }
+
+    .footer { background: #0369a1; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+      .card { border-radius: 12px !important; padding: 14px !important; }
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn { width: 100% !important; padding: 10px 12px !important; font-size: 0.82rem !important; border-radius: 8px !important; }
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+      .distribution-table { display: block !important; overflow-x: auto !important; font-size: 12px !important; }
+      .agriculture-types-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .concept-box, .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .exam-card { padding: 14px !important; }
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v8.1</div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 2/3 节 · 67%</div>
+
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d4zg.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第四单元：中国的经济发展</div>
+    <a href="../4.1_jt/jt.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../4.3_gy/gy.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+
+  <header class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-wheat-awn"></i> 八年级地理 · 第四章</div>
+    <h1>4.2 农业 <span>Agriculture</span></h1>
+    <p class="hero-subtitle">
+      📖 课标要求：运用资料说出我国农业分布特点，举例说明因地制宜发展农业的必要性<br>
+      🎯 预计用时：45分钟
+    </p>
+  </header>
+
+  <section class="section" id="hero-infographic">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f0f9ff"/>
+        <circle cx="400" cy="150" r="65" fill="#0369a1" stroke="#075985" stroke-width="3"/>
+        <text x="400" y="140" text-anchor="middle" font-size="16" font-weight="bold" fill="white">🌾</text>
+        <text x="400" y="162" text-anchor="middle" font-size="15" font-weight="bold" fill="white">农业</text>
+        <rect x="20" y="40" width="160" height="70" rx="10" fill="#10b981" stroke="#059669" stroke-width="2"/>
+        <text x="100" y="68" text-anchor="middle" font-size="13" fill="white">🌱 农业类型</text>
+        <text x="100" y="88" text-anchor="middle" font-size="11" fill="white">种植业·林业·牧业·渔业</text>
+        <line x1="180" y1="75" x2="335" y2="130" stroke="#0369a1" stroke-width="2" marker-end="url(#ah)"/>
+        <rect x="20" y="195" width="160" height="70" rx="10" fill="#0ea5e9" stroke="#0284c7" stroke-width="2"/>
+        <text x="100" y="223" text-anchor="middle" font-size="13" fill="white">📍 分布差异</text>
+        <text x="100" y="243" text-anchor="middle" font-size="11" fill="white">东西·南北·商品粮基地</text>
+        <line x1="180" y1="225" x2="335" y2="170" stroke="#0369a1" stroke-width="2" marker-end="url(#ah)"/>
+        <rect x="620" y="40" width="160" height="70" rx="10" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+        <text x="700" y="68" text-anchor="middle" font-size="13" fill="white">⚙️ 影响因素</text>
+        <text x="700" y="88" text-anchor="middle" font-size="11" fill="white">自然条件·社会经济条件</text>
+        <line x1="620" y1="75" x2="465" y2="130" stroke="#0369a1" stroke-width="2" marker-end="url(#ah)"/>
+        <rect x="620" y="195" width="160" height="70" rx="10" fill="#8b5cf6" stroke="#7c3aed" stroke-width="2"/>
+        <text x="700" y="223" text-anchor="middle" font-size="13" fill="white">🚀 发展方向</text>
+        <text x="700" y="243" text-anchor="middle" font-size="11" fill="white">高产·优质·高效·生态·安全</text>
+        <line x1="620" y1="225" x2="465" y2="170" stroke="#0369a1" stroke-width="2" marker-end="url(#ah)"/>
+        <defs>
+          <marker id="ah" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#0369a1"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #0369a1; font-size: 14px; text-align: center;">图4-1 农业知识结构图</figcaption>
+    </figure>
+  </section>
+
+  <main class="container">
+
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">先选一个你关心的问题。后面的内容、AI学伴都会围绕这个问题来帮你推进。</p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="农业主要包括哪几部门？">🌾 农业主要包括哪几部门？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="我国农业分布有什么差异？">📍 我国农业分布有什么差异？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="影响农业分布的因素有哪些？">⚙️ 影响农业分布的因素有哪些？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #0369a1;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #0369a1; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 了解农业的概念和五大部门</li>
+          <li>✅ 掌握我国农业的东西差异和南北差异</li>
+          <li>✅ 记住九大商品粮基地的分布</li>
+          <li>✅ 理解影响农业分布的自然和社会经济因素</li>
+          <li>✅ 知道现代农业的发展方向</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】农业包括哪些生产部门？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 工业不属于农业！农业是利用动植物生产产品的部门。">
+            <span class="opt-letter">A</span> 种植业、林业、牧业、渔业、工业
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 种植业、林业、牧业、渔业
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 农业的四大部门是种植业、林业、牧业、渔业，不包括建筑业！">
+            <span class="opt-letter">C</span> 种植业、林业、建筑业、渔业
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 种植业、林业、牧业、渔业</strong></p>
+          <p style="margin-top:8px;">农业是利用动植物等生物的生长发育规律，通过人工培育来获得产品的各部门，分为<strong>种植业、林业、牧业、渔业</strong>四大部门。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>2. 【⭐⭐ 提高】下列地区以种植业为主的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+            <span class="opt-letter">A</span> 长江中下游平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 内蒙古高原以草原畜牧业为主，不是种植业！">
+            <span class="opt-letter">B</span> 内蒙古高原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 青藏高原以畜牧业为主，气候寒冷不利于种植业！">
+            <span class="opt-letter">C</span> 青藏高原
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 长江中下游平原</strong></p>
+          <p style="margin-top:8px;">东部季风区地形平坦、土壤肥沃、气候湿润，<strong>以种植业为主</strong>；西部非季风区气候干旱，<strong>以畜牧业为主</strong>。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>3. 【⭐⭐⭐ 挑战】划分我国东西部农业差异的重要分界线是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 秦岭-淮河一线是南北方的分界线，不是东西部的分界线！">
+            <span class="opt-letter">A</span> 秦岭—淮河一线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+            <span class="opt-letter">B</span> 400毫米等降水量线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 大兴安岭—太行山—巫山—雪峰山是第二、三级阶梯的分界线！">
+            <span class="opt-letter">C</span> 大兴安岭—太行山—巫山—雪峰山
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 400毫米等降水量线</strong></p>
+          <p style="margin-top:8px;"><strong>400毫米等降水量线</strong>是划分我国东西部农业的重要分界线：此线以东<strong>湿润半湿润</strong>，以种植业为主；此线以西<strong>干旱半干旱</strong>，以畜牧业为主。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-concept">
+      <h2 class="section-title"><span class="num">🌾</span> 农业的概念与部门</h2>
+      <div class="card">
+        <div class="concept-box">
+          <div class="label">核心概念 · 农业的定义</div>
+          <p>农业是<strong>利用动植物等生物的生长发育规律</strong>，通过人工培育来获得产品的各部门。农业是<strong>国民经济的基础</strong>。</p>
+        </div>
+
+        <h3 style="color:#0369a1;margin-top:20px;">📖 农业四大部门</h3>
+        <div class="agriculture-types-grid">
+          <div class="agri-type-card">
+            <div class="agri-type-icon">🌱</div>
+            <div class="agri-type-name">种植业</div>
+            <div class="agri-type-desc">利用土地种植作物<br>如：水稻、小麦</div>
+          </div>
+          <div class="agri-type-card">
+            <div class="agri-type-icon">🌲</div>
+            <div class="agri-type-name">林业</div>
+            <div class="agri-type-desc">培育和保护森林<br>如：木材、林果</div>
+          </div>
+          <div class="agri-type-card">
+            <div class="agri-type-icon">🐄</div>
+            <div class="agri-type-name">牧业</div>
+            <div class="agri-type-desc">饲养牲畜获得产品<br>如：牛奶、肉类</div>
+          </div>
+          <div class="agri-type-card">
+            <div class="agri-type-icon">🐟</div>
+            <div class="agri-type-name">渔业</div>
+            <div class="agri-type-desc">养殖或捕捞水产品<br>如：鱼虾、贝类</div>
+          </div>
+        </div>
+
+        <div class="warn-box" style="margin-top:16px;">
+          <div class="label">⚠️ 易错警示</div>
+          <p>❌ 误区：农业就是种植粮食 → 正确：农业包括<strong>种植业、林业、牧业、渔业</strong>四大部门！</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-distribution">
+      <h2 class="section-title"><span class="num">📍</span> 我国农业分布差异</h2>
+      <div class="card">
+        <h3 style="color:#0369a1;">🌏 东西差异</h3>
+        <p style="margin-top:8px;">以<strong>400毫米等降水量线</strong>为界：</p>
+
+        <div class="svg-container">
+          <svg viewBox="0 0 800 380" width="800" height="380" xmlns="http://www.w3.org/2000/svg">
+            <rect width="800" height="380" fill="#e0f2fe"/>
+            <path d="M200,60 L340,40 L440,50 L520,80 L580,70 L640,90 L660,130 L680,170 L660,220 L640,260 L620,290 L580,310 L530,330 L480,350 L420,360 L360,350 L300,340 L250,320 L220,280 L200,240 L190,200 L180,160 L185,110 Z" fill="#fef3c7" stroke="#b45309" stroke-width="2" opacity="0.7"/>
+            <line x1="180" y1="160" x2="660" y2="310" stroke="#dc2626" stroke-width="3" stroke-dasharray="10,5"/>
+            <text x="380" y="230" font-size="14" fill="#dc2626" font-weight="bold" transform="rotate(-20, 380, 230)">400mm等降水量线</text>
+            <path d="M180,160 L200,60 L340,40 L280,100 L220,120 Z" fill="#fde68a" stroke="#d97706" stroke-width="2" opacity="0.8"/>
+            <text x="230" y="90" font-size="13" fill="#92400e" font-weight="bold">畜牧业为主</text>
+            <path d="M280,100 L440,50 L580,80 L640,90 L660,130 L680,170 L660,220 L640,260 L620,290 L580,310 L530,330 L480,350 L420,360 L360,350 L300,340 L250,320 L220,280 L200,240 L190,200 L185,110 L280,100 Z" fill="#d1fae5" stroke="#059669" stroke-width="2" opacity="0.8"/>
+            <text x="480" y="200" font-size="13" fill="#065f46" font-weight="bold">种植业为主</text>
+            <rect x="30" y="300" width="20" height="14" fill="#d1fae5" stroke="#059669"/>
+            <text x="55" y="312" font-size="12" fill="#065f46">以种植业为主</text>
+            <rect x="30" y="320" width="20" height="14" fill="#fde68a" stroke="#d97706"/>
+            <text x="55" y="332" font-size="12" fill="#92400e">以畜牧业为主</text>
+            <line x1="30" y1="348" x2="50" y2="338" stroke="#dc2626" stroke-width="3" stroke-dasharray="5,3"/>
+            <text x="55" y="352" font-size="12" fill="#dc2626">400mm等降水量线</text>
+            <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#0369a1">中国农业东西差异分布图</text>
+          </svg>
+          <p class="svg-caption">图4-2 中国农业东西差异（400mm等降水量线为界）</p>
+        </div>
+
+        <table class="distribution-table">
+          <tr><th>区域</th><th>降水量</th><th>气候</th><th>主要农业类型</th><th>代表地区</th></tr>
+          <tr class="region-east"><td>东部（400mm线以东）</td><td>≥400mm</td><td>湿润、半湿润</td><td>种植业为主</td><td>东北平原、华北平原、长江中下游平原</td></tr>
+          <tr class="region-west"><td>西部（400mm线以西）</td><td>＜400mm</td><td>干旱、半干旱</td><td>畜牧业为主</td><td>内蒙古高原、青藏高原、新疆</td></tr>
+        </table>
+
+        <h3 style="color:#0369a1;margin-top:24px;">🌾 南北差异</h3>
+        <p style="margin-top:8px;">秦岭—淮河一线是南北方的分界线：</p>
+        <table class="distribution-table">
+          <tr><th>区域</th><th>主要作物</th><th>耕地类型</th><th>作物熟制</th><th>代表地区</th></tr>
+          <tr class="region-north"><td>北方</td><td>小麦、玉米、大豆</td><td>旱地</td><td>一年一熟 / 两年三熟</td><td>东北平原、华北平原</td></tr>
+          <tr class="region-south"><td>南方</td><td>水稻、油菜</td><td>水田</td><td>一年两熟 / 一年三熟</td><td>长江中下游平原、珠江三角洲</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="section-grain">
+      <h2 class="section-title"><span class="num">🏞️</span> 主要商品粮基地</h2>
+      <div class="card">
+        <div class="concept-box">
+          <div class="label">核心概念 · 商品粮基地</div>
+          <p>商品粮基地是指<strong>粮食商品率高</strong>、能够稳定地向外提供大量商品粮的农业生产基地。</p>
+        </div>
+
+        <div class="svg-container">
+          <svg viewBox="0 0 800 360" width="800" height="360" xmlns="http://www.w3.org/2000/svg">
+            <rect width="800" height="360" fill="#f0f9ff"/>
+            <path d="M200,60 L340,40 L440,50 L520,80 L580,70 L640,90 L660,130 L680,170 L660,220 L640,260 L620,290 L580,310 L530,330 L480,350 L420,360 L360,350 L300,340 L250,320 L220,280 L200,240 L190,200 L180,160 L185,110 Z" fill="#f0f9ff" stroke="#0369a1" stroke-width="2" opacity="0.6"/>
+            <circle cx="460" cy="270" r="8" fill="#10b981"/>
+            <text x="470" y="268" font-size="11" fill="#065f46" font-weight="bold">太湖平原</text>
+            <circle cx="430" cy="295" r="8" fill="#10b981"/>
+            <text x="400" y="305" font-size="11" fill="#065f46" font-weight="bold">洞庭湖平原</text>
+            <circle cx="470" cy="295" r="8" fill="#10b981"/>
+            <text x="480" y="308" font-size="11" fill="#065f46" font-weight="bold">鄱阳湖平原</text>
+            <circle cx="360" cy="310" r="8" fill="#10b981"/>
+            <text x="280" y="308" font-size="11" fill="#065f46" font-weight="bold">成都平原</text>
+            <circle cx="490" cy="250" r="8" fill="#10b981"/>
+            <text x="500" y="248" font-size="11" fill="#065f46" font-weight="bold">珠江三角洲</text>
+            <circle cx="400" cy="265" r="8" fill="#10b981"/>
+            <text x="310" y="263" font-size="11" fill="#065f46" font-weight="bold">江汉平原</text>
+            <circle cx="470" cy="260" r="8" fill="#10b981"/>
+            <text x="460" y="250" font-size="11" fill="#065f46" font-weight="bold">江淮地区</text>
+            <circle cx="560" cy="200" r="8" fill="#10b981"/>
+            <text x="570" y="198" font-size="11" fill="#065f46" font-weight="bold">松嫩平原</text>
+            <circle cx="620" cy="170" r="8" fill="#10b981"/>
+            <text x="630" y="168" font-size="11" fill="#065f46" font-weight="bold">三江平原</text>
+            <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#0369a1">中国九大商品粮基地分布图</text>
+            <circle cx="60" cy="330" r="8" fill="#10b981"/>
+            <text x="75" y="334" font-size="12" fill="#065f46" font-weight="bold">商品粮基地</text>
+          </svg>
+          <p class="svg-caption">图4-3 中国九大商品粮基地分布图</p>
+        </div>
+
+        <h3 style="color:#0369a1;margin-top:16px;">📋 九大商品粮基地列表</h3>
+        <table class="distribution-table">
+          <tr><th>序号</th><th>名称</th><th>所在省区</th><th>主要作物</th><th>特点</th></tr>
+          <tr><td>1</td><td><strong>太湖平原</strong></td><td>江苏南部</td><td>水稻</td><td>鱼米之乡</td></tr>
+          <tr><td>2</td><td><strong>洞庭湖平原</strong></td><td>湖南北部</td><td>水稻</td><td>湘江流域</td></tr>
+          <tr><td>3</td><td><strong>鄱阳湖平原</strong></td><td>江西北部</td><td>水稻</td><td>赣江流域</td></tr>
+          <tr><td>4</td><td><strong>成都平原</strong></td><td>四川中部</td><td>水稻</td><td>天府之国</td></tr>
+          <tr><td>5</td><td><strong>珠江三角洲</strong></td><td>广东中部</td><td>水稻、甘蔗</td><td>经济发达</td></tr>
+          <tr><td>6</td><td><strong>江汉平原</strong></td><td>湖北中部</td><td>水稻、棉花</td><td>长江汉江交汇</td></tr>
+          <tr><td>7</td><td><strong>江淮地区</strong></td><td>江苏安徽</td><td>水稻、小麦</td><td>南北过渡带</td></tr>
+          <tr><td>8</td><td><strong>松嫩平原</strong></td><td>吉林、黑龙江</td><td>玉米、大豆</td><td>黑土肥沃</td></tr>
+          <tr><td>9</td><td><strong>三江平原</strong></td><td>黑龙江</td><td>大豆、玉米</td><td>东北腹地</td></tr>
+        </table>
+
+        <div class="concept-box" style="margin-top:16px;">
+          <div class="label">记忆口诀</div>
+          <p><strong>九大商品粮基地：</strong>太洞鄱成珠，江汉江淮松嫩三</p>
+          <p style="margin-top:6px;"><strong>对应：</strong>太湖平原·洞庭湖平原·鄱阳湖平原·成都平原·珠江三角洲·江汉平原·江淮地区·松嫩平原·三江平原</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-factors">
+      <h2 class="section-title"><span class="num">⚙️</span> 影响农业分布的因素</h2>
+      <div class="card">
+        <div class="concept-box">
+          <div class="label">核心概念 · 农业区位因素</div>
+          <p>影响农业分布的因素分为<strong>自然条件</strong>和<strong>社会经济条件</strong>两大类。</p>
+        </div>
+
+        <h3 style="color:#10b981;margin-top:20px;">🌿 自然条件</h3>
+        <div class="factor-card natural"><p><strong>地形：</strong>平原适宜发展种植业，山区适宜发展林业、牧业</p></div>
+        <div class="factor-card natural"><p><strong>气候：</strong>热量（积温）决定作物熟制和品种；降水影响耕地类型（水田/旱地）</p></div>
+        <div class="factor-card natural"><p><strong>水源：</strong>河流沿岸、灌溉便利地区适宜发展种植业</p></div>
+        <div class="factor-card natural"><p><strong>土壤：</strong>黑土（东北）、红壤（南方）、水稻土等适宜不同作物</p></div>
+
+        <h3 style="color:#f59e0b;margin-top:20px;">🏛️ 社会经济条件</h3>
+        <div class="factor-card social"><p><strong>市场：</strong>城市、工业区附近适宜发展城郊农业和园艺业</p></div>
+        <div class="factor-card social"><p><strong>交通：</strong>交通便利地区便于农产品运输和销售</p></div>
+        <div class="factor-card social"><p><strong>技术：</strong>农业技术（温室大棚、良种培育）可改变农业分布范围</p></div>
+        <div class="factor-card social"><p><strong>政策：</strong>国家农业政策、补贴引导农业发展方向</p></div>
+
+        <div class="warn-box" style="margin-top:16px;">
+          <div class="label">💡 答题技巧 · 农业区位分析</div>
+          <p>分析某地农业类型时，从以下角度回答：</p>
+          <ol style="padding-left:20px;line-height:1.8;">
+            <li><strong>自然条件：</strong>地形（平坦/起伏）→ 气候（热量、降水）→ 水源（河流、地下水）→ 土壤（肥沃程度）</li>
+            <li><strong>社会经济：</strong>市场（城市需求）→ 交通（运输条件）→ 技术（生产水平）→ 政策（政府支持）</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-match">
+      <h2 class="section-title"><span class="num">🧩</span> 互动练习：农业类型与自然条件匹配</h2>
+      <div class="card">
+        <p style="color:#0369a1;margin-bottom:12px;">点击选项进行连线配对，正确配对后点击"检查答案"！</p>
+        <div class="match-quiz" id="match-quiz-1">
+          <div class="match-row">
+            <div class="match-item" data-type="left" data-id="1" onclick="toggleMatch(this, 1)">🌱 种植业</div>
+            <div class="match-arrow">→</div>
+            <div class="match-item" data-type="right" data-id="a" onclick="toggleMatch(this, 1)">A. 地形平坦、土壤肥沃</div>
+          </div>
+          <div class="match-row">
+            <div class="match-item" data-type="left" data-id="2" onclick="toggleMatch(this, 1)">🌲 林业</div>
+            <div class="match-arrow">→</div>
+            <div class="match-item" data-type="right" data-id="b" onclick="toggleMatch(this, 1)">B. 山地、降水较多</div>
+          </div>
+          <div class="match-row">
+            <div class="match-item" data-type="left" data-id="3" onclick="toggleMatch(this, 1)">🐄 畜牧业</div>
+            <div class="match-arrow">→</div>
+            <div class="match-item" data-type="right" data-id="c" onclick="toggleMatch(this, 1)">C. 草原广阔、降水较少</div>
+          </div>
+          <div class="match-row">
+            <div class="match-item" data-type="left" data-id="4" onclick="toggleMatch(this, 1)">🐟 渔业</div>
+            <div class="match-arrow">→</div>
+            <div class="match-item" data-type="right" data-id="d" onclick="toggleMatch(this, 1)">D. 河湖众多或沿海</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;text-align:center;">
+          <button onclick="checkMatch()" style="background:linear-gradient(135deg,#0369a1,#0284c7);color:white;border:none;padding:10px 24px;border-radius:10px;font-size:15px;cursor:pointer;font-weight:700;">
+            <i class="fa-solid fa-check"></i> 检查答案
+          </button>
+        </div>
+        <div class="feedback" id="match-feedback" style="margin-top:12px;"></div>
+        <div id="match-answer" style="display:none;" data-correct='{"1":"a","2":"b","3":"c","4":"d"}'></div>
+      </div>
+    </section>
+
+    <section class="section" id="section-development">
+      <h2 class="section-title"><span class="num">🚀</span> 现代农业发展方向</h2>
+      <div class="card">
+        <div class="concept-box">
+          <div class="label">核心概念 · 现代农业发展方向</div>
+          <p>我国农业发展方向：<strong>高产、优质、高效、生态、安全</strong></p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px;">
+          <div style="background:linear-gradient(135deg,#dbeafe,#eff6ff);border:2px solid #93c5fd;border-radius:12px;padding:14px;text-align:center;">
+            <div style="font-size:28px;">📈</div>
+            <div style="font-weight:700;color:#1d4ed8;font-size:13px;margin-top:6px;">高产</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">提高单位面积产量</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#dcfce7,#f0fdf4);border:2px solid #86efac;border-radius:12px;padding:14px;text-align:center;">
+            <div style="font-size:28px;">⭐</div>
+            <div style="font-weight:700;color:#166534;font-size:13px;margin-top:6px;">优质</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">提升农产品质量</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#fef9c3,#fefce8);border:2px solid #fde68a;border-radius:12px;padding:14px;text-align:center;">
+            <div style="font-size:28px;">💰</div>
+            <div style="font-weight:700;color:#713f12;font-size:13px;margin-top:6px;">高效</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">提高经济效益</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#d1fae5,#ecfdf5);border:2px solid #6ee7b7;border-radius:12px;padding:14px;text-align:center;">
+            <div style="font-size:28px;">🌱</div>
+            <div style="font-weight:700;color:#065f46;font-size:13px;margin-top:6px;">生态</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">可持续发展</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#fce7f3,#fdf2f8);border:2px solid #f9a8d4;border-radius:12px;padding:14px;text-align:center;">
+            <div style="font-size:28px;">🛡️</div>
+            <div style="font-weight:700;color:#9d174d;font-size:13px;margin-top:6px;">安全</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">农产品质量安全</div>
+          </div>
+        </div>
+
+        <div class="concept-box" style="margin-top:16px;">
+          <div class="label">因地制宜发展农业</div>
+          <p>根据<strong>自然条件</strong>（地形、气候、水源、土壤）和社会经济条件（市场、交通、技术、政策），合理安排农业生产，做到<strong>宜粮则粮、宜牧则牧、宜林则林、宜渔则渔</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】我国南方主要的粮食作物是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 小麦是北方的主要作物！">
+            <span class="opt-letter">A</span> 小麦
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 水稻
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 玉米是北方的重要作物，南方水稻更占优势！">
+            <span class="opt-letter">C</span> 玉米
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 水稻</strong></p>
+          <p style="margin-top:8px;">南方气候湿热，<strong>水田</strong>广布，主要种植<strong>水稻</strong>；北方气候相对干燥，<strong>旱地</strong>广布，主要种植<strong>小麦</strong>。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】下列不属于商品粮基地的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 松嫩平原是九大商品粮基地之一！">
+            <span class="opt-letter">A</span> 松嫩平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 成都平原是天府之国，九大商品粮基地之一！">
+            <span class="opt-letter">B</span> 成都平原
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')">
+            <span class="opt-letter">C</span> 黄土高原
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 黄土高原</strong></p>
+          <p style="margin-top:8px;">黄土高原水土流失严重，不属于商品粮基地。<strong>九大商品粮基地</strong>：太湖平原、洞庭湖平原、鄱阳湖平原、成都平原、珠江三角洲、江汉平原、江淮地区、松嫩平原、三江平原。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box" style="margin-top:20px;">
+        <h3>3. 【⭐⭐⭐ 挑战】影响农业分布最重要的自然因素是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 土壤是重要因素，但不是最根本的！">
+            <span class="opt-letter">A</span> 土壤
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+            <span class="opt-letter">B</span> 气候（热量和降水）
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 水源是重要因素，但不是最根本的！">
+            <span class="opt-letter">C</span> 水源
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 气候（热量和降水）</strong></p>
+          <p style="margin-top:8px;"><strong>气候</strong>（热量和降水）是影响农业分布最重要的自然因素，它决定了作物<strong>种类、熟制和耕地类型</strong>（水田/旱地）。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：农业东西差异</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>400毫米等降水量线以东→<strong>种植业为主</strong>（湿润区）；以西→<strong>畜牧业为主</strong>（干旱区）。</p>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：农业南北差异</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了14次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>南方→<strong>水田、水稻</strong>；北方→<strong>旱地、小麦</strong>。秦岭—淮河是分界线。</p>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：九大商品粮基地</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>九大基地：太湖、洞庭湖、鄱阳湖、成都、珠江三角洲、江汉、江淮、松嫩、三江平原。</p>
+        </div>
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="color:#166534;font-size:15px;">⚙️ 常考考点：农业区位因素</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了9次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>自然条件（地形、气候、水源、土壤）+ 社会经济条件（市场、交通、技术、政策）。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴">
+      <div data-teachany-tutor-card></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top:8px;font-size:12px;">基于 TeachAny v8.1.0 | 适配人教版八年级地理课程标准 · 第四单元第2节</p>
+    </div>
+  </footer>
+
+  <script>
+    const COURSE_INFO = { totalSections: 3, currentSection: 2 };
+    let anchorContents = {};
+    let matchSelections = {};
+
+    anchorContents[1] = `<h3>🌾 问题1：农业主要包括哪几部门？</h3><p>农业是利用动植物等生物的生长发育规律，通过人工培育来获得产品的各部门。</p><p><strong>四大部门：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>🌱 <strong>种植业</strong>：利用土地种植作物（粮食作物、经济作物）</li><li>🌲 <strong>林业</strong>：培育和保护森林</li><li>🐄 <strong>牧业</strong>：饲养牲畜</li><li>🐟 <strong>渔业</strong>：养殖或捕捞水产品</li></ul>`;
+
+    anchorContents[2] = `<h3>📍 问题2：我国农业分布有什么差异？</h3><p><strong>东西差异：</strong>400mm等降水量线</p><ul style="padding-left:20px;line-height:1.8;"><li>东部（≥400mm）：湿润半湿润 → <strong>种植业为主</strong></li><li>西部（<400mm）：干旱半干旱 → <strong>畜牧业为主</strong></li></ul><p style="margin-top:8px;"><strong>南北差异：</strong>秦岭—淮河一线</p><ul style="padding-left:20px;line-height:1.8;"><li>北方：旱地 + 小麦 → 一年一熟/两年三熟</li><li>南方：水田 + 水稻 → 一年两熟/三熟</li></ul>`;
+
+    anchorContents[3] = `<h3>⚙️ 问题3：影响农业分布的因素有哪些？</h3><p><strong>自然条件：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>🌍 <strong>地形</strong>：平原→种植业，山区→林牧业</li><li>☀️ <strong>气候</strong>：热量→作物熟制，降水→水田/旱地</li><li>💧 <strong>水源</strong>：灌溉便利区适宜种植业</li><li>🌍 <strong>土壤</strong>：黑土→玉米，红壤→水稻</li></ul><p style="margin-top:8px;"><strong>社会经济条件：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>🏪 市场 · 🚚 交通 · 🔬 技术 · 📜 政策</li></ul>`;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach(item => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      document.getElementById('anchor-display').innerHTML = anchorContents[id];
+      const fb = document.getElementById('anchor-feedback');
+      if (fb) { fb.textContent = '你选择了：' + btnElement.getAttribute('data-anchor-choice'); fb.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        document.getElementById('anchor-display').innerHTML = '<h3>📍 你的问题：' + question + '</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>';
+        const fb = document.getElementById('anchor-feedback');
+        if (fb) { fb.textContent = '你的问题：' + question; fb.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('correct', 'wrong'));
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+
+    function toggleMatch(item, quizId) {
+      if (!matchSelections[quizId]) matchSelections[quizId] = { left: null, right: null };
+      const type = item.dataset.type;
+      const val = item.dataset.id;
+      if (type === 'left') {
+        document.querySelectorAll('[data-type="left"]').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        matchSelections[quizId].left = val;
+      } else {
+        document.querySelectorAll('[data-type="right"]').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        matchSelections[quizId].right = val;
+      }
+    }
+
+    function checkMatch() {
+      const correct = JSON.parse(document.getElementById('match-answer').dataset.correct);
+      const sel = matchSelections[1];
+      const feedback = document.getElementById('match-feedback');
+      let correctCount = 0;
+      for (const [k, v] of Object.entries(correct)) {
+        if (sel && sel.left === k && sel.right === v) correctCount++;
+      }
+      if (correctCount === 4) {
+        feedback.innerHTML = '<strong>✅ 完全正确！</strong> 种植业→地形平坦、林业→山地降水多、畜牧业→草原广阔、渔业→河湖沿海。';
+        feedback.className = 'feedback show correct-fb';
+        document.querySelectorAll('.match-item').forEach(i => i.classList.add('matched'));
+      } else if (sel && sel.left && sel.right) {
+        feedback.innerHTML = '<strong>❌ 还不对哦～</strong> 请将农业类型与对应的自然条件正确连线后再试！';
+        feedback.className = 'feedback show wrong-fb';
+      } else {
+        feedback.innerHTML = '💡 请先点击一个农业类型和一个自然条件，再点击"检查答案"！';
+        feedback.className = 'feedback show';
+        feedback.style.background = 'rgba(59,130,246,0.1)';
+        feedback.style.color = '#1e40af';
+        feedback.style.border = '1px solid rgba(59,130,246,0.28)';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《农业》课件加载完成（v8.1）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const pf = document.getElementById('progress-fill');
+      const pl = document.getElementById('progress-label');
+      if (pf) pf.style.width = progress + '%';
+      if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(progress) + '%';
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

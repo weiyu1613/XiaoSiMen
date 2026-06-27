@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.4 敌后战场的抗战 - 八年级上册历史</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-brown: #8b4513;
+            --light-brown: #a0522d;
+            --dark-brown: #654321;
+            --correct-green: #10b981;
+            --error-red: #ef4444;
+            --warn-yellow: #fef3c7;
+            --warn-border: #f59e0b;
+            --bg-cream: #fef9f3;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background: var(--bg-cream);
+        }
+
+        /* 1. 品牌栏 */
+        .brand-bar {
+            background: linear-gradient(135deg, var(--primary-brown), var(--dark-brown));
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .brand-logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .brand-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* 2. 进度条 */
+        .progress-container {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-brown), var(--light-brown));
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        /* 3. 导航sticky */
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--primary-brown);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            background: var(--primary-brown);
+            color: white;
+        }
+
+        .nav-home {
+            background: var(--primary-brown);
+            color: white;
+        }
+
+        /* 4. Hero区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-brown) 0%, var(--dark-brown) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom / cover no-repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        .hero .meta {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* 5. SVG知识结构图 */
+        .knowledge-section {
+            padding: 40px 20px;
+            background: white;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: var(--primary-brown);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary-brown);
+        }
+
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .knowledge-svg {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+
+        /* 6. 探究问题锚点 */
+        .inquiry-section {
+            padding: 40px 20px;
+            background: var(--bg-cream);
+            margin: 20px;
+            border-radius: 12px;
+        }
+
+        .inquiry-questions {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .inquiry-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-brown);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .inquiry-item h3 {
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .custom-input {
+            margin-top: 20px;
+        }
+
+        .custom-input textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* 7. 学习目标 */
+        .objectives-section {
+            padding: 40px 20px;
+            background: white;
+            margin: 20px;
+            border-radius: 12px;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .objective-card {
+            background: linear-gradient(135deg, #fef9f3, #fff);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--primary-brown);
+            box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(139, 69, 19, 0.2);
+        }
+
+        .objective-card h3 {
+            color: var(--primary-brown);
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .objective-card p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* 8. 前测 */
+        .pretest-section {
+            padding: 40px 20px;
+            background: var(--bg-cream);
+            margin: 20px;
+            border-radius: 12px;
+        }
+
+        .quiz-container {
+            margin-top: 20px;
+        }
+
+        .quiz-question {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .quiz-question h3 {
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary-brown);
+            background: #fef9f3;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary-brown);
+            background: #fef9f3;
+        }
+
+        .quiz-option.correct {
+            border-color: var(--correct-green);
+            background: #d1fae5;
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--error-red);
+            background: #fee2e2;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid var(--correct-green);
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid var(--error-red);
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        /* 9. 核心知识 */
+        .core-section {
+            padding: 40px 20px;
+            background: white;
+            margin: 20px;
+            border-radius: 12px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary-brown), var(--light-brown));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 70px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            background: var(--primary-brown);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .timeline-content {
+            background: #fef9f3;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        /* Concept Box */
+        .concept-box {
+            background: linear-gradient(135deg, #fef9f3, #fff5eb);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 2px solid var(--primary-brown);
+        }
+
+        .concept-box h3 {
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .concept-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .concept-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .concept-box li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--primary-brown);
+        }
+
+        /* Knowledge Grid */
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .knowledge-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid var(--primary-brown);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .knowledge-card h4 {
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        /* Warn Box */
+        .warn-box {
+            background: var(--warn-yellow);
+            border: 2px solid var(--warn-border);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .warn-box h3 {
+            color: #92400e;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* 10. 后测 */
+        .posttest-section {
+            padding: 40px 20px;
+            background: var(--bg-cream);
+            margin: 20px;
+            border-radius: 12px;
+        }
+
+        /* 必考分析 */
+        .exam-section {
+            padding: 40px 20px;
+            background: white;
+            margin: 20px;
+            border-radius: 12px;
+        }
+
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .exam-card {
+            background: linear-gradient(135deg, #fef9f3, white);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--primary-brown);
+            box-shadow: 0 4px 8px rgba(139, 69, 19, 0.15);
+        }
+
+        .exam-card h3 {
+            color: var(--primary-brown);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .exam-card .exam-type {
+            display: inline-block;
+            background: var(--primary-brown);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-brown), var(--primary-brown));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .footer p {
+            opacity: 0.9;
+            margin: 5px 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .objectives-grid,
+            .exam-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+        }
+
+        /* 滚动进度条 */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-brown), var(--light-brown));
+            z-index: 9999;
+            transition: width 0.3s;
+        }
+    </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+<body>
+    <!-- 滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- 0. 滚动进度条 -->
+    <div style="position:fixed;top:0;left:0;width:0%;height:4px;background:linear-gradient(90deg,#8b4513,#a0522d);z-index:9999;transition:width .3s" id="taScrollProgress"></div>
+
+    <!-- 1. 品牌栏 -->
+    <div class="brand-bar">
+        <div class="brand-logo">📚 初中历史课堂</div>
+        <div class="brand-subtitle">八年级上册 · 第六单元</div>
+    </div>
+
+    <!-- 2. 进度条 -->
+    <div class="progress-container">
+        <div class="progress-info">
+            <span>课程进度</span>
+            <span>第4/5节 (80%)</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 80%"></div>
+        </div>
+    </div>
+
+    <!-- 3. 导航sticky -->
+    <div class="nav-sticky">
+        <div class="nav-links">
+            <a href="../d6zhn.html" class="nav-link nav-home">🏠 单元首页</a>
+            <a href="../6.3_bfzz/bfzz.html" class="nav-link">← 上一节</a>
+            <a href="../6.5_krsh/krsh.html" class="nav-link">下一节 →</a>
+        </div>
+        <div style="color: var(--primary-brown); font-weight: bold;">
+            6.4 敌后战场的抗战
+        </div>
+    </div>
+
+    <!-- 4. Hero区域 -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>敌后战场的抗战</h1>
+            <div class="subtitle">第六单元 中华民族的抗日战争</div>
+            <div class="meta">八年级上册 · 第6单元第4课 · 1937-1945年</div>
+        </div>
+    </div>
+
+    <!-- 5. SVG知识结构图 -->
+    <div class="knowledge-section">
+        <h2 class="section-title">📊 知识结构图</h2>
+        <div class="svg-container">
+            <svg class="knowledge-svg" width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                <!-- 中心主题 -->
+                <rect x="300" y="50" width="200" height="60" rx="10" fill="#8b4513" opacity="0.9"/>
+                <text x="400" y="85" text-anchor="middle" fill="white" font-size="18" font-weight="bold">敌后战场的抗战</text>
+                
+                <!-- 敌后战场的开辟 -->
+                <rect x="50" y="150" width="180" height="50" rx="8" fill="#a0522d" opacity="0.8"/>
+                <text x="140" y="180" text-anchor="middle" fill="white" font-size="14">敌后战场的开辟</text>
+                <line x1="300" y1="80" x2="140" y2="150" stroke="#8b4513" stroke-width="2"/>
+                
+                <!-- 平型关大捷 -->
+                <rect x="300" y="150" width="180" height="50" rx="8" fill="#a0522d" opacity="0.8"/>
+                <text x="390" y="180" text-anchor="middle" fill="white" font-size="14">平型关大捷</text>
+                <line x1="400" y1="110" x2="390" y2="150" stroke="#8b4513" stroke-width="2"/>
+                
+                <!-- 抗日根据地建设 -->
+                <rect x="550" y="150" width="180" height="50" rx="8" fill="#a0522d" opacity="0.8"/>
+                <text x="640" y="180" text-anchor="middle" fill="white" font-size="14">抗日根据地建设</text>
+                <line x1="500" y1="80" x2="640" y2="150" stroke="#8b4513" stroke-width="2"/>
+                
+                <!-- 百团大战 -->
+                <rect x="300" y="250" width="180" height="50" rx="8" fill="#a0522d" opacity="0.8"/>
+                <text x="390" y="280" text-anchor="middle" fill="white" font-size="14">百团大战</text>
+                <line x1="390" y1="200" x2="390" y2="250" stroke="#8b4513" stroke-width="2"/>
+                
+                <!-- 中共中流砥柱 -->
+                <rect x="300" y="350" width="200" height="60" rx="10" fill="#654321" opacity="0.9"/>
+                <text x="400" y="385" text-anchor="middle" fill="white" font-size="16" font-weight="bold">中共中流砥柱作用</text>
+                <line x1="390" y1="300" x2="400" y2="350" stroke="#8b4513" stroke-width="2"/>
+                
+                <!-- 详细分支 -->
+                <rect x="30" y="230" width="160" height="40" rx="6" fill="#d2691e" opacity="0.6"/>
+                <text x="110" y="255" text-anchor="middle" fill="white" font-size="12">八路军、新四军</text>
+                <line x1="140" y1="200" x2="110" y2="230" stroke="#8b4513" stroke-width="1.5"/>
+                
+                <rect x="30" y="290" width="160" height="40" rx="6" fill="#d2691e" opacity="0.6"/>
+                <text x="110" y="315" text-anchor="middle" fill="white" font-size="12">抗日根据地建立</text>
+                <line x1="110" y1="270" x2="110" y2="290" stroke="#8b4513" stroke-width="1.5"/>
+                
+                <rect x="300" y="430" width="160" height="40" rx="6" fill="#d2691e" opacity="0.6"/>
+                <text x="380" y="455" text-anchor="middle" fill="white" font-size="12">全面抗战路线</text>
+                <line x1="400" y1="410" x2="380" y2="430" stroke="#8b4513" stroke-width="1.5"/>
+                
+                <rect x="480" y="430" width="160" height="40" rx="6" fill="#d2691e" opacity="0.6"/>
+                <text x="560" y="455" text-anchor="middle" fill="white" font-size="12">持久战战略</text>
+                <line x1="450" y1="410" x2="560" y2="430" stroke="#8b4513" stroke-width="1.5"/>
+                
+                <!-- 根据地建设详细 -->
+                <rect x="550" y="220" width="170" height="35" rx="5" fill="#cd853f" opacity="0.5"/>
+                <text x="635" y="242" text-anchor="middle" fill="white" font-size="11">政治：三三制原则</text>
+                <line x1="640" y1="200" x2="635" y2="220" stroke="#8b4513" stroke-width="1.5"/>
+                
+                <rect x="550" y="265" width="170" height="35" rx="5" fill="#cd853f" opacity="0.5"/>
+                <text x="635" y="287" text-anchor="middle" fill="white" font-size="11">经济：减租减息</text>
+                <line x1="635" y1="255" x2="635" y2="265" stroke="#8b4513" stroke-width="1.5"/>
+                
+                <rect x="550" y="310" width="170" height="35" rx="5" fill="#cd853f" opacity="0.5"/>
+                <text x="635" y="332" text-anchor="middle" fill="white" font-size="11">思想：大生产运动</text>
+                <line x1="635" y1="300" x2="635" y2="310" stroke="#8b4513" stroke-width="1.5"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 6. 探究问题锚点 -->
+    <div class="inquiry-section">
+        <h2 class="section-title">🔍 探究问题</h2>
+        <div class="inquiry-questions">
+            <div class="inquiry-item">
+                <h3>问题一：敌后战场与正面战场的关系</h3>
+                <p>思考：敌后战场和正面战场在抗日战争中分别发挥了什么作用？它们之间是如何相互配合的？为什么说两个战场形成了战略配合？</p>
+            </div>
+            <div class="inquiry-item">
+                <h3>问题二：平型关大捷的历史意义</h3>
+                <p>分析：平型关大捷为什么被称为"抗战以来中国军队主动出击日军的第一次重大胜利"？它打破了什么神话？对全国抗战产生了什么影响？</p>
+            </div>
+            <div class="inquiry-item">
+                <h3>问题三：百团大战的规模与影响</h3>
+                <p>探讨：百团大战是敌后战场最大规模的对日进攻战役，它的目标是什么？战果如何？为什么能够振奋全国军民的信心？</p>
+            </div>
+        </div>
+        <div class="custom-input">
+            <h3 style="color: var(--primary-brown); margin-bottom: 10px;">我的探究问题</h3>
+            <textarea placeholder="写下你在学习过程中产生的问题或想法..."></textarea>
+        </div>
+    </div>
+
+    <!-- 7. 学习目标 -->
+    <div class="objectives-section">
+        <h2 class="section-title">🎯 学习目标</h2>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <h3>📖 知识与理解</h3>
+                <p>了解敌后战场的开辟过程，掌握平型关大捷、百团大战的基本史实，理解抗日根据地建设的主要内容和中共在抗战中的中流砥柱作用。</p>
+            </div>
+            <div class="objective-card">
+                <h3>🧠 能力与方法</h3>
+                <p>通过Timeline分析抗战史实的时间顺序，运用历史地图识别抗日根据地分布，培养史料分析和历史解释能力。</p>
+            </div>
+            <div class="objective-card">
+                <h3>💡 情感态度价值观</h3>
+                <p>认识中国共产党在抗日战争中的重要作用，体会中国人民英勇抗战的精神，增强民族自豪感和历史责任感。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. 前测 -->
+    <div class="pretest-section">
+        <h2 class="section-title">✏️ 课前检测</h2>
+        <div class="quiz-container">
+            <div class="quiz-question" data-correct="B">
+                <h3>1. 【基础题】抗日战争全面爆发后，八路军、新四军深入敌后开展的是什么战争？</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A">A. 阵地战</div>
+                    <div class="quiz-option" data-option="B">B. 游击战</div>
+                    <div class="quiz-option" data-option="C">C. 攻坚战</div>
+                    <div class="quiz-option" data-option="D">D. 防御战</div>
+                </div>
+                <div class="feedback correct">
+                    <strong>✅ 答对了！</strong><br>
+                    正确答案：B. 游击战<br>
+                    解析：全面抗战爆发后，八路军、新四军深入敌后，开展游击战争，建立抗日根据地，形成了敌后战场。
+                </div>
+                <div class="feedback incorrect">
+                    <strong>❌ 答错了。</strong><br>
+                    正确答案：B. 游击战<br>
+                    错误原因：你可能混淆了不同作战方式。八路军、新四军在敌后主要开展游击战，而不是正面战场的阵地战。游击战灵活机动，适合在敌后开展。
+                </div>
+            </div>
+
+            <div class="quiz-question" data-correct="C">
+                <h3>2. 【提高题】平型关大捷发生在哪一年？由谁指挥？</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A">A. 1936年，彭德怀指挥</div>
+                    <div class="quiz-option" data-option="B">B. 1938年，刘伯承指挥</div>
+                    <div class="quiz-option" data-option="C">C. 1937年，林彪指挥</div>
+                    <div class="quiz-option" data-option="D">D. 1937年，彭德怀指挥</div>
+                </div>
+                <div class="feedback correct">
+                    <strong>✅ 答对了！</strong><br>
+                    正确答案：C. 1937年，林彪指挥<br>
+                    解析：1937年9月，八路军一一五师在林彪指挥下，在平型关伏击日军，取得抗战以来中国军队主动出击日军的第一次重大胜利。
+                </div>
+                <div class="feedback incorrect">
+                    <strong>❌ 答错了。</strong><br>
+                    正确答案：C. 1937年，林彪指挥<br>
+                    错误原因：你可能混淆了平型关大捷和百团大战的指挥者。平型关大捷是林彪指挥的，而百团大战是彭德怀指挥的。时间也要注意区分。
+                </div>
+            </div>
+
+            <div class="quiz-question" data-correct="B">
+                <h3>3. 【挑战题】抗日根据地实行的"三三制"原则是指什么？</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A">A. 三个根据地各占三分之一</div>
+                    <div class="quiz-option" data-option="B">B. 抗日民主政权中，共产党员、左派进步分子、中间分子各占三分之一</div>
+                    <div class="quiz-option" data-option="C">C. 三三制是一种土地政策</div>
+                    <div class="quiz-option" data-option="D">D. 三三制是指三年准备、三年建设、三年巩固</div>
+                </div>
+                <div class="feedback correct">
+                    <strong>✅ 答对了！</strong><br>
+                    正确答案：B. 抗日民主政权中，共产党员、左派进步分子、中间分子各占三分之一<br>
+                    解析："三三制"原则是抗日根据地政治建设的重要内容，保证了抗日民主政权的广泛代表性。
+                </div>
+                <div class="feedback incorrect">
+                    <strong>❌ 答错了。</strong><br>
+                    正确答案：B. 抗日民主政权中，共产党员、左派进步分子、中间分子各占三分之一<br>
+                    错误原因："三三制"是政治建设内容，不是军事或土地政策。它体现了中国共产党在抗日根据地建立的民主政权具有广泛的代表性，团结了各阶层共同抗日。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. 核心知识 -->
+    <div class="core-section">
+        <h2 class="section-title">📚 核心知识</h2>
+
+        <!-- Timeline -->
+        <h3 style="color: var(--primary-brown); margin: 30px 0 20px 0; font-size: 22px;">⏱️ 历史时间轴</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>1937年7月 - 全面抗战爆发</h3>
+                    <p>七七事变后，国共第二次合作形成，八路军、新四军改编完成，开始深入敌后开展游击战争。</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>1937年9月 - 平型关大捷</h3>
+                    <p>八路军一一五师在林彪指挥下，于平型关伏击日军，取得抗战以来中国军队主动出击日军的第一次重大胜利，打破了"日军不可战胜"的神话。</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>1937-1938年 - 抗日根据地建立</h3>
+                    <p>八路军、新四军在敌后建立多个抗日根据地：晋察冀根据地（第一个）、晋绥根据地、晋冀豫根据地、山东根据地等，敌后战场初步形成。</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>1940年8月 - 百团大战</h3>
+                    <p>彭德怀指挥八路军一百多个团，在华北地区发动大规模进攻，目标是破坏敌人交通线，摧毁日伪军据点。毙伤日伪军4万余人，是敌后战场最大规模的对日进攻战役。</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>1941-1945年 - 根据地建设与大生产运动</h3>
+                    <p>抗日根据地开展全面建设的时期：政治上实行"三三制"原则，经济上实行减租减息政策，开展大生产运动（南泥湾），思想上开展延安整风运动。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Concept Box -->
+        <div class="concept-box">
+            <h3>🎓 核心概念解析</h3>
+            <ul>
+                <li><strong>敌后战场：</strong>指八路军、新四军深入日军占领区后方，开展游击战争，建立抗日根据地的作战区域。与国民党领导的正面战场形成战略配合。</li>
+                <li><strong>正面战场：</strong>指国民党军队在抗日战争中担负的正面阻击日军进攻的作战区域，组织了一系列大规模会战。</li>
+                <li><strong>平型关大捷：</strong>1937年9月，八路军一一五师在林彪指挥下取得的胜利，是抗战以来中国军队主动出击日军的第一次重大胜利。</li>
+                <li><strong>百团大战：</strong>1940年8月，彭德怀指挥八路军一百多个团在华北发动的大规模进攻战役，是敌后战场最大规模的对日进攻战役。</li>
+                <li><strong>"三三制"原则：</strong>抗日根据地建立的抗日民主政权中，共产党员、左派进步分子、中间分子各占三分之一，保证政权的广泛代表性。</li>
+                <li><strong>减租减息：</strong>抗日根据地的经济政策，减轻农民地租负担和债务利息，既改善农民生活，又团结地主阶级共同抗日。</li>
+                <li><strong>大生产运动：</strong>抗日战争时期，根据地军民开展的生产自救运动，南泥湾大生产是典型代表，实现了自给自足。</li>
+            </ul>
+        </div>
+
+        <!-- Knowledge Grid -->
+        <h3 style="color: var(--primary-brown); margin: 30px 0 20px 0; font-size: 22px;">📖 知识要点</h3>
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <h4>🌍 主要抗日根据地</h4>
+                <p>• 晋察冀根据地（第一个）<br>
+                   • 晋绥根据地<br>
+                   • 晋冀豫根据地<br>
+                   • 山东根据地<br>
+                   • 华中根据地<br>
+                   • 陕甘宁边区（中心）</p>
+            </div>
+
+            <div class="knowledge-card">
+                <h4>🏛️ 政治建设</h4>
+                <p>• 建立抗日民主政权<br>
+                   • 实行"三三制"原则<br>
+                   • 实行民主选举<br>
+                   • 建立参议会制度</p>
+            </div>
+
+            <div class="knowledge-card">
+                <h4>💰 经济建设</h4>
+                <p>• 实行减租减息政策<br>
+                   • 开展大生产运动<br>
+                   • 发展农业生产<br>
+                   • 建立互助合作组织</p>
+            </div>
+
+            <div class="knowledge-card">
+                <h4>🧠 思想建设</h4>
+                <p>• 延安整风运动<br>
+                   • 反对主观主义<br>
+                   • 反对宗派主义<br>
+                   • 反对党八股</p>
+            </div>
+        </div>
+
+        <!-- Warn Box -->
+        <div class="warn-box">
+            <h3>⚠️ 重点提醒</h3>
+            <p><strong>易混点辨析：</strong></p>
+            <p>1. <strong>平型关大捷 vs 百团大战：</strong>平型关大捷是1937年林彪指挥的伏击战，是"第一次重大胜利"；百团大战是1940年彭德怀指挥的大规模进攻战役，是"最大规模进攻战役"。</p>
+            <p>2. <strong>敌后战场 vs 正面战场：</strong>敌后战场是共产党领导的八路军、新四军在日军后方开展的游击战；正面战场是国民党军队在抗战前线组织的大规模会战。</p>
+            <p>3. <strong>"三三制" vs 减租减息：</strong>"三三制"是政治建设原则，减租减息是经济建设政策，不要混淆。</p>
+        </div>
+    </div>
+
+    <!-- 10. 后测 -->
+    <div class="posttest-section">
+        <h2 class="section-title">📝 课后检测</h2>
+        <div class="quiz-container">
+            <div class="quiz-question" data-correct="C">
+                <h3>1. 【基础题】百团大战的指挥者是？</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A">A. 林彪</div>
+                    <div class="quiz-option" data-option="B">B. 刘伯承</div>
+                    <div class="quiz-option" data-option="C">C. 彭德怀</div>
+                    <div class="quiz-option" data-option="D">D. 贺龙</div>
+                </div>
+                <div class="feedback correct">
+                    <strong>✅ 答对了！</strong><br>
+                    正确答案：C. 彭德怀<br>
+                    解析：1940年8月，彭德怀指挥八路军一百多个团，在华北地区发动百团大战，这是敌后战场最大规模的对日进攻战役。
+                </div>
+                <div class="feedback incorrect">
+                    <strong>❌ 答错了。</strong><br>
+                    正确答案：C. 彭德怀<br>
+                    错误原因：你可能混淆了百团大战和平型关大捷的指挥者。百团大战是彭德怀指挥的，平型关大捷是林彪指挥的。请注意区分。
+                </div>
+            </div>
+
+            <div class="quiz-question" data-correct="B">
+                <h3>2. 【提高题】下列关于平型关大捷的叙述，正确的是？</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A">A. 是抗战以来中国军队取得的第一次胜利</div>
+                    <div class="quiz-option" data-option="B">B. 是抗战以来中国军队主动出击日军的第一次重大胜利</div>
+                    <div class="quiz-option" data-option="C">C. 是敌后战场最大规模的进攻战役</div>
+                    <div class="quiz-option" data-option="D">D. 打破了"国民党不可战胜"的神话</div>
+                </div>
+                <div class="feedback correct">
+                    <strong>✅ 答对了！</strong><br>
+                    正确答案：B. 是抗战以来中国军队主动出击日军的第一次重大胜利<br>
+                    解析：平型关大捷是八路军一一五师在林彪指挥下，主动伏击日军取得的重大胜利，打破了"日军不可战胜"的神话。
+                </div>
+                <div class="feedback incorrect">
+                    <strong>❌ 答错了。</strong><br>
+                    正确答案：B. 是抗战以来中国军队主动出击日军的第一次重大胜利<br>
+                    错误原因：A选项不准确，抗战开始后有一些小规模胜利；C选项是百团大战；D选项应该是"日军不可战胜"的神话，不是国民党。注意审题要仔细。
+                </div>
+            </div>
+
+            <div class="quiz-question" data-correct="A">
+                <h3>3. 【中考真题】抗日战争时期，中国共产党在抗日根据地实行的土地政策是？</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A">A. 减租减息</div>
+                    <div class="quiz-option" data-option="B">B. 耕者有其田</div>
+                    <div class="quiz-option" data-option="C">C. 打土豪分田地</div>
+                    <div class="quiz-option" data-option="D">D. 土地国有化</div>
+                </div>
+                <div class="feedback correct">
+                    <strong>✅ 答对了！</strong><br>
+                    正确答案：A. 减租减息<br>
+                    解析：抗日战争时期，为了团结各阶层共同抗日，中国共产党在抗日根据地实行减租减息的土地政策，既减轻农民负担，又团结地主阶级。
+                </div>
+                <div class="feedback incorrect">
+                    <strong>❌ 答错了。</strong><br>
+                    正确答案：A. 减租减息<br>
+                    错误原因：注意区分不同时期的土地政策。B选项"耕者有其田"是解放战争时期的政策；C选项"打土豪分田地"是土地革命战争时期的政策；抗日战争时期实行的是减租减息政策。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 必考分析 -->
+    <div class="exam-section">
+        <h2 class="section-title">🎯 必考分析</h2>
+        <div class="exam-grid">
+            <div class="exam-card">
+                <span class="exam-type">选择题高频</span>
+                <h3>平型关大捷 vs 百团大战</h3>
+                <p><strong>考查重点：</strong>两次战役的时间、指挥者、意义必须准确记忆。</p>
+                <p><strong>记忆口诀：</strong>"1937林彪平型关，1940彭总百团战"</p>
+                <p><strong>易错点：</strong>指挥者容易混淆，意义表述要准确。</p>
+            </div>
+
+            <div class="exam-card">
+                <span class="exam-type">材料题常考</span>
+                <h3>抗日根据地的建设</h3>
+                <p><strong>考查重点：</strong>政治、经济、思想三方面建设内容及意义。</p>
+                <p><strong>答题要点：</strong>政治（三三制）、经济（减租减息+大生产）、思想（整风）。</p>
+                <p><strong>材料来源：</strong>可能引用根据地建设史料或毛泽东著作。</p>
+            </div>
+
+            <div class="exam-card">
+                <span class="exam-type">论述题核心</span>
+                <h3>中共在抗战中的中流砥柱作用</h3>
+                <p><strong>考查重点：</strong>全面抗战路线、持久战战略、根据地建设、牵制日军等。</p>
+                <p><strong>论证角度：</strong>政治领导、军事作战、根据地建设、精神支柱。</p>
+                <p><strong>必背要点：</strong>提出全面抗战路线和持久战战略；建立敌后抗日根据地；牵制大量日军。</p>
+            </div>
+
+            <div class="exam-card">
+                <span class="exam-type">综合题趋势</span>
+                <h3>敌后战场与正面战场的配合</h3>
+                <p><strong>考查重点：</strong>两个战场的形成、特点、相互关系、共同作用。</p>
+                <p><strong>核心观点：</strong>两个战场相互配合，形成战略夹击，共同构成抗日战争的整体。</p>
+                <p><strong>注意：</strong>评价要客观，肯定国民党正面战场的贡献，突出共产党敌后战场的作用。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 99. AI学伴 -->
+    <div style="padding:40px 20px;max-width:900px;margin:0 auto">
+      <h2 class="section-title">🤖 AI学伴 · 智能辅导</h2>
+      <div style="background:linear-gradient(135deg,#fef9f3,#fff);border:2px solid #8b4513;border-radius:16px;padding:28px;text-align:center">
+        <div style="font-size:56px;margin-bottom:12px">🎓</div>
+        <h3 style="color:#8b4513;font-size:20px;margin-bottom:8px">关于「敌后战场的抗战」，有什么想问的？</h3>
+        <p style="color:#6b7280;font-size:14px;margin-bottom:20px">AI学伴可以帮你：梳理知识脉络、解答疑惑、分析考点、讲解难点</p>
+        <div style="background:#fef9f3;border-radius:12px;padding:18px;margin-bottom:16px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto">
+          <p style="font-size:13px;color:#8b4513;margin-bottom:8px"><strong>💬 可以这样问：</strong></p>
+          <p style="font-size:13px;color:#6b7280;margin-bottom:4px">• 敌后战场与正面战场的关系是什么？</p>
+          <p style="font-size:13px;color:#6b7280;margin-bottom:4px">• 平型关大捷的历史意义是什么？</p>
+          <p style="font-size:13px;color:#6b7280;margin-bottom:4px">• 百团大战为什么能振奋全国军民的信心？</p>
+          <p style="font-size:13px;color:#6b7280">• 中共在抗战中的中流砥柱作用体现在哪些方面？</p>
+        </div>
+        <button onclick="alert('AI学伴功能即将上线，敬请期待！')" style="background:#8b4513;color:white;border:none;padding:14px 32px;border-radius:24px;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(139,69,19,.3)">🤖 提问AI学伴</button>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="footer-content">
+            <h3>📚 初中历史课堂</h3>
+            <p>八年级上册 · 第六单元 中华民族的抗日战争</p>
+            <p>第6单元第4课 · 敌后战场的抗战</p>
+            <p style="margin-top: 20px; opacity: 0.8;">© 2024 初中历史课件 · 精心设计用于历史教学</p>
+            <p style="opacity: 0.7; font-size: 14px;">上一节：<a href="../6.3_bfzz/bfzz.html" style="color: #93c5fd;">正面战场的抗战</a> | 
+               下一节：<a href="../6.5_krsh/krsh.html" style="color: #93c5fd;">抗日战争的胜利</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 滚动进度条
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // 滚动到指定区域
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // 初始化测验功能
+        function initQuiz() {
+            const questions = document.querySelectorAll('.quiz-question');
+            
+            questions.forEach(question => {
+                const options = question.querySelectorAll('.quiz-option');
+                const correctAnswer = question.getAttribute('data-correct');
+                const correctFeedback = question.querySelector('.feedback.correct');
+                const incorrectFeedback = question.querySelector('.feedback.incorrect');
+                
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        // 如果已经作答，不再重复
+                        if (question.classList.contains('answered')) {
+                            return;
+                        }
+                        
+                        const selectedOption = this.getAttribute('data-option');
+                        
+                        // 标记已作答
+                        question.classList.add('answered');
+                        
+                        // 显示正确答案
+                        options.forEach(opt => {
+                            if (opt.getAttribute('data-option') === correctAnswer) {
+                                opt.classList.add('correct');
+                            }
+                        });
+                        
+                        // 检查答案
+                        if (selectedOption === correctAnswer) {
+                            this.classList.add('correct');
+                            correctFeedback.classList.add('show');
+                        } else {
+                            this.classList.add('incorrect');
+                            incorrectFeedback.classList.add('show');
+                        }
+                    });
+                });
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initQuiz();
+            updateScrollProgress();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第九单元：中华人民共和国的成立和巩固 - 初中八年级历史</title>
+    <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8b4513;
+            --primary-light: #cd853f;
+            --primary-dark: #6b3410;
+            --secondary: #d4a574;
+            --accent: #e76f51;
+            --bg-light: #faf7f2;
+            --bg-card: #ffffff;
+            --text-dark: #2c1810;
+            --text-muted: #8b7355;
+            --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+            --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+            --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.16);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        .brand-bar { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-md); }
+        .brand-logo { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; }
+
+        .progress-container { background: white; padding: 12px 20px; border-bottom: 1px solid rgba(139,69,19,0.1); }
+        .progress-inner { max-width: 1200px; margin: 0 auto; }
+        .progress-info { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; }
+        .progress-track { height: 6px; background: #e8e0d5; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 75%; transition: width 0.3s ease; }
+
+        .nav-bar { background: white; padding: 12px 20px; border-bottom: 1px solid rgba(139,69,19,0.1); position: sticky; top: 48px; z-index: 999; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 8px; overflow-x: auto; }
+        .nav-btn { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: all 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+        .nav-btn:hover { background: var(--bg-light); color: var(--primary); }
+        .nav-center { font-weight: 600; color: var(--primary); margin: 0 auto; }
+
+        .hero-section { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-light) 100%); color: white; padding: 60px 20px 80px; text-align: center; position: relative; overflow: hidden; }
+        .hero-section::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .hero-icon { font-size: 56px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 16px; }
+        .hero-title { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .hero-subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 32px; }
+        .hero-cards { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+        .hero-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 20px 24px; min-width: 140px; }
+        .hero-card-icon { font-size: 28px; margin-bottom: 8px; }
+        .hero-card-label { font-size: 0.8rem; opacity: 0.9; margin-bottom: 4px; }
+        .hero-card-value { font-size: 1.1rem; font-weight: 600; }
+
+        .knowledge-map-section { background: white; padding: 40px 20px; margin-top: -40px; position: relative; z-index: 10; border-radius: 24px 24px 0 0; }
+        .knowledge-map-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .knowledge-map-title { font-size: 1.2rem; color: var(--primary); margin-bottom: 24px; font-weight: 600; }
+
+        .anchor-section { padding: 40px 20px; background: var(--bg-light); }
+        .anchor-inner { max-width: 1200px; margin: 0 auto; }
+        .anchor-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .anchor-title h2 { font-size: 1.3rem; color: var(--primary); }
+        .anchor-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .anchor-btn { background: white; border: 2px solid var(--secondary); border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: all 0.3s; font-size: 0.95rem; color: var(--text-dark); text-align: left; display: flex; align-items: center; gap: 10px; }
+        .anchor-btn:hover { border-color: var(--primary); background: var(--bg-light); transform: translateY(-2px); }
+        .anchor-btn i { color: var(--primary); }
+
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .section { margin-bottom: 48px; }
+        .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: var(--shadow-md); }
+        .section-title-text h2 { font-size: 1.4rem; color: var(--primary); font-weight: 700; }
+        .section-title-text p { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+        .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .objective-card { background: white; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); border-left: 4px solid var(--primary); }
+        .objective-card h3 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+        .objective-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .knowledge-card { background: white; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); transition: all 0.3s; }
+        .knowledge-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .knowledge-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .knowledge-card p { color: var(--text-dark); font-size: 0.95rem; line-height: 1.8; }
+
+        .lesson-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .lesson-card { background: white; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: all 0.3s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .lesson-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .lesson-card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+        .lesson-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        .lesson-card .go-link { color: var(--primary); font-weight: 600; margin-top: 12px; display: inline-block; }
+
+        .prequiz-section { background: white; border-radius: 20px; padding: 32px; box-shadow: var(--shadow-sm); margin-bottom: 48px; }
+        .prequiz-section h2 { color: var(--primary); margin-bottom: 24px; font-size: 1.4rem; }
+        .quiz-question { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #f0f0f0; }
+        .quiz-question:last-child { border-bottom: none; margin-bottom: 0; }
+        .quiz-question h4 { color: var(--text-dark); margin-bottom: 16px; font-size: 1rem; font-weight: 600; }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .quiz-option { padding: 14px 18px; background: var(--bg-light); border: 2px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 0.95rem; display: flex; align-items: center; gap: 12px; }
+        .quiz-option:hover { border-color: var(--primary-light); background: white; }
+        .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+        .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+        .opt-letter { width: 28px; height: 28px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; flex-shrink: 0; }
+        .quiz-option.correct .opt-letter { background: #10b981; }
+        .quiz-option.wrong .opt-letter { background: #ef4444; }
+        .feedback { margin-top: 12px; padding: 14px 18px; border-radius: 10px; font-size: 0.9rem; display: none; line-height: 1.6; }
+        .feedback.show { display: block; }
+        .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+        .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+        .exam-section { background: linear-gradient(135deg, #faf7f2, #f5ede3); border-radius: 20px; padding: 32px; margin-bottom: 48px; }
+        .exam-section h2 { color: var(--primary); margin-bottom: 24px; font-size: 1.4rem; }
+        .exam-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .exam-card { background: white; border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); }
+        .exam-card h4 { color: var(--primary); margin-bottom: 8px; font-size: 1rem; }
+        .exam-card p { font-size: 0.9rem; line-height: 1.6; color: var(--text-dark); }
+        .exam-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 6px; }
+        .badge-must { background: #fee2e2; color: #991b1b; }
+        .badge-important { background: #fef3c7; color: #92400e; }
+
+        .footer { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; padding: 40px 20px; text-align: center; }
+        .footer p { opacity: 0.9; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; }
+        .footer-links a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.8rem; }
+            .hero-cards { flex-direction: column; align-items: center; }
+            .nav-center { display: none; }
+            .knowledge-grid, .objectives-grid, .exam-grid, .lesson-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ① 品牌栏 -->
+<div class="brand-bar">
+    <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+</div>
+
+<!-- ② 进度条 -->
+<div class="progress-container">
+    <div class="progress-inner">
+        <div class="progress-info"><span>第九单元</span><span>学习进度 75%</span></div>
+        <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+</div>
+
+<!-- ③ 导航栏 -->
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
+        <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
+        <span class="nav-center">八年级下册 · 第九单元</span>
+        <a href="../08_d8jd/d8jd.html" class="nav-btn"><i class="fas fa-arrow-left"></i> 上一单元</a>
+        <a href="../10_d10shz/d10shz.html" class="nav-btn">下一单元 <i class="fas fa-arrow-right"></i></a>
+    </div>
+</nav>
+
+<!-- ④ Hero区 -->
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-icon">🇨🇳</div>
+        <div class="hero-badge">初中历史八年级下册 · 第九单元</div>
+        <h1 class="hero-title">中华人民共和国的成立和巩固</h1>
+        <p class="hero-subtitle">1949-1953年 · 新中国诞生与政权巩固</p>
+        <div class="hero-cards">
+            <div class="hero-card">
+                <div class="hero-card-icon">📅</div>
+                <div class="hero-card-label">时间跨度</div>
+                <div class="hero-card-value">1949-1953</div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">📖</div>
+                <div class="hero-card-label">课时数量</div>
+                <div class="hero-card-value">3课时</div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">🔑</div>
+                <div class="hero-card-label">核心事件</div>
+                <div class="hero-card-value">开国大典·抗美援朝·土改</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SVG知识图 -->
+<section class="knowledge-map-section">
+    <div class="knowledge-map-inner">
+        <div class="knowledge-map-title"><i class="fas fa-sitemap"></i> 单元知识结构图</div>
+        <svg viewBox="0 0 900 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+            <rect width="900" height="280" fill="#faf7f2" rx="16"/>
+            <circle cx="450" cy="140" r="60" fill="url(#centerGrad)" stroke="#8b4513" stroke-width="3"/>
+            <text x="450" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="white">新中国成立</text>
+            <text x="450" y="150" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">与巩固</text>
+            <rect x="50" y="50" width="160" height="65" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="130" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">开国大典</text>
+            <text x="130" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">1949 新中国诞生</text>
+            <line x1="210" y1="82" x2="390" y2="120" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <rect x="50" y="165" width="160" height="65" rx="12" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="130" y="195" text-anchor="middle" font-size="13" font-weight="bold" fill="white">政治协商</text>
+            <text x="130" y="215" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">政协·共同纲领</text>
+            <line x1="210" y1="197" x2="390" y2="155" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <rect x="690" y="50" width="160" height="65" rx="12" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+            <text x="770" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="white">抗美援朝</text>
+            <text x="770" y="100" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">1950-1953 保家卫国</text>
+            <line x1="690" y1="82" x2="510" y2="120" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <rect x="690" y="165" width="160" height="65" rx="12" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+            <text x="770" y="195" text-anchor="middle" font-size="13" font-weight="bold" fill="white">土地改革</text>
+            <text x="770" y="215" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.9)">1950-1952 废除封建</text>
+            <line x1="690" y1="197" x2="510" y2="155" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <defs>
+                <linearGradient id="centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8b4513"/>
+                    <stop offset="100%" style="stop-color:#cd853f"/>
+                </linearGradient>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+                </marker>
+            </defs>
+        </svg>
+    </div>
+</section>
+
+<!-- ⑤ 锚点 -->
+<section class="anchor-section" id="anchors">
+    <div class="anchor-inner">
+        <div class="anchor-title"><i class="fas fa-anchor" style="color: var(--primary); font-size: 1.3rem;"></i><h2>快速导航</h2></div>
+        <div class="anchor-points">
+            <button class="anchor-btn" onclick="scrollToSection('objectives')"><i class="fas fa-bullseye"></i> 单元目标</button>
+            <button class="anchor-btn" onclick="scrollToSection('overview')"><i class="fas fa-info-circle"></i> 时代背景</button>
+            <button class="anchor-btn" onclick="scrollToSection('lessons')"><i class="fa-solid fa-landmark"></i> 课时导航</button>
+            <button class="anchor-btn" onclick="scrollToSection('prequiz')"><i class="fas fa-question-circle"></i> 单元测试</button>
+        </div>
+    </div>
+</section>
+
+<!-- 主内容 -->
+<main class="main-content">
+
+    <!-- ⑥ 单元目标 -->
+    <section class="section" id="objectives">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+            <div class="section-title-text"><h2>单元目标</h2><p>本单元学习重点与要求</p></div>
+        </div>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 了解背景</h3>
+                <p>了解中国人民政治协商会议召开、开国大典的史实，认识新中国成立的伟大历史意义。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 掌握过程</h3>
+                <p>掌握抗美援朝的背景、过程和胜利意义，理解抗美援朝是保家卫国的正义战争。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 认识意义</h3>
+                <p>认识土地改革的必要性，理解废除封建土地制度对解放农村生产力的重要意义。</p>
+            </div>
+            <div class="objective-card">
+                <h3><i class="fas fa-check-circle"></i> 分析评价</h3>
+                <p>综合分析新中国成立后巩固政权的三大举措及其历史作用，认识人民政权的力量。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 单元概述 -->
+    <section class="section" id="overview">
+        <div class="section-header">
+            <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+            <div class="section-title-text"><h2>时代背景</h2><p>新中国成立与巩固的历史脉络</p></div>
+        </div>
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <h3><i class="fas fa-flag"></i> 历史背景</h3>
+                <p>1949年10月1日，中华人民共和国成立，中国人民从此站起来了。但新生政权面临国内外敌人的威胁：国内国民党残余势力还在破坏，国外以美国为首的帝国主义对新中国实行孤立和遏制政策。</p>
+            </div>
+            <div class="knowledge-card">
+                <h3><i class="fas fa-route"></i> 历程演变</h3>
+                <p><strong>开国大典</strong>（1949）：政协召开→共同纲领→开国大典<br><strong>抗美援朝</strong>（1950-1953）：朝鲜战争爆发→志愿军入朝→五次战役→停战协定<br><strong>土地改革</strong>（1950-1952）：颁布土地改革法→废除地主阶级封建剥削土地制度→农民翻身做主人</p>
+            </div>
+            <div class="knowledge-card">
+                <h3><i class="fas fa-lightbulb"></i> 历史意义</h3>
+                <p>新中国成立标志着中国新民主主义革命的胜利，中国人民从此成为国家的主人。抗美援朝和土地改革巩固了新生政权，为社会主义建设奠定了基础。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课时导航 -->
+    <section class="section" id="lessons">
+        <div class="section-header">
+            <div class="section-icon"><i class="fa-solid fa-landmark"></i></div>
+            <div class="section-title-text"><h2>课时导航</h2><p>点击卡片开始学习</p></div>
+        </div>
+        <div class="lesson-cards">
+            <a href="9.1_zgcf/zgcf.html" class="lesson-card">
+                <h3><i class="fas fa-star"></i> 第1课 中华人民共和国成立</h3>
+                <p><strong>时间：</strong>1949年</p>
+                <p><strong>核心：</strong>政协会议、共同纲领、开国大典</p>
+                <p><strong>意义：</strong>中国人民从此站起来了</p>
+                <p class="go-link"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+            <a href="9.2_zgxg/zgxg.html" class="lesson-card">
+                <h3><i class="fas fa-shield-alt"></i> 第2课 抗美援朝</h3>
+                <p><strong>时间：</strong>1950-1953年</p>
+                <p><strong>核心：</strong>志愿军入朝、五次战役、黄继光、邱少云</p>
+                <p><strong>意义：</strong>保卫新中国、提高国际地位</p>
+                <p class="go-link"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+            <a href="9.3_tgzz/tgzz.html" class="lesson-card">
+                <h3><i class="fas fa-seedling"></i> 第3课 土地改革</h3>
+                <p><strong>时间：</strong>1950-1952年</p>
+                <p><strong>核心：</strong>土地改革法、废除封建剥削、农民翻身</p>
+                <p><strong>意义：</strong>解放农村生产力</p>
+                <p class="go-link"><i class="fas fa-arrow-right"></i> 开始学习</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section" id="prequiz">
+        <div class="prequiz-section">
+            <h2><i class="fas fa-question-circle"></i> 单元前测</h2>
+            <div class="quiz-question">
+                <h4>1. 中华人民共和国成立的时间是？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1949年9月是政协会议召开的时间，不是开国大典。">A. 1949年9月</button>
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1949年10月1日，开国大典在北京天安门广场隆重举行，中华人民共和国正式成立。">B. 1949年10月1日</button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1950年是抗美援朝战争开始的年份。">C. 1950年</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="quiz-question">
+                <h4>2. 抗美援朝战争中，中国人民志愿军的司令员是？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！彭德怀担任中国人民志愿军司令员兼政治委员，率领志愿军入朝作战。">A. 彭德怀</button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。林彪没有担任志愿军司令员。">B. 林彪</button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。朱德是解放军总司令，不是志愿军司令员。">C. 朱德</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="quiz-question">
+                <h4>3. 土地改革中废除的是什么土地制度？</h4>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。土地改革废除的是封建土地制度，不是资本主义土地制度。">A. 资本主义土地制度</button>
+                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！土地改革废除了地主阶级封建剥削的土地制度，实行农民的土地所有制。">B. 地主阶级封建剥削的土地制度</button>
+                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。土地改革废除的是封建土地制度，不是社会主义公有制。">C. 社会主义公有制</button>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑩ 必考分析 -->
+    <section class="section" id="exam">
+        <div class="exam-section">
+            <h2><i class="fas fa-chart-line"></i> 单元必考分析</h2>
+            <div class="exam-grid">
+                <div class="exam-card">
+                    <h4><span class="exam-badge badge-must">必考</span> 开国大典</h4>
+                    <p><strong>考点：</strong>1949年10月1日，新中国成立，中国人民从此站起来了。</p>
+                    <p style="margin-top:8px;"><strong>考法：</strong>选择题直接考查时间或历史意义。</p>
+                </div>
+                <div class="exam-card">
+                    <h4><span class="exam-badge badge-must">必考</span> 政治协商会议</h4>
+                    <p><strong>考点：</strong>1949年9月，第一届中国人民政治协商会议在北平召开，通过《共同纲领》。</p>
+                    <p style="margin-top:8px;"><strong>考法：</strong>选择题考查内容或意义。</p>
+                </div>
+                <div class="exam-card">
+                    <h4><span class="exam-badge badge-important">常考</span> 抗美援朝</h4>
+                    <p><strong>考点：</strong>1950-1953年，彭德怀率志愿军入朝，黄继光、邱少云等英雄事迹。</p>
+                    <p style="margin-top:8px;"><strong>考法：</strong>选择题考查原因、英雄人物或意义。</p>
+                </div>
+                <div class="exam-card">
+                    <h4><span class="exam-badge badge-important">常考</span> 土地改革</h4>
+                    <p><strong>考点：</strong>1950年颁布《土地改革法》，废除封建剥削土地制度，实行农民土地所有制。</p>
+                    <p style="margin-top:8px;"><strong>考法：</strong>选择题或材料题考查内容或意义。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <p>初中历史八年级下册 · 第九单元 中华人民共和国的成立和巩固</p>
+    <div class="footer-links">
+        <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+        <a href="../../index.html"><i class="fas fa-list"></i> 章节目录</a>
+    </div>
+    <p style="margin-top:20px;opacity:0.7;font-size:0.85rem;">© 2026 TeachAny 互动课件 v7.14</p>
+</footer>
+
+<script>
+function scrollToSection(id) {
+    const element = document.getElementById(id);
+    if (element) { element.scrollIntoView({ behavior: "smooth", block: "start" }); }
+}
+
+function initPrequiz() {
+    const questions = document.querySelectorAll(".quiz-question");
+    questions.forEach(q => {
+        const options = q.querySelectorAll(".quiz-option");
+        const feedback = q.querySelector(".feedback");
+        options.forEach(opt => {
+            opt.addEventListener("click", function() {
+                const isCorrect = this.dataset.correct === "true";
+                const feedbackText = this.dataset.feedback;
+                options.forEach(o => {
+                    if (o.dataset.correct === "true") o.classList.add("correct");
+                    else if (o === this && !isCorrect) o.classList.add("wrong");
+                });
+                feedback.innerHTML = feedbackText;
+                feedback.className = "feedback show " + (isCorrect ? "correct-fb" : "wrong-fb");
+            });
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    initPrequiz();
+    window.addEventListener("scroll", function() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        document.querySelector(".progress-fill").style.width = progress + "%";
+    });
+});
+</script>
+
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

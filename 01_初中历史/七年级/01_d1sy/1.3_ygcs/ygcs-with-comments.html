@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<!-- 
+  TeachAny 互动课件模板 - 带详细中文注释的学习版本
+  课件：第3课 远古传说——炎黄联盟与禅让制
+  作者：TeachAny
+  版本：v7.14.0
+  
+  本文件包含详细注释，帮助理解代码结构
+  实际使用时请使用 ygcs.html（无注释版本）
+-->
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- ==================== TeachAny 元数据（必须） ==================== -->
+  <!-- 这些 meta 标签帮助 TeachAny 系统识别课件信息 -->
+  <meta name="course-id" content="hist-ancient-legends-7">  <!-- 唯一课件ID -->
+  <meta name="course-title" content="第3课 远古传说——炎黄联盟与禅让制">  <!-- 课件标题 -->
+  <meta name="course-subject" content="history">  <!-- 学科：history/geography/biology等 -->
+  <meta name="course-grade" content="middle-7">  <!-- 年级：middle-7表示初中7年级 -->
+  <meta name="teachany-node" content="hist-ancient-legends">  <!-- 知识点节点ID -->
+  <meta name="author" content="TeachAny">  <!-- 作者 -->
+  <meta name="version" content="v7.14.0">  <!-- TeachAny版本 -->
+  
+  <!-- ==================== 样式表引用 ==================== -->
+  <!-- 共享样式：包含所有课件的通用样式（品牌栏、导航栏、按钮等） -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  
+  <!-- 外部CDN：Font Awesome 图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>第3课 远古传说 | 初中7年级历史</title>
+  
+  <style>
+    /* ==================== 本课件专属样式 ==================== */
+    /* 注意：尽量使用 shared/styles.css 中的通用样式 */
+    /* 只有本课件特殊的样式才写在这里 */
+    
+    /* SVG 时间线容器样式 */
+    .timeline-svg {
+      background: #fafcfb;        /* 浅米色背景 */
+      border: 1px solid #e8dcc8; /* 浅棕色边框 */
+      border-radius: 8px;         /* 圆角 */
+      padding: 20px;              /* 内边距 */
+    }
+    
+    /* 对比表格样式 */
+    .comparison-table {
+      width: 100%;               /* 占满容器宽度 */
+      border-collapse: collapse;   /* 边框合并（避免双边框） */
+      margin: 20px 0;            /* 上下边距20px */
+      font-size: 14px;           /* 字体大小 */
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #8b4513, #cd853f); /* 棕色渐变背景 */
+      color: white;               /* 白色文字 */
+      padding: 12px;             /* 内边距 */
+      text-align: center;         /* 文字居中 */
+    }
+    
+    .comparison-table td {
+      padding: 10px;             /* 单元格内边距 */
+      border: 1px solid #e8dcc8; /* 浅棕色边框 */
+      text-align: center;         /* 文字居中 */
+    }
+    
+    .comparison-table tr:nth-child(even) {
+      background: #fdf5e6;       /* 偶数行浅色背景（斑马纹） */
+    }
+
+    /* ==================== 答案讲解区域样式 ==================== */
+    .answer-explanation {
+      background: #fffbeb;        /* 浅黄色背景 */
+      border-left: 4px solid #f59e0b; /* 左侧橙色边框（视觉提示） */
+      border-radius: 0 8px 8px 0;   /* 右侧圆角 */
+      padding: 16px 20px;        /* 内边距 */
+      margin-top: 12px;          /* 上边距 */
+      font-size: 14px;           /* 字体大小 */
+      color: #78350f;           /* 深棕色文字 */
+      display: none;              /* 默认隐藏（点击后才显示） */
+    }
+    
+    .answer-explanation.show {
+      display: block;             /* 添加.show类后显示 */
+    }
+    
+    .answer-explanation .explain-title {
+      font-weight: 700;          /* 粗体 */
+      font-size: 15px;           /* 稍大字体 */
+      margin-bottom: 8px;        /* 下边距 */
+      color: #92400e;            /* 深橙色 */
+    }
+
+    /* ==================== 难度徽章样式 ==================== */
+    /* 用于标记题目的难度级别 */
+    .difficulty-badge {
+      display: inline-flex;       /* 行内弹性布局 */
+      align-items: center;        /* 垂直居中 */
+      gap: 4px;                 /* 图标与文字间距 */
+      padding: 2px 8px;         /* 内边距（上下2px，左右8px） */
+      border-radius: 4px;        /* 圆角 */
+      font-size: 11px;           /* 小字体 */
+      font-weight: 700;          /* 粗体 */
+      margin-left: 8px;          /* 左间距 */
+    }
+    
+    /* 不同难度的颜色方案 */
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }  /* 蓝色系：基础题 */
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }  /* 紫色系：提高题 */
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }  /* 红色系：挑战题 */
+
+    /* ==================== SVG容器样式 ==================== */
+    .svg-container {
+      background: #fafcfb;        /* 浅米色背景 */
+      border: 1px solid #e8dcc8; /* 浅棕色边框 */
+      border-radius: 8px;         /* 圆角 */
+      padding: 20px;              /* 内边距 */
+      margin: 20px 0;            /* 上下边距 */
+      text-align: center;          /* 内容居中 */
+    }
+    .svg-container svg { 
+      max-width: 100%;            /* SVG最大宽度不超过容器 */
+      height: auto;              /* 高度自动（保持宽高比） */
+    }
+    .svg-caption {
+      margin-top: 12px;          /* 上边距 */
+      font-size: 14px;           /* 字体大小 */
+      color: #8b7355;           /* 棕色文字 */
+      text-align: center;         /* 居中 */
+    }
+
+    /* ==================== 自定义问题输入样式 ==================== */
+    #learner-question-input {
+      width: 100%;               /* 占满容器宽度 */
+      border-radius: 12px;       /* 圆角 */
+      border: 1px solid #d2b48c; /* 浅棕色边框 */
+      background: #fffaf0;       /* 浅米色背景 */
+      color: #2c3e50;           /* 深灰色文字 */
+      padding: 12px 14px;       /* 内边距 */
+      font-size: 16px;           /* 字体大小 */
+      margin-top: 8px;           /* 上边距 */
+    }
+    #anchor-feedback {
+      margin-top: 14px;          /* 上边距 */
+      padding: 14px;             /* 内边距 */
+      border-radius: 12px;       /* 圆角 */
+      background: rgba(245,158,11,0.1); /* 半透明橙色背景 */
+      border: 1px solid rgba(245,158,11,0.28); /* 半透明橙色边框 */
+      color: #92400e;            /* 深橙色文字 */
+    }
+
+    /* ==================== 考点卡片样式 ==================== */
+    .exam-card {
+      border-radius: 12px;       /* 圆角 */
+      padding: 18px;             /* 内边距 */
+      margin-bottom: 16px;       /* 下边距 */
+    }
+    .exam-card-header { 
+      display: flex;              /* 弹性布局（横向排列） */
+      align-items: center;        /* 垂直居中 */
+      gap: 8px;                 /* 子元素间距 */
+      margin-bottom: 10px;        /* 下边距 */
+    }
+    .exam-card-num {
+      width: 24px;               /* 固定宽度 */
+      height: 24px;              /* 固定高度 */
+      border-radius: 50%;         /* 圆形（50%圆角） */
+      display: inline-flex;        /* 行内弹性布局 */
+      align-items: center;        /* 垂直居中 */
+      justify-content: center;    /* 水平居中 */
+      font-size: 12px;           /* 字体大小 */
+      font-weight: 700;           /* 粗体 */
+      color: white;               /* 白色文字 */
+    }
+    .exam-tag {
+      color: white;               /* 白色文字 */
+      padding: 2px 8px;         /* 内边距 */
+      border-radius: 4px;        /* 圆角 */
+      font-size: 10px;           /* 小字体 */
+      font-weight: 700;           /* 粗体 */
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ==================== 品牌栏（必须） ==================== -->
+  <!-- 所有TeachAny课件都必须包含品牌栏 -->
+  <div class="brand-bar">
+    <div class="container">
+      <div class="brand-logo">
+        <i class="fa-solid fa-landmark"></i>  <!-- Font Awesome 图标 -->
+        <span>TeachAny · 初中历史</span>  <!-- 品牌名称 -->
+      </div>
+      <div class="brand-tag">互动课件 v7.14</div>  <!-- 版本标签 -->
+    </div>
+  </div>
+  
+  <!-- ==================== 进度条（必须） ==================== -->
+  <!-- 显示学习进度，由JavaScript动态更新 -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>  <!-- 进度填充条 -->
+  </div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>  <!-- 进度文字 -->
+  
+  <!-- ==================== 导航栏（必须） ==================== -->
+  <!-- 提供课件间的导航功能 -->
+  <nav class="nav-bar"><div class="nav-inner"><div class="nav-left" style="gap: 28px;"><a href="../../index.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-house"></i> 首页</a></div><div class="nav-left-center" style="gap: 28px;"><a href="../d1sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a></div><div class="nav-center">第一单元：史前时期</div><div class="nav-right" style="gap: 28px;"><a href="../1.2_nysh/nysh.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-chevron-left"></i> 上一节</a><a href="../../02_d2sy/d2sy.html" class="nav-btn">下一单元 <i class="fa-solid fa-chevron-right"></i></a></div></div></nav>
+  
+  <!-- ==================== Hero区（必须） ==================== -->
+  <!-- 课件的标题区域，包含课程标题、课标要求等信息 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-landmark-open"></i> 七年级历史 · 第一单元
+      </div>
+      <h1>
+        第3课 远古传说——炎黄联盟与禅让制
+        <span>Ancient Legends: Yan Emperor, Yellow Emperor, and Abdication</span>  <!-- 英文副标题 -->
+      </h1>
+      <p class="hero-subtitle">
+        📖 课标要求：知道炎帝、黄帝的传说，理解华夏族的形成；了解尧舜禹的禅让制<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ==================== Hero知识结构图（推荐） ==================== -->
+  <!-- 使用SVG内嵌，避免外部图片链接404问题 -->
+  <section class="section" id="hero-infographic" 
+           data-tts="hero-infographic"  <!-- TTS语音朗读标记 -->
+           data-tsh="知识结构主图 - 先看完整学习地图">  <!-- 学习提示 -->
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <!-- SVG: 可视化的知识结构图 -->
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#fafcfb"/>
+        <!-- 中心主题：远古传说 -->
+        <circle cx="400" cy="150" r="60" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">远古传说</text>
+        
+        <!-- 四个分支：炎黄联盟、黄帝发明、禅让制度、华夏形成 -->
+        <rect x="50" y="50" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="85" text-anchor="middle" font-size="14" fill="white">炎黄联盟</text>
+        <line x1="170" y1="80" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="225" text-anchor="middle" font-size="14" fill="white">黄帝发明</text>
+        <line x1="170" y1="220" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="50" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="85" text-anchor="middle" font-size="14" fill="white">禅让制度</text>
+        <line x1="630" y1="80" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="630" y="190" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="225" text-anchor="middle" font-size="14" fill="white">华夏形成</text>
+        <line x1="630" y1="220" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- SVG箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs></svg>
+      <figcaption style="margin-top: 10px; color: #8b7355; font-size: 14px; text-align: center;">图3-1 远古传说知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ==================== 主内容区 ==================== -->
+  <main class="container">
+
+    <!-- ==================== Section 1: 问题锚点（增强版） ==================== -->
+    <!-- 问题锚点：让学生选择关心的问题，后续内容围绕该问题展开 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 探究问题
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <!-- 预设问题按钮 -->
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="炎帝和黄帝是真的吗？">
+            🤔 炎帝和黄帝是真的吗？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="禅让制是什么制度？">
+            👑 禅让制是什么制度？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="为什么黄帝是人文初祖？">
+            🌟 为什么黄帝是人文初祖？
+          </button>
+        </div>
+
+        <!-- 自定义问题输入 -->
+        <label style="display:block; margin-top: 18px; color: var(--text-light);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+
+        <!-- 动态内容展示区：点击按钮后显示对应内容 -->
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--text-light); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+
+        <!-- 反馈区域 -->
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- ==================== Section 2: 学习目标 ==================== -->
+    <section class="section" id="objectives">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 学习目标
+      </h2>
+      <div class="card">
+        <!-- 清晰列出本课学习目标 -->
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道炎帝、黄帝的传说故事</li>
+          <li>✅ 了解炎黄联盟和华夏族的形成</li>
+          <li>✅ 理解黄帝被尊为"人文初祖"的原因</li>
+          <li>✅ 掌握尧舜禹的禅让制</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- ==================== Section 3: 前测 ==================== -->
+    <!-- 前测：学习前测试先备知识，难度递进 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title">
+        <span class="num">📝</span> 前测：检验先备知识
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】被尊为中华民族"人文初祖"的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <!-- onclick="checkAnswer(this, isCorrect, questionNum, optionLetter)" -->
+          <!-- this: 当前点击的元素 -->
+          <!-- isCorrect: 该选项是否正确 -->
+          <!-- questionNum: 题目编号（用于显示对应讲解） -->
+          <!-- optionLetter: 选项字母（用于记录答案） -->
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 炎帝（神农氏）教民耕种，但不是"人文初祖"！">
+            <span class="opt-letter">A</span> 炎帝
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 黄帝
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 大禹是治水英雄，建立了夏朝，但不是"人文初祖"！">
+            <span class="opt-letter">C</span> 大禹
+          </div>
+        </div>
+        <!-- 反馈区域：显示"答对/答错" -->
+        <div class="feedback" id="feedback-1"></div>
+        <!-- 详细讲解区域：答错后显示，答对后也可查看 -->
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 黄帝</strong></p>
+          <p style="margin-top: 8px;">黄帝被尊为中华民族的<strong>"人文初祖"</strong>，因为他有许多重要发明（养蚕缫丝、造车、造船、指南车等），对中华文明作出了开创性贡献。</p>
+          <!-- 知识拓展：对比表格 -->
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📚 知识拓展 · 炎帝 vs 黄帝</div>
+            <table class="comparison-table">
+              <tr><th>人物</th><th>称号</th><th>主要贡献</th></tr>
+              <tr><td><strong>炎帝</strong></td><td>神农氏</td><td>教民耕种、尝百草</td></tr>
+              <tr><td><strong>黄帝</strong></td><td>人文初祖</td><td>养蚕缫丝、造车、造船、指南车</td></tr>
+            </table>
+          </div>
+          <p style="margin-top: 10px; font-size: 13px; color: #666;">📖 人教版七上 第12页</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】炎黄联盟在什么战役后形成？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 涿鹿之战是炎黄联盟 vs 蚩尤，不是炎黄之间的战争！">
+            <span class="opt-letter">A</span> 涿鹿之战
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 阪泉之战
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 牧野之战是周武王 vs 商纣王，发生在商周时期，远晚于炎黄时代！">
+            <span class="opt-letter">C</span> 牧野之战
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 阪泉之战</strong></p>
+          <p style="margin-top: 8px;"><strong>阪泉之战</strong>：炎帝 vs 黄帝，黄帝胜利，炎帝归顺，形成<strong>炎黄联盟</strong>。</p>
+          <p style="margin-top: 6px;">之后炎黄联盟在<strong>涿鹿之战</strong>中击败蚩尤，逐渐形成<strong>华夏族</strong>。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】下列关于禅让制的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 禅让制是"传贤不传子"，不是父子相传！父子相傳是世袭制。">
+            <span class="opt-letter">A</span> 禅让制是父子相传
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ "通过战争夺取"是错的！禅让制是和平推举贤能之人。">
+            <span class="opt-letter">B</span> 禅让制通过战争夺取权力
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 禅让制是推举贤能之人担任首领
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 推举贤能之人担任首领</strong></p>
+          <p style="margin-top: 8px;"><strong>禅让制</strong>：尧 → 舜 → 禹，都是<strong>推举贤能之人</strong>担任部落联盟首领，体现了<strong>选贤任能</strong>的民主传统。</p>
+          <!-- 高频考点警示 -->
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">⚠️ 高频考点 · 易错警示</div>
+            <p><strong>考试陷阱：</strong>"禅让制是父子相传"→ <strong>错误❌</strong></p>
+            <p style="margin-top: 6px;"><strong>正确表述：</strong>"禅让制是推举贤能"✅ / "世袭制是父子相传"✅</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 挑战题4 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】传说与史实的区别是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ "传说都有考古证据"是错的！传说包含虚构成分，不一定有考古证据。">
+            <span class="opt-letter">A</span> 传说都有考古证据
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ "传说完全虚假"太绝对了！传说往往包含真实历史内核，只是被神话化了。">
+            <span class="opt-letter">B</span> 传说完全虚假，没有价值
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+            <span class="opt-letter">C</span> 传说包含真实历史内核，但被神话化
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 传说包含真实历史内核，但被神话化</strong></p>
+          <p style="margin-top: 8px;">传说与史实的关系：</p>
+          <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+            <li>✅ <strong>传说</strong>：口耳相传的故事，包含真实历史内核，但被<strong>神话化</strong></li>
+            <li>✅ <strong>史实</strong>：有考古证据或文献记载证明的<strong>真实历史</strong></li>
+            <li>✅ <strong>关系</strong>：传说 ≠ 完全虚假，可能包含真实历史的<strong>模糊记忆</strong></li>
+          </ul>
+          <!-- 对比表格 -->
+          <div class="data-table" style="margin-top: 12px;">
+            <table class="comparison-table">
+              <tr><th>项目</th><th>传说</th><th>史实</th></tr>
+              <tr><td>真实性</td><td>包含真实内核，但被神话化</td><td>有考古/文献证据</td></tr>
+              <tr><td>传递方式</td><td>口耳相传</td><td>文字记载/考古发现</td></tr>
+              <tr><td>价值</td><td>反映古人记忆和想象</td><td>真实还原历史</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== Section 4-6: 核心内容 ==================== -->
+    <!-- 这里省略了第4-6节的详细注释，结构与前面类似 -->
+    <!-- 每个核心内容节都包含：SVG图示 + 知识点讲解 + 概念框 -->
+
+    <!-- ==================== Section 7: 后测 ==================== -->
+    <!-- 后测：学习后测试，包含中考真题 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title">
+        <span class="num">✅</span> 后测：检验学习成果
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】黄帝被尊为？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ "皇帝"是秦朝秦始皇才开始用的称号，黄帝是传说人物，不是皇帝！">
+            <span class="opt-letter">A</span> 皇帝
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 人文初祖
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ "治水英雄"是大禹，不是黄帝！">
+            <span class="opt-letter">C</span> 治水英雄
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 人文初祖</strong></p>
+          <p style="margin-top: 8px;">黄帝被尊为中华民族的<strong>"人文初祖"</strong>，因为他的发明（养蚕缫丝、造车、造船等）开创了中国古代文明。</p>
+        </div>
+      </div>
+
+      <!-- 后测提高题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖南中考）下列关于禅让制的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 禅让制是"传贤不传子"，父子相传是世袭制！">
+            <span class="opt-letter">A</span> 禅让制是父子相传
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 禅让制是推举贤能之人担任首领
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ "通过战争夺取"是错的！禅让制是和平推举。">
+            <span class="opt-letter">C</span> 禅让制通过战争夺取权力
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 推举贤能之人担任首领</strong></p>
+          <p style="margin-top: 8px;"><strong>禅让制</strong>：尧 → 舜 → 禹，都是推举贤能之人担任部落联盟首领。</p>
+          <!-- 中考真题出处说明 -->
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📝 中考真题出处</div>
+            <p><strong>来源：</strong>2023年湖南省中考历史卷 · 第3题（改编）</p>
+            <p style="margin-top: 6px;"><strong>考点：</strong>禅让制的含义（传贤不传子）</p>
+            <p style="margin-top: 6px;"><strong>命题规律：</strong>中考常考查"禅让制 vs 世袭制"的区别！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 更多题目... -->
+    </section>
+
+    <!-- ==================== Section 8: 必考分析 ==================== -->
+    <!-- 总结高频考点、命题趋势 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 必考分析与考点总结
+      </h2>
+      
+      <div class="card">
+        <!-- 考点1:最高频 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：炎帝 vs 黄帝</strong>
+            <span style="background:#dc2626;color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">近10年考了8次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背对比：</strong></p>
+          <table class="comparison-table" style="margin-top:8px;">
+            <tr><th>人物</th><th>称号</th><th>主要贡献</th></tr>
+            <tr><td><strong>炎帝</strong></td><td>神农氏</td><td>教民耕种、尝百草</td></tr>
+            <tr><td><strong>黄帝</strong></td><td>人文初祖</td><td>养蚕缫丝、造车、造船</td></tr>
+          </table>
+          <p style="font-size:13px;color:#666;margin:6px 0 0 0;">💡 <strong>记忆口诀：</strong>"炎帝神农教耕种，黄帝发明人文祖"</p>
+        </div>
+
+        <!-- 更多考点... -->
+      </div>
+    </section>
+
+    <!-- ==================== AI学伴（TeachAny标准模块） ==================== -->
+    <section class="section" id="teachany-ai-tutor-card" 
+             data-tts="ai-tutor" 
+             data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>  <!-- AI学伴挂载点 -->
+    </section>
+    
+  </main>
+  
+  <!-- ==================== 页脚（必须） ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">
+        基于 TeachAny v7.14.0 | 适配人教版七年级历史课程标准
+      </p>
+    </div>
+  </footer>
+  
+  <!-- ==================== JavaScript ==================== -->
+  <!-- 引用共享脚本：包含COURSE_INFO、updateProgressBar()等通用函数 -->
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  
+  <!-- ==================== 本课件专属脚本 ==================== -->
+  <script>
+    /* ==================== 配置本课件信息 ==================== */
+    // COURSE_INFO 在 shared/scripts.js 中定义
+    COURSE_INFO.totalSections = 8;  // 本课件有8个Section
+    COURSE_INFO.currentSection = 1; // 默认显示第1节
+
+    /* ==================== TeachAny AI学伴配置 ==================== */
+    window.__TEACHANY_LEARNER_QUESTION__ = '';  // 存储学生选择的问题
+    window.__TEACHANY_TUTOR_CONFIG__ = {
+      courseId: 'hist-ancient-legends-7',        // 课件ID（与meta标签一致）
+      courseTitle: '第3课 远古传说——炎黄联盟与禅让制',
+      subject: 'history',                         // 学科
+      grade: '7',                                // 年级
+      nodeId: 'hist-ancient-legends',            // 知识点节点ID
+      lessonType: 'new-concept',                  // 课程类型：new-concept/review/exercise
+      // 获取学生问题（用于AI学伴个性化提示）
+      getLearnerQuestion: () => window.__TEACHANY_LEARNER_QUESTION__ || '',
+      // 获取当前上下文（用于AI学伴理解当前学习内容）
+      getContext: () => {
+        const current = document.querySelector('section.current-section') || 
+                       (location.hash ? document.querySelector(location.hash) : null);
+        return (current || document.body).innerText.slice(0, 3000);  // 限制3000字符
+      }
+    };
+
+    /* ==================== 问题锚点内容 ==================== */
+    // anchorContents 在 shared/scripts.js 中定义
+    // 存储每个问题的详细解答内容
+    anchorContents[1] = `
+      <h3>📍 问题1：炎帝和黄帝是真的吗？</h3>
+      <p>炎帝和黄帝是<strong>传说人物</strong>，不是完全虚构，也非完全史实：</p>
+      <ul style="padding-left: 20px; margin-top: 12px; line-height: 1.8;">
+        <li><strong>传说性质：</strong>口耳相传的故事，包含<strong>真实历史内核</strong>，但被神话化</li>
+        <li><strong>历史内核：</strong>可能反映了<strong>新石器时代晚期</strong>部落联盟的真实情况</li>
+        <li><strong>考古证据：</strong>目前<strong>没有直接考古证据</strong>证明炎帝黄帝真实存在</li>
+        <li><strong>文化意义：</strong>炎黄作为<strong>华夏族的人文始祖</strong>，已成为中华民族的文化认同符号</li>
+      </ul>
+      <p style="margin-top: 12px;">💡 <strong>考试答题：</strong>传说 ≠ 完全虚假，可能包含真实历史的模糊记忆。</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：禅让制是什么制度？</h3>
+      <p><strong>禅让制定义：</strong>推举<strong>贤能之人</strong>担任部落联盟首领的制度。</p>
+      <p><strong>核心特点：</strong><strong>传贤不传子</strong>（对比后来的世袭制：父子相传）。</p>
+      <p><strong>具体案例：</strong></p>
+      <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+        <li>✅ <strong>尧 → 舜</strong>：尧年老时，推举品德高尚的舜继承位置</li>
+        <li>✅ <strong>舜 → 禹</strong>：舜年老时，推举治水有功的禹继承位置</li>
+      </ul>
+      <p><strong>历史意义：</strong>体现了<strong>选贤任能</strong>的民主传统，是中华文明早期的政治智慧。</p>
+      <p style="margin-top: 12px;">🔥 <strong>考试陷阱：</strong>"禅让制是父子相传"→ <strong>错误❌</strong>；正确的表述是"世袭制是父子相传"✅</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：为什么黄帝是人文初祖？</h3>
+      <p>黄帝被尊为<strong>"人文初祖"</strong>，因为他的发明<strong>开创了中国古代文明</strong>：</p>
+      <ul style="padding-left: 20px; margin-top: 12px; line-height: 1.8;">
+        <li><strong>养蚕缫丝：</strong>黄帝的妻子<strong>嫘祖</strong>发明养蚕缫丝技术（衣）</li>
+        <li><strong>造车：</strong>发明<strong>车</strong>（"轩辕氏"的由来）（行）</li>
+        <li><strong>造船：</strong>发明<strong>船</strong>，方便水上交通（行）</li>
+        <li><strong>指南车：</strong>发明<strong>指南车</strong>（古代导航工具）（技术）</li>
+      </ul>
+      <p style="margin-top: 12px;">这些发明涵盖了<strong>衣食住行</strong>各个方面，奠定了中华文明的<strong>物质基础</strong>，因此黄帝被尊为<strong>"人文初祖"</strong>。</p>
+      <p style="margin-top: 8px;">🌟 <strong>记忆口诀：</strong>"黄帝发明多又多，养蚕造车造船磨。"</p>
+    `;
+
+    /* ==================== 问题锚点选择函数 ==================== */
+    function selectAnchor(btnElement, id) {
+      // 移除所有按钮的选中状态
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      // 添加当前按钮的选中状态
+      btnElement.classList.add('selected');
+      // 显示对应问题的详细内容
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      // 显示反馈信息
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) {
+        feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`;
+        feedback.style.display = 'block';
+      }
+      // 存储学生选择的问题（供AI学伴使用）
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    /* ==================== 自定义问题输入处理 ==================== */
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) {
+          feedback.textContent = `你的问题：${question}`;
+          feedback.style.display = 'block';
+        }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ==================== 答案检查函数 ==================== */
+    // 核心交互逻辑：支持反复尝试 + 答对了也能看错误选项讲解
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');       // 找到当前题目容器
+      const feedback = parent.querySelector('.feedback'); // 找到反馈区域
+      const explanation = document.getElementById('explanation-' + questionNum); // 找到讲解区域
+      const allOptions = parent.querySelectorAll('.quiz-option'); // 所有选项
+
+      // 先清除所有选项的高亮状态
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        // 答对了
+        element.classList.add('correct');               // 高亮正确选项（绿色）
+        if (feedback) {
+          feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+          feedback.className = 'feedback show correct-fb'; // 显示正确反馈
+        }
+        if (explanation) explanation.classList.add('show'); // 显示详细讲解
+        // 不禁用！答对了还能点错误选项看讲解
+
+      } else {
+        // 答错了
+        element.classList.add('wrong');                 // 高亮错误选项（红色）
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) {
+          feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+          feedback.className = 'feedback show wrong-fb'; // 显示错误反馈
+        }
+        // 不禁用！可以一直尝试，直到答对
+        
+        // 如果已经有人答对过（比如先点了错误选项，再点正确选项）
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ==================== 初始化函数 ==================== */
+    document.addEventListener('DOMContentLoaded', function() {
+      initAnchorContents();    // 初始化问题锚点内容（在shared/scripts.js中定义）
+      updateProgressBar();     // 更新进度条（在shared/scripts.js中定义）
+      console.log('📚 《远古传说》课件加载完成（v1.0：基于bjr.html框架）');
+    });
+  </script>
+
+  <!-- ==================== TeachAny标准模块脚本（必须） ==================== -->
+  <!-- 这些脚本提供AI学伴、TTS朗读、知识点提示等功能 -->
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>
+
+<!-- 
+  文件结构总结：
+  ==========
+  1. <head>：元数据 + 样式
+  2. <body>：
+     - 品牌栏（必须）
+     - 进度条（必须）
+     - 导航栏（必须）
+     - Hero区（必须）
+     - Hero知识结构图（推荐）
+     - 主内容区（8个Section）
+     - AI学伴（必须）
+     - 页脚（必须）
+  3. JavaScript：
+     - 共享脚本（shared/scripts.js）
+     - 课件专属脚本（配置 + 交互逻辑）
+  4. TeachAny标准模块脚本（必须）
+  
+  学习建议：
+  ==========
+  1. 先理解整体结构（HTML骨架）
+  2. 再学习样式系统（CSS变量 + 通用样式）
+  3. 最后研究交互逻辑（JavaScript函数）
+  4. 多参考已有课件（bjr.html、nysh.html）
+  5. 使用浏览器开发者工具（F12）实时调试
+-->

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="history-un-wto-9">
+  <meta name="course-title" content="13.3 不断发展的现代社会">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-9">
+  <meta name="teachany-node" content="history-bdfz">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14">
+  
+  <title>13.3 不断发展的现代社会 | 初中9年级历史</title>
+  
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ========== 历史科目专属配色 ========== */
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-dark: #6b3410;
+      --secondary: #d4a574;
+      --accent: #d4a017;
+      --bg-light: #faf7f2;
+      --bg-card: #ffffff;
+      --text-dark: #2c1810;
+      --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+      --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+      --border-color: #e8dcc8;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ========== ① 品牌栏 ========== */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+
+    /* ========== ② 进度条 ========== */
+    .progress-bar { height: 4px; background: #e8dcc8; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: var(--bg-light); }
+
+    /* ========== ③ 导航栏 ========== */
+    .nav-bar { background: white; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: rgba(139,69,19,0.1); }
+    .nav-btn.disabled { opacity: 0.4; pointer-events: none; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* ========== ④ Hero区 ========== */
+    .hero {
+      background: linear-gradient(135deg, #1a0a00 0%, var(--primary-dark) 30%, var(--primary) 70%, var(--primary-light) 100%);
+      color: white;
+      padding: 48px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; }
+    
+    /* SVG时间轴 */
+    .svg-container { margin: 20px auto 0; max-width: 900px; }
+    .svg-container svg { max-width: 100%; height: auto; display: block; }
+
+    /* ========== 主内容区 ========== */
+    .section { max-width: 960px; margin: 0 auto 28px; padding: 0 20px; }
+    .card { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid var(--border-color); }
+    .card-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 14px 24px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .card-header .tag { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .card-body { padding: 20px 24px; }
+
+    /* ========== ⑤ 探究问题锚点 ========== */
+    .anchor-box { background: #f5e6d3; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; font-size: 15px; line-height: 1.8; }
+    .anchor-box strong { color: var(--primary); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f5e6d3, #faf7f2); border: 2px solid #d4a574; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #e8d4bc, #f5e6d3); border-color: var(--primary); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    
+    .custom-question { margin-top: 16px; }
+    .custom-question label { display: block; margin-bottom: 6px; color: var(--primary); font-weight: 600; }
+    .custom-question input { width: 100%; border-radius: 12px; border: 1px solid #d4a574; background: #faf7f2; color: var(--text-dark); padding: 12px 14px; font-size: 15px; }
+    .custom-question input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,69,19,0.1); }
+    .anchor-display { margin-top: 16px; padding: 16px; border-radius: 12px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.15); min-height: 80px; }
+    .anchor-display h4 { color: var(--primary); margin-bottom: 8px; }
+
+    /* ========== ⑥ 学习目标 ========== */
+    .objectives-list { list-style: none; padding: 0; margin: 0; }
+    .objectives-list li { padding: 10px 16px; border-bottom: 1px solid var(--border-color); display: flex; gap: 10px; align-items: flex-start; }
+    .objectives-list li:last-child { border-bottom: none; }
+    .objectives-list li::before { content: '✅'; font-size: 14px; }
+
+    /* ========== ⑦ 前测 & ⑨ 后测 ========== */
+    .quiz-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-color); }
+    .quiz-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .quiz-header .quiz-badge { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .quiz-body { padding: 10px 16px; }
+    .quiz-item { margin-bottom: 18px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+    .quiz-question { background: #f5e6d3; padding: 12px 16px; font-size: 15px; line-height: 1.6; }
+    .quiz-question .star { color: var(--accent); margin-right: 4px; }
+    .quiz-question .exam-tag { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 6px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    .quiz-options { padding: 10px 16px; }
+    .quiz-option { display: flex; align-items: center; padding: 10px 14px; border-radius: 8px; cursor: pointer; margin-bottom: 8px; border: 2px solid transparent; transition: all 0.2s; background: white; }
+    .quiz-option:hover { background: #faf7f2; border-color: #d4a574; }
+    .quiz-option input { margin-right: 10px; accent-color: var(--primary); transform: scale(1.1); }
+    .quiz-option label { cursor: pointer; flex: 1; font-size: 14px; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.correct label { color: #065f46; font-weight: 600; }
+    .quiz-option.wrong { background: #fee2e2; border-color: #ef4444; }
+    .quiz-option.wrong label { color: #991b1b; }
+    .opt-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; font-size: 12px; font-weight: 700; margin-right: 10px; flex-shrink: 0; }
+    .quiz-feedback { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .quiz-feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .answer-explanation { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    
+    .check-btn { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; padding: 10px 28px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 700; transition: all 0.2s; margin-top: 16px; }
+    .check-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,69,19,0.25); }
+
+    /* ========== ⑧ 核心知识讲解 ========== */
+    .knowledge-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border-color); }
+    .knowledge-header { background: var(--primary); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; }
+    .knowledge-body { padding: 20px 24px; }
+    .knowledge-body p { margin: 0 0 12px; line-height: 1.8; }
+    .knowledge-body p:last-child { margin-bottom: 0; }
+    .highlight { background: #f5e6d3; padding: 2px 6px; border-radius: 4px; font-weight: 700; color: var(--primary); }
+    
+    /* 概念框 */
+    .concept-box { background: #faf7f2; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    
+    /* 对比表格 */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .compare-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px; text-align: center; }
+    .compare-table td { padding: 10px; border: 1px solid var(--border-color); text-align: center; }
+    .compare-table tr:nth-child(even) { background: #faf7f2; }
+
+    /* ========== ⑩ 必考分析与考点总结 ========== */
+    .exam-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .exam-card { border-radius: 12px; padding: 18px 20px; border-left: 4px solid var(--accent); background: #faf7f2; }
+    .exam-card h4 { color: var(--primary); margin: 0 0 8px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .exam-card p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--text-dark); }
+    .exam-tag { display: inline-flex; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 8px; }
+    .exam-tag.hot { background: #fee2e2; color: #dc2626; }
+    .exam-tag.high { background: #fef3c7; color: #92400e; }
+    .exam-tag.normal { background: #dbeafe; color: #1d4ed8; }
+
+    /* ========== AI学伴 ========== */
+    .ai-tutor { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; padding: 24px; color: white; margin-bottom: 20px; }
+    .ai-tutor h3 { margin: 0 0 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+    .ai-tutor p { margin: 0 0 10px; font-size: 14px; line-height: 1.7; opacity: 0.95; }
+    .ai-tutor .ai-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .ai-tutor button { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .ai-tutor button:hover { background: rgba(255,255,255,0.35); }
+
+    /* ========== 页脚 ========== */
+    .footer { background: var(--primary-dark); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    .footer p { margin: 0; opacity: 0.9; font-size: 14px; }
+    .footer .version { margin-top: 8px; font-size: 12px; opacity: 0.7; }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .hero { padding: 28px 14px; }
+      .hero h1 { font-size: 1.4rem; }
+      .hero-subtitle { font-size: 0.88rem; }
+      .section { padding: 0 12px; margin-bottom: 20px; }
+      .card-header { padding: 12px 14px; font-size: 15px; }
+      .card-body { padding: 14px; }
+      .anchor-points { flex-direction: column; gap: 6px; }
+      .anchor-btn { width: 100%; padding: 10px 12px; font-size: 0.82rem; }
+      .quiz-option { padding: 10px 12px; font-size: 0.88rem; }
+      .knowledge-body { padding: 14px; }
+      .exam-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== ① 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-robot"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ========== ② 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+  <div class="progress-label">第 3/3 节 · 100%</div>
+
+  <!-- ========== ③ 导航栏 ========== -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../d13zhp.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
+      <div class="nav-center">第13单元：社会变革与当代中国</div>
+      <a href="../13.2_ldhj/ldhj.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../d13zhp.html" class="nav-btn disabled">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ========== ④ Hero区 ========== -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-microchip"></i> 世界现代史 · 现代社会的发展与挑战</div>
+      <h1>🔬 第13.3课 不断发展的现代社会</h1>
+      <p class="hero-subtitle">📖 课标要求：了解第三次科技革命、妇女地位提高、生态与人口问题，认识科技发展与可持续发展的关系<br>🎯 预计用时：45分钟</p>
+      
+      <!-- SVG时间轴 -->
+      <div class="svg-container">
+        <svg viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg" style="max-width:900px;display:block;margin:0 auto;">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <polygon points="0 0, 10 3, 0 6" fill="#d4a017"/>
+            </marker>
+          </defs>
+          <line x1="40" y1="70" x2="860" y2="70" stroke="#d4a017" stroke-width="3" marker-end="url(#arrowhead)"/>
+          
+          <circle cx="120" cy="70" r="22" fill="#d4a017" stroke="#fff" stroke-width="3"/>
+          <text x="120" y="112" text-anchor="middle" fill="#d4a017" font-size="11" font-weight="bold">1760s</text>
+          <text x="120" y="34" text-anchor="middle" fill="#fff" font-size="10">第一次科技革命</text>
+          <text x="120" y="48" text-anchor="middle" fill="#ffe4b5" font-size="9">蒸汽机 · 英国</text>
+          
+          <circle cx="310" cy="70" r="20" fill="#a0522d" stroke="#d4a017" stroke-width="3"/>
+          <text x="310" y="112" text-anchor="middle" fill="#a0522d" font-size="11" font-weight="bold">1870s</text>
+          <text x="310" y="34" text-anchor="middle" fill="#fff" font-size="10">第二次科技革命</text>
+          <text x="310" y="48" text-anchor="middle" fill="#ffe4b5" font-size="9">电力 · 美德</text>
+          
+          <circle cx="520" cy="70" r="24" fill="#d4a017" stroke="#fff" stroke-width="3"/>
+          <text x="520" y="112" text-anchor="middle" fill="#d4a017" font-size="11" font-weight="bold">1940s</text>
+          <text x="520" y="30" text-anchor="middle" fill="#fff" font-size="10">第三次科技革命</text>
+          <text x="520" y="44" text-anchor="middle" fill="#ffe4b5" font-size="9">信息技术 · 计算机</text>
+          
+          <circle cx="720" cy="70" r="18" fill="#a0522d" stroke="#d4a017" stroke-width="3"/>
+          <text x="720" y="112" text-anchor="middle" fill="#a0522d" font-size="11" font-weight="bold">1990s</text>
+          <text x="720" y="34" text-anchor="middle" fill="#fff" font-size="10">互联网时代</text>
+          <text x="720" y="48" text-anchor="middle" fill="#ffe4b5" font-size="9">全球化 · 可持续发展</text>
+          
+          <circle cx="860" cy="70" r="14" fill="#10b981" stroke="#fff" stroke-width="3"/>
+          <text x="860" y="112" text-anchor="middle" fill="#10b981" font-size="11" font-weight="bold">21c</text>
+          <text x="860" y="34" text-anchor="middle" fill="#fff" font-size="10">智能时代</text>
+          <text x="860" y="48" text-anchor="middle" fill="#ffe4b5" font-size="9">AI · 大数据</text>
+          
+          <!-- 底部总结 -->
+          <rect x="60" y="128" width="780" height="28" rx="6" fill="rgba(139,69,19,0.08)" stroke="#d4a574" stroke-width="1"/>
+          <text x="450" y="147" text-anchor="middle" fill="#6b3410" font-size="11" font-weight="bold">🔑 三次科技革命：蒸汽→电气→信息，每次都深刻改变了人类社会</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== 主内容区 ========== -->
+  <main>
+
+    <!-- ========== ⑤ 探究问题锚点 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🔍 探究问题</div>
+        <div class="card-body">
+          <p style="color: var(--primary); margin-bottom: 12px;">选择你关心的问题，后续内容将围绕问题展开讲解：</p>
+          <div class="anchor-points">
+            <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-question="第三次科技革命与前两次相比有何突出特点？">💻 第三次科技革命有何特点？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-question="为什么说科技发展是双刃剑？">⚔️ 科技发展为何是双刃剑？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-question="面对全球生态问题，为什么需要走可持续发展道路？">🌍 为何要走可持续发展道路？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 4)" data-question="妇女地位提高经历了怎样的历史过程？">👩 妇女地位提高的过程</button>
+          </div>
+          <div class="custom-question">
+            <label>我有自己的问题：</label>
+            <input type="text" id="custom-question-input" placeholder="输入你的问题..." oninput="handleCustomQuestion(this.value)">
+          </div>
+          <div class="anchor-display" id="anchor-display">
+            <p style="text-align: center; color: var(--text-muted);">👆 点击上方按钮或输入自己的问题</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑥ 学习目标 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🎯 学习目标 <span class="tag">课标要求</span></div>
+        <div class="card-body">
+          <ul class="objectives-list">
+            <li>掌握第三次科技革命的兴起（1946年ENIAC）、核心（信息技术）、主要领域及对社会的影响</li>
+            <li>辩证分析科技发展的利与弊，理解科技进步既推动社会发展，也带来新的问题和挑战</li>
+            <li>了解全球面临的主要生态问题（温室效应、臭氧层、资源枯竭）和人口问题，认识其严峻性</li>
+            <li>理解可持续发展的含义和重要性，认识1992里约峰会和2015巴黎协定的意义，培养全球意识</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑦ 前测 ========== -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">📝 课前自测 <span class="quiz-badge">点击选项查看解析</span></div>
+        <div class="quiz-body" id="pre-quiz">
+          
+          <!-- 基础题1 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>第三次科技革命的核心是？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 蒸汽机是第一次科技革命的标志，不是第三次。">
+                <span class="opt-letter">A</span><label>A. 蒸汽机</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'B')" data-feedback="❌ 电力是第二次科技革命的标志，不是第三次。">
+                <span class="opt-letter">B</span><label>B. 电力</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 计算机与信息技术</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 航天技术只是第三次科技革命的领域之一，不是核心。">
+                <span class="opt-letter">D</span><label>D. 航天技术</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre1"></div>
+            <div class="answer-explanation" id="explain-pre1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 计算机与信息技术</strong></p>
+              <p style="margin-top: 8px;">三次科技革命的核心标志：①第一次（18世纪60年代）——蒸汽机的广泛应用；②第二次（19世纪70年代）——电力的广泛应用；③第三次（20世纪40年代）——计算机与信息技术的兴起。记忆口诀：蒸汽→电气→信息。</p>
+            </div>
+          </div>
+
+          <!-- 基础题2 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>1992年里约联合国环境与发展大会通过了？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 《京都议定书》是1997年通过的，不是1992年里约峰会。">
+                <span class="opt-letter">A</span><label>A. 《京都议定书》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'B')" data-feedback="❌ 《巴黎协定》是2015年通过的，不是1992年里约峰会。">
+                <span class="opt-letter">B</span><label>B. 《巴黎协定》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 《21世纪议程》</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 《蒙特利尔议定书》是1987年通过的，是保护臭氧层的协议。">
+                <span class="opt-letter">D</span><label>D. 《蒙特利尔议定书》</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre2"></div>
+            <div class="answer-explanation" id="explain-pre2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 《21世纪议程》</strong></p>
+              <p style="margin-top: 8px;">1992年里约联合国环境与发展大会（"地球峰会"）通过了《21世纪议程》，这是全球可持续发展的重要纲领性文件，首次将可持续发展理念转化为具体行动方案。区分几个重要环保文件：①《21世纪议程》（1992里约峰会）；②《京都议定书》（1997）；③《蒙特利尔议定书》（1987）；④《巴黎协定》（2015）。</p>
+            </div>
+          </div>
+
+          <!-- 提高题 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>第一台电子计算机ENIAC诞生于？<span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ ENIAC不是诞生于英国。">
+                <span class="opt-letter">A</span><label>A. 英国1943年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'B')" data-feedback="❌ ENIAC不是诞生于德国。">
+                <span class="opt-letter">B</span><label>B. 德国1944年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 美国1946年</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ ENIAC不是诞生于苏联。">
+                <span class="opt-letter">D</span><label>D. 苏联1947年</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre3"></div>
+            <div class="answer-explanation" id="explain-pre3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 美国1946年</strong></p>
+              <p style="margin-top: 8px;">ENIAC（Electronic Numerical Integrator and Computer）诞生于1946年的美国宾夕法尼亚大学，是为美国陆军计算弹道而研制的。虽然二战期间英国已有"巨人"计算机用于破译密码，但ENIAC是第一台通用电子计算机。ENIAC重达30吨，占地170平方米，每秒可进行5000次加法运算，标志着第三次科技革命的开始。</p>
+            </div>
+          </div>
+
+          <!-- 挑战题 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>1996年克隆羊多莉的诞生表明？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 多莉羊的诞生不等于人类可以克隆人，各国伦理上普遍禁止克隆人实验。">
+                <span class="opt-letter">A</span><label>A. 人类可以克隆人</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 生物工程取得重大突破</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 多莉羊与农业工业化无直接关联。">
+                <span class="opt-letter">C</span><label>C. 农业实现工业化</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'D')" data-feedback="❌ 计算机取代人类与克隆羊无任何关联。">
+                <span class="opt-letter">D</span><label>D. 计算机取代人类</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre4"></div>
+            <div class="answer-explanation" id="explain-pre4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 生物工程取得重大突破</strong></p>
+              <p style="margin-top: 8px;">1996年，英国科学家利用体细胞克隆技术成功培育出克隆羊多莉，这是生物工程领域的重大突破，标志着人类在细胞工程和基因技术方面取得了划时代的成就。但A选项"人类可以克隆人"是错误推论——技术上可能，但伦理上各国普遍禁止克隆人。</p>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('pre-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑧ 核心知识讲解 ========== -->
+    
+    <!-- 知识点1：第三次科技革命 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">一、第三次科技革命</div>
+        <div class="knowledge-body">
+          <p>20世纪40年代以来，以<span class="highlight">计算机与信息技术</span>为核心的第三次科技革命兴起，深刻改变了人类社会。</p>
+          
+          <p><strong>兴起标志：</strong>1946年，第一台电子计算机ENIAC在美国宾夕法尼亚大学诞生，揭开了第三次科技革命的序幕。</p>
+          
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 第三次科技革命主要领域</div>
+            <table class="compare-table">
+              <tr>
+                <th>领域</th>
+                <th>主要成就</th>
+                <th>影响</th>
+              </tr>
+              <tr>
+                <td><strong>🖥️ 信息技术</strong></td>
+                <td>计算机、互联网、大数据</td>
+                <td>信息社会、经济全球化</td>
+              </tr>
+              <tr>
+                <td><strong>🧬 生物工程</strong></td>
+                <td>DNA双螺旋、基因工程、1996年克隆羊多莉</td>
+                <td>医疗革命、农业改良</td>
+              </tr>
+              <tr>
+                <td><strong>🚀 航天技术</strong></td>
+                <td>1957年人造卫星、1969年登月、空间站</td>
+                <td>太空探索、卫星通信</td>
+              </tr>
+              <tr>
+                <td><strong>🤖 人工智能</strong></td>
+                <td>机器学习、深度学习、智能机器人</td>
+                <td>自动化、智能制造</td>
+              </tr>
+            </table>
+          </div>
+          
+          <p><strong>第三次科技革命的特点：</strong></p>
+          <p>📘 <strong>速度快：</strong>科技转化为生产力的周期大大缩短</p>
+          <p>📘 <strong>范围广：</strong>涉及信息技术、生物工程、航天技术等多个领域</p>
+          <p>📘 <strong>影响深：</strong>改变了人类的生产方式、生活方式和思维方式</p>
+          
+          <p><strong>互联网的普及：</strong>互联网使世界更加紧密联系，推动了经济全球化，改变了人们的工作、学习和生活方式。但网络也带来了信息安全、网络犯罪、沉迷等问题。</p>
+          
+          <div class="warn-box">
+            <div class="label">⚠️ 重点提示 · 科技是"双刃剑"</div>
+            <p><strong>积极影响：</strong>推动生产力发展、改变生活方式、促进经济全球化、推动科技与信息交流。</p>
+            <p><strong>消极影响：</strong>电子垃圾、信息安全、网络犯罪、温室气体排放增加等新问题。</p>
+          </div>
+          
+          <p><span class="highlight">考点提示</span> 三次科技革命的比较是中考高频考点，注意区分各次革命的标志和影响。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点2：妇女地位提高 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">二、妇女地位的提高</div>
+        <div class="knowledge-body">
+          <p>随着社会进步和民主化进程，妇女的地位不断提高：</p>
+          
+          <p><strong>选举权的获得：</strong>20世纪初，西方各国陆续赋予妇女选举权。新西兰于1893年成为第一个赋予妇女选举权的国家。中国在1953年的选举法中确认了妇女的选举权。</p>
+          
+          <p><strong>职场平等：</strong>妇女打破传统职业限制，进入各行各业，包括政治、科技、军事等传统男性主导领域。</p>
+          
+          <p><strong>立法保障：</strong>各国普遍制定了反歧视法、同工同酬法等保障妇女权益的法律。联合国于1979年通过了《消除对妇女一切形式歧视公约》。</p>
+          
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 妇女地位提高的里程碑</div>
+            <p>📘 <strong>1893年</strong>——新西兰成为第一个赋予妇女选举权的国家</p>
+            <p>📘 <strong>1979年</strong>——联合国通过《消除对妇女一切形式歧视公约》</p>
+            <p>📘 <strong>20世纪后期</strong>——妇女在科技、政治、军事等领域取得重大突破</p>
+          </div>
+          
+          <p><strong>仍然面临的挑战：</strong></p>
+          <p>📘 <strong>职场"玻璃天花板"</strong>——高层管理职位中女性比例偏低</p>
+          <p>📘 <strong>男女薪资差距</strong>——同等岗位女性收入仍低于男性</p>
+          <p>📘 <strong>家庭与事业平衡</strong>——社会对女性家庭角色的期待仍较高</p>
+          
+          <p><span class="highlight">考点提示</span> 妇女地位提高是现代文明进步的体现，也是社会公平正义的重要指标。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点3：生态与人口问题 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">三、生态与人口问题</div>
+        <div class="knowledge-body">
+          <p>随着工业化和全球化的加速，人类面临严峻的生态与人口问题：</p>
+          
+          <p><strong>主要生态问题：</strong></p>
+          <p>📘 <strong>温室效应与全球变暖：</strong>大量燃烧化石燃料排放CO₂等温室气体，导致全球气温升高，极端天气事件增多，冰川融化，海平面上升。</p>
+          <p>📘 <strong>臭氧层破坏：</strong>氟利昂（CFCs）等化学物质破坏大气臭氧层，使地面紫外线辐射增强，威胁人类健康和生态系统。</p>
+          <p>📘 <strong>资源枯竭：</strong>化石能源、淡水资源、森林资源的过度消耗，威胁人类可持续发展。</p>
+          <p>📘 <strong>环境污染：</strong>工业废水、废气、固体废物、塑料污染等问题日益严重。</p>
+          
+          <p><strong>人口问题：</strong></p>
+          <p>18世纪世界人口约7亿，20世纪末超过60亿，2022年突破80亿。人口过快增长带来粮食短缺、资源紧张、就业压力、环境恶化等问题。部分发达国家则面临人口老龄化、劳动力不足等问题。</p>
+          
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 国际社会的应对</div>
+            <table class="compare-table">
+              <tr>
+                <th>时间</th>
+                <th>事件</th>
+                <th>意义</th>
+              </tr>
+              <tr>
+                <td>1987年</td>
+                <td>《我们共同的未来》发布</td>
+                <td>首次提出"可持续发展"概念</td>
+              </tr>
+              <tr>
+                <td>1992年</td>
+                <td>里约地球峰会</td>
+                <td>通过《21世纪议程》，可持续发展成为全球共识</td>
+              </tr>
+              <tr>
+                <td>1997年</td>
+                <td>《京都议定书》</td>
+                <td>首个有约束力的温室气体减排协议</td>
+              </tr>
+              <tr>
+                <td>2015年</td>
+                <td>《巴黎协定》</td>
+                <td>全球气候治理新框架，目标：升温控制在2°C以内</td>
+              </tr>
+            </table>
+          </div>
+          
+          <p><span class="highlight">考点提示</span> 可持续发展的含义和国际环保会议是中考常见考点，注意区分各会议的成果。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点4：可持续发展 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">四、可持续发展理念</div>
+        <div class="knowledge-body">
+          <p><strong>定义：</strong>可持续发展是指既满足当代人的需求，又不损害后代人满足其需求的能力的发展。</p>
+          
+          <p><strong>三大支柱：</strong></p>
+          <p>📘 <strong>经济发展：</strong>追求绿色GDP和循环经济，不以牺牲环境为代价追求增长</p>
+          <p>📘 <strong>社会进步：</strong>促进社会公平正义，改善民生，消除贫困</p>
+          <p>📘 <strong>环境保护：</strong>保护生态环境，减少污染，低碳发展</p>
+          
+          <p><strong>三大原则：</strong></p>
+          <p>📘 <strong>公平性原则：</strong>代际公平（不损害后代利益）和代内公平（发达国家与发展中国家间）</p>
+          <p>📘 <strong>持续性原则：</strong>人类活动不能超越资源与环境的承载力</p>
+          <p>📘 <strong>共同性原则：</strong>全球性问题需要各国共同参与解决</p>
+          
+          <div class="warn-box">
+            <div class="label">⚠️ 重点提示 · 可持续发展的三大误区</div>
+            <p>❌ <strong>误区一：</strong>停止发展工业——发展是解决环境问题的基础</p>
+            <p>❌ <strong>误区二：</strong>依靠单一国家解决——生态问题具有全球性</p>
+            <p>❌ <strong>误区三：</strong>退回到农业社会——历史不会倒退</p>
+            <p>✅ <strong>正确道路：</strong>发达国家与发展中国家合作，共同走可持续发展道路</p>
+          </div>
+          
+          <p><strong>中国的行动：</strong>中国提出"绿水青山就是金山银山"的理念，积极履行《巴黎协定》承诺，推进碳达峰（2030年）和碳中和（2060年）目标。</p>
+          
+          <p><span class="highlight">考点提示</span> 可持续发展的含义、原则和中国的实践是重点，需结合时事理解。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑨ 后测 ========== -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">✅ 课后巩固 <span class="quiz-badge">含中考真题</span></div>
+        <div class="quiz-body" id="post-quiz">
+          
+          <!-- 后测题1 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>互联网技术的普及使世界？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 互联网的作用是促进联系而非分裂。">
+                <span class="opt-letter">A</span><label>A. 更加分裂</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 更加紧密联系</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 互联网推动社会进入信息时代，而非退回工业时代。">
+                <span class="opt-letter">C</span><label>C. 退回工业时代</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 虽然促进了跨国交流，但并未取消国家边界。">
+                <span class="opt-letter">D</span><label>D. 取消国家边界</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post1"></div>
+            <div class="answer-explanation" id="explain-post1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 更加紧密联系</strong></p>
+              <p style="margin-top: 8px;">互联网打破了地域和时间的限制，促进了信息交流、经济合作和文化互动，推动了经济全球化进程。互联网是第三次科技革命最重要的成果之一，深刻改变了人类社会的联系方式和经济运行模式。</p>
+            </div>
+          </div>
+
+          <!-- 后测题2（中考真题） -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2022·河南改编）第三次科技革命影响不包括？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ A（推动生产力发展）是第三次科技革命的积极影响。">
+                <span class="opt-letter">A</span><label>A. 推动生产力发展</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ B（改变人类生活方式）是第三次科技革命的积极影响。">
+                <span class="opt-letter">B</span><label>B. 改变人类生活方式</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 减少环境污染</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ D（推动经济全球化）是第三次科技革命的积极影响。">
+                <span class="opt-letter">D</span><label>D. 推动经济全球化</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post2"></div>
+            <div class="answer-explanation" id="explain-post2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 减少环境污染</strong></p>
+              <p style="margin-top: 8px;">第三次科技革命并未减少环境污染，反而带来了新的污染问题，如电子垃圾、电磁辐射、网络犯罪等。注意审题："不包括"=找错误选项。这体现了科技的"双刃剑"效应。</p>
+            </div>
+          </div>
+
+          <!-- 后测题3 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>人口过快增长带来的问题不包括？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 粮食短缺是人口过快增长的真实问题。">
+                <span class="opt-letter">A</span><label>A. 粮食短缺</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'B')" data-feedback="❌ 资源紧张是人口过快增长的真实问题。">
+                <span class="opt-letter">B</span><label>B. 资源紧张</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'C')" data-feedback="❌ 就业压力增大是人口过快增长的真实问题。">
+                <span class="opt-letter">C</span><label>C. 就业压力增大</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'D')" data-feedback="">
+                <span class="opt-letter">D</span><label>D. 全球气温下降</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post3"></div>
+            <div class="answer-explanation" id="explain-post3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：D. 全球气温下降</strong></p>
+              <p style="margin-top: 8px;">全球气温下降不是人口过快增长带来的问题，恰恰相反，人口过快增长会加剧温室气体排放，导致全球气温上升。粮食短缺（A）、资源紧张（B）、就业压力增大（C）都是人口过快增长带来的真实问题。注意审题："不包括"=找与事实不符的选项。</p>
+            </div>
+          </div>
+
+          <!-- 后测题4（中考真题） -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2023·江苏改编）面对全球生态问题，合理措施是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 停止发展工业过于极端，发展是解决环境问题的基础。">
+                <span class="opt-letter">A</span><label>A. 停止发展工业</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 发达国家与发展中国家合作走可持续发展道路</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 生态问题具有全球性，依靠单一国家不可能解决。">
+                <span class="opt-letter">C</span><label>C. 依靠单一国家解决</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'D')" data-feedback="❌ 退回到农业社会不现实，历史不会倒退。">
+                <span class="opt-letter">D</span><label>D. 退回到农业社会</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post4"></div>
+            <div class="answer-explanation" id="explain-post4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 发达国家与发展中国家合作走可持续发展道路</strong></p>
+              <p style="margin-top: 8px;">面对全球生态问题，需要发达国家与发展中国家合作，共同走可持续发展道路。生态问题具有全球性，任何单一国家都无法单独解决。这体现了可持续发展的"共同性原则"——全球性问题需要国际合作，同时发达国家应承担更多责任（历史排放更多），发展中国家也需要发展权。</p>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('post-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑩ 必考分析 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🏆 必考分析与考点总结</div>
+        <div class="card-body">
+          <div class="exam-cards">
+            <div class="exam-card">
+              <h4>💻 考点一：第三次科技革命的核心与影响</h4>
+              <p>第三次科技革命的核心是计算机与信息技术，兴起标志是1946年ENIAC的诞生。主要领域包括信息技术、生物工程（1996年克隆羊多莉）、航天技术等。影响：推动生产力发展、改变生活方式、推动经济全球化，但也带来电子垃圾、信息安全等新问题（双刃剑）。</p>
+              <p style="margin-top:8px;"><span class="exam-tag hot">高频考点</span> <span class="exam-tag high">ENIAC 1946</span> <span class="exam-tag normal">信息技术</span> <span class="exam-tag high">克隆羊多莉</span></p>
+            </div>
+            <div class="exam-card">
+              <h4>♻️ 考点二：可持续发展的含义与实践</h4>
+              <p>可持续发展是指既满足当代人需求又不损害后代人需求的发展。三大原则：公平性、持续性、共同性。重要会议：1992年里约峰会通过《21世纪议程》，2015年《巴黎协定》确定控温目标。中国实践：碳达峰（2030）、碳中和（2060）。</p>
+              <p style="margin-top:8px;"><span class="exam-tag hot">高频考点</span> <span class="exam-tag high">可持续发展</span> <span class="exam-tag high">21世纪议程</span> <span class="exam-tag normal">巴黎协定</span> <span class="exam-tag normal">碳达峰碳中和</span></p>
+            </div>
+            <div class="exam-card">
+              <h4>🌍 考点三：生态与人口问题</h4>
+              <p>全球面临温室效应（CO₂→全球变暖）、臭氧层破坏（CFCs）、资源枯竭等生态问题。人口从18世纪7亿增长至20世纪末60亿以上，带来粮食短缺、资源紧张、就业压力等问题。解决之道是国际合作走可持续发展道路。</p>
+              <p style="margin-top:8px;"><span class="exam-tag normal">温室效应</span> <span class="exam-tag normal">臭氧层</span> <span class="exam-tag normal">人口爆炸</span> <span class="exam-tag high">国际合作</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== AI学伴 ========== -->
+    <section class="section">
+      <div class="ai-tutor">
+        <h3>🤖 AI学伴 · 智能问答</h3>
+        <p>有任何关于第三次科技革命、生态问题或可持续发展的疑问，随时向我提问！</p>
+        <div class="ai-buttons">
+          <button onclick="askAI('第三次科技革命')">💻 第三次科技革命</button>
+          <button onclick="askAI('克隆羊多莉')">🧬 克隆羊多莉</button>
+          <button onclick="askAI('可持续发展')">♻️ 可持续发展</button>
+          <button onclick="askAI('生态问题')">🌍 全球生态问题</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+    <p class="version">基于 TeachAny v7.14 | 适配人教版九年级历史课程标准 · 第13单元</p>
+  </footer>
+
+  <script>
+    // 探究问题锚点选择
+    function selectAnchor(btn, index) {
+      document.querySelectorAll('.anchor-btn').forEach(function(b) { b.classList.remove('selected'); });
+      btn.classList.add('selected');
+      var questions = [
+        '第三次科技革命与前两次相比有以下突出特点：①速度快——科技转化为生产力的周期大大缩短；②范围广——涉及信息技术、生物工程、航天技术等多个领域；③影响深——深刻改变了人类的生产方式、生活方式和思维方式。核心标志是1946年ENIAC的诞生和计算机与信息技术的发展。',
+        '科技发展是一把"双刃剑"。积极方面：推动生产力发展、改变生活方式、促进经济全球化。消极方面：电子垃圾、信息安全、网络犯罪、温室气体排放增加等新问题。因此科技发展需要在发展中规范，用法律和伦理约束科技滥用。',
+        '面对全球生态问题，走可持续发展道路是必然选择。原因：①生态问题具有全球性，任何单一国家都无法解决；②停止发展或退回农业社会都不现实；③可持续发展既能满足当代需求，又不损害后代。关键在于国际合作——发达国家承担更多历史责任（碳达峰、碳中和），发展中国家也需要发展权。',
+        '妇女地位提高经历了漫长历程：①选举权（19世纪末-20世纪初）：新西兰1893年首开先河；②职场平等（20世纪中期后）：妇女进入各行各业；③立法保障（20世纪后期）：反歧视法、同工同酬法、《消除对妇女一切形式歧视公约》（1979）。但"玻璃天花板"、薪资差距等问题仍待解决。'
+      ];
+      document.getElementById('anchor-display').innerHTML = '<h4>📌 问题分析</h4><p>' + questions[index-1] + '</p>';
+    }
+    
+    function handleCustomQuestion(value) {
+      if (value.trim()) {
+        document.querySelectorAll('.anchor-btn').forEach(function(b) { b.classList.remove('selected'); });
+        document.getElementById('anchor-display').innerHTML = '<h4>📌 你的问题</h4><p>' + value + '</p><p style="margin-top:8px;color:var(--text-muted);">💡 学习下面的知识点来寻找答案吧！</p>';
+      }
+    }
+
+    // 测验答案检查
+    function checkAnswer(element, isCorrect, questionId, optionLetter) {
+      var parent = element.closest('.quiz-item');
+      var feedback = parent.querySelector('.quiz-feedback');
+      var explanation = parent.querySelector('.answer-explanation');
+      var allOptions = parent.querySelectorAll('.quiz-option');
+      
+      allOptions.forEach(function(opt) { opt.classList.remove('correct', 'wrong'); });
+      
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+        feedback.className = 'quiz-feedback show correct-fb';
+        explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        var specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+        feedback.className = 'quiz-feedback show wrong-fb';
+      }
+    }
+
+    function checkAllQuiz(quizId) {
+      var quiz = document.getElementById(quizId);
+      quiz.querySelectorAll('.quiz-item').forEach(function(item) {
+        var correctOption = item.querySelector('.quiz-option[onclick*="true"]');
+        if (correctOption) {
+          correctOption.classList.add('correct');
+          var explanation = item.querySelector('.answer-explanation');
+          if (explanation) explanation.classList.add('show');
+        }
+      });
+    }
+
+    // AI学伴
+    function askAI(topic) {
+      var answers = {
+        '第三次科技革命': '第三次科技革命兴起于20世纪40年代，核心是计算机与信息技术。1946年ENIAC诞生是标志，主要领域包括信息技术、生物工程（1996年克隆羊多莉）、航天技术等。它推动了生产力发展、改变了生活方式、促进了经济全球化，但也带来了电子垃圾、信息安全等新问题——科技是双刃剑！',
+        '克隆羊多莉': '1996年，英国科学家用体细胞克隆技术培育出克隆羊多莉，这是生物工程的重大突破。多莉羊的诞生证明了高等动物体细胞可以克隆出完整个体，但也引发了关于科技伦理的深刻讨论——各国普遍禁止克隆人实验。',
+        '可持续发展': '可持续发展是指既满足当代人需求，又不损害后代人满足其需求能力的发展。三大原则：①公平性——代际公平和代内公平；②持续性——不超越环境承载力；③共同性——全球合作。重要里程碑：1992年里约峰会通过《21世纪议程》，2015年《巴黎协定》设定控温2°C目标。中国承诺2030年碳达峰、2060年碳中和。',
+        '生态问题': '全球面临的主要生态问题：①温室效应——CO₂排放导致全球变暖、极端天气增多；②臭氧层破坏——CFCs使紫外线辐射增强；③资源枯竭——化石能源、淡水、森林资源过度消耗；④环境污染——工业三废、塑料污染等。1992年里约峰会和2015年巴黎协定是国际社会应对生态问题的里程碑。'
+      };
+      alert(answers[topic] || '这是一个很好的问题，建议结合课本深入思考！');
+    }
+
+    console.log('📚 第13.3课《不断发展的现代社会》页面加载完成（v7.14）');
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

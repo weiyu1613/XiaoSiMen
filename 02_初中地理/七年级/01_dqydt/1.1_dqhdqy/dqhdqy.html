@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-earth-globe-7">
+  <meta name="course-title" content="1.1 地球和地球仪">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="geo-earth-globe">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>1.1 地球和地球仪 | 初中7年级地理</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .earth-svg {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .latitude-longitude {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .latitude-longitude th {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .latitude-longitude td {
+      padding: 10px;
+      border: 1px solid #bae6fd;
+      text-align: center;
+    }
+    
+    .latitude-longitude tr:nth-child(even) { background: #f0f9ff; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #0369a1; text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #93c5fd;
+      background: #eff6ff; color: #1e40af; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.28);
+      color: #1e40af;
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+  
+    /* NavBar styles */
+    .nav-bar { background: #f0f9ff; border-bottom: 2px solid #0369a1; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #0369a1; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #dbeafe; }
+    .nav-center { font-weight: 700; color: #0369a1; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e0f2fe; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #0369a1, #0284c7); width: 12%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #0369a1; padding: 4px 20px; background: #f0f9ff; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #0369a1; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #0369a1; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #bae6fd; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(3,105,161,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #dbeafe, #eff6ff); border: 2px solid #93c5fd; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1e40af; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #bfdbfe, #dbeafe); border-color: #60a5fa; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; border-color: #0369a1; }
+
+    /* 测验选项 */
+    .quiz-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e0f2fe; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #93c5fd; background: #f0f9ff; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #0369a1; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #eff6ff; border-left: 4px solid #0369a1; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 页脚 */
+    .footer { background: #0369a1; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+
+      .latitude-longitude { display: block !important; overflow-x: auto !important; font-size: 12px !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../dqydt.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第一章：地球和地图</div>
+    <a href="#" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../1.2_dqdyd/dqdyd.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-globe"></i> 七年级地理 · 第一章</div>
+      <h1>1.1 地球和地球仪<span>Earth and Globe</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解地球的形状和大小，学会使用地球仪<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f0f9ff"/>
+        <!-- 中心主题：地球 -->
+        <circle cx="400" cy="150" r="60" fill="#0369a1" stroke="#075985" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">地球</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="14" fill="white">地球的形状</text>
+        <line x1="190" y1="80" x2="340" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+        <text x="120" y="225" text-anchor="middle" font-size="14" fill="white">地球的大小</text>
+        <line x1="190" y1="220" x2="340" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="14" fill="white">地球仪</text>
+        <line x1="610" y1="80" x2="460" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+        <text x="680" y="225" text-anchor="middle" font-size="14" fill="white">经纬线</text>
+        <line x1="610" y1="220" x2="460" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#0369a1"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #0369a1; font-size: 14px; text-align: center;">图1-1 地球和地球仪知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="地球是什么形状的？有多大？">🌍 地球是什么形状的？有多大？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="地球仪上怎么认经线和纬线？">📏 地球仪上怎么认经线和纬线？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="如何用经纬网定位？">📍 如何用经纬网定位？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #0369a1;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #0369a1; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道地球的形状和大小</li>
+          <li>✅ 了解地球仪的作用和基本要素</li>
+          <li>✅ 掌握经线和纬线的特点</li>
+          <li>✅ 学会用经纬网定位</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：地球形状 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】地球的形状是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 古人认为天圆地方，但现代科学证明地球是球体！">
+            <span class="opt-letter">A</span> 天圆地方
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 两极稍扁、赤道略鼓的不规则球体
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 地球不是完全的正圆球体，而是两极稍扁的不规则球体！">
+            <span class="opt-letter">C</span> 正圆球体
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 两极稍扁、赤道略鼓的不规则球体</strong></p>
+          <p style="margin-top: 8px;">地球是一个<strong>两极稍扁、赤道略鼓</strong>的不规则球体。赤道半径比极半径约长21千米。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2：地球表面积 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】地球的表面积约为？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 5.1亿平方千米太大了，那是地球的体积近似值！">
+            <span class="opt-letter">A</span> 5.1亿立方千米
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 5.1亿平方千米
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 4万千米是赤道周长，不是表面积！">
+            <span class="opt-letter">C</span> 4万平方千米
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 5.1亿平方千米</strong></p>
+          <p style="margin-top: 8px;">地球表面积约<strong>5.1亿平方千米</strong>，赤道周长约<strong>4万千米</strong>。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3：纬线特点 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】关于纬线的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 纬线是圆，经线才是半圆！">
+            <span class="opt-letter">A</span> 纬线是半圆
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 纬线指示东西方向，经线才指示南北方向！">
+            <span class="opt-letter">B</span> 纬线指示南北方向
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 纬线是与赤道平行的圆圈
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 纬线是与赤道平行的圆圈</strong></p>
+          <p style="margin-top: 8px;"><strong>纬线特点：</strong>① 都是<strong>圆</strong>；② 指示<strong>东西</strong>方向；③ 长度从赤道向两极<strong>递减</strong>；④ 最长的是<strong>赤道</strong>（约4万千米）。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4：经度 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】本初子午线的经度是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+            <span class="opt-letter">A</span> 0°
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 180°是国际日期变更线，不是本初子午线！">
+            <span class="opt-letter">B</span> 180°
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 90°是南北纬度的分界线，不是本初子午线！">
+            <span class="opt-letter">C</span> 90°
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 0°</strong></p>
+          <p style="margin-top: 8px;"><strong>本初子午线</strong>（0°经线）是经度的起始线，通过英国伦敦<strong>格林尼治天文台</strong>旧址。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 地球的形状和大小 -->
+    <section class="section" id="section-earth-shape">
+      <h2 class="section-title"><span class="num">🌍</span> 地球的形状和大小</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 地球的形状</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>地球是一个<strong>两极稍扁、赤道略鼓</strong>的不规则球体</li>
+          <li><strong>赤道半径</strong>：约6378千米</li>
+          <li><strong>极半径</strong>：约6357千米</li>
+          <li>赤道半径比极半径约长<strong>21千米</strong></li>
+        </ul>
+
+        <!-- SVG:地球形状示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 300" width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+            <!-- 地球示意图 -->
+            <ellipse cx="300" cy="150" rx="100" ry="95" fill="#0ea5e9" stroke="#0369a1" stroke-width="3"/>
+            
+            <!-- 赤道 -->
+            <line x1="200" y1="150" x2="400" y2="150" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="410" y="155" font-size="14" fill="#f59e0b">赤道</text>
+            
+            <!-- 北极 -->
+            <circle cx="300" cy="55" r="5" fill="#ef4444"/>
+            <text x="320" y="60" font-size="14" fill="#ef4444">北极</text>
+            
+            <!-- 南极 -->
+            <circle cx="300" cy="245" r="5" fill="#3b82f6"/>
+            <text x="320" y="250" font-size="14" fill="#3b82f6">南极</text>
+            
+            <!-- 标注数据 -->
+            <text x="100" y="100" font-size="13" fill="#0369a1">赤道半径：6378km</text>
+            <text x="100" y="130" font-size="13" fill="#0369a1">极半径：6357km</text>
+            <text x="100" y="160" font-size="13" fill="#0369a1">相差：21km</text>
+            
+            <text x="300" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#0369a1">地球形状示意图</text>
+          </svg>
+          <p class="svg-caption">图1-2 地球形状示意图</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #0369a1;">📏 地球的大小</h3>
+        <table class="latitude-longitude">
+          <tr><th>参数</th><th>数值</th><th>说明</th></tr>
+          <tr><td><strong>表面积</strong></td><td>约5.1亿平方千米</td><td>地球表面的总面积</td></tr>
+          <tr><td><strong>赤道周长</strong></td><td>约4万千米</td><td>赤道一周的长度</td></tr>
+          <tr><td><strong>平均半径</strong></td><td>约6371千米</td><td>地球半径的平均值</td></tr>
+        </table>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 证明地球是球体的现象</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>🌅 <strong>海边看船</strong>：先看到桅杆，再看到船身</li>
+            <li>🌍 <strong>月食</strong>：地球影子是弧形</li>
+            <li>🛰️ <strong>太空拍照</strong>：直接看到地球是球体</li>
+            <li>🌐 <strong>环球航行</strong>：麦哲伦船队绕地球一圈</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 地球仪 -->
+    <section class="section" id="section-globe">
+      <h2 class="section-title"><span class="num">🌐</span> 地球仪</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 地球仪的作用</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>地球仪是<strong>缩小的地球模型</strong></li>
+          <li>可以方便地知道地球的<strong>面貌</strong></li>
+          <li>了解地球表面各种<strong>地理事物的分布</strong></li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 地轴和两极</div>
+          <p><strong>地轴：</strong>地球<strong>自转</strong>的轴（实际上是<strong>假想</strong>的轴）</p>
+          <p style="margin-top: 6px;"><strong>北极：</strong>地轴<strong>北段</strong>与地球表面的交点</p>
+          <p style="margin-top: 6px;"><strong>南极：</strong>地轴<strong>南段</strong>与地球表面的交点</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 经纬线 -->
+    <section class="section" id="section-latitude-longitude">
+      <h2 class="section-title"><span class="num">📏</span> 经线和纬线</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 纬线和纬度</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>纬线：</strong>与<strong>赤道平行</strong>的圆圈</li>
+          <li><strong>赤道：</strong>最大的纬线圈（约4万千米）</li>
+          <li><strong>纬度的划分：</strong>从赤道（0°）向南北各分<strong>90°</strong></li>
+          <li><strong>北纬（N）：</strong>赤道以北；<strong>南纬（S）：</strong>赤道以南</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 经线和经度</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>经线：</strong>连接<strong>南北两极</strong>并垂直于纬线的线（也叫<strong>子午线</strong>）</li>
+          <li><strong>本初子午线：</strong><strong>0°</strong>经线，通过英国伦敦<strong>格林尼治天文台</strong>旧址</li>
+          <li><strong>经度的划分：</strong>从本初子午线向东向西各分<strong>180°</strong></li>
+          <li><strong>东经（E）：</strong>0°经线以东；<strong>西经（W）：</strong>0°经线以西</li>
+        </ul>
+
+        <!-- 经纬线对比表 -->
+        <table class="latitude-longitude" style="margin-top: 20px;">
+          <tr><th>比较项目</th><th>纬线</th><th>经线</th></tr>
+          <tr><td><strong>形状</strong></td><td>圆（除极点外）</td><td>半圆</td></tr>
+          <tr><td><strong>长度</strong></td><td>从赤道向两极递减</td><td>所有经线长度相等</td></tr>
+          <tr><td><strong>指示方向</strong></td><td>东西方向</td><td>南北方向</td></tr>
+          <tr><td><strong>数量</strong></td><td>无数条</td><td>无数条</td></tr>
+        </table>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"纬线圆，经线半圆；纬线东西指，经线南北连"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"所有纬线长度相等"→ 错误！赤道最长，向两极递减！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 核心内容 - 经纬网 -->
+    <section class="section" id="section-grid">
+      <h2 class="section-title"><span class="num">📍</span> 经纬网定位</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 经纬网的作用</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>经纬网是<strong>经线和纬线</strong>交织成的网</li>
+          <li>可以确定地球表面任何一点的<strong>位置</strong></li>
+          <li>在<strong>航海、航空、军事、气象</strong>等方面有广泛用途</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 经纬网定位方法</div>
+          <p><strong>步骤：</strong></p>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li>先找<strong>纬度</strong>（赤道是0°，向北是北纬，向南是南纬）</li>
+            <li>再找<strong>经度</strong>（本初子午线是0°，向东是东经，向西是西经）</li>
+            <li>写出<strong>坐标</strong>（纬度在前，经度在后，如：40°N，116°E）</li>
+          </ol>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">💡 答题技巧 · 经纬网判读</div>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>看数值：</strong>纬度数值向北增大是北纬，向南增大是南纬</li>
+            <li><strong>看数值：</strong>经度数值向东增大是东经，向西增大是西经</li>
+            <li><strong>写坐标：</strong>纬度在前，经度在后，用逗号隔开</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】地球的平均半径约为？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 6357千米是极半径，不是平均半径！">
+            <span class="opt-letter">A</span> 6357千米
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 6378千米是赤道半径，不是平均半径！">
+            <span class="opt-letter">B</span> 6378千米
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+            <span class="opt-letter">C</span> 6371千米
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 6371千米</strong></p>
+          <p style="margin-top: 8px;">地球的<strong>平均半径</strong>约为<strong>6371千米</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）本初子午线是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+            <span class="opt-letter">A</span> 0°经线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 180°经线是国际日期变更线，不是本初子午线！">
+            <span class="opt-letter">B</span> 180°经线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 赤道是0°纬线，不是经线！">
+            <span class="opt-letter">C</span> 赤道
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 0°经线</strong></p>
+          <p style="margin-top: 8px;"><strong>本初子午线</strong>是<strong>0°经线</strong>，是经度的起始线。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南中考）关于经纬线的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 所有纬线长度不相等，赤道最长！">
+            <span class="opt-letter">A</span> 所有纬线长度相等
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 纬线指示东西方向，经线才指示南北方向！">
+            <span class="opt-letter">B</span> 纬线指示南北方向
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 所有经线长度相等
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 所有经线长度相等</strong></p>
+          <p style="margin-top: 8px;">经线都是<strong>半圆</strong>，所有经线长度<strong>相等</strong>；纬线是<strong>圆</strong>，长度从赤道向两极<strong>递减</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：地球的形状和大小</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 地球是<strong>两极稍扁、赤道略鼓</strong>的不规则球体</li>
+            <li>✅ 表面积约<strong>5.1亿平方千米</strong></li>
+            <li>✅ 平均半径约<strong>6371千米</strong></li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：经纬线特点</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>纬线是<strong>圆</strong>，指示<strong>东西</strong>方向；经线是<strong>半圆</strong>，指示<strong>南北</strong>方向。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：本初子午线和赤道</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong><strong>本初子午线</strong>是0°经线，<strong>赤道</strong>是0°纬线。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：经纬网定位</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了8次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>经纬网可以确定地球表面任何一点的<strong>位置</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版七年级地理课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 9,
+      currentSection: 1
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：地球是什么形状的？有多大？</h3>
+      <p><strong>形状：</strong>两极稍扁、赤道略鼓的不规则球体</p>
+      <p><strong>大小：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>表面积：约5.1亿平方千米</li>
+        <li>赤道周长：约4万千米</li>
+        <li>平均半径：约6371千米</li>
+      </ul>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：地球仪上怎么认经线和纬线？</h3>
+      <p><strong>纬线：</strong>与赤道平行的圆圈，指示东西方向</p>
+      <p><strong>经线：</strong>连接南北两极的半圆，指示南北方向</p>
+      <p><strong>记忆口诀：</strong>"纬线圆，经线半圆；纬线东西指，经线南北连"</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：如何用经纬网定位？</h3>
+      <p><strong>步骤：</strong></p>
+      <ol style="padding-left:20px;line-height:1.8;">
+        <li>先找纬度（北纬N向北增大，南纬S向南增大）</li>
+        <li>再找经度（东经E向东增大，西经W向西增大）</li>
+        <li>写出坐标（纬度在前，经度在后，如：40°N，116°E）</li>
+      </ol>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《地球和地球仪》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

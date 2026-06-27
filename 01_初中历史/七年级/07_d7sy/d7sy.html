@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第七单元：明清时期 - 初中7年级历史</title>
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8b4513; --primary-light: #cd853f; --primary-dark: #6b3410; --secondary: #d4a574;
+      --bg-light: #faf7f2; --bg-card: #ffffff; --text-dark: #2c1810; --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08); --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12); --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.16);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(139,69,19,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    .hero-section {
+      background: linear-gradient(135deg, #1a0000 0%, #4a0000 30%, #6b1010 70%, #8b2020 100%);
+      color: white; padding: 60px 20px; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero-section::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-section::after {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; } }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-icon { font-size: 64px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .hero-title { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 3px; }
+    .hero-subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 24px; }
+
+    .dynasty-timeline { display: flex; justify-content: center; gap: 0; margin: 24px 0; position: relative; }
+    .dynasty-timeline::before { content: ''; position: absolute; top: 24px; left: 50%; transform: translateX(-50%); width: 80%; height: 3px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent); }
+    .timeline-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0 24px; position: relative; z-index: 1; }
+    .timeline-dot { width: 48px; height: 48px; background: rgba(255,255,255,0.2); border: 3px solid rgba(255,255,255,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; backdrop-filter: blur(4px); }
+    .timeline-label { font-size: 0.85rem; font-weight: 600; opacity: 0.9; }
+
+    .progress-container { max-width: 600px; margin: 24px auto 0; text-align: left; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; opacity: 0.9; }
+    .progress-track { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #f0e68c, #ffd700, #ff8c00); border-radius: 4px; transition: width 1s ease; box-shadow: 0 0 12px rgba(255, 215, 0, 0.5); }
+
+    .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .section-title { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: var(--shadow-md); }
+    .section-text h2 { font-size: 1.5rem; color: var(--primary); font-weight: 700; }
+    .section-text p { font-size: 0.9rem; color: var(--text-muted); }
+
+    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+    .lesson-card { background: var(--bg-card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid rgba(139, 69, 19, 0.08); position: relative; }
+    .lesson-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--secondary)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .lesson-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .lesson-card:hover::before { transform: scaleX(1); }
+    .card-header { padding: 20px 20px 12px; display: flex; align-items: flex-start; gap: 14px; }
+    .lesson-num { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; flex-shrink: 0; box-shadow: 0 4px 12px rgba(139,69,19,0.25); }
+    .lesson-meta { flex: 1; }
+    .lesson-title { font-size: 1rem; font-weight: 700; color: var(--text-dark); line-height: 1.4; margin-bottom: 4px; }
+    .lesson-subtitle { font-size: 0.85rem; color: var(--text-muted); }
+    .status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; }
+    .status-完成 { background: linear-gradient(135deg, #d1fae5, #a7f3d0); color: #065f46; }
+    .status-制作中 { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; }
+    .card-body { padding: 0 20px 16px; }
+    .lesson-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+    .card-footer { padding: 16px 20px; background: var(--bg-light); border-top: 1px solid rgba(139,69,19,0.06); }
+    .lesson-link { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px 20px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; text-decoration: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .lesson-link::after { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.2); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.4s ease, height 0.4s ease; }
+    .lesson-link:hover { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); transform: scale(1.02); box-shadow: 0 4px 16px rgba(139,69,19,0.35); }
+    .lesson-link:active::after { width: 300px; height: 300px; }
+    .footer { background: var(--text-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; } .hero-icon { font-size: 48px; } .lessons-grid { grid-template-columns: 1fr; } .dynasty-timeline { flex-wrap: wrap; gap: 16px; } .dynasty-timeline::before { display: none; } }
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s ease forwards; }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    .lesson-card:nth-child(1) { animation-delay: 0.1s; }
+    .lesson-card:nth-child(2) { animation-delay: 0.15s; }
+    .lesson-card:nth-child(3) { animation-delay: 0.2s; }
+    .lesson-card:nth-child(4) { animation-delay: 0.25s; }
+    .lesson-card:nth-child(5) { animation-delay: 0.3s; }
+    .lesson-card:nth-child(6) { animation-delay: 0.35s; }
+    .lesson-card:nth-child(7) { animation-delay: 0.4s; }
+  
+    /* ====== Touch ====== */
+    * { -webkit-tap-highlight-color: transparent; }
+    a, button { -webkit-tap-highlight-color: rgba(139,69,19,0.08); }      .hero-icon { font-size: 40px; margin-bottom: 12px; }
+      .hero-title { font-size: 1.4rem; letter-spacing: 1px; }
+      .hero-subtitle { font-size: 0.9rem; }
+
+      .dynasty-timeline { flex-wrap: wrap; gap: 12px; justify-content: center; }
+      .dynasty-timeline::before { display: none; }
+      .timeline-dot { width: 38px; height: 38px; font-size: 16px; }
+      .timeline-item { padding: 0 12px; }
+      .timeline-label { font-size: 0.75rem; }
+
+      .progress-container { margin: 16px auto 0; }
+      .progress-info { font-size: 0.78rem; }
+
+      .main-content { padding: 20px 12px; }
+      .section-title { gap: 12px; margin-bottom: 16px; }
+      .section-icon { width: 38px; height: 38px; font-size: 18px; border-radius: 10px; }
+      .section-text h2 { font-size: 1.2rem; }
+      .section-text p { font-size: 0.82rem; }
+
+      .lessons-grid { grid-template-columns: 1fr; gap: 12px; }
+      .lesson-card { border-radius: 12px; }
+      .lesson-card::before { height: 3px; }
+      .card-header { padding: 14px 14px 10px; gap: 10px; }
+      .lesson-num { width: 34px; height: 34px; font-size: 0.88rem; border-radius: 8px; }
+      .lesson-title { font-size: 0.92rem; }
+      .lesson-subtitle { font-size: 0.78rem; }
+      .status-badge { padding: 3px 8px; font-size: 0.68rem; }
+      .card-body { padding: 0 14px 12px; }
+      .lesson-desc { font-size: 0.85rem; }
+      .card-footer { padding: 12px 14px; }
+      .lesson-link { padding: 11px 16px; font-size: 0.88rem; border-radius: 8px; }
+
+      .footer { padding: 20px 14px; margin-top: 32px; }
+      .footer-text { font-size: 0.78rem; }
+    }.hero-icon { font-size: 32px; }
+      .lesson-title { font-size: 0.88rem; }
+    }      /* ---- 导航栏强制水平紧凑 ---- */
+    }
+    }
+      .nav-btn:hover,
+    }
+      /* 标题独占首行 */
+      /* 按钮均分2行，每行2个 */
+      .nav-btn:hover,
+    }}
+      .nav-btn:hover,
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 标准头部 -->
+  <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">第七单元</div></div></div>
+  <div class="progress-bar"><div class="progress-fill" style="width: 0%;"></div></div>
+  <div class="progress-label">第七单元 · 0/7课已完成</div>
+
+  <!-- 导航栏 -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../06_d6sy/d6sy.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一单元</a>
+    <div class="nav-center">第七单元：明清时期</div>
+</div></nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">🏰</div>
+      <h1 class="hero-title">第七单元：明清时期</h1>
+      <p class="hero-subtitle">统一多民族封建国家的巩固与发展</p>
+      <div class="dynasty-timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot">🏛️</div>
+          <span class="timeline-label">明朝</span>
+          <span style="font-size:0.75rem;opacity:0.7;">1368-1644</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">⚔️</div>
+          <span class="timeline-label">明末清初</span>
+          <span style="font-size:0.75rem;opacity:0.7;">1644-1662</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">👑</div>
+          <span class="timeline-label">清朝</span>
+          <span style="font-size:0.75rem;opacity:0.7;">1636-1912</span>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-info"><span><i class="fa-solid fa-landmark"></i> 学习进度</span><span>0/7 课时已完成</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width: 0%;"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="section-title">
+      <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="section-text"><h2>课程目录</h2><p>点击卡片开始学习</p></div>
+    </div>
+    <div class="lessons-grid">
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">37</span>
+          <div class="lesson-meta"><div class="lesson-title">明朝的统治</div><div class="lesson-subtitle">第37课 · 朱元璋</div></div>
+          <span class="status-badge status-制作中"><i class="fas fa-clock"></i> 制作中</span>
+        </div>
+        <div class="card-body"><p class="lesson-desc">朱元璋加强君权与明朝建立。</p></div>
+        <div class="card-footer"><a href="../07_d7sy/7.1_mdzz/mdzz.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a></div>
+      </div>
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">38</span>
+          <div class="lesson-meta"><div class="lesson-title">明朝的对外关系</div><div class="lesson-subtitle">第38课 · 郑和下西洋</div></div>
+          <span class="status-badge status-制作中"><i class="fas fa-clock"></i> 制作中</span>
+        </div>
+        <div class="card-body"><p class="lesson-desc">郑和下西洋与戚继光抗倭。</p></div>
+        <div class="card-footer"><a href="../07_d7sy/7.2_mdzwgx/mdzwgx.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a></div>
+      </div>
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">39</span>
+          <div class="lesson-meta"><div class="lesson-title">明朝的灭亡和清朝的建立</div><div class="lesson-subtitle">第39课 · 李自成</div></div>
+          <span class="status-badge status-制作中"><i class="fas fa-clock"></i> 制作中</span>
+        </div>
+        <div class="card-body"><p class="lesson-desc">李自成起义与清兵入关。</p></div>
+        <div class="card-footer"><a href="../07_d7sy/7.3_mdmlqcd/mdmlqcd.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a></div>
+      </div>
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">40</span>
+          <div class="lesson-meta"><div class="lesson-title">清朝的边疆治理</div><div class="lesson-subtitle">第40课 · 边疆政策</div></div>
+          <span class="status-badge status-制作中"><i class="fas fa-clock"></i> 制作中</span>
+        </div>
+        <div class="card-body"><p class="lesson-desc">台湾、西藏、新疆纳入版图。</p></div>
+        <div class="card-footer"><a href="../07_d7sy/7.4_qcbfl/qcbfl.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a></div>
+      </div>
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">41</span>
+          <div class="lesson-meta"><div class="lesson-title">清朝君主专制的强化</div><div class="lesson-subtitle">第41课 · 军机处</div></div>
+          <span class="status-badge status-制作中"><i class="fas fa-clock"></i> 制作中</span>
+        </div>
+        <div class="card-body"><p class="lesson-desc">军机处设立与文字狱。</p></div>
+        <div class="card-footer"><a href="../07_d7sy/7.5_qczjqd/qczjqd.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a></div>
+      </div>
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">42</span>
+          <div class="lesson-meta"><div class="lesson-title">明清时期的经济与社会生活</div><div class="lesson-subtitle">第42课 · 经济社会</div></div>
+          <span class="status-badge status-制作中"><i class="fas fa-clock"></i> 制作中</span>
+        </div>
+        <div class="card-body"><p class="lesson-desc">农耕经济繁荣与资本主义萌芽。</p></div>
+        <div class="card-footer"><a href="../07_d7sy/7.6_mqjjshsh/mqjjshsh.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a></div>
+      </div>
+      <div class="lesson-card fade-in">
+        <div class="card-header">
+          <span class="lesson-num">43</span>
+          <div class="lesson-meta"><div class="lesson-title">明清时期的科技与文化</div><div class="lesson-subtitle">第43课 · 科技文化</div></div>
+          <span class="status-badge status-制作中"><i class="fas fa-clock"></i> 制作中</span>
+        </div>
+        <div class="card-body"><p class="lesson-desc">《本草纲目》、四大名著与京剧。</p></div>
+        <div class="card-footer"><a href="../07_d7sy/7.7_mqkjwh/mqkjwh.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"><p class="footer-text">初中7年级历史 · 第七单元 · TeachAny v7.14.0</p></footer>
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

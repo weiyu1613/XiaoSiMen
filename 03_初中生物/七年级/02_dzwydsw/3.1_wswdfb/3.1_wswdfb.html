@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.1 微生物的分布 | 七年级生物</title>
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #2e7d32; --primary-light: #4caf50; --primary-dark: #1b5e20; --secondary: #81c784; --bg-light: #f1f8e9; --bg-card: #ffffff; --text-dark: #1a1a2e; --text-muted: #5d6d7e; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); }
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 15px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 12px; font-size: 12px; }
+    .progress-bar { height: 4px; background: #e8f5e9; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); transition: width 0.3s; width: 0%; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 8px 0; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 6px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 6px; transition: all 0.2s; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary) 30%, var(--primary-light) 70%, #2e7d32 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1rem; opacity: 0.9; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 24px 0; }
+    .section-title { font-size: 1.4rem; color: var(--primary); margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.08); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border: 2px solid #a5d6a7; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #c8e6c9, #a5d6a7); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #a5d6a7; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; font-size: 12px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #f1f8e9; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .warn-box { background: #fef9e7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 10px; font-size: 13px; color: var(--primary); text-align: center; }
+    .bio-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .bio-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px; text-align: center; }
+    .bio-table td { padding: 10px; border: 1px solid #c8e6c9; text-align: center; }
+    .bio-table tr:nth-child(even) { background: #f1f8e9; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    @media (max-width: 768px) { .hero { padding: 24px 14px; } .hero h1 { font-size: 1.4rem; } .section { padding: 16px 0; } .section-title { font-size: 1.1rem; } .card { padding: 14px; border-radius: 10px; } .anchor-btn { min-width: 100%; } .quiz-option { font-size: 13px; padding: 10px 12px; } .svg-container { padding: 12px; } .bio-table { font-size: 12px; display: block; overflow-x: auto; } }
+  </style>
+</head>
+<body>
+  <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-microscope"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 5/10 节 · 50%</div>
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
+    <div class="nav-center">第二单元：多种多样的生物</div>
+    <a href="../3.2_xxj/3.2_xxj.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+
+  <header class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-microscope"></i> 七年级生物 · 第二单元</div>
+    <h1>3.1 微生物的分布</h1>
+    <p>📖 课标要求：说明微生物的分布特点，简述培养细菌和真菌的方法<br>🎯 预计用时：25分钟</p>
+  </header>
+
+  <section class="container section" style="padding-top:0;">
+    <figure style="margin: 24px auto 0; max-width: 900px;">
+      <svg viewBox="0 0 800 220" width="800" height="220" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="220" fill="#f1f8e9"/>
+        <circle cx="400" cy="110" r="50" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="white">微生物的分布</text>
+        <rect x="40" y="55" width="145" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="112" y="80" text-anchor="middle" font-size="13" fill="white" font-weight="bold">分布广泛</text>
+        <text x="112" y="97" text-anchor="middle" font-size="11" fill="white">无处不在</text>
+        <line x1="185" y1="85" x2="350" y2="110" stroke="#2e7d32" stroke-width="2" marker-end="url(#a5)"/>
+        <rect x="615" y="55" width="145" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="687" y="80" text-anchor="middle" font-size="13" fill="white" font-weight="bold">培养方法</text>
+        <text x="687" y="97" text-anchor="middle" font-size="11" fill="white">培养基·灭菌·接种</text>
+        <line x1="615" y1="85" x2="450" y2="110" stroke="#2e7d32" stroke-width="2" marker-end="url(#a5)"/>
+        <rect x="40" y="145" width="145" height="60" rx="10" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+        <text x="112" y="170" text-anchor="middle" font-size="13" fill="#1b5e20" font-weight="bold">生长条件</text>
+        <text x="112" y="187" text-anchor="middle" font-size="11" fill="#1b5e20">水分·温度·有机物</text>
+        <line x1="185" y1="175" x2="350" y2="140" stroke="#2e7d32" stroke-width="2" marker-end="url(#a5)"/>
+        <rect x="615" y="145" width="145" height="60" rx="10" fill="#a5d6a7" stroke="#2e7d32" stroke-width="2"/>
+        <text x="687" y="170" text-anchor="middle" font-size="13" fill="#1b5e20" font-weight="bold">消毒灭菌</text>
+        <text x="687" y="187" text-anchor="middle" font-size="11" fill="#1b5e20">巴氏·高压蒸汽·煮沸</text>
+        <line x1="615" y1="175" x2="450" y2="140" stroke="#2e7d32" stroke-width="2" marker-end="url(#a5)"/>
+        <defs><marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0,8 4,0 8" fill="#2e7d32"/></marker></defs>
+        <text x="400" y="208" text-anchor="middle" font-size="12" fill="#2e7d32">图3-1 微生物的分布与培养知识结构图</text>
+      </svg>
+    </figure>
+  </section>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="微生物真的无处不在吗？">🦠 微生物真的无处不在吗？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="如何培养和观察细菌真菌？">🔬 如何培养和观察细菌真菌？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="为什么食品保存要灭菌？">🥫 为什么食品保存要灭菌？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--primary);">我自己的问题<input id="learner-question-input" placeholder="把你卡住的问题写在这里" style="width:100%;border-radius:12px;border:1px solid #a5d6a7;background:#f1f8e9;color:var(--primary-dark);padding:10px 14px;font-size:15px;margin-top:8px;"></label>
+        <div class="anchor-display" id="anchor-display" style="margin-top:20px;min-height:80px;"><p style="color:var(--primary);text-align:center;">👆 点击上方按钮查看问题</p></div>
+        <p id="anchor-feedback" style="display:none;margin-top:14px;padding:14px;border-radius:12px;background:rgba(46,125,50,0.1);border:1px solid rgba(46,125,50,0.28);color:var(--primary-dark);"></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style:none;padding-left:0;line-height:2;">
+          <li>✅ 说明微生物分布广泛的特点</li>
+          <li>✅ 简述培养细菌和真菌的基本方法</li>
+          <li>✅ 说出细菌和真菌的生长条件</li>
+          <li>✅ 了解消毒与灭菌的方法及其应用</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🔬</span> 微生物的分布</h2>
+      <div class="card">
+        <div class="concept-box"><div class="label">核心概念 · 微生物分布的特点——无处不在</div>
+          <ul style="padding-left:20px;line-height:1.8;">
+            <li>🌍 <strong>土壤中：</strong>数量最多，1克沃土含上亿个微生物</li>
+            <li>💧 <strong>水中：</strong>江河湖海中广泛分布</li>
+            <li>🌬️ <strong>空气中：</strong>随尘埃漂浮，室内外均有</li>
+            <li>🧬 <strong>生物体表/体内：</strong>人体皮肤表面、口腔、肠道有大量细菌</li>
+            <li>❄️ <strong>极端环境：</strong>温泉（耐热菌）、深海（耐压菌）、南极（耐寒菌）</li>
+          </ul>
+        </div>
+        <div class="svg-container">
+          <svg viewBox="0 0 600 220" width="600" height="220" xmlns="http://www.w3.org/2000/svg">
+            <rect width="600" height="220" fill="#f1f8e9" rx="8"/>
+            <text x="300" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#1b5e20">微生物分布广泛示意</text>
+            <!-- 土壤 -->
+            <rect x="50" y="140" width="120" height="60" rx="8" fill="#795548" stroke="#4e342e" stroke-width="2"/>
+            <text x="110" y="168" text-anchor="middle" font-size="13" fill="white" font-weight="bold">土壤</text>
+            <circle cx="90" cy="155" r="5" fill="#4caf50"/>
+            <circle cx="110" cy="148" r="4" fill="#4caf50"/>
+            <circle cx="130" cy="160" r="5" fill="#4caf50"/>
+            <circle cx="100" cy="163" r="4" fill="#4caf50"/>
+            <circle cx="120" cy="155" r="3" fill="#4caf50"/>
+            <circle cx="80" cy="160" r="4" fill="#4caf50"/>
+            <circle cx="135" cy="150" r="3" fill="#4caf50"/>
+            <!-- 水 -->
+            <path d="M250,100 Q270,80 300,90 Q330,100 350,85 L350,190 L250,190 Z" fill="#1565c0" stroke="#0d47a1" stroke-width="2" opacity="0.7"/>
+            <text x="300" y="175" text-anchor="middle" font-size="13" fill="white" font-weight="bold">水</text>
+            <circle cx="270" cy="140" r="4" fill="#4caf50"/>
+            <circle cx="300" cy="155" r="5" fill="#4caf50"/>
+            <circle cx="320" cy="135" r="4" fill="#4caf50"/>
+            <!-- 空气 -->
+            <rect x="400" y="60" width="150" height="140" rx="8" fill="#90caf9" stroke="#1565c0" stroke-width="2" opacity="0.3"/>
+            <text x="475" y="175" text-anchor="middle" font-size="13" fill="#1565c0" font-weight="bold">空气</text>
+            <circle cx="420" cy="100" r="4" fill="#4caf50"/>
+            <circle cx="460" cy="110" r="4" fill="#4caf50"/>
+            <circle cx="500" cy="95" r="5" fill="#4caf50"/>
+            <circle cx="440" cy="130" r="4" fill="#4caf50"/>
+            <circle cx="480" cy="145" r="4" fill="#4caf50"/>
+            <!-- 人 -->
+            <ellipse cx="160" cy="60" rx="25" ry="30" fill="#ffccbc" stroke="#e64a19" stroke-width="2"/>
+            <circle cx="160" cy="35" r="15" fill="#ffccbc" stroke="#e64a19" stroke-width="2"/>
+            <text x="160" y="105" text-anchor="middle" font-size="12" fill="#e64a19" font-weight="bold">人体</text>
+            <text x="300" y="205" text-anchor="middle" font-size="11" fill="#5d6d7e">图3-2 微生物分布广泛（绿色圆点代表微生物）</text>
+          </svg>
+          <p class="svg-caption">图3-2 微生物分布广泛（绿色圆点代表微生物）</p>
+        </div>
+        <div class="concept-box"><div class="label">核心概念 · 细菌和真菌的生长条件</div>
+          <table class="bio-table" style="margin:0;">
+            <tr><th>条件</th><th>说明</th></tr>
+            <tr><td>💧 水分</td><td>必需的营养溶剂</td></tr>
+            <tr><td>🌡️ 温度</td><td>大多数（中温菌）：25-37℃（人体相关）/ 20-30℃（环境）</td></tr>
+            <tr><td>🍞 有机物</td><td>碳源和氮源，提供能量和物质</td></tr>
+            <tr><td>🌬️ 氧气</td><td>好氧菌需要；厌氧菌不需要；兼性厌氧菌两者皆可</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🔬</span> 前测</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】微生物分布的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'A')" data-feedback="❌ 微生物不是只分布在水里！"><span class="opt-letter">A</span> 只分布在水中</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'B')" data-feedback="❌ 微生物不是只分布在生物体内！"><span class="opt-letter">B</span> 只分布在生物体内</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 0, 'C')"><span class="opt-letter">C</span> 无处不在</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'D')" data-feedback="❌ 微生物分布极广，不只是土壤！"><span class="opt-letter">D</span> 只分布在土壤中</div>
+        <div class="feedback" id="feedback-0"></div>
+        <div class="answer-explanation" id="explanation-0"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 无处不在</strong></p><p style="margin-top:8px;">微生物分布<strong>极其广泛</strong>：土壤（最多）、水中、空气中、人体表面/体内、温泉、冰川……几乎无处不在。</p></div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】下列关于培养细菌真菌的步骤，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 灭菌应该在接种之前！"><span class="opt-letter">A</span> 接种→灭菌→配制培养基→培养</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 配制培养基→灭菌→接种→培养→观察</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 培养应在接种之后！"><span class="opt-letter">C</span> 灭菌→接种→配制培养基→培养</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 顺序完全颠倒！"><span class="opt-letter">D</span> 培养→接种→灭菌→观察</div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 配制培养基→灭菌→接种→培养→观察</strong></p><p style="margin-top:8px;">顺序非常关键：先配制培养基，再<strong>灭菌</strong>（杀死所有杂菌），再<strong>接种</strong>（接入目标菌种），最后在适宜条件下<strong>培养</strong>并观察。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🧫</span> 培养微生物的方法</h2>
+      <div class="card">
+        <div class="concept-box"><div class="label">核心概念 · 培养细菌和真菌的基本步骤</div>
+          <ol style="padding-left:24px;line-height:2;">
+            <li>🥣 <strong>配制培养基：</strong>提供营养（琼脂+营养物质）</li>
+            <li>🔥 <strong>灭菌：</strong>杀死所有微生物（高压蒸汽灭菌）</li>
+            <li>💉 <strong>接种：</strong>将微生物接入培养基</li>
+            <li>🌡️ <strong>培养：</strong>在适宜温度下培养</li>
+            <li>🔍 <strong>观察：</strong>观察菌落特征</li>
+          </ol>
+        </div>
+        <div class="concept-box"><div class="label">核心概念 · 消毒与灭菌</div>
+          <ul style="padding-left:20px;line-height:1.8;">
+            <li>🧼 <strong>消毒：</strong>杀死病原微生物，芽孢不一定被杀灭
+              <ul style="margin-left:20px;">
+                <li>煮沸消毒（100℃，30分钟）</li>
+                <li>巴氏消毒（70-80℃，短时间）</li>
+                <li>化学消毒（酒精、碘酒）</li>
+              </ul>
+            </li>
+            <li>🔥 <strong>灭菌：</strong>杀死所有微生物（包括芽孢）
+              <ul style="margin-left:20px;">
+                <li>高压蒸汽灭菌（121℃，1.05 kg/cm²）</li>
+                <li>干热灭菌（160℃，2小时）</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="warn-box"><div class="label">⚠️ 易错警示</div>
+          <p><strong>误区：</strong>消毒和灭菌是一回事<br><strong>纠正：</strong>灭菌更彻底，消毒只是杀死病原微生物。灭菌能杀死<strong>芽孢</strong>（最耐热的休眠体），消毒不能。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">✅</span> 后测</h2>
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列环境中，微生物最多的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 清洁的空气微生物较少！"><span class="opt-letter">A</span> 清洁的空气</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 土壤中</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 冰川中微生物较少！"><span class="opt-letter">C</span> 冰川中</div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 土壤中</strong></p><p style="margin-top:8px;">土壤是微生物的大本营，1克沃土中含<strong>上亿个</strong>微生物。土壤提供水分、有机物等适宜条件。</p></div>
+      </div>
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】灭菌和消毒的主要区别是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 两者都是杀死微生物！"><span class="opt-letter">A</span> 灭菌杀死所有微生物，消毒只杀死部分</div>
+        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')"><span class="opt-letter">B</span> 灭菌能杀死芽孢，消毒不能</div>
+        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 消毒使用化学药剂，不是物理方法！"><span class="opt-letter">C</span> 消毒用高温，灭菌用化学药剂</div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 灭菌能杀死芽孢，消毒不能</strong></p><p style="margin-top:8px;">灭菌可以杀死<strong>所有微生物及其芽孢</strong>，消毒只能杀死<strong>病原微生物</strong>，芽孢是细菌的休眠体，对恶劣环境有极强抵抗力，只有灭菌才能将其杀死。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析</h2>
+      <div class="card">
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="exam-card-num" style="background:#dc2626;">1</span><strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：灭菌与消毒的区别</strong><span style="color:white;background:#dc2626;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">近10年考了16次</span></div>
+          <p style="font-size:14px;line-height:1.7;"><strong>必背：</strong>灭菌<strong>能</strong>杀死芽孢，消毒<strong>不能</strong>。灭菌用高压蒸汽/干热，消毒用煮沸/巴氏/化学药剂。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="teachany-ai-tutor-card"><div data-teachany-tutor-card></div></section>
+  </main>
+
+  <footer class="footer"><p>© 2024 TeachAny · 初中生物互动课件系统</p><p style="margin-top:8px;font-size:12px;">基于 TeachAny v7.14.0</p></footer>
+
+  <script>
+    var COURSE_INFO = { totalSections: 10, currentSection: 5 };
+    var anchorContents = {};
+    anchorContents[1] = '<h3>🦠 问题1：微生物真的无处不在吗？</h3><p>是的！微生物分布极其广泛：土壤（最多，1克沃土含上亿个）、水中、空气中，甚至温泉和冰川等极端环境也有微生物生存。</p>';
+    anchorContents[2] = '<h3>🔬 问题2：如何培养和观察细菌真菌？</h3><p>步骤：配制培养基→灭菌→接种→培养→观察菌落。培养基提供营养，观察菌落的形态、大小、颜色等特征可以初步判断微生物种类。</p>';
+    anchorContents[3] = '<h3>🥫 问题3：为什么食品保存要灭菌？</h3><p>食品变质主要由微生物引起。灭菌可以彻底杀死所有微生物，防止食品腐败变质。巴氏消毒（牛奶）则杀死病原菌，保留部分有益菌。</p>';
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach(function(item) { item.classList.remove('selected'); });
+      btnElement.classList.add('selected');
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = anchorContents[id] || '';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = '你选择了：' + btnElement.getAttribute('data-anchor-choice'); feedback.style.display = 'block'; }
+    }
+    document.getElementById('learner-question-input') && document.getElementById('learner-question-input').addEventListener('input', function() {
+      var display = document.getElementById('anchor-display');
+      if (display) display.innerHTML = '<h3>📍 你的问题：' + this.value + '</h3><p>很好的问题！</p>';
+      var feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = '你的问题：' + this.value; feedback.style.display = 'block'; }
+    });
+    function checkAnswer(element, isCorrect, questionNum) {
+      var parent = element.closest('.quiz-box');
+      var feedback = parent.querySelector('.feedback');
+      var explanation = document.getElementById('explanation-' + questionNum);
+      parent.querySelectorAll('.quiz-option').forEach(function(opt) { opt.classList.remove('correct', 'wrong'); });
+      if (isCorrect) { element.classList.add('correct'); if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong>'; feedback.className = 'feedback show correct-fb'; } if (explanation) explanation.classList.add('show'); }
+      else { element.classList.add('wrong'); if (feedback) { feedback.innerHTML = (element.dataset.feedback || '❌ 不对') + '<br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; } if (parent.querySelector('.quiz-option.correct') && explanation) explanation.classList.add('show'); }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var p = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      var pf = document.getElementById('progress-fill'); var pl = document.getElementById('progress-label');
+      if (pf) pf.style.width = p + '%';
+      if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

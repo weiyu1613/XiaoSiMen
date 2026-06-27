@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第四单元：人体生理与健康 - 七年级生物</title>
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; }
+
+    /* 品牌栏 */
+    .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary-dark), var(--primary-light)); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f1f8e9; }
+
+    /* 导航栏 */
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero区 */
+    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 关键知识点 */
+    .key-points { display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
+    .key-point { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; background: rgba(255,255,255,0.15); border-radius: 12px; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.3); min-width: 110px; }
+    .key-point-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .key-point-label { font-size: 0.85rem; font-weight: 600; opacity: 0.9; }
+
+    /* 进度容器 */
+    .progress-container { max-width: 600px; margin: 24px auto 0; text-align: left; }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; opacity: 0.9; }
+    .progress-track { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
+    .progress-fill-hero { height: 100%; background: linear-gradient(90deg, #a5d6a7, #66bb6a, #ffd54f); border-radius: 4px; transition: width 1s ease; box-shadow: 0 0 12px rgba(102,187,106,0.5); }
+
+    /* 主内容 */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; display: flex; align-items: center; gap: 12px; }
+    .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; }
+
+    /* 章节分组 */
+    .chapter-group { margin-bottom: 32px; }
+    .chapter-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 16px 24px; border-radius: 12px 12px 0 0; display: flex; align-items: center; gap: 12px; }
+    .chapter-header h3 { font-size: 1.1rem; font-weight: 700; }
+    .chapter-icon { font-size: 24px; }
+
+    /* 课时卡片 */
+    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; padding: 20px; background: white; border-radius: 0 0 12px 12px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.08); border-top: none; }
+    .lesson-card { background: var(--bg-light); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(46,125,50,0.1); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid rgba(46,125,50,0.08); position: relative; cursor: pointer; }
+    .lesson-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--secondary)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .lesson-card:hover { transform: translateY(-6px); box-shadow: 0 8px 32px rgba(46,125,50,0.16); border-color: transparent; }
+    .lesson-card:hover::before { transform: scaleX(1); }
+    .card-header { padding: 18px 18px 10px; display: flex; align-items: flex-start; gap: 12px; }
+    .lesson-num { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; flex-shrink: 0; box-shadow: 0 4px 12px rgba(46,125,50,0.25); }
+    .lesson-meta { flex: 1; }
+    .lesson-title { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); line-height: 1.4; margin-bottom: 4px; }
+    .lesson-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+    .card-footer { padding: 12px 18px 16px; }
+    .lesson-link { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px 16px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; text-decoration: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease; }
+    .lesson-link:hover { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); transform: scale(1.02); box-shadow: 0 4px 16px rgba(46,125,50,0.35); }
+
+    /* SVG知识图容器 */
+    .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+
+    /* 页脚 */
+    .footer { background: var(--primary-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 48px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.5rem; }
+      .key-points { flex-direction: column; }
+      .key-point { min-width: 100%; }
+      .lessons-grid { grid-template-columns: 1fr; }
+      .nav-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+  <div class="progress-label">第四单元 · 100%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <div class="nav-center">第四单元：人体生理与健康</div>
+      <a href="../03_zwwdsh/zwwdsh.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一单元</a>
+      <a href="../05_rmycx/rmycx.html" class="nav-btn">下一单元 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero区 + SVG知识图 -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-heart-pulse"></i> 七年级生物 · 第四单元</div>
+      <h1>人体生理与健康</h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解人体结构与功能，养成健康生活方式<br>
+        🎯 共5章11课时
+      </p>
+      <div class="key-points">
+        <div class="key-point">
+          <div class="key-point-icon">🧬</div>
+          <span class="key-point-label">生殖与发育</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🍽️</div>
+          <span class="key-point-label">营养与消化</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🫁</div>
+          <span class="key-point-label">呼吸系统</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🫀</div>
+          <span class="key-point-label">血液循环</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">💧</div>
+          <span class="key-point-label">废物排出</span>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-info">
+          <span><i class="fas fa-book"></i> 学习进度</span>
+          <span>11/11 课时</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill-hero" style="width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SVG知识图 -->
+  <div class="container" style="margin-top:24px;">
+    <div class="svg-container">
+      <svg viewBox="0 0 800 240" width="800" height="240" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="240" fill="#f1f8e9"/>
+        <!-- 中心：人体生理与健康 -->
+        <rect x="300" y="80" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="115" text-anchor="middle" font-size="16" font-weight="bold" fill="white">人体生理与健康</text>
+        <text x="400" y="140" text-anchor="middle" font-size="11" fill="#c8e6c9">Human Physiology & Health</text>
+        
+        <!-- 生殖与发育 -->
+        <rect x="40" y="30" width="160" height="50" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="58" text-anchor="middle" font-size="13" fill="white">生殖与发育</text>
+        <line x1="200" y1="55" x2="300" y2="110" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 营养与消化 -->
+        <rect x="40" y="100" width="160" height="50" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="128" text-anchor="middle" font-size="13" fill="white">营养与消化</text>
+        <line x1="200" y1="125" x2="300" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 呼吸 -->
+        <rect x="600" y="30" width="160" height="50" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="58" text-anchor="middle" font-size="13" fill="white">呼吸</text>
+        <line x1="600" y1="55" x2="500" y2="110" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 血液循环 -->
+        <rect x="600" y="100" width="160" height="50" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="128" text-anchor="middle" font-size="13" fill="white">血液循环</text>
+        <line x1="600" y1="125" x2="500" y2="130" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <!-- 废物排出 -->
+        <rect x="300" y="180" width="200" height="50" rx="10" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+        <text x="400" y="208" text-anchor="middle" font-size="13" fill="white">废物排出</text>
+        <line x1="400" y1="180" x2="400" y2="160" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrow)"/>
+        
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="svg-caption">图4-1 第四单元知识结构图</div>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- 课程目录 -->
+    <section class="section">
+      <div class="section-title">
+        <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div>
+          <h2>课程目录</h2>
+          <p style="font-size:0.9rem;color:var(--text-muted);">共5章11课时，点击卡片开始学习</p>
+        </div>
+      </div>
+
+      <!-- 第一章：生殖与发育 -->
+      <div class="chapter-group">
+        <div class="chapter-header">
+          <span class="chapter-icon">🧬</span>
+          <h3>第一章：生殖与发育</h3>
+        </div>
+        <div class="lessons-grid">
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">1</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">1.1 人的生殖</div>
+                <div class="lesson-desc">生殖系统结构与功能、受精与胚胎发育</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="1.1_rdszyf/rdszyf.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">2</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">1.2 青春期</div>
+                <div class="lesson-desc">青春期生理与心理变化、卫生保健</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="1.2_qcqi/qcqi.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二章：营养与消化 -->
+      <div class="chapter-group">
+        <div class="chapter-header">
+          <span class="chapter-icon">🍽️</span>
+          <h3>第二章：营养与消化</h3>
+        </div>
+        <div class="lessons-grid">
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">3</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">2.1 食物中的营养物质</div>
+                <div class="lesson-desc">六大营养素及其作用</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="2.1_swwdzyywz/swwdzyywz.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">4</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">2.2 消化和吸收</div>
+                <div class="lesson-desc">消化系统的结构与功能、小肠的吸收</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="2.2_xhhs/xhhs.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">5</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">2.3 合理营养与食品安全</div>
+                <div class="lesson-desc">平衡膳食宝塔、食品安全常识</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="2.3_hlyyyyaws/hlyyyyaws.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第三章：呼吸 -->
+      <div class="chapter-group">
+        <div class="chapter-header">
+          <span class="chapter-icon">🫁</span>
+          <h3>第三章：呼吸</h3>
+        </div>
+        <div class="lessons-grid">
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">6</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">3.1 呼吸道对空气的处理</div>
+                <div class="lesson-desc">呼吸道的组成与功能</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="3.1_sxdwdkdcl/sxdwdkdcl.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">7</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">3.2 发生在肺内的气体交换</div>
+                <div class="lesson-desc">肺通气原理与肺泡气体交换</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="3.2_fszfnqdqtjh/fszfnqdqtjh.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第四章：血液循环 -->
+      <div class="chapter-group">
+        <div class="chapter-header">
+          <span class="chapter-icon">🫀</span>
+          <h3>第四章：血液循环</h3>
+        </div>
+        <div class="lessons-grid">
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">8</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">4.1 流动的组织——血液</div>
+                <div class="lesson-desc">血液的组成与功能</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="4.1_lddzz/lddzz.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">9</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">4.2 血流的管道——血管</div>
+                <div class="lesson-desc">三种血管的结构与功能</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="4.2_xldgd/xldgd.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">10</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">4.3 输送血液的泵——心脏</div>
+                <div class="lesson-desc">心脏结构与血液循环路线</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="4.3_xz/xz.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第五章：排泄 -->
+      <div class="chapter-group">
+        <div class="chapter-header">
+          <span class="chapter-icon">💧</span>
+          <h3>第五章：人体内废物的排出</h3>
+        </div>
+        <div class="lessons-grid">
+          <div class="lesson-card fade-in">
+            <div class="card-header">
+              <span class="lesson-num">11</span>
+              <div class="lesson-meta">
+                <div class="lesson-title">5.1 人体内废物的排出</div>
+                <div class="lesson-desc">泌尿系统与尿液的形成</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="5.1_rtnfwpc/rtnfwpc.html" class="lesson-link"><i class="fas fa-play"></i> 开始学习</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第四单元 人体生理与健康 · TeachAny v7.14.0</p>
+  </footer>
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

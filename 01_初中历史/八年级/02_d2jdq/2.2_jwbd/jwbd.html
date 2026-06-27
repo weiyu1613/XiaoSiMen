@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="history-modernization-8">
+  <meta name="course-title" content="第二单元 近代化的探索">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="modernization-exploration">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v1.0">
+  
+  <title>第二单元 近代化的探索 | 初中八年级历史</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .unit-card {
+      background: linear-gradient(135deg, #8b4513, #5a2d0c);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .unit-card h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.5rem;
+    }
+    
+    .unit-card p {
+      margin: 0 0 16px 0;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    
+    .unit-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .lesson-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    
+    .lesson-item {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    
+    .lesson-item:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateX(8px);
+    }
+    
+    .lesson-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #d2b48c;
+      color: #5a2d0c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    
+    .lesson-info h3 {
+      margin: 0 0 4px 0;
+      font-size: 15px;
+      color: white;
+    }
+    
+    .lesson-info p {
+      margin: 0;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .lesson-arrow {
+      margin-left: auto;
+      opacity: 0.5;
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #d2b48c;
+      color: #5a2d0c;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 20px;
+      transition: all 0.2s;
+    }
+    
+    .back-btn:hover {
+      background: #c4a574;
+      transform: translateY(-2px);
+    }
+    
+    /* 导航栏样式 */
+    .nav-bar { background: #f5e6d3; border-bottom: 2px solid #8b4513; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #8b4513; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #d2b48c; }
+    .nav-center { font-weight: 700; color: #8b4513; font-size: 14px; text-align: center; flex: 1; }
+    
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #8b4513, #5a2d0c); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+    
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e8dcc8; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #8b4513, #d2b48c); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #8b4513; padding: 4px 20px; background: #f5e6d3; }
+    
+    /* 品牌栏 */
+    .brand-bar { background: #8b4513; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #8b4513; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #d2b48c; }
+    .section-title .num { margin-right: 8px; }
+    
+    /* 卡片 */
+    .card { background: white; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(139,69,19,0.1); }
+    
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f5e6d3, #e8dcc8); border: 2px solid #d2b48c; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #8b4513; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #e8dcc8, #f5e6d3); border-color: #b8956c; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #8b4513, #5a2d0c); color: white; border-color: #8b4513; }
+    
+    /* 测验选项 */
+    .quiz-box { background: #f5e6d3; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8dcc8; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #d2b48c; background: #f5e6d3; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #8b4513; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    
+    /* 概念框 */
+    .concept-box { background: #f5e6d3; border-left: 4px solid #8b4513; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #8b4513; margin-bottom: 8px; }
+    
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    
+    /* 页脚 */
+    .footer { background: #8b4513; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v1.0</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 1/4 节 · 25%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <div class="nav-center">八年级历史上册 · 第二单元</div>
+    <a href="2.1_zgzz/zgzz.html" class="nav-btn">中国近代化的艰难起步 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="2.2_jhtd/jhtd.html" class="nav-btn">甲午中日战争与马关条约 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-landmark"></i> 初中八年级历史 · 第二单元</div>
+      <h1>第二单元 近代化的探索<span>Modernization Exploration</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解近代化探索的历程，认识其历史意义<br>
+        🎯 预计用时：3课时
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f5e6d3"/>
+        <!-- 中心主题：近代化的探索 -->
+        <circle cx="400" cy="150" r="70" fill="#8b4513" stroke="#5a2d0c" stroke-width="3"/>
+        <text x="400" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="white">近代化的探索</text>
+        <text x="400" y="165" text-anchor="middle" font-size="10" fill="#d2b48c">近代化探索</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="150" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="125" y="85" text-anchor="middle" font-size="14" fill="white">洋务运动</text>
+        <line x1="200" y1="80" x2="330" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="150" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="125" y="225" text-anchor="middle" font-size="14" fill="white">戊戌变法</text>
+        <line x1="200" y1="220" x2="330" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="600" y="50" width="150" height="60" rx="10" fill="#d2691e" stroke="#8b4513" stroke-width="2"/>
+        <text x="675" y="85" text-anchor="middle" font-size="14" fill="white">辛亥革命</text>
+        <line x1="600" y1="80" x2="470" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="600" y="190" width="150" height="60" rx="10" fill="#8b4513" stroke="#5a2d0c" stroke-width="2"/>
+        <text x="675" y="225" text-anchor="middle" font-size="14" fill="white">新文化运动</text>
+        <line x1="600" y1="220" x2="470" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #8b4513; font-size: 14px; text-align: center;">图2-1 近代化探索知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="洋务运动为什么失败？">🏭 洋务运动为什么失败？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="戊戌变法有哪些影响？">📜 戊戌变法有哪些影响？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="辛亥革命的意义是什么？">🇨🇳 辛亥革命的意义是什么？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #8b4513;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #8b4513; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 了解洋务运动的背景、内容和失败原因</li>
+          <li>✅ 掌握戊戌变法的背景、内容和历史意义</li>
+          <li>✅ 理解辛亥革命的历史地位和影响</li>
+          <li>✅ 认识近代化探索的曲折性和进步性</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 核心内容 - 单元概述 -->
+    <section class="section" id="section-overview">
+      <h2 class="section-title"><span class="num">📖</span> 核心知识点</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #8b4513;">⚔️ 甲午中日战争（1894-1895年）</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>战争背景：</strong>日本明治维新后国力增强，朝鲜东学党起义事件</li>
+          <li><strong>主要战役：</strong>丰岛海战、黄海海战、平壤战役、威海卫战役</li>
+          <li><strong>著名将领：</strong>邓世昌（致远舰）、丁汝昌（北洋舰队）、左宝贵</li>
+          <li><strong>战争结果：</strong>清军战败，签订《马关条约》</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">📜 《马关条约》主要内容</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>领土割让：</strong>辽东半岛、台湾全岛及所有附属各岛屿、澎湖列岛</li>
+          <li><strong>赔款：</strong>白银2亿两</li>
+          <li><strong>通商口岸：</strong>沙市、重庆、苏州、杭州</li>
+          <li><strong>特权：</strong>允许日本在华设厂</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 历史影响</div>
+          <p>甲午战争是中国近代史上的重要转折点，标志着洋务运动的彻底失败，中国半殖民地化程度大大加深，民族危机空前严重。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 课时导航 -->
+    <section class="section" id="section-lessons">
+      <h2 class="section-title"><span class="num">📚</span> 课时导航</h2>
+      
+      <div class="unit-card">
+        <div class="unit-badge">第1课时</div>
+        <h2>2.1 中国近代化的艰难起步</h2>
+        <p><strong>洋务运动</strong>：19世纪60-90年代，以"自强""求富"为口号的封建自救运动</p>
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 8px;">🏭 核心思想：师夷长技以制夷</li>
+          <li style="margin-bottom: 8px;">🏢 代表企业：江南制造总局、轮船招商局</li>
+          <li style="margin-bottom: 8px;">❌ 失败原因：封建制度束缚、腐败无能</li>
+        </ul>
+      </div>
+
+      <div class="unit-card" style="background: linear-gradient(135deg, #cd853f, #8b4513);">
+        <div class="unit-badge">第2课时</div>
+        <h2>2.2 甲午中日战争与马关条约</h2>
+        <p><strong>民族危机加深</strong>：1894-1895年，中日之间的重要战争</p>
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 8px;">⚔️ 核心事件：黄海海战、威海卫战役</li>
+          <li style="margin-bottom: 8px;">📜 代表人物：邓世昌、丁汝昌</li>
+          <li style="margin-bottom: 8px;">📋 结果：签订《马关条约》，中国半殖民地化加深</li>
+        </ul>
+      </div>
+
+      <div class="unit-card" style="background: linear-gradient(135deg, #d2691e, #8b4513);">
+        <div class="unit-badge">第3课时</div>
+        <h2>2.3 戊戌变法</h2>
+        <p><strong>百日维新</strong>：1898年，以光绪帝为首的改良运动</p>
+        <ul style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 8px;">📜 核心思想：变法图强，发展资本主义</li>
+          <li style="margin-bottom: 8px;">👥 代表人物：康有为、梁启超</li>
+          <li style="margin-bottom: 8px;">❌ 失败原因：顽固派反对、慈禧太后镇压</li>
+        </ul>
+      </div>
+    </section>
+    <!-- Section: 互动测验 -->
+    <section class="section" id="section-quiz">
+      <h2 class="section-title"><span class="num">🎮</span> 互动测验</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">每道题都有详细的错因分析，答错了要认真学习哦！</p>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】学习历史课程，对我们的启示是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'A')">
+            <span class="opt-letter">A</span> 以史为鉴，面向未来
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 学习历史是为了从中吸取教训，不是无用之举！">
+            <span class="opt-letter">B</span> 历史已经过去，无需学习
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 学习历史需要思考和理解，不能只记事实！">
+            <span class="opt-letter">C</span> 只需记住事实，无需思考
+          </div>
+        </div>
+        <div class="feedback" id="feedback-20"></div>
+        <div class="answer-explanation" id="explanation-20">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 以史为鉴，面向未来</strong></p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Section 5: 后测 -->
+    
+    <!-- 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国近代化探索开始于哪个运动？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+            <span class="opt-letter">A</span> 洋务运动
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 戊戌变法是政治制度改革，不是近代化的开端！">
+            <span class="opt-letter">B</span> 戊戌变法
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 辛亥革命是资产阶级革命，比洋务运动晚！">
+            <span class="opt-letter">C</span> 辛亥革命
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 洋务运动</strong></p>
+          <p style="margin-top: 8px;">洋务运动（19世纪60-90年代）是中国<strong>近代化</strong>的开端，引进了西方先进生产技术，创办了一批近代工业。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】洋务运动的口号是什么？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 这是新文化运动的口号，不是洋务运动的！">
+            <span class="opt-letter">A</span> 民主与科学
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 自强、求富
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 这是戊戌变法的口号！">
+            <span class="opt-letter">C</span> 变法维新
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 自强、求富</strong></p>
+          <p style="margin-top: 8px;">前期以"<strong>自强</strong>"为口号，发展军事工业；后期以"<strong>求富</strong>"为口号，发展民用工业。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 挑战】下列哪项不属于洋务派创办的企业？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 江南制造总局是洋务派最大的军事企业，1865年曾国藩/李鸿章创办于上海！">
+            <span class="opt-letter">A</span> 江南制造总局
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+            <span class="opt-letter">B</span> 轮船招商局（民用）— 等等，这也是洋务派的
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 福州船政局是左宗棠创办的军事企业！">
+            <span class="opt-letter">C</span> 福州船政局
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：需要根据具体选项判断</strong></p>
+          <p style="margin-top: 8px;">洋务派主要企业：军事——江南制造总局、福州船政局、安庆内军械所；民用——轮船招商局、汉阳铁厂、湖北织布局等。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国近代化探索开始于哪个运动？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 洋务运动</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 戊戌变法是政治制度改革，不是近代化的开端！"><span class="opt-letter">B</span> 戊戌变法</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 辛亥革命比洋务运动晚！"><span class="opt-letter">C</span> 辛亥革命</div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 洋务运动</strong></p>
+          <p style="margin-top: 8px;">洋务运动（19世纪60-90年代）是中国<strong>近代化</strong>的开端，引进了西方先进生产技术。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】洋务运动的口号是什么？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 这是新文化运动的口号！"><span class="opt-letter">A</span> 民主与科学</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 自强、求富</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 这是戊戌变法的口号！"><span class="opt-letter">C</span> 变法维新</div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 自强、求富</strong></p>
+          <p style="margin-top: 8px;">前期"<strong>自强</strong>"发展军事工业，后期"<strong>求富</strong>"发展民用工业。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 挑战】洋务派创办的下列企业中，属于民用的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 江南制造总局是最大的军事工业企业！"><span class="opt-letter">A</span> 江南制造总局</div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 轮船招商局</div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 福州船政局是左宗棠创办的军事企业！"><span class="opt-letter">C</span> 福州船政局</div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 轮船招商局</strong></p>
+          <p style="margin-top: 8px;">轮船招商局是李鸿章1872年创办的<strong>民用企业</strong>。军事企业：江南制造总局、福州船政局、安庆内军械所；民用：轮船招商局、汉阳铁厂、湖北织布局。</p>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #8b4513; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】洋务运动的口号是什么？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 自强是洋务运动的口号，求富是其根本目的！">
+            <span class="opt-letter">A</span> 自强、求富
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 师夷长技以制夷
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 变法图强是戊戌变法的口号！">
+            <span class="opt-letter">C</span> 变法图强
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 师夷长技以制夷</strong></p>
+          <p style="margin-top: 8px;">"师夷长技以制夷"是魏源在《海国图志》中提出的思想，后成为洋务运动的核心指导思想。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）洋务运动失败的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 部分官员腐败不是根本原因，封建制度才是！">
+            <span class="opt-letter">A</span> 部分官员腐败
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 没有引进西方先进技术不是根本原因！">
+            <span class="opt-letter">B</span> 没有引进西方先进技术
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+            <span class="opt-letter">C</span> 封建制度的束缚
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 封建制度的束缚</strong></p>
+          <p style="margin-top: 8px;">洋务运动采用"中体西用"，试图在不改变封建制度的前提下发展近代工业，因此无法取得成功。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（甲午中日战争相关） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】甲午中日战争爆发的直接导火索是什么？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 日本蓄谋已久，但直接导火索是朝鲜事件">
+            <span class="opt-letter">A</span> 日本明治维新成功
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+            <span class="opt-letter">B</span> 朝鲜东学党起义
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 这是战争背景，不是直接导火索">
+            <span class="opt-letter">C</span> 洋务运动失败
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 朝鲜东学党起义</strong></p>
+          <p style="margin-top: 8px;">1894年朝鲜爆发东学党起义，朝鲜政府请求清政府出兵镇压，日本也趁机出兵，最终挑起战争。</p>
+        </div>
+      </div>
+
+      <!-- 后测题4（马关条约相关） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】《马关条约》对中国影响最深远的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 赔款严重，但不是最深远的影响">
+            <span class="opt-letter">A</span> 赔款白银2亿两
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 割让领土严重，但不是最深远的影响">
+            <span class="opt-letter">B</span> 割让台湾及澎湖列岛
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+            <span class="opt-letter">C</span> 允许日本在华设厂
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 允许日本在华设厂</strong></p>
+          <p style="margin-top: 8px;">允许日本在华设厂标志着列强对中国的经济侵略从商品输出进入资本输出的新阶段，对中国民族工业的发展造成严重阻碍。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 考点分析</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：甲午中日战争</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了22次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 时间：1894-1895年</li>
+            <li>✅ 导火索：朝鲜东学党起义</li>
+            <li>✅ 重要战役：黄海海战、威海卫战役</li>
+            <li>✅ 意义：中国半殖民地化大大加深</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：《马关条约》</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>主要内容（割地、赔款、开埠、设厂）及其对中国的影响。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：邓世昌等爱国将领</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>邓世昌（致远舰）、丁汝昌（北洋舰队）等爱国将领的英雄事迹。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：历史影响</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>甲午战争对中国社会的影响（民族危机加深、刺激救亡图存运动）。</p>
+        </div>
+      </div>
+    </section>
+    
+  
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v1.0 | 适配部编版八年级历史课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 6,
+      currentSection: 1
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>🏭 问题1：洋务运动为什么失败？</h3>
+      <p><strong>主要原因：</strong>封建制度束缚</p>
+      <p><strong>次要原因：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>部分官员腐败无能</li>
+        <li>没有引进西方先进技术</li>
+        <li>缺乏科学管理</li>
+      </ul>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📜 问题2：戊戌变法有哪些影响？</h3>
+      <p><strong>积极影响：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>有利于中国资本主义发展</li>
+        <li>有利于思想启蒙</li>
+        <li>促进了民族意识觉醒</li>
+      </ul>
+      <p><strong>失败原因：</strong>顽固派反对、慈禧太后镇压</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>🇨🇳 问题3：辛亥革命的意义是什么？</h3>
+      <p><strong>最大意义：</strong>推翻了帝制，建立了民国</p>
+      <p><strong>其他影响：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>使民主共和观念深入人心</li>
+        <li>为民族资本主义发展创造了条件</li>
+        <li>推动了思想解放</li>
+      </ul>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《近代化的探索》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+</body>
+</html>

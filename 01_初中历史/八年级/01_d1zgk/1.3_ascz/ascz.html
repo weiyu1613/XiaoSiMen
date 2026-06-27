@@ -1,0 +1,779 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="history-taiping-rebellion-8">
+  <meta name="course-title" content="第3课 太平天国运动">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="history-taiping-rebellion">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14">
+
+  <title>第3课 太平天国运动 | 初中8年级历史</title>
+
+  <style>
+    /* ========== 全局样式 ========== */
+    :root {
+      --primary: #8b4513;
+      --primary-light: #a0522d;
+      --primary-dark: #5a2d0c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      background: #f5f0eb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* 品牌栏 */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag {
+      background: rgba(255,255,255,0.2);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #d2b48c; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light)); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: #f5f0eb; }
+
+    /* 导航栏 */
+    .nav-bar { background: #f5f0eb; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #d2b48c; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge {
+      background: rgba(255,255,255,0.2);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: var(--primary); margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #d2b48c; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(139,69,19,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn {
+      flex: 1; min-width: 200px; padding: 12px 16px;
+      background: linear-gradient(135deg, #d2b48c, #f5f0eb);
+      border: 2px solid #a0522d; border-radius: 10px;
+      cursor: pointer; font-size: 14px; font-weight: 600;
+      color: var(--primary-dark); transition: all 0.2s; text-align: center;
+    }
+    .anchor-btn:hover { background: linear-gradient(135deg, #a0522d, #d2b48c); border-color: var(--primary); color: white; }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+
+    /* 测验选项 */
+    .quiz-box { background: #f5f0eb; border: 1px solid #d2b48c; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #d2b48c; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: var(--primary); background: #f5f0eb; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb; border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0; padding: 16px 20px;
+      margin-top: 12px; font-size: 14px; color: #78350f; display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    /* 概念框 */
+    .concept-box { background: #f5f0eb; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #f5f0eb; border: 1px solid #d2b48c; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
+
+    /* 难度标签 */
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* 页脚 */
+    .footer { background: var(--primary); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+
+    /* 表格 */
+    .history-table {
+      width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;
+    }
+    .history-table th {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; padding: 12px; text-align: center;
+    }
+    .history-table td { padding: 10px; border: 1px solid #d2b48c; text-align: center; }
+    .history-table tr:nth-child(even) { background: #f5f0eb; }
+
+    /* 时间线 */
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+      margin: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin: 20px 0;
+      padding: 15px;
+      background: #f5f0eb;
+      border-radius: 8px;
+      width: 45%;
+    }
+
+    .timeline-item:nth-child(odd) { margin-left: 55%; }
+    .timeline-item:nth-child(even) { margin-left: 0; }
+
+    .timeline-item h4 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    /* 手机端适配 */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .section { padding: 0 12px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .card { padding: 14px !important; }
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .quiz-option { font-size: 0.88rem !important; }
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+      .timeline-item { width: 90% !important; margin-left: 5% !important; }
+      .timeline::before { left: 20px; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+</head>
+
+<body>
+
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 3/3 节 · 100%</div>
+
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d1zgk.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第一单元:中国开始沦为半殖民地半封建社会</div>
+    <a href="../1.2_tjyt/tjyt.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="#" class="nav-btn disabled">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-landmark-open"></i> 八年级历史上册 · 第一单元</div>
+      <h1>第3课 太平天国运动<span>Taiping Rebellion</span></h1>
+      <p style="margin-top: 15px;">
+        📖 课标要求:了解太平天国运动的兴衰<br>
+        🎯 预计用时:45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic" style="margin-top: 24px;">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f5f0eb"/>
+        <!-- 中心主题:太平天国运动 -->
+        <rect x="300" y="100" width="200" height="100" rx="15" fill="#8b4513" stroke="#5a2d0c" stroke-width="3"/>
+        <text x="400" y="140" text-anchor="middle" font-size="18" font-weight="bold" fill="white">太平天国运动</text>
+        <text x="400" y="170" text-anchor="middle" font-size="14" fill="white">1851-1864</text>
+
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="85" text-anchor="middle" font-size="14" fill="white">金田起义</text>
+        <line x1="190" y1="80" x2="300" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="120" y="225" text-anchor="middle" font-size="14" fill="white">定都天京</text>
+        <line x1="190" y1="220" x2="300" y2="190" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="85" text-anchor="middle" font-size="14" fill="white">天京事变</text>
+        <line x1="610" y1="80" x2="600" y2="130" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="680" y="225" text-anchor="middle" font-size="14" fill="white">运动失败</text>
+        <line x1="610" y1="220" x2="600" y2="190" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: var(--primary); font-size: 14px; text-align: center;">图3-1 太平天国运动知识结构图</figcaption>
+    </figure>
+  </section>
+
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="太平天国运动是怎么兴起的?">📍 太平天国运动是怎么兴起的?</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="《天朝田亩制度》有哪些内容?">📜 《天朝田亩制度》有哪些内容?</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="太平天国运动为什么失败了?">⚡ 太平天国运动为什么失败了?</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: var(--primary);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)" style="width: 100%; border-radius: 12px; border: 1px solid #a0522d; background: #f5f0eb; color: var(--primary); padding: 12px 14px; font-size: 16px; margin-top: 8px;">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--primary); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 了解太平天国运动兴起的原因</li>
+          <li>✅ 知道金田起义、定都天京等史实</li>
+          <li>✅ 掌握《天朝田亩制度》的主要内容</li>
+          <li>✅ 理解天京事变和太平天国失败的原因</li>
+          <li>✅ 认识太平天国运动的历史意义</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测:检验先备知识</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        难度递进:<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> →
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> →
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】太平天国运动爆发于哪一年?<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1840年是鸦片战争爆发的时间,不是太平天国运动!">
+            <span class="opt-letter">A</span> 1840年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 1851年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1860年是第二次鸦片战争结束的时间,不是太平天国运动爆发时间!">
+            <span class="opt-letter">C</span> 1860年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 1851年</strong></p>
+          <p style="margin-top: 8px;">1851年,<strong>洪秀全</strong>在广西<strong>金田村</strong>发动起义,建号<strong>太平天国</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】太平天国运动的领袖是?<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+            <span class="opt-letter">A</span> 洪秀全
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 李鸿章是洋务运动的代表人物,不是太平天国领袖!">
+            <span class="opt-letter">B</span> 李鸿章
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 林则徐是鸦片战争时期的人物,不是太平天国领袖!">
+            <span class="opt-letter">C</span> 林则徐
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:A. 洪秀全</strong></p>
+          <p style="margin-top: 8px;"><strong>洪秀全</strong>是太平天国运动的领袖,1851年在广西金田村发动起义。</p>
+        </div>
+      </div>
+
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】太平天国的都城是?<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 金田是起义地点,不是都城!">
+            <span class="opt-letter">A</span> 金田
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+            <span class="opt-letter">B</span> 天京(南京)
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 北京是清朝都城,不是太平天国的都城!">
+            <span class="opt-letter">C</span> 北京
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 天京(南京)</strong></p>
+          <p style="margin-top: 8px;">1853年,太平军攻占<strong>南京</strong>,改为<strong>天京</strong>,定为都城。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】太平天国运动失败的根本原因是?<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 中外势力联合镇压是失败原因,但不是根本原因!">
+            <span class="opt-letter">A</span> 中外势力联合镇压
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+            <span class="opt-letter">B</span> 农民阶级的局限性
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 天京事变是失败的重要原因,但不是根本原因!">
+            <span class="opt-letter">C</span> 天京事变
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 农民阶级的局限性</strong></p>
+          <p style="margin-top: 8px;">太平天国运动失败的<strong>根本原因</strong>是<strong>农民阶级的局限性</strong>,缺乏科学理论指导。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 运动兴起 -->
+    <section class="section" id="section-rise">
+      <h2 class="section-title"><span class="num">📖</span> 太平天国运动的兴起</h2>
+
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 兴起背景</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>鸦片战争后,<strong>社会矛盾</strong>激化</li>
+          <li>自然灾害严重,<strong>民不聊生</strong></li>
+          <li><strong>洪秀全</strong>创立<strong>拜上帝会</strong>,发动群众</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 兴起过程</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>1851年:</strong>金田起义,建号太平天国</li>
+          <li><strong>1853年:</strong>攻占南京,改为天京,定为都城</li>
+          <li><strong>1856年:</strong>达到全盛</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 金田起义</div>
+          <p>1851年1月11日,<strong>洪秀全</strong>在广西<strong>金田村</strong>发动起义,建号<strong>太平天国</strong>,起义军称"太平军"。</p>
+        </div>
+
+        <!-- 时间线 -->
+        <div class="timeline" style="margin-top: 20px;">
+          <div class="timeline-item">
+            <h4>1851年</h4>
+            <p>金田起义,太平天国建立</p>
+          </div>
+          <div class="timeline-item">
+            <h4>1853年</h4>
+            <p>攻占南京,改为天京,定为都城</p>
+          </div>
+          <div class="timeline-item">
+            <h4>1856年</h4>
+            <p>太平天国达到全盛</p>
+          </div>
+          <div class="timeline-item">
+            <h4>1856年</h4>
+            <p>天京事变,由盛转衰</p>
+          </div>
+          <div class="timeline-item">
+            <h4>1864年</h4>
+            <p>天京陷落,太平天国失败</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 《天朝田亩制度》 -->
+    <section class="section" id="section-system">
+      <h2 class="section-title"><span class="num">📜</span> 《天朝田亩制度》</h2>
+
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 主要内容</h3>
+
+        <table class="history-table">
+          <tr><th>方面</th><th>主要内容</th><th>评价</th></tr>
+          <tr><td><strong>土地分配</strong></td><td>不分男女,按人口和年龄平均分配土地</td><td>体现反封建精神,但无法实现</td></tr>
+          <tr><td><strong>产品分配</strong></td><td>天下人人不受私,物物归上主</td><td>绝对平均主义,违背规律</td></tr>
+          <tr><td><strong>目的</strong></td><td>建立"有田同耕,有饭同食"的理想社会</td><td>追求小农经济,违背历史潮流</td></tr>
+        </table>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀:</strong>"天朝田亩制度,平均地权是空想;绝对平均行不通,农民局限是根本"</p>
+          <p style="margin-top: 6px;"><strong>考试陷阱:</strong>"《天朝田亩制度》得到了实施"→ 错误!这一制度<strong>并未真正实施</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 天京事变和失败 -->
+    <section class="section" id="section-decline">
+      <h2 class="section-title"><span class="num">💥</span> 天京事变与运动失败</h2>
+
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 天京事变</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>时间:</strong>1856年</li>
+          <li><strong>原因:</strong>领导者进取心减退,内部矛盾激化</li>
+          <li><strong>影响:</strong>太平天国由盛转衰</li>
+        </ul>
+
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 运动失败</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>1864年:</strong>天京陷落,太平天国失败</li>
+          <li><strong>失败原因:</strong>农民阶级局限性;中外势力联合镇压</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 农民阶级的局限性</div>
+          <p>农民阶级<strong>不是先进生产力的代表</strong>,缺乏<strong>科学理论指导</strong>,不能提出符合时代要求的革命纲领,这是太平天国运动失败的<strong>根本原因</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 核心内容 - 历史意义 -->
+    <section class="section" id="section-significance">
+      <h2 class="section-title"><span class="num">🌟</span> 太平天国运动的历史意义</h2>
+
+      <div class="card">
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 主要意义</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>是中国历史上<strong>规模最宏大</strong>的一次农民战争</li>
+          <li>沉重打击了<strong>清朝统治</strong>和<strong>外国侵略势力</strong></li>
+          <li>谱写了中国近代史上的<strong>壮烈篇章</strong></li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">💡 答题技巧 · 意义类问题</div>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>从多个方面分析:</strong>对清朝、对外国势力、对历史</li>
+            <li><strong>注意关键词:</strong>"规模最宏大"、"沉重打击"、"壮烈篇章"</li>
+            <li><strong>联系时代背景:</strong>结合鸦片战争后的社会矛盾</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 8: 互动测验 -->
+    <section class="section" id="section-interactive-quiz">
+      <h2 class="section-title"><span class="num">🎮</span> 互动测验</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        每道题都有详细的错因分析，答错了要认真学习哦！
+      </p>
+
+      <!-- 测验题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】太平天国运动的领袖是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'A')">
+            <span class="opt-letter">A</span> 洪秀全
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 杨秀清是太平天国的东王，不是最高领袖！">
+            <span class="opt-letter">B</span> 杨秀清
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 石达开是太平天国的翼王，不是最高领袖！">
+            <span class="opt-letter">C</span> 石达开
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'D')" data-feedback="❌ 李秀成是太平天国的忠王，不是最高领袖！">
+            <span class="opt-letter">D</span> 李秀成
+          </div>
+        </div>
+        <div class="feedback" id="feedback-20"></div>
+        <div class="answer-explanation" id="explanation-20">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 洪秀全</strong></p>
+          <p style="margin-top: 8px;">太平天国运动的领袖是<strong>洪秀全</strong>，他领导了金田起义，建立了太平天国。</p>
+        </div>
+      </div>
+
+      <!-- 测验题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高】太平天国运动爆发于哪一年？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'A')" data-feedback="❌ 1840年是第一次鸦片战争爆发的时间，不是太平天国运动爆发的时间！">
+            <span class="opt-letter">A</span> 1840年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 21, 'B')">
+            <span class="opt-letter">B</span> 1851年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'C')" data-feedback="❌ 1860年是第二次鸦片战争期间火烧圆明园的时间，不是太平天国运动爆发的时间！">
+            <span class="opt-letter">C</span> 1860年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'D')" data-feedback="❌ 1894年是甲午战争爆发的时间，不是太平天国运动爆发的时间！">
+            <span class="opt-letter">D</span> 1894年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-21"></div>
+        <div class="answer-explanation" id="explanation-21">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 1851年</strong></p>
+          <p style="margin-top: 8px;">1851年，洪秀全在广西金田村发动起义，建号<strong>太平天国</strong>，太平天国运动爆发。</p>
+        </div>
+      </div>
+
+      <!-- 测验题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战】太平天国运动的都城天京是今天的？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'A')" data-feedback="❌ 北京是清朝都城，不是太平天国的天京！">
+            <span class="opt-letter">A</span> 北京
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 22, 'B')">
+            <span class="opt-letter">B</span> 南京
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'C')" data-feedback="❌ 天津是通商口岸，不是太平天国的都城天京！">
+            <span class="opt-letter">C</span> 天津
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'D')" data-feedback="❌ 上海是通商口岸，不是太平天国的都城天京！">
+            <span class="opt-letter">D</span> 上海
+          </div>
+        </div>
+        <div class="feedback" id="feedback-22"></div>
+        <div class="answer-explanation" id="explanation-22">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 南京</strong></p>
+          <p style="margin-top: 8px;">太平天国的都城<strong>天京</strong>是今天的<strong>南京</strong>。</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 9: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测:检验学习成果</h2>
+      <p style="color: var(--primary); margin-bottom: 16px;">
+        包含中考真题与高频考点分析,答错了会详细讲解错因!
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】太平天国运动的都城天京是今天的?<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 北京是清朝都城,不是太平天国的天京!">
+            <span class="opt-letter">A</span> 北京
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 南京
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 天津是通商口岸,不是太平天国的都城!">
+            <span class="opt-letter">C</span> 天津
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 南京</strong></p>
+          <p style="margin-top: 8px;">太平天国的都城<strong>天京</strong>是今天的<strong>南京</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2(中考真题改编) -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】(2023·四川中考)《天朝田亩制度》的核心内容是?<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+            <span class="opt-letter">A</span> 平均分配土地
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 允许开设工厂是《马关条约》的内容,不是《天朝田亩制度》!">
+            <span class="opt-letter">B</span> 允许开设工厂
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 《天朝田亩制度》不涉及开办军事工业的内容!">
+            <span class="opt-letter">C</span> 开办军事工业
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:A. 平均分配土地</strong></p>
+          <p style="margin-top: 8px;"><strong>《天朝田亩制度》</strong>的核心是<strong>平均分配土地</strong>,体现反封建精神。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3(中考真题改编) -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】(2022·湖北中考)太平天国运动失败的根本原因是?<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 中外势力联合镇压是失败原因,但不是根本原因!">
+            <span class="opt-letter">A</span> 中外势力联合镇压
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+            <span class="opt-letter">B</span> 农民阶级的局限性
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 天京事变是失败的重要原因,但不是根本原因!">
+            <span class="opt-letter">C</span> 天京事变
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案:B. 农民阶级的局限性</strong></p>
+          <p style="margin-top: 8px;">太平天国运动失败的<strong>根本原因</strong>是<strong>农民阶级的局限性</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点:金田起义</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了17次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论:</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 1851年<strong>洪秀全</strong>在广西<strong>金田村</strong>发动起义</li>
+            <li>✅ 建号<strong>太平天国</strong></li>
+            <li>✅ 标志太平天国运动兴起</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点:《天朝田亩制度》</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了14次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背:</strong>核心是平均分配土地;体现反封建精神,但绝对平均主义无法实现。</p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点:天京事变</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了11次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背:</strong>1856年天京事变,太平天国<strong>由盛转衰</strong>。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📅 常考考点:运动时间</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了9次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背:</strong>太平天国运动<strong>1851-1864年</strong>;天京(南京)是都城。</p>
+        </div>
+      </div>
+    </section>
+
+  
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>TeachAny 互动课件 · K12 智慧学习</p>
+  </footer>
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  <script src="../../shared/render.js"></script>
+</body>
+</html>

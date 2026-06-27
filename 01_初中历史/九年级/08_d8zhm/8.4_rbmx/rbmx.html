@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="course-id" content="hist-japan-meiji-9">
+  <meta name="course-title" content="8.4 日本明治维新">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-9">
+  <meta name="teachany-node" content="history-japan-meiji">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+
+  <title>8.4 日本明治维新 | 初中9年级历史</title>
+
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-dark: #6b3410;
+      --secondary: #d4a574;
+      --accent: #d4a017;
+      --bg-light: #faf7f2;
+      --bg-card: #ffffff;
+      --text-dark: #2c1810;
+      --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+      --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+      --border-color: #e8dcc8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ① 品牌栏 */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+
+    /* ② 进度条 */
+    .progress-bar { height: 4px; background: #e8dcc8; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 100%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: var(--bg-light); }
+
+    /* ③ 导航栏 */
+    .nav-bar { background: white; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: rgba(139,69,19,0.1); }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* ④ Hero区 */
+    .hero {
+      background: linear-gradient(135deg, #1a0a00 0%, var(--primary-dark) 30%, var(--primary) 70%, var(--primary-light) 100%);
+      color: white;
+      padding: 48px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; line-height: 1.8; }
+
+    .svg-container { margin: 20px auto 0; max-width: 900px; }
+    .svg-container svg { max-width: 100%; height: auto; }
+
+    /* 主内容区 */
+    .section { max-width: 960px; margin: 0 auto 28px; padding: 0 20px; }
+    .card { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid var(--border-color); }
+    .card-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 14px 24px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .card-header .tag { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .card-body { padding: 20px 24px; }
+
+    /* ⑤ 探究问题锚点 */
+    .anchor-box { background: #f5e6d3; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; font-size: 15px; line-height: 1.8; }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f5e6d3, #faf7f2); border: 2px solid #d4a574; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #e8d4bc, #f5e6d3); border-color: var(--primary); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .custom-question { margin-top: 16px; }
+    .custom-question label { display: block; margin-bottom: 6px; color: var(--primary); font-weight: 600; }
+    .custom-question input { width: 100%; border-radius: 12px; border: 1px solid #d4a574; background: #faf7f2; color: var(--text-dark); padding: 12px 14px; font-size: 15px; }
+    .custom-question input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,69,19,0.1); }
+    .anchor-display { margin-top: 16px; padding: 16px; border-radius: 12px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.15); min-height: 80px; }
+    .anchor-display h4 { color: var(--primary); margin-bottom: 8px; }
+
+    /* ⑥ 学习目标 */
+    .objectives-list { list-style: none; padding: 0; margin: 0; }
+    .objectives-list li { padding: 10px 16px; border-bottom: 1px solid var(--border-color); display: flex; gap: 10px; align-items: flex-start; }
+    .objectives-list li:last-child { border-bottom: none; }
+    .objectives-list li::before { content: '✅'; font-size: 14px; }
+
+    /* ⑦ 前测 & ⑨ 后测 */
+    .quiz-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-color); }
+    .quiz-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .quiz-header .quiz-badge { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .quiz-body { padding: 10px 16px; }
+    .quiz-item { margin-bottom: 18px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+    .quiz-question { background: #f5e6d3; padding: 12px 16px; font-size: 15px; line-height: 1.6; }
+    .quiz-question .star { color: var(--accent); margin-right: 4px; }
+    .quiz-question .exam-tag { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 6px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    .quiz-options { padding: 10px 16px; }
+    .quiz-option { display: flex; align-items: center; padding: 10px 14px; border-radius: 8px; cursor: pointer; margin-bottom: 8px; border: 2px solid transparent; transition: all 0.2s; background: white; }
+    .quiz-option:hover { background: #faf7f2; border-color: #d4a574; }
+    .quiz-option input { margin-right: 10px; accent-color: var(--primary); transform: scale(1.1); }
+    .quiz-option label { cursor: pointer; flex: 1; font-size: 14px; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.correct label { color: #065f46; font-weight: 600; }
+    .quiz-option.wrong { background: #fee2e2; border-color: #ef4444; }
+    .quiz-option.wrong label { color: #991b1b; }
+    .opt-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; font-size: 12px; font-weight: 700; margin-right: 10px; flex-shrink: 0; }
+    .quiz-feedback { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .quiz-feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .answer-explanation { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .check-btn { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; padding: 10px 28px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 700; transition: all 0.2s; margin-top: 16px; }
+    .check-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,69,19,0.25); }
+
+    /* ⑧ 核心知识讲解 */
+    .knowledge-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border-color); }
+    .knowledge-header { background: var(--primary); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; }
+    .knowledge-body { padding: 20px 24px; }
+    .knowledge-body p { margin: 0 0 12px; line-height: 1.8; }
+    .knowledge-body p:last-child { margin-bottom: 0; }
+    .highlight { background: #f5e6d3; padding: 2px 6px; border-radius: 4px; font-weight: 700; color: var(--primary); }
+
+    .concept-box { background: #faf7f2; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    .compare-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .compare-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px; text-align: center; }
+    .compare-table td { padding: 10px; border: 1px solid var(--border-color); text-align: center; }
+    .compare-table tr:nth-child(even) { background: #faf7f2; }
+
+    .timeline { position: relative; padding-left: 28px; margin: 16px 0; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--secondary); }
+    .tl-item { position: relative; margin-bottom: 18px; }
+    .tl-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; background: var(--primary); border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px var(--secondary); }
+    .tl-date { font-weight: 700; color: var(--primary); font-size: 14px; }
+    .tl-text { font-size: 14px; line-height: 1.7; margin-top: 4px; }
+
+    .measures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 16px 0; }
+    .measure-card { background: #faf7f2; border: 1px solid var(--border-color); border-radius: 10px; padding: 18px; text-align: center; transition: all 0.25s; }
+    .measure-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--secondary); }
+    .measure-icon { width: 44px; height: 44px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 18px; color: white; }
+    .measure-card h4 { font-size: 14px; margin: 0 0 6px; color: var(--primary); }
+    .measure-card p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+    .comparison-grid > div { padding: 16px; border-radius: 10px; }
+    .comparison-grid .success { background: #e8f5e9; border: 1px solid #a5d6a7; }
+    .comparison-grid .warning { background: #fff3e0; border: 1px solid #ffcc80; }
+    .comparison-grid h4 { margin: 0 0 10px; font-size: 14px; }
+    .comparison-grid .success h4 { color: #2e7d32; }
+    .comparison-grid .warning h4 { color: #e65100; }
+    .comparison-grid ul { padding-left: 18px; font-size: 13px; line-height: 2; }
+
+    /* ⑩ 必考分析 */
+    .exam-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .exam-card { border-radius: 12px; padding: 18px 20px; border-left: 4px solid var(--accent); background: #faf7f2; }
+    .exam-card h4 { color: var(--primary); margin: 0 0 8px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .exam-card p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--text-dark); }
+    .exam-tag { display: inline-flex; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 8px; }
+    .exam-tag.hot { background: #fee2e2; color: #dc2626; }
+    .exam-tag.high { background: #fef3c7; color: #92400e; }
+    .exam-tag.normal { background: #dbeafe; color: #1d4ed8; }
+
+    /* AI学伴 */
+    .ai-tutor { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; padding: 24px; color: white; margin-bottom: 20px; }
+    .ai-tutor h3 { margin: 0 0 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+    .ai-tutor p { margin: 0 0 10px; font-size: 14px; line-height: 1.7; opacity: 0.95; }
+    .ai-tutor .ai-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .ai-tutor button { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .ai-tutor button:hover { background: rgba(255,255,255,0.35); }
+
+    /* 页脚 */
+    .footer { background: var(--primary-dark); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    .footer p { margin: 0; opacity: 0.9; font-size: 14px; }
+    .footer .version { margin-top: 8px; font-size: 12px; opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 28px 14px; }
+      .hero h1 { font-size: 1.4rem; }
+      .hero-subtitle { font-size: 0.88rem; }
+      .section { padding: 0 12px; margin-bottom: 20px; }
+      .card-header { padding: 12px 14px; font-size: 15px; }
+      .card-body { padding: 14px; }
+      .anchor-points { flex-direction: column; gap: 6px; }
+      .anchor-btn { width: 100%; padding: 10px 12px; font-size: 0.82rem; }
+      .quiz-option { padding: 10px 12px; font-size: 0.88rem; }
+      .knowledge-body { padding: 14px; }
+      .exam-cards { grid-template-columns: 1fr; }
+      .comparison-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ① 品牌栏 -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-scroll"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ② 进度条 -->
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+  <div class="progress-label">第 4/4 节 · 100%</div>
+
+  <!-- ③ 导航栏 -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第八单元：殖民地人民的反抗与资本主义扩展</div>
+      <a href="../8.3_mgdz/mgdz.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../d8zhm.html" class="nav-btn">返回单元 <i class="fa-solid fa-list"></i></a>
+    </div>
+  </nav>
+
+  <!-- ④ Hero区 -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-torii-gate"></i> 九年级历史 · 第八单元</div>
+      <h1>🏯 第8.4课 日本明治维新</h1>
+      <p class="hero-subtitle">📖 课标要求：知道明治维新的主要措施，理解其对社会发展的影响；比较明治维新与中国洋务运动的异同，认识到不同国家走上近代化道路的途径差异<br>🎯 预计用时：45分钟</p>
+
+      <!-- SVG知识结构图 -->
+      <div class="svg-container">
+        <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;display:block;margin:0 auto;">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <polygon points="0 0, 10 3, 0 6" fill="#d4a017"/>
+            </marker>
+          </defs>
+
+          <rect x="260" y="90" width="180" height="60" rx="12" fill="white" fill-opacity="0.95" stroke="#d4a574" stroke-width="2"/>
+          <text x="350" y="118" text-anchor="middle" font-size="15" font-weight="700" fill="#8b4513">日本明治维新</text>
+          <text x="350" y="138" text-anchor="middle" font-size="11" fill="#6b4c35">1868年</text>
+
+          <line x1="260" y1="120" x2="190" y2="80" stroke="#cd853f" stroke-width="2"/>
+          <rect x="55" y="52" width="130" height="55" rx="8" fill="#fdf6ee" stroke="#cd853f" stroke-width="1.5"/>
+          <text x="120" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">背景</text>
+          <text x="120" y="92" text-anchor="middle" font-size="10" fill="#6b4c35">锁国·黑船事件·倒幕</text>
+
+          <line x1="260" y1="110" x2="190" y2="145" stroke="#cd853f" stroke-width="2"/>
+          <rect x="55" y="122" width="130" height="90" rx="8" fill="#fdf6ee" stroke="#cd853f" stroke-width="1.5"/>
+          <text x="120" y="142" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">四大措施</text>
+          <text x="120" y="160" text-anchor="middle" font-size="10" fill="#6b4c35">政治·经济</text>
+          <text x="120" y="176" text-anchor="middle" font-size="10" fill="#6b4c35">军事·社会</text>
+          <text x="120" y="192" text-anchor="middle" font-size="10" fill="#6b4c35">文明开化·产业革命</text>
+
+          <line x1="440" y1="110" x2="510" y2="145" stroke="#cd853f" stroke-width="2"/>
+          <rect x="510" y="122" width="135" height="55" rx="8" fill="#fff8e1" stroke="#e65100" stroke-width="1.5"/>
+          <text x="577" y="142" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">性质</text>
+          <text x="577" y="162" text-anchor="middle" font-size="10" fill="#6b4c35">自上而下的</text>
+          <text x="577" y="175" text-anchor="middle" font-size="10" fill="#6b4c35">资产阶层改革</text>
+
+          <line x1="440" y1="120" x2="510" y2="80" stroke="#cd853f" stroke-width="2"/>
+          <rect x="510" y="52" width="135" height="65" rx="8" fill="#fdf6ee" stroke="#cd853f" stroke-width="1.5"/>
+          <text x="577" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">历史意义</text>
+          <text x="577" y="90" text-anchor="middle" font-size="10" fill="#1b5e20">✅ 走上资本主权道路</text>
+          <text x="577" y="105" text-anchor="middle" font-size="10" fill="#c62828">⚠️ 保留封建残余·军国主义</text>
+
+          <line x1="350" y1="150" x2="350" y2="195" stroke="#cd853f" stroke-width="2"/>
+          <rect x="240" y="200" width="220" height="35" rx="8" fill="#fdf6ee" stroke="#8b4513" stroke-width="1.5"/>
+          <text x="350" y="220" text-anchor="middle" font-size="12" font-weight="700" fill="#8b4513">横向对比：日本·俄国·中国</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ⑤ 探究问题锚点 -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🔍 探究问题</div>
+        <div class="card-body">
+          <p style="color: var(--primary); margin-bottom: 12px;">选择你关心的问题，后续内容将围绕问题展开讲解：</p>
+          <div class="anchor-points">
+            <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-question="19世纪中期，日本面临怎样的危机？倒幕运动为何能够成功？">⚙️ 19世纪日本面临怎样的危机？倒幕运动为何能成功？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-question="明治维新在政治、经济、军事、社会方面分别推出了哪些改革措施，这四类措施共同指向什么目标？">📋 明治维新四类改革措施分别是什么？共同指向什么目标？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-question="同样是改革，为何日本成功了而中国洋务运动失败了？">🏆 同样是改革，为何日本成功了中国失败了？</button>
+          </div>
+          <div class="custom-question">
+            <label>我有自己的问题：</label>
+            <input type="text" id="custom-question-input" placeholder="输入你的问题..." oninput="handleCustomQuestion(this.value)">
+          </div>
+          <div class="anchor-display" id="anchor-display">
+            <p style="text-align: center; color: var(--text-muted);">👆 点击上方按钮或输入自己的问题</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🎯 学习目标 <span class="tag">课标要求</span></div>
+        <div class="card-body">
+          <ul class="objectives-list">
+            <li>掌握背景：知道幕府锁国政策、黑船事件（1853，美）、内外交困、倒幕运动的基本史实</li>
+            <li>理解措施：能区分明治维新政治、经济、军事、社会改革四大方向的具体内容</li>
+            <li>把握性质：认识明治维新是自上而下的资产阶层改革</li>
+            <li>分析意义：理解改革使日本走上资本主道道路，同时保留封建残余和军国主义色彩</li>
+            <li>比较分析：对比明治维新与俄国1861年改革、中国洋务运动的异同</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ 前测 -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">📝 课前自测 <span class="quiz-badge">点击选项查看解析</span></div>
+        <div class="quiz-body" id="pre-quiz">
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>1853年，率舰队进入日本浦贺港，打开日本国门的国家是？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 英国曾在18世纪中期两次来华，不是黑船事件的主角！">
+                <span class="opt-letter">A</span><label>A. 英国</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 美国</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 法国在19世纪中期曾入侵越南，但不是黑船事件的主角！">
+                <span class="opt-letter">C</span><label>C. 法国</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 俄国在19世纪中期曾入侵中国黑龙江，但不是黑船事件的主角！">
+                <span class="opt-letter">D</span><label>D. 俄国</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre1"></div>
+            <div class="answer-explanation" id="explain-pre1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 美国</strong></p>
+              <p style="margin-top: 8px;">1853年，美国海军将领<strong>马修·佩里</strong>（Matthew Perry）率舰队抵达日本浦贺港，迫使日本签订不平等条约，史称"黑船事件"。此后英、法、俄等国相继效仿，幕府闭关锁国的局面被打破。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📚 知识拓展 · 黑船事件</div>
+                <p>黑船事件（1853）促使日本从"锁国"转向"开国"，成为明治维新的直接诱因。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>明治维新在政治方面的核心措施是？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 废除等级制度是社会改革，不是政治核心！">
+                <span class="opt-letter">A</span><label>A. 废除等级制度</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'B')" data-feedback="❌ 实施征兵制是军事改革！">
+                <span class="opt-letter">B</span><label>B. 实施征兵制</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 废藩置县</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 文明开化是社会/文化改革！">
+                <span class="opt-letter">D</span><label>D. 文明开化</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre2"></div>
+            <div class="answer-explanation" id="explain-pre2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 废藩置县</strong></p>
+              <p style="margin-top: 8px;">明治维新政治方面的核心措施是<strong>废藩置县</strong>（1871年）：废除藩国，设立府县，由中央政府统一任命官员，实现了国家统一和中央集权。故答案为C。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 易错警示</div>
+                <p>注意区分四大措施对应类别：<strong>废藩置县</strong>（政治）、<strong>殖产兴业</strong>（经济）、<strong>征兵制</strong>（军事）、<strong>文明开化</strong>（社会）</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>关于明治维新性质的下列说法，正确的是？<span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 这是资产阶级革命的特征，明治维新是改革不是革命！">
+                <span class="opt-letter">A</span><label>A. 反封建的资产阶级革命</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 自上而下的资产阶层改革</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'C')" data-feedback="❌ 这是农民起义的特征！">
+                <span class="opt-letter">C</span><label>C. 自下而上的农民起义</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 这是完全意义的资产阶层革命！">
+                <span class="opt-letter">D</span><label>D. 完全意义上的资产阶层革命</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre3"></div>
+            <div class="answer-explanation" id="explain-pre3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 自上而下的资产阶层改革</strong></p>
+              <p style="margin-top: 8px;">明治维新是在天皇政府主导下进行的资产阶层改革，因保留了封建残余（天皇专制和藩阀割据的变体），并非完全意义上的资产阶层革命。故选B。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">💡 答题技巧</div>
+                <p>"自上而下"——由政府主导；"资产阶层改革"——推动资本主义发展；"不彻底"——保留了封建残余。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>与俄国1861年改革、中国洋务运动相比，明治维新最突出的特点是？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 由武士阶层领导——不完全正确，倒幕主力是下级武士，但也有资产阶级参与！">
+                <span class="opt-letter">A</span><label>A. 由武士阶层领导</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 保留了封建残余是明治维新的缺点，不是特点！">
+                <span class="opt-letter">B</span><label>B. 保留了封建残余</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 引进西方技术是三者共有的特征！">
+                <span class="opt-letter">C</span><label>C. 引进西方技术</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'D')" data-feedback="">
+                <span class="opt-letter">D</span><label>D. 改革后走上对外扩张道路</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre4"></div>
+            <div class="answer-explanation" id="explain-pre4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：D. 改革后走上对外扩张道路</strong></p>
+              <p style="margin-top: 8px;">明治维新后日本走上军国主义道路，对外发动甲午战争、日俄战争等，给亚洲人民造成巨大灾难。俄国改革和中国洋务运动均未体现出这一特点。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 常见陷阱</div>
+                <p>"保留封建残余"是明治维新的<strong>局限性</strong>，不是特点；"引进西方技术"是<strong>三者共有</strong>特征；"武士阶层领导"不够准确。故选D。</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('pre-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+
+    <!-- 知识点1：背景 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">一、改革背景——多重危机叠加</div>
+        <div class="knowledge-body">
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">1603—1868年</div>
+              <div class="tl-text"><strong>幕府锁国政策：</strong>严格限制对外交往，只允许与荷兰、中国进行有限贸易，使日本长期处于封闭状态，落后于世界发展潮流</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">1853年</div>
+              <div class="tl-text"><strong>黑船事件：</strong>美国海军将领佩里率黑舰队抵港，迫使日本签订《日美亲善条约》（1854年），此后英、法、俄等国纷纷迫使幕府签订不平等条约</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">内外交困</div>
+              <div class="tl-text"><strong>阶级矛盾激化：</strong>武士阶层不满幕府统治（尤其是中下级武士）；农民不堪重负，频繁暴动；新兴资产阶级要求发展经济、参与政治</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">1860年代</div>
+              <div class="tl-text"><strong>倒幕运动兴起：</strong>以下级武士、资产家和部分封建藩主为倒幕派，逐渐得势，1868年，倒幕派在京都发动政变，宣告恢复天皇权力</div>
+            </div>
+          </div>
+
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 黑船事件</div>
+            <p><strong>黑船事件（1853）：</strong>美国海军将领马修·佩里率舰队抵日本浦贺港，迫使日本签订不平等条约，史称"黑船事件"。此举打破了日本200余年的锁国状态，史称"黑船来航"。</p>
+          </div>
+
+          <div class="warn-box">
+            <div class="label">⚠️ 易错警示</div>
+            <p>倒幕运动的核心力量是<strong>中下级武士</strong>（而非普通农民）：他们受幕府压榨最深，又最先接触西方知识，具有较强的变革意识和战斗力。倒幕运动最终与天皇联合，形成"倒幕同盟"，这是倒幕成功的关键。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点2：四大措施 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">二、四大改革措施——向近代化进军</div>
+        <div class="knowledge-body">
+          <p>明治政府从政治、经济、军事、社会四个维度推进改革：</p>
+
+          <div class="measures-grid">
+            <div class="measure-card">
+              <div class="measure-icon"><i class="fa-solid fa-landmark"></i></div>
+              <h4>🛠️ 政治改革</h4>
+              <p><strong>废藩置县</strong>（1871年）<br>废藩国，设府县<br>打破封建藩镇<br>建立中央集权</p>
+            </div>
+            <div class="measure-card">
+              <div class="measure-icon"><i class="fa-solid fa-coins"></i></div>
+              <h4>💰 经济改革</h4>
+              <p><strong>土地税制改革</strong>：确认土地私有<br><strong>殖产兴业</strong>：引进西方技术<br>发展机器工业<br>建立近代银行体系</p>
+            </div>
+            <div class="measure-card">
+              <div class="measure-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <h4>⚔️ 军事改革</h4>
+              <p><strong>征兵制</strong>：建立近代常备军<br>废除武士军事特权<br>学习西方军事技术<br>创办军事学校</p>
+            </div>
+            <div class="measure-card">
+              <div class="measure-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h4>📚 社会改革</h4>
+              <p><strong>文明开化</strong>：全面吸收西方文化<br>采用西方服饰<br>推行<strong>义务</strong>教育<br>改革生活方式、社会风俗</p>
+            </div>
+          </div>
+
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 殖产兴业</div>
+            <p>殖产兴业是明治政府通过国家投资、引进技术、建立工厂等方式，重点扶持纺织、钢铁、铁路等近代工业，推动日本从农业国向工业国转型。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点3：性质 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">三、改革的性质</div>
+        <div class="knowledge-body">
+          <p>明治维新是一场<span class="highlight">自上而下的资产阶层改革</span>。</p>
+          <p>它通过天皇政府主导，打破封建藩制、引进西方制度与技术，在不彻底触动封建地主所有制的前提下，实现了日本的近代化转型。</p>
+
+          <div class="concept-box">
+            <div class="label">📌 核心辨析 · 为何不是"资产阶级革命"？</div>
+            <p>资产阶级革命的特征是彻底推翻封建制度、建立资产阶级共和制。而明治维新保留了<strong>天皇专制</strong>和<strong>藩阀政治</strong>（藩阀轮流执政），保留了大量的封建残余，因此是"改革"而非"革命"。</p>
+            <p style="margin-top: 8px;">之所以不彻底，是因为改革由旧封建统治者主导，他们不可能彻底摧毁自身利益基础。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点4：历史意义 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">四、历史意义——进步与局限并存</div>
+        <div class="knowledge-body">
+          <div class="comparison-grid">
+            <div class="success">
+              <h4>✅ 进步意义</h4>
+              <ul>
+                <li>使日本<strong>走上资本主道道路</strong></li>
+                <li>建立近代民族国家（1889年宪法）</li>
+                <li>引进西方先进技术</li>
+                <li>迅速跻身<strong>亚洲强国</strong>和世界资本主国家之列</li>
+                <li>推动了日本社会的全面近代化</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <h4>⚠️ 历史局限</h4>
+              <ul>
+                <li><strong>保留封建残余</strong>：天皇专制和藩阀政治依然存在</li>
+                <li><strong>军国主义色彩浓厚</strong>：军队独立于政府，对外扩张</li>
+                <li>改革不彻底，资产阶层化进程有限</li>
+                <li>明治维新后日本走上<strong>对外扩张道路</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="warn-box">
+            <div class="label">⚠️ 重要警示</div>
+            <p>明治维新保留的军国主义传统，是日本后来发动<strong>甲午战争、日俄战争、全面侵华战争</strong>和太平洋战争的重要历史根源。这一历史教训警示我们：近代化必须摒弃军国主义道路。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点5：三国的向比较 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">五、三国改革横向对比</div>
+        <div class="knowledge-body">
+          <table class="compare-table">
+            <tr>
+              <th>对比维度</th>
+              <th>日本明治维新<br><span style="font-weight:400;font-size:0.75rem">(1868年)</span></th>
+              <th>俄国1861年改革<br><span style="font-weight:400;font-size:0.75rem">(1861年)</span></th>
+              <th>中国洋务运动<br><span style="font-weight:400;font-size:0.75rem">(19世纪60-90年代)</span></th>
+            </tr>
+            <tr>
+              <td><strong>改革领导力量</strong></td>
+              <td style="background:#fff8e1">天皇政府 + 倒幕武士</td>
+              <td>沙皇亚历山大二世</td>
+              <td>恭亲王、李鸿章等（无实权）</td>
+            </tr>
+            <tr>
+              <td><strong>改革方式</strong></td>
+              <td style="background:#fff8e1">自上而下（已掌权）</td>
+              <td>自上而下（已掌权）</td>
+              <td>自上而下（实权在顽固派）</td>
+            </tr>
+            <tr>
+              <td><strong>背景阻力</strong></td>
+              <td>幕府已倒，阻力较小</td>
+              <td>农奴制顽固，但沙皇有权威</td>
+              <td style="background:#fee2e2">顽固派力量强大，反改革势力</td>
+            </tr>
+            <tr>
+              <td><strong>经济措施</strong></td>
+              <td>殖产兴业，全面引进技术</td>
+              <td>废除农奴制，解放劳动力</td>
+              <td>鼓励工商业、发展新式学堂</td>
+            </tr>
+            <tr>
+              <td><strong>改革结果</strong></td>
+              <td style="background:#e8f5e9;color:#1b5e20">✅ 成功：日本崛起</td>
+              <td style="background:#e8f5e9;color:#1b5e20">✅ 相对成功：俄国走上资本主</td>
+              <td style="background:#fee2e2;color:#c62828">❌ 失败：百日维新被镇压</td>
+            </tr>
+            <tr>
+              <td><strong>主要教训</strong></td>
+              <td>有力的领导核心 + 改革动能</td>
+              <td>最高权威支持 + 推进改革</td>
+              <td style="background:#fee2e2">无实权 + 顽固派掣肘</td>
+            </tr>
+          </table>
+
+          <div class="concept-box">
+            <div class="label">📌 对比结论 · 改革能否成功的三个关键条件</div>
+            <p><strong>① 改革者是否掌握实权</strong>（日本已掌权 vs 中国无实权）</p>
+            <p><strong>② 阻力是否被有效压制</strong>（日本幕府已倒 vs 中国顽固派掣肘）</p>
+            <p><strong>③ 是否有强烈的民族危机作为改革动因</strong>（倒幕运动激发全民族危机意识）</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测 -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">✅ 课后巩固 <span class="quiz-badge">含中考真题</span></div>
+        <div class="quiz-body" id="post-quiz">
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>明治维新在社会生活方面提倡"文明开化"，下述做法不符合这一主题的是？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 建立近代高等学府是文明开化的内容！">
+                <span class="opt-letter">A</span><label>A. 建立近代高等学府</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 创办近代化军队</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 派遣留学生赴欧美是文明开化的重要内容！">
+                <span class="opt-letter">C</span><label>C. 派遣留学生赴欧美</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 采用西方服饰、改进饮食风俗是文明开化的典型表现！">
+                <span class="opt-letter">D</span><label>D. 采用西方饮食服饰</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post1"></div>
+            <div class="answer-explanation" id="explain-post1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 创办近代化军队</strong></p>
+              <p style="margin-top: 8px;">"文明开化"的核心是文化教育和社会风俗的西方化，包括派遣留学生、采用西方服饰、改进饮食风俗等。创办近代化军队属于<strong>军事改革</strong>范畴，不属于"文明开化"。</p>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2020·山东中考）明治维新为日本经济发展注入了新的活力，其中最关键的措施是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 废除等级制度是社会改革！">
+                <span class="opt-letter">A</span><label>A. 废除等级制度</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ 建立新式军队是军事改革！">
+                <span class="opt-letter">B</span><label>B. 建立新式军队</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 实行土地改革，确认土地私有</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 发展教育是社会改革！">
+                <span class="opt-letter">D</span><label>D. 大力发展教育</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post2"></div>
+            <div class="answer-explanation" id="explain-post2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 实行土地改革，确认土地私有</strong></p>
+              <p style="margin-top: 8px;">土地改革确认土地私有权，既增加了政府财政收入，又激发了农民的生产积极性，为工业发展提供了资金和劳动力基础，是经济改革的关键措施。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📝 中考真题出处</div>
+                <p><strong>来源：</strong>2020年山东省中考历史卷</p>
+                <p style="margin-top: 6px;"><strong>考点：</strong>明治维新经济措施的核心（土地改革）</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2019·江苏南通中考）19世纪中后期，为解决俄国落后局面而进行的改革是？日本为摆脱民族危机而进行的改革是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 洋务运动是中国的改革，不是俄国的！">
+                <span class="opt-letter">A</span><label>A. 洋务运动 · 明治维新</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 1861年改革 · 明治维新</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'C')" data-feedback="❌ 只有一个改革，不是两个！">
+                <span class="opt-letter">C</span><label>C. 资产阶级改革 · 明治维新</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 洋务运动不是俄国的！">
+                <span class="opt-letter">D</span><label>D. 1861年改革 · 洋务运动</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post3"></div>
+            <div class="answer-explanation" id="explain-post3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 1861年改革 · 明治维新</strong></p>
+              <p style="margin-top: 8px;">注意区分：<strong>1861年改革</strong>（19世纪中后期）是俄国废除农奴制的改革；<strong>明治维新</strong>才是日本为摆脱民族危机进行的改革。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 常见陷阱</div>
+                <p>"资产阶级改革"表述模糊；"洋务运动"发生在中国，不是俄国。<strong>1861年改革</strong>是19世纪中后期俄国的改革，<strong>洋务运动</strong>是19世纪60-90年代中国的改革，注意时间不符！</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>关于明治维新和洋务运动的相同点，下列表述错误的是？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 两者都发生在19世纪中后期——正确！">
+                <span class="opt-letter">A</span><label>A. 都发生在19世纪中后期</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 两者都是自上而下的改革——正确！">
+                <span class="opt-letter">B</span><label>B. 都是自上而下的改革</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 两者都主张向西方学习——正确！">
+                <span class="opt-letter">C</span><label>C. 都主张向西方学习</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'D')" data-feedback="">
+                <span class="opt-letter">D</span><label>D. 都取得完全成功并长期执行</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post4"></div>
+            <div class="answer-explanation" id="explain-post4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：D. 都取得完全成功并长期执行</strong></p>
+              <p style="margin-top: 8px;">本题要求选择<strong>错误</strong>选项。洋务运动最终失败（被顽固派扼杀）；明治维新虽成功但保留了封建残余，并非"完全成功"。两者都是<strong>不完全成功</strong>的改革。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">💡 答题技巧 · 三国改革共同点</div>
+                <p>三者<strong>共同点</strong>：都发生在19世纪中后期；都是自上而下的改革；都主张向西方学习；背景都与民族危机相关。</p>
+                <p style="margin-top: 8px;"><strong>不同点</strong>：日本成功（掌握实权）、俄国相对成功（有权威）、中国失败（无实权）。</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('post-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🏆 必考分析与考点总结</div>
+        <div class="card-body">
+          <div class="exam-cards">
+            <div class="exam-card">
+              <h4>📍 改革背景 <span class="exam-tag hot">高频</span></h4>
+              <p>幕府锁国政策 · 黑船事件（1853，美）· 内外交困 · 倒幕运动 · 1868年明治维新开始</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 四大改革措施 <span class="exam-tag hot">高频</span></h4>
+              <p>政治（废藩置县）· 经济（土地税+殖产兴业）· 军事（征兵制）· 社会（文明开化）</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 改革性质判断 <span class="exam-tag hot">高频</span></h4>
+              <p>"自上而下的资产阶层改革"——由政府主导，但未彻底清除封建残余</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 历史意义 <span class="exam-tag hot">高频</span></h4>
+              <p>走上资本主道路（进步） + 保留封建残余和军国主义色彩（局限）</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 三国改革对比核心差异 <span class="exam-tag high">重要</span></h4>
+              <p>日本成功的关键在于改革者是否掌握实权</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 黑船事件 <span class="exam-tag normal">常考</span></h4>
+              <p>1853年美国佩里舰队来航，敲开日本国门</p>
+            </div>
+          </div>
+
+          <div class="warn-box" style="margin-top: 16px;">
+            <div class="label">⚠️ 高频易错警示</div>
+            <p><strong>易错1：</strong>明治维新是"资产阶层改革"而非"资产阶层革命"——保留了封建残余</p>
+            <p style="margin-top: 6px;"><strong>易错2：</strong>倒幕运动的主力是"中下级武士"（非农民）——他们有组织、有战斗力、有变革意识</p>
+            <p style="margin-top: 6px;"><strong>易错3：</strong>文明开化 ≠ 全盘西化——是选择性吸收西方文化，保留天皇制和基本制度</p>
+            <p style="margin-top: 6px;"><strong>易错4：</strong>明治维新后日本走上军国主义道路——这是历史局限，不是进步意义</p>
+            <p style="margin-top: 6px;"><strong>易错5：</strong>洋务运动是"中国"的改革，1861年改革是"俄国"的改革，不能混淆！</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section">
+      <div class="ai-tutor">
+        <h3>🤖 AI学伴 · 智能助教</h3>
+        <p>学习本课过程中有任何疑问，都可以向AI学伴提问！</p>
+        <p>💡 <strong>推荐提问：</strong>明治维新为何能成功？倒幕运动的主力是谁？日本改革和中国改革有什么不同？</p>
+        <div class="ai-buttons">
+          <button>📚 帮我总结本课重点</button>
+          <button>🧠 出几道题考考我</button>
+          <button>🔗 明治维新和洋务运动有什么关系？</button>
+          <button>📝 帮我记笔记</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+    <p class="version">基于 TeachAny v7.14.0 | 适配人教版九年级历史课程标准</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  <script>
+    const anchorContents = {
+      1: `<h4>⚙️ 问题：19世纪日本面临怎样的危机？倒幕运动为何能成功？</h4>
+        <p><strong>面临危机：</strong></p>
+        <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+          <li>✅ <strong>锁国政策：</strong>200余年闭关锁国，落后于世界</li>
+          <li>✅ <strong>黑船事件（1853）：</strong>美国舰队来航，被迫开国</li>
+          <li>✅ <strong>民族危机：</strong>不平等条约压榨，民族矛盾尖锐</li>
+          <li>✅ <strong>阶级矛盾：</strong>武士不满、农民暴动、新兴资产阶级要求</li>
+        </ul>
+        <p style="margin-top: 12px;"><strong>倒幕成功关键：</strong>中下级武士（有组织、有文化、战斗力强）+ 天皇联合 = 形成"倒幕同盟"，幕府无权威抵抗。</p>`,
+      2: `<h4>📋 问题：明治维新四类改革措施分别是什么？共同指向什么目标？</h4>
+        <p><strong>四类措施：</strong></p>
+        <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+          <li>✅ <strong>政治：</strong>废藩置县（1871年）→ 建立中央集权</li>
+          <li>✅ <strong>经济：</strong>土地税改革 + 殖产兴业 → 发展资本主义工商业</li>
+          <li>✅ <strong>军事：</strong>征兵制 → 建立近代常备军</li>
+          <li>✅ <strong>社会：</strong>文明开化 → 全方位学习西方</li>
+        </ul>
+        <p style="margin-top: 12px;"><strong>共同目标：</strong>使日本<strong>走上近代化道路</strong>，跻身世界强国之列。</p>`,
+      3: `<h4>🏆 问题：同样是改革，为何日本成功了中国失败了？</h4>
+        <p><strong>三个关键差异：</strong></p>
+        <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+          <li>✅ <strong>是否掌握实权：</strong>日本已掌权（倒幕派胜利）vs 中国无实权（顽固派把持朝政）</li>
+          <li>✅ <strong>阻力是否被压制：</strong>日本幕府已倒，阻力小 vs 中国顽固派势力强大</li>
+          <li>✅ <strong>有无全民族危机动因：</strong>倒幕运动激发全民族意识 vs 洋务运动仅为少数官员推动</li>
+        </ul>
+        <p style="margin-top: 12px;">💡 <strong>答题公式：</strong>"日本明治维新成功的关键在于：改革者已掌握实权，改革阻力被有效清除，且有全民族危机意识推动。中国洋务运动失败则因：改革者无实权，顽固派势力掣肘，改革不彻底。"</p>`
+    };
+
+    function selectAnchor(btn, id) {
+      document.querySelectorAll('.anchor-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('anchor-display').innerHTML = anchorContents[id];
+    }
+
+    function handleCustomQuestion(value) {
+      if (value.trim()) {
+        document.getElementById('anchor-display').innerHTML = `<h4>你的问题：${value}</h4><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+      }
+    }
+
+    function checkAnswer(element, isCorrect, questionId, optionLetter) {
+      const parent = element.closest('.quiz-item');
+      const feedback = parent.querySelector('.quiz-feedback');
+      const explanation = parent.querySelector('.answer-explanation');
+      parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('correct', 'wrong'));
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+        feedback.className = 'quiz-feedback show correct-fb';
+        explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        feedback.innerHTML = (element.dataset.feedback || '❌ 不对哦，再想想！') + '<br><br>💡 换一个选项试试？';
+        feedback.className = 'quiz-feedback show wrong-fb';
+      }
+    }
+
+    function checkAllQuiz(quizId) {
+      const quiz = document.getElementById(quizId);
+      quiz.querySelectorAll('.quiz-item').forEach(item => {
+        const correctOption = item.querySelector('.quiz-option[onclick*="true"]');
+        if (correctOption) {
+          correctOption.classList.add('correct');
+          const explanation = item.querySelector('.answer-explanation');
+          if (explanation) explanation.classList.add('show');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🏯 《日本明治维新》课件加载完成（v7.14.0）');
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

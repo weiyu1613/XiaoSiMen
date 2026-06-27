@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="hist-russian-reform-9">
+  <meta name="course-title" content="8.2 俄国的改革">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-9">
+  <meta name="teachany-node" content="hist-russian-reform">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+
+  <title>8.2 俄国的改革 | 初中9年级历史</title>
+
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ========== 历史科目专属配色 ========== */
+    :root {
+      --primary: #8b4513;
+      --primary-light: #cd853f;
+      --primary-dark: #6b3410;
+      --secondary: #d4a574;
+      --accent: #d4a017;
+      --bg-light: #faf7f2;
+      --bg-card: #ffffff;
+      --text-dark: #2c1810;
+      --text-muted: #8b7355;
+      --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.08);
+      --shadow-md: 0 4px 20px rgba(139, 69, 19, 0.12);
+      --border-color: #e8dcc8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ========== ① 品牌栏 ========== */
+    .brand-bar {
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+
+    /* ========== ② 进度条 ========== */
+    .progress-bar { height: 4px; background: #e8dcc8; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 50%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: var(--primary); padding: 4px 20px; background: var(--bg-light); }
+
+    /* ========== ③ 导航栏 ========== */
+    .nav-bar { background: white; border-bottom: 2px solid var(--primary); padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: rgba(139,69,19,0.1); }
+    .nav-btn.disabled { opacity: 0.4; pointer-events: none; }
+    .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
+
+    /* ========== ④ Hero区 ========== */
+    .hero {
+      background: linear-gradient(135deg, #1a0a00 0%, var(--primary-dark) 30%, var(--primary) 70%, var(--primary-light) 100%);
+      color: white;
+      padding: 48px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero h1 { font-size: 2rem; margin: 10px 0 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; }
+
+    .svg-container { margin: 20px auto 0; max-width: 900px; }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 10px; color: #8b7355; font-size: 14px; text-align: center; }
+
+    /* ========== 主内容区 ========== */
+    .section { max-width: 960px; margin: 0 auto 28px; padding: 0 20px; }
+    .card { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid var(--border-color); }
+    .card-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 14px 24px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .card-header .tag { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .card-body { padding: 20px 24px; }
+
+    /* ========== ⑤ 探究问题锚点 ========== */
+    .anchor-box { background: #f5e6d3; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; font-size: 15px; line-height: 1.8; }
+    .anchor-box strong { color: var(--primary); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f5e6d3, #faf7f2); border: 2px solid #d4a574; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #e8d4bc, #f5e6d3); border-color: var(--primary); }
+    .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+
+    .custom-question { margin-top: 16px; }
+    .custom-question label { display: block; margin-bottom: 6px; color: var(--primary); font-weight: 600; }
+    .custom-question input { width: 100%; border-radius: 12px; border: 1px solid #d4a574; background: #faf7f2; color: var(--text-dark); padding: 12px 14px; font-size: 15px; }
+    .custom-question input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,69,19,0.1); }
+    .anchor-display { margin-top: 16px; padding: 16px; border-radius: 12px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.15); min-height: 80px; }
+    .anchor-display h4 { color: var(--primary); margin-bottom: 8px; }
+
+    /* ========== ⑥ 学习目标 ========== */
+    .objectives-list { list-style: none; padding: 0; margin: 0; }
+    .objectives-list li { padding: 10px 16px; border-bottom: 1px solid var(--border-color); display: flex; gap: 10px; align-items: flex-start; }
+    .objectives-list li:last-child { border-bottom: none; }
+    .objectives-list li::before { content: '✅'; font-size: 14px; }
+
+    /* ========== ⑦ 前测 & ⑨ 后测 ========== */
+    .quiz-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-color); }
+    .quiz-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .quiz-header .quiz-badge { background: var(--accent); color: var(--text-dark); font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: normal; }
+    .quiz-body { padding: 10px 16px; }
+    .quiz-item { margin-bottom: 18px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+    .quiz-question { background: #f5e6d3; padding: 12px 16px; font-size: 15px; line-height: 1.6; }
+    .quiz-question .star { color: var(--accent); margin-right: 4px; }
+    .quiz-question .exam-tag { background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 6px; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+    .quiz-options { padding: 10px 16px; }
+    .quiz-option { display: flex; align-items: center; padding: 10px 14px; border-radius: 8px; cursor: pointer; margin-bottom: 8px; border: 2px solid transparent; transition: all 0.2s; background: white; }
+    .quiz-option:hover { background: #faf7f2; border-color: #d4a574; }
+    .quiz-option input { margin-right: 10px; accent-color: var(--primary); transform: scale(1.1); }
+    .quiz-option label { cursor: pointer; flex: 1; font-size: 14px; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.correct label { color: #065f46; font-weight: 600; }
+    .quiz-option.wrong { background: #fee2e2; border-color: #ef4444; }
+    .quiz-option.wrong label { color: #991b1b; }
+    .opt-letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; font-size: 12px; font-weight: 700; margin-right: 10px; flex-shrink: 0; }
+    .quiz-feedback { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .quiz-feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .answer-explanation { margin-top: 12px; padding: 14px 16px; border-radius: 8px; font-size: 14px; display: none; background: #fffbeb; border-left: 4px solid #f59e0b; color: #78350f; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .check-btn { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border: none; padding: 10px 28px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 700; transition: all 0.2s; margin-top: 16px; }
+    .check-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,69,19,0.25); }
+
+    /* ========== ⑧ 核心知识讲解 ========== */
+    .knowledge-section { background: white; border-radius: 12px; box-shadow: var(--shadow-sm); margin-bottom: 20px; overflow: hidden; border: 1px solid var(--border-color); }
+    .knowledge-header { background: var(--primary); color: white; padding: 12px 24px; font-size: 16px; font-weight: 700; }
+    .knowledge-body { padding: 20px 24px; }
+    .knowledge-body p { margin: 0 0 12px; line-height: 1.8; }
+    .knowledge-body p:last-child { margin-bottom: 0; }
+    .highlight { background: #f5e6d3; padding: 2px 6px; border-radius: 4px; font-weight: 700; color: var(--primary); }
+
+    /* 概念框 */
+    .concept-box { background: #faf7f2; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 对比表格 */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .compare-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px; text-align: center; }
+    .compare-table td { padding: 10px; border: 1px solid var(--border-color); text-align: center; }
+    .compare-table tr:nth-child(even) { background: #faf7f2; }
+
+    /* ========== ⑩ 必考分析与考点总结 ========== */
+    .exam-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .exam-card { border-radius: 12px; padding: 18px 20px; border-left: 4px solid var(--accent); background: #faf7f2; }
+    .exam-card h4 { color: var(--primary); margin: 0 0 8px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .exam-card p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--text-dark); }
+    .exam-tag { display: inline-flex; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 8px; }
+    .exam-tag.hot { background: #fee2e2; color: #dc2626; }
+    .exam-tag.high { background: #fef3c7; color: #92400e; }
+    .exam-tag.normal { background: #dbeafe; color: #1d4ed8; }
+
+    /* ========== AI学伴 ========== */
+    .ai-tutor { background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; padding: 24px; color: white; margin-bottom: 20px; }
+    .ai-tutor h3 { margin: 0 0 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+    .ai-tutor p { margin: 0 0 10px; font-size: 14px; line-height: 1.7; opacity: 0.95; }
+    .ai-tutor .ai-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .ai-tutor button { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .ai-tutor button:hover { background: rgba(255,255,255,0.35); }
+
+    /* ========== 页脚 ========== */
+    .footer { background: var(--primary-dark); color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    .footer p { margin: 0; opacity: 0.9; font-size: 14px; }
+    .footer .version { margin-top: 8px; font-size: 12px; opacity: 0.7; }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 768px) {
+      .hero { padding: 28px 14px; }
+      .hero h1 { font-size: 1.4rem; }
+      .hero-subtitle { font-size: 0.88rem; }
+      .section { padding: 0 12px; margin-bottom: 20px; }
+      .card-header { padding: 12px 14px; font-size: 15px; }
+      .card-body { padding: 14px; }
+      .anchor-points { flex-direction: column; gap: 6px; }
+      .anchor-btn { width: 100%; padding: 10px 12px; font-size: 0.82rem; }
+      .quiz-option { padding: 10px 12px; font-size: 0.88rem; }
+      .knowledge-body { padding: 14px; }
+      .exam-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== ① 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-scroll"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ========== ② 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+  <div class="progress-label">第 2/4 节 · 50%</div>
+
+  <!-- ========== ③ 导航栏 ========== -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+      <div class="nav-center">第八单元：殖民地人民的反抗与资本主义扩展</div>
+      <a href="../8.1_zymf/zymf.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+      <a href="../8.3_mgdz/mgdz.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ========== ④ Hero区 ========== -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fa-solid fa-landmark"></i> 九年级历史 · 第八单元</div>
+      <h1>📜 第8.2课 俄国的改革</h1>
+      <p class="hero-subtitle">📖 课标要求：知道俄国1861年改革的背景、内容和历史意义；认识改革是推动社会进步的重要方式<br>🎯 预计用时：45分钟</p>
+
+      <!-- SVG知识结构图 -->
+      <div class="svg-container">
+        <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="max-width:900px;display:block;margin:0 auto;">
+          <rect width="900" height="340" fill="#fafcfb"/>
+
+          <!-- 中心：1861年改革 -->
+          <circle cx="450" cy="170" r="65" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+          <text x="450" y="163" text-anchor="middle" font-size="16" font-weight="bold" fill="white">1861年</text>
+          <text x="450" y="183" text-anchor="middle" font-size="14" fill="white">俄国改革</text>
+
+          <!-- 背景分支 -->
+          <rect x="20" y="30" width="160" height="55" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+          <text x="100" y="62" text-anchor="middle" font-size="13" fill="white" font-weight="bold">农奴制危机</text>
+          <line x1="180" y1="57" x2="385" y2="150" stroke="#8b4513" stroke-width="2"/>
+          <polygon points="385,150 370,140 370,160" fill="#8b4513"/>
+
+          <rect x="20" y="100" width="160" height="55" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+          <text x="100" y="132" text-anchor="middle" font-size="13" fill="white" font-weight="bold">克里木战争失败</text>
+          <line x1="180" y1="127" x2="385" y2="165" stroke="#8b4513" stroke-width="2"/>
+          <polygon points="385,165 370,155 370,175" fill="#8b4513"/>
+
+          <rect x="20" y="170" width="160" height="55" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+          <text x="100" y="202" text-anchor="middle" font-size="13" fill="white" font-weight="bold">沙皇专制统治</text>
+          <line x1="180" y1="197" x2="385" y2="175" stroke="#8b4513" stroke-width="2"/>
+          <polygon points="385,175 370,165 370,185" fill="#8b4513"/>
+
+          <!-- 改革内容分支 -->
+          <rect x="720" y="30" width="160" height="55" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+          <text x="800" y="62" text-anchor="middle" font-size="13" fill="white" font-weight="bold">废除农奴制</text>
+          <line x1="720" y1="57" x2="515" y2="150" stroke="#8b4513" stroke-width="2"/>
+          <polygon points="515,150 530,140 530,160" fill="#8b4513"/>
+
+          <rect x="720" y="100" width="160" height="55" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+          <text x="800" y="132" text-anchor="middle" font-size="13" fill="white" font-weight="bold">农奴获人身自由</text>
+          <line x1="720" y1="127" x2="515" y2="165" stroke="#8b4513" stroke-width="2"/>
+          <polygon points="515,165 530,155 530,175" fill="#8b4513"/>
+
+          <rect x="720" y="170" width="160" height="55" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+          <text x="800" y="202" text-anchor="middle" font-size="13" fill="white" font-weight="bold">土地赎买</text>
+          <line x1="720" y1="197" x2="515" y2="175" stroke="#8b4513" stroke-width="2"/>
+          <polygon points="515,175 530,165 530,185" fill="#8b4513"/>
+
+          <!-- 历史意义 -->
+          <rect x="320" y="280" width="260" height="50" rx="10" fill="#8b4513"/>
+          <text x="450" y="305" text-anchor="middle" font-size="14" fill="white" font-weight="bold">历史意义：推动资本主义发展，保留封建残余</text>
+          <line x1="450" y1="235" x2="450" y2="280" stroke="#8b4513" stroke-width="2"/>
+          <polygon points="450,280 445,268 455,268" fill="#8b4513"/>
+
+          <!-- 对比框 -->
+          <rect x="560" y="280" width="280" height="50" rx="10" fill="#d4a574" stroke="#8b4513" stroke-width="2"/>
+          <text x="700" y="302" text-anchor="middle" font-size="12" fill="#654321" font-weight="bold">对比：俄国1861改革 vs 日本明治维新</text>
+          <text x="700" y="320" text-anchor="middle" font-size="11" fill="#8b4513">同为自上而下的资产阶级改革</text>
+          <line x1="560" y1="305" x2="515" y2="220" stroke="#8b4513" stroke-width="2"/>
+          <polygon points="515,220 525,235 505,235" fill="#8b4513"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== 主内容区 ========== -->
+  <main>
+
+    <!-- ========== ⑤ 探究问题锚点 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🔍 探究问题</div>
+        <div class="card-body">
+          <p style="color: var(--primary); margin-bottom: 12px;">选择你关心的问题，后续内容将围绕问题展开讲解：</p>
+          <div class="anchor-points">
+            <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-question="农奴制为什么阻碍了俄国资本主义发展？">⚙️ 农奴制为何阻碍资本主义发展？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-question="亚历山大二世为何要废除农奴制？">👑 沙皇为何要废除农奴制？</button>
+            <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-question="改革"保留封建残余"是什么意思？">⚠️ 改革"保留封建残余"指什么？</button>
+          </div>
+          <div class="custom-question">
+            <label>我有自己的问题：</label>
+            <input type="text" id="custom-question-input" placeholder="输入你的问题..." oninput="handleCustomQuestion(this.value)">
+          </div>
+          <div class="anchor-display" id="anchor-display">
+            <p style="text-align: center; color: var(--text-muted);">👆 点击上方按钮或输入自己的问题</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑥ 学习目标 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🎯 学习目标 <span class="tag">课标要求</span></div>
+        <div class="card-body">
+          <ul class="objectives-list">
+            <li>知道俄国农奴制的基本情况和1861年改革的背景</li>
+            <li>掌握亚历山大二世废除农奴制的主要内容</li>
+            <li>理解1861年改革的性质（自上而下的资产阶级改革）</li>
+            <li>辩证认识改革的历史意义（进步性 + 局限性）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑦ 前测 ========== -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">📝 课前自测 <span class="quiz-badge">点击选项查看解析</span></div>
+        <div class="quiz-body" id="pre-quiz">
+
+          <!-- 基础题1 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>1861年俄国改革的领导者是？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 彼得一世是17世纪末18世纪初的沙皇，主要进行西化改革，与1861年改革无关！">
+                <span class="opt-letter">A</span><label>A. 彼得一世</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 亚历山大二世</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 叶卡捷琳娜二世是18世纪后期沙皇，未进行农奴制改革！">
+                <span class="opt-letter">C</span><label>C. 叶卡捷琳娜二世</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 尼古拉一世是亚历山大二世的前任，克里木战争期间在位！">
+                <span class="opt-letter">D</span><label>D. 尼古拉一世</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre1"></div>
+            <div class="answer-explanation" id="explain-pre1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 亚历山大二世</strong></p>
+              <p style="margin-top: 8px;">1861年3月，沙皇<strong>亚历山大二世</strong>签署废除农奴制的法令，颁布了《关于农民脱离农奴依附身份的法令》，俄国农奴制正式废除。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📚 知识拓展 · 时间线</div>
+                <p><strong>亚历山大二世</strong>（1818—1881）在位期间推行改革，1861年改革是其最重要的改革措施，被誉为"解放者沙皇"。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 基础题2 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>1861年改革的主要目的是？<span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 改革恰恰是为了维护沙皇统治，而不是推翻它！">
+                <span class="opt-letter">A</span><label>A. 推翻沙皇专制统治</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 维护沙皇统治，缓和阶级矛盾</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 改革保留了大量封建残余，并非彻底消灭封建制度！">
+                <span class="opt-letter">C</span><label>C. 彻底消灭封建残余</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 改革是为了增强俄国国力，不是削弱！">
+                <span class="opt-letter">D</span><label>D. 削弱俄国的国家实力</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre2"></div>
+            <div class="answer-explanation" id="explain-pre2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 维护沙皇统治，缓和阶级矛盾</strong></p>
+              <p style="margin-top: 8px;">亚历山大二世曾说过："<strong>与其等农民自下而上起来解放自己，不如自上而下来解放农民。</strong>"这说明改革的根本目的是<strong>维护沙皇统治</strong>，通过缓和阶级矛盾来避免革命。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 易错警示</div>
+                <p>改革是<strong>自上而下</strong>进行的，由沙皇主导，目的是维护统治，而不是推翻专制！</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 提高题3 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>促使亚历山大二世实行改革的直接原因是？<span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 农奴起义是改革的推动因素之一，但不是最直接的原因！">
+                <span class="opt-letter">A</span><label>A. 农奴起义不断</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'B')" data-feedback="❌ 农奴制阻碍资本主义发展是根本原因，不是直接原因！">
+                <span class="opt-letter">B</span><label>B. 农奴制阻碍资本主义发展</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 克里木战争的失败</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 西欧国家的影响是外部因素，不是直接原因！">
+                <span class="opt-letter">D</span><label>D. 西欧国家的影响</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre3"></div>
+            <div class="answer-explanation" id="explain-pre3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 克里木战争的失败</strong></p>
+              <p style="margin-top: 8px;"><strong>根本原因：</strong>农奴制严重阻碍俄国资本主义发展</p>
+              <p style="margin-top: 4px;"><strong>直接原因：</strong>1853—1856年<strong>克里木战争</strong>的失败，暴露了俄国的落后，激发了社会矛盾。</p>
+              <p style="margin-top: 8px;"><strong>答题技巧：</strong>做"直接原因/根本原因"类题目时，注意区分"根本原因"（经济基础层面）和"直接原因"（导火索）。</p>
+            </div>
+          </div>
+
+          <!-- 挑战题4 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>下列关于1861年改革的评价，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 改革保留了大量封建残余，并不彻底！"请注意，封建残余"不是"彻底废除封建制度"！">
+                <span class="opt-letter">A</span><label>A. 彻底废除了封建制度</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 改革是由沙皇主导的自上而下改革，不是农民起义的结果！">
+                <span class="opt-letter">B</span><label>B. 是农民起义的伟大胜利</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 是俄国历史上的重要转折点</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'D')" data-feedback="❌ 改革后农民需要赎买土地，负担沉重，并非完全有利！">
+                <span class="opt-letter">D</span><label>D. 对农民来说完全是有利的</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-pre4"></div>
+            <div class="answer-explanation" id="explain-pre4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 是俄国历史上的重要转折点</strong></p>
+              <p style="margin-top: 8px;">1861年改革废除了农奴制，使俄国走上资本主义发展道路，是俄国历史上的重要转折点。</p>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 答题技巧 · 带"绝对词"的选项通常错误</div>
+                <p>选项中出现<strong>"彻底""完全""一切""绝对"</strong>等绝对化词语时，往往是错误的。1861年改革虽然进步，但<strong>保留了封建残余</strong>，并没有"彻底"废除封建制度。</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('pre-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑧ 核心知识讲解 ========== -->
+
+    <!-- 知识点1 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">一、改革背景：农奴制的危机</div>
+        <div class="knowledge-body">
+          <p>19世纪中期，俄国仍是一个落后的<span class="highlight">农奴制</span>国家。沙皇专制统治下，农奴制严重阻碍了俄国资本主义的发展。</p>
+          <p><strong>农奴制阻碍资本主义发展的四个维度：</strong></p>
+          <p>📘 <strong>劳动力：</strong>农奴被束缚在土地上，缺乏自由劳动力，工厂缺乏人手</p>
+          <p>📘 <strong>市场：</strong>农民生活贫困，购买力低下，国内市场狭窄</p>
+          <p>📘 <strong>资本：</strong>地主占有大量财富，资本积累不足</p>
+          <p>📘 <strong>技术：</strong>农业生产技术落后，无法为工业提供充足原料</p>
+
+          <div class="svg-container" style="margin: 20px 0; text-align: center;">
+            <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+              <text x="350" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#8b4513">农奴制阻碍资本主义发展示意</text>
+
+              <rect x="30" y="60" width="160" height="80" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+              <text x="110" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="white">农奴制</text>
+              <text x="110" y="105" text-anchor="middle" font-size="12" fill="white">19世纪中期</text>
+              <text x="110" y="125" text-anchor="middle" font-size="11" fill="white">沙皇专制统治</text>
+
+              <line x1="190" y1="100" x2="270" y2="100" stroke="#8b4513" stroke-width="3"/>
+              <text x="230" y="90" text-anchor="middle" font-size="11" fill="#654321">劳动力缺乏</text>
+              <text x="230" y="108" text-anchor="middle" font-size="11" fill="#654321">市场狭窄</text>
+
+              <rect x="270" y="50" width="180" height="180" rx="10" fill="#d4a574" stroke="#8b4513" stroke-width="2"/>
+              <text x="360" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#654321">阻碍表现</text>
+              <text x="280" y="100" font-size="12" fill="#444">✦ 农奴被束缚土地</text>
+              <text x="280" y="120" font-size="12" fill="#444">✦ 工厂缺乏工人</text>
+              <text x="280" y="140" font-size="12" fill="#444">✦ 农民购买力低</text>
+              <text x="280" y="160" font-size="12" fill="#444">✦ 市场无法扩大</text>
+              <text x="280" y="180" font-size="12" fill="#444">✦ 资本积累不足</text>
+              <text x="280" y="200" font-size="12" fill="#444">✦ 技术落后</text>
+
+              <line x1="450" y1="140" x2="510" y2="140" stroke="#8b4513" stroke-width="3"/>
+              <text x="480" y="130" text-anchor="middle" font-size="11" fill="#654321">矛盾激化</text>
+
+              <rect x="510" y="80" width="170" height="120" rx="10" fill="#e11d48" stroke="#be123c" stroke-width="2"/>
+              <text x="595" y="105" text-anchor="middle" font-size="14" font-weight="bold" fill="white">1853—1856</text>
+              <text x="595" y="125" text-anchor="middle" font-size="12" fill="white">克里木战争失败</text>
+              <text x="595" y="145" text-anchor="middle" font-size="12" fill="white">暴露落后局面</text>
+              <text x="595" y="165" text-anchor="middle" font-size="12" fill="white">农民起义不断</text>
+            </svg>
+          </div>
+
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 农奴制</div>
+            <p><strong>农奴制：</strong>是一种封建人身依附制度，农奴被束缚在土地上，没有人身自由，完全依附于地主。农奴没有人身自由、无法自由流动、缺乏生产积极性，严重阻碍社会进步。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点2 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">二、1861年改革的内容</div>
+        <div class="knowledge-body">
+          <p>1861年，沙皇<strong>亚历山大二世</strong>颁布废除农奴制的法令——《关于农民脱离农奴依附身份的法令》。法令的核心内容是：</p>
+          <p>📘 <strong>人身自由：</strong>农奴获得人身自由，可以改变身份，自由转换职业</p>
+          <p>📘 <strong>土地赎买：</strong>农奴可获得一份土地，但必须出钱赎买（赎金远高于实际地价）</p>
+          <p>📘 <strong>村社管理：</strong>农民仍受村社（米尔）管理，政治权利受限</p>
+
+          <div class="svg-container" style="margin: 20px 0; text-align: center;">
+            <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+              <text x="300" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#8b4513">1861年改革内容</text>
+
+              <rect x="30" y="60" width="240" height="100" rx="10" fill="#8b4513" stroke="#654321" stroke-width="2"/>
+              <text x="150" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="white">人身自由</text>
+              <text x="150" y="115" text-anchor="middle" font-size="13" fill="#d4a574">✓ 获得人身自由</text>
+              <text x="150" y="135" text-anchor="middle" font-size="13" fill="#d4a574">✓ 可改变身份</text>
+              <text x="150" y="155" text-anchor="middle" font-size="13" fill="#d4a574">✓ 自由转换职业</text>
+
+              <rect x="330" y="60" width="240" height="100" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+              <text x="450" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="white">土地赎买</text>
+              <text x="450" y="115" text-anchor="middle" font-size="13" fill="white">✓ 可获得土地</text>
+              <text x="450" y="135" text-anchor="middle" font-size="13" fill="white">✗ 须出钱赎买</text>
+              <text x="450" y="155" text-anchor="middle" font-size="13" fill="white">💰 赎金高于地价</text>
+
+              <rect x="150" y="200" width="300" height="60" rx="10" fill="#d4a574" stroke="#8b4513" stroke-width="2"/>
+              <text x="300" y="225" text-anchor="middle" font-size="14" font-weight="bold" fill="#8b4513">改革结果</text>
+              <text x="300" y="248" text-anchor="middle" font-size="12" fill="#654321">农奴获得自由与土地，但负担沉重</text>
+            </svg>
+          </div>
+
+          <div class="concept-box">
+            <div class="label">📌 核心概念 · 土地赎买</div>
+            <p><strong>土地赎买：</strong>农奴在获得人身自由的同时，可以"购买"一块份地，但赎金远高于土地实际价格，且需分期支付利息，实际上是对农奴的又一次剥削，是改革局限性的重要表现。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点3 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">三、改革的性质</div>
+        <div class="knowledge-body">
+          <p><strong>1861年改革是一场自上而下的资产阶级性质的改革。</strong></p>
+          <p>判断依据：</p>
+          <p>📘 <strong>自上而下：</strong>改革由沙皇亚历山大二世主导，不是自下而上的革命</p>
+          <p>📘 <strong>资产阶级性质：</strong>废除了农奴制，解放了劳动力，为资本主义发展创造了条件</p>
+          <p>📘 <strong>不彻底性：</strong>保留了封建残余（如地主土地所有制、沙皇专制）</p>
+
+          <div class="concept-box">
+            <div class="label">📌 核心结论</div>
+            <p>1861年改革是俄国从封建社会向资本主义社会过渡的重要转折点，但保留了大量封建残余，是一场不彻底的资产阶级改革。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点4 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">四、改革的历史意义</div>
+        <div class="knowledge-body">
+          <p>1861年改革需要从<strong>进步性</strong>和<strong>局限性</strong>两个维度辩证分析：</p>
+
+          <div class="svg-container" style="margin: 20px 0; text-align: center;">
+            <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+              <text x="350" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#8b4513">1861年改革的双重性</text>
+
+              <rect x="20" y="50" width="280" height="130" rx="12" fill="#dcfce7" stroke="#86efac" stroke-width="2"/>
+              <text x="160" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#166534">✅ 进步性</text>
+              <text x="40" y="102" font-size="13" fill="#166534">✦ 废除农奴制，解放劳动力</text>
+              <text x="40" y="125" font-size="13" fill="#166534">✦ 推动俄国资本主义发展</text>
+              <text x="40" y="148" font-size="13" fill="#166534">✦ 是俄国历史上的重要转折点</text>
+              <text x="40" y="171" font-size="13" fill="#166534">✦ 缓和了社会矛盾</text>
+
+              <rect x="320" y="50" width="280" height="130" rx="12" fill="#fee2e2" stroke="#fca5a5" stroke-width="2"/>
+              <text x="460" y="75" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">⚠️ 局限性</text>
+              <text x="340" y="102" font-size="13" fill="#991b1b">✦ 赎金高于地价，农民负担重</text>
+              <text x="340" y="125" font-size="13" fill="#991b1b">✦ 保留地主土地所有制</text>
+              <text x="340" y="148" font-size="13" fill="#991b1b">✦ 沙皇专制制度未改变</text>
+              <text x="340" y="171" font-size="13" fill="#991b1b">✦ 社会等级制度未根本改变</text>
+
+              <line x1="300" y1="115" x2="320" y2="115" stroke="#8b4513" stroke-width="2"/>
+            </svg>
+          </div>
+
+          <div class="warn-box">
+            <div class="label">⚠️ 高频考点 · 易错警示</div>
+            <p><strong>易混淆点：</strong>改革<strong>推动</strong>了资本主义发展，但保留了<strong>封建残余</strong>。不能简单说"改革成功/失败"，要辩证分析！</p>
+            <p style="margin-top: 8px;"><strong>答题公式：</strong>"1861年改革废除了农奴制，推动了俄国资本主义的发展，是俄国历史上的重要转折点，但保留了封建残余，具有不彻底性。"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 知识点5 -->
+    <section class="section">
+      <div class="knowledge-section">
+        <div class="knowledge-header">五、俄国1861改革 vs 日本明治维新</div>
+        <div class="knowledge-body">
+          <table class="compare-table">
+            <tr>
+              <th>对比项目</th>
+              <th>俄国1861年改革</th>
+              <th>日本明治维新</th>
+            </tr>
+            <tr>
+              <td><strong>时间</strong></td>
+              <td>1861年</td>
+              <td>1868年开始</td>
+            </tr>
+            <tr>
+              <td><strong>背景</strong></td>
+              <td>农奴制危机、克里木战争失败</td>
+              <td>幕府统治危机、黑船事件</td>
+            </tr>
+            <tr>
+              <td><strong>领导者</strong></td>
+              <td>沙皇亚历山大二世</td>
+              <td>明治天皇</td>
+            </tr>
+            <tr>
+              <td><strong>方式</strong></td>
+              <td colspan="2" style="text-align:center;">都是自上而下的改革</td>
+            </tr>
+            <tr>
+              <td><strong>性质</strong></td>
+              <td colspan="2" style="text-align:center;">都是资产阶级性质的改革</td>
+            </tr>
+            <tr>
+              <td><strong>内容</strong></td>
+              <td>废除农奴制（单一改革）</td>
+              <td>政治、经济、社会全方位改革</td>
+            </tr>
+            <tr>
+              <td><strong>结果</strong></td>
+              <td>走上资本主义道路，保留封建残余</td>
+              <td>走上资本主义道路，成为亚洲强国</td>
+            </tr>
+          </table>
+
+          <div class="concept-box">
+            <div class="label">📌 核心结论 · 必背</div>
+            <p><strong>相同点：</strong>时间相近（19世纪60年代）、方式相同（自上而下）、性质相同（资产阶级改革）</p>
+            <p style="margin-top: 8px;"><strong>不同点：</strong>改革内容深度不同——明治维新是全方位改革，效果更显著；俄国改革只废除农奴制，深度不足，保留了更多封建残余。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑨ 后测 ========== -->
+    <section class="section">
+      <div class="quiz-section">
+        <div class="quiz-header">✅ 课后巩固 <span class="quiz-badge">含中考真题</span></div>
+        <div class="quiz-body" id="post-quiz">
+
+          <!-- 后测基础题1 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2021·山东中考）俄国1861年农奴制改革有利于资本主义发展，主要因为？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-基础">基础</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'A')" data-feedback="">
+                <span class="opt-letter">A</span><label>A. 农奴获得人身自由，提供了自由劳动力</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'B')" data-feedback="❌ 改革后农民负担沉重，购买力有限，国内市场并没有扩大！">
+                <span class="opt-letter">B</span><label>B. 农民获得土地，扩大了国内市场</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 改革并未推翻沙皇专制，政治制度未根本改变！">
+                <span class="opt-letter">C</span><label>C. 推翻了沙皇专制，建立了民主制度</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 改革后俄国仍保留封建残余，没有成为欧洲强国！">
+                <span class="opt-letter">D</span><label>D. 彻底消除封建残余，成为欧洲强国</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post1"></div>
+            <div class="answer-explanation" id="explain-post1">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：A. 农奴获得人身自由，提供了自由劳动力</strong></p>
+              <p style="margin-top: 8px;">1861年改革废除农奴制，使农奴获得人身自由，可以自由流动到城市工厂，为资本主义发展提供了急需的<strong>自由劳动力</strong>，这是改革促进资本主义发展的最直接原因。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">📝 中考真题出处</div>
+                <p><strong>来源：</strong>2021年山东省中考历史卷 · 第6题</p>
+                <p style="margin-top: 6px;"><strong>考点：</strong>1861年改革对资本主义发展的促进作用</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 后测提高题2 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>（2022·江苏中考）俄国1861年改革与日本明治维新的共同点是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 俄国不存在"幕府"，幕府是日本的政治制度！"推翻幕府统治"是日本明治维新的内容，不是俄国的！">
+                <span class="opt-letter">A</span><label>A. 都推翻了幕府统治</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 都是自上而下的资产阶级改革</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'C')" data-feedback="❌ 两国改革都保留了封建残余，并不彻底！">
+                <span class="opt-letter">C</span><label>C. 都彻底废除了封建制度</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 两国改革方式、内容、深度均有差异！"完全相同"是错误的！">
+                <span class="opt-letter">D</span><label>D. 改革方式和内容完全相同</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post2"></div>
+            <div class="answer-explanation" id="explain-post2">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 都是自上而下的资产阶级改革</strong></p>
+              <p style="margin-top: 8px;">俄国1861年改革和日本明治维新的共同点：</p>
+              <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+                <li>✅ <strong>时间相近：</strong>19世纪60年代</li>
+                <li>✅ <strong>方式相同：</strong>自上而下（统治者主导）</li>
+                <li>✅ <strong>性质相同：</strong>资产阶级性质的改革</li>
+              </ul>
+              <div class="warn-box" style="margin-top: 12px;">
+                <div class="label">⚠️ 常见陷阱</div>
+                <p>"推翻了幕府统治"是<strong>日本明治维新</strong>的内容，俄国不存在幕府！选项常把两国内容混淆！</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 后测挑战题3 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>关于1861年改革的说法，错误的是？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 这是正确的说法，改革确实由亚历山大二世领导！换一个选项试试？">
+                <span class="opt-letter">A</span><label>A. 改革由沙皇亚历山大二世领导</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'B')" data-feedback="❌ 这是正确的说法，改革是自上而下进行的！换一个选项试试？">
+                <span class="opt-letter">B</span><label>B. 改革是自上而下进行的</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'C')" data-feedback="">
+                <span class="opt-letter">C</span><label>C. 彻底废除了封建制度</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 这是正确的说法，改革确实推动了俄国资本主义发展！换一个选项试试？">
+                <span class="opt-letter">D</span><label>D. 推动了俄国资本主义发展</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post3"></div>
+            <div class="answer-explanation" id="explain-post3">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：C. 彻底废除了封建制度</strong></p>
+              <p style="margin-top: 8px;">1861年改革虽然废除了农奴制，但保留了<strong>大量封建残余</strong>：赎金高于地价（剥削农民）、地主土地所有制保留、沙皇专制未改变、社会等级制度未根本改变。</p>
+              <p style="margin-top: 8px;">因此"彻底废除了封建制度"<strong>是错误的</strong>——改革不彻底！</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">💡 答题技巧 · 逆向思维</div>
+                <p>做"错误的是"类题目时，先快速判断每个选项的正确性。A/B/D都是正确的（推动历史进步），C含有绝对词"彻底"，通常是错误选项。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 后测挑战题4 -->
+          <div class="quiz-item">
+            <div class="quiz-question">
+              <span class="star">★</span>1861年改革后俄国资本主义发展仍然缓慢的最主要原因是？<span class="difficulty-badge difficulty-挑战">挑战</span>
+            </div>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 农民获得人身自由，是解放不是阻碍！">
+                <span class="opt-letter">A</span><label>A. 农民获得人身自由</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'B')" data-feedback="">
+                <span class="opt-letter">B</span><label>B. 保留了封建残余，地主土地所有制未改变</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 克里木战争在改革之前，不是改革后发展缓慢的原因！">
+                <span class="opt-letter">C</span><label>C. 克里木战争的失败</label>
+              </div>
+              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'D')" data-feedback="❌ 农奴获得自由后可以自由流动，实际上有助于资本主义发展！">
+                <span class="opt-letter">D</span><label>D. 农奴没有人身自由</label>
+              </div>
+            </div>
+            <div class="quiz-feedback" id="feedback-post4"></div>
+            <div class="answer-explanation" id="explain-post4">
+              <div class="explain-title">📖 详细解析</div>
+              <p><strong>正确答案：B. 保留了封建残余，地主土地所有制未改变</strong></p>
+              <p style="margin-top: 8px;">1861年改革保留了<strong>封建残余</strong>，主要表现：</p>
+              <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+                <li>⚠️ 地主仍占有大量土地</li>
+                <li>⚠️ 沙皇专制制度未改变</li>
+                <li>⚠️ 农民赎金负担沉重</li>
+                <li>⚠️ 社会等级制度未根本改变</li>
+              </ul>
+              <p style="margin-top: 8px;">这些封建残余使俄国资本主义发展速度落后于西欧国家。</p>
+              <div class="concept-box" style="margin-top: 12px;">
+                <div class="label">💡 历史唯物主义观点</div>
+                <p>经济基础决定上层建筑。改革保留了封建土地所有制（经济基础），使政治上层建筑（沙皇专制）的变革不彻底，制约了资本主义的发展。</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;"><button class="check-btn" onclick="checkAllQuiz('post-quiz')">✅ 查看答案</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ⑩ 必考分析与考点总结 ========== -->
+    <section class="section">
+      <div class="card">
+        <div class="card-header">🏆 必考分析与考点总结</div>
+        <div class="card-body">
+          <div class="exam-cards">
+            <div class="exam-card">
+              <h4>📍 改革背景 <span class="exam-tag hot">高频</span></h4>
+              <p>根本原因：农奴制阻碍资本主义发展；直接原因：克里木战争失败</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 改革内容 <span class="exam-tag hot">高频</span></h4>
+              <p>农奴获人身自由 + 土地赎买（赎金高于地价）</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 改革性质 <span class="exam-tag hot">高频</span></h4>
+              <p>自上而下的资产阶级改革（沙皇主导）</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 历史意义 <span class="exam-tag hot">高频</span></h4>
+              <p>进步性：推动资本主义发展；局限性：保留封建残余</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 俄日对比 <span class="exam-tag hot">高频</span></h4>
+              <p>同：自上而下、资产阶级性质；异：内容深度不同</p>
+            </div>
+            <div class="exam-card">
+              <h4>📍 中考命题趋势 <span class="exam-tag normal">常考</span></h4>
+              <p>选择题高频考查背景分类、改革内容；材料题要求辩证分析</p>
+            </div>
+          </div>
+
+          <div class="warn-box" style="margin-top: 16px;">
+            <div class="label">⚠️ 易错警示</div>
+            <p><strong>易错1：</strong>改革的直接原因是<strong>克里木战争失败</strong>，根本原因是<strong>农奴制阻碍发展</strong>！</p>
+            <p style="margin-top: 6px;"><strong>易错2：</strong>改革<strong>不是</strong>农民起义的胜利，是沙皇自上而下主导的！</p>
+            <p style="margin-top: 6px;"><strong>易错3：</strong>改革保留了<strong>封建残余</strong>，没有"彻底废除"封建制度！</p>
+            <p style="margin-top: 6px;"><strong>易错4：</strong>"推翻了幕府统治"是<strong>日本明治维新</strong>的内容，不是俄国！</p>
+            <p style="margin-top: 6px;"><strong>易错5：</strong>改革的意义要<strong>辩证</strong>分析——既说进步也说局限！</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== AI学伴 ========== -->
+    <section class="section">
+      <div class="ai-tutor">
+        <h3>🤖 AI学伴 · 智能助教</h3>
+        <p>学习本课过程中有任何疑问，都可以向AI学伴提问！</p>
+        <p>💡 <strong>推荐提问：</strong>本课重点是什么？帮我出题练习？改革的双重性怎么理解？</p>
+        <div class="ai-buttons">
+          <button>📚 帮我总结本课重点</button>
+          <button>🧠 出几道题考考我</button>
+          <button>🔗 俄国改革和明治维新有什么关系？</button>
+          <button>📝 帮我记笔记</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+    <p class="version">基于 TeachAny v7.14.0 | 适配人教版九年级历史课程标准</p>
+  </footer>
+
+  <!-- ========== JavaScript ========== -->
+  <script src="../../shared/scripts.js?v=8.0"></script>
+
+  <!-- 本课件专属脚本 -->
+  <script>
+    /* ========== 问题锚点功能 ========== */
+    const anchorContents = {
+      1: `<h4>⚙️ 问题：农奴制为何阻碍资本主义发展？</h4>
+        <p><strong>四个维度：</strong></p>
+        <ul style="padding-left: 20px; margin-top: 10px; line-height: 1.8;">
+          <li>✅ <strong>劳动力：</strong>农奴被束缚在土地上，工厂缺乏自由工人</li>
+          <li>✅ <strong>市场：</strong>农民贫困，购买力低，国内市场狭窄</li>
+          <li>✅ <strong>资本：</strong>地主占财富，资本积累不足</li>
+          <li>✅ <strong>技术：</strong>农业生产落后，原料供应不足</li>
+        </ul>
+        <div class="concept-box" style="margin-top: 12px;">
+          <div class="label">核心结论</div>
+          <p><strong>农奴制 = 人身依附 + 劳动力束缚 + 市场狭窄 = 阻碍资本主义发展</strong></p>
+        </div>`,
+      2: `<h4>👑 问题：沙皇为何要废除农奴制？</h4>
+        <p><strong>原因分析：</strong></p>
+        <ul style="padding-left: 20px; margin-top: 10px; line-height: 1.8;">
+          <li>✅ <strong>根本原因：</strong>农奴制阻碍资本主义发展，俄国落后于西欧</li>
+          <li>✅ <strong>直接原因：</strong>1853—1856年克里木战争失败，暴露落后</li>
+          <li>✅ <strong>政治压力：</strong>农民起义不断，社会矛盾尖锐</li>
+          <li>✅ <strong>沙皇原话：</strong>"与其等农民自下而上起来解放自己，不如自上而下来解放农民"</li>
+        </ul>
+        <p style="margin-top: 12px;">💡 <strong>结论：</strong>改革的根本目的是<strong>维护沙皇统治</strong>，缓和阶级矛盾！</p>`,
+      3: `<h4>⚠️ 问题：改革"保留封建残余"指什么？</h4>
+        <p><strong>具体表现：</strong></p>
+        <ul style="padding-left: 20px; margin-top: 10px; line-height: 1.8;">
+          <li>⚠️ <strong>土地问题：</strong>赎金远高于实际地价，农民负担沉重</li>
+          <li>⚠️ <strong>政治问题：</strong>沙皇专制未改变，农民受村社管理</li>
+          <li>⚠️ <strong>经济问题：</strong>地主仍占大量土地，农民仍受剥削</li>
+          <li>⚠️ <strong>社会问题：</strong>等级制度未根本改变</li>
+        </ul>
+        <p style="margin-top: 12px;">💡 <strong>答题技巧：</strong>历史事件要<strong>辩证</strong>分析，既有进步性也有局限性！</p>`
+    };
+
+    function selectAnchor(btn, id) {
+      document.querySelectorAll('.anchor-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('anchor-display').innerHTML = anchorContents[id];
+    }
+
+    function handleCustomQuestion(value) {
+      if (value.trim()) {
+        document.getElementById('anchor-display').innerHTML = `<h4>你的问题：${value}</h4><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+      }
+    }
+
+    /* ========== 答题检查功能 ========== */
+    function checkAnswer(element, isCorrect, questionId, optionLetter) {
+      const parent = element.closest('.quiz-item');
+      const feedback = parent.querySelector('.quiz-feedback');
+      const explanation = parent.querySelector('.answer-explanation');
+      const allOptions = parent.querySelectorAll('.quiz-option');
+
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+        feedback.className = 'quiz-feedback show correct-fb';
+        explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+        feedback.className = 'quiz-feedback show wrong-fb';
+      }
+    }
+
+    function checkAllQuiz(quizId) {
+      const quiz = document.getElementById(quizId);
+      quiz.querySelectorAll('.quiz-item').forEach(item => {
+        const correctOption = item.querySelector('.quiz-option[onclick*="true"]');
+        if (correctOption) {
+          correctOption.classList.add('correct');
+          const explanation = item.querySelector('.answer-explanation');
+          if (explanation) explanation.classList.add('show');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('📚 《俄国的改革》课件加载完成（v7.14.0）');
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

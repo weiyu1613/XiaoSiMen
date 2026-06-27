@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="course-id" content="ddfz-3.4-7">
+  <meta name="course-title" content="3.4 爱在家人间">
+  <meta name="course-subject" content="politics">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="ddfz-3.4">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>3.4 爱在家人间 | 七年级道德与法治</title>
+  <style>
+    .concept-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .concept-table th { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 12px; text-align: center; }
+    .concept-table td { padding: 10px; border: 1px solid #f1c40f; text-align: center; }
+    .concept-table tr:nth-child(even) { background: #fef9e7; }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-中考 { background: #fee2e2; color: #dc2626; }
+    .nav-bar { background: #fef9e7; border-bottom: 2px solid #f39c12; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #f39c12; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; }
+    .nav-btn:hover { background: #fdebd0; }
+    .nav-center { font-weight: 700; color: #f39c12; font-size: 14px; flex: 1; text-align: center; }
+    .hero { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero-badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; display: inline-block; }
+    .hero-subtitle { margin-top: 12px; font-size: 1.1rem; opacity: 0.9; }
+    .progress-bar { height: 4px; background: #fdebd0; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #f39c12, #e67e22); width: 38.7%; }
+    .progress-label { font-size: 12px; color: #f39c12; padding: 4px 20px; background: #fef9e7; }
+    .brand-bar { background: #f39c12; color: white; padding: 10px 20px; display: flex; justify-content: space-between; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    .section-title { font-size: 1.5rem; color: #f39c12; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #f1c40f; }
+    .card { background: white; border: 1px solid #f1c40f; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(243,156,18,0.1); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #fdebd0, #fef9e7); border: 2px solid #f1c40f; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #9a6a00; text-align: center; }
+    .anchor-btn:hover { background: #f9e79f; }
+    .anchor-btn.selected { background: #f39c12; color: white; }
+    .anchor-display { background: #fef9e7; border: 2px solid #f39c12; border-radius: 10px; padding: 16px; min-height: 100px; margin-top: 16px; }
+    .quiz-box { background: #fef9e7; border: 1px solid #f1c40f; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #fdebd0; border-radius: 10px; margin-bottom: 10px; cursor: pointer; font-size: 14px; }
+    .quiz-option:hover { border-color: #f1c40f; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #f39c12; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #fef9e7; border-left: 4px solid #f39c12; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #f39c12; margin-bottom: 8px; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+    .tag-kp { background: #f39c12; color: white; }
+    .tag-theory { background: #e67e22; color: white; }
+    .tag-exam { background: #e74c3c; color: white; }
+    .tag-mistake { background: #95a5a6; color: white; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; background: #dc2626; flex-shrink: 0; }
+    .footer { background: #f39c12; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    @media (max-width: 768px) { .anchor-points { flex-direction: column; } .anchor-btn { width: 100%; } .nav-inner { flex-direction: column; gap: 6px; } }
+  </style>
+</head>
+<body>
+  <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-heart"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
+  <div class="progress-label" id="pl">第 12/31 节 · 38.7%</div>
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn">首页</a>
+    <a href="../d3sz.html" class="nav-btn">单元导航</a>
+    <div class="nav-center">第三单元：师长情谊</div>
+    <a href="../3.3_jdwy/jdwy.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../../04_d4sm/4.1_smkychml/smkychml.html" class="nav-btn">下一节 →</a>
+  </div></nav>
+  <header class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-heart"></i> 七年级道德与法治 · 第三单元</div>
+    <h1>3.4 爱在家人间<span>Love Between Family Members</span></h1>
+    <p class="hero-subtitle">📖 课标要求：体会亲情之爱，学会与家人沟通化解冲突<br>⏰ 预计用时：30分钟</p>
+  </header>
+
+  <!-- SVG知识结构图 -->
+  <section style="margin:24px auto 0;max-width:800px;padding:0 20px;">
+    <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="300" fill="#fef9e7"/>
+      <circle cx="400" cy="150" r="55" fill="#f39c12" stroke="#e67e22" stroke-width="3"/>
+      <text x="400" y="155" text-anchor="middle" font-size="17" fill="white" font-weight="bold">爱在家人间</text>
+      <rect x="30" y="50" width="150" height="60" rx="10" fill="#e67e22" stroke="#f39c12"/><text x="105" y="80" text-anchor="middle" fill="white" font-size="13">亲情之爱</text><text x="105" y="98" text-anchor="middle" fill="white" font-size="11">表现不同</text>
+      <line x1="180" y1="80" x2="345" y2="150" stroke="#f39c12" marker-end="url(#a)"/>
+      <rect x="30" y="190" width="150" height="60" rx="10" fill="#e67e22" stroke="#f39c12"/><text x="105" y="220" text-anchor="middle" fill="white" font-size="13">亲子冲突</text><text x="105" y="238" text-anchor="middle" fill="white" font-size="11">原因分析</text>
+      <line x1="180" y1="220" x2="345" y2="150" stroke="#f39c12" marker-end="url(#a)"/>
+      <rect x="620" y="50" width="150" height="60" rx="10" fill="#f1c40f" stroke="#f39c12"/><text x="695" y="80" text-anchor="middle" fill="white" font-size="13">沟通技巧</text><text x="695" y="98" text-anchor="middle" fill="white" font-size="11">关注把握</text>
+      <line x1="620" y1="80" x2="455" y2="150" stroke="#f39c12" marker-end="url(#a)"/>
+      <rect x="620" y="190" width="150" height="60" rx="10" fill="#f1c40f" stroke="#f39c12"/><text x="695" y="220" text-anchor="middle" fill="white" font-size="13">爱在沟通中</text><text x="695" y="238" text-anchor="middle" fill="white" font-size="11">传递表达</text>
+      <line x1="620" y1="220" x2="455" y2="150" stroke="#f39c12" marker-end="url(#a)"/>
+      <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0,10 3,0 6" fill="#f39c12"/></marker></defs>
+    </svg>
+    <figcaption style="margin-top:10px;color:#f39c12;font-size:14px;text-align:center;">图3-4 爱在家人间知识结构图</figcaption>
+  </section>
+
+  <main class="container">
+
+    <!-- 探究问题 -->
+    <section><h2 class="section-title">🎯 探究问题</h2>
+      <p style="color:#f39c12;margin-bottom:16px;">先选一个你关心的问题，后面的讲解会围绕它展开。</p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selA(this,1)">💝 亲情之爱有什么特点？</button>
+          <button class="anchor-btn" onclick="selA(this,2)">💥 亲子冲突的原因是什么？</button>
+          <button class="anchor-btn" onclick="selA(this,3)">🗣️ 与父母沟通的技巧有哪些？</button>
+        </div>
+        <div class="anchor-display" id="ad"><p style="color:#f39c12;text-align:center;">👆 点击上方按钮选择</p></div>
+      </div>
+    </section>
+
+    <!-- 学习目标 -->
+    <section><h2 class="section-title">🎯 学习目标</h2>
+      <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
+        <li>✅ 体会亲情之爱的不同表现 <span class="tag tag-theory">关联：情感表达理论</span></li>
+        <li>✅ 理解亲子冲突的原因 <span class="tag tag-theory">关联：代际差异理论</span></li>
+        <li>✅ 掌握与父母沟通的技巧 <span class="tag tag-theory">关联：沟通技巧理论</span></li>
+        <li>✅ 学会用父母能接受的方式表达爱 <span class="tag tag-theory">关联：情感传递理论</span></li>
+      </ul></div>
+    </section>
+
+    <!-- ===== 前测 ===== -->
+    <section><h2 class="section-title">📝 前测：检验先备知识</h2>
+      <p style="color:#f39c12;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
+
+      <!-- 前测1 基础 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】每个家庭的亲情之爱？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 每个家庭的亲情表现<strong>并不相同</strong>。<br><span class='tag tag-mistake'>归因：未观察到家庭差异</span>"><span class="opt-letter">A</span> 完全相同</div>
+          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：每个家庭的亲情表现不同</span>"><span class="opt-letter">B</span> 表现不同，有的温馨和睦、有的磕磕绊绊</div>
+          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 没有亲情<strong>也可以</strong>有家，但这样的家不完整。<br><span class='tag tag-mistake'>归因：低估亲情的必要性</span>"><span class="opt-letter">C</span> 没有亲情也可以</div>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
+          <p><strong>正确答案：B. 表现不同，有的温馨和睦、有的磕磕绊绊</strong></p>
+          <p style="margin-top:8px;"><span class="tag tag-kp">核心知识点</span> 每个家庭的亲情之爱<strong>表现不同</strong>，有的温馨和睦，有的磕磕绊绊，有的内敛深沉，有的外露直白。</p>
+          <p style="margin-top:8px;"><span class="tag tag-mistake">错因分析</span> 选A忽略了<strong>家庭差异</strong>（每个家庭独特），选C<strong>低估了</strong>亲情在家庭中的核心地位。</p>
+          <p style="margin-top:8px;"><span class="tag tag-theory">关联理论</span> 情感表达理论——亲情的表达方式因家庭文化、父母性格而异。</p>
+        </div>
+      </div>
+
+      <!-- 前测2 提高 -->
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】亲子冲突的主要原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 父母不爱我们<strong>不是</strong>主要原因，他们只是表达方式不同。<br><span class='tag tag-mistake'>归因：误解父母的动机</span>"><span class="opt-letter">A</span> 父母不爱我们</div>
+          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：独立意识增强、代际差异大</span>"><span class="opt-letter">B</span> 独立意识增强、代际差异较大</div>
+          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 我们<strong>不需要</strong>完全听话，要有独立意识。<br><span class='tag tag-mistake'>归因：缺乏独立意识，未理解成长需求</span>"><span class="opt-letter">C</span> 我们太不听话</div>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
+          <p><strong>正确答案：B. 独立意识增强、代际差异较大</strong></p>
+          <p><span class="tag tag-kp">核心知识点</span> 亲子冲突的主要原因：①独立意识增强；②希望父母像成人一样对待我们；③两代人在心智、学识、经历等方面<strong>差异较大</strong>。</p>
+          <p><span class="tag tag-mistake">错因分析</span> 选A<strong>误解了</strong>父母的动机（他们爱我们，只是表达方式不同），选C<strong>缺乏独立意识</strong>，未理解成长的正常需求。</p>
+          <p><span class="tag tag-theory">关联理论</span> 代际差异理论——两代人在成长背景、价值观、生活方式上存在天然差异。</p>
+        </div>
+      </div>
+
+      <!-- 前测3 中考 -->
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 中考】关于与父母沟通，以下理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 与父母对抗会<strong>破坏</strong>亲子关系。<br><span class='tag tag-mistake'>归因：未理解沟通的双向性</span>"><span class="opt-letter">A</span> 与父母对抗</div>
+          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：关注事实、把握时机、留意态度、选择方式、考虑环境</span>"><span class="opt-letter">B</span> 关注事实、把握时机、留意态度</div>
+          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 不理父母会<strong>伤害</strong>亲子感情。<br><span class='tag tag-mistake'>归因：回避沟通，未理解情感维系的重要性</span>"><span class="opt-letter">C</span> 不理父母</div>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
+          <p><strong>正确答案：B. 关注事实、把握时机、留意态度</strong></p>
+          <p><span class="tag tag-kp">核心知识点</span> 与父母沟通的技巧：<strong>关注事实、把握时机、留意态度、选择方式、考虑环境</strong>。</p>
+          <p><span class="tag tag-mistake">错因分析</span> 选A是<strong>对抗型沟通</strong>（破坏关系），选C是<strong>回避型沟通</strong>（伤害感情），都未掌握<strong>有效沟通技巧</strong>。</p>
+          <p><span class="tag tag-exam">中考提示</span> 考查"亲子沟通"时，注意选项是否符合<strong>有效沟通原则</strong>（关注、把握、留意、选择、考虑）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 正文知识 ===== -->
+    <section><h2 class="section-title">💝 亲情之爱</h2>
+      <div class="card">
+        <h3 style="color:#f39c12;">📖 亲情之爱有什么特点？</h3>
+        <table class="concept-table" style="margin-top:16px;">
+          <tr><th>特点</th><th>具体表现</th><th>关联理论</th></tr>
+          <tr><td><strong>表现不同</strong></td><td>温馨和睦、磕磕绊绊、内敛、外露</td><td>情感表达理论</td></tr>
+          <tr><td><strong>无处不在</strong></td><td>在生活的点滴中体现</td><td>日常生活理论</td></tr>
+          <tr><td><strong>深沉厚重</strong></td><td>不轻易表达，但始终存在</td><td>情感依恋理论</td></tr>
+        </table>
+        <div class="concept-box"><div class="label">💡 核心要点 <span class="tag tag-theory">关联：情感表达理论</span></div>
+          <p>每个家庭的亲情之爱<strong>表现不同</strong>。有的温馨和睦，有的磕磕绊绊，有的内敛深沉，有的外露直白。但无论如何，亲情之爱都是<strong>无私、永恒、包容</strong>的。</p>
+        </div>
+      </div>
+    </section>
+
+    <section><h2 class="section-title">💥 亲子冲突的原因</h2>
+      <div class="card">
+        <h3 style="color:#f39c12;">📖 为什么会发生亲子冲突？</h3>
+        <ul style="padding-left:20px;line-height:2;margin-top:10px;">
+          <li>① <strong>独立意识增强</strong>：希望父母像成人一样对待我们 <span class="tag tag-theory">自我发展理论</span></li>
+          <li>② <strong>代际差异较大</strong>：两代人在心智、学识、经历等方面差异大 <span class="tag tag-theory">代际差异理论</span></li>
+          <li>③ <strong>表达方式不同</strong>：父母和我们表达爱的方式不同 <span class="tag tag-theory">情感表达理论</span></li>
+          <li>④ <strong>期望值不同</strong>：父母对我们的期望和我们自己的期望可能不同 <span class="tag tag-theory">期望理论</span></li>
+        </ul>
+        <div style="background:#fef9e7;border-radius:8px;padding:16px;margin-top:16px;font-style:italic;color:#9a6a00;">
+          "谁言寸草心，报得三春晖。" —— 孟郊《游子吟》<span class="tag tag-kp">感恩父母</span>
+        </div>
+      </div>
+    </section>
+
+    <section><h2 class="section-title">🗣️ 与父母沟通的技巧</h2>
+      <div class="card">
+        <div class="concept-box"><div class="label">✨ 沟通五技巧 <span class="tag tag-theory">关联：沟通技巧理论</span></div>
+          <p>① <strong>关注事实</strong>：不被情绪左右，关注事实本身 <span class="tag tag-theory">事实导向</span></p>
+          <p>② <strong>把握时机</strong>：选择父母心情好、不忙的时候沟通 <span class="tag tag-theory">时机理论</span></p>
+          <p>③ <strong>留意态度</strong>：态度要温和、诚恳 <span class="tag tag-theory">态度理论</span></p>
+          <p>④ <strong>选择方式</strong>：面对面、写信、发信息等方式都可以 <span class="tag tag-theory">多元沟通理论</span></p>
+          <p>⑤ <strong>考虑环境</strong>：选择安静、私密的环境沟通 <span class="tag tag-theory">环境心理学</span></p>
+        </div>
+        <div class="warn-box" style="margin-top:16px;"><div class="label">⚠️ 高频考点 · 易错警示</div>
+          <p><strong>记忆口诀：</strong>"<strong>关注、把握、留意、选择、考虑</strong>"</p>
+          <p style="margin-top:6px;"><strong>考试陷阱：</strong>"与父母对抗""不理父母"等<strong>破坏性沟通方式</strong>均为错误选项！</p>
+        </div>
+      </div>
+    </section>
+
+    <section><h2 class="section-title">💌 爱在沟通中传递</h2>
+      <div class="card">
+        <h3 style="color:#f39c12;">📖 如何用他们能接受的方式表达爱？</h3>
+        <ul style="padding-left:20px;line-height:2;margin-top:10px;">
+          <li>① <strong>尝试接纳父母的做法</strong>：理解他们的出发点</li>
+          <li>② <strong>尝试让父母了解我们的变化</strong>：主动沟通，让他们知道我们的想法</li>
+          <li>③ <strong>用他们能接受的方式表达爱</strong>：了解父母的喜好和接受方式</li>
+          <li>④ <strong>爱要大声说出来</strong>：不要羞于表达爱</li>
+        </ul>
+        <div style="background:linear-gradient(135deg,#fef9e7,#fdebd0);border-radius:8px;padding:16px;margin-top:16px;">
+          <p style="color:#9a6a00;font-weight:700;">💡 小贴士：如何让父母理解你？</p>
+          <p style="margin-top:8px;color:#9a6a00;">主动沟通、坦诚相待、选择合适的方式和时机，让父母了解你的想法和变化！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 后测 ===== -->
+    <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】与父母沟通时，不应该？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 关注事实是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">A</span> 关注事实</div>
+          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！不关注事实会导致沟通失败。<br><span class='tag tag-kp'>知识点：关注事实是沟通技巧之一</span>"><span class="opt-letter">B</span> 不关注事实</div>
+          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 把握时机是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">C</span> 把握时机</div>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
+          <p><strong>答案：B</strong> 与父母沟通要<strong>关注事实</strong>。<span class="tag tag-theory">关联：事实导向沟通</span></p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】亲子冲突的原因不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 独立意识增强是原因之一！<br><span class='tag tag-mistake'>归因：未掌握亲子冲突的原因</span>"><span class="opt-letter">A</span> 独立意识增强</div>
+          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 代际差异较大是原因之一！<br><span class='tag tag-mistake'>归因：未掌握亲子冲突的原因</span>"><span class="opt-letter">B</span> 代际差异较大</div>
+          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！父母不爱我们不是原因。<br><span class='tag tag-kp'>知识点：父母是爱我们的，只是表达方式不同</span>"><span class="opt-letter">C</span> 父母不爱我们</div>
+        </div>
+        <div class="feedback" id="fb11"></div>
+        <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
+          <p><strong>答案：C</strong> 父母<strong>是爱我们的</strong>，只是表达方式不同。<span class="tag tag-theory">关联：情感表达理论</span></p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 中考】以下关于亲子沟通的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！爱要在沟通中传递。<br><span class='tag tag-kp'>知识点：爱在沟通中传递</span>"><span class="opt-letter">A</span> 爱要在沟通中传递</div>
+          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 与父母对抗会<strong>破坏</strong>亲子关系。<br><span class='tag tag-mistake'>归因：未理解沟通的双向性</span>"><span class="opt-letter">B</span> 与父母对抗没问题</div>
+          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 不表达爱会导致<strong>情感隔阂</strong>。<br><span class='tag tag-mistake'>归因：回避情感表达，未理解情感维系的重要性</span>"><span class="opt-letter">C</span> 不需要表达爱</div>
+        </div>
+        <div class="feedback" id="fb12"></div>
+        <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
+          <p><strong>答案：A</strong> 爱要在<strong>沟通中传递</strong>。</p>
+          <p><span class="tag tag-exam">中考提示</span> 考查"亲子沟通"时，注意选项是否符合<strong>有效沟通原则</strong>（关注、把握、留意、选择、考虑）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 必考分析与考点总结 ===== -->
+    <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
+      <div class="card">
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 考点一：亲情之爱的特点</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近5年考了14次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 每个家庭的亲情<strong>表现不同</strong></li>
+            <li>✅ 有的<strong>温馨和睦</strong>，有的<strong>磕磕绊绊</strong></li>
+            <li>✅ 亲情之爱是<strong>无私、永恒、包容</strong>的</li>
+          </ul>
+          <p style="margin-top:10px;font-size:13px;color:#991b1b;"><span class="tag tag-mistake">常见陷阱</span> "每个家庭的亲情完全相同"等<strong>忽略差异的表述</strong>均为错误选项。</p>
+        </div>
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef9e7,#fdebd0);border:1px solid #f1c40f;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#f39c12;">2</span>
+            <strong style="color:#9a6a00;font-size:15px;">🔥 考点二：亲子冲突的原因</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近5年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ <strong>独立意识增强</strong></li>
+            <li>✅ <strong>代际差异较大</strong></li>
+            <li>✅ <strong>表达方式不同</strong></li>
+          </ul>
+          <p style="margin-top:10px;font-size:13px;color:#9a6a00;"><span class="tag tag-mistake">常见陷阱</span> "父母不爱我们"等<strong>误解父母动机的表述</strong>均为错误选项。</p>
+        </div>
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #f59e0b;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#e67e22;">3</span>
+            <strong style="color:#92400e;font-size:15px;">🔥 考点三：与父母沟通的技巧</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近5年考了16次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ <strong>关注事实、把握时机、留意态度</strong></li>
+            <li>✅ <strong>选择方式、考虑环境</strong></li>
+            <li>✅ <strong>爱在沟通中传递</strong></li>
+          </ul>
+          <p style="margin-top:10px;font-size:13px;color:#92400e;"><span class="tag tag-mistake">常见陷阱</span> "与父母对抗""不理父母"等<strong>破坏性沟通方式</strong>均为错误选项。</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中道德与法治互动课件系统</p>
+    <p style="font-size:12px;margin-top:8px;">人教版七年级道德与法治 · v7.14.0</p>
+  </footer>
+
+  <script>
+    var INFO = {total:31,cur:12};
+    var anchors = {
+      1:"<h3>📍 问题：亲情之爱有什么特点？</h3><p>① <strong>表现不同</strong>：温馨和睦、磕磕绊绊、内敛、外露 <span class='tag tag-theory'>情感表达理论</span></p><p>② <strong>无处不在</strong>：在生活的点滴中体现 <span class='tag tag-theory'>日常生活理论</span></p><p>③ <strong>深沉厚重</strong>：不轻易表达，但始终存在 <span class='tag tag-theory'>情感依恋理论</span></p>",
+      2:"<h3>📍 问题：亲子冲突的原因是什么？</h3><p>① <strong>独立意识增强</strong>：希望父母像成人一样对待我们 <span class='tag tag-theory'>自我发展理论</span></p><p>② <strong>代际差异较大</strong>：两代人在心智、学识、经历等方面差异大 <span class='tag tag-theory'>代际差异理论</span></p><p>③ <strong>表达方式不同</strong>：父母和我们表达爱的方式不同 <span class='tag tag-theory'>情感表达理论</span></p><p>④ <strong>期望值不同</strong>：父母对我们的期望和我们自己的期望可能不同 <span class='tag tag-theory'>期望理论</span></p>",
+      3:"<h3>📍 问题：与父母沟通的技巧有哪些？</h3><p>① <strong>关注事实</strong>：不被情绪左右 <span class='tag tag-theory'>事实导向</span></p><p>② <strong>把握时机</strong>：选择父母心情好时沟通 <span class='tag tag-theory'>时机理论</span></p><p>③ <strong>留意态度</strong>：态度要温和、诚恳 <span class='tag tag-theory'>态度理论</span></p><p>④ <strong>选择方式</strong>：面对面、写信、发信息都可以 <span class='tag tag-theory'>多元沟通理论</span></p><p>⑤ <strong>考虑环境</strong>：选择安静、私密的环境 <span class='tag tag-theory'>环境心理学</span></p>"
+    };
+    function selA(bt,id){document.querySelectorAll('.anchor-btn').forEach(function(b){b.classList.remove('selected')});bt.classList.add('selected');document.getElementById('ad').innerHTML=anchors[id];}
+    function chk(el,ok,num){
+      var p=el.closest('.quiz-box'),fb=p.querySelector('.feedback'),exp=document.getElementById('exp'+num);
+      p.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('correct','wrong')});
+      if(ok){el.classList.add('correct');fb.innerHTML='<strong>✅ 答对了！</strong>';fb.className='feedback show correct-fb';}
+      else{el.classList.add('wrong');fb.innerHTML=el.dataset.fb;fb.className='feedback show wrong-fb';}
+      if(exp)exp.classList.add('show');
+    }
+    document.addEventListener('DOMContentLoaded',function(){
+      document.getElementById('pf').style.width=(INFO.cur/INFO.total*100)+'%';
+      document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

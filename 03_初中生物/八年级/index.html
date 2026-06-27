@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初中8年级生物 - 课件首页 | TeachAny</title>
+  <link rel="stylesheet" href="shared/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ====== v8.0 冲突修复（覆盖 shared/styles.css） ====== */
+    .accordion-body { max-height: none !important; overflow: visible !important; opacity: 1 !important; }
+    .accordion-body.open { max-height: none !important; }
+    .accordion-item { border: none !important; }
+    svg { width: auto !important; max-width: 100% !important; }
+    .accordion-header svg { width: auto !important; height: auto !important; }
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --accent: #388e3c;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-sm: 0 2px 8px rgba(46, 125, 50, 0.08);
+      --shadow-md: 0 4px 20px rgba(46, 125, 50, 0.12);
+      --shadow-lg: 0 8px 32px rgba(46, 125, 50, 0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(46,125,50,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    /* ====== Hero Section ====== */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+      color: white;
+      padding: 48px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero-icon { font-size: 48px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .hero-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; }
+    .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 20px; font-size: 0.85rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
+
+    /* ====== Timeline Navigation ====== */
+    .timeline-nav {
+      background: white;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .timeline-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .timeline-node {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 10px 16px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      background: var(--bg-light);
+    }
+    .timeline-node:hover { background: rgba(46,125,50,0.08); }
+    .timeline-node.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .timeline-node .t-num { font-size: 0.75rem; font-weight: 600; opacity: 0.7; }
+    .timeline-node .t-name { font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+    .timeline-node .t-icon { font-size: 24px; }
+    .timeline-node .t-count { font-size: 0.7rem; opacity: 0.8; }
+
+    /* ====== Main Content ====== */
+    .main-content { max-width: 1400px; margin: 0 auto; padding: 32px 20px; }
+
+    /* ====== Accordion ====== */
+    .accordion-item {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      border: 1px solid rgba(46, 125, 50, 0.08);
+    }
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+    }
+    .accordion-header:hover { filter: brightness(1.05); }
+    .accordion-item:not(.active) .accordion-header { background: var(--bg-light); color: var(--text-dark); }
+    .accordion-item.active .accordion-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+    .accordion-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .accordion-item:not(.active) .accordion-icon { background: rgba(46,125,50,0.1); }
+    .accordion-info { flex: 1; }
+    .accordion-title { font-size: 1.2rem; font-weight: 700; }
+    .accordion-subtitle { font-size: 0.85rem; opacity: 0.85; margin-top: 2px; }
+    .accordion-meta { display: flex; gap: 16px; font-size: 0.85rem; margin-top: 6px; }
+    .accordion-meta span { display: flex; align-items: center; gap: 4px; }
+    .accordion-arrow { font-size: 20px; transition: transform 0.3s ease; }
+    .accordion-item.active .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .accordion-item.active .accordion-body { max-height: 5000px; }
+
+    /* ====== Lessons Grid ====== */
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      padding: 20px 24px;
+    }
+    .lesson-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--bg-light);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+    .lesson-card:hover {
+      background: linear-gradient(135deg, rgba(46,125,50,0.08), rgba(129,199,132,0.12));
+      border-color: rgba(46,125,50,0.2);
+      transform: translateX(6px);
+      color: var(--primary);
+    }
+    .lesson-num {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .lesson-info { flex: 1; }
+    .lesson-title { font-size: 0.95rem; font-weight: 600; line-height: 1.4; }
+    .lesson-arrow { opacity: 0; transform: translateX(-8px); transition: all 0.3s ease; color: var(--primary); }
+    .lesson-card:hover .lesson-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ====== Unit Actions ====== */
+    .unit-actions {
+      display: flex;
+      gap: 12px;
+      padding: 0 24px 20px;
+    }
+    .unit-btn {
+      flex: 1;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .unit-btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      box-shadow: 0 4px 12px rgba(46,125,50,0.25);
+    }
+    .unit-btn-primary:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(46,125,50,0.35); }
+    .unit-btn-secondary { background: var(--bg-light); color: var(--primary); border: 2px solid var(--primary); }
+    .unit-btn-secondary:hover { background: var(--primary); color: white; }
+
+    /* ====== Footer ====== */
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 32px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; margin-bottom: 8px; }
+    .footer-tech { display: flex; justify-content: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+    .footer-tech span { background: rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 16px; font-size: 0.8rem; }
+
+    * { -webkit-tap-highlight-color: transparent; }
+    a, button { -webkit-tap-highlight-color: rgba(46,125,50,0.1); }
+
+    /* ====== Responsive: Tablet ====== */
+    @media (max-width: 1024px) {
+      .lessons-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+      .accordion-meta { gap: 10px; font-size: 0.8rem; }
+    }
+
+    /* ====== Responsive: Mobile ====== */
+    @media (max-width: 768px) {
+      .hero-section { padding: 28px 16px; }
+      .hero-title { font-size: 1.5rem; }
+      .hero-subtitle { font-size: 0.9rem; }
+      .hero-icon { font-size: 36px; }
+      .hero-badge { padding: 6px 12px; font-size: 0.75rem; }
+      .hero-badges { gap: 8px; }
+
+      .timeline-nav { padding: 10px 12px; }
+      .timeline-container { gap: 6px; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+      .timeline-node { padding: 8px 12px; border-radius: 10px; gap: 4px; min-width: 72px; }
+      .timeline-node .t-icon { font-size: 20px; }
+      .timeline-node .t-num { font-size: 0.65rem; }
+      .timeline-node .t-name { font-size: 0.75rem; }
+      .timeline-node .t-count { font-size: 0.6rem; }
+
+      .main-content { padding: 16px 12px; }
+      .accordion-item { margin-bottom: 12px; border-radius: 12px; }
+      .accordion-header { padding: 14px 14px; gap: 12px; }
+      .accordion-icon { width: 40px; height: 40px; font-size: 20px; border-radius: 10px; }
+      .accordion-title { font-size: 1rem; }
+      .accordion-subtitle { font-size: 0.78rem; }
+      .accordion-meta { display: none; }
+      .accordion-arrow { font-size: 16px; }
+
+      .lessons-grid { grid-template-columns: 1fr; gap: 8px; padding: 14px; }
+      .lesson-card { padding: 14px 14px; gap: 12px; border-radius: 10px; }
+      .lesson-num { width: 28px; height: 28px; font-size: 0.75rem; }
+      .lesson-title { font-size: 0.9rem; }
+      .lesson-arrow { display: none; }
+
+      .unit-actions { padding: 0 14px 14px; gap: 8px; }
+      .unit-btn { padding: 12px 14px; font-size: 0.85rem; border-radius: 8px; }
+
+      .footer { padding: 24px 16px; margin-top: 24px; }
+      .footer-text { font-size: 0.8rem; }
+      .footer-tech { gap: 8px; }
+      .footer-tech span { padding: 5px 10px; font-size: 0.72rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">🧬</div>
+      <h1 class="hero-title">初中8年级生物</h1>
+      <p class="hero-subtitle">人教版 · 互动课件系统 · 全18课</p>
+      <div class="hero-badges">
+        <span class="hero-badge"><i class="fas fa-dna"></i> 18节精品课件</span>
+        <span class="hero-badge"><i class="fas fa-brain"></i> AI智能学伴</span>
+        <span class="hero-badge"><i class="fas fa-chart-line"></i> 中考真题演练</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Timeline Navigation -->
+  <nav class="timeline-nav">
+    <div class="timeline-container">
+      <div class="timeline-node active" data-unit="1">
+        <span class="t-icon">🏃</span>
+        <span class="t-num">第1章</span>
+        <span class="t-name">动物的运动和行为</span>
+        <span class="t-count">3节</span>
+      </div>
+      <div class="timeline-node" data-unit="2">
+        <span class="t-icon">🐾</span>
+        <span class="t-num">第2章</span>
+        <span class="t-name">动物的主要类群</span>
+        <span class="t-count">15节</span>
+      </div>
+      <div class="timeline-node" data-unit="3">
+        <span class="t-icon">🌍</span>
+        <span class="t-num">第3章</span>
+        <span class="t-name">动物在生物圈中的作用</span>
+        <span class="t-count">1节</span>
+      </div>
+      <div class="timeline-node" data-unit="4">
+        <span class="t-icon">🦠</span>
+        <span class="t-num">第4章</span>
+        <span class="t-name">细菌和真菌</span>
+        <span class="t-count">2节</span>
+      </div>
+      <div class="timeline-node" data-unit="5">
+        <span class="t-icon">🔬</span>
+        <span class="t-num">第5章</span>
+        <span class="t-name">细菌</span>
+        <span class="t-count">2节</span>
+      </div>
+      <div class="timeline-node" data-unit="6">
+        <span class="t-icon">🍄</span>
+        <span class="t-num">第6章</span>
+        <span class="t-name">真菌</span>
+        <span class="t-count">3节</span>
+      </div>
+      <div class="timeline-node" data-unit="7">
+        <span class="t-icon">🏥</span>
+        <span class="t-num">第7章</span>
+        <span class="t-name">细菌和真菌与人类的关系</span>
+        <span class="t-count">1节</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- 第1章：动物的运动和行为 -->
+    <div class="accordion-item active" id="unit-1">
+      <div class="accordion-header" onclick="toggleAccordion('unit-1')">
+        <div class="accordion-icon">🏃</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第1章：动物的运动和行为</div>
+          <div class="accordion-subtitle">运动的结构基础与行为类型</div>
+          <div class="accordion-meta">
+            <span><i class="fas fa-book"></i> 3节课</span>
+            <span><i class="fas fa-clock"></i> 第1-3课</span>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="01_dyddxgw/1.1.1_ddysddfs/ddysddfs.html" class="lesson-card">
+            <span class="lesson-num">1</span>
+            <div class="lesson-info"><div class="lesson-title">动物运动的方式</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="01_dyddxgw/1.1.2_dyddcxz/dyddcxz.html" class="lesson-card">
+            <span class="lesson-num">2</span>
+            <div class="lesson-info"><div class="lesson-title">动物运动的结构基础</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="01_dyddxgw/1.2.1_dwddsw/dwddsw.html" class="lesson-card">
+            <span class="lesson-num">3</span>
+            <div class="lesson-info"><div class="lesson-title">动物的行为</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+        </div>
+        <div class="unit-actions">
+          <a href="01_dyddxgw/dyddxgw.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第2章：动物的主要类群 -->
+    <div class="accordion-item" id="unit-2">
+      <div class="accordion-header" onclick="toggleAccordion('unit-2')">
+        <div class="accordion-icon">🐾</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第2章：动物的主要类群</div>
+          <div class="accordion-subtitle">无脊椎动物与脊椎动物</div>
+          <div class="accordion-meta">
+            <span><i class="fas fa-book"></i> 15节课</span>
+            <span><i class="fas fa-clock"></i> 第4-18课</span>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="02_dwzyldq/2.1.1_qcjdw/qcjdw.html" class="lesson-card">
+            <span class="lesson-num">4</span>
+            <div class="lesson-info"><div class="lesson-title">腔肠动物</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.1.2_bpxdw/bpxdw.html" class="lesson-card">
+            <span class="lesson-num">5</span>
+            <div class="lesson-info"><div class="lesson-title">扁形动物</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.1.3_xxdw/xxdw.html" class="lesson-card">
+            <span class="lesson-num">6</span>
+            <div class="lesson-info"><div class="lesson-title">线形动物</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.1.4_hjdw/hjdw.html" class="lesson-card">
+            <span class="lesson-num">7</span>
+            <div class="lesson-info"><div class="lesson-title">环节动物</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.1.5_rtdw/rtdw.html" class="lesson-card">
+            <span class="lesson-num">8</span>
+            <div class="lesson-info"><div class="lesson-title">软体动物</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.1.6_jzdw/jzdw.html" class="lesson-card">
+            <span class="lesson-num">9</span>
+            <div class="lesson-info"><div class="lesson-title">节肢动物</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.1.7_jpwdw/jpwdw.html" class="lesson-card">
+            <span class="lesson-num">10</span>
+            <div class="lesson-info"><div class="lesson-title">棘皮动物</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.2.1_yxdl/yxdl.html" class="lesson-card">
+            <span class="lesson-num">11</span>
+            <div class="lesson-info"><div class="lesson-title">鱼类</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.2.2_laldl/laldl.html" class="lesson-card">
+            <span class="lesson-num">12</span>
+            <div class="lesson-info"><div class="lesson-title">两栖类和爬行类</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.2.3_pxd/pxd.html" class="lesson-card">
+            <span class="lesson-num">13</span>
+            <div class="lesson-info"><div class="lesson-title">爬行类</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.2.4_bdl/bdl.html" class="lesson-card">
+            <span class="lesson-num">14</span>
+            <div class="lesson-info"><div class="lesson-title">鸟类</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="02_dwzyldq/2.2.5_bsdl/bsdl.html" class="lesson-card">
+            <span class="lesson-num">15</span>
+            <div class="lesson-info"><div class="lesson-title">哺乳类</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+        </div>
+        <div class="unit-actions">
+          <a href="02_dwzyldq/dwzyldq.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第3章：动物在生物圈中的作用 -->
+    <div class="accordion-item" id="unit-3">
+      <div class="accordion-header" onclick="toggleAccordion('unit-3')">
+        <div class="accordion-icon">🌍</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第3章：动物在生物圈中的作用</div>
+          <div class="accordion-subtitle">生态平衡与物质循环</div>
+          <div class="accordion-meta">
+            <span><i class="fas fa-book"></i> 1节课</span>
+            <span><i class="fas fa-clock"></i> 第16课</span>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="03_dwzyjhqzy/3.1.1_dwzyjhqzy/dwzyjhqzy.html" class="lesson-card">
+            <span class="lesson-num">16</span>
+            <div class="lesson-info"><div class="lesson-title">动物在生物圈中的作用</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+        </div>
+        <div class="unit-actions">
+          <a href="03_dwzyjhqzy/dwzyjhqzy.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第4章：细菌和真菌 -->
+    <div class="accordion-item" id="unit-4">
+      <div class="accordion-header" onclick="toggleAccordion('unit-4')">
+        <div class="accordion-icon">🦠</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第4章：细菌和真菌</div>
+          <div class="accordion-subtitle">微生物的分布与类群</div>
+          <div class="accordion-meta">
+            <span><i class="fas fa-book"></i> 2节课</span>
+            <span><i class="fas fa-clock"></i> 第17-18课</span>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="04_xjhztd/4.1.1_xjhztdfb/xjhztdfb.html" class="lesson-card">
+            <span class="lesson-num">17</span>
+            <div class="lesson-info"><div class="lesson-title">细菌和真菌的分布</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="04_xjhztd/4.1.2_xjhzjm/xjhzjm.html" class="lesson-card">
+            <span class="lesson-num">18</span>
+            <div class="lesson-info"><div class="lesson-title">细菌和真菌的主要类群</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+        </div>
+        <div class="unit-actions">
+          <a href="04_xjhztd/xjhztd.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第5章：细菌 -->
+    <div class="accordion-item" id="unit-5">
+      <div class="accordion-header" onclick="toggleAccordion('unit-5')">
+        <div class="accordion-icon">🔬</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第5章：细菌</div>
+          <div class="accordion-subtitle">细菌的发现、形态与结构</div>
+          <div class="accordion-meta">
+            <span><i class="fas fa-book"></i> 2节课</span>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="05_xj/5.1.1_xjdjxg/xjdjxg.html" class="lesson-card">
+            <span class="lesson-num">19</span>
+            <div class="lesson-info"><div class="lesson-title">细菌的发现和形态</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="05_xj/5.1.2_xjdyjz/xjdyjz.html" class="lesson-card">
+            <span class="lesson-num">20</span>
+            <div class="lesson-info"><div class="lesson-title">细菌的结构</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+        </div>
+        <div class="unit-actions">
+          <a href="05_xj/xj.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第6章：真菌 -->
+    <div class="accordion-item" id="unit-6">
+      <div class="accordion-header" onclick="toggleAccordion('unit-6')">
+        <div class="accordion-icon">🍄</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第6章：真菌</div>
+          <div class="accordion-subtitle">真菌的多样性、结构与生殖</div>
+          <div class="accordion-meta">
+            <span><i class="fas fa-book"></i> 3节课</span>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="06_zj/6.1.1_zjdwxj/zjdwxj.html" class="lesson-card">
+            <span class="lesson-num">21</span>
+            <div class="lesson-info"><div class="lesson-title">真菌的多样性</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="06_zj/6.1.2_zjdyjz/zjdyjz.html" class="lesson-card">
+            <span class="lesson-num">22</span>
+            <div class="lesson-info"><div class="lesson-title">真菌的结构</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+          <a href="06_zj/6.1.3_zjsyfs/zjsyfs.html" class="lesson-card">
+            <span class="lesson-num">23</span>
+            <div class="lesson-info"><div class="lesson-title">真菌的生殖方式</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+        </div>
+        <div class="unit-actions">
+          <a href="06_zj/zj.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第7章：细菌和真菌与人类的关系 -->
+    <div class="accordion-item" id="unit-7">
+      <div class="accordion-header" onclick="toggleAccordion('unit-7')">
+        <div class="accordion-icon">🏥</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第7章：细菌和真菌与人类的关系</div>
+          <div class="accordion-subtitle">有益与有害微生物的应用</div>
+          <div class="accordion-meta">
+            <span><i class="fas fa-book"></i> 1节课</span>
+          </div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="07_xjhzrlr/7.1.1_xjhzrlr/xjhzrlr.html" class="lesson-card">
+            <span class="lesson-num">24</span>
+            <div class="lesson-info"><div class="lesson-title">细菌和真菌与人类的关系</div></div>
+            <i class="fas fa-chevron-right lesson-arrow"></i>
+          </a>
+        </div>
+        <div class="unit-actions">
+          <a href="07_xjhzrlr/xjhzrlr.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-text">初中8年级生物互动课件系统 · 人教版 · TeachAny v7.14.0</p>
+    <div class="footer-tech">
+      <span><i class="fas fa-brain"></i> AI智能</span>
+      <span><i class="fas fa-chart-line"></i> 中考真题</span>
+      <span><i class="fas fa-mobile-alt"></i> 响应式设计</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAccordion(id) {
+      const item = document.getElementById(id);
+      const wasActive = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+      if (!wasActive) {
+        item.classList.add('active');
+        const nav = document.querySelector('.timeline-nav');
+        const navH = nav ? nav.offsetHeight : 0;
+        const itemTop = item.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: Math.max(0, itemTop - navH - 20), behavior: 'smooth' });
+      }
+      const unitNum = id.replace('unit-', '');
+      document.querySelectorAll('.timeline-node').forEach(node => {
+        node.classList.toggle('active', node.dataset.unit === unitNum);
+      });
+    }
+
+    document.querySelectorAll('.timeline-node').forEach(node => {
+      node.addEventListener('click', () => {
+        const unit = node.dataset.unit;
+        toggleAccordion('unit-' + unit);
+      });
+    });
+  </script>
+
+
+  <script src="shared/mascot.js?v=8.0"></script>
+</body>
+</html>

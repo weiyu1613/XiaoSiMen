@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.1 九一八事变与西安事变 | 八年级历史</title>
+    <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8b4513;
+            --primary-light: #cd853f;
+            --primary-dark: #6b3410;
+            --bg-light: #faf7f2;
+            --text-dark: #2c1810;
+            --text-muted: #8b7355;
+            --correct: #10b981;
+            --wrong: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* ===== 品牌栏 ===== */
+        .brand-bar {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #fff;
+            padding: 8px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        .brand-bar .brand-left { display: flex; align-items: center; gap: 12px; }
+        .brand-bar .brand-logo { font-weight: 700; font-size: 16px; letter-spacing: 1px; }
+        .brand-bar .brand-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .brand-bar .brand-version { opacity: 0.7; font-size: 12px; }
+
+        /* ===== 进度条 ===== */
+        .progress-container {
+            background: #e8ddd0;
+            height: 6px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        .progress-info {
+            position: fixed;
+            top: 6px;
+            right: 16px;
+            background: var(--primary);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 0 0 8px 8px;
+            font-size: 12px;
+            z-index: 101;
+        }
+
+        /* ===== 导航栏 ===== */
+        .nav-bar {
+            background: #fff;
+            border-bottom: 1px solid #e8ddd0;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 6px;
+            z-index: 99;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.06);
+        }
+        .nav-bar .nav-left, .nav-bar .nav-right { display: flex; gap: 8px; align-items: center; }
+        .nav-btn {
+            background: var(--bg-light);
+            border: 1px solid #e8ddd0;
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover { background: var(--primary); color: #fff; }
+        .nav-btn i { margin-right: 4px; }
+        .nav-title { font-weight: 600; color: var(--primary-dark); font-size: 15px; }
+
+        /* ===== Hero区 ===== */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: #fff;
+            padding: 60px 24px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M20 100 Q60 60 100 100 Q140 140 180 100' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='2'/%3E%3Cpath d='M0 140 Q40 100 80 140 Q120 180 160 140' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='50' r='3' fill='rgba(255,255,255,0.06)'/%3E%3Ccircle cx='150' cy='30' r='2' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E") repeat;
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+        .hero-section h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+        .hero-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .hero-card {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        .hero-card:hover { transform: translateY(-4px); }
+        .hero-card .card-icon { font-size: 28px; margin-bottom: 8px; }
+        .hero-card .card-label { font-size: 13px; opacity: 0.8; margin-bottom: 4px; }
+        .hero-card .card-value { font-size: 16px; font-weight: 600; }
+
+        /* ===== 知识结构图 ===== */
+        .knowledge-map-section {
+            padding: 48px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+        .knowledge-map-svg {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* ===== 探究问题锚点 ===== */
+        .anchor-section {
+            padding: 40px 24px;
+            background: linear-gradient(180deg, #f5ede3, var(--bg-light));
+        }
+        .anchor-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .anchor-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .anchor-btn {
+            background: #fff;
+            border: 2px solid var(--primary-light);
+            color: var(--primary);
+            padding: 10px 24px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .anchor-btn:hover { background: var(--primary); color: #fff; }
+        .anchor-input-box {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .anchor-input {
+            flex: 1;
+            padding: 10px 16px;
+            border: 2px solid #e8ddd0;
+            border-radius: 24px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .anchor-input:focus { border-color: var(--primary); }
+        .anchor-submit {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* ===== 学习目标 ===== */
+        #objectives {
+            padding: 48px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .objective-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .objective-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.2s;
+        }
+        .objective-card:hover { transform: translateY(-4px); }
+        .objective-card .obj-icon { font-size: 32px; margin-bottom: 12px; color: var(--primary); }
+        .objective-card h3 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; }
+        .objective-card ul { list-style: none; }
+        .objective-card li { font-size: 14px; color: var(--text-muted); padding: 3px 0; padding-left: 16px; position: relative; }
+        .objective-card li::before { content: '•'; position: absolute; left: 0; color: var(--primary-light); }
+
+        /* ===== 测验通用 ===== */
+        .prequiz-section, .postquiz-section {
+            padding: 48px 24px;
+            background: #f5ede3;
+        }
+        .quiz-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .quiz-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+        .quiz-badge.challenge { background: #e74c3c; }
+        .quiz-badge.exam { background: #c0392b; font-weight: 700; }
+        .quiz-question {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+        }
+        .quiz-question h4 { font-size: 16px; margin-bottom: 12px; color: var(--text-dark); }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-option {
+            padding: 10px 16px;
+            border: 2px solid #e8ddd0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            background: #fff;
+        }
+        .quiz-option:hover { border-color: var(--primary-light); background: var(--bg-light); }
+        .quiz-option.correct {
+            border-color: var(--correct);
+            background: #ecfdf5;
+            color: #065f46;
+        }
+        .quiz-option.wrong {
+            border-color: var(--wrong);
+            background: #fef2f2;
+            color: #991b1b;
+        }
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct-fb { background: #ecfdf5; border-left: 4px solid var(--correct); color: #065f46; }
+        .quiz-feedback.wrong-fb { background: #fef2f2; border-left: 4px solid var(--wrong); color: #991b1b; }
+
+        /* ===== 核心知识讲解 ===== */
+        #knowledge {
+            padding: 48px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 时间轴 */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary), var(--primary-light));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        .timeline-date {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 2px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .timeline-item h4 { font-size: 16px; color: var(--primary-dark); margin-bottom: 6px; }
+        .timeline-item p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+        /* 概念框 */
+        .concept-box {
+            background: linear-gradient(135deg, #faf7f2, #f5ede3);
+            border-left: 5px solid var(--primary);
+            border-radius: 0 16px 16px 0;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .concept-box h3 { font-size: 18px; color: var(--primary-dark); margin-bottom: 10px; }
+        .concept-box h3 i { margin-right: 8px; }
+        .concept-box p { font-size: 14px; color: var(--text-muted); }
+
+        /* 知识卡片网格 */
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .knowledge-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+            transition: transform 0.2s;
+        }
+        .knowledge-card:hover { transform: translateY(-4px); }
+        .knowledge-card .kc-icon { font-size: 28px; color: var(--primary); margin-bottom: 10px; }
+        .knowledge-card h4 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; }
+        .knowledge-card p { font-size: 14px; color: var(--text-muted); }
+
+        /* 警示框 */
+        .warn-box {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            border-radius: 0 16px 16px 0;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .warn-box h4 { color: #92400e; font-size: 16px; margin-bottom: 8px; }
+        .warn-box h4 i { margin-right: 6px; }
+        .warn-box p { font-size: 14px; color: #78350f; }
+
+        /* ===== 必考分析 ===== */
+        .exam-section {
+            padding: 48px 24px;
+            background: #f5ede3;
+        }
+        .exam-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .exam-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(139,69,19,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .badge-must {
+            position: absolute;
+            top: 12px;
+            right: -28px;
+            background: #ef4444;
+            color: #fff;
+            padding: 2px 32px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+        .badge-important {
+            position: absolute;
+            top: 12px;
+            right: -28px;
+            background: #f59e0b;
+            color: #fff;
+            padding: 2px 32px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+        .exam-card h4 { font-size: 16px; color: var(--primary-dark); margin-bottom: 8px; margin-top: 8px; }
+        .exam-card .exam-point { font-size: 14px; color: var(--text-dark); margin-bottom: 6px; font-weight: 600; }
+        .exam-card .exam-method { font-size: 13px; color: var(--text-muted); }
+
+        /* ===== 页脚 ===== */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 32px 24px;
+        }
+        .footer p { font-size: 13px; margin-bottom: 8px; }
+        .footer a { color: rgba(255,255,255,0.9); text-decoration: none; margin: 0 12px; font-size: 13px; }
+        .footer a:hover { color: #fff; text-decoration: underline; }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 768px) {
+            .hero-cards { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 26px; }
+            .nav-bar { flex-wrap: wrap; gap: 8px; }
+            .nav-title { width: 100%; text-align: center; order: -1; }
+            .knowledge-grid { grid-template-columns: 1fr; }
+            .exam-grid { grid-template-columns: 1fr; }
+            .objective-grid { grid-template-columns: 1fr; }
+            .anchor-buttons { flex-direction: column; align-items: center; }
+            .timeline { padding-left: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 1. 品牌栏 -->
+<div class="brand-bar">
+    <div class="brand-left">
+        <span class="brand-logo"><i class="fa-solid fa-landmark-open"></i> TeachAny</span>
+        <span class="brand-tag">初中历史</span>
+    </div>
+    <span class="brand-version">v7.14</span>
+</div>
+
+<!-- 2. 进度条 -->
+<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="progress-info">第 1/5 节 · 20%</div>
+
+<!-- 3. 导航栏 -->
+<nav class="nav-bar">
+    <div class="nav-left">
+        <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
+        <a href="../d6zhn.html" class="nav-btn"><i class="fas fa-layer-group"></i> 章节目录</a>
+    </div>
+    <span class="nav-title">6.1 九一八事变与西安事变</span>
+    <div class="nav-right">
+        <a href="../../../05_d5cg/5.3_zgdl/zgdl.html" class="nav-btn"><i class="fas fa-chevron-left"></i> 上一节</a>
+        <a href="../6.2_qrzz/qrzz.html" class="nav-btn">下一节 <i class="fas fa-chevron-right"></i></a>
+    </div>
+</nav>
+
+<!-- 4. Hero区 -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1><i class="fas fa-landmark"></i> 九一八事变与西安事变</h1>
+        <p class="hero-subtitle">第六单元 中华民族的抗日战争 · 第1课 | 1931—1936年</p>
+        <div class="hero-cards">
+            <div class="hero-card">
+                <div class="card-icon"><i class="fas fa-clock"></i></div>
+                <div class="card-label">时间跨度</div>
+                <div class="card-value">1931年—1936年<br>从局部抗战到全民抗战</div>
+            </div>
+            <div class="hero-card">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <div class="card-label">关键人物</div>
+                <div class="card-value">张学良 · 杨虎城 · 周恩来<br>蒋介石 · 溥仪</div>
+            </div>
+            <div class="hero-card">
+                <div class="card-icon"><i class="fas fa-star"></i></div>
+                <div class="card-label">历史意义</div>
+                <div class="card-value">抗日民族统一战线初步形成<br>十年内战基本停止</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. 知识结构图 -->
+<section class="knowledge-map-section">
+    <h2 class="section-title"><i class="fas fa-project-diagram"></i> 知识结构图</h2>
+    <svg class="knowledge-map-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景装饰 -->
+        <defs>
+            <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#faf7f2;stop-opacity:1"/>
+                <stop offset="100%" style="stop-color:#f5ede3;stop-opacity:1"/>
+            </linearGradient>
+            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#8b4513;stop-opacity:1"/>
+                <stop offset="100%" style="stop-color:#cd853f;stop-opacity:1"/>
+            </linearGradient>
+            <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(139,69,19,0.15)"/>
+            </filter>
+        </defs>
+        <rect width="900" height="520" rx="16" fill="url(#bgGrad)"/>
+
+        <!-- 时间轴竖线 -->
+        <line x1="130" y1="60" x2="130" y2="480" stroke="url(#lineGrad)" stroke-width="4" stroke-linecap="round"/>
+
+        <!-- 时间节点 -->
+        <circle cx="130" cy="90" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+        <circle cx="130" cy="200" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+        <circle cx="130" cy="310" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+        <circle cx="130" cy="420" r="10" fill="#8b4513" stroke="#fff" stroke-width="3"/>
+
+        <!-- 时间标签 -->
+        <text x="130" y="75" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1931.9.18</text>
+        <text x="130" y="185" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1932</text>
+        <text x="130" y="295" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1935</text>
+        <text x="130" y="405" text-anchor="middle" fill="#8b4513" font-size="13" font-weight="700">1936.12.12</text>
+
+        <!-- 事件卡片 -->
+        <!-- 九一八事变 -->
+        <rect x="170" y="65" width="260" height="55" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="88" fill="#8b4513" font-size="14" font-weight="700">九一八事变</text>
+        <text x="185" y="108" fill="#8b7355" font-size="12">日本侵占东北三省 → 局部抗战开始</text>
+
+        <!-- 伪满洲国 -->
+        <rect x="170" y="175" width="260" height="55" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="198" fill="#8b4513" font-size="14" font-weight="700">伪"满洲国"建立</text>
+        <text x="185" y="218" fill="#8b7355" font-size="12">扶植溥仪，东北沦为殖民地</text>
+
+        <!-- 华北危机与一二九运动 -->
+        <rect x="170" y="285" width="260" height="55" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="308" fill="#8b4513" font-size="14" font-weight="700">华北危机 & 一二九运动</text>
+        <text x="185" y="328" fill="#8b7355" font-size="12">日本策动"华北自治运动"，学生爱国运动</text>
+
+        <!-- 西安事变 -->
+        <rect x="170" y="395" width="260" height="55" rx="12" fill="#fff" filter="url(#shadow)"/>
+        <text x="185" y="418" fill="#8b4513" font-size="14" font-weight="700">西安事变</text>
+        <text x="185" y="438" fill="#8b7355" font-size="12">张杨兵谏 → 和平解决 → 统一战线初步形成</text>
+
+        <!-- 右侧因果箭头 -->
+        <!-- 九一八 → 伪满洲国 -->
+        <path d="M300 120 Q300 150 300 175" stroke="#cd853f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+        <!-- 伪满洲国 → 华北危机 -->
+        <path d="M300 230 Q300 260 300 285" stroke="#cd853f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+        <!-- 华北危机 → 西安事变 -->
+        <path d="M300 340 Q300 370 300 395" stroke="#cd853f" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#cd853f"/>
+            </marker>
+        </defs>
+
+        <!-- 右侧：关键人物连线 -->
+        <rect x="500" y="65" width="200" height="50" rx="12" fill="#fff3e0" filter="url(#shadow)" stroke="#cd853f" stroke-width="1"/>
+        <text x="515" y="86" fill="#6b3410" font-size="13" font-weight="700">🇯🇵 日本</text>
+        <text x="515" y="104" fill="#8b7355" font-size="11">发动侵略，制造事变</text>
+
+        <rect x="500" y="175" width="200" height="50" rx="12" fill="#fff3e0" filter="url(#shadow)" stroke="#cd853f" stroke-width="1"/>
+        <text x="515" y="196" fill="#6b3410" font-size="13" font-weight="700">👤 蒋介石</text>
+        <text x="515" y="214" fill="#8b7355" font-size="11">不抵抗政策 → 被迫联共抗日</text>
+
+        <rect x="500" y="285" width="200" height="50" rx="12" fill="#e8f5e9" filter="url(#shadow)" stroke="#66bb6a" stroke-width="1"/>
+        <text x="515" y="306" fill="#2e7d32" font-size="13" font-weight="700">🤝 张学良 · 杨虎城</text>
+        <text x="515" y="324" fill="#558b2f" font-size="11">发动兵谏，逼蒋抗日</text>
+
+        <rect x="500" y="395" width="200" height="50" rx="12" fill="#e3f2fd" filter="url(#shadow)" stroke="#42a5f5" stroke-width="1"/>
+        <text x="515" y="416" fill="#1565c0" font-size="13" font-weight="700">☭ 中共 · 周恩来</text>
+        <text x="515" y="434" fill="#546e7a" font-size="11">主张和平解决，赴西安谈判</text>
+
+        <!-- 连线：人物→事件 -->
+        <line x1="500" y1="90" x2="430" y2="90" stroke="#cd853f" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="500" y1="200" x2="430" y2="200" stroke="#cd853f" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="500" y1="310" x2="430" y2="310" stroke="#66bb6a" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="500" y1="420" x2="430" y2="420" stroke="#42a5f5" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+        <!-- 底部结论 -->
+        <rect x="250" y="470" width="400" height="36" rx="18" fill="#8b4513" filter="url(#shadow)"/>
+        <text x="450" y="494" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">🎯 抗日民族统一战线初步形成</text>
+    </svg>
+</section>
+
+<!-- 6. 探究问题锚点 -->
+<section class="anchor-section">
+    <div class="anchor-inner">
+        <h2 class="section-title"><i class="fas fa-search"></i> 探究问题</h2>
+        <div class="anchor-buttons">
+            <button class="anchor-btn" onclick="scrollToSection('knowledge')"><i class="fas fa-question-circle"></i> 为什么蒋介石实行不抵抗政策？</button>
+            <button class="anchor-btn" onclick="scrollToSection('knowledge')"><i class="fas fa-question-circle"></i> 西安事变为什么必须和平解决？</button>
+            <button class="anchor-btn" onclick="scrollToSection('knowledge')"><i class="fas fa-question-circle"></i> 从九一八到西安事变，中国抗战形势有何变化？</button>
+        </div>
+        <div class="anchor-input-box">
+            <input type="text" class="anchor-input" placeholder="输入你自己的探究问题…">
+            <button class="anchor-submit"><i class="fas fa-paper-plane"></i> 提问</button>
+        </div>
+    </div>
+</section>
+
+<!-- 7. 学习目标 -->
+<section id="objectives">
+    <h2 class="section-title"><i class="fas fa-bullseye"></i> 学习目标</h2>
+    <div class="objective-grid">
+        <div class="objective-card">
+            <div class="obj-icon"><i class="fa-solid fa-landmark"></i></div>
+            <h3>知识与技能</h3>
+            <ul>
+                <li>了解九一八事变的背景、经过和结果</li>
+                <li>掌握西安事变的爆发原因与和平解决的意义</li>
+                <li>知道东北抗日联军等局部抗战史实</li>
+            </ul>
+        </div>
+        <div class="objective-card">
+            <div class="obj-icon"><i class="fas fa-cogs"></i></div>
+            <h3>过程与方法</h3>
+            <ul>
+                <li>通过时间轴梳理1931—1936年重大事件</li>
+                <li>分析西安事变和平解决的必然性与影响</li>
+                <li>运用史料理解"不抵抗政策"的危害</li>
+            </ul>
+        </div>
+        <div class="objective-card">
+            <div class="obj-icon"><i class="fas fa-heart"></i></div>
+            <h3>情感态度价值观</h3>
+            <ul>
+                <li>感受东北人民不屈的抗日精神</li>
+                <li>认识中国共产党以民族利益为重的博大胸怀</li>
+                <li>体会民族团结对国家存亡的重要意义</li>
+            </ul>
+        </div>
+        <div class="objective-card">
+            <div class="obj-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>核心素养</h3>
+            <ul>
+                <li>唯物史观：分析日本侵华的深层原因</li>
+                <li>家国情怀：铭记国耻，增强民族责任感</li>
+                <li>历史解释：辩证评价西安事变的历史作用</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 8. 前测 -->
+<section class="prequiz-section">
+    <div class="quiz-inner">
+        <h2 class="section-title"><i class="fas fa-pen"></i> 课前检测</h2>
+
+        <div class="quiz-question" data-correct="B" data-feedback='{"A":"九一八事变发生在沈阳，而非北京。日本选择沈阳是因为东北是日本蓄谋已久的侵略目标。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"九一八事变发生在1931年，而非1937年。1937年是七七事变（全面抗战开始）。","D":"九一八事变是日本蓄意发动的侵略事件，并非中国军队挑衅。日军自炸南满铁路嫁祸中国守军。"}'>
+            <span class="quiz-badge">基础</span>
+            <h4>1. 九一八事变发生在哪一年？日军制造的借口是什么？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 1937年，卢沟桥事变</div>
+                <div class="quiz-option" data-value="B">B. 1931年，柳条湖事件</div>
+                <div class="quiz-option" data-value="C">C. 1935年，华北事变</div>
+                <div class="quiz-option" data-value="D">D. 1932年，一·二八事变</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="C" data-feedback='{"A":"不抵抗政策导致东北三省迅速沦陷，而非仅损失一省。不到半年，东北全境沦陷。","B":"不抵抗政策的影响远不止暂时退让，它导致东北三省完全沦陷，激起了全国人民的愤怒。","C":"✅ 答对了！可以点错误选项看看它们错在哪～","D":"不抵抗政策恰恰阻碍了统一战线的形成，而非促进。它使得日本更加肆无忌惮地侵略。"}'>
+            <span class="quiz-badge">提高</span>
+            <h4>2. 蒋介石对九一八事变采取"不抵抗政策"的根本原因是什么？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 军事实力不足以抵抗日本</div>
+                <div class="quiz-option" data-value="B">B. 寄希望于国际联盟的干预</div>
+                <div class="quiz-option" data-value="C">C. 坚持"攘外必先安内"政策，集中力量围剿红军</div>
+                <div class="quiz-option" data-value="D">D. 认为东北三省无关紧要</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="D" data-feedback='{"A":"西安事变的发动者是张学良和杨虎城，而非中国共产党。中共是主张和平解决的一方。","B":"西安事变的结果是和平解决，蒋介石被释放，而非被处死。","C":"西安事变和平解决后，蒋介石并未立即宣布全面抗战。全面抗战始于1937年七七事变。","D":"✅ 答对了！可以点错误选项看看它们错在哪～"}'>
+            <span class="quiz-badge challenge">挑战</span>
+            <h4>3. 西安事变和平解决最重要的历史意义是什么？</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 中国共产党夺取了全国政权</div>
+                <div class="quiz-option" data-value="B">B. 蒋介石被处死，国民政府瓦解</div>
+                <div class="quiz-option" data-value="C">C. 中国立即开始了全面抗战</div>
+                <div class="quiz-option" data-value="D">D. 十年内战基本停止，抗日民族统一战线初步形成</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 9. 核心知识讲解 -->
+<section id="knowledge">
+    <h2 class="section-title"><i class="fa-solid fa-landmark-reader"></i> 核心知识讲解</h2>
+
+    <!-- 时间轴 -->
+    <div class="timeline">
+        <div class="timeline-item">
+            <span class="timeline-date">1931年9月18日</span>
+            <h4>九一八事变爆发</h4>
+            <p>日本关东军炸毁沈阳柳条湖附近南满铁路路轨，反诬中国军队所为，以此为借口炮轰沈阳北大营，发动了九一八事变。由于蒋介石采取<strong>不抵抗政策</strong>，不到半年，东北三省全部沦陷。</p>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-date">1932年</span>
+            <h4>伪"满洲国"建立</h4>
+            <p>日本扶植清朝末代皇帝<strong>溥仪</strong>建立伪"满洲国"，将东北变为日本的殖民地。日本在东北实行残酷的殖民统治，掠夺资源，奴役人民，东北三千万同胞陷入水深火热之中。</p>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-date">1931—1936年</span>
+            <h4>东北人民的局部抗战</h4>
+            <p>东北人民和未撤走的东北军部队组成<strong>抗日义勇军</strong>，在白山黑水间与日军展开英勇斗争。后来，中国共产党组织<strong>东北抗日联军</strong>，在极端艰苦的条件下坚持抗战，杨靖宇、赵一曼等英雄可歌可泣。</p>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-date">1935年</span>
+            <h4>华北危机与一二九运动</h4>
+            <p>日本策动所谓"华北自治运动"，妄图将华北五省从中国分裂出去。北平学生发起<strong>一二九运动</strong>，高呼"停止内战，一致对外"，掀起全国抗日救亡运动新高潮。</p>
+        </div>
+        <div class="timeline-item">
+            <span class="timeline-date">1936年12月12日</span>
+            <h4>西安事变</h4>
+            <p>张学良、杨虎城在西安扣押蒋介石，实行"兵谏"，要求停止内战、联共抗日。中国共产党从全民族利益出发，主张和平解决。周恩来等赴西安谈判，最终西安事变<strong>和平解决</strong>，十年内战基本停止，抗日民族统一战线初步形成。</p>
+        </div>
+    </div>
+
+    <!-- 概念框 -->
+    <div class="concept-box">
+        <h3><i class="fas fa-key"></i> 核心概念：不抵抗政策</h3>
+        <p>九一八事变后，蒋介石坚持"攘外必先安内"的方针，命令东北军"绝对不抵抗"，将主要力量用于围剿红军。这一政策使日本轻易占领东北三省，助长了日本的侵略野心。不抵抗政策是蒋介石对内对外政策的核心体现，也是九一八事变后东北迅速沦陷的根本原因。</p>
+    </div>
+
+    <div class="concept-box">
+        <h3><i class="fas fa-key"></i> 核心概念：抗日民族统一战线</h3>
+        <p>西安事变和平解决后，国共两党由对抗走向合作，标志着抗日民族统一战线的<strong>初步形成</strong>。注意：此时只是"初步形成"，正式建立是在1937年9月国民党公布国共合作宣言之后。这是一个重要的时间节点区分，考试中常考。</p>
+    </div>
+
+    <!-- 知识卡片 -->
+    <div class="knowledge-grid">
+        <div class="knowledge-card">
+            <div class="kc-icon"><i class="fas fa-fire"></i></div>
+            <h4>东北抗日联军</h4>
+            <p>中国共产党在东北组织的抗日武装力量。在极端恶劣的环境中，抗联战士坚持游击战争，牵制了大量日军。代表人物：<strong>杨靖宇</strong>（弹尽粮绝仍不投降，壮烈牺牲）、<strong>赵一曼</strong>（女英雄，受尽酷刑坚贞不屈）。他们的精神是中华民族不屈脊梁的象征。</p>
+        </div>
+        <div class="knowledge-card">
+            <div class="kc-icon"><i class="fas fa-handshake"></i></div>
+            <h4>西安事变和平解决的原因</h4>
+            <p>①<strong>中共的英明决策</strong>：从民族大局出发，主张和平解决；②<strong>张杨的爱国初衷</strong>：目的是逼蒋抗日，而非杀害蒋介石；③<strong>国内外形势</strong>：中日民族矛盾上升为主要矛盾，全国人民要求团结抗日。杀蒋只会引起新的内战，有利于日本扩大侵略。</p>
+        </div>
+        <div class="knowledge-card">
+            <div class="kc-icon"><i class="fas fa-users-cog"></i></div>
+            <h4>张学良与杨虎城</h4>
+            <p><strong>张学良</strong>：东北军将领，九一八事变后奉命不抵抗，背负"不抵抗将军"骂名，后逐渐转向联共抗日。<strong>杨虎城</strong>：十七路军将领，与张学良共同发动西安事变。事变后张学良被软禁50余年，杨虎城被迫出国后在回国时被囚禁12年，解放前夕惨遭杀害。</p>
+        </div>
+    </div>
+
+    <!-- 警示框 -->
+    <div class="warn-box">
+        <h4><i class="fas fa-exclamation-triangle"></i> 易错警示</h4>
+        <p><strong>❌ 易错点1：</strong>"西安事变和平解决标志着抗日民族统一战线正式建立"——错！只是<strong>初步形成</strong>，正式建立是1937年9月。</p>
+        <p><strong>❌ 易错点2：</strong>"九一八事变标志着全面抗战的开始"——错！九一八事变是<strong>局部抗战</strong>的开始，全面抗战始于1937年七七事变。</p>
+        <p><strong>❌ 易错点3：</strong>"九一八事变后东北立即沦陷"——不够准确，是<strong>不到半年</strong>东北三省全部沦陷，而非"立即"。</p>
+    </div>
+</section>
+
+<!-- 10. 后测 -->
+<section class="postquiz-section">
+    <div class="quiz-inner">
+        <h2 class="section-title"><i class="fas fa-check-circle"></i> 课后检测</h2>
+
+        <div class="quiz-question" data-correct="A" data-feedback='{"A":"✅ 答对了！可以点错误选项看看它们错在哪～","B":"七七事变（1937年）才是全面抗战的开始，九一八事变是局部抗战的起点。","C":"西安事变（1936年）是促成了统一战线初步形成的事件，不是局部抗战的起点。","D":"一二九运动（1935年）是抗日救亡运动的新高潮，但局部抗战的起点是九一八事变。"}'>
+            <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
+            <h4>1.（中考真题）中国人民局部抗日战争开始的标志是（　　）</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 九一八事变</div>
+                <div class="quiz-option" data-value="B">B. 七七事变</div>
+                <div class="quiz-option" data-value="C">C. 西安事变</div>
+                <div class="quiz-option" data-value="D">D. 一二九运动</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="B" data-feedback='{"A":"张学良和杨虎城发动西安事变的目的是逼蒋抗日，而非推翻国民政府。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"中国共产党主张和平解决西安事变，而不是策划发动。中共是从民族利益出发推动和平解决。","D":"西安事变和平解决后，蒋介石被迫接受了停止内战、联共抗日的主张，并未拒绝。"}'>
+            <h4>2. 西安事变发生后，中国共产党主张和平解决，其根本出发点是（　　）</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 推翻国民政府的统治</div>
+                <div class="quiz-option" data-value="B">B. 全民族利益高于一切</div>
+                <div class="quiz-option" data-value="C">C. 策划西安事变的发动</div>
+                <div class="quiz-option" data-value="D">D. 迫使蒋介石拒绝抗日</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question" data-correct="C" data-feedback='{"A":"西安事变和平解决使国共由对抗走向合作，这是正确的。但此题问的是最重要的意义。","B":"东北问题在西安事变前就已存在，这不是西安事变和平解决最重要的意义。","C":"✅ 答对了！可以点错误选项看看它们错在哪～","D":"全面抗战始于1937年七七事变，而非西安事变和平解决后立即开始。"}'>
+            <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
+            <h4>3.（中考真题）西安事变和平解决最重要的历史意义是（　　）</h4>
+            <div class="quiz-options">
+                <div class="quiz-option" data-value="A">A. 国共两党开始合作</div>
+                <div class="quiz-option" data-value="B">B. 收复了东北三省</div>
+                <div class="quiz-option" data-value="C">C. 十年内战基本停止，抗日民族统一战线初步形成</div>
+                <div class="quiz-option" data-value="D">D. 中国开始了全面抗战</div>
+            </div>
+            <div class="quiz-feedback"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 11. 必考分析 -->
+<section class="exam-section">
+    <div class="exam-inner">
+        <h2 class="section-title"><i class="fas fa-trophy"></i> 必考分析</h2>
+        <div class="exam-grid">
+            <div class="exam-card">
+                <div class="badge-must">必考</div>
+                <h4>九一八事变</h4>
+                <p class="exam-point">考点：时间、经过、结果</p>
+                <p class="exam-method">考法：选择题考查事变标志意义；材料题结合柳条湖事件分析日本侵华蓄谋。常与七七事变对比考查"局部"与"全面"的区别。</p>
+            </div>
+            <div class="exam-card">
+                <div class="badge-must">必考</div>
+                <h4>西安事变和平解决</h4>
+                <p class="exam-point">考点：原因、过程、意义</p>
+                <p class="exam-method">考法：选择题考查意义（"初步形成"非"正式建立"）；材料分析题考查中共和平解决的出发点；常考张杨兵谏的背景与目的。</p>
+            </div>
+            <div class="exam-card">
+                <div class="badge-important">常考</div>
+                <h4>不抵抗政策</h4>
+                <p class="exam-point">考点：内容、原因、影响</p>
+                <p class="exam-method">考法：材料题引用蒋介石"攘外必先安内"言论，要求分析政策实质与危害；与中共抗日主张对比，考查两条路线的区别。</p>
+            </div>
+            <div class="exam-card">
+                <div class="badge-important">常考</div>
+                <h4>抗日民族统一战线</h4>
+                <p class="exam-point">考点：形成过程、标志性事件</p>
+                <p class="exam-method">考法：选择题区分"初步形成"（西安事变和平解决）与"正式建立"（1937年9月国共合作宣言）；时间轴排序题常考。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 12. 页脚 -->
+<footer class="footer">
+    <p>© 2024 TeachAny · 初中历史八年级上册 · 第六单元 第1课</p>
+    <div>
+        <a href="../../index.html"><i class="fas fa-home"></i> 首页</a>
+        <a href="../d6zhn.html"><i class="fas fa-layer-group"></i> 章节目录</a>
+        <a href="../../../05_d5cg/5.3_zgdl/zgdl.html"><i class="fas fa-arrow-left"></i> 上一节</a>
+        <a href="../6.2_qrzz/qrzz.html"><i class="fas fa-arrow-right"></i> 下一节</a>
+    </div>
+</footer>
+
+<!-- 99. AI学伴 -->
+<section id="teachany-tutor-card" style="padding:48px 24px;max-width:1100px;margin:0 auto">
+  <h2 class="section-title"><i class="fas fa-robot"></i> AI学伴 · 智能辅导</h2>
+  <div style="background:linear-gradient(135deg,#faf7f2,#f5ede3);border:2px solid var(--primary-light);border-radius:16px;padding:28px;text-align:center">
+    <div style="font-size:56px;margin-bottom:12px">🎓</div>
+    <h3 style="color:var(--primary-dark);font-size:20px;margin-bottom:8px">关于「九一八事变与西安事变」，有什么想问的？</h3>
+    <p style="color:var(--text-muted);font-size:14px;margin-bottom:20px">AI学伴可以帮你：梳理知识脉络、解答疑惑、分析考点、讲解难点</p>
+    <div style="background:white;border-radius:12px;padding:18px;margin-bottom:16px;text-align:left;max-width:600px;margin-left:auto;margin-right:auto">
+      <p style="font-size:13px;color:var(--primary);margin-bottom:8px"><strong>💬 可以这样问：</strong></p>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">• 为什么蒋介石实行不抵抗政策？</p>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">• 西安事变为什么必须和平解决？</p>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:4px">• 从九一八到西安事变，中国抗战形势有何变化？</p>
+      <p style="font-size:13px;color:var(--text-muted)">• 抗日民族统一战线"初步形成"与"正式建立"有何区别？</p>
+    </div>
+    <button onclick="alert('AI学伴功能即将上线，敬请期待！')" style="background:var(--primary);color:white;border:none;padding:14px 32px;border-radius:24px;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(139,69,19,.3)">
+      <i class="fas fa-comment-dots"></i> 提问AI学伴
+    </button>
+  </div>
+</section>
+
+<script>
+// 平滑滚动
+function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// 测验初始化
+function initQuiz(sectionClass) {
+    const section = document.querySelector('.' + sectionClass);
+    if (!section) return;
+    const questions = section.querySelectorAll('.quiz-question');
+    questions.forEach(q => {
+        const correct = q.dataset.correct;
+        const feedbackData = JSON.parse(q.dataset.feedback);
+        const options = q.querySelectorAll('.quiz-option');
+        const feedbackEl = q.querySelector('.quiz-feedback');
+
+        options.forEach(opt => {
+            opt.addEventListener('click', function() {
+                // 如果已经回答过，不再处理
+                if (q.classList.contains('answered')) return;
+                q.classList.add('answered');
+
+                const value = this.dataset.value;
+                const isCorrect = value === correct;
+
+                // 标记所有选项
+                options.forEach(o => {
+                    if (o.dataset.value === correct) {
+                        o.classList.add('correct');
+                    }
+                    if (o.dataset.value === value && !isCorrect) {
+                        o.classList.add('wrong');
+                    }
+                    o.style.cursor = 'default';
+                });
+
+                // 显示反馈
+                if (isCorrect) {
+                    feedbackEl.className = 'quiz-feedback show correct-fb';
+                    feedbackEl.innerHTML = feedbackData[correct];
+                } else {
+                    feedbackEl.className = 'quiz-feedback show wrong-fb';
+                    feedbackEl.innerHTML = feedbackData[value] + '<br><strong>正确答案：' + correct + '</strong>';
+                }
+            });
+        });
+    });
+}
+
+// 滚动进度条
+function updateProgress() {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progressBar').style.width = progress + '%';
+}
+
+// 初始化
+document.addEventListener('DOMContentLoaded', function() {
+    initQuiz('prequiz-section');
+    initQuiz('postquiz-section');
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+});
+</script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

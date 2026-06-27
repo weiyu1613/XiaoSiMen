@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="course-id" content="ddfz-youth-dream-7">
+  <meta name="course-title" content="1.2 少年有梦">
+  <meta name="course-subject" content="politics">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="ddfz-1.2">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>1.2 少年有梦 | 七年级道德与法治</title>
+  <style>
+    .concept-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .concept-table th { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 12px; text-align: center; }
+    .concept-table td { padding: 10px; border: 1px solid #82e0aa; text-align: center; }
+    .concept-table tr:nth-child(even) { background: #f0faf0; }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-中考 { background: #fee2e2; color: #dc2626; }
+    .difficulty-挑战 { background: #fef3c7; color: #92400e; }
+    .nav-bar { background: #f0faf0; border-bottom: 2px solid #27ae60; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #27ae60; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; }
+    .nav-btn:hover { background: #d1fae5; }
+    .nav-center { font-weight: 700; color: #27ae60; font-size: 14px; flex: 1; text-align: center; }
+    .hero { background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero-badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; display: inline-block; }
+    .hero-subtitle { margin-top: 12px; font-size: 1.1rem; opacity: 0.9; }
+    .progress-bar { height: 4px; background: #e0f2fe; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #27ae60, #2ecc71); width: 6.4%; }
+    .progress-label { font-size: 12px; color: #27ae60; padding: 4px 20px; background: #f0faf0; }
+    .brand-bar { background: #27ae60; color: white; padding: 10px 20px; display: flex; justify-content: space-between; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    .section-title { font-size: 1.5rem; color: #27ae60; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #82e0aa; }
+    .card { background: white; border: 1px solid #82e0aa; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(39,174,96,0.1); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #d1fae5, #ecfdf5); border: 2px solid #6ee7b7; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #065f46; text-align: center; }
+    .anchor-btn:hover { background: #a7f3d0; }
+    .anchor-btn.selected { background: #27ae60; color: white; }
+    .anchor-display { background: #ecfdf5; border: 2px solid #27ae60; border-radius: 10px; padding: 16px; min-height: 100px; margin-top: 16px; }
+    .quiz-box { background: #f0faf0; border: 1px solid #82e0aa; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #d1fae5; border-radius: 10px; margin-bottom: 10px; cursor: pointer; font-size: 14px; }
+    .quiz-option:hover { border-color: #6ee7b7; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #27ae60; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #ecfdf5; border-left: 4px solid #27ae60; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #27ae60; margin-bottom: 8px; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+    .tag-kp { background: #27ae60; color: white; }
+    .tag-theory { background: #f39c12; color: white; }
+    .tag-exam { background: #e74c3c; color: white; }
+    .tag-mistake { background: #95a5a6; color: white; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; background: #dc2626; flex-shrink: 0; }
+    .footer { background: #27ae60; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    @media (max-width: 768px) { .anchor-points { flex-direction: column; } .anchor-btn { width: 100%; } .nav-inner { flex-direction: column; gap: 6px; } }
+  </style>
+</head>
+<body>
+  <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
+  <div class="progress-label" id="pl">第 2/31 节 · 6.4%</div>
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn">首页</a>
+    <a href="../d1zy.html" class="nav-btn">单元导航</a>
+    <div class="nav-center">第一单元：成长的节拍</div>
+    <a href="../1.1_zxqq/zxqq.html" class="nav-btn">← 上一节</a>
+    <a href="../1.3_xxbcz/xxbcz.html" class="nav-btn">下一节 →</a>
+  </div></nav>
+  <header class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-star"></i> 七年级道德与法治 · 第一单元</div>
+    <h1>1.2 少年有梦<span>Youth Dream</span></h1>
+    <p class="hero-subtitle">📖 课标要求：理解少年梦想的特点 | ⏰ 约45分钟</p>
+  </header>
+
+  <!-- SVG知识结构图 -->
+  <section style="margin:24px auto 0;max-width:800px;padding:0 20px;">
+    <svg viewBox="0 0 800 260" width="800" height="260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="260" fill="#f0faf0"/>
+      <circle cx="400" cy="130" r="45" fill="#27ae60" stroke="#1e8449" stroke-width="3"/>
+      <text x="400" y="135" text-anchor="middle" font-size="15" fill="white" font-weight="bold">少年有梦</text>
+      <rect x="40" y="40" width="130" height="50" rx="8" fill="#2ecc71" stroke="#27ae60"/><text x="105" y="70" text-anchor="middle" fill="white" font-size="13">梦想的意义</text>
+      <line x1="170" y1="65" x2="355" y2="130" stroke="#27ae60" marker-end="url(#a)"/>
+      <rect x="40" y="170" width="130" height="50" rx="8" fill="#2ecc71" stroke="#27ae60"/><text x="105" y="200" text-anchor="middle" fill="white" font-size="13">少年梦三相连</text>
+      <line x1="170" y1="195" x2="355" y2="130" stroke="#27ae60" marker-end="url(#a)"/>
+      <rect x="630" y="40" width="130" height="50" rx="8" fill="#f39c12" stroke="#e67e22"/><text x="695" y="70" text-anchor="middle" fill="white" font-size="13">努力就有改变</text>
+      <line x1="630" y1="65" x2="445" y2="130" stroke="#27ae60" marker-end="url(#a)"/>
+      <rect x="630" y="170" width="130" height="50" rx="8" fill="#f39c12" stroke="#e67e22"/><text x="695" y="200" text-anchor="middle" fill="white" font-size="13">实现梦想方法</text>
+      <line x1="630" y1="195" x2="445" y2="130" stroke="#27ae60" marker-end="url(#a)"/>
+      <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0,10 3,0 6" fill="#27ae60"/></marker></defs>
+    </svg>
+    <figcaption style="margin-top:10px;color:#27ae60;font-size:14px;text-align:center;">图1-2 少年有梦知识结构图</figcaption>
+  </section>
+
+  <main class="container">
+
+    <!-- 探究问题 -->
+    <section><h2 class="section-title">🎯 探究问题</h2>
+      <p style="color:#27ae60;margin-bottom:16px;">先选一个你关心的问题开始学习。</p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selA(this,1)">🌱 梦想有什么意义？</button>
+          <button class="anchor-btn" onclick="selA(this,2)">✨ 少年梦有什么特点？</button>
+          <button class="anchor-btn" onclick="selA(this,3)">💪 努力真的有用吗？</button>
+        </div>
+        <div class="anchor-display" id="ad"><p style="color:#27ae60;text-align:center;">👆 点击选择</p></div>
+      </div>
+    </section>
+
+    <!-- 学习目标 -->
+    <section><h2 class="section-title">🎯 学习目标</h2>
+      <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
+        <li>✅ 知道梦想的意义 <span class="tag tag-theory">关联：马斯洛需要层次理论</span></li>
+        <li>✅ 理解少年梦三相连 <span class="tag tag-theory">关联：生涯发展理论</span></li>
+        <li>✅ 懂得努力的意义 <span class="tag tag-theory">关联：班杜拉自我效能理论</span></li>
+        <li>✅ 掌握实现梦想的方法 <span class="tag tag-theory">关联：SMART目标设定</span></li>
+      </ul></div>
+    </section>
+
+    <!-- ===== 前测 ===== -->
+    <section><h2 class="section-title">📝 前测：检验先备知识</h2>
+      <p style="color:#27ae60;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】关于梦想，正确的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 空想是<strong>脱离实际</strong>的幻想，而梦想是以<strong>现实为基础</strong>的愿望。<br><span class='tag tag-mistake'>归因：混淆了'梦想'与'空想'的概念</span>"><span class="opt-letter">A</span> 梦想就是空想</div>
+          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：梦想具有激发动机的功能</span>"><span class="opt-letter">B</span> 梦想能激发热情和勇气</div>
+          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 有梦想才有<strong>方向感和动力</strong>，没有梦想的人容易迷茫。<br><span class='tag tag-mistake'>归因：未认识到目标对行为的导向作用</span>"><span class="opt-letter">C</span> 有没有梦想都一样</div>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="answer-explanation" id="exp1"><div class="explain-title">📖 解析 + 归因分析 + 知识关联</div>
+          <p><strong>答案：B</strong> 梦想能激发生命的热情和勇气。</p>
+          <p><span class="tag tag-kp">核心知识点</span> 梦想是对未来美好生活的<strong>愿望</strong>，具有激励和导向功能。</p>
+          <p><span class="tag tag-mistake">错因分析</span> 选A混淆了"梦想"与"空想"——梦想以现实为基础，空想脱离实际。选C忽略了<strong>目标导向理论</strong>：目标引导行为方向。</p>
+          <p><span class="tag tag-theory">关联理论</span> 马斯洛需要层次理论——梦想属于"自我实现"层次，是最高层次的心理需求。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】少年梦的特点不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 少年梦确实与人生目标紧密相连！<br><span class='tag tag-mistake'>归因：这是正确特征，误判为错误</span>"><span class="opt-letter">A</span> 与人生目标相连</div>
+          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 这是错误的说法，少年梦应与更大的梦想相连。<br><span class='tag tag-kp'>知识点：少年梦三相连</span>"><span class="opt-letter">B</span> 只与自己有关</div>
+          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 少年梦确实与时代脉搏紧密相连！<br><span class='tag tag-mistake'>归因：这是正确特征，误判为错误</span>"><span class="opt-letter">C</span> 与时代脉搏相连</div>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="answer-explanation" id="exp2"><div class="explain-title">📖 解析 + 归因分析 + 知识关联</div>
+          <p><strong>答案：B. 只与自己有关</strong></p>
+          <p><span class="tag tag-kp">核心知识点</span> 少年梦<strong>三相连</strong>：与人生目标、与时代脉搏、与中国梦相连。</p>
+          <p><span class="tag tag-mistake">错因分析</span> 选A和C的同学未理解题干"不包括"的意思。题干问的是<strong>哪个不是特点</strong>，A和C本身就是特点，应排除。</p>
+          <p><span class="tag tag-theory">关联理论</span> 舒伯"生涯发展理论"——少年期属于"探索阶段"，梦想开始与外部世界建立连接。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 中考】"少年有梦，不应止于心动，更在于行动"，这句话强调的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 梦想本身是宝贵的，不是"多余的"。题目强调的不是"要不要梦想"，而是"要行动"。<br><span class='tag tag-mistake'>归因：误解了句意，把'更在于'理解为否定</span>"><span class="opt-letter">A</span> 梦想不重要</div>
+          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！心动是起点，行动才是关键。<br><span class='tag tag-kp'>知识点：努力是梦想与现实的桥梁</span>"><span class="opt-letter">B</span> 实现梦想要付出努力</div>
+          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 这句话恰恰反对"想想就行"，而是强调要行动。<br><span class='tag tag-mistake'>归因：与原文意思完全相反</span>"><span class="opt-letter">C</span> 想想就够了</div>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="answer-explanation" id="exp3"><div class="explain-title">📖 解析 + 归因分析 + 知识关联</div>
+          <p><strong>答案：B</strong> 强调努力的重要性。</p>
+          <p><span class="tag tag-kp">核心知识点</span> "不应止于心动"=梦想只是起点，"更在于行动"=<strong>努力是桥梁</strong>。</p>
+          <p><span class="tag tag-mistake">错因分析</span> 选A犯了<strong>曲解原意</strong>的错误；选C犯了<strong>反向理解</strong>的错误，"止于"≠"就够了"。</p>
+          <p><span class="tag tag-exam">中考提示</span> 原文类题目是中考常考题型，要<strong>逐字理解</strong>，抓住关键词"不应止于""更在于"。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 正文 ===== -->
+    <section><h2 class="section-title">🌱 梦想的意义</h2>
+      <div class="card">
+        <h3 style="color:#27ae60;">📖 什么是梦想？</h3>
+        <p style="margin-top:10px;line-height:1.8;">梦想是对未来美好生活的<strong>愿望</strong>，它像一盏明灯，照亮我们前行的路。</p>
+        <div class="concept-box"><div class="label">💡 梦想的三大作用 <span class="tag tag-theory">关联：马斯洛需要层次理论</span></div>
+          <p>✨ <strong>激发热情</strong>：激发生命的热情和勇气 <span class="tag tag-kp">自我实现需求</span></p>
+          <p>✨ <strong>指明方向</strong>：让生活有方向感和目标感 <span class="tag tag-kp">目标设置理论</span></p>
+          <p>✨ <strong>给予希望</strong>：有希望就有前进动力 <span class="tag tag-kp">希望理论</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section><h2 class="section-title">✨ 少年梦想的特点</h2>
+      <div class="card">
+        <h3 style="color:#27ae60;">📖 少年梦想"三相连"</h3>
+        <table class="concept-table" style="margin-top:16px;">
+          <tr><th>特点</th><th>说明</th><th>关联理论</th></tr>
+          <tr><td><strong>与人生目标相连</strong></td><td>梦想与个人规划结合</td><td>生涯发展理论</td></tr>
+          <tr><td><strong>与时代脉搏相连</strong></td><td>顺应时代发展</td><td>社会变迁理论</td></tr>
+          <tr><td><strong>与中国梦相连</strong></td><td>与民族复兴结合</td><td>家国情怀教育</td></tr>
+        </table>
+        <div class="warn-box"><div class="label">⚠️ 易错警示</div>
+          <p>错："少年梦只与自己有关"</p>
+          <p>正：少年梦<strong>三相连</strong>，与个人、时代、国家<strong>双向连接</strong></p>
+          <p><span class="tag tag-exam">考试频率：近10年考了18次</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section><h2 class="section-title">💪 努力就有改变</h2>
+      <div class="card">
+        <h3 style="color:#27ae60;">📖 努力是桥梁</h3>
+        <p style="margin-top:10px;line-height:1.8;">少年有梦，不应止于<strong>心动</strong>，更在于<strong>行动</strong>。努力，是梦想与现实之间的桥梁。</p>
+        <div class="concept-box"><div class="label">🔑 努力的方法 <span class="tag tag-theory">关联：自我管理理论</span></div>
+          <p>① <strong>立志</strong>：早立志、立大志、立长志 <span class="tag tag-theory">SMART目标</span></p>
+          <p>② <strong>坚持</strong>：持之以恒，不轻言放弃 <span class="tag tag-theory">坚毅理论</span></p>
+          <p>③ <strong>方法</strong>：科学的学习方法 <span class="tag tag-theory">元认知策略</span></p>
+          <p>④ <strong>合作</strong>：借助他人力量 <span class="tag tag-theory">社会支持理论</span></p>
+        </div>
+        <div style="background:#f0faf0;border-radius:8px;padding:16px;margin-top:16px;font-style:italic;color:#1e8449;">
+          "天行健，君子以自强不息。" —— 《周易》<span class="tag tag-kp">中华传统文化</span><br>
+          "锲而不舍，金石可镂。" —— 荀子
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 后测 ===== -->
+    <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
+      <p style="color:#27ae60;">含中考真题难度，注意每个选项的归因分析！</p>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】梦想的作用是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：梦想三大作用</span>"><span class="opt-letter">A</span> 激发热情、指明方向、给予希望</div>
+          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 梦想本身就是<strong>有意义</strong>的，不是多余的。<br><span class='tag tag-mistake'>归因：消极归因，否定梦想的价值</span>"><span class="opt-letter">B</span> 没有任何实际作用</div>
+          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 梦想能带来<strong>积极动力</strong>，不会让人分心。<br><span class='tag tag-mistake'>归因：未理解梦想的导向功能</span>"><span class="opt-letter">C</span> 只会让人分心</div>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
+          <p><strong>答案：A</strong> <span class="tag tag-theory">关联：马斯洛需要层次</span></p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】实现梦想的关键做法是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：心动+行动+坚持</span>"><span class="opt-letter">A</span> 心动+行动+坚持</div>
+          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 只想不做，梦想永远是梦想。<br><span class='tag tag-mistake'>归因：知行脱节，缺少执行</span>"><span class="opt-letter">B</span> 只在心里想想</div>
+          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 等待是被动的，梦想不会自己实现。<br><span class='tag tag-mistake'>归因：外部归因偏差，放弃个人努力</span>"><span class="opt-letter">C</span> 等机会降临</div>
+        </div>
+        <div class="feedback" id="fb11"></div>
+        <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
+          <p><strong>答案：A</strong> <span class="tag tag-theory">关联：执行功能理论</span></p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 中考】关于"努力就有改变"，下列理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 努力不等于一定成功，但<strong>不努力一定不会成功</strong>。"一定能"是绝对化表述。<br><span class='tag tag-mistake'>归因：绝对化思维</span>"><span class="opt-letter">A</span> 努力就一定能成功</div>
+          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！努力是必经之路。<br><span class='tag tag-kp'>知识点：努力是梦想与现实的桥梁</span>"><span class="opt-letter">B</span> 努力是实现梦想的必经之路</div>
+          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 不努力不会有任何改变。<br><span class='tag tag-mistake'>归因：消极归因，自我设限</span>"><span class="opt-letter">C</span> 不努力也能有改变</div>
+        </div>
+        <div class="feedback" id="fb12"></div>
+        <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
+          <p><strong>答案：B</strong> 努力是必经之路，但不是充分条件。</p>
+          <p><span class="tag tag-exam">中考提示</span> "一定""必然"等绝对化表述通常是<strong>错误选项</strong>的特征。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>4. 【⭐⭐⭐ 中考】下列关于少年梦想的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,true,13)" data-fb="✅ 正确！少年梦与个人、时代、国家相连。<br><span class='tag tag-kp'>知识点：少年梦三相连</span>"><span class="opt-letter">A</span> 少年梦与人生目标、时代脉搏、中国梦相连</div>
+          <div class="quiz-option" onclick="chk(this,false,13)" data-fb="❌ 这与"三相连"完全相反！<br><span class='tag tag-mistake'>归因：概念记忆错误，记反了核心内容</span>"><span class="opt-letter">B</span> 少年梦与个人目标、时代脉搏无关</div>
+          <div class="quiz-option" onclick="chk(this,false,13)" data-fb="❌ "中国梦"不是别人的梦想，是每个中国人的梦想！<br><span class='tag tag-mistake'>归因：认知偏差，认为国家梦与自己无关</span>"><span class="opt-letter">C</span> 中国梦只是大人的事</div>
+        </div>
+        <div class="feedback" id="fb13"></div>
+        <div class="answer-explanation" id="exp13"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
+          <p><strong>答案：A</strong></p>
+          <p><span class="tag tag-exam">中考提示</span> "三相连"是高频考点，选B和C都属于<strong>否定性误导</strong>。</p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>5. 【⭐⭐⭐ 中考】"立志"在实现梦想中的作用是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,true,14)" data-fb="✅ 正确！立志是努力的<strong>起点和方向</strong>。<br><span class='tag tag-kp'>知识点：立志的重要性</span>"><span class="opt-letter">A</span> 为努力提供方向和动力</div>
+          <div class="quiz-option" onclick="chk(this,false,14)" data-fb="❌ 立志只是第一步，还需要行动！<br><span class='tag tag-mistake'>归因：混淆了"立志"与"实现"</span>"><span class="opt-letter">B</span> 立志就等于实现了</div>
+          <div class="quiz-option" onclick="chk(this,false,14)" data-fb="❌ 没有志向，努力就没有方向。<br><span class='tag tag-mistake'>归因：否定目标对行为的引导作用</span>"><span class="opt-letter">C</span> 有没有志向无所谓</div>
+        </div>
+        <div class="feedback" id="fb14"></div>
+        <div class="answer-explanation" id="exp14"><div class="explain-title">📖 解析 + 归因</div>
+          <p><strong>答案：A</strong> <span class="tag tag-theory">关联：洛克"目标设置理论"</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 必考分析与考点总结 ===== -->
+    <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
+      <div class="card">
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 考点一：少年梦想"三相连"</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 与<strong>人生目标</strong>紧密相连</li>
+            <li>✅ 与<strong>时代脉搏</strong>紧密相连</li>
+            <li>✅ 与<strong>中国梦</strong>紧密相连</li>
+          </ul>
+          <p style="margin-top:10px;font-size:13px;color:#991b1b;"><span class="tag tag-mistake">常见陷阱</span> "只与自己有关""与时代无关""中国梦只是大人的事"——全部错误！</p>
+        </div>
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">2</span>
+            <strong style="color:#1e3a8a;font-size:15px;">🔥 考点二：努力就有改变</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 努力是梦想与现实的<strong>桥梁</strong></li>
+            <li>✅ 少年有梦，不应止于<strong>心动</strong>，更在于<strong>行动</strong></li>
+            <li>✅ 努力的方法：<strong>立志、坚持、方法、合作</strong></li>
+          </ul>
+          <p style="margin-top:10px;font-size:13px;color:#1e3a8a;"><span class="tag tag-mistake">常见陷阱</span> "努力就一定能成功""不努力也能改变"——都是<strong>绝对化表述</strong>，通常为错误选项。</p>
+        </div>
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1px solid #6ee7b7;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#27ae60;">3</span>
+            <strong style="color:#065f46;font-size:15px;">🔥 考点三：梦想的意义</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 梦想是对未来美好生活的<strong>愿望</strong></li>
+            <li>✅ 激发<strong>热情和勇气</strong></li>
+            <li>✅ 指明<strong>方向</strong>，给予<strong>希望</strong></li>
+          </ul>
+          <p style="margin-top:10px;font-size:13px;color:#065f46;"><span class="tag tag-mistake">常见陷阱</span> "梦想是空想""没有实际作用"——混淆了梦想与空想。</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中道德与法治互动课件系统</p>
+    <p style="font-size:12px;margin-top:8px;">人教版七年级道德与法治 · v7.14.0</p>
+  </footer>
+
+  <script>
+    var INFO={total:31,cur:2};
+    var anchors={
+      1:"<h3>📍 问题：梦想有什么意义？</h3><p>① <strong>激发热情</strong>：给生命注入动力 <span class='tag tag-theory'>需要层次理论</span></p><p>② <strong>指明方向</strong>：让生活有目标感 <span class='tag tag-theory'>目标设置理论</span></p><p>③ <strong>给予希望</strong>：有希望就有动力 <span class='tag tag-theory'>希望理论</span></p>",
+      2:"<h3>📍 问题：少年梦有什么特点？</h3><p>① 与<strong>人生目标</strong>相连 <span class='tag tag-theory'>生涯发展理论</span></p><p>② 与<strong>时代脉搏</strong>相连 <span class='tag tag-theory'>社会变迁理论</span></p><p>③ 与<strong>中国梦</strong>相连 <span class='tag tag-theory'>家国情怀教育</span></p>",
+      3:"<h3>📍 问题：努力真的有用吗？</h3><p>① 努力是<strong>桥梁</strong> <span class='tag tag-kp'>核心观点</span></p><p>② 需要坚持 <span class='tag tag-theory'>坚毅理论</span></p><p>③ 需要方法 <span class='tag tag-theory'>元认知理论</span></p>"
+    };
+    function selA(bt,id){document.querySelectorAll('.anchor-btn').forEach(function(b){b.classList.remove('selected')});bt.classList.add('selected');document.getElementById('ad').innerHTML=anchors[id];}
+    function chk(el,ok,num){
+      var p=el.closest('.quiz-box'),fb=p.querySelector('.feedback'),exp=document.getElementById('exp'+num);
+      p.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('correct','wrong')});
+      if(ok){el.classList.add('correct');fb.innerHTML='<strong>✅ 答对了！</strong>';fb.className='feedback show correct-fb';}
+      else{el.classList.add('wrong');fb.innerHTML=el.dataset.fb;fb.className='feedback show wrong-fb';}
+      if(exp)exp.classList.add('show');
+    }
+    document.addEventListener('DOMContentLoaded',function(){
+      document.getElementById('pf').style.width=(INFO.cur/INFO.total*100)+'%';
+      document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

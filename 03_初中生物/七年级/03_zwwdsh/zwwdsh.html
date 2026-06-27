@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第三单元：植物的生活 | 初中7年级生物</title>
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #4caf50;
+      --primary-dark: #1b5e20;
+      --secondary: #81c784;
+      --bg-light: #f1f8e9;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-sm: 0 2px 8px rgba(46,125,50,0.08);
+      --shadow-md: 0 4px 20px rgba(46,125,50,0.12);
+      --shadow-lg: 0 8px 32px rgba(46,125,50,0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(46,125,50,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    /* ====== Hero Section ====== */
+    .hero-section {
+      background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+    .hero-icon { font-size: 64px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 3px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      margin-bottom: 24px;
+    }
+
+    /* 关键知识点 */
+    .key-points {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 24px 0;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .key-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.3);
+      min-width: 120px;
+    }
+
+    .key-point-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .key-point-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* 进度条 */
+    .progress-container {
+      max-width: 600px;
+      margin: 24px auto 0;
+      text-align: left;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f0e68c, #ffd700, #ff8c00);
+      border-radius: 4px;
+      transition: width 1s ease;
+      box-shadow: 0 0 12px rgba(255,215,0,0.5);
+    }
+
+    /* ====== Main Content ====== */
+    .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+    /* 章节标题 */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .section-text h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .section-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ====== Lessons Grid ====== */
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .lesson-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(46,125,50,0.08);
+      position: relative;
+    }
+
+    .lesson-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .lesson-card:hover::before { transform: scaleX(1); }
+
+    .card-header {
+      padding: 20px 20px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .lesson-num {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(46,125,50,0.25);
+    }
+
+    .lesson-meta { flex: 1; }
+
+    .lesson-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .lesson-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .status-完成 {
+      background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+      color: #065f46;
+    }
+
+    .status-制作中 {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #92400e;
+    }
+
+    .card-body {
+      padding: 0 20px 16px;
+    }
+
+    .lesson-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .card-footer {
+      padding: 16px 20px;
+      background: var(--bg-light);
+      border-top: 1px solid rgba(46,125,50,0.06);
+    }
+
+    .lesson-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lesson-link::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+
+    .lesson-link:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(46,125,50,0.35);
+    }
+
+    .lesson-link:active::after {
+      width: 300px; height: 300px;
+    }
+
+    /* ====== Navigation ====== */
+    .nav-bar {
+      background: white;
+      padding: 12px 20px;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn:hover {
+      background: var(--bg-light);
+      color: var(--primary);
+    }
+
+    .nav-center {
+      flex: 1;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* ====== Footer ====== */
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 32px 20px;
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .footer-text { opacity: 0.8; font-size: 0.85rem; }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 768px) {
+      .hero-icon { font-size: 48px; }
+      .hero-title { font-size: 1.6rem; letter-spacing: 1px; }
+      .hero-subtitle { font-size: 0.9rem; }
+      
+      .key-points { gap: 12px; }
+      .key-point { padding: 12px; min-width: 100px; }
+      .key-point-icon { width: 38px; height: 38px; font-size: 18px; }
+      .key-point-label { font-size: 0.75rem; }
+
+      .lessons-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ====== 加载动画 ====== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .lesson-card:nth-child(1) { animation-delay: 0.1s; }
+    .lesson-card:nth-child(2) { animation-delay: 0.15s; }
+    .lesson-card:nth-child(3) { animation-delay: 0.2s; }
+    .lesson-card:nth-child(4) { animation-delay: 0.25s; }
+    .lesson-card:nth-child(5) { animation-delay: 0.3s; }
+    .lesson-card:nth-child(6) { animation-delay: 0.35s; }
+    .lesson-card:nth-child(7) { animation-delay: 0.4s; }
+
+    /* ====== Touch ====== */
+    * { -webkit-tap-highlight-color: transparent; }
+    a, button { -webkit-tap-highlight-color: rgba(46,125,50,0.08); }
+
+    /* AI学伴 悬浮按钮（绿色主题） */
+    .ai-companion-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      box-shadow: 0 6px 24px rgba(46,125,50,0.55);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .ai-companion-btn:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(46,125,50,0.7); }
+    .ai-companion-btn svg { width: 32px; height: 32px; }
+    /* AI学伴 弹窗 */
+    .ai-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .ai-modal-overlay.show { display: flex; }
+    .ai-modal {
+      background: white;
+      border-radius: 20px;
+      width: 420px;
+      max-height: 520px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+      overflow: hidden;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .ai-modal-header {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      color: white;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ai-modal-header h3 { margin: 0; font-size: 16px; }
+    .ai-modal-close {
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: white;
+      font-size: 22px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .ai-modal-close:hover { background: rgba(255,255,255,0.32); }
+    .ai-modal-body { padding: 20px 22px; max-height: 400px; overflow-y: auto; }
+    .ai-prompt { font-size: 13px; color: #5d6d7e; margin-bottom: 14px; }
+    .ai-q-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 11px 16px;
+      margin-bottom: 10px;
+      background: #f1f8e9;
+      border: 2px solid #c8e6c9;
+      border-radius: 12px;
+      font-size: 13.5px;
+      color: #1b5e20;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    .ai-q-btn:hover { background: #e8f5e9; border-color: #4caf50; }
+    .ai-answer {
+      display: none;
+      margin-top: 12px;
+      padding: 14px 16px;
+      background: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #1a1a2e;
+    }
+    .ai-answer.show { display: block; }
+
+    /* 知识图谱模块 */
+    .kg-section {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+      border: 2px solid #4caf50;
+      border-radius: 18px;
+      padding: 26px 28px;
+      margin: 28px 0;
+    }
+    .kg-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1b5e20;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .kg-svg-container {
+      background: #f1f8e9;
+      border: 1px solid #c8e6c9;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 18px 0;
+      text-align: center;
+    }
+    .kg-svg-container svg { max-width: 100%; height: auto; }
+    .kg-caption { margin-top: 14px; font-size: 14px; color: #2e7d32; text-align: center; font-weight: 600; }
+    .kg-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 12px;
+    }
+    .kg-legend-item { font-size: 13px; color: #1b5e20; display: flex; align-items: center; gap: 6px; }
+    .kg-legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+    /* 导师卡片 */
+    .mentor-card {
+      background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+      border: 2px solid #81c784;
+      border-radius: 18px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .mentor-avatar {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(46,125,50,0.3);
+    }
+    .mentor-info { flex: 1; }
+    .mentor-name { font-size: 1.1rem; font-weight: 700; color: #1b5e20; margin-bottom: 6px; }
+    .mentor-title { font-size: 13px; color: #5d6d7e; margin-bottom: 10px; }
+    .mentor-bio { font-size: 13.5px; color: #2e7d32; line-height: 1.7; }
+
+    /* 手风琴折叠 */
+    .accordion { margin: 24px 0; }
+    .accordion-item { background: white; border: 1px solid #c8e6c9; border-radius: 12px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(46,125,50,0.08); }
+    .accordion-header { padding: 16px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; font-weight: 600; color: var(--primary); transition: background 0.2s; user-select: none; }
+    .accordion-header:hover { background: #f1f8e9; }
+    .accordion-header .arrow { transition: transform 0.3s; display: inline-block; }
+    .accordion-header.active .arrow { transform: rotate(90deg); }
+    .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .accordion-body.show { max-height: 500px; }
+    .accordion-body-inner { padding: 0 20px 16px 48px; font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+      <div class="nav-center">第三单元：植物的生活</div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">🌱</div>
+      <h1 class="hero-title">第三单元：植物的生活</h1>
+      <p class="hero-subtitle">探索绿色生命的生长规律与能量转换</p>
+
+      <!-- 关键知识点 -->
+      <div class="key-points">
+        <div class="key-point">
+          <div class="key-point-icon">🌰</div>
+          <span class="key-point-label">种子萌发</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🌿</div>
+          <span class="key-point-label">植株生长</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🌸</div>
+          <span class="key-point-label">开花结果</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">💧</div>
+          <span class="key-point-label">蒸腾作用</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">☀️</div>
+          <span class="key-point-label">光合作用</span>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon">🔄</div>
+          <span class="key-point-label">呼吸作用</span>
+        </div>
+      </div>
+
+      <!-- 进度条 -->
+      <div class="progress-container">
+        <div class="progress-info">
+          <span><i class="fas fa-book"></i> 学习进度</span>
+          <span>7/7 课时已完成</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="section-title">
+      <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="section-text">
+        <h2>课程目录</h2>
+        <p>点击卡片开始学习</p>
+      </div>
+    </div>
+
+
+    <!-- 时间线导航 -->
+    <div class="timeline-nav" style="display:flex;justify-content:center;gap:0;margin:28px 0 18px;flex-wrap:wrap;">
+      <a href="#lesson1" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">① 种子萌发</a>
+      <a href="#lesson2" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">② 植株生长</a>
+      <a href="#lesson3" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">③ 开花结果</a>
+      <a href="#lesson4" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">④ 水的利用</a>
+      <a href="#lesson5" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑤ 光合作用</a>
+      <a href="#lesson6" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑥ 呼吸作用</a>
+      <a href="#lesson7" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑦ 植物作用</a>
+    </div>
+    <div class="lessons-grid">
+      <!-- 课时1 -->
+      <div class="lesson-card fade-in" id="lesson1">
+        <div class="card-header">
+          <span class="lesson-num">1</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">1.1 种子的萌发</div>
+            <div class="lesson-subtitle">第一节 · 种子萌发的条件与过程</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">探究种子萌发的环境条件和自身条件，了解种子萌发的过程，理解种子休眠的意义。</p>
+        </div>
+        <div class="card-footer">
+          <a href="1.1_zmdmyf/1.1_zmdmyf.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 课时2 -->
+      <div class="lesson-card fade-in" id="lesson2">
+        <div class="card-header">
+          <span class="lesson-num">2</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">1.2 植株的生长</div>
+            <div class="lesson-subtitle">第二节 · 幼根的生长与芽的发育</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">了解幼根的生长方式，认识芽的发育过程，理解植物生长需要水和无机盐。</p>
+        </div>
+        <div class="card-footer">
+          <a href="1.2_zwzdsd/1.2_zwzdsd.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 课时3 -->
+      <div class="lesson-card fade-in" id="lesson3">
+        <div class="card-header">
+          <span class="lesson-num">3</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">1.3 开花和结果</div>
+            <div class="lesson-subtitle">第三节 · 花的结构与果实形成</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">认识花的结构，理解传粉和受精的过程，了解果实和种子的形成机制。</p>
+        </div>
+        <div class="card-footer">
+          <a href="1.3_khhjg/1.3_khhjg.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 课时4 -->
+      <div class="lesson-card fade-in" id="lesson4">
+        <div class="card-header">
+          <span class="lesson-num">4</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">2.1 水的利用与散失</div>
+            <div class="lesson-subtitle">第四节 · 植物对水的吸收与蒸腾</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">了解植物吸水的过程，认识蒸腾作用的意义，理解水分在植物体内的运输途径。</p>
+        </div>
+        <div class="card-footer">
+          <a href="2.1_sddlsyzs/2.1_sddlsyzs.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 课时5 -->
+      <div class="lesson-card fade-in" id="lesson5">
+        <div class="card-header">
+          <span class="lesson-num">5</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">2.2 光合作用</div>
+            <div class="lesson-subtitle">第五节 · 光合作用的原理与意义</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">探究光合作用的产物和条件，理解光合作用的表达式及其在生态系统中的作用。</p>
+        </div>
+        <div class="card-footer">
+          <a href="2.2_gzhzy/2.2_gzhzy.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 课时6 -->
+      <div class="lesson-card fade-in" id="lesson6">
+        <div class="card-header">
+          <span class="lesson-num">6</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">2.3 呼吸作用</div>
+            <div class="lesson-subtitle">第六节 · 呼吸作用的原理与意义</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">理解呼吸作用的过程和意义，区分光合作用与呼吸作用，了解呼吸作用在生活中的应用。</p>
+        </div>
+        <div class="card-footer">
+          <a href="2.3_shzyy/2.3_shzyy.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+
+      <!-- 课时7 -->
+      <div class="lesson-card fade-in" id="lesson7">
+        <div class="card-header">
+          <span class="lesson-num">7</span>
+          <div class="lesson-meta">
+            <div class="lesson-title">2.4 植物在自然界中的作用</div>
+            <div class="lesson-subtitle">第七节 · 绿色植物与生物圈</div>
+          </div>
+          <span class="status-badge status-完成"><i class="fas fa-check-circle"></i> 已完成</span>
+        </div>
+        <div class="card-body">
+          <p class="lesson-desc">认识绿色植物在维持碳氧平衡、促进水循环和参与生物圈中的作用。</p>
+        </div>
+        <div class="card-footer">
+          <a href="2.4_zwzyzzyyzs/2.4_zwzyzzyyzs.html" class="lesson-link">
+            <i class="fas fa-play"></i> 开始学习
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 单元知识图谱 -->
+    <div class="kg-section" id="section-kg">
+      <div class="kg-title"><span>🗺️</span> 单元知识图谱 · 植物的生活</div>
+      <div class="kg-svg-container">
+        <svg viewBox="0 0 800 260" width="800" height="260" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="260" fill="#f1f8e9" rx="12"/>
+          <rect x="300" y="90" width="200" height="80" rx="15" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+          <text x="400" y="125" text-anchor="middle" font-size="18" font-weight="bold" fill="white">植物的生活</text>
+          <text x="400" y="150" text-anchor="middle" font-size="12" fill="#c8e6c9">7课时完整体系</text>
+          <rect x="40" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+          <text x="120" y="68" text-anchor="middle" font-size="13" fill="white">种子萌发</text>
+          <text x="120" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">第1节</text>
+          <line x1="200" y1="70" x2="300" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr2)"/>
+          <rect x="40" y="165" width="160" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+          <text x="120" y="193" text-anchor="middle" font-size="13" fill="white">植株生长</text>
+          <text x="120" y="211" text-anchor="middle" font-size="10" fill="#e8f5e9">第2节</text>
+          <line x1="200" y1="195" x2="300" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr2)"/>
+          <rect x="600" y="40" width="160" height="60" rx="10" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+          <text x="680" y="68" text-anchor="middle" font-size="13" fill="white">光合作用</text>
+          <text x="680" y="86" text-anchor="middle" font-size="10" fill="#e8f5e9">第5节</text>
+          <line x1="600" y1="70" x2="500" y2="122" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr2)"/>
+          <rect x="600" y="165" width="160" height="60" rx="10" fill="#66bb6a" stroke="#2e7d32" stroke-width="2"/>
+          <text x="680" y="203" text-anchor="middle" font-size="13" fill="white">呼吸作用</text>
+          <text x="680" y="221" text-anchor="middle" font-size="10" fill="#e8f5e9">第6节</text>
+          <line x1="600" y1="195" x2="500" y2="138" stroke="#2e7d32" stroke-width="2" marker-end="url(#kgr2)"/>
+          <defs>
+            <marker id="kgr2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+              <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="kg-caption">图 · 第三单元"植物的生活"知识体系（点击时间线可跳转各课时）</div>
+      </div>
+    </div>
+
+
+    <!-- 手风琴折叠：课时详情 -->
+    <div class="section" id="section-accordion">
+      <h2 class="section-title"><span class="num">📂</span>课时详情（点击展开）</h2>
+      <div class="accordion" id="unitAccordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(0)"><span class="arrow">▶</span> 第1节 · 种子的萌发</div>
+          <div class="accordion-body"><div class="accordion-body-inner">探究种子萌发的环境条件（适宜温度、一定水分、充足空气）和自身条件（胚完整、存活、度过休眠期），了解种子萌发的过程（胚根→根，胚芽→茎和叶），理解种子休眠的意义。</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(1)"><span class="arrow">▶</span> 第2节 · 植株的生长</div>
+          <div class="accordion-body"><div class="accordion-body-inner">了解幼根的生长方式（分生区细胞分裂 + 伸长区细胞伸长），认识芽的发育过程（芽轴、叶原基、芽原基），理解植物生长需要水和无机盐（含氮、磷、钾的无机盐的作用）。</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(2)"><span class="arrow">▶</span> 第3节 · 开花和结果</div>
+          <div class="accordion-body"><div class="accordion-body-inner">认识花的结构（雄蕊：花药+花丝；雌蕊：柱头+花柱+子房），理解传粉（自花传粉、异花传粉）和受精的过程，了解果实和种子的形成机制（子房→果实，胚珠→种子）。</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(3)"><span class="arrow">▶</span> 第4节 · 水的利用与散失</div>
+          <div class="accordion-body"><div class="accordion-body-inner">了解植物吸水的主要部位（根尖成熟区），认识蒸腾作用的意义（拉动水和无机盐的运输、降低叶片温度、促进根吸水），理解蒸腾作用的影响因素（光照、温度、湿度、空气流动）。</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(4)"><span class="arrow">▶</span> 第5节 · 光合作用</div>
+          <div class="accordion-body"><div class="accordion-body-inner">阐明光合作用的实质（合成有机物、储存能量），写出光合作用的公式（二氧化碳+水→有机物+氧气），理解光合作用的意义（有机物来源、能量来源、维持碳—氧平衡），说明光合作用在农业生产中的应用（合理密植、温室增CO₂）。</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(5)"><span class="arrow">▶</span> 第6节 · 呼吸作用</div>
+          <div class="accordion-body"><div class="accordion-body-inner">阐明呼吸作用的实质（分解有机物、释放能量），写出呼吸作用的公式（有机物+氧气→二氧化碳+水+能量），比较光合作用与呼吸作用的区别（原料、产物、条件、场所、能量变化），说明呼吸作用在农业生产中的应用（农田松土、排涝）。</div></div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(6)"><span class="arrow">▶</span> 第7节 · 植物在自然界中的作用</div>
+          <div class="accordion-body"><div class="accordion-body-inner">认识绿色植物在维持碳—氧平衡中的作用（吸收CO₂、释放O₂），理解绿色植物在促进水循环中的作用（蒸腾作用），了解绿色植物为其他生物提供有机物和栖息场所。</div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">初中7年级生物 · 第三单元 植物的生活 · TeachAny v7.14.0</p>
+  </footer>
+
+
+  <!-- AI学伴 悬浮按钮 -->
+  <button class="ai-companion-btn" onclick="toggleAIModal()" title="AI学伴 · 随时提问">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.2"/>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+            fill="white"/>
+    </svg>
+  </button>
+
+  <!-- AI学伴 弹窗 -->
+  <div class="ai-modal-overlay" id="aiModal" onclick="if(event.target===this)toggleAIModal()">
+    <div class="ai-modal">
+      <div class="ai-modal-header">
+        <h3>🤖 AI 学伴</h3>
+        <button class="ai-modal-close" onclick="toggleAIModal()">✕</button>
+      </div>
+      <div class="ai-modal-body">
+        <p class="ai-prompt">选一个问题，AI 学伴会帮你讲解：</p>
+        <button class="ai-q-btn" onclick="showAIAnswer(this,1)">💡 植物的生活的核心概念是什么？</button>
+        <div class="ai-answer" id="ai-ans-1">请参考本课时的核心知识讲解，重点关注概念框和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,2)">📝 这一课时有哪些易错点？</button>
+        <div class="ai-answer" id="ai-ans-2">请查看本课时的"⚠️ 易错警示"框，里面总结了最容易出错的知识点。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,3)">🏆 中考常考哪些内容？</button>
+        <div class="ai-answer" id="ai-ans-3">请查看本课时的"🏆 必考分析与总结"模块，里面有考频统计和必背结论。</div>
+
+        <button class="ai-q-btn" onclick="showAIAnswer(this,4)">🔍 如何区分相似概念？</button>
+        <div class="ai-answer" id="ai-ans-4">注意对比表格中的关键区别，特别是光合作用和呼吸作用的对比。</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // AI学伴 弹窗控制
+    function toggleAIModal() {
+      var m = document.getElementById('aiModal');
+      if (m) m.classList.toggle('show');
+    }
+    function showAIAnswer(btn, id) {
+      var ans = document.getElementById('ai-ans-' + id);
+      if (!ans) return;
+      if (ans.classList.contains('show')) {
+        ans.classList.remove('show');
+      } else {
+        var all = document.querySelectorAll('.ai-answer');
+        for (var i = 0; i < all.length; i++) all[i].classList.remove('show');
+        ans.classList.add('show');
+      }
+    }
+    // 手风琴折叠控制
+    function toggleAccordion(idx) {
+      var bodies = document.querySelectorAll('.accordion-body');
+      var headers = document.querySelectorAll('.accordion-header');
+      if (!bodies[idx]) return;
+      if (bodies[idx].classList.contains('show')) {
+        bodies[idx].classList.remove('show');
+        headers[idx].classList.remove('active');
+      } else {
+        for (var i = 0; i < bodies.length; i++) {
+          bodies[i].classList.remove('show');
+          headers[i].classList.remove('active');
+        }
+        bodies[idx].classList.add('show');
+        headers[idx].classList.add('active');
+      }
+    }
+  </script>
+
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

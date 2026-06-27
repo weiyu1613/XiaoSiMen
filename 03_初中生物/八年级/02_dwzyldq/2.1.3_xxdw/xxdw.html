@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="bio-nematode-8">
+  <meta name="course-title" content="2.1.3 线形动物">
+  <meta name="course-subject" content="biology">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="bio-nematode">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>2.1.3 线形动物 | 初中8年级生物</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .bio-svg {
+      background: #f1f8e9;
+      border: 1px solid #c8e6c9;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #2e7d32, #388e3c);
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .comparison-table td {
+      padding: 10px;
+      border: 1px solid #c8e6c9;
+      text-align: center;
+    }
+    
+    .comparison-table tr:nth-child(even) { background: #f1f8e9; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffde7;
+      border-left: 4px solid #f9a825;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #f57f17;
+      display: none;
+    }
+    
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #f9a825; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #e8f5e9; color: #1b5e20; }
+    .difficulty-提高 { background: #e8eaf6; color: #1a237e; }
+    .difficulty-挑战 { background: #fce4ec; color: #b71c1c; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #2e7d32; text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #a5d6a7;
+      background: #f1f8e9; color: #1b5e20; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28);
+      color: #1b5e20;
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+  
+    /* NavBar styles */
+    .nav-bar { background: #f1f8e9; border-bottom: 2px solid #2e7d32; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #2e7d32; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #c8e6c9; }
+    .nav-center { font-weight: 700; color: #2e7d32; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #1b5e20, #2e7d32); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e8f5e9; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #2e7d32, #388e3c); width: 20%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #2e7d32; padding: 4px 20px; background: #f1f8e9; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #2e7d32; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #2e7d32; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #c8e6c9; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border: 2px solid #a5d6a7; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1b5e20; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #c8e6c9, #e8f5e9); border-color: #81c784; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #2e7d32, #388e3c); color: white; border-color: #2e7d32; }
+
+    /* 测验选项 */
+    .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #a5d6a7; background: #f1f8e9; }
+    .quiz-option.correct { border-color: #4caf50; background: #e8f5e9; }
+    .quiz-option.wrong { border-color: #f44336; background: #ffebee; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #2e7d32; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #e8f5e9; color: #1b5e20; border: 1px solid #4caf50; }
+    .feedback.wrong-fb { background: #ffebee; color: #b71c1c; border: 1px solid #f44336; }
+
+    /* 概念框 */
+    .concept-box { background: #f1f8e9; border-left: 4px solid #2e7d32; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #2e7d32; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fff8e1; border-left: 4px solid #f9a825; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #f57f17; margin-bottom: 8px; }
+
+    /* 页脚 */
+    .footer { background: #2e7d32; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+
+      .comparison-table { display: block !important; overflow-x: auto !important; font-size: 12px !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== ① 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== ② 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 3/15 节 · 20%</div>
+  
+  <!-- ========== ③ 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../dwzyldq.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第2章：动物的主要类群</div>
+    <a href="../2.1.2_bpxdw/bpxdw.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="../2.1.4_hjdw/hjdw.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== ④ Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-worm"></i> 八年级生物 · 第2章</div>
+      <h1>2.1.3 线形动物<span>Nematode</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：了解线形动物的主要特征及其与人类的关系<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== ④ Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f1f8e9"/>
+        <!-- 中心主题：线形动物 -->
+        <circle cx="400" cy="150" r="60" fill="#2e7d32" stroke="#1b5e20" stroke-width="3"/>
+        <text x="400" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="white">线形动物</text>
+        <text x="400" y="165" text-anchor="middle" font-size="12" fill="white">Nematode</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="50" width="140" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="75" text-anchor="middle" font-size="13" fill="white">主要特征</text>
+        <text x="120" y="92" text-anchor="middle" font-size="11" fill="white">身体细长</text>
+        <line x1="190" y1="80" x2="340" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="60" rx="10" fill="#43a047" stroke="#2e7d32" stroke-width="2"/>
+        <text x="120" y="215" text-anchor="middle" font-size="13" fill="white">身体结构</text>
+        <text x="120" y="232" text-anchor="middle" font-size="11" fill="white">圆柱形</text>
+        <line x1="190" y1="220" x2="340" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="50" width="140" height="60" rx="10" fill="#388e3c" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="75" text-anchor="middle" font-size="13" fill="white">代表动物</text>
+        <text x="680" y="92" text-anchor="middle" font-size="11" fill="white">蛔虫/线虫</text>
+        <line x1="610" y1="80" x2="460" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="60" rx="10" fill="#43a047" stroke="#2e7d32" stroke-width="2"/>
+        <text x="680" y="215" text-anchor="middle" font-size="13" fill="white">与人类关系</text>
+        <text x="680" y="232" text-anchor="middle" font-size="11" fill="white">寄生危害</text>
+        <line x1="610" y1="220" x2="460" y2="150" stroke="#2e7d32" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#2e7d32"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #2e7d32; font-size: 14px; text-align: center;">图2-3 线形动物知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- ⑤ 探究问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #2e7d32; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="线形动物有哪些主要特征？">🐛 线形动物有哪些主要特征？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="蛔虫为什么能在人体肠道内生活？">🔬 蛔虫为什么能在人体肠道内生活？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="如何预防蛔虫病？">⚠️ 如何预防蛔虫病？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #2e7d32;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #2e7d32; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- ⑥ 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 了解线形动物的主要特征</li>
+          <li>✅ 认识蛔虫等代表动物</li>
+          <li>✅ 理解有口有肛门的意义</li>
+          <li>✅ 了解蛔虫病的预防措施</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- ⑦ 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #2e7d32; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】线形动物比扁形动物高等的主要特征是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 身体细长只是形态特点。">
+            <span class="opt-letter">A</span> 身体细长
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+            <span class="opt-letter">B</span> 有口有肛门
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 角质层是保护结构，不是进化的关键特征。">
+            <span class="opt-letter">C</span> 体表有角质层
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 有口有肛门</strong></p>
+          <p style="margin-top: 8px;"><strong>有口有肛门</strong>是线形动物比扁形动物高等的主要特征，使消化过程更加完善。食物从口进入，残渣从肛门排出。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】下列哪种动物属于线形动物？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 涡虫是扁形动物。">
+            <span class="opt-letter">A</span> 涡虫
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 蛔虫
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 蚯蚓是环节动物。">
+            <span class="opt-letter">C</span> 蚯蚓
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 蛔虫</strong></p>
+          <p style="margin-top: 8px;"><strong>线形动物代表：</strong>蛔虫、线虫、钩虫、蛲虫等。蛔虫寄生在人体小肠内，体表有角质层保护。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 核心知识讲解 -->
+    <section class="section" id="section-content">
+      <h2 class="section-title"><span class="num">🐛</span> 线形动物的主要特征</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #2e7d32;">📖 身体特征</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>身体细长，呈<strong>圆柱形</strong></li>
+          <li>体表有<strong>角质层</strong>（保护作用）</li>
+          <li><strong>有口有肛门</strong>（进化特征）</li>
+          <li>消化道前端有口，后端有肛门</li>
+        </ul>
+
+        <!-- SVG:蛔虫结构示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 350" width="600" height="350" xmlns="http://www.w3.org/2000/svg">
+            <rect width="600" height="350" fill="#f1f8e9"/>
+            
+            <!-- 蛔虫身体 -->
+            <ellipse cx="300" cy="175" rx="250" ry="40" fill="#81c784" stroke="#2e7d32" stroke-width="3"/>
+            
+            <!-- 口 -->
+            <ellipse cx="50" cy="175" rx="8" ry="12" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+            
+            <!-- 肛门 -->
+            <ellipse cx="550" cy="175" rx="8" ry="12" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+            
+            <!-- 消化道 -->
+            <line x1="58" y1="175" x2="542" y2="175" stroke="#2e7d32" stroke-width="3"/>
+            
+            <!-- 标注 -->
+            <text x="50" y="130" text-anchor="middle" font-size="14" fill="#2e7d32">口</text>
+            <line x1="50" y1="135" x2="50" y2="160" stroke="#2e7d32" stroke-width="1"/>
+            
+            <text x="550" y="130" text-anchor="middle" font-size="14" fill="#2e7d32">肛门</text>
+            <line x1="550" y1="135" x2="550" y2="160" stroke="#2e7d32" stroke-width="1"/>
+            
+            <text x="300" y="130" text-anchor="middle" font-size="14" fill="#2e7d32">消化道</text>
+            <line x1="300" y1="135" x2="300" y2="165" stroke="#2e7d32" stroke-width="1"/>
+            
+            <text x="300" y="250" text-anchor="middle" font-size="14" fill="#2e7d32">角质层（保护）</text>
+            <line x1="300" y1="215" x2="300" y2="245" stroke="#2e7d32" stroke-width="1"/>
+            
+            <text x="300" y="320" text-anchor="middle" font-size="16" font-weight="bold" fill="#2e7d32">图2-4 蛔虫结构示意图</text>
+          </svg>
+          <p class="svg-caption">图2-4 蛔虫结构示意图</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #2e7d32;">📖 常见线形动物</h3>
+        <table class="comparison-table">
+          <tr><th>动物名称</th><th>生活方式</th><th>主要特点</th></tr>
+          <tr><td><strong>蛔虫</strong></td><td>寄生</td><td>寄生在人体小肠内</td></tr>
+          <tr><td><strong>线虫</strong></td><td>寄生/自由</td><td>种类繁多</td></tr>
+          <tr><td><strong>钩虫</strong></td><td>寄生</td><td>寄生在人体小肠</td></tr>
+          <tr><td><strong>蛲虫</strong></td><td>寄生</td><td>寄生在人体大肠</td></tr>
+        </table>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 有口有肛门</div>
+          <p><strong>有口有肛门：</strong>食物从口进入，残渣从肛门排出，消化过程更加完善，是动物进化的重要特征。</p>
+          <p style="margin-top: 6px;"><strong>意义：</strong>使消化过程更加完善，提高了消化效率。</p>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 蛔虫病预防</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>❌ 注意个人卫生，饭前便后洗手</li>
+            <li>❌ 不喝生水，不吃未洗净的蔬菜水果</li>
+            <li>❌ 粪便无害化处理</li>
+            <li>✅ 定期驱虫治疗</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑨ 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✍️</span> 后测：巩固提升</h2>
+      
+      <div class="quiz-box">
+        <h3>1. 【中考真题】蛔虫体表的角质层的作用是？<span class="difficulty-badge difficulty-提高">中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 角质层的主要作用不是帮助运动。">
+            <span class="opt-letter">A</span> 帮助运动
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')">
+            <span class="opt-letter">B</span> 抵抗消化液
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 蛔虫没有专门的呼吸器官。">
+            <span class="opt-letter">C</span> 帮助呼吸
+          </div>
+        </div>
+        <div class="feedback" id="feedback-post1"></div>
+        <div class="answer-explanation" id="explanation-post1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 抵抗消化液</strong></p>
+          <p style="margin-top: 8px;">蛔虫体表的<strong>角质层</strong>能抵抗人体消化液的侵蚀，保护蛔虫在肠道内生存。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑩ 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">📊</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <h3 style="color: #2e7d32; margin-bottom: 16px;">📈 近5年中考考频统计</h3>
+        <div class="exam-card" style="background: linear-gradient(135deg, #e8f5e9, #f1f8e9);">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background: #2e7d32;">1</span>
+            <span style="font-weight: 700; color: #2e7d32;">有口有肛门的意义</span>
+            <span class="exam-tag" style="background: #f44336;">高频考点</span>
+          </div>
+          <p style="color: #1b5e20; font-size: 14px; margin-top: 8px;">
+            • 消化过程完善<br>
+            • 动物进化的重要特征<br>
+            • 提高消化效率
+          </p>
+        </div>
+
+        <div class="exam-card" style="background: linear-gradient(135deg, #e8f5e9, #f1f8e9);">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background: #388e3c;">2</span>
+            <span style="font-weight: 700; color: #2e7d32;">蛔虫的寄生特点</span>
+            <span class="exam-tag" style="background: #ff9800;">常考</span>
+          </div>
+          <p style="color: #1b5e20; font-size: 14px; margin-top: 8px;">
+            • 体表有角质层<br>
+            • 生殖器官发达<br>
+            • 运动器官退化
+          </p>
+        </div>
+
+        <div class="exam-card" style="background: linear-gradient(135deg, #e8f5e9, #f1f8e9);">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background: #43a047;">3</span>
+            <span style="font-weight: 700; color: #2e7d32;">蛔虫病的预防</span>
+            <span class="exam-tag" style="background: #4caf50;">一般</span>
+          </div>
+          <p style="color: #1b5e20; font-size: 14px; margin-top: 8px;">
+            • 注意个人卫生<br>
+            • 粪便无害化处理<br>
+            • 定期驱虫
+          </p>
+        </div>
+
+        <div class="concept-box" style="margin-top: 20px;">
+          <div class="label">📌 必背结论</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>线形动物的主要特征：身体细长、圆柱形、有口有肛门</li>
+            <li>有口有肛门是进化的特征</li>
+            <li>蛔虫体表有角质层，能抵抗消化液</li>
+          </ul>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 易错警示</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>❌ 线形动物有口有肛门（扁形动物有口无肛门）</li>
+            <li>❌ 蛔虫寄生在人体小肠内</li>
+            <li>❌ 角质层的作用是保护，不是运动</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <p>初中8年级生物 · 第2章 动物的主要类群 · TeachAny v7.14.0</p>
+  </footer>
+
+  <script>
+    // 问题锚点选择
+    function selectAnchor(btn, index) {
+      document.querySelectorAll('.anchor-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      
+      const questions = [
+        '线形动物的主要特征：①身体细长，呈<strong>圆柱形</strong>；②体表有<strong>角质层</strong>；③有口有肛门。有口有肛门是线形动物比扁形动物高等的特征。',
+        '蛔虫适应寄生生活的特点：①体表有角质层，能抵抗消化液；②消化器官简单；③生殖器官发达；④运动器官退化。',
+        '预防蛔虫病：①注意个人卫生，饭前便后洗手；②不喝生水，不吃未洗净的蔬菜水果；③粪便无害化处理。'
+      ];
+      
+      document.getElementById('anchor-display').innerHTML = 
+        '<div style="background: linear-gradient(135deg, #e8f5e9, #f1f8e9); padding: 16px; border-radius: 12px; border-left: 4px solid #2e7d32;">' +
+        '<p style="color: #1b5e20; line-height: 1.8;">' + questions[index-1] + '</p></div>';
+    }
+    
+    function handleCustomQuestion(value) {
+      if (value.trim()) {
+        document.getElementById('anchor-feedback').style.display = 'block';
+        document.getElementById('anchor-feedback').innerHTML = 
+          '你提出了一个很好的问题："' + value + '"。让我们在后续的学习中一起探索这个问题。';
+      } else {
+        document.getElementById('anchor-feedback').style.display = 'none';
+      }
+    }
+    
+    function checkAnswer(option, isCorrect, questionId, letter) {
+      const questionContainer = option.closest('.quiz-box');
+      const options = questionContainer.querySelectorAll('.quiz-option');
+      
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'wrong');
+      });
+      
+      const explanationId = 'explanation-' + questionId;
+      const explanation = document.getElementById(explanationId);
+      if (explanation) {
+        explanation.classList.add('show');
+      }
+      
+      const feedbackId = 'feedback-' + questionId;
+      const feedback = document.getElementById(feedbackId);
+      
+      if (isCorrect) {
+        option.classList.add('correct');
+        if (feedback) {
+          feedback.className = 'feedback show correct-fb';
+          feedback.innerHTML = '✅ 答对了！可以点错误选项看看错在哪。';
+        }
+      } else {
+        option.classList.add('wrong');
+        if (feedback) {
+          feedback.className = 'feedback show wrong-fb';
+          feedback.innerHTML = option.getAttribute('data-feedback') || '❌ 这个答案不正确，再想想看。';
+        }
+      }
+    }
+  </script>
+
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

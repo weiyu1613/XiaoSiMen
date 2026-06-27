@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第7章：南方地区 - 初中8年级地理</title>
+  <link rel="stylesheet" href="../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0369a1;
+      --primary-light: #0284c7;
+      --primary-dark: #0c4a6e;
+      --secondary: #bae6fd;
+      --bg-light: #f0f9ff;
+      --bg-card: #ffffff;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --shadow-sm: 0 2px 8px rgba(3, 105, 161, 0.08);
+      --shadow-md: 0 4px 20px rgba(3, 105, 161, 0.12);
+      --shadow-lg: 0 8px 32px rgba(3, 105, 161, 0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(3, 105, 161,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    /* ====== Hero Section ====== */
+    .hero-section {
+      background: linear-gradient(135deg, #0c4a6e 0%, var(--primary) 30%, var(--primary-light) 70%, #0ea5e9 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+    .hero-icon { font-size: 64px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      letter-spacing: 3px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      margin-bottom: 24px;
+    }
+
+    /* 南方地区知识要点 */
+    .key-points {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 24px 0;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .key-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.3);
+      min-width: 120px;
+    }
+
+    .key-point-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .key-point-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* 进度条 */
+    .progress-container {
+      max-width: 600px;
+      margin: 24px auto 0;
+      text-align: left;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    .progress-track {
+      height: 8px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #fbbf24);
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    /* ====== Timeline Navigation ====== */
+    .timeline-nav {
+      background: white;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .timeline-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .timeline-node {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      padding: 10px 16px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      background: var(--bg-light);
+    }
+    .timeline-node:hover { background: rgba(3, 105, 161,0.08); }
+    .timeline-node.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .timeline-node .t-num { font-size: 0.75rem; font-weight: 600; opacity: 0.7; }
+    .timeline-node .t-name { font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+    .timeline-node .t-icon { font-size: 24px; }
+    .timeline-node .t-count { font-size: 0.7rem; opacity: 0.8; }
+
+    /* ====== Main Content ====== */
+    .main-content { max-width: 1400px; margin: 0 auto; padding: 32px 20px; }
+
+    /* ====== Accordion ====== */
+    .accordion-item {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      border: 1px solid rgba(3, 105, 161, 0.08);
+    }
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+    }
+    .accordion-header:hover { filter: brightness(1.05); }
+    .accordion-item:not(.active) .accordion-header { background: var(--bg-light); color: var(--text-dark); }
+    .accordion-item.active .accordion-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+    .accordion-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .accordion-item:not(.active) .accordion-icon { background: rgba(3, 105, 161,0.1); }
+    .accordion-info { flex: 1; }
+    .accordion-title { font-size: 1.2rem; font-weight: 700; }
+    .accordion-subtitle { font-size: 0.85rem; opacity: 0.85; margin-top: 2px; }
+    .accordion-meta { display: flex; gap: 16px; font-size: 0.85rem; margin-top: 6px; }
+    .accordion-meta span { display: flex; align-items: center; gap: 4px; }
+    .accordion-arrow { font-size: 20px; transition: transform 0.3s ease; }
+    .accordion-item.active .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .accordion-item.active .accordion-body { max-height: 2000px; }
+
+    /* ====== Lessons Grid ====== */
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      padding: 20px 24px;
+    }
+    .lesson-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: white;
+      border: 1px solid rgba(3, 105, 161,0.12);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+    .lesson-card:hover {
+      background: rgba(3, 105, 161,0.04);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    .lesson-num {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .lesson-info { flex: 1; }
+    .lesson-title { font-size: 0.95rem; font-weight: 600; }
+    .lesson-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    .lesson-arrow { color: var(--primary); font-size: 1.1rem; }
+
+    /* ====== Chapter Info ====== */
+    .chapter-info {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 20px 0;
+    }
+    .info-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(3, 105, 161,0.08);
+    }
+    .info-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      background: var(--bg-light);
+      border-radius: 10px;
+    }
+    .info-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .info-text h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+    .info-text p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ====== Footer ====== */
+    .footer {
+      background: var(--primary-dark);
+      color: white;
+      padding: 32px 20px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .footer p { margin: 4px 0; }
+    .footer .copyright { font-size: 0.85rem; opacity: 0.8; }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 1.6rem !important; letter-spacing: 1px; }
+      .hero-subtitle { font-size: 0.9rem !important; }
+      .hero-icon { font-size: 48px !important; }
+      .hero-section { padding: 40px 16px !important; }
+      .key-points { gap: 12px !important; }
+      .key-point { min-width: 100px; padding: 12px 8px !important; }
+      .lessons-grid { grid-template-columns: 1fr !important; }
+      .info-grid { grid-template-columns: 1fr !important; }
+      .timeline-container { gap: 4px !important; }
+      .timeline-node { padding: 8px 10px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+
+  <!-- ========== Hero区 ========== -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon"><i class="fa-solid fa-water"></i></div>
+      <h1 class="hero-title">第7章：南方地区</h1>
+      <p class="hero-subtitle">人教版八年级地理下册 · 南方地区</p>
+      <div class="key-points">
+        <div class="key-point">
+          <div class="key-point-icon"><i class="fa-solid fa-mountain"></i></div>
+          <div class="key-point-label">自然特征</div>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon"><i class="fa-solid fa-city"></i></div>
+          <div class="key-point-label">长江三角洲</div>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon"><i class="fa-solid fa-building"></i></div>
+          <div class="key-point-label">香港澳门</div>
+        </div>
+        <div class="key-point">
+          <div class="key-point-icon"><i class="fa-solid fa-island-tropical"></i></div>
+          <div class="key-point-label">台湾省</div>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="progress-info">
+          <span>本章进度</span>
+          <span>0 / 4 课时</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== 章节信息 ========== -->
+  <div class="chapter-info">
+    <div class="info-card">
+      <div class="info-title">
+        <i class="fa-solid fa-circle-info"></i> 本章学习要点
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-temperature-high"></i></div>
+          <div class="info-text">
+            <h4>气候特征</h4>
+            <p>亚热带季风气候为主，温暖湿润，雨量充沛</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-mountain"></i></div>
+          <div class="info-text">
+            <h4>地形特点</h4>
+            <p>西高东低，地形复杂，丘陵山地为主</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-wheat-awn"></i></div>
+          <div class="info-text">
+            <h4>农业生产</h4>
+            <p>水稻主产区，淡水渔业发达</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-industry"></i></div>
+          <div class="info-text">
+            <h4>经济特点</h4>
+            <p>长江三角洲城市群，外向型经济</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 课时列表 ========== -->
+  <div class="main-content">
+    <!-- 课时7.1 -->
+    <div class="accordion-item active">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-icon"><i class="fa-solid fa-seedling"></i></div>
+        <div class="accordion-info">
+          <div class="accordion-title">7.1 自然特征与农业</div>
+          <div class="accordion-subtitle">南方地区的自然特征及其对农业的影响</div>
+          <div class="accordion-meta">
+            <span><i class="fa-solid fa-clock"></i> 预计 45 分钟</span>
+            <span><i class="fa-solid fa-star"></i> 高频考点</span>
+            <span><i class="fa-solid fa-book"></i> 4 个知识点</span>
+          </div>
+        </div>
+        <div class="accordion-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="7.1_zrhy/7.1_zrhy.html" class="lesson-card">
+            <div class="lesson-num">1</div>
+            <div class="lesson-info">
+              <div class="lesson-title">自然特征与农业</div>
+              <div class="lesson-meta">气候 · 地形 · 农业</div>
+            </div>
+            <div class="lesson-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 课时7.2 -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-icon"><i class="fa-solid fa-city"></i></div>
+        <div class="accordion-info">
+          <div class="accordion-title">7.2 "鱼米之乡"——长江三角洲地区</div>
+          <div class="accordion-subtitle">长江三角洲的自然环境与区域发展</div>
+          <div class="accordion-meta">
+            <span><i class="fa-solid fa-clock"></i> 预计 45 分钟</span>
+            <span><i class="fa-solid fa-star"></i> 必考</span>
+            <span><i class="fa-solid fa-book"></i> 5 个知识点</span>
+          </div>
+        </div>
+        <div class="accordion-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="7.2_cjsjz/7.2_cjsjz.html" class="lesson-card">
+            <div class="lesson-num">1</div>
+            <div class="lesson-info">
+              <div class="lesson-title">长江三角洲地区</div>
+              <div class="lesson-meta">自然环境 · 城市群 · 一体化</div>
+            </div>
+            <div class="lesson-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 课时7.3 -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-icon"><i class="fa-solid fa-building"></i></div>
+        <div class="accordion-info">
+          <div class="accordion-title">7.3 "东方明珠"——香港和澳门</div>
+          <div class="accordion-subtitle">港澳的地理位置与经济特点</div>
+          <div class="accordion-meta">
+            <span><i class="fa-solid fa-clock"></i> 预计 45 分钟</span>
+            <span><i class="fa-solid fa-star"></i> 高频考点</span>
+            <span><i class="fa-solid fa-book"></i> 4 个知识点</span>
+          </div>
+        </div>
+        <div class="accordion-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="7.3_xgam/7.3_xgam.html" class="lesson-card">
+            <div class="lesson-num">1</div>
+            <div class="lesson-info">
+              <div class="lesson-title">香港和澳门</div>
+              <div class="lesson-meta">地理位置 · 一国两制 · 经济</div>
+            </div>
+            <div class="lesson-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 课时7.4 -->
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="accordion-icon"><i class="fa-solid fa-island-tropical"></i></div>
+        <div class="accordion-info">
+          <div class="accordion-title">7.4 祖国神圣的领土——台湾省</div>
+          <div class="accordion-subtitle">台湾的自然环境与经济发展</div>
+          <div class="accordion-meta">
+            <span><i class="fa-solid fa-clock"></i> 预计 45 分钟</span>
+            <span><i class="fa-solid fa-star"></i> 必考</span>
+            <span><i class="fa-solid fa-book"></i> 5 个知识点</span>
+          </div>
+        </div>
+        <div class="accordion-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="7.4_tw/7.4_tw.html" class="lesson-card">
+            <div class="lesson-num">1</div>
+            <div class="lesson-info">
+              <div class="lesson-title">台湾省</div>
+              <div class="lesson-meta">位置范围 · 自然环境 · 经济</div>
+            </div>
+            <div class="lesson-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+    <p class="copyright">基于 TeachAny v7.14.0 | 适配人教版八年级地理下册</p>
+  </footer>
+
+  <script>
+    function toggleAccordion(headerEl) {
+      const item = headerEl.closest('.accordion-item');
+      item.classList.toggle('active');
+    }
+
+    // 默认展开第一个
+    document.addEventListener('DOMContentLoaded', function() {
+      const firstItem = document.querySelector('.accordion-item');
+      if (firstItem) firstItem.classList.add('active');
+    });
+  </script>
+  <script src="../shared/mascot.js?v=8.0"></script>
+</body>
+</html>
+

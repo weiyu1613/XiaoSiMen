@@ -1,0 +1,494 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初中八年级历史 - 课件首页 | TeachAny</title>
+  <link rel="stylesheet" href="shared/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ====== v8.0 冲突修复（覆盖 shared/styles.css） ====== */
+    .accordion-body { max-height: none !important; overflow: visible !important; opacity: 1 !important; }
+    .accordion-body.open { max-height: none !important; }
+    .accordion-item { border: none !important; }
+    svg { width: auto !important; max-width: 100% !important; }
+    .accordion-header svg { width: auto !important; height: auto !important; }
+    :root {
+      --primary: #8B4513;
+      --primary-light: #A0522D;
+      --primary-dark: #5D2E0C;
+      --secondary: #D2691E;
+      --accent: #CD853F;
+      --bg-light: #FFF8F0;
+      --bg-card: #ffffff;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-sm: 0 2px 8px rgba(139,69,19,0.08);
+      --shadow-md: 0 4px 20px rgba(139,69,19,0.12);
+      --shadow-lg: 0 8px 32px rgba(139,69,19,0.16);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(139,69,19,0.05); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
+
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+      color: white; padding: 48px 20px; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero-section::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero-icon { font-size: 48px; margin-bottom: 16px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .hero-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+    .hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 16px; }
+    .hero-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .hero-badge { background: rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 20px; font-size: 0.85rem; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
+
+    .timeline-nav { background: white; padding: 16px 20px; box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 100; }
+    .timeline-container { max-width: 1400px; margin: 0 auto; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+    .timeline-node {
+      flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px;
+      cursor: pointer; padding: 10px 16px; border-radius: 12px; transition: all 0.3s ease;
+      border: 2px solid transparent; background: var(--bg-light);
+    }
+    .timeline-node:hover { background: rgba(139,69,19,0.08); }
+    .timeline-node.active { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
+    .timeline-node .t-num { font-size: 0.75rem; font-weight: 600; opacity: 0.7; }
+    .timeline-node .t-name { font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+    .timeline-node .t-icon { font-size: 24px; }
+    .timeline-node .t-count { font-size: 0.7rem; opacity: 0.8; }
+
+    .main-content { max-width: 1400px; margin: 0 auto; padding: 32px 20px; }
+
+    .accordion-item { background: white; border-radius: 16px; margin-bottom: 16px; box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid rgba(139,69,19,0.08); }
+    .accordion-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; cursor: pointer; transition: all 0.3s ease; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+    .accordion-header:hover { filter: brightness(1.05); }
+    .accordion-item:not(.active) .accordion-header { background: var(--bg-light); color: var(--text-dark); }
+    .accordion-item.active .accordion-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; }
+    .accordion-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .accordion-item:not(.active) .accordion-icon { background: rgba(139,69,19,0.1); }
+    .accordion-info { flex: 1; }
+    .accordion-title { font-size: 1.2rem; font-weight: 700; }
+    .accordion-subtitle { font-size: 0.85rem; opacity: 0.85; margin-top: 2px; }
+    .accordion-meta { display: flex; gap: 16px; font-size: 0.85rem; margin-top: 6px; }
+    .accordion-meta span { display: flex; align-items: center; gap: 4px; }
+    .accordion-arrow { font-size: 20px; transition: transform 0.3s ease; }
+    .accordion-item.active .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .accordion-item.active .accordion-body { max-height: 2000px; }
+
+    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; padding: 20px 24px; }
+    .lesson-card { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: var(--bg-light); border-radius: 12px; text-decoration: none; color: var(--text-dark); transition: all 0.3s ease; border: 1px solid transparent; }
+    .lesson-card:hover { background: linear-gradient(135deg, rgba(139,69,19,0.08), rgba(160,82,45,0.12)); border-color: rgba(139,69,19,0.2); transform: translateX(6px); color: var(--primary); }
+    .lesson-num { width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .lesson-info { flex: 1; }
+    .lesson-title { font-size: 0.95rem; font-weight: 600; line-height: 1.4; }
+    .lesson-arrow { opacity: 0; transform: translateX(-8px); transition: all 0.3s ease; color: var(--primary); }
+    .lesson-card:hover .lesson-arrow { opacity: 1; transform: translateX(0); }
+
+    .unit-actions { display: flex; gap: 12px; padding: 0 24px 20px; }
+    .unit-btn { flex: 1; padding: 12px 18px; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .unit-btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; box-shadow: 0 4px 12px rgba(139,69,19,0.25); }
+    .unit-btn-primary:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(139,69,19,0.35); }
+    .unit-btn-secondary { background: var(--bg-light); color: var(--primary); border: 2px solid var(--primary); }
+    .unit-btn-secondary:hover { background: var(--primary); color: white; }
+
+    .footer { background: var(--text-dark); color: white; padding: 32px 20px; text-align: center; margin-top: 40px; }
+    .footer-text { opacity: 0.8; font-size: 0.85rem; margin-bottom: 8px; }
+    .footer-tech { display: flex; justify-content: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+    .footer-tech span { background: rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 16px; font-size: 0.8rem; }
+
+    * { -webkit-tap-highlight-color: transparent; }
+    a, button { -webkit-tap-highlight-color: rgba(139,69,19,0.1); }
+
+    @media (max-width: 1024px) { .lessons-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; } .accordion-meta { gap: 10px; font-size: 0.8rem; } }
+    @media (max-width: 768px) {
+      .hero-section { padding: 28px 16px; } .hero-title { font-size: 1.5rem; } .hero-subtitle { font-size: 0.9rem; } .hero-icon { font-size: 36px; }
+      .hero-badge { padding: 6px 12px; font-size: 0.75rem; } .hero-badges { gap: 8px; }
+      .timeline-nav { padding: 10px 12px; } .timeline-container { gap: 6px; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+      .timeline-node { padding: 8px 12px; border-radius: 10px; gap: 4px; min-width: 72px; }
+      .timeline-node .t-icon { font-size: 20px; } .timeline-node .t-num { font-size: 0.65rem; } .timeline-node .t-name { font-size: 0.75rem; } .timeline-node .t-count { font-size: 0.6rem; }
+      .main-content { padding: 16px 12px; } .accordion-item { margin-bottom: 12px; border-radius: 12px; }
+      .accordion-header { padding: 14px 14px; gap: 12px; } .accordion-icon { width: 40px; height: 40px; font-size: 20px; border-radius: 10px; }
+      .accordion-title { font-size: 1rem; } .accordion-subtitle { font-size: 0.78rem; } .accordion-meta { display: none; } .accordion-arrow { font-size: 16px; }
+      .lessons-grid { grid-template-columns: 1fr; gap: 8px; padding: 14px; }
+      .lesson-card { padding: 14px 14px; gap: 12px; border-radius: 10px; } .lesson-num { width: 28px; height: 28px; font-size: 0.75rem; }
+      .lesson-title { font-size: 0.9rem; } .lesson-arrow { display: none; }
+      .unit-actions { padding: 0 14px 14px; gap: 8px; } .unit-btn { padding: 12px 14px; font-size: 0.85rem; border-radius: 8px; }
+      .footer { padding: 24px 16px; margin-top: 24px; } .footer-text { font-size: 0.8rem; } .footer-tech { gap: 8px; } .footer-tech span { padding: 5px 10px; font-size: 0.72rem; }
+    }
+    @media (max-width: 380px) { .hero-title { font-size: 1.3rem; } .hero-badges { flex-direction: column; align-items: center; } .timeline-node { min-width: 64px; padding: 6px 8px; } .timeline-node .t-icon { font-size: 18px; } .accordion-header { padding: 12px 12px; } .accordion-title { font-size: 0.92rem; } .accordion-subtitle { font-size: 0.72rem; } }
+  </style>
+</head>
+<body>
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar" style="background:var(--primary);color:white;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;">
+    <div class="brand-logo" style="font-size:16px;font-weight:700;"><i class="fa-solid fa-landmark"></i> TeachAny · 初中历史</div>
+    <div class="brand-tag" style="background:rgba(255,255,255,0.2);padding:4px 10px;border-radius:12px;font-size:12px;">互动课件 v7.14</div>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">📜</div>
+      <h1 class="hero-title">初中八年级历史</h1>
+      <p class="hero-subtitle">人教版 · 互动课件系统 · 全45课</p>
+      <div class="hero-badges">
+        <span class="hero-badge"><i class="fa-solid fa-landmark-open"></i> 45节精品课件</span>
+        <span class="hero-badge"><i class="fas fa-brain"></i> AI智能学伴</span>
+        <span class="hero-badge"><i class="fas fa-landmark"></i> 历史时空穿越</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Timeline Navigation -->
+  <nav class="timeline-nav">
+    <div class="timeline-container">
+      <div class="timeline-node active" data-unit="1"><span class="t-icon">⚔️</span><span class="t-num">第1单元</span><span class="t-name">中国开始沦为半殖民地半封建社会</span><span class="t-count">3节</span></div>
+      <div class="timeline-node" data-unit="2"><span class="t-icon">🔧</span><span class="t-num">第2单元</span><span class="t-name">近代化的早期探索与民族危机的加剧</span><span class="t-count">4节</span></div>
+      <div class="timeline-node" data-unit="3"><span class="t-icon">🏛️</span><span class="t-num">第3单元</span><span class="t-name">资产阶级民主革命与中华民国的建立</span><span class="t-count">4节</span></div>
+      <div class="timeline-node" data-unit="4"><span class="t-icon">✨</span><span class="t-num">第4单元</span><span class="t-name">新时代的曙光</span><span class="t-count">3节</span></div>
+      <div class="timeline-node" data-unit="5"><span class="t-icon">🤝</span><span class="t-num">第5单元</span><span class="t-name">从国共合作到国共对立</span><span class="t-count">3节</span></div>
+      <div class="timeline-node" data-unit="6"><span class="t-icon">🛡️</span><span class="t-num">第6单元</span><span class="t-name">中华民族的抗日战争</span><span class="t-count">5节</span></div>
+      <div class="timeline-node" data-unit="7"><span class="t-icon">🚩</span><span class="t-num">第7单元</span><span class="t-name">解放战争</span><span class="t-count">2节</span></div>
+      <div class="timeline-node" data-unit="8"><span class="t-icon">📈</span><span class="t-num">第8单元</span><span class="t-name">近代经济社会生活与教育文化事业的发展</span><span class="t-count">2节</span></div>
+      <div class="timeline-node" data-unit="9"><span class="t-icon">🇨🇳</span><span class="t-num">第9单元</span><span class="t-name">中华人民共和国的成立和巩固</span><span class="t-count">3节</span></div>
+      <div class="timeline-node" data-unit="10"><span class="t-icon">⚙️</span><span class="t-num">第10单元</span><span class="t-name">社会主义制度的建立与建设的探索</span><span class="t-count">3节</span></div>
+      <div class="timeline-node" data-unit="11"><span class="t-icon">🌟</span><span class="t-num">第11单元</span><span class="t-name">中国特色社会主义道路</span><span class="t-count">5节</span></div>
+      <div class="timeline-node" data-unit="12"><span class="t-icon">🔗</span><span class="t-num">第12单元</span><span class="t-name">民族团结与祖国统一</span><span class="t-count">3节</span></div>
+      <div class="timeline-node" data-unit="13"><span class="t-icon">🎖️</span><span class="t-num">第13单元</span><span class="t-name">国防建设与外交成就</span><span class="t-count">3节</span></div>
+      <div class="timeline-node" data-unit="14"><span class="t-icon">💡</span><span class="t-num">第14单元</span><span class="t-name">科技文化与社会生活</span><span class="t-count">2节</span></div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- 第1单元 -->
+    <div class="accordion-item active" id="unit-1">
+      <div class="accordion-header" onclick="toggleAccordion('unit-1')">
+        <div class="accordion-icon">⚔️</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第一单元：中国开始沦为半殖民地半封建社会（上册）</div>
+          <div class="accordion-subtitle">鸦片战争、第二次鸦片战争与太平天国运动</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 3节课</span><span><i class="fas fa-clock"></i> 第1-3课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="01_d1zgk/1.1_yhzz/yhzz.html" class="lesson-card"><span class="lesson-num">1</span><div class="lesson-info"><div class="lesson-title">鸦片战争</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="01_d1zgk/1.2_tjyt/tjyt.html" class="lesson-card"><span class="lesson-num">2</span><div class="lesson-info"><div class="lesson-title">第二次鸦片战争</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="01_d1zgk/1.3_ascz/ascz.html" class="lesson-card"><span class="lesson-num">3</span><div class="lesson-info"><div class="lesson-title">太平天国运动</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="01_d1zgk/d1zgk.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第2单元 -->
+    <div class="accordion-item" id="unit-2">
+      <div class="accordion-header" onclick="toggleAccordion('unit-2')">
+        <div class="accordion-icon">🔧</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第二单元：近代化的早期探索与民族危机的加剧（上册）</div>
+          <div class="accordion-subtitle">洋务运动、甲午战争、戊戌变法、抗击八国联军</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 4节课</span><span><i class="fas fa-clock"></i> 第4-7课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="02_d2jdq/2.1_yjwz/yjwz.html" class="lesson-card"><span class="lesson-num">4</span><div class="lesson-info"><div class="lesson-title">洋务运动</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="02_d2jdq/2.2_jwbd/jwbd.html" class="lesson-card"><span class="lesson-num">5</span><div class="lesson-info"><div class="lesson-title">甲午中日战争与瓜分中国狂潮</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="02_d2jdq/2.3_xchd/xchd.html" class="lesson-card"><span class="lesson-num">6</span><div class="lesson-info"><div class="lesson-title">戊戌变法</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="02_d2jdq/2.4_yhtm/yhtm.html" class="lesson-card"><span class="lesson-num">7</span><div class="lesson-info"><div class="lesson-title">抗击八国联军</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="02_d2jdq/02_d2jdq.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第3单元 -->
+    <div class="accordion-item" id="unit-3">
+      <div class="accordion-header" onclick="toggleAccordion('unit-3')">
+        <div class="accordion-icon">🏛️</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第三单元：资产阶级民主革命与中华民国的建立（上册）</div>
+          <div class="accordion-subtitle">孙中山、辛亥革命、中华民国创建、北洋政府</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 4节课</span><span><i class="fas fa-clock"></i> 第8-11课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="03_d3zcb/3.1_xmgh/3.1_xmgh.html" class="lesson-card"><span class="lesson-num">8</span><div class="lesson-info"><div class="lesson-title">革命先行者孙中山</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="03_d3zcb/3.2_xhgm/3.2_xhgm.html" class="lesson-card"><span class="lesson-num">9</span><div class="lesson-info"><div class="lesson-title">辛亥革命</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="03_d3zcb/3.3_ymdl/3.3_ymdl.html" class="lesson-card"><span class="lesson-num">10</span><div class="lesson-info"><div class="lesson-title">中华民国的创建</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="03_d3zcb/3.4_dyzc/3.4_dyzc.html" class="lesson-card"><span class="lesson-num">11</span><div class="lesson-info"><div class="lesson-title">北洋政府的黑暗统治</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="03_d3zcb/d3zcb.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第4单元 -->
+    <div class="accordion-item" id="unit-4">
+      <div class="accordion-header" onclick="toggleAccordion('unit-4')">
+        <div class="accordion-icon">✨</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第四单元：新时代的曙光（上册）</div>
+          <div class="accordion-subtitle">新文化运动、五四运动、中国共产党诞生</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 3节课</span><span><i class="fas fa-clock"></i> 第12-14课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="04_d4xsd/4.1_ysds/ysds.html" class="lesson-card"><span class="lesson-num">12</span><div class="lesson-info"><div class="lesson-title">新文化运动</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="04_d4xsd/4.2_wqyb/wqyb.html" class="lesson-card"><span class="lesson-num">13</span><div class="lesson-info"><div class="lesson-title">五四运动</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="04_d4xsd/4.3_zdcd/zdcd.html" class="lesson-card"><span class="lesson-num">14</span><div class="lesson-info"><div class="lesson-title">中国共产党诞生</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="04_d4xsd/d4xsd.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第5单元 -->
+    <div class="accordion-item" id="unit-5">
+      <div class="accordion-header" onclick="toggleAccordion('unit-5')">
+        <div class="accordion-icon">🤝</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第五单元：从国共合作到国共对立（上册）</div>
+          <div class="accordion-subtitle">北伐战争、井冈山道路、红军长征</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 3节课</span><span><i class="fas fa-clock"></i> 第15-17课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="05_d5cg/5.1_gqhz/gqhz.html" class="lesson-card"><span class="lesson-num">15</span><div class="lesson-info"><div class="lesson-title">国共合作与北伐战争</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="05_d5cg/5.2_ngzj/ngzj.html" class="lesson-card"><span class="lesson-num">16</span><div class="lesson-info"><div class="lesson-title">毛泽东开辟井冈山道路</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="05_d5cg/5.3_zgdl/zgdl.html" class="lesson-card"><span class="lesson-num">17</span><div class="lesson-info"><div class="lesson-title">中国工农红军长征</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="05_d5cg/d5cg.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第6单元 -->
+    <div class="accordion-item" id="unit-6">
+      <div class="accordion-header" onclick="toggleAccordion('unit-6')">
+        <div class="accordion-icon">🛡️</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第六单元：中华民族的抗日战争（上册）</div>
+          <div class="accordion-subtitle">九一八事变、全民族抗战、正面战场、敌后战场、抗战胜利</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 5节课</span><span><i class="fas fa-clock"></i> 第18-22课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="06_d6zhn/6.1_krzb/krzb.html" class="lesson-card"><span class="lesson-num">18</span><div class="lesson-info"><div class="lesson-title">九一八事变与西安事变</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="06_d6zhn/6.2_qrzz/qrzz.html" class="lesson-card"><span class="lesson-num">19</span><div class="lesson-info"><div class="lesson-title">七七事变与全民族抗战</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="06_d6zhn/6.3_bfzz/bfzz.html" class="lesson-card"><span class="lesson-num">20</span><div class="lesson-info"><div class="lesson-title">正面战场的抗战</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="06_d6zhn/6.4_dqzz/dqzz.html" class="lesson-card"><span class="lesson-num">21</span><div class="lesson-info"><div class="lesson-title">敌后战场的抗战</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="06_d6zhn/6.5_krsh/krsh.html" class="lesson-card"><span class="lesson-num">22</span><div class="lesson-info"><div class="lesson-title">抗日战争的胜利</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="06_d6zhn/d6zhn.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第7单元 -->
+    <div class="accordion-item" id="unit-7">
+      <div class="accordion-header" onclick="toggleAccordion('unit-7')">
+        <div class="accordion-icon">🚩</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第七单元：解放战争（上册）</div>
+          <div class="accordion-subtitle">内战爆发、人民解放战争的胜利</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 2节课</span><span><i class="fas fa-clock"></i> 第23-24课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="07_d7jf/7.1_zmjd/zmjd.html" class="lesson-card"><span class="lesson-num">23</span><div class="lesson-info"><div class="lesson-title">内战爆发</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="07_d7jf/7.2_zjyb/zjyb.html" class="lesson-card"><span class="lesson-num">24</span><div class="lesson-info"><div class="lesson-title">人民解放战争的胜利</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="07_d7jf/d7jf.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第8单元 -->
+    <div class="accordion-item" id="unit-8">
+      <div class="accordion-header" onclick="toggleAccordion('unit-8')">
+        <div class="accordion-icon">📈</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第八单元：近代经济、社会生活与教育文化事业的发展（上册）</div>
+          <div class="accordion-subtitle">经济社会生活变化、教育文化事业发展</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 2节课</span><span><i class="fas fa-clock"></i> 第25-26课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="08_d8jd/8.1_jjjc/jjjc.html" class="lesson-card"><span class="lesson-num">25</span><div class="lesson-info"><div class="lesson-title">经济和社会生活的变化</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="08_d8jd/8.2_jywh/jywh.html" class="lesson-card"><span class="lesson-num">26</span><div class="lesson-info"><div class="lesson-title">教育文化事业的发展</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="08_d8jd/d8jd.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第9单元 -->
+    <div class="accordion-item" id="unit-9">
+      <div class="accordion-header" onclick="toggleAccordion('unit-9')">
+        <div class="accordion-icon">🇨🇳</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第九单元：中华人民共和国的成立和巩固（下册）</div>
+          <div class="accordion-subtitle">新中国成立、抗美援朝、土地改革</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 3节课</span><span><i class="fas fa-clock"></i> 第27-29课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="09_d9zhn/9.1_zgcf/zgcf.html" class="lesson-card"><span class="lesson-num">27</span><div class="lesson-info"><div class="lesson-title">中华人民共和国成立</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="09_d9zhn/9.2_zgxg/zgxg.html" class="lesson-card"><span class="lesson-num">28</span><div class="lesson-info"><div class="lesson-title">抗美援朝</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="09_d9zhn/9.3_tgzz/tgzz.html" class="lesson-card"><span class="lesson-num">29</span><div class="lesson-info"><div class="lesson-title">土地改革</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="09_d9zhn/d9zhn.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第10单元 -->
+    <div class="accordion-item" id="unit-10">
+      <div class="accordion-header" onclick="toggleAccordion('unit-10')">
+        <div class="accordion-icon">⚙️</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第十单元：社会主义制度的建立与社会主义建设的探索（下册）</div>
+          <div class="accordion-subtitle">工业化起步、三大改造、艰辛探索与建设成就</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 3节课</span><span><i class="fas fa-clock"></i> 第30-32课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="10_d10shz/10.1_ygjd/ygjd.html" class="lesson-card"><span class="lesson-num">30</span><div class="lesson-info"><div class="lesson-title">工业化的起步和人民代表大会制度的确立</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="10_d10shz/10.2_sajt/sajt.html" class="lesson-card"><span class="lesson-num">31</span><div class="lesson-info"><div class="lesson-title">三大改造</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="10_d10shz/10.3_wwks/wwks.html" class="lesson-card"><span class="lesson-num">32</span><div class="lesson-info"><div class="lesson-title">艰辛探索与建设成就</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="10_d10shz/d10shz.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第11单元 -->
+    <div class="accordion-item" id="unit-11">
+      <div class="accordion-header" onclick="toggleAccordion('unit-11')">
+        <div class="accordion-icon">🌟</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第十一单元：中国特色社会主义道路（下册）</div>
+          <div class="accordion-subtitle">历史转折、经济体制改革、对外开放、中国梦</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 5节课</span><span><i class="fas fa-clock"></i> 第33-37课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="11_d11zg/11.1_ggkf/index.html" class="lesson-card"><span class="lesson-num">33</span><div class="lesson-info"><div class="lesson-title">伟大的历史转折</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="11_d11zg/11.2_jjyf/index.html" class="lesson-card"><span class="lesson-num">34</span><div class="lesson-info"><div class="lesson-title">经济体制改革</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="11_d11zg/11.3_dwmy/index.html" class="lesson-card"><span class="lesson-num">35</span><div class="lesson-info"><div class="lesson-title">对外开放</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="11_d11zg/11.4_jslt/index.html" class="lesson-card"><span class="lesson-num">36</span><div class="lesson-info"><div class="lesson-title">建设中国特色社会主义</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="11_d11zg/11.5_mzfz/index.html" class="lesson-card"><span class="lesson-num">37</span><div class="lesson-info"><div class="lesson-title">为实现中国梦而努力奋斗</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="11_d11zg/index.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第12单元 -->
+    <div class="accordion-item" id="unit-12">
+      <div class="accordion-header" onclick="toggleAccordion('unit-12')">
+        <div class="accordion-icon">🔗</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第十二单元：民族团结与祖国统一（下册）</div>
+          <div class="accordion-subtitle">民族大团结、港澳回归、海峡两岸交往</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 3节课</span><span><i class="fas fa-clock"></i> 第38-40课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="12_d12mz/12.1_mzyt/index.html" class="lesson-card"><span class="lesson-num">38</span><div class="lesson-info"><div class="lesson-title">民族大团结</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="12_d12mz/12.2_gjyt/index.html" class="lesson-card"><span class="lesson-num">39</span><div class="lesson-info"><div class="lesson-title">香港和澳门回归祖国</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="12_d12mz/12.3_yzyt/index.html" class="lesson-card"><span class="lesson-num">40</span><div class="lesson-info"><div class="lesson-title">海峡两岸的交往</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="12_d12mz/index.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第13单元 -->
+    <div class="accordion-item" id="unit-13">
+      <div class="accordion-header" onclick="toggleAccordion('unit-13')">
+        <div class="accordion-icon">🎖️</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第十三单元：国防建设与外交成就（下册）</div>
+          <div class="accordion-subtitle">钢铁长城、独立自主和平外交、外交事业发展</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 3节课</span><span><i class="fas fa-clock"></i> 第41-43课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="13_d13gf/13.1_gfjz/index.html" class="lesson-card"><span class="lesson-num">41</span><div class="lesson-info"><div class="lesson-title">钢铁长城</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="13_d13gf/13.2_wjwc/index.html" class="lesson-card"><span class="lesson-num">42</span><div class="lesson-info"><div class="lesson-title">独立自主的和平外交</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="13_d13gf/13.3_hjcd/index.html" class="lesson-card"><span class="lesson-num">43</span><div class="lesson-info"><div class="lesson-title">外交事业的发展</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="13_d13gf/index.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+    <!-- 第14单元 -->
+    <div class="accordion-item" id="unit-14">
+      <div class="accordion-header" onclick="toggleAccordion('unit-14')">
+        <div class="accordion-icon">💡</div>
+        <div class="accordion-info">
+          <div class="accordion-title">第十四单元：科技文化与社会生活（下册）</div>
+          <div class="accordion-subtitle">科技文化成就、社会生活的变迁</div>
+          <div class="accordion-meta"><span><i class="fa-solid fa-landmark"></i> 2节课</span><span><i class="fas fa-clock"></i> 第44-45课</span></div>
+        </div>
+        <i class="fas fa-chevron-down accordion-arrow"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="lessons-grid">
+          <a href="14_d14kj/14.1_kjwh/index.html" class="lesson-card"><span class="lesson-num">44</span><div class="lesson-info"><div class="lesson-title">科技文化成就</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+          <a href="14_d14kj/14.2_shsh/index.html" class="lesson-card"><span class="lesson-num">45</span><div class="lesson-info"><div class="lesson-title">社会生活的变迁</div></div><i class="fas fa-chevron-right lesson-arrow"></i></a>
+        </div>
+        <div class="unit-actions"><a href="14_d14kj/index.html" class="unit-btn unit-btn-primary"><i class="fas fa-play"></i> 进入学习</a></div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">初中八年级历史互动课件系统 · 人教版 · TeachAny v7.14.0</p>
+    <div class="footer-tech">
+      <span><i class="fas fa-brain"></i> AI智能</span>
+      <span><i class="fas fa-landmark"></i> 历史时空</span>
+      <span><i class="fas fa-mobile-alt"></i> 响应式设计</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAccordion(id) {
+      const item = document.getElementById(id);
+      const wasActive = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+      if (!wasActive) { item.classList.add('active'); const nav = document.querySelector('.timeline-nav'); const navH = nav ? nav.offsetHeight : 0; const itemTop = item.getBoundingClientRect().top + window.pageYOffset; window.scrollTo({ top: Math.max(0, itemTop - navH - 20), behavior: 'smooth' }); }
+      const unitNum = id.replace('unit-', '');
+      document.querySelectorAll('.timeline-node').forEach(node => { node.classList.toggle('active', node.dataset.unit === unitNum); });
+    }
+    document.querySelectorAll('.timeline-node').forEach(node => { node.addEventListener('click', () => { toggleAccordion('unit-' + node.dataset.unit); }); });
+  </script>
+
+  <script src="shared/mascot.js?v=8.0"></script>
+</body>
+</html>

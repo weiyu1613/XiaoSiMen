@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="geo-water-resource-8">
+  <meta name="course-title" content="3.3 水资源">
+  <meta name="course-subject" content="geography">
+  <meta name="course-grade" content="middle-8">
+  <meta name="teachany-node" content="geo-water-resource">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表 -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>3.3 水资源 | 初中8年级地理</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    
+    /* 水资源分布SVG */
+    .china-water-map { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 20px; }
+    
+    /* 跨流域调水表格 */
+    .water-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .water-table th { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; padding: 12px; text-align: center; }
+    .water-table td { padding: 10px; border: 1px solid #bae6fd; text-align: center; }
+    .water-table tr:nth-child(even) { background: #f0f9ff; }
+    .water-table tr:hover { background: #e0f2fe; }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+
+    .difficulty-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px;
+    }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px;
+      padding: 20px; margin: 20px 0; text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption { margin-top: 12px; font-size: 14px; color: #0369a1; text-align: center; }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #93c5fd;
+      background: #eff6ff; color: #1e40af; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.28);
+      color: #1e40af;
+    }
+
+    /* 考点卡片 */
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag { color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* 分布区图例 */
+    .map-legend { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 12px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+    .legend-dot { width: 16px; height: 16px; border-radius: 4px; }
+
+    /* 南水北调路线标注 */
+    .route-label { font-size: 12px; font-weight: 600; }
+
+    /* NavBar styles */
+    .nav-bar { background: #f0f9ff; border-bottom: 2px solid #0369a1; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #0369a1; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .nav-btn:hover { background: #dbeafe; }
+    .nav-center { font-weight: 700; color: #0369a1; font-size: 14px; text-align: center; flex: 1; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
+    .hero-subtitle { margin-top: 12px; }
+
+    /* 进度条 */
+    .progress-bar { height: 4px; background: #e0f2fe; position: relative; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #0369a1, #0284c7); width: 12%; transition: width 0.3s; }
+    .progress-label { font-size: 12px; color: #0369a1; padding: 4px 20px; background: #f0f9ff; }
+
+    /* 品牌栏 */
+    .brand-bar { background: #0369a1; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+
+    /* 章节标题 */
+    .section-title { font-size: 1.5rem; color: #0369a1; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #bae6fd; }
+    .section-title .num { margin-right: 8px; }
+
+    /* 卡片 */
+    .card { background: white; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(3,105,161,0.1); }
+
+    /* 问题锚点 */
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #dbeafe, #eff6ff); border: 2px solid #93c5fd; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #1e40af; transition: all 0.2s; text-align: center; }
+    .anchor-btn:hover { background: linear-gradient(135deg, #bfdbfe, #dbeafe); border-color: #60a5fa; }
+    .anchor-btn.selected { background: linear-gradient(135deg, #0369a1, #0284c7); color: white; border-color: #0369a1; }
+
+    /* 测验选项 */
+    .quiz-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e0f2fe; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #93c5fd; background: #f0f9ff; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #0369a1; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+
+    /* 反馈 */
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+
+    /* 概念框 */
+    .concept-box { background: #eff6ff; border-left: 4px solid #0369a1; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #0369a1; margin-bottom: 8px; }
+
+    /* 警告框 */
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+
+    /* 时空对比框 */
+    .compare-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .compare-box .time-box { background: #fefce8; border: 1px solid #fde68a; border-radius: 8px; padding: 14px; }
+    .compare-box .space-box { background: #eff6ff; border: 1px solid #93c5fd; border-radius: 8px; padding: 14px; }
+
+    /* 页脚 */
+    .footer { background: #0369a1; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    
+    /* ====== 手机端适配 ====== */
+    @media (max-width: 768px) {
+      .hero { padding: 20px 14px !important; }
+      .hero h1 { font-size: 1.3rem !important; }
+      .hero-subtitle { font-size: 0.88rem !important; }
+      .hero-icon { font-size: 36px !important; }
+
+      .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+      .section-title { font-size: 1.15rem !important; }
+      .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+      .card { border-radius: 12px !important; padding: 14px !important; }
+
+      .anchor-points { flex-direction: column !important; gap: 6px !important; }
+      .anchor-btn {
+        width: 100% !important; padding: 10px 12px !important;
+        font-size: 0.82rem !important; justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      .quiz-option { padding: 12px 12px !important; font-size: 0.88rem !important; border-radius: 10px !important; }
+      .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+      .svg-container { padding: 12px !important; border-radius: 8px !important; }
+      .svg-container svg { max-width: 100% !important; height: auto !important; display: block !important; margin: 0 auto !important; }
+
+      .water-table { display: block !important; overflow-x: auto !important; font-size: 12px !important; }
+
+      .compare-box { grid-template-columns: 1fr !important; }
+      
+      .concept-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+      .warn-box { padding: 12px 14px !important; font-size: 0.88rem !important; }
+
+      .exam-card { padding: 14px !important; }
+      
+      .nav-inner { flex-direction: column !important; gap: 6px !important; }
+
+      .map-legend { gap: 8px !important; }
+      .legend-item { font-size: 11px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
+    <div class="brand-tag">互动课件 v7.14</div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-label" id="progress-label">第 3/3 节 · 100%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d3zg.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <div class="nav-center">第三单元：中国的自然资源</div>
+    <a href="../3.2_td/td.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <a href="#" class="nav-btn" style="opacity:0.5;cursor:not-allowed;">最后一节 <i class="fa-solid fa-chevron-right"></i></a>
+  </div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-droplet"></i> 八年级地理 · 第三章</div>
+      <h1>3.3 水资源<span>Water Resources</span></h1>
+      <p class="hero-subtitle">
+        📖 课标要求：知道我国水资源的时空分布特点及其影响，了解解决措施<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图 ========== -->
+  <section class="section" id="hero-infographic">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#f0f9ff"/>
+        <!-- 中心主题：水资源 -->
+        <circle cx="400" cy="150" r="60" fill="#0369a1" stroke="#075985" stroke-width="3"/>
+        <text x="400" y="145" text-anchor="middle" font-size="17" font-weight="bold" fill="white">水资源</text>
+        <text x="400" y="163" text-anchor="middle" font-size="11" fill="#bfdbfe">Water Resources</text>
+        
+        <!-- 四个分支 -->
+        <rect x="50" y="40" width="140" height="70" rx="10" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+        <text x="120" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="white">时空分布</text>
+        <text x="120" y="88" text-anchor="middle" font-size="11" fill="#e0f2fe">夏秋多/南丰北缺</text>
+        <line x1="190" y1="75" x2="340" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="50" y="190" width="140" height="70" rx="10" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+        <text x="120" y="220" text-anchor="middle" font-size="13" font-weight="bold" fill="white">分布不均的影响</text>
+        <text x="120" y="238" text-anchor="middle" font-size="11" fill="#e0f2fe">旱涝/水土流失</text>
+        <line x1="190" y1="225" x2="340" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="40" width="140" height="70" rx="10" fill="#0ea5e9" stroke="#0369a1" stroke-width="2"/>
+        <text x="680" y="70" text-anchor="middle" font-size="13" font-weight="bold" fill="white">解决措施</text>
+        <text x="680" y="88" text-anchor="middle" font-size="11" fill="#e0f2fe">调水/水库/节水</text>
+        <line x1="610" y1="75" x2="460" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <rect x="610" y="190" width="140" height="70" rx="10" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+        <text x="680" y="220" text-anchor="middle" font-size="13" font-weight="bold" fill="white">节约用水</text>
+        <text x="680" y="238" text-anchor="middle" font-size="11" fill="#e0f2fe">技术/管理/意识</text>
+        <line x1="610" y1="225" x2="460" y2="150" stroke="#0369a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+        
+        <!-- 箭头定义 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#0369a1"/>
+          </marker>
+        </defs>
+      </svg>
+      <figcaption style="margin-top: 10px; color: #0369a1; font-size: 14px; text-align: center;">图3-1 水资源知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点 -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="我国水资源在时间和空间上分布有什么特点？">💧 我国水资源在时间和空间上分布有什么特点？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="水资源时空分布不均带来了哪些问题？">⚠️ 水资源时空分布不均带来了哪些问题？</button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="如何解决我国水资源问题？">🔧 如何解决我国水资源问题？</button>
+        </div>
+        <label style="display:block; margin-top: 18px; color: #0369a1;">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: #0369a1; text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道水资源的概念及主要组成</li>
+          <li>✅ 掌握我国水资源时间分布特点（夏秋多、冬春少）</li>
+          <li>✅ 掌握我国水资源空间分布特点（南丰北缺、东多西少）</li>
+          <li>✅ 了解解决水资源问题的措施（调水、水库、节水）</li>
+          <li>✅ 知道南水北调工程的三条线路</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测 -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1：水资源概念 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】下列哪项不属于陆地上的淡水资源？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 河流水是淡水资源的重要来源，属于陆地淡水资源！">
+            <span class="opt-letter">A</span> 河流水
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 淡水湖泊水是淡水资源的重要来源！">
+            <span class="opt-letter">B</span> 淡水湖泊水
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+            <span class="opt-letter">C</span> 海洋水
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 海洋水</strong></p>
+          <p style="margin-top: 8px;"><strong>陆地淡水资源</strong>主要来自河流水、淡水湖泊水和浅层地下水。海洋水占全球水量的<strong>96.5%</strong>，含盐量高，不能直接利用。</p>
+        </div>
+      </div>
+
+      <!-- 基础题2：时间分布 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】我国水资源时间分布的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 冬春多、夏秋少是错的，和实际情况相反！">
+            <span class="opt-letter">A</span> 冬春多、夏秋少
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+            <span class="opt-letter">B</span> 夏秋多、冬春少
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 均匀分布不符合实际情况，我国降水季节差异大！">
+            <span class="opt-letter">C</span> 四季均匀分布
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 夏秋多、冬春少</strong></p>
+          <p style="margin-top: 8px;">我国大部分地区受<strong>季风气候</strong>影响，降水集中在<strong>夏秋季节</strong>（6-9月），冬春季节降水少，导致水资源时间分布不均。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3：空间分布 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】我国水资源空间分布特点是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 南少北多是错误的，与实际情况相反！">
+            <span class="opt-letter">A</span> 南少北多
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 东西均匀分布不符合实际降水差异！">
+            <span class="opt-letter">B</span> 东多西少，分布均匀
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 南丰北缺、东多西少
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 南丰北缺、东多西少</strong></p>
+          <p style="margin-top: 8px;">受<strong>海陆位置</strong>和<strong>季风气候</strong>影响，南方降水多、北方降水少；东部距海近、降水多，西部距海远、降水少。</p>
+        </div>
+      </div>
+
+      <!-- 挑战题4：南水北调 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】南水北调工程中，从长江上游调水的线路是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 东线从扬州江都取水，不是上游！">
+            <span class="opt-letter">A</span> 东线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 中线从丹江口水库取水，位于汉江，不是长江上游！">
+            <span class="opt-letter">B</span> 中线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+            <span class="opt-letter">C</span> 西线
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 西线</strong></p>
+          <p style="margin-top: 8px;"><strong>南水北调</strong>工程分东、中、西三线：</p>
+          <ul style="margin-top:6px;padding-left:20px;line-height:1.8;">
+            <li><strong>东线：</strong>从扬州江都取水，利用京杭运河输水</li>
+            <li><strong>中线：</strong>从丹江口水库取水，自流北上</li>
+            <li><strong>西线：</strong>从长江上游（通天河等）调水入黄河上游</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 水资源概念 -->
+    <section class="section" id="section-concept">
+      <h2 class="section-title"><span class="num">💧</span> 水资源的概念</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 什么是水资源？</h3>
+        <p>水资源是指<strong>陆地上的淡水资源</strong>，是可供人类利用的淡水资源，主要包括：</p>
+        <ul style="padding-left: 20px; line-height: 1.8; margin-top: 12px;">
+          <li>🌊 <strong>河流水</strong> — 流动的水体（长江、黄河等）</li>
+          <li>🏞️ <strong>淡水湖泊水</strong> — 陆地上的淡水湖（鄱阳湖、洞庭湖等）</li>
+          <li>💧 <strong>浅层地下水</strong> — 地表以下第一个隔水层以上的水</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 地球水体构成</div>
+          <p>地球上的水97.5%是<strong>咸水（海水）</strong>，只有<strong>2.5%</strong>是淡水资源。</p>
+          <p style="margin-top: 8px;">淡水资源中，大部分以<strong>冰川</strong>形式存在，可直接利用的河流水和淡水湖泊水仅占<strong>约30%</strong>。</p>
+        </div>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 重要数据 · 记忆要点</div>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li>地球总水量中，海洋水占 <strong>96.5%</strong></li>
+            <li>淡水资源仅占 <strong>2.5%</strong></li>
+            <li>我国人均水资源仅为世界平均的 <strong>1/4</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 时空分布 -->
+    <section class="section" id="section-distribution">
+      <h2 class="section-title"><span class="num">📊</span> 水资源的时空分布</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 时间分布特点</h3>
+        <div class="compare-box">
+          <div class="time-box">
+            <h4 style="margin-bottom: 8px; color: #92400e;">⏰ 时间维度</h4>
+            <p><strong>夏秋多（6-9月）</strong></p>
+            <p>受夏季风影响，降水集中在夏秋季节，河流进入丰水期</p>
+            <p style="margin-top: 8px;"><strong>冬春少（10月-次年5月）</strong></p>
+            <p>冬季风干燥，降水少，河流进入枯水期</p>
+          </div>
+          <div class="space-box">
+            <h4 style="margin-bottom: 8px; color: #1e40af;">🗺️ 空间维度</h4>
+            <p><strong>南丰北缺</strong></p>
+            <p>南方年降水量>800mm，北方年降水量<400mm</p>
+            <p style="margin-top: 8px;"><strong>东多西少</strong></p>
+            <p>东部距海近、降水多，西部距海远、降水少</p>
+          </div>
+        </div>
+
+        <!-- 中国水资源分布图 SVG -->
+        <div class="svg-container" style="margin-top: 20px;">
+          <svg viewBox="0 0 700 420" width="700" height="420" xmlns="http://www.w3.org/2000/svg">
+            <!-- 背景 -->
+            <rect width="700" height="420" fill="#f0f9ff"/>
+            
+            <!-- 中国轮廓（简化） -->
+            <path d="M200,50 L300,40 L380,60 L420,100 L450,150 L480,200 L500,250 L480,300 L420,350 L350,380 L280,370 L220,340 L180,280 L150,220 L160,150 L170,100 Z" 
+                  fill="#bae6fd" stroke="#0369a1" stroke-width="2" opacity="0.5"/>
+            
+            <!-- 秦岭-淮河线 -->
+            <line x1="250" y1="140" x2="500" y2="200" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8,4"/>
+            <text x="510" y="195" font-size="13" fill="#92400e" font-weight="bold">秦岭-淮河</text>
+            <text x="515" y="210" font-size="11" fill="#92400e">800mm等降水量线</text>
+            
+            <!-- 丰水区（南方） -->
+            <ellipse cx="320" cy="280" rx="120" ry="90" fill="#0ea5e9" opacity="0.4" stroke="#0369a1" stroke-width="2"/>
+            <text x="320" y="275" text-anchor="middle" font-size="15" font-weight="bold" fill="#0369a1">丰水区</text>
+            <text x="320" y="295" text-anchor="middle" font-size="12" fill="#0284c7">年降水>800mm</text>
+            <text x="320" y="310" text-anchor="middle" font-size="11" fill="#0284c7">长江/珠江/淮河流域</text>
+            
+            <!-- 过渡区 -->
+            <rect x="300" y="150" width="150" height="80" rx="10" fill="#fde68a" opacity="0.5" stroke="#f59e0b" stroke-width="2"/>
+            <text x="375" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="#92400e">过渡区</text>
+            <text x="375" y="208" text-anchor="middle" font-size="11" fill="#b45309">400-800mm</text>
+            
+            <!-- 缺水区（北方） -->
+            <ellipse cx="280" cy="100" rx="100" ry="70" fill="#ef4444" opacity="0.3" stroke="#dc2626" stroke-width="2"/>
+            <text x="280" y="95" text-anchor="middle" font-size="15" font-weight="bold" fill="#dc2626">严重缺水区</text>
+            <text x="280" y="115" text-anchor="middle" font-size="12" fill="#b91c1c">年降水<400mm</text>
+            <text x="280" y="130" text-anchor="middle" font-size="11" fill="#b91c1c">黄河/海河/辽河流域</text>
+            
+            <!-- 西北干旱区 -->
+            <ellipse cx="150" cy="200" rx="60" ry="50" fill="#f97316" opacity="0.3" stroke="#ea580c" stroke-width="2"/>
+            <text x="150" y="195" text-anchor="middle" font-size="13" font-weight="bold" fill="#c2410c">干旱区</text>
+            <text x="150" y="215" text-anchor="middle" font-size="11" fill="#c2410c"><200mm</text>
+            
+            <!-- 图例 -->
+            <rect x="520" y="60" width="160" height="130" rx="8" fill="white" stroke="#bae6fd" stroke-width="1"/>
+            <text x="600" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">年降水量分布</text>
+            <rect x="535" y="95" width="20" height="14" rx="3" fill="#0ea5e9" opacity="0.6"/>
+            <text x="562" y="107" font-size="12" fill="#0369a1">丰水区（>800mm）</text>
+            <rect x="535" y="115" width="20" height="14" rx="3" fill="#fde68a" opacity="0.6"/>
+            <text x="562" y="127" font-size="12" fill="#92400e">过渡区（400-800mm）</text>
+            <rect x="535" y="135" width="20" height="14" rx="3" fill="#ef4444" opacity="0.4"/>
+            <text x="562" y="147" font-size="12" fill="#dc2626">缺水区（<400mm）</text>
+            <rect x="535" y="155" width="20" height="14" rx="3" fill="#f97316" opacity="0.4"/>
+            <text x="562" y="167" font-size="12" fill="#ea580c">干旱区（<200mm）</text>
+            
+            <!-- 标注：南丰北缺 -->
+            <text x="350" y="380" font-size="14" font-weight="bold" fill="#0369a1">← 南方：丰水区（占80%）</text>
+            <text x="250" y="400" font-size="14" font-weight="bold" fill="#dc2626">← 北方：缺水区（占20%）</text>
+          </svg>
+          <p class="svg-caption">图3-2 中国水资源分布图（按年降水量划分）</p>
+        </div>
+
+        <!-- 时空分布对比表 -->
+        <table class="water-table" style="margin-top: 20px;">
+          <tr><th colspan="2">分布类型</th><th>特点</th><th>原因</th></tr>
+          <tr>
+            <td rowspan="2"><strong>时间分布</strong></td>
+            <td>夏秋多</td>
+            <td>降水集中在6-9月</td>
+            <td>受夏季风影响</td>
+          </tr>
+          <tr>
+            <td>冬春少</td>
+            <td>降水少，河流枯水期长</td>
+            <td>受冬季风影响</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>空间分布</strong></td>
+            <td>南丰北缺</td>
+            <td>南方降水多、北方降水少</td>
+            <td>季风气候 + 海陆位置</td>
+          </tr>
+          <tr>
+            <td>东多西少</td>
+            <td>东部距海近、西部距海远</td>
+            <td>距海远近决定降水</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 解决措施 -->
+    <section class="section" id="section-solutions">
+      <h2 class="section-title"><span class="num">🔧</span> 解决措施</h2>
+      
+      <div class="card">
+        <h3 style="margin-top: 20px; color: #0369a1;">📖 应对水资源时空分布不均</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;">
+          <div style="background:#eff6ff;border:1px solid #93c5fd;border-radius:8px;padding:16px;">
+            <h4 style="color:#1e40af;">⏰ 时间维度</h4>
+            <p style="font-size:14px;margin-top:8px;"><strong>修建水库</strong></p>
+            <ul style="padding-left:20px;line-height:1.8;font-size:13px;">
+              <li>在河流上游修建水库</li>
+              <li>雨季蓄水、旱季放水</li>
+              <li>调节水资源时间分配</li>
+              <li>如：三峡水库、丹江口水库</li>
+            </ul>
+          </div>
+          <div style="background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:16px;">
+            <h4 style="color:#92400e;">🗺️ 空间维度</h4>
+            <p style="font-size:14px;margin-top:8px;"><strong>跨流域调水</strong></p>
+            <ul style="padding-left:20px;line-height:1.8;font-size:13px;">
+              <li>将水资源从多水区调到缺水区</li>
+              <li>改变水资源空间分布</li>
+              <li>代表工程：南水北调</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 24px; color: #0369a1;">📖 南水北调工程</h3>
+        <p>南水北调工程是<strong>世界上规模最大</strong>的跨流域调水工程，将<strong>长江流域</strong>的水调往<strong>华北和西北地区</strong>。</p>
+        
+        <!-- 南水北调路线图 SVG -->
+        <div class="svg-container" style="margin-top: 16px;">
+          <svg viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+            <rect width="800" height="400" fill="#f0f9ff"/>
+            
+            <!-- 长江干流 -->
+            <path d="M200,50 Q250,100 300,150 Q350,200 400,250 Q450,280 500,320" 
+                  stroke="#0ea5e9" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <text x="280" y="60" font-size="12" fill="#0369a1" font-weight="bold">长江</text>
+            
+            <!-- 黄河 -->
+            <path d="M150,150 Q250,170 350,200 Q450,230 550,200 Q600,185 650,180" 
+                  stroke="#f59e0b" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <text x="350" y="165" font-size="12" fill="#92400e" font-weight="bold">黄河</text>
+            
+            <!-- 淮河 -->
+            <path d="M350,200 Q400,220 450,230 Q500,240 550,230" 
+                  stroke="#0ea5e9" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="4,2"/>
+            <text x="460" y="218" font-size="10" fill="#0369a1">淮河</text>
+            
+            <!-- 京杭运河 -->
+            <path d="M480,280 Q520,270 560,250 Q600,230 650,200" 
+                  stroke="#6b7280" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="6,3"/>
+            <text x="560" y="255" font-size="10" fill="#6b7280">京杭运河</text>
+            
+            <!-- 东线：扬州→天津 -->
+            <path d="M200,300 Q300,280 400,260 Q500,240 580,220 Q620,210 660,200" 
+                  stroke="#10b981" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#green-arrow)"/>
+            <rect x="130" y="280" width="70" height="30" rx="6" fill="#10b981"/>
+            <text x="165" y="300" text-anchor="middle" font-size="12" font-weight="bold" fill="white">东线</text>
+            
+            <!-- 中线：丹江口→北京 -->
+            <path d="M300,200 Q350,180 400,160 Q480,130 560,100 Q620,80 680,60" 
+                  stroke="#3b82f6" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#blue-arrow)"/>
+            <rect x="240" y="180" width="70" height="30" rx="6" fill="#3b82f6"/>
+            <text x="275" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="white">中线</text>
+            
+            <!-- 西线：长江上游→黄河上游 -->
+            <path d="M400,100 Q450,120 500,150 Q550,170 600,180" 
+                  stroke="#8b5cf6" stroke-width="4" fill="none" stroke-linecap="round" marker-end="url(#purple-arrow)"/>
+            <rect x="380" y="70" width="70" height="30" rx="6" fill="#8b5cf6"/>
+            <text x="415" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="white">西线</text>
+            
+            <!-- 关键城市标注 -->
+            <circle cx="200" cy="300" r="8" fill="#ef4444"/>
+            <text x="185" y="320" font-size="11" fill="#dc2626" font-weight="bold">扬州（江都）</text>
+            
+            <circle cx="660" cy="200" r="8" fill="#ef4444"/>
+            <text x="645" y="215" font-size="11" fill="#dc2626" font-weight="bold">天津</text>
+            
+            <circle cx="300" cy="200" r="8" fill="#ef4444"/>
+            <text x="280" y="215" font-size="11" fill="#dc2626" font-weight="bold">丹江口</text>
+            
+            <circle cx="680" cy="60" r="8" fill="#ef4444"/>
+            <text x="660" y="50" font-size="11" fill="#dc2626" font-weight="bold">北京</text>
+            
+            <!-- 图例 -->
+            <rect x="20" y="20" width="150" height="110" rx="8" fill="white" stroke="#bae6fd" stroke-width="1"/>
+            <text x="95" y="40" text-anchor="middle" font-size="12" font-weight="bold" fill="#0369a1">南水北调三线</text>
+            <line x1="35" y1="58" x2="65" y2="58" stroke="#10b981" stroke-width="3"/>
+            <text x="75" y="62" font-size="11" fill="#10b981">东线：扬州→天津</text>
+            <line x1="35" y1="80" x2="65" y2="80" stroke="#3b82f6" stroke-width="3"/>
+            <text x="75" y="84" font-size="11" fill="#3b82f6">中线：丹江口→北京</text>
+            <line x1="35" y1="102" x2="65" y2="102" stroke="#8b5cf6" stroke-width="3"/>
+            <text x="75" y="106" font-size="11" fill="#8b5cf6">西线：长江→黄河上游</text>
+            
+            <!-- 箭头 -->
+            <defs>
+              <marker id="green-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#10b981"/>
+              </marker>
+              <marker id="blue-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#3b82f6"/>
+              </marker>
+              <marker id="purple-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#8b5cf6"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="svg-caption">图3-3 南水北调工程三条线路示意图</p>
+        </div>
+
+        <!-- 三条线路表格 -->
+        <table class="water-table" style="margin-top: 16px;">
+          <tr><th>线路</th><th>起点</th><th>终点</th><th>特点</th></tr>
+          <tr style="background:#d1fae5;">
+            <td><strong>东线</strong></td>
+            <td>扬州江都</td>
+            <td>天津</td>
+            <td>利用京杭运河输水，可利用现有河道，工程量小</td>
+          </tr>
+          <tr style="background:#dbeafe;">
+            <td><strong>中线</strong></td>
+            <td>丹江口水库</td>
+            <td>北京</td>
+            <td>全程自流，水质好，但工程量大</td>
+          </tr>
+          <tr style="background:#ede9fe;">
+            <td><strong>西线</strong></td>
+            <td>长江上游（通天河等）</td>
+            <td>黄河上游</td>
+            <td>调水入黄河上游，解决西北缺水，技术难度大</td>
+          </tr>
+        </table>
+
+        <h3 style="margin-top: 24px; color: #0369a1;">📖 节约用水（日常措施）</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>💧 <strong>农业节水：</strong>推广喷灌、滴灌技术，减少大水漫灌</li>
+          <li>🏭 <strong>工业节水：</strong>提高水资源循环利用率</li>
+          <li>🏠 <strong>生活节水：</strong>一水多用（洗菜水浇花），使用节水器具</li>
+          <li>🌱 <strong>防治污染：</strong>保护水源，防止水污染</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念 · 水资源的战略意义</div>
+          <p>中国水资源总量约<strong>2.8万亿立方米</strong>，居世界<strong>第6位</strong>，但人均水资源仅约<strong>2100立方米</strong>，约为世界平均的<strong>1/4</strong>。</p>
+          <p style="margin-top: 8px;"><strong>水危机警示：</strong>华北平原人口密集、工业发达，但水资源严重不足，人均水资源不足全国平均的1/3。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: 后测 -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
+      <p style="color: #0369a1; margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】关于我国水资源分布的叙述，正确的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 南多北少是正确的，但还有东多西少的特点！">
+            <span class="opt-letter">A</span> 南多北少，东多西少
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 均匀分布不符合实际情况！">
+            <span class="opt-letter">B</span> 全国分布均匀
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+            <span class="opt-letter">C</span> 南丰北缺、东多西少
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 南丰北缺、东多西少</strong></p>
+          <p style="margin-top: 8px;">我国水资源空间分布<strong>极不均匀</strong>，南方水量充沛、北方严重缺水；东部距海近、降水多，西部距海远、降水少。</p>
+        </div>
+      </div>
+
+      <!-- 后测题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）解决我国水资源空间分布不均的措施是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 修建水库主要解决时间分布不均，不能解决空间分布问题！">
+            <span class="opt-letter">A</span> 修建水库
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 跨流域调水
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 节约用水不能改变水资源空间分布，只能减少用量！">
+            <span class="opt-letter">C</span> 节约用水
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 跨流域调水</strong></p>
+          <p style="margin-top: 8px;">跨流域调水（如南水北调）是将水从<strong>多水区调到缺水区</strong>，直接改变水资源的<strong>空间分布</strong>；修建水库是解决<strong>时间</strong>分布不均；节约用水是应对措施。</p>
+        </div>
+      </div>
+
+      <!-- 后测题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南中考）南水北调工程中，自流输水的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 东线需要提水，不能自流！">
+            <span class="opt-letter">A</span> 东线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+            <span class="opt-letter">B</span> 中线
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 西线地质条件复杂，不能自流！">
+            <span class="opt-letter">C</span> 西线
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 中线</strong></p>
+          <p style="margin-top: 8px;"><strong>中线</strong>从丹江口水库取水，水质好，<strong>全程自流</strong>（利用地势落差）。东线需要<strong>提水</strong>（利用泵站）；西线地形复杂，工程难度大。</p>
+        </div>
+      </div>
+
+      <!-- 后测题4 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐ 提高】我国水资源时间分布的特点是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 全年均匀分布不符合季风气候特点！">
+            <span class="opt-letter">A</span> 全年分布均匀
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+            <span class="opt-letter">B</span> 夏秋多、冬春少
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 冬春多、夏秋少与实际相反！">
+            <span class="opt-letter">C</span> 冬春多、夏秋少
+          </div>
+        </div>
+        <div class="feedback" id="feedback-13"></div>
+        <div class="answer-explanation" id="explanation-13">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 夏秋多、冬春少</strong></p>
+          <p style="margin-top: 8px;">受<strong>季风气候</strong>影响，我国降水集中在<strong>夏秋季节</strong>（6-9月），占全年降水量的<strong>60-70%</strong>，冬春季节降水少，导致河流出现明显的<strong>丰水期和枯水期</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
+      
+      <div class="card">
+        <!-- 考点1 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：水资源时空分布</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了18次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 时间：<strong>夏秋多、冬春少</strong>（受季风影响）</li>
+            <li>✅ 空间：<strong>南丰北缺、东多西少</strong>（受海陆位置影响）</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：解决措施</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>⏰ 时间维度 → <strong>修建水库</strong></li>
+            <li>🗺️ 空间维度 → <strong>跨流域调水</strong></li>
+          </ul>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📍 常考考点：南水北调三条线路</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ <strong>东线：</strong>扬州江都→天津（利用京杭运河）</li>
+            <li>✅ <strong>中线：</strong>丹江口水库→北京（自流）</li>
+            <li>✅ <strong>西线：</strong>长江上游→黄河上游</li>
+          </ul>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">💧 常考考点：水资源危机</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了8次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>中国水资源总量丰富，但<strong>人均不足</strong>（约为世界平均的1/4）。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中地理互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">基于 TeachAny v7.14.0 | 适配人教版八年级上册地理课程标准</p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    const COURSE_INFO = {
+      totalSections: 8,
+      currentSection: 3
+    };
+
+    let anchorContents = {};
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：我国水资源在时间和空间上分布有什么特点？</h3>
+      <p><strong>时间分布：</strong>夏秋多、冬春少（受季风影响，降水集中在6-9月）</p>
+      <p style="margin-top: 8px;"><strong>空间分布：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li><strong>南丰北缺：</strong>南方降水多（>800mm），北方降水少（<400mm）</li>
+        <li><strong>东多西少：</strong>东部距海近、降水多，西部距海远、降水少</li>
+      </ul>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：水资源时空分布不均带来了哪些问题？</h3>
+      <p><strong>时间不均的问题：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>夏秋季节洪涝灾害频发（如长江流域）</li>
+        <li>冬春季节干旱严重，影响农业灌溉</li>
+      </ul>
+      <p style="margin-top: 8px;"><strong>空间不均的问题：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>北方地区水资源严重不足，制约经济发展</li>
+        <li>华北平原人口密集，用水紧张</li>
+        <li>过度开采地下水，导致地面沉降</li>
+      </ul>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：如何解决我国水资源问题？</h3>
+      <p><strong>时间维度——修建水库：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>在河流上游修建水库（如三峡水库）</li>
+        <li>雨季蓄水、旱季放水，调节水资源时间分配</li>
+      </ul>
+      <p style="margin-top: 8px;"><strong>空间维度——跨流域调水：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>南水北调：东线（扬州→天津）、中线（丹江口→北京）、西线（长江上游→黄河上游）</li>
+      </ul>
+      <p style="margin-top: 8px;"><strong>日常措施——节约用水：</strong></p>
+      <ul style="padding-left:20px;line-height:1.8;">
+        <li>农业：推广喷灌、滴灌技术</li>
+        <li>工业：提高水资源循环利用率</li>
+        <li>生活：一水多用，使用节水器具</li>
+      </ul>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) { feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`; feedback.style.display = 'block'; }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) { feedback.textContent = `你的问题：${question}`; feedback.style.display = 'block'; }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查 ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
+        if (explanation) explanation.classList.add('show');
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgressBar();
+      console.log('📚 《水资源》课件加载完成（v1.0）');
+    });
+
+    function updateProgressBar() {
+      const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
+      const progressFill = document.getElementById('progress-fill');
+      const progressLabel = document.getElementById('progress-label');
+      if (progressFill) progressFill.style.width = progress + '%';
+      if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
+    }
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>

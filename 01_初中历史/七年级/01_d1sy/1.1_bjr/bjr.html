@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TeachAny 元数据 -->
+  <meta name="course-id" content="hist-beijing-ren-7">
+  <meta name="course-title" content="第1课 中国境内的早期人类——北京人">
+  <meta name="course-subject" content="history">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="hist-beijing-ren-7">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  
+  <!-- 样式表（引用共享资源） -->
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  
+  <!-- 外部CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <title>第1课 北京人 | 初中7年级历史</title>
+  
+  <style>
+    /* ========== 本课件专属样式 ========== */
+    .timeline-svg {
+      background: #fafcfb;
+      border: 1px solid #e8dcc8;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #8b4513, #cd853f);
+      color: white;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .comparison-table td {
+      padding: 10px;
+      border: 1px solid #e8dcc8;
+      text-align: center;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+      background: #fdf5e6;
+    }
+
+    /* 答案讲解区域 */
+    .answer-explanation {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-size: 14px;
+      color: #78350f;
+      display: none;
+    }
+    
+    .answer-explanation.show {
+      display: block;
+    }
+    
+    .answer-explanation .explain-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #92400e;
+    }
+
+    .difficulty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+    
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
+
+    /* SVG容器 */
+    .svg-container {
+      background: #fafcfb;
+      border: 1px solid #e8dcc8;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .svg-container svg { max-width: 100%; height: auto; }
+    .svg-caption {
+      margin-top: 12px; font-size: 14px; color: #8b7355; text-align: center;
+    }
+
+    /* 自定义问题输入 */
+    #learner-question-input {
+      width: 100%; border-radius: 12px; border: 1px solid #d2b48c;
+      background: #fffaf0; color: #2c3e50; padding: 12px 14px;
+      font-size: 16px; margin-top: 8px;
+    }
+    #anchor-feedback {
+      margin-top: 14px; padding: 14px; border-radius: 12px;
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.28);
+      color: #92400e;
+    }
+
+    /* 考点卡片 */
+    .exam-card {
+      border-radius: 12px; padding: 18px; margin-bottom: 16px;
+    }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .exam-card-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+    }
+    .exam-tag {
+      color: white; padding: 2px 8px; border-radius: 4px;
+      font-size: 10px; font-weight: 700;
+    }
+
+/* ====== 手机端适配 ====== */
+@media (max-width: 768px) {
+    /* === NavBar template from d1sy.html === */
+
+
+    /* Hero / 课程标题 */
+    .hero { padding: 20px 14px !important; }
+    .hero h1 { font-size: 1.3rem !important; }
+    .hero-subtitle { font-size: 0.88rem !important; }
+    .hero-icon { font-size: 36px !important; }
+
+    /* 内容区段 */
+    .section { padding: 0 12px !important; margin-bottom: 20px !important; }
+    .section h2 { font-size: 1.15rem !important; }
+    .section h3 { font-size: 1rem !important; }
+    .section p, .section li { font-size: 0.88rem !important; line-height: 1.7 !important; }
+
+    /* 卡片 */
+    .card { border-radius: 12px !important; padding: 14px !important; }
+    .card-header { padding: 12px 14px !important; }
+    .card-body { padding: 0 14px 12px !important; }
+
+    /* 问题锚点 */
+    .anchor-points { flex-direction: column !important; gap: 6px !important; }
+    .anchor-btn {
+    width: 100% !important; padding: 10px 12px !important;
+    font-size: 0.82rem !important; justify-content: center !important;
+    border-radius: 8px !important;
+    }
+
+    /* 测验选项 */
+    .quiz-option {
+    padding: 12px 12px !important; font-size: 0.88rem !important;
+    border-radius: 10px !important;
+    }
+    .quiz-feedback { font-size: 0.85rem !important; padding: 10px !important; margin-top: 8px !important; }
+
+    /* SVG / 图表容器 */
+    .timeline-svg, .knowledge-map, .hero-graph {
+    padding: 12px !important; border-radius: 8px !important;
+    }
+    .timeline-svg svg, .knowledge-map svg, .hero-graph svg {
+    max-width: 100% !important; height: auto !important;
+    display: block !important; margin: 0 auto !important;
+    }
+
+    /* 表格（横滑） */
+    .comparison-table, .data-table, table {
+    display: block !important; overflow-x: auto !important;
+    font-size: 12px !important; -webkit-overflow-scrolling: touch !important;
+    }
+    .comparison-table th, .comparison-table td,
+    .data-table th, .data-table td {
+    padding: 6px 8px !important; white-space: nowrap !important;
+    }
+
+    /* 概念框 */
+    .concept-box {
+    padding: 12px 14px !important; font-size: 0.88rem !important;
+    margin: 10px 0 !important; border-radius: 0 10px 10px 0 !important;
+    }
+
+    /* AI学伴 */
+    .chat-panel { border-radius: 12px !important; margin: 12px !important; }
+    .chat-messages { max-height: 250px !important; }
+    .chat-input { font-size: 0.88rem !important; padding: 10px 12px !important; }
+    .chat-send { padding: 10px 14px !important; font-size: 0.82rem !important; }
+
+    /* 考点总结 */
+    .summary-box, .key-points {
+    padding: 12px 14px !important; font-size: 0.88rem !important;
+    border-radius: 10px !important;
+    }
+
+    /* Brand Bar */
+    .brand-bar { padding: 8px 10px !important; }
+    .brand-logo span { font-size: 0.82rem !important; }
+    .brand-tag { font-size: 0.68rem !important; padding: 2px 6px !important; }
+
+    /* 进度条 */
+    .progress-bar { height: 3px !important; }
+    .progress-label { font-size: 0.7rem !important; padding: 3px 10px !important; }
+
+    /* 页脚 */
+    .footer { padding: 16px 12px !important; margin-top: 20px !important; }
+
+    .quiz-option { padding: 10px !important; font-size: 0.82rem !important; }
+    .section p, .section li { font-size: 0.82rem !important; }
+}
+
+
+
+      /* 标题独占首行 */
+      /* 按钮均分2行，每行2个 */
+
+
+
+  </style>
+</head>
+
+<body>
+  
+  <!-- ========== 品牌栏 ========== -->
+  <div class="brand-bar">
+    <div class="container">
+      <div class="brand-logo">
+        <i class="fa-solid fa-landmark"></i>
+        <span>TeachAny · 初中历史</span>
+      </div>
+      <div class="brand-tag">互动课件 v7.14</div>
+    </div>
+  </div>
+  
+  <!-- ========== 进度条 ========== -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
+  
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
+    <a href="../d1sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
+    <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
+    <div class="nav-center">第一单元：史前时期</div>
+    <a href="../1.2_nysh/nysh.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+</div></nav>
+  
+  <!-- ========== Hero区 ========== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-landmark-open"></i> 七年级历史 · 第一单元
+      </div>
+      <h1>
+        第1课 中国境内的早期人类——北京人
+        <span>Early Humans in China: Peking Man</span>
+      </h1>
+      <p class="hero-subtitle">
+        📖 课标要求：知道北京人的发现，了解北京人的特征和生活状况<br>
+        🎯 预计用时：45分钟
+      </p>
+    </div>
+  </header>
+
+  <!-- ========== Hero知识结构图(SVG内嵌) ========== -->
+  <section class="section" id="hero-infographic" data-tts="hero-infographic" data-tsh="知识结构主图 - 先看完整学习地图">
+    <figure style="margin: 24px auto 0; max-width: 980px;">
+      <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="300" fill="#fafcfb"/>
+        <circle cx="400" cy="150" r="60" fill="#8b4513" stroke="#654321" stroke-width="3"/>
+        <text x="400" y="155" text-anchor="middle" font-size="18" font-weight="bold" fill="white">北京人</text>
+        <rect x="50" y="50" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="85" text-anchor="middle" font-size="14" fill="white">发现历程</text>
+        <line x1="170" y1="80" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="50" y="190" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="110" y="225" text-anchor="middle" font-size="14" fill="white">体质特征</text>
+        <line x1="170" y1="220" x2="340" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="630" y="50" width="120" height="60" rx="10" fill="#cd853f" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="85" text-anchor="middle" font-size="14" fill="white">生活状况</text>
+        <line x1="630" y1="80" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <rect x="630" y="190" width="120" height="60" rx="10" fill="#a0522d" stroke="#8b4513" stroke-width="2"/>
+        <text x="690" y="225" text-anchor="middle" font-size="14" fill="white">科研意义</text>
+        <line x1="630" y1="220" x2="460" y2="150" stroke="#8b4513" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#8b4513"/>
+          </marker>
+        </defs></svg>
+      <figcaption style="margin-top: 10px; color: #8b7355; font-size: 14px; text-align: center;">图1-1 北京人知识结构图</figcaption>
+    </figure>
+  </section>
+  
+  <!-- ========== 主内容区 ========== -->
+  <main class="container">
+
+    <!-- Section 1: 问题锚点（增强版：含自定义输入） -->
+    <section class="section" id="section-anchor">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 探究问题
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
+      </p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selectAnchor(this, 1)" data-anchor-choice="北京人长什么样？">
+            🧑 北京人长什么样？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="北京人如何生活？">
+            🏕️ 北京人如何生活？
+          </button>
+          <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="北京人为何重要？">
+            🌍 北京人为何重要？
+          </button>
+        </div>
+
+        <!-- 自定义问题输入 -->
+        <label style="display:block; margin-top: 18px; color: var(--text-light);">
+          我有自己的问题
+          <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
+        </label>
+
+        <!-- 动态内容展示区 -->
+        <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
+          <p style="color: var(--text-light); text-align: center;">👆 点击上方按钮查看问题</p>
+        </div>
+
+        <!-- 反馈区域 -->
+        <p id="anchor-feedback" style="display:none;"></p>
+      </div>
+    </section>
+
+    <!-- Section 2: 学习目标 -->
+    <section class="section" id="objectives">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 学习目标
+      </h2>
+      <div class="card">
+        <ul style="list-style: none; padding-left: 0; line-height: 2;">
+          <li>✅ 知道北京人的发现地点和时间</li>
+          <li>✅ 了解北京人的体质特征和生活状况</li>
+          <li>✅ 理解北京人发现的意义</li>
+          <li>✅ 能区分旧石器时代与新石器时代</li>
+        </ul>
+      </div>
+    </section>
+    
+    <!-- Section 3: 前测（4道题：基础×2 + 提高 + 挑战） -->
+    <section class="section" id="section-prequiz">
+      <h2 class="section-title">
+        <span class="num">📝</span> 前测：检验先备知识
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
+        <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
+        <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
+      </p>
+      
+      <!-- 基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】中国境内已知最早的古人类是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 北京人生活在约70~20万年前，不是最早的！还有更早的。">
+            <span class="opt-letter">A</span> 北京人
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 山顶洞人约3万年，比北京人还晚很多！">
+            <span class="opt-letter">B</span> 山顶洞人
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+            <span class="opt-letter">C</span> 元谋人
+          </div>
+        </div>
+        <div class="feedback" id="feedback-1"></div>
+        <div class="answer-explanation" id="explanation-1">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 元谋人</strong></p>
+          <p style="margin-top: 8px;">元谋人生活在距今约<strong>170万年</strong>，发现于<strong>云南省元谋县</strong>，是中国境内目前已知最早的古人类。</p>
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📚 知识拓展 · 中国古人类时间线</div>
+            <table class="comparison-table">
+              <tr><th>名称</th><th>距今</th><th>地点</th><th>特征</th></tr>
+              <tr><td><strong>元谋人</strong></td><td>~170万年</td><td>云南元谋</td><td>最早</td></tr>
+              <tr><td><strong>北京人</strong></td><td>70~20万年</td><td>北京周口店</td><td>用火、打制石器</td></tr>
+              <tr><td><strong>山顶洞人</strong></td><td>~3万年</td><td>北京周口店</td><td>人工取火、磨制钻孔</td></tr>
+            </table>
+          </div>
+          <p style="margin-top: 10px; font-size: 13px; color: #666;">📖 人教版七上 第2页</p>
+        </div>
+      </div>
+
+      <!-- 基础题2 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐ 基础】北京人遗址位于哪里？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+            <span class="opt-letter">A</span> 北京市房山区周口店龙骨山
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 西安半坡是半坡原始居民遗址（新石器时代），比北京人晚得多！">
+            <span class="opt-letter">B</span> 陕西西安半坡村
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 浙江河姆渡是河姆渡遗址（新石器时代）！">
+            <span class="opt-letter">C</span> 浙江余姚河姆渡
+          </div>
+        </div>
+        <div class="feedback" id="feedback-2"></div>
+        <div class="answer-explanation" id="explanation-2">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：A. 北京市房山区周口店龙骨山</strong></p>
+          <p style="margin-top: 8px;">1921年瑞典地质学家<strong>安特生</strong>在此发现遗址；<strong>1929年裴文中</strong>发现第一个头盖骨化石。</p>
+        </div>
+      </div>
+      
+      <!-- 提高题3 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐ 提高】关于北京人的用火能力，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 高频易错点！北京人只会使用天然火，不会人工取火。人工取火是山顶洞人才掌握的！">
+            <span class="opt-letter">A</span> 已经会人工取火
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 不对！北京人已经会用火了，只是方式不同。">
+            <span class="opt-letter">B</span> 完全不会使用火
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+            <span class="opt-letter">C</span> 会使用天然火并保存火种
+          </div>
+        </div>
+        <div class="feedback" id="feedback-3"></div>
+        <div class="answer-explanation" id="explanation-3">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 会使用天然火并保存火种</strong></p>
+          <p style="margin-top: 8px;">北京人会利用自然界中的<strong>天然火</strong>（雷击、火山等），并能长期保存火种。但<strong>不会人工取火</strong>。</p>
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">⚠️ 高频考点 · 易错警示</div>
+            <p><strong>考试陷阱：</strong>"北京人会人工取火"→ <strong>错误❌</strong></p>
+            <p style="margin-top: 6px;"><strong>正确表述：</strong>"北京人会使用天然火"✅ / "山顶洞人会人工取火"✅</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 挑战题4 -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战】下列关于北京人的表述，全部正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ "会人工取火"是错的！北京人只会使用天然火。">
+            <span class="opt-letter">A</span> 会人工取火 + 使用磨制石器
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ "使用磨制石器"错了！北京人用的是打制石器（旧石器）。磨制石器是新石器时代的特征。">
+            <span class="opt-letter">B</span> 使用天然火 + 使用磨制石器
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+            <span class="opt-letter">C</span> 使用天然火 + 使用打制石器
+          </div>
+        </div>
+        <div class="feedback" id="feedback-4"></div>
+        <div class="answer-explanation" id="explanation-4">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 使用天然火 + 使用打制石器</strong></p>
+          <p style="margin-top: 8px;">这道题综合考查两个核心知识点：</p>
+          <ul style="padding-left: 20px; margin-top: 8px; line-height: 1.8;">
+            <li>✅ 用火：<strong>天然火</strong>（非人工取火）</li>
+            <li>✅ 工具：<strong>打制石器</strong>（旧石器，非磨制石器）</li>
+          </ul>
+          <div class="data-table" style="margin-top: 12px;">
+            <table class="comparison-table">
+              <tr><th>项目</th><th>旧石器时代</th><th>新石器时代</th></tr>
+              <tr><td>工具</td><td>打制石器</td><td>磨制石器</td></tr>
+              <tr><td>用火</td><td>天然火</td><td>人工取火</td></tr>
+              <tr><td>代表</td><td>北京人</td><td>半坡/河姆渡人</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: 核心内容 - 发现 -->
+    <section class="section" id="section-content">
+      <h2 class="section-title">
+        <span class="num">📚</span> 北京人的发现
+      </h2>
+      
+      <div class="card">
+        <!-- SVG:周口店遗址示意图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0 300 Q 100 250 200 280 Q 300 320 400 290 Q 500 260 600 300 L 600 400 L 0 400 Z" fill="#b0c4a8" stroke="none"/>
+            <ellipse cx="300" cy="280" rx="80" ry="60" fill="#654321" stroke="#8b4513" stroke-width="3"/>
+            <path d="M 220 280 Q 300 220 380 280" fill="none" stroke="#8b4513" stroke-width="3"/>
+            <text x="300" y="200" text-anchor="middle" font-size="18" font-weight="bold" fill="#8b4513">龙骨山</text>
+            <line x1="300" y1="210" x2="300" y2="250" stroke="#8b4513" stroke-width="2" stroke-dasharray="5,5"/>
+            <rect x="260" y="290" width="80" height="30" fill="#fff" stroke="#8b4513" stroke-width="2" rx="5"/>
+            <text x="300" y="310" text-anchor="middle" font-size="14" fill="#8b4513">北京人遗址</text>
+            <circle cx="300" cy="280" r="5" fill="#e74c3c"/>
+            <text x="320" y="270" font-size="12" fill="#e74c3c">第1地点</text>
+            <rect x="50" y="350" width="20" height="20" fill="#654321" stroke="#8b4513" stroke-width="2"/>
+            <text x="80" y="365" font-size="12">洞穴遗址</text>
+            <circle cx="50" cy="390" r="10" fill="#e74c3c"/>
+            <text x="80" y="395" font-size="12">发现地点</text>
+          </svg>
+          <p class="svg-caption">图1-2 北京人遗址位置示意图（北京市房山区周口店龙骨山）</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">📖 发现历程</h3>
+        <p><strong>1921年</strong>：瑞典地质学家安特生在北京市房山区周口店发现遗址。</p>
+        <p><strong>1927年</strong>：开始系统发掘。</p>
+        <p><strong>1929年</strong>：裴文中发现第一个北京人头盖骨化石，震惊世界。</p>
+        <p><strong>1936年</strong>：贾兰坡发现3个完整的北京人头盖骨。</p>
+
+        <!-- SVG时间线 -->
+        <svg viewBox="0 0 900 200" style="width:100%; height:auto; margin-top: 20px;" class="timeline-svg">
+          <line x1="50" y1="100" x2="850" y2="100" stroke="#8b4513" stroke-width="3"/>
+          <circle cx="150" cy="100" r="8" fill="#cd853f"/>
+          <text x="150" y="80" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">1921年</text>
+          <text x="150" y="120" text-anchor="middle" fill="#666" font-size="12">遗址发现</text>
+          <circle cx="350" cy="100" r="8" fill="#cd853f"/>
+          <text x="350" y="80" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">1927年</text>
+          <text x="350" y="120" text-anchor="middle" fill="#666" font-size="12">系统发掘</text>
+          <circle cx="550" cy="100" r="8" fill="#cd853f"/>
+          <text x="550" y="80" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">1929年</text>
+          <text x="550" y="120" text-anchor="middle" fill="#666" font-size="12">头盖骨出土</text>
+          <circle cx="750" cy="100" r="8" fill="#cd853f"/>
+          <text x="750" y="80" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">1936年</text>
+          <text x="750" y="120" text-anchor="middle" fill="#666" font-size="12">更多化石发现</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Section 5: 核心内容 - 特征 -->
+    <section class="section" id="section-appearance">
+      <h2 class="section-title">
+        <span class="num">🧑</span> 北京人的体质特征
+      </h2>
+      
+      <div class="card">
+        <!-- SVG:北京人复原图 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 400 500" width="400" height="500" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="200" cy="180" rx="120" ry="140" fill="#d4a574" stroke="#8b4513" stroke-width="3"/>
+            <path d="M 100 160 Q 200 140 300 160" fill="none" stroke="#654321" stroke-width="8"/>
+            <ellipse cx="160" cy="200" rx="15" ry="10" fill="#654321"/>
+            <ellipse cx="240" cy="200" rx="15" ry="10" fill="#654321"/>
+            <path d="M 200 220 L 190 260 L 210 260 Z" fill="#c49454" stroke="#8b4513" stroke-width="2"/>
+            <path d="M 160 290 Q 200 310 240 290" fill="none" stroke="#654321" stroke-width="3"/>
+            <rect x="150" y="320" width="100" height="150" rx="10" fill="#8b4513" stroke="#654321" stroke-width="2"/>
+            <path d="M 150 350 Q 100 400 120 450" fill="none" stroke="#d4a574" stroke-width="20" stroke-linecap="round"/>
+            <path d="M 250 350 Q 300 400 280 450" fill="none" stroke="#d4a574" stroke-width="20" stroke-linecap="round"/>
+            <line x1="120" y1="160" x2="50" y2="140" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="30" y="130" font-size="12" fill="#e74c3c">前额低平</text>
+            <line x1="120" y1="200" x2="50" y2="200" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="20" y="195" font-size="12" fill="#e74c3c">眉骨粗大</text>
+            <line x1="200" y1="290" x2="200" y2="340" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="210" y="320" font-size="12" fill="#e74c3c">嘴巴前伸</text>
+          </svg>
+          <p class="svg-caption">图1-3 北京人复原图（标注主要特征）</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">🔍 体质特征</h3>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li><strong>头骨：</strong>前额低平，眉骨粗大，颧骨高突，吻部前伸</li>
+          <li><strong>脑容量：</strong>约1059毫升（现代人约1400毫升）</li>
+          <li><strong>身高：</strong>男性约156厘米，女性约144厘米</li>
+          <li><strong>四肢：</strong>上肢与现代人相似，能直立行走</li>
+        </ul>
+
+        <div class="concept-box" style="margin-top: 16px;">
+          <div class="label">核心概念</div>
+          <p><strong>保留猿类特征：</strong>北京人处于从猿到人的过渡阶段，头骨像猿，但四肢像人，证明了<strong>劳动创造了人本身</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: 核心内容 - 生活 -->
+    <section class="section" id="section-life">
+      <h2 class="section-title">
+        <span class="num">🏕️</span> 北京人的生活状况
+      </h2>
+      
+      <div class="card">
+        <!-- SVG:打制石器 -->
+        <div class="svg-container">
+          <svg viewBox="0 0 800 300" width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 100 150 L 150 100 L 200 120 L 220 180 L 160 220 L 110 190 Z" fill="#c0c0c0" stroke="#654321" stroke-width="3"/>
+            <text x="160" y="250" text-anchor="middle" font-size="16" font-weight="bold">砍砸器</text>
+            <line x1="160" y1="230" x2="160" y2="200" stroke="#8b4513" stroke-width="2" stroke-dasharray="5,5"/>
+            <path d="M 350 120 L 420 100 L 480 140 L 460 200 L 380 210 L 340 170 Z" fill="#a9a9a9" stroke="#654321" stroke-width="3"/>
+            <text x="410" y="250" text-anchor="middle" font-size="16" font-weight="bold">刮削器</text>
+            <line x1="410" y1="230" x2="410" y2="210" stroke="#8b4513" stroke-width="2" stroke-dasharray="5,5"/>
+            <path d="M 600 180 L 650 100 L 700 180 L 650 220 Z" fill="#808080" stroke="#654321" stroke-width="3"/>
+            <text x="650" y="250" text-anchor="middle" font-size="16" font-weight="bold">尖状器</text>
+            <line x1="650" y1="230" x2="650" y2="210" stroke="#8b4513" stroke-width="2" stroke-dasharray="5,5"/>
+            <text x="400" y="50" text-anchor="middle" font-size="18" fill="#8b4513">打制石器（旧石器时代）</text>
+            <text x="400" y="80" text-anchor="middle" font-size="14" fill="#666">制作方法：用石块互相敲击，打出锋利边缘</text>
+          </svg>
+          <p class="svg-caption">图1-4 北京人使用的打制石器（砍砸器、刮削器、尖状器）</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">🛠️ 工具制作</h3>
+        <p>北京人使用<strong>打制石器</strong>（旧石器），制作方法：</p>
+        <ol style="padding-left: 20px; line-height: 1.8;">
+          <li>选取合适的石料（石英、燧石等）</li>
+          <li>用石块敲击打出粗糙形状</li>
+          <li>进一步打制出刃口和尖头</li>
+        </ol>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">🔥 用火能力</h3>
+        <p><strong>重大意义：</strong>北京人已经会使用<strong>天然火</strong>，并能<strong>保存火种</strong>。</p>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+          <li>取暖御寒</li>
+          <li>照明驱兽</li>
+          <li>烧烤食物（改善营养，促进大脑发育）</li>
+        </ul>
+
+        <div class="warn-box" style="margin-top: 16px;">
+          <div class="label">⚠️ 高频考点</div>
+          <p>考试中常出现"<strong>北京人已经会人工取火</strong>"这样的错误表述，一定要判断为<strong>错误</strong>！</p>
+          <p style="margin-top: 8px;">正确的表述是："北京人已经会<strong>使用天然火</strong>"或"山顶洞人已经会<strong>人工取火</strong>"。</p>
+        </div>
+
+        <h3 style="margin-top: 20px; color: #8b4513;">👥 社会组织</h3>
+        <p>北京人过着<strong>群居生活</strong>，几十人一群，共同劳动，分享成果。</p>
+      </div>
+    </section>
+
+    <!-- Section 7: 后测（4道题：含中考真题+材料分析） -->
+    <section class="section" id="section-postquiz">
+      <h2 class="section-title">
+        <span class="num">✅</span> 后测：检验学习成果
+      </h2>
+      <p style="color: var(--text-light); margin-bottom: 16px;">
+        包含中考真题与高频考点分析，答错了会详细讲解错因！
+      </p>
+
+      <!-- 后测基础题1 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】北京人生活在距今约多少年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 元谋人才是170万年前，北京人比他们晚很多。">
+            <span class="opt-letter">A</span> 约170万年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+            <span class="opt-letter">B</span> 约70万~20万年
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 1万年已经是新石器时代末期了，北京人属于旧石器时代。">
+            <span class="opt-letter">C</span> 约1万年
+          </div>
+        </div>
+        <div class="feedback" id="feedback-10"></div>
+        <div class="answer-explanation" id="explanation-10">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 约70万~20万年</strong></p>
+          <p style="margin-top: 8px;">北京人生活在距今约<strong>70万~20万年</strong>，跨越了50多万年，属于<strong>旧石器时代</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 后测提高题2（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>2. 【⭐⭐ 提高·中考真题】（2023·北京中考）下列关于北京人的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 北京人的脑容量约1059毫升，现代人约1400毫升，所以"与现代人脑容量相当"是错的！">
+            <span class="opt-letter">A</span> 脑容量与现代人相当
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+            <span class="opt-letter">B</span> 上肢已具备现代人的特征
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 北京人面部保留猿类特征：前额低平、眉骨粗大、嘴巴前伸。"面貌与现代人相同"是错的！">
+            <span class="opt-letter">C</span> 面貌与现代人相同
+          </div>
+        </div>
+        <div class="feedback" id="feedback-11"></div>
+        <div class="answer-explanation" id="explanation-11">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 上肢已具备现代人的特征</strong></p>
+          <p style="margin-top: 8px;">北京人的上肢已经与现代人非常相似，能灵活使用工具。但头部仍保留猿类特征。</p>
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📝 中考真题出处</div>
+            <p><strong>来源：</strong>2023年北京市中考历史卷 · 第1题（改编）</p>
+            <p style="margin-top: 6px;"><strong>考点：</strong>北京人的体质特征 —— 头部像猿，四肢像人</p>
+            <p style="margin-top: 6px;"><strong>命题规律：</strong>中考常考查"北京人的哪些部位像人、哪些部位像猿"，需要准确记忆！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 后测挑战题3（中考真题改编） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·河南中考）下列不属于北京人遗址发现的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 北京人遗址确实出土了大量打制石器（砍砸器、刮削器、尖状器等），这是正确的。">
+            <span class="opt-letter">A</span> 大量打制石器
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 北京人遗址中发现了大量用火遗迹（灰烬层、烧骨、烧石），证明他们能用火。">
+            <span class="opt-letter">B</span> 用火遗迹（灰烬层）
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+            <span class="opt-letter">C</span> 磨制石器和陶器碎片
+          </div>
+        </div>
+        <div class="feedback" id="feedback-12"></div>
+        <div class="answer-explanation" id="explanation-12">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：C. 磨制石器和陶器碎片</strong></p>
+          <p style="margin-top: 8px;">磨制石器和陶器是<strong>新石器时代</strong>的产物（如半坡、河姆渡遗址）。北京人属于<strong>旧石器时代</strong>，使用的是<strong>打制石器</strong>，不会制作陶器。</p>
+          <div class="concept-box" style="margin-top: 12px;">
+            <div class="label">📝 中考真题出处</div>
+            <p><strong>来源：</strong>2022年河南省中考历史卷 · 第3题（改编）</p>
+            <p style="margin-top: 6px;"><strong>考点：</strong>区分旧石器与新石器时代的考古证据</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 后测挑战题4（材料分析型） -->
+      <div class="quiz-box" style="margin-top: 20px;">
+        <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
+          <strong>【材料】</strong>"北京人的头骨，前额低平，眉骨粗大，颧骨高突，鼻骨扁平，嘴巴前伸……但他们的四肢，尤其是上肢，已经具备了现代人的特征。" ——摘自人教版七年级历史上册
+        </div>
+        <p style="margin-bottom:10px;font-weight:600;">根据材料，北京人的体质特征说明什么？</p>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料明确说"上肢已经具备现代人的特征"，所以不能说"完全像猿"。这个选项太绝对了！">
+            <span class="opt-letter">A</span> 说明北京人完全像猿，还没有进化
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+            <span class="opt-letter">B</span> 说明北京人处于从猿到人的过渡阶段
+          </div>
+          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料说头部还保留猿类特征，"已经完全进化为现代人类"是错的！">
+            <span class="opt-letter">C</span> 说明北京人已经完全进化为现代人类
+          </div>
+        </div>
+        <div class="feedback" id="feedback-13"></div>
+        <div class="answer-explanation" id="explanation-13">
+          <div class="explain-title">📖 详细解析</div>
+          <p><strong>正确答案：B. 处于从猿到人的过渡阶段</strong></p>
+          <p style="margin-top: 8px;">材料对比了北京人的<strong>头部</strong>（像猿）和<strong>四肢</strong>（像人），说明他们正处于进化的中间状态。这证明了马克思主义的一个核心观点：<strong>劳动创造了人本身</strong>——在长期使用工具劳动的过程中，四肢先于头部完成了进化。</p>
+          <div class="warn-box" style="margin-top: 12px;">
+            <div class="label">💡 答题技巧 · 材料分析题方法</div>
+            <ol style="padding-left: 20px; line-height: 1.8;">
+              <li><strong>先读材料：</strong>圈出关键词（"前额低平""眉骨粗大"=像猿；"上肢具备现代人特征"=像人）</li>
+              <li><strong>再联系课本：</strong>回忆"劳动创造人"这一核心观点</li>
+              <li><strong>排除绝对选项：</strong>带"完全""彻底""所有"等绝对化词语的选项通常错误</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: 必考分析与考点总结 -->
+    <section class="section" id="section-exam">
+      <h2 class="section-title">
+        <span class="num">🎯</span> 必考分析与考点总结
+      </h2>
+      
+      <div class="card">
+        <!-- 考点1:最高频 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#dc2626;">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 最高频考点：天然火 vs 人工取火</strong>
+            <span class="exam-tag" style="background:#dc2626;">近10年考了7次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 北京人 → <strong>使用天然火</strong> ✅</li>
+            <li>❌ 北京人 → 人工取火 → <strong>错误！</strong> ❌</li>
+            <li>✅ 山顶洞人 → <strong>人工取火</strong> ✅</li>
+          </ul>
+        </div>
+
+        <!-- 考点2 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fefce8,#fef3c7);border:1px solid #fcd34d;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#d97706;">2</span>
+            <strong style="color:#92400e;font-size:15px;">⚡ 高频考点：打制石器 vs 磨制石器</strong>
+            <span class="exam-tag" style="background:#d97706;">近10年考了5次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>判断技巧：</strong>看到"北京人"→立刻想到<strong>旧石器=打制</strong>；看到"半坡/河姆渡"→立刻想到<strong>新石器=磨制</strong></p>
+        </div>
+
+        <!-- 考点3 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #93c5fd;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#2563eb;">3</span>
+            <strong style="color:#1e40af;font-size:15px;">📊 常考考点：体质特征（头猿四肢人）</strong>
+            <span class="exam-tag" style="background:#2563eb;">近10年考了4次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>记忆口诀：</strong>"低额粗眉无下巴，直立行走像人样"——头部像猿，四肢像人，证明<strong>劳动创造人</strong>。</p>
+        </div>
+
+        <!-- 考点4 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#16a34a;">4</span>
+            <strong style="font-size:15px;color:#166534;">📍 常考考点：发现时间与人物</strong>
+            <span class="exam-tag" style="background:#16a34a;">近10年考了3次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:0;"><strong>时间线：</strong>1921安特生发现 → 1927系统发掘 → <strong>1929裴文中</strong>头盖骨 → 1936贾兰坡更多化石</p>
+          <p style="font-size:13px;color:#666;margin:4px 0 0 0;">💡 考试常问"谁发现的第一个头盖骨？"答案：<strong>裴文中</strong></p>
+        </div>
+
+        <!-- 中考命题趋势 -->
+        <div class="exam-card" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff);border:1px solid #e879f9;">
+          <div class="exam-card-header">
+            <span style="font-size:18px;">📈</span>
+            <strong style="font-size:15px;color:#86198f;">中考命题趋势分析</strong>
+          </div>
+          <table class="comparison-table">
+            <tr style="background:#d946ef;color:white;"><th>题型</th><th>频率</th><th>考查方式</th><th>备考建议</th></tr>
+            <tr style="background:#fdf4ff;"><td>选择题</td><td>★★★★★</td><td>判断正误（天然火/人工取火）</td><td>死记硬背这组对比</td></tr>
+            <tr style="background:#ffffff;"><td>材料题</td><td>★★★☆☆</td><td>给一段文字/图片，分析特征</td><td>学会"头猿四肢人"的分析法</td></tr>
+            <tr style="background:#fdf4ff;"><td>填空题</td><td>★★☆☆☆</td><td>填时间/地点/人物</td><td>记住1929裴文中</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI学伴 -->
+    <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
+      <div data-teachany-tutor-card></div>
+    </section>
+    
+  </main>
+  
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 TeachAny · 初中历史互动课件系统</p>
+      <p style="margin-top: 8px; font-size: 12px;">
+        基于 TeachAny v7.14.0 | 适配人教版七年级历史课程标准
+      </p>
+    </div>
+  </footer>
+  
+  <!-- ========== JavaScript ========== -->
+  <script src="../../shared/scripts.js?v=8.0"></script>
+  
+  <!-- 本课件专属脚本 -->
+  <script>
+    /* ========== 配置本课件信息 ========== */
+    COURSE_INFO.totalSections = 8;  // 本课件有8个Section
+    COURSE_INFO.currentSection = 1; // 默认显示第1节
+
+    /* ========== TeachAny 配置 ========== */
+    window.__TEACHANY_LEARNER_QUESTION__ = '';
+    window.__TEACHANY_TUTOR_CONFIG__ = {
+      courseId: 'hist-beijing-ren-7',
+      courseTitle: '第1课 中国境内的早期人类——北京人',
+      subject: 'history',
+      grade: '7',
+      nodeId: 'hist-beijing-ren',
+      lessonType: 'new-concept',
+      getLearnerQuestion: () => window.__TEACHANY_LEARNER_QUESTION__ || '',
+      getContext: () => {
+        const current = document.querySelector('section.current-section') || (location.hash ? document.querySelector(location.hash) : null);
+        return (current || document.body).innerText.slice(0, 3000);
+      }
+    };
+
+    /* ========== 问题锚点内容 ========== */
+    anchorContents[1] = `
+      <h3>📍 问题1：北京人长什么样？</h3>
+      <p>北京人保留了一些猿类的特征：</p>
+      <ul style="padding-left: 20px; margin-top: 12px;">
+        <li><strong>头部：</strong>前额低平，眉骨粗大，像屋檐一样遮住眼睛</li>
+        <li><strong>面部：</strong>颧骨高突，嘴巴前伸（没有下巴）</li>
+        <li><strong>脑容量：</strong>约1059毫升，比现代人小</li>
+        <li><strong>四肢：</strong>已经能直立行走，上肢很像现代人</li>
+      </ul>
+      <p style="margin-top: 12px;">💡 <strong>记忆口诀：</strong>"低额粗眉无下巴，直立行走像人样。"</p>
+    `;
+    
+    anchorContents[2] = `
+      <h3>📍 问题2：北京人如何生活？</h3>
+      <p><strong>1. 工具制作：</strong>使用打制石器（旧石器），方法是将石块互相敲击，打出锋利的刃口。</p>
+      <p><strong>2. 用火能力：</strong>已经会使用<strong>天然火</strong>（如雷击起火），并能保存火种。这是人类进化史上的重大突破！</p>
+      <p><strong>3. 食物来源：</strong>采集植物果实、块茎，狩猎动物（鹿、马、大象等）。</p>
+      <p><strong>4. 居住方式：</strong>住在山洞里（周口店龙骨山洞穴），几十人一群，过着群居生活。</p>
+      <p style="margin-top: 12px;">🔥 <strong>用火的意义：</strong>取暖、照明、驱兽、烧烤食物（改善营养，促进大脑发育）。</p>
+    `;
+    
+    anchorContents[3] = `
+      <h3>📍 问题3：北京人为何重要？</h3>
+      <p><strong>1. 科研价值：</strong>北京人遗址是世界上出土古人类遗骨和遗迹<strong>最丰富</strong>的遗址之一，为研究人类起源和进化提供了珍贵证据。</p>
+      <p><strong>2. 进化证据：</strong>北京人处于从猿到人的过渡阶段，证明了<strong>劳动创造了人本身</strong>。</p>
+      <p><strong>3. 文化意义：</strong>北京人已经会使用火，这是人类文明史上的里程碑事件。</p>
+      <p><strong>4. 国际影响：</strong>北京人发现后，震惊世界，成为人类进化研究的经典案例。</p>
+      <p style="margin-top: 12px;">🌍 <strong>世界地位：</strong>北京人遗址与坦桑尼亚奥杜威峡谷、印度尼西亚爪哇人遗址齐名，并列世界三大古人类遗址。</p>
+    `;
+
+    function selectAnchor(btnElement, id) {
+      document.querySelectorAll('.anchor-btn').forEach((item) => item.classList.remove('selected'));
+      btnElement.classList.add('selected');
+      const display = document.getElementById('anchor-display');
+      display.innerHTML = anchorContents[id];
+      const feedback = document.getElementById('anchor-feedback');
+      if (feedback) {
+        feedback.textContent = `你选择了：${btnElement.getAttribute('data-anchor-choice')}`;
+        feedback.style.display = 'block';
+      }
+      window.__TEACHANY_LEARNER_QUESTION__ = btnElement.getAttribute('data-anchor-choice') || '';
+    }
+
+    function handleCustomQuestion(question) {
+      if (question.trim()) {
+        const display = document.getElementById('anchor-display');
+        display.innerHTML = `<h3>📍 你的问题：${question}</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
+        const feedback = document.getElementById('anchor-feedback');
+        if (feedback) {
+          feedback.textContent = `你的问题：${question}`;
+          feedback.style.display = 'block';
+        }
+        window.__TEACHANY_LEARNER_QUESTION__ = question;
+      }
+    }
+
+    /* ========== 答案检查（支持反复尝试 + 答对了也能看错误选项讲解） ========== */
+    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+      const parent = element.closest('.quiz-box');
+      const feedback = parent.querySelector('.feedback');
+      const explanation = document.getElementById('explanation-' + questionNum);
+      const allOptions = parent.querySelectorAll('.quiz-option');
+
+      // 先清除所有选项的高亮状态
+      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+      if (isCorrect) {
+        element.classList.add('correct');
+        if (feedback) {
+          feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
+          feedback.className = 'feedback show correct-fb';
+        }
+        if (explanation) explanation.classList.add('show');
+        // 不禁用！答对了还能点错误选项看讲解
+
+      } else {
+        element.classList.add('wrong');
+        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
+        if (feedback) {
+          feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
+          feedback.className = 'feedback show wrong-fb';
+        }
+        // 不禁用！可以一直尝试
+        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
+        if (alreadyCorrect && explanation) explanation.classList.add('show');
+      }
+    }
+    
+    /* ========== 初始化 ========== */
+    document.addEventListener('DOMContentLoaded', function() {
+      initAnchorContents();
+      updateProgressBar();
+      console.log('📚 《北京人》课件加载完成（v2融合版：bjr导航栏 + anchored全功能）');
+    });
+  </script>
+
+  <!-- 标准模块脚本（必须） -->
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>
+
+

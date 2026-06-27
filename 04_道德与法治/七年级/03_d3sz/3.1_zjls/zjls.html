@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="course-id" content="ddfz-3.1-7">
+  <meta name="course-title" content="3.1 走近老师">
+  <meta name="course-subject" content="politics">
+  <meta name="course-grade" content="middle-7">
+  <meta name="teachany-node" content="ddfz-3.1">
+  <meta name="author" content="TeachAny">
+  <meta name="version" content="v7.14.0">
+  <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>3.1 走近老师 | 七年级道德与法治</title>
+  <style>
+    .concept-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .concept-table th { background: linear-gradient(135deg, #c0392b, #e74c3c); color: white; padding: 12px; text-align: center; }
+    .concept-table td { padding: 10px; border: 1px solid #ec7063; text-align: center; }
+    .concept-table tr:nth-child(even) { background: #fdf2f2; }
+    .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
+    .answer-explanation.show { display: block; }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #92400e; }
+    .difficulty-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+    .difficulty-基础 { background: #dbeafe; color: #1d4ed8; }
+    .difficulty-提高 { background: #ede9fe; color: #6d28d9; }
+    .difficulty-中考 { background: #fee2e2; color: #dc2626; }
+    .difficulty-挑战 { background: #fef3c7; color: #92400e; }
+    .nav-bar { background: #fdf2f2; border-bottom: 2px solid #c0392b; padding: 10px 0; margin-bottom: 20px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+    .nav-btn { color: #c0392b; text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; }
+    .nav-btn:hover { background: #fadbd8; }
+    .nav-center { font-weight: 700; color: #c0392b; font-size: 14px; flex: 1; text-align: center; }
+    .hero { background: linear-gradient(135deg, #c0392b, #e74c3c); color: white; padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 2rem; margin: 10px 0; }
+    .hero-badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; display: inline-block; }
+    .hero-subtitle { margin-top: 12px; font-size: 1.1rem; opacity: 0.9; }
+    .progress-bar { height: 4px; background: #fce4e4; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #c0392b, #e74c3c); width: 29.0%; }
+    .progress-label { font-size: 12px; color: #c0392b; padding: 4px 20px; background: #fdf2f2; }
+    .brand-bar { background: #c0392b; color: white; padding: 10px 20px; display: flex; justify-content: space-between; }
+    .brand-logo { font-size: 16px; font-weight: 700; }
+    .brand-tag { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+    .section-title { font-size: 1.5rem; color: #c0392b; margin: 30px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #ec7063; }
+    .card { background: white; border: 1px solid #ec7063; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(192,57,43,0.1); }
+    .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #fadbd8, #fce4e4); border: 2px solid #ec7063; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #922b21; text-align: center; }
+    .anchor-btn:hover { background: #f1948a; }
+    .anchor-btn.selected { background: #c0392b; color: white; }
+    .anchor-display { background: #fce4e4; border: 2px solid #c0392b; border-radius: 10px; padding: 16px; min-height: 100px; margin-top: 16px; }
+    .quiz-box { background: #fdf2f2; border: 1px solid #ec7063; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #fadbd8; border-radius: 10px; margin-bottom: 10px; cursor: pointer; font-size: 14px; }
+    .quiz-option:hover { border-color: #ec7063; }
+    .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
+    .opt-letter { display: inline-block; width: 24px; height: 24px; background: #c0392b; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 14px; display: none; }
+    .feedback.show { display: block; }
+    .feedback.correct-fb { background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+    .concept-box { background: #fce4e4; border-left: 4px solid #c0392b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box .label { font-weight: 700; color: #c0392b; margin-bottom: 8px; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+    .tag-kp { background: #c0392b; color: white; }
+    .tag-theory { background: #f39c12; color: white; }
+    .tag-exam { background: #e74c3c; color: white; }
+    .tag-mistake { background: #95a5a6; color: white; }
+    .warn-box { background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .warn-box .label { font-weight: 700; color: #92400e; margin-bottom: 8px; }
+    .exam-card { border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .exam-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .exam-card-num { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; background: #dc2626; flex-shrink: 0; }
+    .footer { background: #c0392b; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
+    @media (max-width: 768px) { .anchor-points { flex-direction: column; } .anchor-btn { width: 100%; } .nav-inner { flex-direction: column; gap: 6px; } }
+  </style>
+</head>
+<body>
+  <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-chalkboard-user"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
+  <div class="progress-label" id="pl">第 9/31 节 · 29.0%</div>
+  <nav class="nav-bar"><div class="nav-inner">
+    <a href="../../index.html" class="nav-btn">首页</a>
+    <a href="../d3sz.html" class="nav-btn">单元导航</a>
+    <div class="nav-center">第三单元：师长情谊</div>
+    <a href="../../02_d2yy/2.4_wsjyxxkj/wsjyxxkj.html" class="nav-btn">← 上一节</a>
+    <a href="../3.2_srjw/srjw.html" class="nav-btn">下一节 →</a>
+  </div></nav>
+  <header class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-chalkboard-user"></i> 七年级道德与法治 · 第三单元</div>
+    <h1>3.1 走近老师<span>Getting Close to Teachers</span></h1>
+    <p class="hero-subtitle">📖 课标要求：了解教师的作用，尊重不同风格的老师<br>⏰ 预计用时：30分钟</p>
+  </header>
+
+  <!-- SVG知识结构图 -->
+  <section style="margin:24px auto 0;max-width:800px;padding:0 20px;">
+    <svg viewBox="0 0 800 280" width="800" height="280" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="280" fill="#fdf2f2"/>
+      <circle cx="400" cy="140" r="50" fill="#c0392b" stroke="#922b21" stroke-width="3"/>
+      <text x="400" y="145" text-anchor="middle" font-size="16" fill="white" font-weight="bold">走近老师</text>
+      <rect x="30" y="40" width="140" height="55" rx="8" fill="#e74c3c" stroke="#c0392b"/><text x="100" y="65" text-anchor="middle" fill="white" font-size="13">教师的作用</text><text x="100" y="82" text-anchor="middle" fill="white" font-size="11">传授知识</text>
+      <line x1="170" y1="67" x2="350" y2="140" stroke="#c0392b" marker-end="url(#a)"/>
+      <rect x="30" y="185" width="140" height="55" rx="8" fill="#e74c3c" stroke="#c0392b"/><text x="100" y="210" text-anchor="middle" fill="white" font-size="13">风格多样</text><text x="100" y="227" text-anchor="middle" fill="white" font-size="11">年龄学识阅历</text>
+      <line x1="170" y1="212" x2="350" y2="140" stroke="#c0392b" marker-end="url(#a)"/>
+      <rect x="630" y="40" width="140" height="55" rx="8" fill="#ec7063" stroke="#c0392b"/><text x="700" y="65" text-anchor="middle" fill="white" font-size="13">尊重不同</text><text x="700" y="82" text-anchor="middle" fill="white" font-size="11">承认差异</text>
+      <line x1="630" y1="67" x2="450" y2="140" stroke="#c0392b" marker-end="url(#a)"/>
+      <rect x="630" y="185" width="140" height="55" rx="8" fill="#ec7063" stroke="#c0392b"/><text x="700" y="210" text-anchor="middle" fill="white" font-size="13">独特魅力</text><text x="700" y="227" text-anchor="middle" fill="white" font-size="11">教学方式</text>
+      <line x1="630" y1="212" x2="450" y2="140" stroke="#c0392b" marker-end="url(#a)"/>
+      <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0,10 3,0 6" fill="#c0392b"/></marker></defs>
+    </svg>
+    <figcaption style="margin-top:10px;color:#c0392b;font-size:14px;text-align:center;">图3-1 走近老师知识结构图</figcaption>
+  </section>
+
+  <main class="container">
+
+    <!-- 探究问题 -->
+    <section><h2 class="section-title">🎯 探究问题</h2>
+      <p style="color:#c0392b;margin-bottom:16px;">先选一个你关心的问题，后面的讲解会围绕它展开。</p>
+      <div class="card">
+        <div class="anchor-points">
+          <button class="anchor-btn" onclick="selA(this,1)">👨🏫 教师有什么作用？</button>
+          <button class="anchor-btn" onclick="selA(this,2)">🎨 为什么老师风格不同？</button>
+          <button class="anchor-btn" onclick="selA(this,3)">🤝 如何尊重不同风格的老师？</button>
+        </div>
+        <div class="anchor-display" id="ad"><p style="color:#c0392b;text-align:center;">👆 点击上方按钮选择</p></div>
+      </div>
+    </section>
+
+    <!-- 学习目标 -->
+    <section><h2 class="section-title">🎯 学习目标</h2>
+      <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
+        <li>✅ 了解教师的作用 <span class="tag tag-theory">关联：教师角色理论</span></li>
+        <li>✅ 理解教师风格多样的原因 <span class="tag tag-theory">关联：个体差异理论</span></li>
+        <li>✅ 学会尊重不同风格的老师 <span class="tag tag-theory">关联：多元尊重理论</span></li>
+        <li>✅ 发现每位老师的独特魅力 <span class="tag tag-theory">关联：人格特质理论</span></li>
+      </ul></div>
+    </section>
+
+    <!-- ===== 前测 ===== -->
+    <section><h2 class="section-title">📝 前测：检验先备知识</h2>
+      <p style="color:#c0392b;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
+
+      <!-- 前测1 基础 -->
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】教师的主要作用是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 教师的作用<strong>不仅仅是</strong>管纪律，这只是其中一个方面。<br><span class='tag tag-mistake'>归因：片面理解教师角色</span>"><span class="opt-letter">A</span> 管纪律</div>
+          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：教师传授知识、指导做人</span>"><span class="opt-letter">B</span> 传授知识、指导做人</div>
+          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 教师<strong>不是</strong>只陪玩耍，教育工作远不止于此。<br><span class='tag tag-mistake'>归因：低估教师职业的专业性</span>"><span class="opt-letter">C</span> 陪玩耍</div>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
+          <p><strong>正确答案：B. 传授知识、指导做人</strong></p>
+          <p style="margin-top:8px;"><span class="tag tag-kp">核心知识点</span> 教师是人类文明的传承者，肩负着<strong>传授知识</strong>和<strong>指导做人</strong>的双重使命。</p>
+          <p style="margin-top:8px;"><span class="tag tag-mistake">错因分析</span> 选A只看到教师的<strong>管理职能</strong>，选C低估了教师职业的<strong>专业性</strong>，都未能全面理解教师的核心作用。</p>
+          <p style="margin-top:8px;"><span class="tag tag-theory">关联理论</span> 教师角色理论——教师是知识的传授者、道德的引导者、人格的塑造者。</p>
+        </div>
+      </div>
+
+      <!-- 前测2 提高 -->
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】为什么不同老师教学风格不同？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 年龄只是<strong>影响因素之一</strong>，不是唯一原因。<br><span class='tag tag-mistake'>归因：单一归因，忽略多因素影响</span>"><span class="opt-letter">A</span> 只因为年龄不同</div>
+          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：年龄、学识、阅历、性格等差异导致风格不同</span>"><span class="opt-letter">B</span> 因年龄、学识、阅历、性格等不同</div>
+          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 所有老师教学风格<strong>并不相同</strong>，这正是本课的要点。<br><span class='tag tag-mistake'>归因：与事实相反，未观察到个体差异</span>"><span class="opt-letter">C</span> 所有老师都一样</div>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
+          <p><strong>正确答案：B. 因年龄、学识、阅历、性格等不同</strong></p>
+          <p><span class="tag tag-kp">核心知识点</span> 每位老师因<strong>年龄、学识、阅历、性格、情感与思维方式</strong>的差异，呈现出不同的教学风格。</p>
+          <p><span class="tag tag-mistake">错因分析</span> 选A犯了<strong>单一归因错误</strong>，选C与<strong>事实相悖</strong>，都未能理解个体差异的复杂性。</p>
+          <p><span class="tag tag-theory">关联理论</span> 个体差异理论——每个人的成长背景、教育经历不同，形成独特的人格特质和教学风格。</p>
+        </div>
+      </div>
+
+      <!-- 前测3 中考 -->
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 中考】关于教师的作用，以下理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 教师<strong>不是</strong>万能的，也有局限性。<br><span class='tag tag-mistake'>归因：绝对化思维，神化教师角色</span>"><span class="opt-letter">A</span> 教师能解决所有问题</div>
+          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 教师的作用<strong>不可替代</strong>，这是共识。<br><span class='tag tag-mistake'>归因：低估教师职业的重要性</span>"><span class="opt-letter">B</span> 教师的作用可以被取代</div>
+          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：教师是人类文明的传承者</span>"><span class="opt-letter">C</span> 教师是人类文明的传承者</div>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
+          <p><strong>正确答案：C. 教师是人类文明的传承者</strong></p>
+          <p><span class="tag tag-kp">核心知识点</span> 教师作为<strong>人类文明的主要传承者</strong>，承担着传播知识、传播思想、传播真理的历史使命。</p>
+          <p><span class="tag tag-mistake">错因分析</span> 选A犯了<strong>绝对化错误</strong>（中考常见陷阱），选B<strong>低估了</strong>教师职业的不可替代性。</p>
+          <p><span class="tag tag-exam">中考提示</span> 此类题目常考"教师的作用"，要特别注意<strong>表述的准确性</strong>，避免绝对化用语。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 正文知识 ===== -->
+    <section><h2 class="section-title">📚 教师的作用</h2>
+      <div class="card">
+        <h3 style="color:#c0392b;">📖 教师是人类文明的传承者</h3>
+        <table class="concept-table" style="margin-top:16px;">
+          <tr><th>作用层面</th><th>具体内容</th><th>关联理论</th></tr>
+          <tr><td><strong>传授知识</strong></td><td>传播知识、传播思想、传播真理</td><td>知识传递理论</td></tr>
+          <tr><td><strong>指导做人</strong></td><td>塑造灵魂、塑造生命、塑造人</td><td>人格塑造理论</td></tr>
+          <tr><td><strong>文明传承</strong></td><td>人类文明的主要传承者</td><td>文化传承理论</td></tr>
+          <tr><td><strong>社会责任</strong></td><td>承担教书育人使命</td><td>社会责任理论</td></tr>
+        </table>
+        <div class="concept-box"><div class="label">💡 核心要点 <span class="tag tag-theory">关联：教师角色理论</span></div>
+          <p>教师不仅是<strong>知识的传授者</strong>，更是<strong>人类文明的传承者</strong>。他们承担着传播知识、传播思想、传播真理的历史使命，肩负着塑造灵魂、塑造生命、塑造人的时代重任。</p>
+        </div>
+      </div>
+    </section>
+
+    <section><h2 class="section-title">🎨 今天教师的风格多样</h2>
+      <div class="card">
+        <h3 style="color:#c0392b;">📖 为什么老师风格不同？</h3>
+        <ul style="padding-left:20px;line-height:2;margin-top:10px;">
+          <li>① <strong>年龄差异</strong>：老中青教师人生阅历不同 <span class="tag tag-theory">生命历程理论</span></li>
+          <li>② <strong>学识背景</strong>：毕业院校、专业方向不同 <span class="tag tag-theory">教育背景理论</span></li>
+          <li>③ <strong>性格特点</strong>：内向、外向、温和、严厉等 <span class="tag tag-theory">人格特质理论</span></li>
+          <li>④ <strong>情感方式</strong>：表达情感的方式不同 <span class="tag tag-theory">情感表达理论</span></li>
+          <li>⑤ <strong>思维方式</strong>：逻辑思维、形象思维偏好不同 <span class="tag tag-theory">认知风格理论</span></li>
+        </ul>
+        <div style="background:#fdf2f2;border-radius:8px;padding:16px;margin-top:16px;font-style:italic;color:#922b21;">
+          "师者，所以传道受业解惑也。" —— 韩愈《师说》<span class="tag tag-kp">教师使命</span>
+        </div>
+      </div>
+    </section>
+
+    <section><h2 class="section-title">🤝 尊重老师的"不同"</h2>
+      <div class="card">
+        <div class="concept-box"><div class="label">✨ 如何尊重不同风格的老师 <span class="tag tag-theory">关联：多元尊重理论</span></div>
+          <p>① <strong>承认差异</strong>：认识到每位老师都有自己的特点 <span class="tag tag-theory">认知接纳</span></p>
+          <p>② <strong>发现优点</strong>：善于发现不同风格老师的优点 <span class="tag tag-theory">积极归因</span></p>
+          <p>③ <strong>主动交往</strong>：了解老师，拉近师生距离 <span class="tag tag-theory">社会交往理论</span></p>
+          <p>④ <strong>包容理解</strong>：理解老师的不同表达方式 <span class="tag tag-theory">同理心理论</span></p>
+        </div>
+        <div class="warn-box" style="margin-top:16px;"><div class="label">⚠️ 易错警示</div>
+          <p><strong>错误做法：</strong>只喜欢某一种风格的老师，排斥其他风格的老师。</p>
+          <p><strong>正确做法：</strong>尊重并接受每位老师的差异，从他们身上学习不同的优点。</p>
+        </div>
+      </div>
+    </section>
+
+    <section><h2 class="section-title">✨ 每位老师都有独特的魅力</h2>
+      <div class="card">
+        <h3 style="color:#c0392b;">📖 老师的魅力体现在哪里？</h3>
+        <ul style="padding-left:20px;line-height:2;margin-top:10px;">
+          <li>① <strong>教学方式的魅力</strong>：生动有趣、逻辑清晰、深入浅出</li>
+          <li>② <strong>个人气质的魅力</strong>：幽默风趣、严谨认真、和蔼可亲</li>
+          <li>③ <strong>人格魅力的感染</strong>：正直善良、敬业奉献、关爱学生</li>
+          <li>④ <strong>专业素养的魅力</strong>：知识渊博、见解独到、思维敏捷</li>
+        </ul>
+        <div style="background:linear-gradient(135deg,#fdf2f2,#fce4e4);border-radius:8px;padding:16px;margin-top:16px;">
+          <p style="color:#922b21;font-weight:700;">💡 小贴士：如何发现老师的魅力？</p>
+          <p style="margin-top:8px;color:#922b21;">多观察、多了解、多沟通，你会发现在每位老师身上都有值得学习的闪光点！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 后测 ===== -->
+    <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
+
+      <div class="quiz-box">
+        <h3>1. 【⭐ 基础】以下哪项不是教师的作用？<span class="difficulty-badge difficulty-基础">基础</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 传授知识是教师的重要作用！<br><span class='tag tag-mistake'>归因：未理解教师的核心职能</span>"><span class="opt-letter">A</span> 传授知识</div>
+          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 指导做人是教师的重要作用！<br><span class='tag tag-mistake'>归因：忽略了教师的育人功能</span>"><span class="opt-letter">B</span> 指导做人</div>
+          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！教师的作用不是替代学生学习。<br><span class='tag tag-kp'>知识点：教师是引导者而非替代者</span>"><span class="opt-letter">C</span> 替代学生学习</div>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
+          <p><strong>答案：C</strong> 教师是学习的<strong>引导者</strong>，不能替代学生学习。<span class="tag tag-theory">关联：建构主义学习理论</span></p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>2. 【⭐⭐ 提高】面对不同风格的老师，正确的做法是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 只喜欢某一种风格会限制自己的学习。<br><span class='tag tag-mistake'>归因：片面认知，缺乏包容性</span>"><span class="opt-letter">A</span> 只喜欢一种风格</div>
+          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！尊重差异、发现优点。<br><span class='tag tag-kp'>知识点：尊重不同风格的老师</span>"><span class="opt-letter">B</span> 尊重差异，发现优点</div>
+          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 排斥其他风格会失去学习机会。<br><span class='tag tag-mistake'>归因：排斥心理，未理解多元价值</span>"><span class="opt-letter">C</span> 排斥其他风格</div>
+        </div>
+        <div class="feedback" id="fb11"></div>
+        <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
+          <p><strong>答案：B</strong> 尊重差异、发现优点才能<strong>全面学习</strong>。<span class="tag tag-theory">关联：多元智能理论</span></p>
+        </div>
+      </div>
+
+      <div class="quiz-box">
+        <h3>3. 【⭐⭐⭐ 中考】以下关于教师的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！教师风格多样是客观事实。<br><span class='tag tag-kp'>知识点：教师风格多样性</span>"><span class="opt-letter">A</span> 教师风格多样，各有特点</div>
+          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 优秀教师<strong>不是</strong>完美无缺的，也有不足。<br><span class='tag tag-mistake'>归因：绝对化思维，神化教师</span>"><span class="opt-letter">B</span> 优秀教师完美无缺</div>
+          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 我们<strong>应该</strong>尊重不同风格的老师，而不是只喜欢一种。<br><span class='tag tag-mistake'>归因：片面认知，缺乏多元尊重意识</span>"><span class="opt-letter">C</span> 只喜欢一种风格就好</div>
+        </div>
+        <div class="feedback" id="fb12"></div>
+        <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
+          <p><strong>答案：A</strong> 教师风格多样，各有特点，应<strong>尊重差异</strong>。</p>
+          <p><span class="tag tag-exam">中考提示</span> 考查"教师风格"时，注意选项的<strong>表述是否客观</strong>，警惕绝对化、片面化的干扰项。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 必考分析与考点总结 ===== -->
+    <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
+      <div class="card">
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num">1</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 考点一：教师的作用</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近5年考了15次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 教师是<strong>人类文明的主要传承者</strong></li>
+            <li>✅ 承担<strong>教书育人</strong>的使命</li>
+            <li>✅ 传播知识、思想、<strong>真理</strong></li>
+          </ul>
+          <p style="margin-top:10px;font-size:13px;color:#991b1b;"><span class="tag tag-mistake">常见陷阱</span> "教师能解决所有问题""教师作用可以被取代"等<strong>绝对化或错误表述</strong>均为错误选项。</p>
+        </div>
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#fdf2f2,#fce4e4);border:1px solid #ec7063;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#c0392b;">2</span>
+            <strong style="color:#922b21;font-size:15px;">🔥 考点二：教师风格多样的原因</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近5年考了12次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ 因<strong>年龄、学识、阅历、性格</strong>等不同</li>
+            <li>✅ 因<strong>情感方式、思维方式</strong>等不同</li>
+            <li>✅ 呈现出<strong>不同的教学风格</strong></li>
+          </ul>
+          <p style="margin-top:10px;font-size:13px;color:#922b21;"><span class="tag tag-mistake">常见陷阱</span> "所有老师都一样""只因为年龄不同"等<strong>片面或错误表述</strong>均为错误选项。</p>
+        </div>
+
+        <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fde8e8);border:1px solid #fca5a5;">
+          <div class="exam-card-header">
+            <span class="exam-card-num" style="background:#e74c3c;">3</span>
+            <strong style="color:#991b1b;font-size:15px;">🔥 考点三：如何尊重不同风格的老师</strong>
+            <span class="tag tag-exam" style="margin-left:8px;">近5年考了10次</span>
+          </div>
+          <p style="font-size:14px;line-height:1.7;margin:8px 0 0 0;"><span class="tag tag-kp">必背结论</span></p>
+          <ul style="font-size:14px;line-height:1.8;padding-left:20px;margin:6px 0 0 0;">
+            <li>✅ <strong>承认差异</strong>：认识到每位老师都有自己的特点</li>
+            <li>✅ <strong>发现优点</strong>：善于发现不同风格老师的优点</li>
+            <li>✅ <strong>主动交往</strong>：了解老师，拉近师生距离</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2024 TeachAny · 初中道德与法治互动课件系统</p>
+    <p style="font-size:12px;margin-top:8px;">人教版七年级道德与法治 · v7.14.0</p>
+  </footer>
+
+  <script>
+    var INFO = {total:31,cur:9};
+    var anchors = {
+      1:"<h3>📍 问题：教师有什么作用？</h3><p>① <strong>传授知识</strong>：传播知识、思想、真理 <span class='tag tag-theory'>知识传递理论</span></p><p>② <strong>指导做人</strong>：塑造灵魂、生命、人 <span class='tag tag-theory'>人格塑造理论</span></p><p>③ <strong>文明传承</strong>：人类文明的主要传承者 <span class='tag tag-theory'>文化传承理论</span></p>",
+      2:"<h3>📍 问题：为什么老师风格不同？</h3><p>① <strong>年龄差异</strong>：老中青教师人生阅历不同 <span class='tag tag-theory'>生命历程理论</span></p><p>② <strong>学识背景</strong>：毕业院校、专业方向不同 <span class='tag tag-theory'>教育背景理论</span></p><p>③ <strong>性格特点</strong>：内向、外向、温和、严厉等 <span class='tag tag-theory'>人格特质理论</span></p><p>④ <strong>情感方式</strong>：表达情感的方式不同 <span class='tag tag-theory'>情感表达理论</span></p>",
+      3:"<h3>📍 问题：如何尊重不同风格的老师？</h3><p>① <strong>承认差异</strong>：认识到每位老师都有自己的特点 <span class='tag tag-theory'>认知接纳</span></p><p>② <strong>发现优点</strong>：善于发现不同风格老师的优点 <span class='tag tag-theory'>积极归因</span></p><p>③ <strong>主动交往</strong>：了解老师，拉近师生距离 <span class='tag tag-theory'>社会交往理论</span></p><p>④ <strong>包容理解</strong>：理解老师的不同表达方式 <span class='tag tag-theory'>同理心理论</span></p>"
+    };
+    function selA(bt,id){document.querySelectorAll('.anchor-btn').forEach(function(b){b.classList.remove('selected')});bt.classList.add('selected');document.getElementById('ad').innerHTML=anchors[id];}
+    function chk(el,ok,num){
+      var p=el.closest('.quiz-box'),fb=p.querySelector('.feedback'),exp=document.getElementById('exp'+num);
+      p.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('correct','wrong')});
+      if(ok){el.classList.add('correct');fb.innerHTML='<strong>✅ 答对了！</strong>';fb.className='feedback show correct-fb';}
+      else{el.classList.add('wrong');fb.innerHTML=el.dataset.fb;fb.className='feedback show wrong-fb';}
+      if(exp)exp.classList.add('show');
+    }
+    document.addEventListener('DOMContentLoaded',function(){
+      document.getElementById('pf').style.width=(INFO.cur/INFO.total*100)+'%';
+      document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
+    });
+  </script>
+  <script src="../../shared/mascot.js?v=8.0"></script>
+</body>
+</html>
