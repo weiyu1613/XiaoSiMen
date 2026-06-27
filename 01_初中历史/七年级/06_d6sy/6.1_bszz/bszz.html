@@ -272,7 +272,10 @@
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
     <div class="nav-center">第六单元：辽宋夏金元时期</div>
     <a href="../6.2_lxxbsbl/lxxbsbl.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a>
+
+    <button class="focus-toggle" onclick="document.body.classList.toggle('focus-mode')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:16px;padding:6px 8px;border-radius:6px;" aria-label="切换专注模式" title="专注模式"><i class="fa-solid fa-eye"></i></button>
 </div></nav>
+  <div class="brand-transition-bar"></div>
   
   <!-- ========== Hero区 ========== -->
   <header class="hero">
@@ -676,6 +679,29 @@
         </div>
       </div>
     </section>
+    <!-- 新题型：材料分析题 -->
+    <div class="material-analysis" style="background:#fffde7;border:2px solid #f39c12;border-radius:12px;padding:20px;margin:16px 0;">
+      <h4 style="color:#e65100;margin-bottom:12px;"><i class="fa-solid fa-file-lines"></i> 材料分析题</h4>
+      <div style="background:#fff8e1;padding:12px;border-radius:8px;margin-bottom:12px;font-size:14px;color:#5d4037;">
+        <p>阅读以下材料，回答问题：</p>
+        <p style="margin-top:8px;font-style:italic;">材料：本课重点知识的实际应用案例（教师可替换为具体材料）</p>
+      </div>
+      <p style="font-weight:600;margin-bottom:8px;">问题：结合材料和你所学知识，分析其中的关键概念。</p>
+      <textarea style="width:100%;min-height:80px;padding:12px;border:2px solid #e0e0e0;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="请在此输入你的分析..."></textarea>
+      <button onclick="this.parentElement.querySelector('.material-feedback').style.display='block'" style="margin-top:8px;padding:8px 20px;background:#f39c12;color:white;border:none;border-radius:8px;cursor:pointer;">提交答案</button>
+      <div class="material-feedback" style="display:none;margin-top:12px;padding:12px;background:#e8f5e9;border-radius:8px;color:#27ae60;">
+        ✓ 参考答案要点：1.核心概念识别 2.原理分析 3.实际意义阐述
+      </div>
+    </div>
+
+    <!-- 新题型：开放性思考题 -->
+    <div class="open-ended" style="background:#e3f2fd;border:2px solid #1565C0;border-radius:12px;padding:20px;margin:16px 0;">
+      <h4 style="color:#0d47a1;margin-bottom:12px;"><i class="fa-solid fa-lightbulb"></i> 开放性思考题</h4>
+      <p style="font-weight:600;margin-bottom:12px;">结合本课内容，谈谈你的理解和看法。</p>
+      <textarea style="width:100%;min-height:80px;padding:12px;border:2px solid #e0e0e0;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="请在此输入你的思考..."></textarea>
+      <div style="margin-top:8px;font-size:13px;color:#666;">💡 提示：可以从多角度思考，没有标准答案，鼓励创造性思维。</div>
+    </div>
+
 
     <!-- Section7: 考点总结 -->
         <!-- Section 8: 必考分析与考点总结 -->
@@ -866,5 +892,13 @@
     <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>
-  </body>
+    <!-- P1-8 移动端工具栏 -->
+  <div class="mobile-toolbar">
+    <a href="../../index.html" class="mobile-toolbar-item"><i class="fa-solid fa-house"></i><span>首页</span></a>
+    <a href="#" class="mobile-toolbar-item" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><i class="fa-solid fa-arrow-up"></i><span>顶部</span></a>
+    <a href="#" class="mobile-toolbar-item" onclick="document.querySelector('.quiz-option')?.scrollIntoView({behavior:'smooth'});return false;"><i class="fa-solid fa-question"></i><span>答题</span></a>
+    <a href="#" class="mobile-toolbar-item" onclick="document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();return false;"><i class="fa-solid fa-expand"></i><span>全屏</span></a>
+  </div>
+
+</body>
 </html>

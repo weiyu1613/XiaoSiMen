@@ -1307,3 +1307,58 @@ svg {
 .quiz-option:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 .nav-btn:focus-visible, .anchor-btn:focus-visible, .tab-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* ====== P0-1 品牌过渡条 ====== */
+.brand-transition-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary-light) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.brand-transition-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: brandShine 3s ease-in-out infinite;
+}
+@keyframes brandShine { 0% { left: -100%; } 100% { left: 200%; } }
+
+/* ====== P1-8 移动端工具栏 ====== */
+.mobile-toolbar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 8px 0;
+  z-index: 95;
+  justify-content: space-around;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+.mobile-toolbar-item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 12px; border: none; background: none; cursor: pointer;
+  color: var(--text-muted); font-size: 10px; text-decoration: none;
+  transition: color 0.2s;
+}
+.mobile-toolbar-item.active, .mobile-toolbar-item:hover { color: var(--primary); }
+.mobile-toolbar-item i { font-size: 18px; }
+@media (max-width: 768px) {
+  .mobile-toolbar { display: flex; }
+  body { padding-bottom: 60px; }
+}
+
+/* ====== P1-10 专注模式 ====== */
+body.focus-mode .hero-section,
+body.focus-mode .brand-bar,
+body.focus-mode .breadcrumb,
+body.focus-mode .mobile-toolbar,
+body.focus-mode .mascot-container { display: none !important; }
+body.focus-mode .nav-bar { position: sticky; }
+body.focus-mode .section { padding: 20px 0; }
+body.focus-mode .container { max-width: 800px; }
+body.focus-mode .card { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+body.focus-mode .focus-toggle { background: var(--primary); color: white; }

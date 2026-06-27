@@ -42,3 +42,58 @@ function showBadgeUnlock(badge) {
 // 自动检查
 if (document.readyState !== 'loading') { setTimeout(checkBadges, 1000); }
 else { document.addEventListener('DOMContentLoaded', () => setTimeout(checkBadges, 1000)); }
+
+// ====== P1-13 徽章分享卡片 ======
+function generateBadgeShareCard(badgeId) {
+  const badge = BADGE_DEFINITIONS.find(b => b.id === badgeId);
+  if (!badge) return;
+  const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+  const level = state.level || 1;
+  const xp = state.xp || 0;
+  const streak = state.streak?.count || 0;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 400; canvas.height = 560;
+  const ctx = canvas.getContext('2d');
+
+  // 背景
+  const grad = ctx.createLinearGradient(0, 0, 400, 560);
+  grad.addColorStop(0, '#4A148C'); grad.addColorStop(0.5, '#7B1FA2'); grad.addColorStop(1, '#AB47BC');
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, 400, 560);
+
+  // 装饰圆
+  ctx.globalAlpha = 0.1; ctx.fillStyle = '#FFD700';
+  ctx.beginPath(); ctx.arc(200, 180, 120, 0, Math.PI * 2); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // 徽章图标（用emoji渲染）
+  ctx.font = '80px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(badge.icon, 200, 180);
+
+  // 标题
+  ctx.fillStyle = '#FFD700'; ctx.font = 'bold 24px sans-serif';
+  ctx.fillText('徽章成就', 200, 290);
+
+  // 徽章名称
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 28px sans-serif';
+  ctx.fillText(badge.name, 200, 340);
+
+  // 描述
+  ctx.fillStyle = 'rgba(255,255,255,0.8)'; ctx.font = '16px sans-serif';
+  ctx.fillText(badge.desc, 200, 380);
+
+  // 用户信息
+  ctx.fillStyle = 'rgba(255,255,255,0.6)'; ctx.font = '14px sans-serif';
+  ctx.fillText('等级 ' + level + '  ·  XP ' + xp + '  ·  连胜 ' + streak + '天', 200, 440);
+
+  // 品牌
+  ctx.fillStyle = 'rgba(255,255,255,0.4)'; ctx.font = '12px sans-serif';
+  ctx.fillText('TeachAny 小四门互动课件', 200, 520);
+
+  // 下载
+  const link = document.createElement('a');
+  link.download = 'badge-' + badgeId + '.png';
+  link.href = canvas.toDataURL();
+  link.click();
+}
+window.generateBadgeShareCard = generateBadgeShareCard;
