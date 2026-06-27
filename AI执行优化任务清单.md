@@ -69,6 +69,74 @@ d:\AIProject\Trae\XiaoSiMen\
 
 ## P0 任务（立即执行，影响所有用户）
 
+### 任务 P0-0a：答题选项可访问性修复（线上版紧急发现）
+
+**文件**：各课件 HTML（如 `01_初中历史/七年级/01_d1sy/1.1_bjr/bjr.html`）
+
+**问题**：线上版课件页选项未以独立交互元素暴露，DOM 中无 quiz/option 节点。键盘用户无法 Tab 到选项，屏幕阅读器无法识别，违反 WCAG 2.1 AA 标准。
+
+**执行步骤**：
+1. 检查所有课件 HTML 中的答题选项元素
+2. 将 `<div class="option" onclick="...">` 改为 `<button class="option" onclick="..." aria-label="选项A：xxx" aria-pressed="false">`
+3. 确保 `:focus-visible` 样式可见
+4. 添加 `role="radiogroup"` 到题目容器
+
+**代码示例**：
+```html
+<!-- 修改前（推测） -->
+<div class="quiz-option" onclick="selectAnswer(0)">A. 北京人</div>
+
+<!-- 修改后 -->
+<div class="quiz-container" role="radiogroup" aria-label="选择题">
+  <button class="quiz-option" onclick="selectAnswer(0)" 
+          aria-label="选项A：北京人" 
+          aria-pressed="false"
+          tabindex="0">A. 北京人</button>
+</div>
+```
+
+**CSS 补充**：
+```css
+.quiz-option:focus-visible {
+  outline: 2px solid var(--subject-primary);
+  outline-offset: 2px;
+}
+.quiz-option[aria-pressed="true"] {
+  background: var(--subject-100);
+  border-color: var(--subject-primary);
+}
+```
+
+**验证**：使用 Tab 键可以逐个聚焦选项，屏幕阅读器能朗读选项内容，回车键可选中。
+
+---
+
+### 任务 P0-0b：AI 脚本路径修复（线上版紧急发现）
+
+**文件**：所有引用 `localhost:8080` 的 HTML 文件
+
+**问题**：线上版 ai-tutor.js、audio-player.js 等脚本引用 localhost:8080 路径，GitHub Pages 上无法加载，AI 学伴和音效功能完全失效。
+
+**执行步骤**：
+1. 全局搜索 `localhost:8080` 并替换为相对路径
+2. 检查所有 `<script src>` 和 `<link href>` 标签
+3. 确保 GitHub Pages 部署前路径正确
+
+**代码示例**：
+```html
+<!-- 修改前 -->
+<script src="http://localhost:8080/shared/ai-tutor.js"></script>
+<link rel="stylesheet" href="http://localhost:8080/shared/styles.css">
+
+<!-- 修改后 -->
+<script src="./shared/ai-tutor.js"></script>
+<link rel="stylesheet" href="./shared/styles.css">
+```
+
+**验证**：在浏览器控制台无 404 错误，AI 学伴和音效功能正常加载。
+
+---
+
 ### 任务 P0-1：深浅色视觉统一
 
 **文件**：`index.html`、各学科 `shared/styles.css`
@@ -1104,6 +1172,371 @@ function addXP(questionElement, isCorrect) {
 
 ---
 
+### 任务 P1-9：连胜火苗与保护道具（2026 新增）
+
+**文件**：`scripts.js`、`index.html`、`styles.css`
+
+**问题**：无连胜机制，用户缺乏每日回访动力。
+
+**执行步骤**：
+1. 扩展 `teachany_gamestate` 增加 `streak` 字段
+2. 首页增加连胜火苗图标
+3. 实现"连胜冻结"保护道具
+
+**代码示例**（`scripts.js`）：
+```javascript
+// 连胜系统
+function updateStreak() {
+  const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+  const today = new Date().toISOString().split('T')[0];
+  if (!state.streak) state.streak = { count: 0, lastDate: null, freezes: 1, maxCount: 0 };
+
+  if (state.streak.lastDate === today) return;
+
+  const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+  if (state.streak.lastDate === yesterday) {
+    state.streak.count++;
+  } else if (state.streak.freezes > 0 && state.streak.lastDate) {
+    // 使用连胜保护道具
+    state.streak.freezes--;
+    state.streak.count++;
+  } else {
+    state.streak.count = 1; // 断签重置
+  }
+  state.streak.lastDate = today;
+  state.streak.maxCount = Math.max(state.streak.maxCount, state.streak.count);
+  localStorage.setItem('teachany_gamestate', JSON.stringify(state));
+
+  // 每100XP可购买1个连胜冻结道具
+  if (state.xp && state.xp % 100 === 0 && state.xp > 0) {
+    state.streak.freezes = (state.streak.freezes || 0) + 1;
+    localStorage.setItem('teachany_gamestate', JSON.stringify(state));
+  }
+}
+```
+
+**代码示例**（`index.html` 首页状态栏增加火苗）：
+```html
+<div class="streak-indicator">
+  <span class="streak-flame">🔥</span>
+  <span class="streak-count" id="streak-count">0</span>
+  <span class="streak-freezes" title="连胜保护">🛡️<span id="freeze-count">1</span></span>
+</div>
+```
+
+**CSS**：
+```css
+.streak-flame {
+  font-size: 1.2rem;
+  animation: flame-flicker 0.8s ease-in-out infinite alternate;
+}
+@keyframes flame-flicker {
+  0% { transform: scale(1) rotate(-2deg); }
+  100% { transform: scale(1.1) rotate(2deg); }
+}
+.streak-count { font-weight: 700; color: #ff9800; }
+```
+
+**验证**：每日完成1课后火苗数字+1，断签后可用保护道具。
+
+---
+
+### 任务 P1-10：专注模式与舒缓界面（2026 新增）
+
+**文件**：`index.html`、各学科 `shared/styles.css`、`scripts.js`
+
+**问题**：粒子特效较多，对部分学生造成注意力分散。
+
+**执行步骤**：
+1. 品牌栏增加月亮图标切换专注模式
+2. CSS 实现专注模式样式降级
+3. 尊重 `prefers-reduced-motion` 用户偏好
+
+**代码示例**（`index.html`）：
+```html
+<button class="focus-toggle" id="focus-toggle" aria-label="切换专注模式">🌙</button>
+```
+
+**代码示例**（`scripts.js`）：
+```javascript
+const focusToggle = document.getElementById('focus-toggle');
+if (focusToggle) {
+  // 读取偏好
+  const isFocus = localStorage.getItem('teachany_focus_mode') === 'true';
+  if (isFocus) document.body.classList.add('focus-mode');
+
+  focusToggle.addEventListener('click', () => {
+    document.body.classList.toggle('focus-mode');
+    const enabled = document.body.classList.contains('focus-mode');
+    localStorage.setItem('teachany_focus_mode', enabled);
+    focusToggle.textContent = enabled ? '☀️' : '🌙';
+    focusToggle.setAttribute('aria-label', enabled ? '退出专注模式' : '切换专注模式');
+  });
+}
+
+// 自动检测系统偏好
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.body.classList.add('reduced-motion');
+}
+```
+
+**CSS**：
+```css
+/* 专注模式：关闭装饰性动画 */
+body.focus-mode .particle,
+body.focus-mode .glow-orb,
+body.focus-mode .floating-light {
+  display: none !important;
+}
+body.focus-mode {
+  background: var(--bg) !important;
+}
+body.focus-mode .card {
+  box-shadow: none;
+  border: 1px solid var(--rule);
+}
+
+/* 尊重系统偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .particle, .glow-orb { display: none !important; }
+}
+```
+
+**验证**：点击月亮图标后粒子特效消失，界面变简洁；系统开启减少动画时自动降级。
+
+---
+
+### 任务 P1-11：AI 自适应难度引擎（2026 新增）
+
+**文件**：各学科 `shared/scripts.js`
+
+**问题**：固定难度，好学生觉得简单、差学生觉得难。
+
+**执行步骤**：
+1. 在 `scripts.js` 中维护 `difficultyScore` 变量
+2. 根据答题表现动态调整下一题难度
+3. 纯前端实现，无需 AI 后端
+
+**代码示例**：
+```javascript
+// 自适应难度引擎
+const AdaptiveEngine = {
+  score: 0, // 难度分数：-5 到 +5
+  recentAnswers: [], // 最近5题答题记录
+
+  recordAnswer(isCorrect, responseTime) {
+    this.recentAnswers.push({ isCorrect, responseTime });
+    if (this.recentAnswers.length > 5) this.recentAnswers.shift();
+
+    if (isCorrect) {
+      this.score += responseTime < 10 ? 2 : 1; // 快速答对加分更多
+    } else {
+      this.score -= 2;
+    }
+    this.score = Math.max(-5, Math.min(5, this.score));
+  },
+
+  getRecommendedDifficulty() {
+    if (this.score >= 3) return 'challenge';     // 连续答对→推荐挑战题
+    if (this.score <= -3) return 'basic';         // 连续答错→推荐基础题
+    return 'intermediate';                         // 默认提高题
+  },
+
+  getMotivationalMessage() {
+    if (this.score >= 4) return '你状态很好，来挑战一下！';
+    if (this.score <= -3) return '别灰心，先巩固一下基础！';
+    return null;
+  }
+};
+
+// 在答题判定后调用
+function onAnswerSubmit(isCorrect, responseTime) {
+  AdaptiveEngine.recordAnswer(isCorrect, responseTime);
+  const nextDifficulty = AdaptiveEngine.getRecommendedDifficulty();
+  const message = AdaptiveEngine.getMotivationalMessage();
+
+  if (message && window.mascotEngine) {
+    window.mascotEngine.show(isCorrect ? 'excited' : 'encourage');
+  }
+
+  // 高亮推荐难度的题目
+  document.querySelectorAll(`[data-difficulty="${nextDifficulty}"]`).forEach(el => {
+    el.classList.add('recommended');
+  });
+}
+```
+
+**验证**：连续答对3题后系统推荐挑战题，连续答错2题后推荐基础题。
+
+---
+
+### 任务 P1-12：叙事化滚动学习（2026 新增）
+
+**文件**：各课件 HTML、各学科 `shared/scripts.js`、`shared/styles.css`
+
+**问题**：8 段内容平铺直叙，缺乏滚动叙事感。
+
+**执行步骤**：
+1. 使用 `IntersectionObserver` 监测 Section 进入视口
+2. 触发 fade-in + slide-up 动画
+3. 前测答错的知识点在正文中自动高亮
+
+**代码示例**（`scripts.js`）：
+```javascript
+// 叙事化滚动
+const narrativeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('narrative-visible');
+      // 更新进度条
+      const index = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+      updateProgressBar(index + 1);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.courseware-section').forEach(section => {
+  narrativeObserver.observe(section);
+});
+
+// 前测结果影响正文高亮
+function highlightWeakPoints() {
+  const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+  const wrongAnswers = state.wrongAnswers || [];
+
+  wrongAnswers.forEach(item => {
+    const target = document.querySelector(`[data-knowledge-point="${item.point}"]`);
+    if (target) {
+      target.classList.add('weak-point');
+      target.innerHTML += '<span class="review-hint">📌 前测答错，重点复习</span>';
+    }
+  });
+}
+```
+
+**CSS**：
+```css
+.courseware-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.courseware-section.narrative-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.weak-point {
+  background: rgba(255, 183, 77, 0.1);
+  border-left: 3px solid var(--warn);
+  padding-left: 0.75rem;
+}
+.review-hint {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--warn);
+  font-weight: 600;
+}
+```
+
+**验证**：滚动课件页时每个 Section 渐入显示，前测答错的知识点在正文中高亮标注。
+
+---
+
+### 任务 P1-13：徽章分享卡片生成器（2026 新增）
+
+**文件**：`shared/badges.js`（已有）、`scripts.js`
+
+**问题**：徽章仅本地展示，无法分享，缺乏社交货币属性。
+
+**执行步骤**：
+1. 徽章解锁后调用 Canvas API 生成分享卡片
+2. 支持保存图片
+
+**代码示例**：
+```javascript
+// 徽章分享卡片生成
+function generateBadgeShareCard(badge) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 750;
+  canvas.height = 1080;
+  const ctx = canvas.getContext('2d');
+
+  // 背景渐变
+  const gradient = ctx.createLinearGradient(0, 0, 0, 1080);
+  gradient.addColorStop(0, '#0a0e1a');
+  gradient.addColorStop(1, '#141a2e');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 750, 1080);
+
+  // 标题
+  ctx.fillStyle = '#64ffda';
+  ctx.font = 'bold 36px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('TeachAny 小四门', 375, 80);
+
+  // 徽章图标（大号 emoji）
+  ctx.font = '120px sans-serif';
+  ctx.fillText(badge.icon, 375, 280);
+
+  // 徽章名称
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 48px sans-serif';
+  ctx.fillText(badge.name, 375, 380);
+
+  // 描述
+  ctx.fillStyle = '#8892b0';
+  ctx.font = '24px sans-serif';
+  ctx.fillText(badge.desc, 375, 430);
+
+  // 用户统计
+  const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+  ctx.fillStyle = '#bb86fc';
+  ctx.font = '28px sans-serif';
+  ctx.fillText(`等级 ${state.level || 1} · XP ${state.xp || 0}`, 375, 520);
+  ctx.fillText(`已学 ${state.completedLessons || 0} 课`, 375, 570);
+
+  // 底部
+  ctx.fillStyle = '#8892b0';
+  ctx.font = '20px sans-serif';
+  ctx.fillText('一起来学政史地生吧！', 375, 1000);
+
+  // 下载
+  const link = document.createElement('a');
+  link.download = `teachany-badge-${badge.id}.png`;
+  link.href = canvas.toDataURL();
+  link.click();
+}
+
+// 在徽章解锁弹窗中增加分享按钮
+function showBadgeUnlock(badge) {
+  const popup = document.createElement('div');
+  popup.className = 'badge-popup';
+  popup.innerHTML = `
+    <div class="badge-popup-content">
+      <div class="badge-icon">${badge.icon}</div>
+      <h3>徽章解锁！</h3>
+      <p class="badge-name">${badge.name}</p>
+      <p class="badge-desc">${badge.desc}</p>
+      <button class="badge-share-btn" onclick="generateBadgeShareCard(${JSON.stringify(badge).replace(/"/g, '&quot;')})">
+        📸 生成分享卡片
+      </button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+  setTimeout(() => popup.classList.add('show'), 100);
+}
+```
+
+**验证**：徽章解锁后点击"生成分享卡片"，浏览器自动下载 PNG 图片。
+
+---
+
 ## P2 任务（长期演进）
 
 ### 任务 P2-1：Bento Grid 布局
@@ -1133,6 +1566,9 @@ function addXP(questionElement, isCorrect) {
 ## 执行顺序建议
 
 ```
+阶段零（紧急修复）:
+  P0-0a 答题选项可访问性修复 → P0-0b AI脚本路径修复
+
 阶段一（P0 基础）:
   P0-1 深浅色统一 → P0-2 配色重构 → P0-4 导航回溯
   → P0-3 微交互补全 → P0-8 信息密度优化
@@ -1143,6 +1579,8 @@ function addXP(questionElement, isCorrect) {
   P1-1 吉祥物 IP → P1-2 打卡解锁 → P1-3 XP 加权
   → P1-4 跨学科 → P1-5 时政库 → P1-6 读图训练
   → P1-7 开卷适配 → P1-8 移动端
+  → P1-9 连胜火苗 → P1-10 专注模式 → P1-11 AI自适应
+  → P1-12 叙事化滚动 → P1-13 徽章分享卡片
 
 阶段三（P2 演进）:
   P2-7 吉祥物成长（衔接 P1-1）
@@ -1158,3 +1596,17 @@ function addXP(questionElement, isCorrect) {
 4. **四学科一致性**：修改 `shared/` 下文件时，需同步更新四个学科的对应文件
 5. **响应式**：所有新组件需适配 PC（≥1200px）、平板（768-1200px）、手机（≤768px）三档断点
 6. **无障碍**：所有交互元素支持键盘导航，颜色对比度 ≥ 4.5:1（WCAG AA）
+7. **路径检查（新增）**：部署到 GitHub Pages 前必须检查所有脚本/样式引用为相对路径，不含 localhost
+8. **学习目标第一（新增）**：游戏化机制必须服务于学习目标，持续 A/B 测试找到激励与干扰的平衡点
+9. **用户控制权（新增）**：AI 功能和情感化设计需提供关闭开关，尊重用户选择
+
+## 本次补充更新总结（2026.06）
+
+基于线上版 `weiyu1613.github.io/XiaoSiMen` 深度体验 + 2026 最新教育科技与 UI 设计趋势研究，本次补充：
+
+- **新增紧急任务 2 个**（P0-0a 可访问性修复、P0-0b 脚本路径修复）
+- **新增 P1 任务 5 个**（连胜火苗、专注模式、AI自适应、叙事化滚动、徽章分享）
+- **优化建议从 28 项扩充至 39 项**
+- **创意提案从 5 个扩充至 10 个**
+- **参考来源从 7 条扩充至 12 条**
+- 新增 Duolingo 游戏化深度对标、2026 趋势对标矩阵、线上版体验发现等分析章节

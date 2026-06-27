@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="shared/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ====== v8.0 冲突修复（覆盖 shared/styles.css） ====== */
-    .accordion-body { max-height: none !important; overflow: visible !important; opacity: 1 !important; }
-    .accordion-body.open { max-height: none !important; }
+    /* ====== v8.0 冲突修复（覆盖 shared/styles.css，保留手风琴收缩功能） ====== */
+    .accordion-body { opacity: 1 !important; padding: 0 !important; background: transparent !important; }
+    .accordion-item.active .accordion-body { padding: 0 0 16px !important; }
     .accordion-item { border: none !important; }
     svg { width: auto !important; max-width: 100% !important; }
     .accordion-header svg { width: auto !important; height: auto !important; }
@@ -283,9 +283,20 @@
       .accordion-title { font-size: 0.92rem; }
       .accordion-subtitle { font-size: 0.72rem; }
     }
+  
+    .back-home {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.2); color: white; text-decoration: none;
+      padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; margin-top: 16px;
+      backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.2s;
+    }
+    .back-home:hover { background: rgba(255,255,255,0.3); transform: translateX(-4px); }
+    
   </style>
 </head>
 <body>
+  <a href="../../index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> 返回主页</a>
 
   <!-- Hero Section -->
   <header class="hero-section">

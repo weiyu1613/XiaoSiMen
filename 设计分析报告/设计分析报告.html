@@ -446,9 +446,9 @@ sup a:hover { text-decoration: underline; }
   <h1>TeachAny 小四门<br>网站设计优化方案</h1>
   <p>以顶级网站设计师、美术设计师、游戏设计师的多维视角，对人教版初中政史地生互动课件平台进行系统性设计审查，涵盖美术表现、操作体验、课件内容、游戏设计四大维度，对接 2022 新课标与中考命题趋势。</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="num">28</div><div class="label">优化建议</div></div>
-    <div class="hero-stat"><div class="num">4</div><div class="label">分析维度</div></div>
-    <div class="hero-stat"><div class="num">5</div><div class="label">创意提案</div></div>
+    <div class="hero-stat"><div class="num">39</div><div class="label">优化建议</div></div>
+    <div class="hero-stat"><div class="num">6</div><div class="label">分析维度</div></div>
+    <div class="hero-stat"><div class="num">10</div><div class="label">创意提案</div></div>
     <div class="hero-stat"><div class="num">120+</div><div class="label">覆盖课时</div></div>
   </div>
 </header>
@@ -1176,6 +1176,363 @@ sup a:hover { text-decoration: underline; }
   </div>
 </section>
 
+<!-- 线上版补充分析 -->
+<section>
+  <div class="container">
+    <div class="section-title"><span class="icon" style="background:rgba(100,255,218,0.15);">🌐</span> 七、线上版体验补充（2026.06）</div>
+    <p class="section-desc">基于线上部署版 <code style="color:var(--accent);">weiyu1613.github.io/XiaoSiMen</code> 的深度体验，结合 2026 最新设计趋势的补充发现</p>
+
+    <div class="summary-box">
+      <h3>线上版新发现 TOP 7</h3>
+      <ul class="summary-list">
+        <li><strong>答题交互不可达</strong>：课件页选项未以独立交互元素暴露，DOM 中无 quiz/option 节点，自动化测试无法触发答题——暗示 <mark class="key">交互可访问性存在隐患</mark>，键盘用户和辅助技术可能无法操作</li>
+        <li><strong>AI 辅助脚本缺失</strong>：线上版 ai-tutor.js、audio-player.js 等 localhost 依赖脚本无法加载，AI 学伴和音效功能在线上完全失效</li>
+        <li><strong>四学科换皮感确认</strong>：历史棕(#8B4513)与生物绿(#558B2F)、道法绿(#2E7D32)共用同一套 styles.css 骨架，仅 CSS 变量区分主色，<mark class="key">布局结构完全一致</mark></li>
+        <li><strong>等级系统已扩展</strong>：科举称号从 10 级扩展至"入门学徒→至圣先师"完整体系，但称号解锁缺乏动画仪式感</li>
+        <li><strong>移动端适配存在</strong>：768px/400px 双断点已实现，但 XP 状态栏在小屏下排布仍需优化</li>
+        <li><strong>字体加载正常</strong>：Google Fonts + 系统字体降级策略有效，CDN 资源加载流畅</li>
+        <li><strong>2026 趋势差距</strong>：缺失 AI 个性化路径、叙事化设计、舒缓式界面、动态排版等 2026 前沿设计要素</li>
+      </ul>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">线上版优势</div></div>
+        <div class="card-row"><div class="card-label">视觉沉浸</div><div class="card-content">深色主题 + 动态光球背景 + 渐变学科卡片，首屏视觉冲击力强</div></div>
+        <div class="card-row"><div class="card-label">科举体系</div><div class="card-content">等级称号体系已扩展至完整链条，文化主题契合度高</div></div>
+        <div class="card-row"><div class="card-label">响应式</div><div class="card-content">双断点适配已实现，移动端基本可用</div></div>
+        <div class="card-row"><div class="card-label">性能</div><div class="card-content">CSS 动画为主（transform/opacity），浏览器运行流畅</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">线上版短板</div></div>
+        <div class="card-row"><div class="card-label">交互可访问性</div><div class="card-content">答题选项未暴露为可交互元素，键盘/辅助技术无法操作</div></div>
+        <div class="card-row"><div class="card-label">AI 功能失效</div><div class="card-content">线上版 AI 脚本路径错误，AI 学伴和音效完全不可用</div></div>
+        <div class="card-row"><div class="card-label">2026 趋势缺失</div><div class="card-content">无 AI 个性化、无叙事化设计、无舒缓式界面、无动态排版</div></div>
+        <div class="card-row"><div class="card-label">游戏化断层</div><div class="card-content">XP 系统存在但无连胜机制、无积分榜、无社交分享</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2026趋势对标 -->
+<section>
+  <div class="container">
+    <div class="section-title"><span class="icon" style="background:rgba(187,134,252,0.15);">🚀</span> 八、2026 设计趋势对标与补充建议</div>
+    <p class="section-desc">基于 2026 最新教育科技与 UI 设计趋势，补充前瞻性优化建议</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>2026 趋势</th>
+            <th>趋势要点</th>
+            <th>TeachAny 现状</th>
+            <th>差距</th>
+            <th>补充建议</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AI 个性化路径</td>
+            <td>分钟级动态调整难度，基于答题速度/错误类型/专注时长<sup><a href="#cite-8">[8]</a></sup></td>
+            <td>固定难度，无自适应</td>
+            <td><span style="color:var(--danger);">高</span></td>
+            <td>引入简易自适应算法：连续答对3题→自动推荐挑战题；连续答错2题→推荐基础复习</td>
+          </tr>
+          <tr>
+            <td>叙事化设计</td>
+            <td>界面遵循叙事逻辑，渐进式信息展示<sup><a href="#cite-12">[12]</a></sup></td>
+            <td>8段平铺直叙</td>
+            <td><span style="color:var(--danger);">高</span></td>
+            <td>改为滚动叙事：每个 Section 随滚动渐入，前测结果影响正文呈现角度</td>
+          </tr>
+          <tr>
+            <td>舒缓式界面</td>
+            <td>减少视觉干扰，尊重用户注意力<sup><a href="#cite-12">[12]</a></sup></td>
+            <td>粒子特效较多</td>
+            <td><span style="color:var(--warn);">中</span></td>
+            <td>增加"专注模式"开关：关闭粒子/光球，仅保留必要反馈；尊重 prefers-reduced-motion</td>
+          </tr>
+          <tr>
+            <td>动态排版</td>
+            <td>滚动时标题拉伸/位移，传递视觉焦点<sup><a href="#cite-12">[12]</a></sup></td>
+            <td>静态排版</td>
+            <td><span style="color:var(--warn);">中</span></td>
+            <td>Hero 标题随滚动轻微缩放/位移；Section 标题渐入动画；正文关键句随滚动高亮</td>
+          </tr>
+          <tr>
+            <td>连胜机制</td>
+            <td>每日完成即增加连胜，配合推送提醒<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>无连胜</td>
+            <td><span style="color:var(--danger);">高</span></td>
+            <td>增加"学习连胜"火苗图标，连续学习天数可视化；断签可用"连胜保护"道具（消耗XP）</td>
+          </tr>
+          <tr>
+            <td>社交货币</td>
+            <td>徽章/成就可展示分享，满足社交需求<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>无徽章</td>
+            <td><span style="color:var(--danger);">高</span></td>
+            <td>徽章解锁后生成分享卡片（含学科+称号+统计），支持保存图片分享到社交平台</td>
+          </tr>
+          <tr>
+            <td>情感化智能体</td>
+            <td>情绪识别+动机激发，但给学生控制权<sup><a href="#cite-8">[8]</a></sup></td>
+            <td>吉祥物未实现</td>
+            <td><span style="color:var(--danger);">高</span></td>
+            <td>吉祥物"小四"增加情绪状态：长时间未答题→困倦；连续答对→兴奋；答错→鼓励。提供关闭开关</td>
+          </tr>
+          <tr>
+            <td>3D 纵深感</td>
+            <td>分层布局、立体组件，触觉极致化<sup><a href="#cite-12">[12]</a></sup></td>
+            <td>扁平卡片</td>
+            <td><span style="color:var(--warn);">中</span></td>
+            <td>学科卡片增加 3D 倾斜悬停效果（CSS perspective）；进度环增加立体阴影；知识点图谱用 3D 节点</td>
+          </tr>
+          <tr>
+            <td>手势交互</td>
+            <td>滑动/拖拽/长按取代传统控件<sup><a href="#cite-12">[12]</a></sup></td>
+            <td>仅点击</td>
+            <td><span style="color:var(--warn);">中</span></td>
+            <td>移动端增加左右滑动切换课时；长按知识点卡片弹出详情；拖拽排序知识点</td>
+          </tr>
+          <tr>
+            <td>VR/AR 沉浸式</td>
+            <td>历史遗址复原、地理地貌3D探索<sup><a href="#cite-8">[8]</a></sup></td>
+            <td>纯2D</td>
+            <td><span style="color:var(--success);">低</span></td>
+            <td>长期目标：历史课增加 360° 遗址全景图；地理课增加 3D 地形模型；生物课增加 3D 细胞探索</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Duolingo深度对标 -->
+<section>
+  <div class="container">
+    <div class="section-title"><span class="icon" style="background:rgba(255,183,77,0.15);">🦉</span> 九、Duolingo 游戏化深度对标</div>
+    <p class="section-desc">Duolingo 是游戏化学习的标杆，逐项对标其核心机制，找出 TeachAny 的差距与可移植方案</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Duolingo 机制</th>
+            <th>设计原理</th>
+            <th>TeachAny 现状</th>
+            <th>可移植方案</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>碎片化课程</td>
+            <td>每次2-3分钟，嵌入碎片时间<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>单课时约15-20分钟</td>
+            <td>将每课拆为3-5个"微知识点"卡片，每张2-3分钟可完成</td>
+          </tr>
+          <tr>
+            <td>等级系统</td>
+            <td>每模块5级，挑战在能力圈边界<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>10级科举称号（全局）</td>
+            <td>增加每学科独立等级（历史Lv5/地理Lv3），挑战题需达到对应等级才解锁</td>
+          </tr>
+          <tr>
+            <td>连胜机制</td>
+            <td>每日完成即+1，配合推送提醒<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>无</td>
+            <td>首页增加连胜火苗图标+天数；断签可用"连胜冻结"道具（消耗100XP）</td>
+          </tr>
+          <tr>
+            <td>代币奖励</td>
+            <td>Lingot代币可给吉祥物买时装<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>XP仅用于升级</td>
+            <td>XP可兑换"小四"吉祥物时装/配件/主题色，增加XP消费出口</td>
+          </tr>
+          <tr>
+            <td>积分榜</td>
+            <td>按周分组，激发PK心理<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>无</td>
+            <td>增加周积分榜（匿名昵称），按班级/地区分组；显示"你距离上一位还差XX XP"</td>
+          </tr>
+          <tr>
+            <td>激励性信息</td>
+            <td>加载页提示"学习34小时=大学1学期"<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>无</td>
+            <td>课件加载时显示"已完成X课，距离下一称号还差Y课"等激励文案</td>
+          </tr>
+          <tr>
+            <td>渐进式难度</td>
+            <td>既不太难也不太简单<sup><a href="#cite-9">[9]</a></sup></td>
+            <td>基础/提高/挑战三级</td>
+            <td>增加自适应：连续答对→自动提升下一题难度；答错→降级并推荐复习</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="border-color:var(--accent2); background:rgba(187,134,252,0.03);">
+      <div class="card-header"><div class="card-title" style="color:var(--accent2);">核心洞察</div></div>
+      <div class="card-row"><div class="card-label">Duolingo 哲学</div><div class="card-content">"对奖励的期待而非获取，才是推动用户行为的利器"——连胜保护道具、未解锁时装、即将超越的对手，都在制造"期待感"而非"满足感"</div></div>
+      <div class="card-row"><div class="card-label">TeachAny 差距</div><div class="card-content">当前 XP 系统只提供"获取满足"，缺乏"期待驱动"。需增加：未解锁内容预告、即将达成的里程碑提示、可被超越的参照目标</div></div>
+      <div class="card-row"><div class="card-label">关键原则</div><div class="card-content">"学习目标第一"——游戏化机制必须服务于学习目标，持续 A/B 测试找到激励与干扰的平衡点<sup><a href="#cite-8">[8]</a></sup></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 补充创意提案 -->
+<section>
+  <div class="container">
+    <div class="section-title"><span class="icon" style="background:rgba(102,187,106,0.15);">💡</span> 十、补充创意提案（2026 前沿）</div>
+    <p class="section-desc">基于 2026 AI 教育趋势和前沿设计理念，补充 5 个创新方案</p>
+
+    <div class="creative-card">
+      <h4>补充创意 6：AI 自适应难度引擎</h4>
+      <p class="concept"><strong>概念</strong>：基于答题速度、错误类型、专注时长，分钟级动态调整题目难度。连续答对3题→自动推荐挑战题；连续答错2题→降级并推荐基础复习<sup><a href="#cite-8">[8]</a></sup></p>
+      <p class="concept"><strong>实现</strong>：纯前端实现简易版——在 <code>scripts.js</code> 中维护 <code>difficultyScore</code> 变量，答对+1/答错-2，根据分数动态选择下一题难度。无需 AI 后端</p>
+      <p class="concept"><strong>价值</strong>：解决"好学生觉得简单、差学生觉得难"的两极分化问题，让每个学生都在"能力圈边界"学习</p>
+    </div>
+
+    <div class="creative-card">
+      <h4>补充创意 7：连胜火苗与保护道具</h4>
+      <p class="concept"><strong>概念</strong>：首页增加"学习连胜"火苗图标，每日完成1课即+1。断签可用"连胜冻结"道具（消耗100XP）保护<sup><a href="#cite-9">[9]</a></sup></p>
+      <p class="concept"><strong>实现</strong>：localStorage 记录 <code>streak: {count, lastDate, freezes}</code>。火苗图标用 CSS animation 模拟跳动。连续7/30/100天触发里程碑动画</p>
+      <p class="concept"><strong>价值</strong>：连胜让用户"不忍心放弃"。保护道具创造了 XP 消费出口，增加 XP 的真实价值</p>
+    </div>
+
+    <div class="creative-card">
+      <h4>补充创意 8：叙事化滚动学习</h4>
+      <p class="concept"><strong>概念</strong>：课件页改为滚动叙事——每个 Section 随滚动渐入（fade-in + slide-up），前测结果影响正文呈现角度。历史课用"穿越者日记"第一人称叙事，地理课用"探险家手记"<sup><a href="#cite-12">[12]</a></sup></p>
+      <p class="concept"><strong>实现</strong>：使用 <code>IntersectionObserver</code> 监测 Section 进入视口，触发 CSS 动画。前测答错的知识点在正文中自动高亮标注</p>
+      <p class="concept"><strong>价值</strong>：从"被动阅读"到"主动探索"。前测结果影响正文，让学习路径个性化</p>
+    </div>
+
+    <div class="creative-card">
+      <h4>补充创意 9：专注模式与舒缓界面</h4>
+      <p class="concept"><strong>概念</strong>：增加"专注模式"开关——关闭粒子特效/光球背景/浮动动画，仅保留必要反馈。尊重 <code>prefers-reduced-motion</code> 用户偏好<sup><a href="#cite-12">[12]</a></sup></p>
+      <p class="concept"><strong>实现</strong>：在品牌栏增加月亮图标切换专注模式。CSS 中 <code>body.focus-mode .particle, body.focus-mode .glow-orb { display: none }</code>。媒体查询 <code>@media (prefers-reduced-motion: reduce)</code> 自动降级</p>
+      <p class="concept"><strong>价值</strong>：针对初中生注意力特征，减少视觉干扰。不同学生可选择适合自己的学习氛围</p>
+    </div>
+
+    <div class="creative-card">
+      <h4>补充创意 10：徽章分享卡片生成器</h4>
+      <p class="concept"><strong>概念</strong>：徽章解锁后自动生成分享卡片（含学科+称号+学习统计+吉祥物形象），支持保存图片分享到社交平台<sup><a href="#cite-9">[9]</a></sup></p>
+      <p class="concept"><strong>实现</strong>：使用 Canvas API 将吉祥物 SVG + 称号文字 + 统计数据合成图片。<code>canvas.toDataURL()</code> 生成图片，<code>&lt;a download&gt;</code> 触发下载</p>
+      <p class="concept"><strong>价值</strong>：徽章成为"社交货币"，满足青少年社交展示需求。分享带来自然传播，增加产品曝光</p>
+    </div>
+  </div>
+</section>
+
+<!-- 交互可访问性修复 -->
+<section>
+  <div class="container">
+    <div class="section-title"><span class="icon" style="background:rgba(239,83,80,0.15);">♿</span> 十一、交互可访问性修复（紧急）</div>
+    <p class="section-desc">线上版发现的紧急问题：答题选项未暴露为可交互元素，键盘和辅助技术无法操作</p>
+
+    <div class="card" style="border-color:var(--danger);">
+      <div class="card-header">
+        <div class="card-title"><span class="tag tag-ux">紧急</span>答题选项可访问性修复</div>
+        <span class="badge badge-p0">P0</span>
+      </div>
+      <div class="card-row"><div class="card-label">问题</div><div class="card-content">线上版课件页选项未以独立交互元素暴露，DOM 中无 quiz/option 节点。键盘用户无法 Tab 到选项，屏幕阅读器无法识别，违反 WCAG 2.1 AA 标准</div></div>
+      <div class="card-row"><div class="card-label">根因</div><div class="card-content">答题选项可能用 <code>&lt;div&gt;</code> 或 <code>&lt;span&gt;</code> 实现，缺少 <code>role</code>、<code>tabindex</code>、<code>aria-label</code> 等无障碍属性</div></div>
+      <div class="card-row"><div class="card-label">修复方案</div><div class="card-content">将答题选项改为 <code>&lt;button&gt;</code> 或 <code>&lt;input type="radio"&gt;</code>，确保键盘可操作。添加 <code>aria-label</code> 描述选项内容，<code>aria-pressed</code> 标记选中状态</div></div>
+      <div class="impl-box">
+        <div class="impl-label">实施指导</div>
+        <strong>修改前</strong>（推测）：<code>&lt;div class="option" onclick="selectAnswer()"&gt;A. 北京人&lt;/div&gt;</code><br>
+        <strong>修改后</strong>：<code>&lt;button class="option" onclick="selectAnswer()" aria-label="选项A：北京人" aria-pressed="false"&gt;A. 北京人&lt;/button&gt;</code><br>
+        同时确保 <code>:focus-visible</code> 样式可见，<code>prefers-reduced-motion</code> 时减少动画。
+      </div>
+    </div>
+
+    <div class="card" style="border-color:var(--danger);">
+      <div class="card-header">
+        <div class="card-title"><span class="tag tag-ux">紧急</span>AI 脚本路径修复</div>
+        <span class="badge badge-p0">P0</span>
+      </div>
+      <div class="card-row"><div class="card-label">问题</div><div class="card-content">线上版 ai-tutor.js、audio-player.js 等脚本引用 localhost:8080 路径，GitHub Pages 上无法加载，AI 学伴和音效功能完全失效</div></div>
+      <div class="card-row"><div class="card-label">修复方案</div><div class="card-content">将所有脚本引用改为相对路径（<code>./shared/ai-tutor.js</code> 而非 <code>http://localhost:8080/shared/ai-tutor.js</code>），或使用 <code>&lt;script src="//"&gt;</code> 协议相对路径</div></div>
+      <div class="impl-box">
+        <div class="impl-label">实施指导</div>
+        全局搜索 <code>localhost:8080</code> 并替换为相对路径。检查所有 <code>&lt;script src&gt;</code> 和 <code>&lt;link href&gt;</code> 标签。GitHub Pages 部署前需做路径检查。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 更新后的优先级 -->
+<section>
+  <div class="container">
+    <div class="section-title"><span class="icon" style="background:rgba(100,255,218,0.15);">📋</span> 十二、更新后的优先级路线图</div>
+    <p class="section-desc">整合线上版发现与 2026 趋势建议后的完整优先级清单</p>
+
+    <div class="priority-grid">
+      <div class="priority-col p0">
+        <h4>P0 · 立即执行（11 项）</h4>
+        <ul>
+          <li>★ 答题选项可访问性修复（新增）</li>
+          <li>★ AI 脚本路径修复（新增）</li>
+          <li>深浅色视觉统一</li>
+          <li>学科配色重构</li>
+          <li>微交互补全</li>
+          <li>导航回溯优化</li>
+          <li>核心素养目标显性化</li>
+          <li>四学科差异化模板</li>
+          <li>题目类型升级</li>
+          <li>单页信息密度优化</li>
+          <li>PBL 闭环补全</li>
+        </ul>
+      </div>
+      <div class="priority-col p1">
+        <h4>P1 · 重点提升（19 项）</h4>
+        <ul>
+          <li>★ 连胜火苗与保护道具（新增）</li>
+          <li>★ 专注模式与舒缓界面（新增）</li>
+          <li>★ 叙事化滚动学习（新增）</li>
+          <li>★ 动态排版微交互（新增）</li>
+          <li>★ 徽章分享卡片（新增）</li>
+          <li>★ AI 自适应难度引擎（新增）</li>
+          <li>吉祥物 IP 落地</li>
+          <li>视觉信息密度提升</li>
+          <li>进度系统升级</li>
+          <li>答题反馈分层强化</li>
+          <li>移动端适配强化</li>
+          <li>跨学科主题学习栏目</li>
+          <li>道法时政素材库</li>
+          <li>地理读图训练专项</li>
+          <li>开卷考试适配</li>
+          <li>探究问题实质化</li>
+          <li>叙事性内容增强</li>
+          <li>连续打卡与解锁机制</li>
+          <li>XP 难度加权</li>
+        </ul>
+      </div>
+      <div class="priority-col p2">
+        <h4>P2 · 长期演进（8 项）</h4>
+        <ul>
+          <li>★ 3D 纵深感设计（新增）</li>
+          <li>★ 手势交互设计（新增）</li>
+          <li>Bento Grid 布局优化</li>
+          <li>科举等级体系深化</li>
+          <li>创意：时空穿越时间轴</li>
+          <li>创意：地球仪 3D 探索</li>
+          <li>创意：道德法庭模拟器</li>
+          <li>创意：细胞实验室</li>
+          <li>创意：吉祥物成长系统</li>
+          <li>★ VR/AR 沉浸式场景（新增）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="border-color:var(--accent); background:rgba(100,255,218,0.03);">
+      <div class="card-header"><div class="card-title" style="color:var(--accent);">★ 标记说明</div></div>
+      <div class="card-row"><div class="card-label">★ 新增</div><div class="card-content">本次线上版体验 + 2026 趋势研究后新增的建议项，共 11 项</div></div>
+      <div class="card-row"><div class="card-label">紧急</div><div class="card-content">P0 中前两项（可访问性修复 + 脚本路径修复）为线上版发现的紧急问题，应立即修复</div></div>
+      <div class="card-row"><div class="card-label">总计</div><div class="card-content">优化建议从 28 项扩充至 <strong style="color:var(--accent);">39 项</strong>，创意提案从 5 个扩充至 <strong style="color:var(--accent);">10 个</strong></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- Sources -->
 <footer>
   <div class="container">
@@ -1208,6 +1565,26 @@ sup a:hover { text-decoration: underline; }
       <li id="cite-7">
         <span class="src-title">中考改革四大新看点（开卷考试趋势）</span>
         <a class="src-url" href="https://m.toutiao.com/group/7653058979924312639/" target="_blank" rel="noopener">https://m.toutiao.com/group/7653058979924312639/</a>
+      </li>
+      <li id="cite-8">
+        <span class="src-title">2026教育科技十大趋势：产品经理的机遇与避坑指南</span>
+        <a class="src-url" href="http://m.toutiao.com/group/7597290568925987337/" target="_blank" rel="noopener">http://m.toutiao.com/group/7597290568925987337/</a>
+      </li>
+      <li id="cite-9">
+        <span class="src-title">游戏化x会员体系：Duolingo如何用人性打造会员体系</span>
+        <a class="src-url" href="https://www.woshipm.com/pd/4240706.html" target="_blank" rel="noopener">https://www.woshipm.com/pd/4240706.html</a>
+      </li>
+      <li id="cite-10">
+        <span class="src-title">Blooket — Fun, Free, Educational Games for Everyone</span>
+        <a class="src-url" href="https://www.blooket.com/" target="_blank" rel="noopener">https://www.blooket.com/</a>
+      </li>
+      <li id="cite-11">
+        <span class="src-title">AI赋能教育变革：智能个性化学习、虚拟助教与普惠教育实践</span>
+        <a class="src-url" href="https://blog.csdn.net/qq690219309/article/details/151753145" target="_blank" rel="noopener">https://blog.csdn.net/qq690219309/article/details/151753145</a>
+      </li>
+      <li id="cite-12">
+        <span class="src-title">2026 UI设计10大趋势前瞻：这些设计方向要火</span>
+        <a class="src-url" href="http://m.toutiao.com/group/7609943767222649359/" target="_blank" rel="noopener">http://m.toutiao.com/group/7609943767222649359/</a>
       </li>
     </ol>
     <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--muted);">本报告仅提供设计优化建议与实施指导，不修改任何原始项目文件。所有实施工作由开发团队执行。</p>
