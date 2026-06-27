@@ -464,14 +464,15 @@ sup a:hover { text-decoration: underline; }
       <ul class="summary-list">
         <li><strong>深浅色视觉割裂</strong>：首页深空蓝暗色与学科页浅色风格断裂，用户有"换了个网站"的困惑感</li>
         <li><strong>学科模板同质化</strong>：历史、地理、生物、道法使用完全相同的 8 段式结构，仅换配色与 emoji</li>
-        <li><strong>吉祥物系统空缺</strong>：代码有 <code>window.mascotEngine</code> 钩子但从未实现，情感锚点完全缺失</li>
+        <li><strong>吉祥物已实现但多处断裂</strong>：mascot.js 已实现4角色（史小纪/地小探/生小命/法小正）12态表情，但事件监听空转（监听的事件从不被dispatch）、旗舰课件 bjr.html 本地重写 checkAnswer 绕过吉祥物、道法配色三处不一致（首页绿/课件紫/吉祥物绿）</li>
         <li><strong>游戏化 PBL 不完整</strong>：只有积分（XP），无徽章、无排行榜、无打卡机制</li>
         <li><strong>课标对齐不足</strong>：学习目标未对接 2022 新课标的核心素养要求</li>
         <li><strong>题目类型单一</strong>：前测/后测偏记忆型，缺乏材料分析、图表判读、开放论述题</li>
-        <li><strong>单页信息密度过高</strong>：单课件约 850 行，对 12-15 岁学生认知负荷偏重</li>
-        <li><strong>探究问题虚设</strong>：选择不同探究问题不影响正文内容，选择无实际意义</li>
-        <li><strong>生物/道法配色撞色</strong>：两个学科绿色系辨识度低</li>
-        <li><strong>导航回溯困难</strong>：课件内锚点跳转后缺乏面包屑和返回机制</li>
+        <li><strong>连胜系统数据结构 Bug</strong>：shared/scripts.js 写入 <code>streak: 0</code>（数字），首页读取 <code>state.streak.count</code>（对象属性），导致连胜火苗永远显示 0；且连击计数 <code>_currentStreak</code> 是内存变量不持久化，刷新即丢</li>
+        <li><strong>旗舰课件游戏功能回归</strong>：bjr.html（北京人）本地重写了 <code>checkAnswer</code>，完全不调用共享的 <code>awardXP/spawnParticles/playSound/mascotEngine</code>，导致该课件答题无XP、无粒子、无音效、无吉祥物反应</li>
+        <li><strong>难度标签系统性误标</strong>：XP难度倍率代码存在（basic×1/intermediate×1.5/advanced×2），但课件 <code>data-difficulty</code> 大量误标（提高题标basic、基础题标advanced），且从不使用 intermediate，难度系统形同虚设</li>
+        <li><strong>道法配色三处不一致</strong>：首页卡片绿 <code>#2E7D32</code>、课件页面紫 <code>#7B1FA2</code>、吉祥物角色绿 <code>#2E7D32</code>——用户从绿色卡片点入紫色页面，且绿色吉祥物浮在紫色页面上</li>
+        <li><strong>字体不一致</strong>：首页用 Noto Sans SC + ZCOOL KuaiLe（Google Fonts），课件页仅用系统字体栈（-apple-system/Microsoft YaHei），两种页面字体感割裂</li>
       </ul>
     </div>
 
@@ -510,7 +511,7 @@ sup a:hover { text-decoration: underline; }
       <div class="card">
         <div class="card-header"><div class="card-title">短板</div></div>
         <div class="card-row"><div class="card-label">视觉统一</div><div class="card-content">深浅色割裂、学科配色撞色、模板同质化</div></div>
-        <div class="card-row"><div class="card-label">情感连接</div><div class="card-content">吉祥物未实现，无情感锚点，用户留存动力弱</div></div>
+        <div class="card-row"><div class="card-label">情感连接</div><div class="card-content">吉祥物已实现4角色12态，但事件监听空转、旗舰课件绕过、道法配色冲突——"已建但断"</div></div>
         <div class="card-row"><div class="card-label">内容深度</div><div class="card-content">未对接课标核心素养，题目类型单一，叙事性缺失</div></div>
         <div class="card-row"><div class="card-label">长期激励</div><div class="card-content">无徽章/打卡/排行榜/解锁，XP 规则单一无难度加权</div></div>
       </div>
@@ -636,14 +637,14 @@ sup a:hover { text-decoration: underline; }
 
     <div class="card">
       <div class="card-header">
-        <div class="card-title"><span class="tag tag-art">美术</span>3. 吉祥物 IP 落地</div>
-        <span class="badge badge-p1">P1</span>
+        <div class="card-title"><span class="tag tag-art">美术</span>3. 吉祥物系统修复与深化</div>
+        <span class="badge badge-p0">P0</span>
       </div>
-      <div class="card-row"><div class="card-label">问题</div><div class="card-content">代码有 <code>window.mascotEngine</code> 钩子但从未实现，情感锚点完全空缺</div></div>
-      <div class="card-row"><div class="card-label">建议</div><div class="card-content">设计统一吉祥物"小四"（穿越时空的书童形象），12 态表情（开心/鼓励/思考/担忧/庆祝/困惑/惊喜/专注/疲惫/兴奋/好奇/骄傲），学科变装（历史唐装/地理探险装/生物白大褂/道法汉服）。参考 Duolingo Duo 猫头鹰的情感驱动设计</div></div>
+      <div class="card-row"><div class="card-label">现状</div><div class="card-content">mascot.js 已实现4角色（史小纪/地小探/生小命/法小正）12态表情SVG，自动初始化。但存在三处断裂：①事件监听空转（监听 mascot:correct/wrong/combo/levelup 但 scripts.js 从不 dispatch 这些事件，仅用 setState 直调）②旗舰课件 bjr.html 本地重写 checkAnswer 完全绕过吉祥物 ③道法配色冲突（吉祥物绿 #2E7D32 浮在紫色课件页 #7B1FA2 上）</div></div>
+      <div class="card-row"><div class="card-label">建议</div><div class="card-content">①修复事件分发：在 scripts.js 的答题判定中 dispatch 自定义事件 <code>document.dispatchEvent(new CustomEvent('mascot:correct', {detail:{combo:3}}))</code>，或直接保留 setState 直调并删除空监听 ②统一 bjr.html 等课件的 checkAnswer 调用共享函数 ③统一道法配色：首页卡片改为紫色 #7B1FA2 与课件一致，或课件改为绿色与首页一致</div></div>
       <div class="impl-box">
         <div class="impl-label">实施指导</div>
-        使用 SVG 绘制角色（便于动画与缩放），创建 <code>shared/mascot.js</code> 实现表情状态机。在 <code>scripts.js</code> 中已有的 <code>if (window.mascotEngine)</code> 钩子处接入。表情触发：答对→庆祝/开心，答错→鼓励/思考，连击→兴奋，升级→骄傲。
+        修复 <code>mascot.js</code> 第 408-429 行的事件监听：要么在 <code>scripts.js</code> 中 dispatch 对应事件，要么删除空监听保留 setState 直调。修复 <code>bjr.html</code> 的本地 checkAnswer：改为调用共享 <code>checkAnswer(element, isCorrect)</code> 并传入正确参数。统一道法色：修改 <code>index.html</code> 的 <code>--law-primary</code> 为 <code>#7B1FA2</code>（紫）或修改道法 <code>shared/styles.css</code> 的 <code>--primary</code> 为 <code>#2E7D32</code>（绿）。
       </div>
     </div>
 
