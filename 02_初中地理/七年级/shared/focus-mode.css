@@ -1,0 +1,137 @@
+/* =========================================================
+ * TeachAny P2-9: 专注模式样式
+ * 配合 focus-mode.js 使用
+ * body.focus-mode 触发整体降级为极简风格
+ * ========================================================= */
+
+/* 专注模式整体：简化背景为纯色 */
+body.focus-mode {
+  background: #f8f9fa !important;
+  background-image: none !important;
+}
+
+/* 隐藏所有装饰性动画元素 */
+body.focus-mode .particle,
+body.focus-mode .floating-element,
+body.focus-mode .decoration,
+body.focus-mode .hero-decoration,
+body.focus-mode canvas.particles,
+body.focus-mode .particles-canvas,
+body.focus-mode .aurora,
+body.focus-mode .glow,
+body.focus-mode .bg-decoration,
+body.focus-mode .ambient-light {
+  display: none !important;
+}
+
+/* 关闭动画 / 极短过渡，减少视觉干扰 */
+body.focus-mode *,
+body.focus-mode *::before,
+body.focus-mode *::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.1s !important;
+  scroll-behavior: auto !important;
+}
+
+/* 降低阴影与圆角，回归朴素 */
+body.focus-mode .card,
+body.focus-mode .lesson-card,
+body.focus-mode .module-card,
+body.focus-mode .quiz-card,
+body.focus-mode .hero-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+/* 加大行距与字间距，提升可读性 */
+body.focus-mode p,
+body.focus-mode li,
+body.focus-mode .content p,
+body.focus-mode .lesson-content p {
+  line-height: 1.8 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* 移除大幅渐变背景，统一浅色底 */
+body.focus-mode .hero-section,
+body.focus-mode .hero,
+body.focus-mode header.hero,
+body.focus-mode .banner {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: #1f2937 !important;
+}
+
+body.focus-mode .hero-section h1,
+body.focus-mode .hero h1,
+body.focus-mode header.hero h1 {
+  color: #111827 !important;
+  text-shadow: none !important;
+}
+
+/* 取消毛玻璃模糊，避免渲染开销 */
+body.focus-mode .glass,
+body.focus-mode .blur-bg,
+body.focus-mode .backdrop-blur {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: #ffffff !important;
+}
+
+/* 悬浮按钮（月亮 / 太阳切换） */
+.focus-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary, #1565C0);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: transform 0.3s, box-shadow 0.3s;
+  user-select: none;
+}
+.focus-mode-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.focus-mode-toggle:focus-visible {
+  outline: 3px solid rgba(21, 101, 192, 0.45);
+  outline-offset: 2px;
+}
+.focus-mode-toggle[aria-pressed="true"] {
+  background: #6b7280;
+}
+
+/* 移动端略微缩小，避免遮挡内容 */
+@media (max-width: 600px) {
+  .focus-mode-toggle {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+/* 尊重系统级 prefers-reduced-motion：即便未开启专注模式，也减弱动画 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.1s !important;
+    scroll-behavior: auto !important;
+  }
+}
