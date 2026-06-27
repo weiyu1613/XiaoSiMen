@@ -1016,40 +1016,53 @@ sup a:hover { text-decoration: underline; }
 
     <div class="card">
       <div class="card-header">
-        <div class="card-title"><span class="tag tag-game">游戏</span>3. XP 难度加权</div>
-        <span class="badge badge-p1">P1</span>
+        <div class="card-title"><span class="tag tag-game">游戏</span>3. XP 难度加权修复</div>
+        <span class="badge badge-p0">P0</span>
       </div>
-      <div class="card-row"><div class="card-label">问题</div><div class="card-content">XP 规则单一，基础/提高/挑战题得分相同，缺乏挑战激励</div></div>
-      <div class="card-row"><div class="card-label">建议</div><div class="card-content">难度加权：基础题 +10XP、提高题 +20XP、挑战题 +30XP。连击倍率：3 连 ×1.5、5 连 ×2、10 连 ×3。全对额外奖励 +50XP。首次完成课时奖励 +100XP</div></div>
+      <div class="card-row"><div class="card-label">现状</div><div class="card-content">难度倍率代码已存在：<code>DIFFICULTY_MULTIPLIERS = {basic:1, intermediate:1.5, advanced:2}</code>，基础题10XP/提高题15XP/挑战题20XP。但课件 <code>data-difficulty</code> 大量误标——前测第3题（提高）标basic、第4题（挑战）标basic，后测全部标advanced（含基础题）。且从不使用 intermediate 取值，难度系统形同虚设</div></div>
+      <div class="card-row"><div class="card-label">建议</div><div class="card-content">①逐课件审计并修正 <code>data-difficulty</code> 属性：基础题="basic"、提高题="intermediate"、挑战题="advanced" ②连击增加 XP 倍率：3连×1.5、5连×2（当前连击仅视觉通知无XP加成） ③首次完成课时奖励+100XP、全对额外+50XP</div></div>
       <div class="impl-box">
         <div class="impl-label">实施指导</div>
-        在 <code>scripts.js</code> 的 <code>addXP()</code> 函数中增加难度参数：<code>addXP(amount, difficulty, isCombo)</code>。连击倍率在 <code>comboCount >= 3</code> 时应用。在题目 HTML 中增加 <code>data-difficulty="basic|intermediate|challenge"</code> 属性。
+        逐个课件 HTML 检查 <code>&lt;div class="quiz-box" data-difficulty="..."&gt;</code> 的取值，对照题目实际难度修正。在 <code>scripts.js</code> 的 <code>awardXP()</code> 函数中增加连击倍率：<code>if(_currentStreak>=5) xp=Math.round(xp*2); else if(_currentStreak>=3) xp=Math.round(xp*1.5)</code>。
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
-        <div class="card-title"><span class="tag tag-game">游戏</span>4. 吉祥物情感系统</div>
-        <span class="badge badge-p1">P1</span>
+        <div class="card-title"><span class="tag tag-game">游戏</span>4. 连胜系统 Bug 修复</div>
+        <span class="badge badge-p0">P0</span>
       </div>
-      <div class="card-row"><div class="card-label">问题</div><div class="card-content">吉祥物未实现，无情感锚点，用户留存动力弱</div></div>
-      <div class="card-row"><div class="card-label">建议</div><div class="card-content">吉祥物"小四"随用户等级成长（Lv1-10 对应不同形象/服装/配件），答题时出现鼓励/庆祝/担忧表情，连续 3 天未学习时发送提醒（"小四想你了，今天来学习吗？"）</div></div>
+      <div class="card-row"><div class="card-label">现状</div><div class="card-content">两个 Bug：①shared/scripts.js 写入 <code>streak: 0</code>（数字），首页 index.html 读取 <code>state.streak.count</code>（对象属性），类型不匹配导致连胜火苗永远显示 0 ②连击计数 <code>_currentStreak</code> 是内存变量（<code>let _currentStreak = 0</code>），不写入 localStorage，刷新即丢失</div></div>
+      <div class="card-row"><div class="card-label">建议</div><div class="card-content">①统一数据结构：将 <code>streak</code> 改为对象 <code>{count: N, lastDate: "2026-06-27", maxCount: N}</code>，首页和课件统一读写 ②连击计数持久化到 <code>teachany_gamestate.comboCount</code> ③增加连胜保护道具（消耗100XP冻结一天）</div></div>
       <div class="impl-box">
         <div class="impl-label">实施指导</div>
-        在 <code>shared/mascot.js</code> 中实现成长系统：读取 <code>teachany_gamestate.level</code> 切换 SVG 形象。增加 <code>lastVisitDate</code> 字段，打开页面时检查间隔，超过 3 天触发提醒弹窗。参考 Duolingo Duo 的情感驱动设计<sup><a href="#cite-3">[3]</a></sup>。
+        修改 <code>getDefaultGameState()</code> 的 <code>streak</code> 字段为 <code>{count:0, lastDate:null, maxCount:0, freezes:1}</code>。修改首页 <code>updateStreakIndicator()</code> 读取 <code>state.streak.count</code>（现已匹配）。在 <code>updateStreak()</code> 中将 <code>_currentStreak</code> 写入 <code>state.comboCount</code> 并持久化。
       </div>
     </div>
 
     <div class="card">
       <div class="card-header">
-        <div class="card-title"><span class="tag tag-game">游戏</span>5. 科举等级体系深化</div>
-        <span class="badge badge-p2">P2</span>
+        <div class="card-title"><span class="tag tag-game">游戏</span>5. 旗舰课件游戏功能回归修复</div>
+        <span class="badge badge-p0">P0</span>
       </div>
-      <div class="card-row"><div class="card-label">现状</div><div class="card-content">已有 10 级科举称号（入门学徒 → 状元及第）</div></div>
-      <div class="card-row"><div class="card-label">建议</div><div class="card-content">增加称号解锁动画（金光闪烁 + 印章盖落效果）、称号展示页（展示所有等级与进度）、每个称号的专属视觉特权（如头像框、主题色、吉祥物配件）</div></div>
+      <div class="card-row"><div class="card-label">现状</div><div class="card-content">bjr.html（北京人）本地重写了 <code>checkAnswer(element, isCorrect, questionNum, optionLetter)</code>（4参数版），该本地版本完全不调用共享的 <code>awardXP/spawnParticles/playSound/mascotEngine.setState/updateStreak</code>。共享 scripts.js 的 <code>checkAnswer(element, isCorrect)</code>（2参数版）在 bjr.html 中根本未被调用。后果：旗舰课件答题无XP、无粒子、无音效、无吉祥物反应、无连击——所有游戏化功能全部失效</div></div>
+      <div class="card-row"><div class="card-label">建议</div><div class="card-content">统一 checkAnswer 调用链：bjr.html 的本地 checkAnswer 应在本地逻辑之后调用共享的游戏化函数。或重构为统一调用共享 checkAnswer，本地仅扩展 UI 反馈</div></div>
       <div class="impl-box">
         <div class="impl-label">实施指导</div>
-        在 <code>scripts.js</code> 的升级逻辑中增加 CSS 动画类 <code>.rank-up-animation</code>。创建 <code>rank-showcase.html</code> 称号展示页，使用 SVG 绘制各等级印章。在首页增加"我的称号"入口卡片。
+        在 bjr.html 的本地 <code>checkAnswer</code> 函数末尾增加调用：<code>if(window.awardXP) awardXP(element, 10); if(window.spawnParticles) spawnParticles(element, 12); if(window.playSound) playSound('correct'); if(window.mascotEngine) mascotEngine.setState('happy');</code>。或更彻底地重构 bjr.html 使用共享 2 参数版 checkAnswer。需逐课件核查是否有类似本地重写问题。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="tag tag-game">游戏</span>6. 吉祥物事件链修复</div>
+        <span class="badge badge-p1">P1</span>
+      </div>
+      <div class="card-row"><div class="card-label">现状</div><div class="card-content">mascot.js 第408-429行监听 <code>mascot:correct/wrong/combo/levelup</code> 自定义事件，但 scripts.js 仅用 <code>mascotEngine.setState('happy')</code> 直调，从不 dispatch 这些事件。监听器空转，连击庆祝（celebrate+对话）和升级骄傲（proud+对话）等高级表情从未触发</div></div>
+      <div class="card-row"><div class="card-label">建议</div><div class="card-content">在 scripts.js 答题判定和升级逻辑中 dispatch 对应事件，激活 mascot.js 的完整表情链：连击3次→celebrate+对话、升级→proud+对话、答错→confused+鼓励对话</div></div>
+      <div class="impl-box">
+        <div class="impl-label">实施指导</div>
+        在 <code>updateStreak()</code> 中：<code>if(_currentStreak>=3) document.dispatchEvent(new CustomEvent('mascot:combo', {detail:{combo:_currentStreak}}))</code>。在 <code>showLevelUpNotification()</code> 中：<code>document.dispatchEvent(new CustomEvent('mascot:levelup', {detail:{level:newLevel}}))</code>。
       </div>
     </div>
   </div>
@@ -1186,8 +1199,8 @@ sup a:hover { text-decoration: underline; }
     <div class="summary-box">
       <h3>线上版新发现 TOP 7</h3>
       <ul class="summary-list">
-        <li><strong>答题交互不可达</strong>：课件页选项未以独立交互元素暴露，DOM 中无 quiz/option 节点，自动化测试无法触发答题——暗示 <mark class="key">交互可访问性存在隐患</mark>，键盘用户和辅助技术可能无法操作</li>
-        <li><strong>AI 辅助脚本缺失</strong>：线上版 ai-tutor.js、audio-player.js 等 localhost 依赖脚本无法加载，AI 学伴和音效功能在线上完全失效</li>
+        <li><strong>答题交互可改进</strong>：课件选项用 <code>&lt;div role="button"&gt;</code> 实现而非原生 <code>&lt;button&gt;</code>，虽有 aria-label/aria-pressed/tabindex/onkeydown 但非语义化最佳实践；且 bjr.html 本地重写 checkAnswer 绕过共享游戏化函数</li>
+        <li><strong>连胜系统数据结构 Bug</strong>：scripts.js 写入 streak 为数字 0，首页读取 streak.count（对象属性），类型不匹配导致连胜火苗永远显示 0</li>
         <li><strong>四学科换皮感确认</strong>：历史棕(#8B4513)与生物绿(#558B2F)、道法绿(#2E7D32)共用同一套 styles.css 骨架，仅 CSS 变量区分主色，<mark class="key">布局结构完全一致</mark></li>
         <li><strong>等级系统已扩展</strong>：科举称号从 10 级扩展至"入门学徒→至圣先师"完整体系，但称号解锁缺乏动画仪式感</li>
         <li><strong>移动端适配存在</strong>：768px/400px 双断点已实现，但 XP 状态栏在小屏下排布仍需优化</li>
@@ -1424,38 +1437,93 @@ sup a:hover { text-decoration: underline; }
   </div>
 </section>
 
-<!-- 交互可访问性修复 -->
+<!-- 关键Bug修复 -->
 <section>
   <div class="container">
-    <div class="section-title"><span class="icon" style="background:rgba(239,83,80,0.15);">♿</span> 十一、交互可访问性修复（紧急）</div>
-    <p class="section-desc">线上版发现的紧急问题：答题选项未暴露为可交互元素，键盘和辅助技术无法操作</p>
+    <div class="section-title"><span class="icon" style="background:rgba(239,83,80,0.15);">🐛</span> 十一、关键 Bug 修复（源码审计发现）</div>
+    <p class="section-desc">基于源码精确审计发现的 5 个关键 Bug，均导致已实现功能失效，应优先修复</p>
 
     <div class="card" style="border-color:var(--danger);">
       <div class="card-header">
-        <div class="card-title"><span class="tag tag-ux">紧急</span>答题选项可访问性修复</div>
+        <div class="card-title"><span class="tag tag-game">Bug</span>Bug-1：旗舰课件游戏功能全部失效</div>
         <span class="badge badge-p0">P0</span>
       </div>
-      <div class="card-row"><div class="card-label">问题</div><div class="card-content">线上版课件页选项未以独立交互元素暴露，DOM 中无 quiz/option 节点。键盘用户无法 Tab 到选项，屏幕阅读器无法识别，违反 WCAG 2.1 AA 标准</div></div>
-      <div class="card-row"><div class="card-label">根因</div><div class="card-content">答题选项可能用 <code>&lt;div&gt;</code> 或 <code>&lt;span&gt;</code> 实现，缺少 <code>role</code>、<code>tabindex</code>、<code>aria-label</code> 等无障碍属性</div></div>
-      <div class="card-row"><div class="card-label">修复方案</div><div class="card-content">将答题选项改为 <code>&lt;button&gt;</code> 或 <code>&lt;input type="radio"&gt;</code>，确保键盘可操作。添加 <code>aria-label</code> 描述选项内容，<code>aria-pressed</code> 标记选中状态</div></div>
+      <div class="card-row"><div class="card-label">文件</div><div class="card-content"><code>01_初中历史/七年级/01_d1sy/1.1_bjr/bjr.html</code></div></div>
+      <div class="card-row"><div class="card-label">问题</div><div class="card-content">bjr.html 本地重写了 <code>checkAnswer(element, isCorrect, questionNum, optionLetter)</code>（4参数版），该版本完全不调用共享的 <code>awardXP/spawnParticles/playSound/mascotEngine.setState/updateStreak</code>。共享 scripts.js 的 2 参数版 checkAnswer 在此课件根本未被调用。<strong>后果：旗舰课件答题无XP、无粒子、无音效、无吉祥物反应、无连击</strong></div></div>
+      <div class="card-row"><div class="card-label">修复</div><div class="card-content">在本地 checkAnswer 末尾补调游戏化函数，或重构为调用共享 checkAnswer</div></div>
       <div class="impl-box">
         <div class="impl-label">实施指导</div>
-        <strong>修改前</strong>（推测）：<code>&lt;div class="option" onclick="selectAnswer()"&gt;A. 北京人&lt;/div&gt;</code><br>
-        <strong>修改后</strong>：<code>&lt;button class="option" onclick="selectAnswer()" aria-label="选项A：北京人" aria-pressed="false"&gt;A. 北京人&lt;/button&gt;</code><br>
-        同时确保 <code>:focus-visible</code> 样式可见，<code>prefers-reduced-motion</code> 时减少动画。
+        在 bjr.html 的本地 <code>checkAnswer</code> 答对分支末尾增加：<code>if(window.awardXP) awardXP(element, 10); if(window.spawnParticles) spawnParticles(element,12); if(window.playSound) playSound('correct'); if(window.mascotEngine) mascotEngine.setState('happy');</code>。答错分支增加：<code>if(window.playSound) playSound('wrong'); if(window.mascotEngine) mascotEngine.setState('confused');</code>。<strong>需逐课件核查是否有类似本地重写问题</strong>。
       </div>
     </div>
 
     <div class="card" style="border-color:var(--danger);">
       <div class="card-header">
-        <div class="card-title"><span class="tag tag-ux">紧急</span>AI 脚本路径修复</div>
+        <div class="card-title"><span class="tag tag-game">Bug</span>Bug-2：连胜火苗永远显示 0</div>
         <span class="badge badge-p0">P0</span>
       </div>
-      <div class="card-row"><div class="card-label">问题</div><div class="card-content">线上版 ai-tutor.js、audio-player.js 等脚本引用 localhost:8080 路径，GitHub Pages 上无法加载，AI 学伴和音效功能完全失效</div></div>
-      <div class="card-row"><div class="card-label">修复方案</div><div class="card-content">将所有脚本引用改为相对路径（<code>./shared/ai-tutor.js</code> 而非 <code>http://localhost:8080/shared/ai-tutor.js</code>），或使用 <code>&lt;script src="//"&gt;</code> 协议相对路径</div></div>
+      <div class="card-row"><div class="card-label">文件</div><div class="card-content"><code>shared/scripts.js</code> + <code>index.html</code></div></div>
+      <div class="card-row"><div class="card-label">问题</div><div class="card-content">shared/scripts.js 的 <code>getDefaultGameState()</code> 写入 <code>streak: 0</code>（数字），但首页 index.html 的 <code>updateStreakIndicator()</code> 读取 <code>state.streak.count</code>（对象属性）。类型不匹配，<code>state.streak.count</code> 永远为 <code>undefined</code> → 火苗显示 0</div></div>
+      <div class="card-row"><div class="card-label">修复</div><div class="card-content">统一 streak 为对象结构 <code>{count: N, lastDate: "日期", maxCount: N, freezes: 1}</code></div></div>
       <div class="impl-box">
         <div class="impl-label">实施指导</div>
-        全局搜索 <code>localhost:8080</code> 并替换为相对路径。检查所有 <code>&lt;script src&gt;</code> 和 <code>&lt;link href&gt;</code> 标签。GitHub Pages 部署前需做路径检查。
+        修改 <code>getDefaultGameState()</code>：<code>streak: {count:0, lastDate:null, maxCount:0, freezes:1}</code>。修改 <code>updateStreak()</code> 读写 <code>state.streak.count</code>。增加兼容处理：<code>if(typeof state.streak === 'number') state.streak = {count: state.streak, lastDate:null, maxCount:0, freezes:1}</code>。
+      </div>
+    </div>
+
+    <div class="card" style="border-color:var(--danger);">
+      <div class="card-header">
+        <div class="card-title"><span class="tag tag-game">Bug</span>Bug-3：连击计数刷新即丢</div>
+        <span class="badge badge-p0">P0</span>
+      </div>
+      <div class="card-row"><div class="card-label">文件</div><div class="card-content"><code>shared/scripts.js</code></div></div>
+      <div class="card-row"><div class="card-label">问题</div><div class="card-content">连击计数 <code>let _currentStreak = 0</code> 是运行时内存变量，不写入 localStorage。用户刷新页面或切换课件后连击归零，无法跨课件累积</div></div>
+      <div class="card-row"><div class="card-label">修复</div><div class="card-content">将 _currentStreak 持久化到 <code>teachany_gamestate.comboCount</code></div></div>
+      <div class="impl-box">
+        <div class="impl-label">实施指导</div>
+        在 <code>updateStreak()</code> 中：<code>state.comboCount = _currentStreak; localStorage.setItem(...)</code>。页面加载时：<code>_currentStreak = state.comboCount || 0</code>。注意：连击跨课件是否累积需产品决策——可选择"同课件内累积"或"全局累积"。
+      </div>
+    </div>
+
+    <div class="card" style="border-color:var(--danger);">
+      <div class="card-header">
+        <div class="card-title"><span class="tag tag-game">Bug</span>Bug-4：难度标签系统性误标</div>
+        <span class="badge badge-p0">P0</span>
+      </div>
+      <div class="card-row"><div class="card-label">文件</div><div class="card-content">所有课件 HTML（<code>data-difficulty</code> 属性）</div></div>
+      <div class="card-row"><div class="card-label">问题</div><div class="card-content">XP 难度倍率代码存在且正确：<code>DIFFICULTY_MULTIPLIERS = {basic:1, intermediate:1.5, advanced:2}</code>。但课件 <code>data-difficulty</code> 大量误标：前测第3题（提高）标 basic、第4题（挑战）标 basic，后测全部标 advanced（含基础题）。且从不使用 intermediate 取值。难度系统形同虚设——所有题实际都发 10XP 或都发 20XP</div></div>
+      <div class="card-row"><div class="card-label">修复</div><div class="card-content">逐课件审计 data-difficulty 取值，对照题目实际难度修正</div></div>
+      <div class="impl-box">
+        <div class="impl-label">实施指导</div>
+        编写审计脚本扫描所有课件 HTML 的 <code>data-difficulty</code> 值，对照题目难度徽章类名（difficulty-基础/提高/挑战）验证一致性。修正规则：基础题="basic"、提高题="intermediate"（注意不是"提高"）、挑战题="advanced"（注意不是"挑战"）。
+      </div>
+    </div>
+
+    <div class="card" style="border-color:var(--danger);">
+      <div class="card-header">
+        <div class="card-title"><span class="tag tag-art">Bug</span>Bug-5：道法配色三处不一致</div>
+        <span class="badge badge-p0">P0</span>
+      </div>
+      <div class="card-row"><div class="card-label">文件</div><div class="card-content"><code>index.html</code> + <code>04_道德与法治/七年级/shared/styles.css</code> + <code>mascot.js</code></div></div>
+      <div class="card-row"><div class="card-label">问题</div><div class="card-content">道法配色三处不一致：①首页卡片 <code>--law-primary: #2E7D32</code>（绿）②课件页面 <code>--primary: #7B1FA2</code>（紫）③吉祥物角色 <code>color: '#2E7D32'</code>（绿）。用户从绿色卡片点入紫色页面，且绿色吉祥物浮在紫色页面上</div></div>
+      <div class="card-row"><div class="card-label">修复</div><div class="card-content">统一为紫色（与课件 styles.css 注释"紫色金色系·法治庄重感"一致）：首页 <code>--law-primary</code> 改为 <code>#7B1FA2</code>，吉祥物 morality 的 color 改为 <code>#7B1FA2</code></div></div>
+      <div class="impl-box">
+        <div class="impl-label">实施指导</div>
+        修改 <code>index.html</code>：<code>--law-primary: #7B1FA2; --law-light: #AB47BC; --law-gradient: linear-gradient(135deg, #4A148C, #7B1FA2, #AB47BC)</code>。修改 <code>mascot.js</code> 的 morality 配置：<code>color:'#7B1FA2', accentColor:'#FF8F00'</code>。保留课件 styles.css 的紫色不变。
+      </div>
+    </div>
+
+    <div class="card" style="border-color:var(--warn);">
+      <div class="card-header">
+        <div class="card-title"><span class="tag tag-art">Bug</span>Bug-6：首页与课件字体不一致</div>
+        <span class="badge badge-p1">P1</span>
+      </div>
+      <div class="card-row"><div class="card-label">文件</div><div class="card-content"><code>index.html</code>（引入 Google Fonts） vs 各学科 <code>shared/styles.css</code>（仅系统字体）</div></div>
+      <div class="card-row"><div class="card-label">问题</div><div class="card-content">首页用 Noto Sans SC + ZCOOL KuaiLe（Google Fonts 加载），课件页仅用 <code>-apple-system, "Microsoft YaHei", "PingFang SC", sans-serif</code> 系统字体栈。两种页面字体感割裂</div></div>
+      <div class="card-row"><div class="card-label">修复</div><div class="card-content">课件 styles.css 统一引入 Noto Sans SC，标题用 ZCOOL KuaiLe</div></div>
+      <div class="impl-box">
+        <div class="impl-label">实施指导</div>
+        在各学科 <code>shared/styles.css</code> 顶部增加 <code>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=ZCOOL+KuaiLe&display=swap');</code>。修改 <code>body</code> 字体栈为 <code>'Noto Sans SC', 'Microsoft YaHei', sans-serif</code>。修改 <code>.hero h1</code> 字体为 <code>'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif</code>。
       </div>
     </div>
   </div>

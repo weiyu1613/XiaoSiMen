@@ -169,9 +169,9 @@
 </ul></div>
 </section>
 
-    <div class="interactive-map" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #1565C0;">
+    <div class="interactive-map" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
       <h4 style="color:#0D47A1;margin-bottom:8px;"><i class="fa-solid fa-map-location-dot"></i> 读图思考</h4>
-      <p style="color:#1565C0;font-size:14px;">结合课本地图，思考本课涉及的地理事物的空间分布特征。</p>
+      <p style="color:var(--primary);font-size:14px;">结合课本地图，思考本课涉及的地理事物的空间分布特征。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -319,8 +319,8 @@
     </div>
 
     <!-- 新题型：开放性思考题 -->
-    <div class="open-ended" style="background:#e3f2fd;border:2px solid #1565C0;border-radius:12px;padding:20px;margin:16px 0;">
-      <h4 style="color:#0d47a1;margin-bottom:12px;"><i class="fa-solid fa-lightbulb"></i> 开放性思考题</h4>
+    <div class="open-ended" style="background:#e3f2fd;border:2px solid var(--primary);border-radius:12px;padding:20px;margin:16px 0;">
+      <h4 style="color:var(--primary-dark);margin-bottom:12px;"><i class="fa-solid fa-lightbulb"></i> 开放性思考题</h4>
       <p style="font-weight:600;margin-bottom:12px;">结合本课内容，谈谈你的理解和看法。</p>
       <textarea style="width:100%;min-height:80px;padding:12px;border:2px solid #e0e0e0;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="请在此输入你的思考..."></textarea>
       <div style="margin-top:8px;font-size:13px;color:#666;">💡 提示：可以从多角度思考，没有标准答案，鼓励创造性思维。</div>
@@ -355,10 +355,10 @@ anchorContents[2]='<h3>📍 问题2：如何解决水资源分布不均？</h3><
 anchorContents[3]='<h3>📍 问题3：为什么要节约用水？</h3><p>我国水资源总量丰富但<strong>人均不足</strong>，分布不均，浪费和污染严重，必须节约用水。</p>';
 function selectAnchor(btnElement,id){document.querySelectorAll('.anchor-btn').forEach((item)=>item.classList.remove('selected'));btnElement.classList.add('selected');const display=document.getElementById('anchor-display');display.innerHTML=anchorContents[id];const feedback=document.getElementById('anchor-feedback');if(feedback){feedback.textContent='你选择了：'+btnElement.getAttribute('data-anchor-choice');feedback.style.display='block'}window.__TEACHANY_LEARNER_QUESTION__=btnElement.getAttribute('data-anchor-choice')||''}
 function handleCustomQuestion(question){if(question.trim()){const display=document.getElementById('anchor-display');display.innerHTML='<h3>📍 你的问题：'+question+'</h3><p>很好的问题！让我们在课件中寻找答案吧。</p>';const feedback=document.getElementById('anchor-feedback');if(feedback){feedback.textContent='你的问题：'+question;feedback.style.display='block'}window.__TEACHANY_LEARNER_QUESTION__=question}}
-function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=element.closest('.quiz-box');const feedback=parent.querySelector('.feedback');const explanation=document.getElementById('explanation-'+questionNum);const allOptions=parent.querySelectorAll('.quiz-option');allOptions.forEach(opt=>opt.classList.remove('correct','wrong'));if(isCorrect){element.classList.add('correct');if(feedback){feedback.innerHTML='<strong>✅ 答对了！</strong>';feedback.className='feedback show correct-fb'}if(explanation)explanation.classList.add('show')}else{element.classList.add('wrong');const specificFeedback=element.dataset.feedback||'❌ 不对哦！';if(feedback){feedback.innerHTML=specificFeedback+'<br><br>💡 换一个选项试试？';feedback.className='feedback show wrong-fb'}}}
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《水资源》课件加载完成')});
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/badges.js?v=8.0"></script>
   <!-- P1-8 移动端工具栏 -->
   <div class="mobile-toolbar">

@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #2e7d32;
-      --primary-light: #4caf50;
-      --primary-dark: #1b5e20;
-      --secondary: #81c784;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
+      --primary-dark: var(--primary-dark);
+      --secondary: var(--secondary);
       --bg-light: #f1f8e9;
       --bg-card: #ffffff;
       --text-dark: #1a1a2e;
@@ -36,7 +36,7 @@
 
     /* ====== Hero Section ====== */
     .hero-section {
-      background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%);
       color: white;
       padding: 60px 20px;
       text-align: center;
@@ -439,7 +439,7 @@
       height: 64px;
       border-radius: 50%;
       border: none;
-      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
       box-shadow: 0 6px 24px rgba(46,125,50,0.55);
       cursor: pointer;
       display: flex;
@@ -471,7 +471,7 @@
     }
     @keyframes modalIn { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .ai-modal-header {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white;
       padding: 18px 22px;
       display: flex;
@@ -505,19 +505,19 @@
       border: 2px solid #c8e6c9;
       border-radius: 12px;
       font-size: 13.5px;
-      color: #1b5e20;
+      color: var(--primary-dark);
       cursor: pointer;
       transition: all 0.2s;
       font-family: inherit;
       line-height: 1.5;
     }
-    .ai-q-btn:hover { background: #e8f5e9; border-color: #4caf50; }
+    .ai-q-btn:hover { background: #e8f5e9; border-color: var(--primary-light); }
     .ai-answer {
       display: none;
       margin-top: 12px;
       padding: 14px 16px;
       background: #e8f5e9;
-      border-left: 4px solid #2e7d32;
+      border-left: 4px solid var(--primary);
       border-radius: 0 10px 10px 0;
       font-size: 13px;
       line-height: 1.75;
@@ -528,7 +528,7 @@
     /* 知识图谱模块 */
     .kg-section {
       background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
-      border: 2px solid #4caf50;
+      border: 2px solid var(--primary-light);
       border-radius: 18px;
       padding: 26px 28px;
       margin: 28px 0;
@@ -536,7 +536,7 @@
     .kg-title {
       font-size: 1.25rem;
       font-weight: 700;
-      color: #1b5e20;
+      color: var(--primary-dark);
       margin-bottom: 18px;
       display: flex;
       align-items: center;
@@ -551,7 +551,7 @@
       text-align: center;
     }
     .kg-svg-container svg { max-width: 100%; height: auto; }
-    .kg-caption { margin-top: 14px; font-size: 14px; color: #2e7d32; text-align: center; font-weight: 600; }
+    .kg-caption { margin-top: 14px; font-size: 14px; color: var(--primary); text-align: center; font-weight: 600; }
     .kg-legend {
       display: flex;
       flex-wrap: wrap;
@@ -561,13 +561,13 @@
       background: rgba(255,255,255,0.75);
       border-radius: 12px;
     }
-    .kg-legend-item { font-size: 13px; color: #1b5e20; display: flex; align-items: center; gap: 6px; }
+    .kg-legend-item { font-size: 13px; color: var(--primary-dark); display: flex; align-items: center; gap: 6px; }
     .kg-legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
 
     /* 导师卡片 */
     .mentor-card {
       background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
-      border: 2px solid #81c784;
+      border: 2px solid var(--secondary);
       border-radius: 18px;
       padding: 24px 28px;
       margin: 28px 0;
@@ -577,7 +577,7 @@
     }
     .mentor-avatar {
       width: 72px; height: 72px;
-      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -588,9 +588,9 @@
       box-shadow: 0 4px 16px rgba(46,125,50,0.3);
     }
     .mentor-info { flex: 1; }
-    .mentor-name { font-size: 1.1rem; font-weight: 700; color: #1b5e20; margin-bottom: 6px; }
+    .mentor-name { font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
     .mentor-title { font-size: 13px; color: #5d6d7e; margin-bottom: 10px; }
-    .mentor-bio { font-size: 13.5px; color: #2e7d32; line-height: 1.7; }
+    .mentor-bio { font-size: 13.5px; color: var(--primary); line-height: 1.7; }
 
     /* 手风琴折叠 */
     .accordion { margin: 24px 0; }
@@ -692,13 +692,13 @@
 
     <!-- 时间线导航 -->
     <div class="timeline-nav" style="display:flex;justify-content:center;gap:0;margin:28px 0 18px;flex-wrap:wrap;">
-      <a href="#lesson1" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">① 种子萌发</a>
-      <a href="#lesson2" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">② 植株生长</a>
-      <a href="#lesson3" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">③ 开花结果</a>
-      <a href="#lesson4" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">④ 水的利用</a>
-      <a href="#lesson5" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑤ 光合作用</a>
-      <a href="#lesson6" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑥ 呼吸作用</a>
-      <a href="#lesson7" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:#2e7d32;text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑦ 植物作用</a>
+      <a href="#lesson1" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">① 种子萌发</a>
+      <a href="#lesson2" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">② 植株生长</a>
+      <a href="#lesson3" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">③ 开花结果</a>
+      <a href="#lesson4" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">④ 水的利用</a>
+      <a href="#lesson5" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑤ 光合作用</a>
+      <a href="#lesson6" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑥ 呼吸作用</a>
+      <a href="#lesson7" class="tl-dot" style="padding:8px 18px;background:#e8f5e9;border-radius:20px;margin:4px;font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;border:2px solid #c8e6c9;transition:all 0.2s;">⑦ 植物作用</a>
     </div>
     <div class="lessons-grid">
       <!-- 课时1 -->

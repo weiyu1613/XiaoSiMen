@@ -21,10 +21,10 @@
   <style>
     /* ========== 历史科目专属配色 ========== */
     :root {
-      --primary: #8b4513;
-      --primary-light: #cd853f;
-      --primary-dark: #6b3410;
-      --secondary: #d4a574;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
+      --primary-dark: var(--primary-dark);
+      --secondary: var(--secondary);
       --accent: #d4a017;
       --bg-light: #faf7f2;
       --bg-card: #ffffff;
@@ -105,13 +105,13 @@
     .anchor-box { background: #f5e6d3; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; font-size: 15px; line-height: 1.8; }
     .anchor-box strong { color: var(--primary); }
     .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f5e6d3, #faf7f2); border: 2px solid #d4a574; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #f5e6d3, #faf7f2); border: 2px solid var(--secondary); border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
     .anchor-btn:hover { background: linear-gradient(135deg, #e8d4bc, #f5e6d3); border-color: var(--primary); }
     .anchor-btn.selected { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; border-color: var(--primary); }
 
     .custom-question { margin-top: 16px; }
     .custom-question label { display: block; margin-bottom: 6px; color: var(--primary); font-weight: 600; }
-    .custom-question input { width: 100%; border-radius: 12px; border: 1px solid #d4a574; background: #faf7f2; color: var(--text-dark); padding: 12px 14px; font-size: 15px; }
+    .custom-question input { width: 100%; border-radius: 12px; border: 1px solid var(--secondary); background: #faf7f2; color: var(--text-dark); padding: 12px 14px; font-size: 15px; }
     .custom-question input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,69,19,0.1); }
     .anchor-display { margin-top: 16px; padding: 16px; border-radius: 12px; background: rgba(139,69,19,0.05); border: 1px solid rgba(139,69,19,0.15); min-height: 80px; }
     .anchor-display h4 { color: var(--primary); margin-bottom: 8px; }
@@ -137,7 +137,7 @@
     .difficulty-挑战 { background: #fee2e2; color: #dc2626; }
     .quiz-options { padding: 10px 16px; }
     .quiz-option { display: flex; align-items: center; padding: 10px 14px; border-radius: 8px; cursor: pointer; margin-bottom: 8px; border: 2px solid transparent; transition: all 0.2s; background: white; }
-    .quiz-option:hover { background: #faf7f2; border-color: #d4a574; }
+    .quiz-option:hover { background: #faf7f2; border-color: var(--secondary); }
     .quiz-option input { margin-right: 10px; accent-color: var(--primary); transform: scale(1.1); }
     .quiz-option label { cursor: pointer; flex: 1; font-size: 14px; }
     .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
@@ -218,7 +218,7 @@
   </style>
 </head>
 <body>
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,var(--primary));color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
 <script>
 (function(){
   var btn=document.getElementById('back-to-top');
@@ -244,7 +244,7 @@
   <!-- ========== ③ 导航栏 ========== -->
   <nav class="nav-bar">
 <div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
-  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+  <a href="../../../index.html" style="color:var(--primary,var(--primary));text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
 </div>
 
     <div class="nav-inner">
@@ -824,7 +824,7 @@
     <section class="section">
       <div class="card">
 <details style="margin:8px 0;">
-<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,var(--primary));padding:8px 0;">展开详细内容</summary>
 
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
@@ -934,28 +934,6 @@
     function handleCustomQuestion(value) {
       if (value.trim()) {
         document.getElementById('anchor-display').innerHTML = `<h4>你的问题：${value}</h4><p>很好的问题！让我们在课件中寻找答案吧。</p>`;
-      }
-    }
-
-    /* ========== 答题检查功能 ========== */
-    function checkAnswer(element, isCorrect, questionId, optionLetter) {
-      const parent = element.closest('.quiz-item');
-      const feedback = parent.querySelector('.quiz-feedback');
-      const explanation = parent.querySelector('.answer-explanation');
-      const allOptions = parent.querySelectorAll('.quiz-option');
-
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
-        feedback.className = 'quiz-feedback show correct-fb';
-        explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
-        feedback.className = 'quiz-feedback show wrong-fb';
       }
     }
 

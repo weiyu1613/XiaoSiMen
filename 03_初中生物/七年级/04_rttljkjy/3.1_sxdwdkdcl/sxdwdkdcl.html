@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #2e7d32;
-      --primary-light: #4caf50;
-      --primary-dark: #1b5e20;
-      --secondary: #81c784;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
+      --primary-dark: var(--primary-dark);
+      --secondary: var(--secondary);
       --bg-light: #f1f8e9;
       --bg-card: #ffffff;
       --text-dark: #1a1a2e;
@@ -38,7 +38,7 @@
     .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
 
     /* Hero区 */
-    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
     .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
     .hero h1 { font-size: 2rem; margin: 10px 0; }
     .hero p { font-size: 1.1rem; opacity: 0.9; }
@@ -55,14 +55,14 @@
 
     /* 锚点 */
     .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid var(--secondary); border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
     .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
     .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
 
     /* 测验 */
     .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
     .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
-    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option:hover { border-color: var(--secondary); background: #f1f8e9; }
     .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
     .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
     .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
@@ -257,9 +257,9 @@
     </section>
 
     <!-- ⑦ 前测 -->
-        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #558B2F;">
+        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
       <h4 style="color:#33691E;margin-bottom:8px;"><i class="fa-solid fa-flask"></i> 探究实验</h4>
-      <p style="color:#558B2F;font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
+      <p style="color:var(--primary);font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -477,23 +477,24 @@
   </footer>
 
   <!-- 额外模块 -->
+  <script src="../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/extra-modules.js"></script>
   <script>window.mentorData={name:'呼吸系统导师',title:'七年级生物 · 第三章',tag:'互动课件',intro:'专注呼吸系统与肺内气体交换，帮你掌握呼吸运动和气体交换的核心考点。'};</script>
 
   <!-- AI学伴悬浮窗 -->
   <div id="ai-partner-wrapper" style="position:fixed;bottom:20px;right:20px;z-index:9999;font-family:inherit;">
-    <button id="ai-partner-toggle" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#4caf50);border:none;cursor:pointer;color:white;font-size:22px;box-shadow:0 4px 16px rgba(46,125,50,0.4);display:flex;align-items:center;justify-content:center;">🌿</button>
+    <button id="ai-partner-toggle" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));border:none;cursor:pointer;color:white;font-size:22px;box-shadow:0 4px 16px rgba(46,125,50,0.4);display:flex;align-items:center;justify-content:center;">🌿</button>
     <div id="ai-partner-box" style="display:none;position:absolute;bottom:70px;right:0;width:320px;background:white;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);border:2px solid #c8e6c9;overflow:hidden;">
-      <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;padding:12px 16px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;padding:12px 16px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">
         <span>🌿 AI学伴 · 初中生物</span>
         <button id="ai-partner-close" style="background:none;border:none;color:white;cursor:pointer;font-size:16px;">✕</button>
       </div>
       <div id="ai-partner-thread" style="height:220px;overflow-y:auto;padding:14px;font-size:13px;line-height:1.6;">
-        <div style="background:#e8f5e9;border-radius:12px;padding:10px 14px;margin-bottom:8px;color:#1b5e20;"><strong>🌿 AI学伴：</strong> 欢迎！关于呼吸道和肺内气体交换的问题都可以问我～</div>
+        <div style="background:#e8f5e9;border-radius:12px;padding:10px 14px;margin-bottom:8px;color:var(--primary-dark);"><strong>🌿 AI学伴：</strong> 欢迎！关于呼吸道和肺内气体交换的问题都可以问我～</div>
       </div>
       <div style="padding:10px 14px;border-top:1px solid #e8f5e9;display:flex;gap:8px;">
-        <input id="ai-partner-input" placeholder="输入你的问题..." style="flex:1;border:1px solid #81c784;border-radius:20px;padding:8px 14px;font-size:13px;outline:none;">
-        <button id="ai-partner-send" style="background:#2e7d32;color:white;border:none;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:13px;">发送</button>
+        <input id="ai-partner-input" placeholder="输入你的问题..." style="flex:1;border:1px solid var(--secondary);border-radius:20px;padding:8px 14px;font-size:13px;outline:none;">
+        <button id="ai-partner-send" style="background:var(--primary);color:white;border:none;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:13px;">发送</button>
       </div>
     </div>
   </div>
@@ -515,9 +516,9 @@
 
     // 锚点选择
     var anchorContents = {
-      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🫁 呼吸道由哪些部分组成？</h4><p>呼吸道包括<strong>鼻、咽、喉、气管、支气管</strong>。肺是气体交换的场所，不属于呼吸道。</p></div>',
-      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌡️ 呼吸道对空气有哪些处理作用？</h4><p>呼吸道对空气的处理作用包括<strong>清洁</strong>（鼻毛、黏液、纤毛）、<strong>温暖</strong>（毛细血管）、<strong>湿润</strong>（黏液）。</p></div>',
-      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🧬 为什么呼吸道能处理空气？</h4><p>呼吸道有<strong>骨或软骨做支架</strong>（保证气流通畅），<strong>鼻腔黏膜有丰富的毛细血管</strong>（温暖空气），<strong>黏膜能分泌黏液</strong>（湿润、清洁空气），<strong>气管内壁有纤毛</strong>（清洁空气），这些结构特点使其能处理空气。</p></div>'
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🫁 呼吸道由哪些部分组成？</h4><p>呼吸道包括<strong>鼻、咽、喉、气管、支气管</strong>。肺是气体交换的场所，不属于呼吸道。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🌡️ 呼吸道对空气有哪些处理作用？</h4><p>呼吸道对空气的处理作用包括<strong>清洁</strong>（鼻毛、黏液、纤毛）、<strong>温暖</strong>（毛细血管）、<strong>湿润</strong>（黏液）。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🧬 为什么呼吸道能处理空气？</h4><p>呼吸道有<strong>骨或软骨做支架</strong>（保证气流通畅），<strong>鼻腔黏膜有丰富的毛细血管</strong>（温暖空气），<strong>黏膜能分泌黏液</strong>（湿润、清洁空气），<strong>气管内壁有纤毛</strong>（清洁空气），这些结构特点使其能处理空气。</p></div>'
     };
 
     function selectAnchor(btn, id) {
@@ -532,32 +533,10 @@
     function handleCustomQuestion(val) {
       if (val.trim().length < 2) return;
       var display = document.getElementById('anchor-feedback');
-      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！呼吸道对空气的处理是呼吸系统的第一道防线，了解它有助于我们养成好的卫生习惯。</p></div>';
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！呼吸道对空气的处理是呼吸系统的第一道防线，了解它有助于我们养成好的卫生习惯。</p></div>';
       display.style.display = 'block';
     }
 
-    function checkAnswer(el, isCorrect, qNum) {
-      var parent = el.parentElement;
-      var options = parent.querySelectorAll('.quiz-option');
-      for (var i = 0; i < options.length; i++) {
-        options[i].classList.remove('correct', 'wrong');
-      }
-      if (isCorrect) {
-        el.classList.add('correct');
-      } else {
-        el.classList.add('wrong');
-      }
-      var fb = document.getElementById('fb-' + qNum);
-      var exp = document.getElementById('exp-' + qNum);
-      if (isCorrect) {
-        fb.className = 'feedback correct-fb show';
-        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
-      } else {
-        fb.className = 'feedback wrong-fb show';
-        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
-      }
-      exp.classList.add('show');
-    }
   </script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>

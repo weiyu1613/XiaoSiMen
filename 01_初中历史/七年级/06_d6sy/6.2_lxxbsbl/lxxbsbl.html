@@ -14,7 +14,7 @@
   <title>第2课 辽夏西夏与北宋的并立 | 初中7年级历史</title>
   <style>
     .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
-    .comparison-table th { background: linear-gradient(135deg, #8b4513, #cd853f); color: white; padding: 12px; text-align: center; }
+    .comparison-table th { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 12px; text-align: center; }
     .comparison-table td { padding: 10px; border: 1px solid #e8dcc8; text-align: center; }
     .comparison-table tr:nth-child(even) { background: #fdf5e6; }
     .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
@@ -130,7 +130,7 @@
   </style>
 </head>
 <body>
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,var(--primary));color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
 <script>
 (function(){
   var btn=document.getElementById('back-to-top');
@@ -152,7 +152,7 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   <nav class="nav-bar">
 <div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
-  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+  <a href="../../../index.html" style="color:var(--primary,var(--primary));text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
 </div>
 <div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
@@ -221,8 +221,8 @@
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
 <div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
-  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
-  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--primary,var(--primary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,var(--secondary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
   <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
 </div>
 
@@ -299,7 +299,7 @@
       <h2 class="section-title"><span class="num">📚</span> 核心内容</h2>
       <div class="card">
 <details style="margin:8px 0;">
-<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,var(--primary));padding:8px 0;">展开详细内容</summary>
 
         <h3>一、辽的建立</h3>
         <p><strong>时间</strong>：916年</p>
@@ -312,7 +312,7 @@
 </div>
       <div class="card" style="margin-top: 20px;">
 <details style="margin:8px 0;">
-<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,var(--primary));padding:8px 0;">展开详细内容</summary>
 
         <h3>二、西夏的建立</h3>
         <p><strong>时间</strong>：1038年</p>
@@ -593,40 +593,10 @@
       const display = document.getElementById('anchor-display');
       display.innerHTML = `<div style="padding:16px; background:#fdf5e6; border-radius:8px;"><h4>💡 你自定义的问题是：</h4><p>${val}</p><p>AI学伴会围绕这个问题帮你学习！</p></div>`;
     }
-        /* ========== 答案检查（支持反复尝试 + 答对了也能看错误选项讲解） ========== */
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const explanation = document.getElementById('explanation-' + questionNum);
-      const allOptions = parent.querySelectorAll('.quiz-option');
-
-      // 先清除所有选项的高亮状态
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) {
-          feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
-          feedback.className = 'feedback show correct-fb';
-        }
-        if (explanation) explanation.classList.add('show');
-        // 不禁用！答对了还能点错误选项看讲解
-
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) {
-          feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
-          feedback.className = 'feedback show wrong-fb';
-        }
-        // 不禁用！可以一直尝试
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
   </script>
     <!-- 标准模块脚本（必须） -->
 
+    <script src="../../shared/scripts.js?v=8.0"></script>
     <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>地球公转与自转 3D 模型</title>
+<style>
+  :root{
+    --primary:#1565C0; --primary-light:#42A5F5; --primary-dark:#0D47A1;
+    --accent:#00BCD4; --bg:#05060f; --text:#2c3e50; --white:#f0f8ff;
+    --card-bg:rgba(240,248,255,0.96); --border:#90caf9; --shadow:0 6px 24px rgba(13,71,161,0.18);
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'Noto Sans SC',-apple-system,"Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); overflow:hidden;
+  }
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 20px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));
+    color:#fff;box-shadow:var(--shadow);
+  }
+  .topbar h1{font-size:20px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.16);color:#fff;text-decoration:none;
+    padding:8px 16px;border-radius:30px;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,255,255,0.35);transition:all .25s;
+  }
+  .back-btn:hover{background:rgba(255,255,255,0.3);transform:translateX(-2px);}
+  #scene{position:fixed;inset:0;}
+  #scene canvas{display:block;cursor:grab;}
+  #scene canvas:active{cursor:grabbing;}
+  .panel{
+    position:fixed;z-index:15;background:var(--card-bg);
+    border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);backdrop-filter:blur(6px);
+  }
+  .controls{bottom:20px;left:50%;transform:translateX(-50%);padding:14px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;}
+  .legend{top:74px;right:16px;padding:14px 16px;min-width:200px;max-width:250px;}
+  .legend h3{font-size:14px;color:var(--primary-dark);margin-bottom:8px;}
+  .legend-row{display:flex;align-items:center;gap:8px;font-size:13px;margin:5px 0;}
+  .dot{width:12px;height:12px;border-radius:50%;flex:none;}
+  .info{top:74px;left:16px;padding:12px 16px;min-width:160px;}
+  .info .label{font-size:12px;color:var(--text);opacity:.7;}
+  .info .value{font-size:18px;font-weight:700;color:var(--primary-dark);margin-top:2px;}
+  .btn{
+    border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;
+    padding:9px 18px;border-radius:30px;transition:all .2s;
+    background:var(--primary);color:#fff;display:inline-flex;align-items:center;gap:6px;
+  }
+  .btn:hover{background:var(--primary-dark);transform:translateY(-1px);}
+  .btn.ghost{background:#fff;color:var(--primary);border:1.5px solid var(--primary);}
+  .btn.ghost:hover{background:var(--bg);}
+  .toggle{display:flex;align-items:center;gap:8px;font-size:13px;}
+  .switch{position:relative;width:42px;height:22px;}
+  .switch input{opacity:0;width:0;height:0;}
+  .slider{position:absolute;inset:0;background:#bbb;border-radius:22px;transition:.3s;cursor:pointer;}
+  .slider:before{content:"";position:absolute;height:16px;width:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;}
+  .switch input:checked + .slider{background:var(--primary);}
+  .switch input:checked + .slider:before{transform:translateX(20px);}
+  .divider{width:1px;height:26px;background:var(--border);}
+  .hint{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);font-size:12px;color:#cfe0ef;opacity:.7;z-index:10;pointer-events:none;}
+  @media (max-width:640px){
+    .topbar h1{font-size:15px;}
+    .legend,.info{max-width:160px;padding:10px;font-size:12px;}
+    .info{left:8px;}.legend{right:8px;}
+    .controls{gap:8px;padding:10px;width:calc(100% - 16px);}
+    .hint{display:none;}
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>🌍 地球公转与自转 3D 模型</h1>
+    <a class="back-btn" href="../../index.html">← 返回首页</a>
+  </header>
+
+  <div id="scene"></div>
+
+  <aside class="panel info">
+    <div class="label">当前节气</div>
+    <div class="value" id="season-name">春分</div>
+  </aside>
+
+  <aside class="panel legend">
+    <h3>📍 四季位置标记</h3>
+    <div class="legend-row"><span class="dot" style="background:#7cb342"></span>春分（约3月20日）</div>
+    <div class="legend-row"><span class="dot" style="background:#e53935"></span>夏至（约6月21日）</div>
+    <div class="legend-row"><span class="dot" style="background:#fb8c00"></span>秋分（约9月23日）</div>
+    <div class="legend-row"><span class="dot" style="background:#42a5f5"></span>冬至（约12月22日）</div>
+    <div style="margin-top:8px;font-size:12px;color:var(--text);opacity:.7;line-height:1.5;">
+      地轴倾斜约 23.5°，且方向恒定指向北极星，由此产生四季更替与昼夜长短变化。
+    </div>
+  </aside>
+
+  <div class="hint">鼠标拖拽旋转视角 · 滚轮缩放</div>
+
+  <div class="panel controls">
+    <button class="btn" id="btn-play">⏸ 暂停</button>
+    <button class="btn ghost" id="btn-reset">🧭 重置视角</button>
+    <div class="divider"></div>
+    <label class="toggle">公转速度
+      <input type="range" id="rev-speed" min="0" max="100" value="35" style="width:100px;">
+    </label>
+    <div class="divider"></div>
+    <label class="toggle">自转速度
+      <input type="range" id="rot-speed" min="0" max="100" value="50" style="width:90px;">
+    </label>
+    <div class="divider"></div>
+    <label class="toggle">
+      <span class="switch"><input type="checkbox" id="toggle-orbit" checked><span class="slider"></span></span>轨道线
+    </label>
+    <label class="toggle">
+      <span class="switch"><input type="checkbox" id="toggle-seasons" checked><span class="slider"></span></span>四季标记
+    </label>
+    <label class="toggle">
+      <span class="switch"><input type="checkbox" id="toggle-axis" checked><span class="slider"></span></span>地轴
+    </label>
+  </div>
+
+<script type="module">
+import * as THREE from '../lib/three/three.module.js';
+
+/* ============ 场景 ============ */
+const container=document.getElementById('scene');
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x05060f);
+
+const camera=new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 2000);
+camera.position.set(0, 9, 16);
+
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+container.appendChild(renderer.domElement);
+
+/* ============ 灯光 ============ */
+scene.add(new THREE.AmbientLight(0x445577, 0.45));
+const sunLight=new THREE.PointLight(0xfff0c0, 28, 0, 1.5);
+sunLight.position.set(0,0,0);
+scene.add(sunLight);
+
+/* ============ 星空 ============ */
+function makeStars(){
+  const g=new THREE.BufferGeometry(); const n=2000, pos=new Float32Array(n*3);
+  for(let i=0;i<n;i++){
+    const r=120+Math.random()*180, t=Math.random()*Math.PI*2, p=Math.acos(2*Math.random()-1);
+    pos[i*3]=r*Math.sin(p)*Math.cos(t); pos[i*3+1]=r*Math.sin(p)*Math.sin(t); pos[i*3+2]=r*Math.cos(p);
+  }
+  g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  return new THREE.Points(g, new THREE.PointsMaterial({color:0xffffff,size:0.6,transparent:true,opacity:0.8}));
+}
+scene.add(makeStars());
+
+/* ============ 太阳 ============ */
+const sun=new THREE.Mesh(
+  new THREE.SphereGeometry(1.5, 64, 64),
+  new THREE.MeshBasicMaterial({color:0xffd54f})
+);
+scene.add(sun);
+// 太阳光晕（径向渐变精灵）
+function makeGlowTexture(){
+  const s=256, cv=document.createElement('canvas'); cv.width=cv.height=s;
+  const c=cv.getContext('2d');
+  const g=c.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+  g.addColorStop(0,'rgba(255,220,120,0.9)'); g.addColorStop(0.3,'rgba(255,180,60,0.5)');
+  g.addColorStop(0.6,'rgba(255,140,30,0.18)'); g.addColorStop(1,'rgba(255,120,0,0)');
+  c.fillStyle=g; c.fillRect(0,0,s,s);
+  return new THREE.CanvasTexture(cv);
+}
+const sunGlow=new THREE.Sprite(new THREE.SpriteMaterial({map:makeGlowTexture(), transparent:true, blending:THREE.AdditiveBlending, depthWrite:false}));
+sunGlow.scale.set(6,6,1);
+scene.add(sunGlow);
+
+/* ============ 地球纹理（简化） ============ */
+function makeEarthTexture(){
+  const w=1024,h=512, cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+  const c=cv.getContext('2d');
+  const og=c.createLinearGradient(0,0,0,h);
+  og.addColorStop(0,'#0a2f55'); og.addColorStop(0.5,'#1a5c97'); og.addColorStop(1,'#0a2f55');
+  c.fillStyle=og; c.fillRect(0,0,w,h);
+  const toX=lon=>(lon+180)/360*w, toY=lat=>(90-lat)/180*h;
+  function shape(pts){ if(pts.length<3)return; c.beginPath();
+    const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
+    let s=mid(pts[pts.length-1],pts[0]); c.moveTo(toX(s[0]),toY(s[1]));
+    for(let i=0;i<pts.length;i++){const cur=pts[i],nxt=pts[(i+1)%pts.length],m=mid(cur,nxt); c.quadraticCurveTo(toX(cur[0]),toY(cur[1]),toX(m[0]),toY(m[1]));}
+    c.closePath();
+  }
+  function land(pts,col){shape(pts); c.fillStyle=col; c.fill();}
+  const g='#3d6b2e';
+  land([[-17,21],[11,37],[33,32],[43,11],[51,12],[42,-2],[40,-18],[34,-28],[20,-35],[18,-34],[12,-6],[9,3],[-3,4],[-9,6],[-16,14]],g);
+  land([[-10,36],[-9,43],[2,46],[8,54],[16,58],[26,62],[40,66],[60,70],[80,73],[110,72],[140,72],[170,66],[178,60],[160,55],[140,45],[135,35],[122,30],[110,21],[102,11],[97,16],[88,22],[78,8],[76,20],[72,10],[68,22],[60,24],[52,16],[48,12],[43,12],[34,28],[28,36],[22,40],[14,46],[5,44],[-2,40],[-9,38]],g);
+  land([[-168,66],[-150,70],[-128,57],[-124,40],[-117,32],[-105,30],[-97,26],[-90,29],[-82,27],[-80,25],[-83,15],[-92,16],[-97,19],[-104,22],[-114,30],[-124,38],[-132,52],[-152,60]],g);
+  land([[-78,11],[-62,9],[-50,1],[-37,-5],[-35,-10],[-39,-22],[-48,-26],[-58,-38],[-70,-53],[-74,-50],[-72,-38],[-76,-18],[-80,0],[-80,8]],g);
+  land([[114,-12],[133,-12],[140,-14],[146,-18],[152,-25],[150,-34],[143,-38],[135,-35],[120,-35],[114,-28],[113,-22]],'#7a8b3a');
+  land([[-180,-65],[-90,-70],[0,-72],[90,-71],[180,-66],[180,-90],[-180,-90]],'#e6eef2');
+  const tex=new THREE.CanvasTexture(cv); tex.colorSpace=THREE.SRGBColorSpace; return tex;
+}
+
+/* ============ 地球（含固定倾斜地轴 + 自转） ============ */
+const TILT=23.5*Math.PI/180;
+const earthSystem=new THREE.Group();      // 位置随公转更新（无旋转）
+scene.add(earthSystem);
+const earthTilt=new THREE.Group();        // 固定地轴倾角
+earthTilt.rotation.z=TILT;
+earthSystem.add(earthTilt);
+const earthSpin=new THREE.Group();        // 自转
+earthTilt.add(earthSpin);
+
+const ER=0.55;
+const earthMesh=new THREE.Mesh(
+  new THREE.SphereGeometry(ER,48,48),
+  new THREE.MeshPhongMaterial({map:makeEarthTexture(), specular:0x223355, shininess:12})
+);
+earthSpin.add(earthMesh);
+// 赤道线（随地球自转）
+const equator=new THREE.Line(
+  new THREE.BufferGeometry().setFromPoints((()=>{const p=[],s=64;for(let i=0;i<=s;i++){const t=i/s*Math.PI*2;p.push(new THREE.Vector3(Math.cos(t)*(ER+0.002),0,Math.sin(t)*(ER+0.002)));}return p;})()),
+  new THREE.LineBasicMaterial({color:0xffcc66,transparent:true,opacity:0.6})
+);
+earthSpin.add(equator);
+
+// 地轴指示线（固定，不随自转）
+const axisGroup=new THREE.Group(); earthTilt.add(axisGroup);
+const axisLen=ER*1.9;
+const axisLine=new THREE.Line(
+  new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,-axisLen,0),new THREE.Vector3(0,axisLen,0)]),
+  new THREE.LineDashedMaterial({color:0x66bbff,dashSize:0.12,gapSize:0.08,transparent:true,opacity:0.8})
+);
+axisLine.computeLineDistances();
+axisGroup.add(axisLine);
+// 北极标记
+const northMark=new THREE.Mesh(new THREE.SphereGeometry(0.06,12,12), new THREE.MeshBasicMaterial({color:0x66bbff}));
+northMark.position.set(0,axisLen,0);
+axisGroup.add(northMark);
+
+/* ============ 椭圆轨道参数 ============ */
+const A=6.5, E=0.28, C=A*E, B=A*Math.sqrt(1-E*E);
+function earthPos(theta){ return new THREE.Vector3(A*Math.cos(theta)-C, 0, B*Math.sin(theta)); }
+
+/* ============ 轨道线 ============ */
+const orbitGroup=new THREE.Group(); scene.add(orbitGroup);
+const orbitPts=[], seg=200;
+for(let i=0;i<=seg;i++){ const t=i/seg*Math.PI*2; orbitPts.push(earthPos(t)); }
+const orbitLine=new THREE.Line(
+  new THREE.BufferGeometry().setFromPoints(orbitPts),
+  new THREE.LineBasicMaterial({color:0x4a90e2, transparent:true, opacity:0.5})
+);
+orbitGroup.add(orbitLine);
+
+/* ============ 四季标记 ============ */
+const seasonGroup=new THREE.Group(); scene.add(seasonGroup);
+const seasons=[
+  {name:'冬至', en:'Winter Solstice', theta:0,           color:0x42a5f5, date:'12月22日'},
+  {name:'春分', en:'Vernal Equinox',  theta:Math.PI/2,   color:0x7cb342, date:'3月20日'},
+  {name:'夏至', en:'Summer Solstice', theta:Math.PI,     color:0xe53935, date:'6月21日'},
+  {name:'秋分', en:'Autumn Equinox',  theta:3*Math.PI/2, color:0xfb8c00, date:'9月23日'}
+];
+function makeTextSprite(text, color){
+  const cv=document.createElement('canvas'); cv.width=300; cv.height=90;
+  const c=cv.getContext('2d');
+  c.fillStyle='rgba(255,255,255,0.92)';
+  const x=8,y=8,w=284,h=74,rr=14;
+  c.beginPath(); c.moveTo(x+rr,y); c.arcTo(x+w,y,x+w,y+h,rr); c.arcTo(x+w,y+h,x,y+h,rr); c.arcTo(x,y+h,x,y,rr); c.arcTo(x,y,x+w,y,rr); c.closePath(); c.fill();
+  c.strokeStyle='#'+color.toString(16).padStart(6,'0'); c.lineWidth=4; c.stroke();
+  c.fillStyle='#'+color.toString(16).padStart(6,'0'); c.font='bold 30px "Microsoft YaHei",sans-serif';
+  c.textAlign='center'; c.textBaseline='middle'; c.fillText(text,150,46);
+  const tex=new THREE.CanvasTexture(cv);
+  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthTest:false}));
+  sp.scale.set(2.2,0.66,1);
+  return sp;
+}
+seasons.forEach(s=>{
+  const p=earthPos(s.theta);
+  const marker=new THREE.Mesh(new THREE.SphereGeometry(0.16,20,20), new THREE.MeshBasicMaterial({color:s.color}));
+  marker.position.copy(p);
+  seasonGroup.add(marker);
+  // 立柱
+  const pole=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(p.x,0,p.z),new THREE.Vector3(p.x,1.1,p.z)]), new THREE.LineBasicMaterial({color:s.color,transparent:true,opacity:0.6}));
+  seasonGroup.add(pole);
+  const sp=makeTextSprite(s.name+' '+s.date, s.color);
+  sp.position.set(p.x,1.35,p.z);
+  seasonGroup.add(sp);
+});
+
+/* ============ 轨道控制器 ============ */
+class Orbit{
+  constructor(cam,dom){this.cam=cam;this.dom=dom;this.target=new THREE.Vector3(0,0,0);
+    this.sph=new THREE.Spherical().setFromVector3(cam.position.clone().sub(this.target));
+    this.minD=6;this.maxD=50;this.minP=0.2;this.maxP=Math.PI-0.2;
+    this.dTheta=0;this.dPhi=0;this.scale=1;this.damp=0.86;this.drag=false;this.prev={x:0,y:0};
+    this._bind();}
+  _bind(){const d=this.dom;
+    d.addEventListener('pointerdown',e=>{this.drag=true;this.prev={x:e.clientX,y:e.clientY};d.setPointerCapture(e.pointerId);});
+    d.addEventListener('pointerup',()=>this.drag=false);
+    d.addEventListener('pointercancel',()=>this.drag=false);
+    d.addEventListener('pointermove',e=>{if(!this.drag)return;this.dTheta-=(e.clientX-this.prev.x)*0.006;this.dPhi-=(e.clientY-this.prev.y)*0.006;this.prev={x:e.clientX,y:e.clientY};});
+    d.addEventListener('wheel',e=>{e.preventDefault();this.scale*=e.deltaY>0?1.08:0.93;},{passive:false});
+  }
+  update(){this.sph.theta+=this.dTheta;this.sph.phi+=this.dPhi;
+    this.sph.phi=Math.max(this.minP,Math.min(this.maxP,this.sph.phi));
+    this.sph.radius*=this.scale;this.sph.radius=Math.max(this.minD,Math.min(this.maxD,this.sph.radius));
+    this.cam.position.setFromSpherical(this.sph).add(this.target);this.cam.lookAt(this.target);
+    this.dTheta*=this.damp;this.dPhi*=this.damp;this.scale=1;}
+}
+const orbit=new Orbit(camera, renderer.domElement);
+
+/* ============ 状态与交互 ============ */
+let playing=true;
+let revSpeed=0.35;
+let rotSpeed=0.5;
+let theta=Math.PI/2; // 从春分开始
+const btnPlay=document.getElementById('btn-play');
+btnPlay.addEventListener('click',()=>{
+  playing=!playing;
+  btnPlay.textContent=playing?'⏸ 暂停':'▶ 播放';
+  btnPlay.classList.toggle('ghost',!playing);
+});
+document.getElementById('rev-speed').addEventListener('input',e=>{ revSpeed=(e.target.value/100)*1.6; });
+document.getElementById('rot-speed').addEventListener('input',e=>{ rotSpeed=(e.target.value/100)*2.5; });
+document.getElementById('btn-reset').addEventListener('click',()=>{
+  camera.position.set(0,9,16); orbit.sph.setFromVector3(camera.position.clone());
+});
+document.getElementById('toggle-orbit').addEventListener('change',e=>{ orbitGroup.visible=e.target.checked; });
+document.getElementById('toggle-seasons').addEventListener('change',e=>{ seasonGroup.visible=e.target.checked; });
+document.getElementById('toggle-axis').addEventListener('change',e=>{ axisGroup.visible=e.target.checked; });
+
+const seasonEl=document.getElementById('season-name');
+function currentSeason(th){
+  let t=th%(Math.PI*2); if(t<0)t+=Math.PI*2;
+  if(t<Math.PI/4||t>=7*Math.PI/4) return '冬至';
+  if(t<3*Math.PI/4) return '春分';
+  if(t<5*Math.PI/4) return '夏至';
+  return '秋分';
+}
+
+/* ============ 动画 ============ */
+function animate(){
+  requestAnimationFrame(animate);
+  if(playing){
+    theta += revSpeed*0.01;
+    if(theta>Math.PI*2) theta-=Math.PI*2;
+  }
+  earthSystem.position.copy(earthPos(theta));
+  earthSpin.rotation.y += rotSpeed*0.03;
+  sun.rotation.y += 0.002;
+  seasonEl.textContent=currentSeason(theta);
+  orbit.update();
+  renderer.render(scene,camera);
+}
+animate();
+
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
+</script>
+</body>
+</html>

@@ -272,9 +272,9 @@
     </section>
 
     <!-- ⑦ 前测 -->
-        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #558B2F;">
+        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
       <h4 style="color:#33691E;margin-bottom:8px;"><i class="fa-solid fa-flask"></i> 探究实验</h4>
-      <p style="color:#558B2F;font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
+      <p style="color:var(--primary);font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -747,9 +747,9 @@
       anchorContents[id] = content;
     }
 
-    registerAnchorContent('q1', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌱 什么是生物学？研究什么？</h4><p>生物学是研究<strong>生命现象</strong>和<strong>生命活动规律</strong>的科学。研究对象包括植物、动物、微生物和人类。</p></div>');
-    registerAnchorContent('q2', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔬 为什么学习生物学？</h4><p>学习生物学可以：了解自己的身体、健康生活；认识自然奥秘、保护生态环境；理解科技进步；培养科学思维。</p></div>');
-    registerAnchorContent('q3', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📚 初中生物会学哪些内容？</h4><p>主要学习：生物与细胞、生物体结构层次、植物的生活、人体生理与健康。</p></div>');
+    registerAnchorContent('q1', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🌱 什么是生物学？研究什么？</h4><p>生物学是研究<strong>生命现象</strong>和<strong>生命活动规律</strong>的科学。研究对象包括植物、动物、微生物和人类。</p></div>');
+    registerAnchorContent('q2', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🔬 为什么学习生物学？</h4><p>学习生物学可以：了解自己的身体、健康生活；认识自然奥秘、保护生态环境；理解科技进步；培养科学思维。</p></div>');
+    registerAnchorContent('q3', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">📚 初中生物会学哪些内容？</h4><p>主要学习：生物与细胞、生物体结构层次、植物的生活、人体生理与健康。</p></div>');
 
     /* ========== 问题锚点选择 ========== */
     function selectAnchor(btnElement, id) {
@@ -769,34 +769,13 @@
     function handleCustomQuestion(question) {
       if (question.trim()) {
         var display = document.getElementById('anchor-display');
-        if (display) display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📍 你的问题：' + question + '</h4><p>很好的问题！让我们在课件中寻找答案吧。</p></div>';
+        if (display) display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">📍 你的问题：' + question + '</h4><p>很好的问题！让我们在课件中寻找答案吧。</p></div>';
         var feedback = document.getElementById('anchor-feedback');
         if (feedback) {
           feedback.textContent = '你的问题：' + question;
           feedback.style.display = 'block';
         }
         window.__TEACHANY_LEARNER_QUESTION__ = question;
-      }
-    }
-
-    /* ========== 答案检查 ========== */
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      var parent = element.closest('.quiz-box');
-      var feedback = parent.querySelector('.feedback');
-      var explanation = document.getElementById('explanation-' + questionNum);
-      var allOptions = parent.querySelectorAll('.quiz-option');
-      allOptions.forEach(function(opt) { opt.classList.remove('correct', 'wrong'); });
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        var specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
-        var alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
       }
     }
 
@@ -834,6 +813,7 @@
       console.log('📚 《绪言：与同学们谈生物学》课件加载完成（v7.14）');
     });
   </script>
+  <script src="../shared/scripts.js?v=8.0"></script>
   <script src="../shared/mascot.js?v=8.0"></script>
   <script src="../shared/badges.js?v=8.0"></script>
   <!-- P1-8 移动端工具栏 -->

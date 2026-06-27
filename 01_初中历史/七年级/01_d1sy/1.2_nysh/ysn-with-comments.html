@@ -51,7 +51,7 @@
     }
     
     .comparison-table th {
-      background: linear-gradient(135deg, #8b4513, #cd853f); /* 棕色渐变背景 */
+      background: linear-gradient(135deg, var(--primary), var(--primary-light)); /* 棕色渐变背景 */
       color: white;               /* 白色文字 */
       padding: 12px;             /* 内边距 */
       text-align: center;         /* 文字居中 */
@@ -181,7 +181,7 @@
 </head>
 
 <body>
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,var(--primary));color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
 <script>
 (function(){
   var btn=document.getElementById('back-to-top');
@@ -214,7 +214,7 @@
   <!-- ==================== 导航栏（必须） ==================== -->
   <nav class="nav-bar">
 <div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
-  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+  <a href="../../../index.html" style="color:var(--primary,var(--primary));text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
 </div>
 <div class="nav-inner"><div class="nav-left" style="gap: 28px;"><a href="../../index.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-house"></i> 首页</a></div><div class="nav-left-center" style="gap: 28px;"><a href="../d1sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a></div><div class="nav-center">第一单元：史前时期</div><div class="nav-right" style="gap: 28px;"><a href="../1.1_bjr/bjr.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-chevron-left"></i> 上一节</a><a href="../1.3_ygcs/ygcs-with-comments.html" class="nav-btn">下一节 <i class="fa-solid fa-chevron-right"></i></a></div>
     <button class="focus-toggle" onclick="document.body.classList.toggle('focus-mode')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:16px;padding:6px 8px;border-radius:6px;" aria-label="切换专注模式" title="专注模式"><i class="fa-solid fa-eye"></i></button>
@@ -324,8 +324,8 @@
         <span class="num">🎯</span> 学习目标
       </h2>
 <div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
-  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
-  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--primary,var(--primary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,var(--secondary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
   <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
 </div>
 
@@ -539,7 +539,7 @@
           <p class="svg-caption">图2-2 半坡人生活场景复原图（半地穴式房屋、陶器、粟）</p>
         </div>
 
-        <h3 style="margin-top: 20px; color: #8b4513;">📖 半坡人基本信息</h3>
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 半坡人基本信息</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li><strong>时间：</strong>距今约6000年</li>
           <li><strong>地点：</strong>陕西西安半坡村（黄河流域）</li>
@@ -645,42 +645,6 @@
       <p style="margin-top: 12px;">💡 <strong>记忆口诀：</strong>"新石器四标志：磨制石器、人工取火、制作陶器、原始农耕。"</p>
     `;
 
-    /* ==================== 答案检查函数（与bjr.html相同） ==================== */
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');       // 找到当前题目容器
-      const feedback = parent.querySelector('.feedback'); // 找到反馈区域
-      const explanation = document.getElementById('explanation-' + questionNum); // 找到讲解区域
-      const allOptions = parent.querySelectorAll('.quiz-option'); // 所有选项
-
-      // 先清除所有选项的高亮状态
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        // 答对了
-        element.classList.add('correct');               // 高亮正确选项（绿色）
-        if (feedback) {
-          feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
-          feedback.className = 'feedback show correct-fb'; // 显示正确反馈
-        }
-        if (explanation) explanation.classList.add('show'); // 显示详细讲解
-        // 不禁用！答对了还能点错误选项看讲解
-
-      } else {
-        // 答错了
-        element.classList.add('wrong');                 // 高亮错误选项（红色）
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) {
-          feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
-          feedback.className = 'feedback show wrong-fb'; // 显示错误反馈
-        }
-        // 不禁用！可以一直尝试，直到答对
-        
-        // 如果已经有人答对过
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
-    
     /* ==================== 初始化函数 ==================== */
     document.addEventListener('DOMContentLoaded', function() {
       initAnchorContents();    // 初始化问题锚点内容

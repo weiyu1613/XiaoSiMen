@@ -214,9 +214,9 @@
       </div>
     </section>
     
-        <div class="scenario-theater" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #7B1FA2;">
-      <h4 style="color:#4A148C;margin-bottom:8px;"><i class="fa-solid fa-mask"></i> 情境剧场</h4>
-      <p style="color:#7B1FA2;font-size:14px;">设想你身处本课描述的情境中，你会如何做出选择？请与同学讨论。</p>
+        <div class="scenario-theater" style="background:linear-gradient(135deg,var(--bg-light),#E1BEE7);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
+      <h4 style="color:var(--primary-dark);margin-bottom:8px;"><i class="fa-solid fa-mask"></i> 情境剧场</h4>
+      <p style="color:var(--primary);font-size:14px;">设想你身处本课描述的情境中，你会如何做出选择？请与同学讨论。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -412,26 +412,6 @@
       }
     }
 
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const explanation = document.getElementById('explanation-' + questionNum);
-      const allOptions = parent.querySelectorAll('.quiz-option');
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
-    
     document.addEventListener('DOMContentLoaded', function() {
       const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
       const progressFill = document.getElementById('progress-fill');
@@ -441,6 +421,7 @@
       console.log('📚 《地形图的判读》课件加载完成（v1.0）');
     });
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>

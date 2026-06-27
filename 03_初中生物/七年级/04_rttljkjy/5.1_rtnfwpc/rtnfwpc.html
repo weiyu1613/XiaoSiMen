@@ -10,7 +10,7 @@
     /* 本节特有样式 */
     .organ-system { display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; }
     .organ-card { flex: 1; min-width: 250px; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .kidney { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left: 6px solid #4caf50; }
+    .kidney { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left: 6px solid var(--primary-light); }
     .ureter { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 6px solid #2196f3; }
     .bladder { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-left: 6px solid #ff9800; }
     .urethra { background: linear-gradient(135deg, #fce4ec, #f8bbd0); border-left: 6px solid #e91e63; }
@@ -153,9 +153,9 @@
     </section>
 
     <!-- 前测 -->
-        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #558B2F;">
+        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
       <h4 style="color:#33691E;margin-bottom:8px;"><i class="fa-solid fa-flask"></i> 探究实验</h4>
-      <p style="color:#558B2F;font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
+      <p style="color:var(--primary);font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -340,18 +340,18 @@
 
   <!-- AI学伴悬浮窗 -->
   <div id="ai-partner-wrapper" style="position:fixed;bottom:20px;right:20px;z-index:9999;font-family:inherit;">
-    <button id="ai-partner-toggle" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2e7d32,#4caf50);border:none;cursor:pointer;color:white;font-size:22px;box-shadow:0 4px 16px rgba(46,125,50,0.4);display:flex;align-items:center;justify-content:center;">🌿</button>
+    <button id="ai-partner-toggle" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));border:none;cursor:pointer;color:white;font-size:22px;box-shadow:0 4px 16px rgba(46,125,50,0.4);display:flex;align-items:center;justify-content:center;">🌿</button>
     <div id="ai-partner-box" style="display:none;position:absolute;bottom:70px;right:0;width:320px;background:white;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);border:2px solid #c8e6c9;overflow:hidden;">
-      <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);color:white;padding:12px 16px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;padding:12px 16px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">
         <span>🌿 AI学伴 · 初中生物</span>
         <button id="ai-partner-close" style="background:none;border:none;color:white;cursor:pointer;font-size:16px;">✕</button>
       </div>
       <div id="ai-partner-thread" style="height:220px;overflow-y:auto;padding:14px;font-size:13px;line-height:1.6;">
-        <div style="background:#e8f5e9;border-radius:12px;padding:10px 14px;margin-bottom:8px;color:#1b5e20;"><strong>🌿 AI学伴：</strong> 欢迎！关于排泄系统和尿液形成的问题都可以问我～</div>
+        <div style="background:#e8f5e9;border-radius:12px;padding:10px 14px;margin-bottom:8px;color:var(--primary-dark);"><strong>🌿 AI学伴：</strong> 欢迎！关于排泄系统和尿液形成的问题都可以问我～</div>
       </div>
       <div style="padding:10px 14px;border-top:1px solid #e8f5e9;display:flex;gap:8px;">
-        <input id="ai-partner-input" placeholder="输入你的问题..." style="flex:1;border:1px solid #81c784;border-radius:20px;padding:8px 14px;font-size:13px;outline:none;">
-        <button id="ai-partner-send" style="background:#2e7d32;color:white;border:none;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:13px;">发送</button>
+        <input id="ai-partner-input" placeholder="输入你的问题..." style="flex:1;border:1px solid var(--secondary);border-radius:20px;padding:8px 14px;font-size:13px;outline:none;">
+        <button id="ai-partner-send" style="background:var(--primary);color:white;border:none;border-radius:20px;padding:8px 16px;cursor:pointer;font-size:13px;">发送</button>
       </div>
     </div>
   </div>
@@ -367,9 +367,9 @@
     window.currentSection = 11; // 5.1 是第11节
     
     // 注册锚点内容
-    registerAnchorContent('q1', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🚿 人体有哪些排泄途径？</h4><p>① 呼吸系统：排出二氧化碳和少量水；<br>② 皮肤：通过汗液排出水、无机盐和少量尿素；<br>③ 泌尿系统：排出绝大部分废物（尿素、多余的水和无机盐）。</p></div>');
-    registerAnchorContent('q2', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🫀 泌尿系统由哪些器官组成？</h4><p>泌尿系统由<strong>肾脏、输尿管、膀胱、尿道</strong>组成。肾脏形成尿液，输尿管输送尿液，膀胱暂时贮存尿液，尿道排出尿液。</p></div>');
-    registerAnchorContent('q3', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">⚠️ 如何保护泌尿系统健康？</h4><p>保护泌尿系统健康的方法：适量饮水、不憋尿、注意个人卫生、避免尿路感染。</p></div>');
+    registerAnchorContent('q1', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🚿 人体有哪些排泄途径？</h4><p>① 呼吸系统：排出二氧化碳和少量水；<br>② 皮肤：通过汗液排出水、无机盐和少量尿素；<br>③ 泌尿系统：排出绝大部分废物（尿素、多余的水和无机盐）。</p></div>');
+    registerAnchorContent('q2', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🫀 泌尿系统由哪些器官组成？</h4><p>泌尿系统由<strong>肾脏、输尿管、膀胱、尿道</strong>组成。肾脏形成尿液，输尿管输送尿液，膀胱暂时贮存尿液，尿道排出尿液。</p></div>');
+    registerAnchorContent('q3', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">⚠️ 如何保护泌尿系统健康？</h4><p>保护泌尿系统健康的方法：适量饮水、不憋尿、注意个人卫生、避免尿路感染。</p></div>');
   </script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>

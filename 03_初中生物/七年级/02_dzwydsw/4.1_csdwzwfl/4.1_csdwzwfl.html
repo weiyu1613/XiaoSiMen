@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root { --primary: #2e7d32; --primary-light: #4caf50; --primary-dark: #1b5e20; --bg-light: #f1f8e9; --text-dark: #1a1a2e; }
+    :root { --primary: var(--primary); --primary-light: var(--primary-light); --primary-dark: var(--primary-dark); --bg-light: #f1f8e9; --text-dark: #1a1a2e; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); }
     .brand-bar { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
@@ -21,7 +21,7 @@
     .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 6px; transition: all 0.2s; }
     .nav-btn:hover { background: #c8e6c9; }
     .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
-    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary) 30%, var(--primary-light) 70%, #2e7d32 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 30%, var(--primary-light) 70%, var(--primary) 100%); color: white; padding: 40px 20px; text-align: center; }
     .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
     .hero h1 { font-size: 2rem; margin: 10px 0; }
     .hero p { font-size: 1rem; opacity: 0.9; }
@@ -177,9 +177,9 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🔬</span> 前测</h2>
-          <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #558B2F;">
+          <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
       <h4 style="color:#33691E;margin-bottom:8px;"><i class="fa-solid fa-flask"></i> 探究实验</h4>
-      <p style="color:#558B2F;font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
+      <p style="color:var(--primary);font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
     </div>
 
 <div class="quiz-box" data-difficulty="intermediate">
@@ -223,7 +223,7 @@
             <div style="color:var(--primary-dark);">→</div>
             <div style="background:#1565c0;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">门</div>
             <div style="color:var(--primary-dark);">→</div>
-            <div style="background:#4caf50;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">纲</div>
+            <div style="background:var(--primary-light);color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">纲</div>
             <div style="color:var(--primary-dark);">→</div>
             <div style="background:#f59e0b;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">目</div>
             <div style="color:var(--primary-dark);">→</div>
@@ -231,7 +231,7 @@
             <div style="color:var(--primary-dark);">→</div>
             <div style="background:#00838f;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">属</div>
             <div style="color:var(--primary-dark);">→</div>
-            <div style="background:#2e7d32;color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">种</div>
+            <div style="background:var(--primary);color:white;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px;">种</div>
           </div>
           <p style="margin-top:12px;font-size:14px;">💡 <strong>记忆口诀：</strong>界门纲目科属种（"界门纲目科属种"，谐音"借你钢锅属种"）</p>
         </div>
@@ -327,14 +327,6 @@
       var feedback = document.getElementById('anchor-feedback');
       if (feedback) { feedback.textContent = '你的问题：' + this.value; feedback.style.display = 'block'; }
     });
-    function checkAnswer(element, isCorrect, questionNum) {
-      var parent = element.closest('.quiz-box');
-      var feedback = parent.querySelector('.feedback');
-      var explanation = document.getElementById('explanation-' + questionNum);
-      parent.querySelectorAll('.quiz-option').forEach(function(opt) { opt.classList.remove('correct', 'wrong'); });
-      if (isCorrect) { element.classList.add('correct'); if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong>'; feedback.className = 'feedback show correct-fb'; } if (explanation) explanation.classList.add('show'); }
-      else { element.classList.add('wrong'); if (feedback) { feedback.innerHTML = (element.dataset.feedback || '❌ 不对') + '<br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; } if (parent.querySelector('.quiz-option.correct') && explanation) explanation.classList.add('show'); }
-    }
     document.addEventListener('DOMContentLoaded', function() {
       var p = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
       var pf = document.getElementById('progress-fill'); var pl = document.getElementById('progress-label');
@@ -342,6 +334,7 @@
       if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
     });
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>

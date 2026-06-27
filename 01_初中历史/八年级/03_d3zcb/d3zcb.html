@@ -22,8 +22,8 @@
   <style>
     /* ========== 本单元专属样式 - 棕色系 ========== */
     :root {
-      --primary: #8b4513;
-      --primary-light: #cd853f;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
       --primary-bg: #faf7f2;
       --primary-dark: #654321;
     }
@@ -44,7 +44,7 @@
     
     /* 品牌栏 */
     .brand-bar {
-      background: #8b4513;
+      background: var(--primary);
       color: white;
       padding: 10px 20px;
       display: flex;
@@ -62,18 +62,18 @@
     /* 进度条 */
     .progress-bar { height: 4px; background: #e8dcc8; position: relative; }
     .progress-fill {
-      height: 100%; background: linear-gradient(90deg, #8b4513, #cd853f);
+      height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light));
       width: 0%; transition: width 0.3s;
     }
     .progress-label {
-      font-size: 12px; color: #8b4513; padding: 4px 20px;
+      font-size: 12px; color: var(--primary); padding: 4px 20px;
       background: #faf7f2;
     }
 
     /* 导航栏 */
     .nav-bar {
       background: #faf7f2;
-      border-bottom: 2px solid #8b4513;
+      border-bottom: 2px solid var(--primary);
       padding: 10px 0;
       margin-bottom: 20px;
     }
@@ -83,20 +83,20 @@
       padding: 0 20px; flex-wrap: wrap; gap: 8px;
     }
     .nav-btn {
-      color: #8b4513; text-decoration: none;
+      color: var(--primary); text-decoration: none;
       font-size: 13px; font-weight: 600;
       padding: 6px 12px; border-radius: 6px;
       transition: all 0.2s; white-space: nowrap;
     }
     .nav-btn:hover { background: #e8dcc8; }
     .nav-center {
-      font-weight: 700; color: #8b4513;
+      font-weight: 700; color: var(--primary);
       font-size: 14px; text-align: center; flex: 1;
     }
 
     /* Hero区 */
     .hero {
-      background: linear-gradient(135deg, #8b4513, #cd853f);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
       color: white; padding: 40px 20px; text-align: center;
     }
     .hero h1 { font-size: 2rem; margin: 10px 0; }
@@ -110,26 +110,26 @@
 
     /* SVG知识图容器 */
     .svg-container {
-      background: #faf7f2; border: 1px solid #cd853f;
+      background: #faf7f2; border: 1px solid var(--primary-light);
       border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center;
     }
     .svg-container svg { max-width: 100%; height: auto; }
     .svg-caption {
       margin-top: 12px; font-size: 14px;
-      color: #8b4513; text-align: center;
+      color: var(--primary); text-align: center;
     }
 
     /* 章节标题 */
     .section-title {
-      font-size: 1.5rem; color: #8b4513;
+      font-size: 1.5rem; color: var(--primary);
       margin: 30px 0 20px; padding-bottom: 10px;
-      border-bottom: 2px solid #cd853f;
+      border-bottom: 2px solid var(--primary-light);
     }
     .section-title .num { margin-right: 8px; }
 
     /* 卡片 */
     .card {
-      background: white; border: 1px solid #cd853f;
+      background: white; border: 1px solid var(--primary-light);
       border-radius: 12px; padding: 20px;
       margin-bottom: 20px;
       box-shadow: 0 2px 8px rgba(139,69,19,0.1);
@@ -142,7 +142,7 @@
       gap: 20px; margin: 20px 0;
     }
     .lesson-card {
-      background: white; border: 2px solid #cd853f;
+      background: white; border: 2px solid var(--primary-light);
       border-radius: 12px; padding: 20px;
       transition: all 0.2s; cursor: pointer;
       text-decoration: none; color: inherit;
@@ -151,15 +151,15 @@
     .lesson-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 16px rgba(139,69,19,0.2);
-      border-color: #8b4513;
+      border-color: var(--primary);
     }
     .lesson-card .lesson-num {
       display: inline-block; width: 32px; height: 32px;
-      background: #8b4513; color: white;
+      background: var(--primary); color: white;
       border-radius: 50%; text-align: center;
       line-height: 32px; font-weight: 700; margin-bottom: 12px;
     }
-    .lesson-card h3 { color: #8b4513; margin: 0 0 8px 0; font-size: 1.1rem; }
+    .lesson-card h3 { color: var(--primary); margin: 0 0 8px 0; font-size: 1.1rem; }
     .lesson-card p { color: #666; font-size: 14px; line-height: 1.6; }
 
     /* 学习目标 */
@@ -173,7 +173,7 @@
 
     /* 单元测验 */
     .quiz-box {
-      background: #faf7f2; border: 1px solid #cd853f;
+      background: #faf7f2; border: 1px solid var(--primary-light);
       border-radius: 12px; padding: 20px; margin-bottom: 20px;
     }
     .quiz-option {
@@ -182,12 +182,12 @@
       border-radius: 10px; margin-bottom: 10px;
       cursor: pointer; transition: all 0.2s; font-size: 14px;
     }
-    .quiz-option:hover { border-color: #cd853f; background: #faf7f2; }
+    .quiz-option:hover { border-color: var(--primary-light); background: #faf7f2; }
     .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
     .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
     .opt-letter {
       display: inline-block; width: 24px; height: 24px;
-      background: #8b4513; color: white;
+      background: var(--primary); color: white;
       border-radius: 50%; text-align: center;
       line-height: 24px; font-weight: 700; margin-right: 8px;
     }
@@ -206,33 +206,33 @@
     .anchor-btn {
       flex: 1; min-width: 200px; padding: 12px 16px;
       background: linear-gradient(135deg, #e8dcc8, #faf7f2);
-      border: 2px solid #cd853f; border-radius: 10px;
+      border: 2px solid var(--primary-light); border-radius: 10px;
       cursor: pointer; font-size: 14px; font-weight: 600;
-      color: #8b4513; transition: all 0.2s; text-align: center;
+      color: var(--primary); transition: all 0.2s; text-align: center;
     }
     .anchor-btn:hover {
-      background: linear-gradient(135deg, #cd853f, #e8dcc8);
-      border-color: #8b4513; color: white;
+      background: linear-gradient(135deg, var(--primary-light), #e8dcc8);
+      border-color: var(--primary); color: white;
     }
     .anchor-btn.selected {
-      background: linear-gradient(135deg, #8b4513, #cd853f);
-      color: white; border-color: #8b4513;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; border-color: var(--primary);
     }
 
     /* 页脚 */
     .footer {
-      background: #8b4513; color: white;
+      background: var(--primary); color: white;
       padding: 30px 20px; text-align: center;
       margin-top: 40px;
     }
 
     /* 概念框 */
     .concept-box {
-      background: #faf7f2; border-left: 4px solid #8b4513;
+      background: #faf7f2; border-left: 4px solid var(--primary);
       border-radius: 0 8px 8px 0;
       padding: 14px 18px; margin: 16px 0;
     }
-    .concept-box .label { font-weight: 700; color: #8b4513; margin-bottom: 8px; }
+    .concept-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; }
 
     /* 难度标签 */
     .difficulty-badge {
@@ -264,7 +264,7 @@
 </head>
 
 <body>
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,var(--primary));color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
 <script>
 (function(){
   var btn=document.getElementById('back-to-top');
@@ -290,7 +290,7 @@
   <!-- ========== 导航栏 ========== -->
   <nav class="nav-bar">
 <div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
-  <a href="../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+  <a href="../../index.html" style="color:var(--primary,var(--primary));text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
 </div>
 <div class="nav-inner">
     <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
@@ -360,7 +360,7 @@
         <!-- 说明文字 -->
         <text x="450" y="380" text-anchor="middle" font-size="14" fill="#8b4513">图3-1 第三单元知识结构图</text>
       </svg>
-      <figcaption style="margin-top: 10px; color: #8b4513; font-size: 14px; text-align: center;">图3-1 新民主主义革命的兴起知识结构图</figcaption>
+      <figcaption style="margin-top: 10px; color: var(--primary); font-size: 14px; text-align: center;">图3-1 新民主主义革命的兴起知识结构图</figcaption>
     </figure>
   </section>
   
@@ -370,7 +370,7 @@
     <!-- Section 1: 问题锚点 -->
     <section class="section" id="section-anchor">
       <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
-      <p style="color: #8b4513; margin-bottom: 16px;">
+      <p style="color: var(--primary); margin-bottom: 16px;">
         先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
       </p>
       <div class="card">
@@ -380,7 +380,7 @@
           <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="北伐战争的目的是什么？结果如何？">⚔️ 北伐战争的目的是什么？结果如何？</button>
         </div>
         <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
-          <p style="color: #8b4513; text-align: center;">👆 点击上方按钮查看问题</p>
+          <p style="color: var(--primary); text-align: center;">👆 点击上方按钮查看问题</p>
         </div>
       </div>
     </section>
@@ -389,8 +389,8 @@
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
 <div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
-  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
-  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--primary,var(--primary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,var(--secondary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
   <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
 </div>
 
@@ -408,7 +408,7 @@
     <!-- Section 3: 课时卡片网格 -->
     <section class="section" id="lessons">
       <h2 class="section-title"><span class="num">📚</span> 课时内容</h2>
-      <p style="color: #8b4513; margin-bottom: 20px;">点击卡片进入各课时学习</p>
+      <p style="color: var(--primary); margin-bottom: 20px;">点击卡片进入各课时学习</p>
       
       <div class="lesson-grid">
         <!-- 3.1 新民主主义革命的兴起 -->
@@ -447,9 +447,9 @@
       
       <div class="card">
 <details style="margin:8px 0;">
-<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,var(--primary));padding:8px 0;">展开详细内容</summary>
 
-        <h3 style="margin-top: 20px; color: #8b4513;">🔑 重要概念</h3>
+        <h3 style="margin-top: 20px; color: var(--primary);">🔑 重要概念</h3>
         
         <div class="concept-box" style="margin-top: 16px;">
           <div class="label">新民主主义革命</div>
@@ -478,7 +478,7 @@
     <!-- Section 5: 单元测验 -->
     <section class="section" id="section-quiz">
       <h2 class="section-title"><span class="num">✅</span> 单元测验</h2>
-      <p style="color: #8b4513; margin-bottom: 16px;">
+      <p style="color: var(--primary); margin-bottom: 16px;">
         检验本单元学习效果，答错了会显示详细错因解析！
       </p>
 
@@ -622,29 +622,6 @@
       display.innerHTML = anchorContents[id];
     }
 
-    /* ========== 答案检查 ========== */
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const allOptions = parent.querySelectorAll('.quiz-option');
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) {
-          feedback.innerHTML = '<strong>✅ 答对了！</strong>';
-          feedback.className = 'feedback show correct-fb';
-        }
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) {
-          feedback.innerHTML = specificFeedback;
-          feedback.className = 'feedback show wrong-fb';
-        }
-      }
-    }
-    
     /* ========== 初始化 ========== */
     document.addEventListener('DOMContentLoaded', function() {
       updateProgressBar();
@@ -659,6 +636,7 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 单元 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../shared/scripts.js?v=8.0"></script>
   <script src="../shared/badges.js?v=8.0"></script>
   <!-- P1-8 移动端工具栏 -->
   <div class="mobile-toolbar">

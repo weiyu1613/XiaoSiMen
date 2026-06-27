@@ -22,8 +22,8 @@
   <style>
     /* ========== 棕色系配色变量 ========== */
     :root {
-      --primary: #8b4513;
-      --primary-light: #cd853f;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
       --primary-bg: #faf7f2;
       --primary-dark: #654321;
       --accent: #a0522d;
@@ -213,7 +213,7 @@
 </head>
 
 <body>
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,var(--primary));color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
 <script>
 (function(){
   var btn=document.getElementById('back-to-top');
@@ -239,7 +239,7 @@
   <!-- ========== 3. 导航栏 ========== -->
   <nav class="nav-bar">
 <div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
-  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+  <a href="../../../index.html" style="color:var(--primary,var(--primary));text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
 </div>
 <div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
@@ -297,7 +297,7 @@
           </marker>
         </defs>
       </svg>
-      <figcaption style="margin-top: 10px; color: #8b4513; font-size: 14px; text-align: center;">图4-1 对外开放知识结构图</figcaption>
+      <figcaption style="margin-top: 10px; color: var(--primary); font-size: 14px; text-align: center;">图4-1 对外开放知识结构图</figcaption>
     </figure>
   </section>
   
@@ -307,7 +307,7 @@
     <!-- Section 1: 问题锚点 -->
     <section class="section" id="section-anchor">
       <h2 class="section-title"><span class="num">🎯</span> 探究问题</h2>
-      <p style="color: #8b4513; margin-bottom: 16px;">
+      <p style="color: var(--primary); margin-bottom: 16px;">
         先选一个你关心的问题。后面的例子、提示和AI学伴都会围绕这个问题来帮你推进。
       </p>
       <div class="card">
@@ -316,12 +316,12 @@
           <button class="anchor-btn" onclick="selectAnchor(this, 2)" data-anchor-choice="对外开放的格局是怎样形成的？">📈 对外开放的格局是怎样形成的？</button>
           <button class="anchor-btn" onclick="selectAnchor(this, 3)" data-anchor-choice="对外开放有什么历史意义？">🌟 对外开放有什么历史意义？</button>
         </div>
-        <label style="display:block; margin-top: 18px; color: #8b4513;">
+        <label style="display:block; margin-top: 18px; color: var(--primary);">
           我有自己的问题
           <input id="learner-question-input" placeholder="把你卡住的问题写在这里" oninput="handleCustomQuestion(this.value)">
         </label>
         <div class="anchor-display" id="anchor-display" style="margin-top: 20px; min-height: 100px;">
-          <p style="color: #8b4513; text-align: center;">👆 点击上方按钮查看问题</p>
+          <p style="color: var(--primary); text-align: center;">👆 点击上方按钮查看问题</p>
         </div>
         <p id="anchor-feedback" style="display:none;"></p>
       </div>
@@ -331,8 +331,8 @@
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
 <div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
-  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
-  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--primary,var(--primary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,var(--secondary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
   <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
 </div>
 
@@ -352,9 +352,9 @@
       
       <div class="card">
 <details style="margin:8px 0;">
-<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,var(--primary));padding:8px 0;">展开详细内容</summary>
 
-        <h3 style="margin-top: 20px; color: #8b4513;">📖 一、经济特区的设立</h3>
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 一、经济特区的设立</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li><strong>时间：</strong>1980年</li>
           <li><strong>首批经济特区：</strong>深圳、珠海、汕头、厦门</li>
@@ -368,7 +368,7 @@
           <p style="margin-top: 6px;">特区实行<strong>特殊的经济政策和管理体制</strong>，在税收、外汇、进出口等方面享有优惠政策。</p>
         </div>
 
-        <h3 style="margin-top: 20px; color: #8b4513;">📖 二、对外开放格局的形成</h3>
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 二、对外开放格局的形成</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li><strong>第一步：</strong>设立经济特区（1980年）</li>
           <li><strong>第二步：</strong>开放14个沿海港口城市（1984年）</li>
@@ -415,7 +415,7 @@
           <p class="svg-caption">图4-2 对外开放格局形成过程示意图</p>
         </div>
 
-        <h3 style="margin-top: 20px; color: #8b4513;">📖 三、对外开放的历史意义</h3>
+        <h3 style="margin-top: 20px; color: var(--primary);">📖 三、对外开放的历史意义</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li>形成了<strong>全方位、多层次、宽领域</strong>的对外开放格局</li>
           <li>促进了<strong>经济发展</strong>，增强了综合国力</li>
@@ -444,7 +444,7 @@
     <!-- Section: 前测 -->
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-      <p style="color: #8b4513; margin-bottom: 16px;">
+      <p style="color: var(--primary); margin-bottom: 16px;">
         难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → 
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
@@ -568,7 +568,7 @@
     <!-- Section: 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-      <p style="color: #8b4513; margin-bottom: 16px;">
+      <p style="color: var(--primary); margin-bottom: 16px;">
         包含中考真题与高频考点分析，答错了会详细讲解错因！
       </p>
 
@@ -668,7 +668,7 @@
       
       <div class="card">
 <details style="margin:8px 0;">
-<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,var(--primary));padding:8px 0;">展开详细内容</summary>
 
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
@@ -802,27 +802,6 @@
       }
     }
 
-    /* ========== 答案检查 ========== */
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const explanation = document.getElementById('explanation-' + questionNum);
-      const allOptions = parent.querySelectorAll('.quiz-option');
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
-    
     /* ========== 初始化 ========== */
     document.addEventListener('DOMContentLoaded', function() {
       updateProgressBar();
@@ -837,6 +816,7 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>

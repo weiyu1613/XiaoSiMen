@@ -24,9 +24,9 @@
     :root {
       --primary: #6A1B9A;
       --primary-light: #9C27B0;
-      --primary-dark: #4A148C;
+      --primary-dark: var(--primary-dark);
       --secondary: #CE93D8;
-      --bg-light: #F3E5F5;
+      --bg-light: var(--bg-light);
       --bg-card: #FFFFFF;
       --text-dark: #1A1A2E;
       --text-muted: #5D4E6D;
@@ -43,16 +43,16 @@
     .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
 
     /* Hero */
-    .hero { background: linear-gradient(135deg, #6A1B9A, #9C27B0, #AB47BC); color: white; padding: 40px 20px; text-align: center; }
+    .hero { background: linear-gradient(135deg, #6A1B9A, #9C27B0, var(--primary-light)); color: white; padding: 40px 20px; text-align: center; }
     .hero h1 { font-size: 2rem; margin: 10px 0; }
     .hero p { font-size: 1.1rem; opacity: 0.9; }
     .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
     .hero-subtitle { margin-top: 12px; }
 
     /* 进度条 */
-    .progress-bar { height: 4px; background: #F3E5F5; position: relative; }
+    .progress-bar { height: 4px; background: var(--bg-light); position: relative; }
     .progress-fill { height: 100%; background: linear-gradient(90deg, #6A1B9A, #9C27B0); width: 12%; transition: width 0.3s; }
-    .progress-label { font-size: 12px; color: #6A1B9A; padding: 4px 20px; background: #F3E5F5; }
+    .progress-label { font-size: 12px; color: #6A1B9A; padding: 4px 20px; background: var(--bg-light); }
 
     /* 品牌栏 */
     .brand-bar { background: #6A1B9A; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
@@ -68,14 +68,14 @@
 
     /* 问题锚点 */
     .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #E1BEE7, #F3E5F5); border: 2px solid #CE93D8; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: #4A148C; transition: all 0.2s; text-align: center; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #E1BEE7, var(--bg-light)); border: 2px solid #CE93D8; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
     .anchor-btn:hover { background: linear-gradient(135deg, #CE93D8, #E1BEE7); border-color: #9C27B0; }
     .anchor-btn.selected { background: linear-gradient(135deg, #6A1B9A, #9C27B0); color: white; border-color: #6A1B9A; }
 
     /* 测验选项 */
-    .quiz-box { background: #F3E5F5; border: 1px solid #E1BEE7; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
-    .quiz-option { padding: 12px 16px; background: white; border: 2px solid #F3E5F5; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
-    .quiz-option:hover { border-color: #CE93D8; background: #F3E5F5; }
+    .quiz-box { background: var(--bg-light); border: 1px solid #E1BEE7; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .quiz-option { padding: 12px 16px; background: white; border: 2px solid var(--bg-light); border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .quiz-option:hover { border-color: #CE93D8; background: var(--bg-light); }
     .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
     .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
     .opt-letter { display: inline-block; width: 24px; height: 24px; background: #6A1B9A; color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
@@ -87,13 +87,13 @@
     .feedback.wrong-fb { background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
 
     /* 概念框 */
-    .concept-box { background: #F3E5F5; border-left: 4px solid #6A1B9A; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .concept-box { background: var(--bg-light); border-left: 4px solid #6A1B9A; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
     .concept-box .label { font-weight: 700; color: #6A1B9A; margin-bottom: 8px; }
 
     /* 案例框 - 道法特色 */
-    .case-box { background: #EDE7F6; border-left: 4px solid #7B1FA2; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
-    .case-box .label { font-weight: 700; color: #7B1FA2; margin-bottom: 8px; font-size: 15px; }
-    .case-scenario { background: #FFFFFF; border: 1px solid #CE93D8; border-radius: 8px; padding: 12px 14px; margin: 10px 0; font-size: 14px; color: #4A148C; }
+    .case-box { background: #EDE7F6; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .case-box .label { font-weight: 700; color: var(--primary); margin-bottom: 8px; font-size: 15px; }
+    .case-scenario { background: #FFFFFF; border: 1px solid #CE93D8; border-radius: 8px; padding: 12px 14px; margin: 10px 0; font-size: 14px; color: var(--primary-dark); }
     .case-analysis { margin-top: 10px; font-size: 14px; color: #5D4E6D; }
 
     /* 警告框 */
@@ -124,7 +124,7 @@
 
     /* SVG容器 */
     .svg-container {
-      background: #F3E5F5; border: 1px solid #E1BEE7; border-radius: 8px;
+      background: var(--bg-light); border: 1px solid #E1BEE7; border-radius: 8px;
       padding: 20px; margin: 20px 0; text-align: center;
     }
     .svg-container svg { max-width: 100%; height: auto; }
@@ -143,20 +143,20 @@
     /* 自定义问题输入 */
     #learner-question-input {
       width: 100%; border-radius: 12px; border: 1px solid #CE93D8;
-      background: #F3E5F5; color: #4A148C; padding: 12px 14px;
+      background: var(--bg-light); color: var(--primary-dark); padding: 12px 14px;
       font-size: 16px; margin-top: 8px;
     }
     #anchor-feedback {
       margin-top: 14px; padding: 14px; border-radius: 12px;
       background: rgba(106,27,154,0.1); border: 1px solid rgba(106,27,154,0.28);
-      color: #4A148C;
+      color: var(--primary-dark);
     }
 
     /* 信息对比表格 */
     .info-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
     .info-table th { background: #6A1B9A; color: white; padding: 10px 12px; text-align: center; }
     .info-table td { padding: 10px 12px; border: 1px solid #E1BEE7; }
-    .info-table tr:nth-child(even) td { background: #F3E5F5; }
+    .info-table tr:nth-child(even) td { background: var(--bg-light); }
 
     /* 页脚 */
     .footer { background: #6A1B9A; color: white; padding: 30px 20px; text-align: center; margin-top: 40px; }
@@ -346,9 +346,9 @@
     </section>
     
     <!-- ③ 前测（道法案例分析型） -->
-        <div class="scenario-theater" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #7B1FA2;">
-      <h4 style="color:#4A148C;margin-bottom:8px;"><i class="fa-solid fa-mask"></i> 情境剧场</h4>
-      <p style="color:#7B1FA2;font-size:14px;">设想你身处本课描述的情境中，你会如何做出选择？请与同学讨论。</p>
+        <div class="scenario-theater" style="background:linear-gradient(135deg,var(--bg-light),#E1BEE7);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
+      <h4 style="color:var(--primary-dark);margin-bottom:8px;"><i class="fa-solid fa-mask"></i> 情境剧场</h4>
+      <p style="color:var(--primary);font-size:14px;">设想你身处本课描述的情境中，你会如何做出选择？请与同学讨论。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -894,10 +894,10 @@
 <summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
 
         <!-- 考点1 -->
-        <div class="exam-card" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7);border:1px solid #CE93D8;">
+        <div class="exam-card" style="background:linear-gradient(135deg,var(--bg-light),#E1BEE7);border:1px solid #CE93D8;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#6A1B9A;">1</span>
-            <strong style="color:#4A148C;font-size:15px;">🔥 最高频考点：社会秩序的含义与分类</strong>
+            <strong style="color:var(--primary-dark);font-size:15px;">🔥 最高频考点：社会秩序的含义与分类</strong>
             <span class="exam-tag" style="background:#6A1B9A;">近10年考了18次</span>
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背结论：</strong></p>
@@ -911,9 +911,9 @@
         <!-- 考点2 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#EDE7F6,#D1C4E9);border:1px solid #9575CD;">
           <div class="exam-card-header">
-            <span class="exam-card-num" style="background:#7B1FA2;">2</span>
-            <strong style="color:#4A148C;font-size:15px;">⚡ 高频考点：社会秩序的重要性</strong>
-            <span class="exam-tag" style="background:#7B1FA2;">近10年考了15次</span>
+            <span class="exam-card-num" style="background:var(--primary);">2</span>
+            <strong style="color:var(--primary-dark);font-size:15px;">⚡ 高频考点：社会秩序的重要性</strong>
+            <span class="exam-tag" style="background:var(--primary);">近10年考了15次</span>
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>社会秩序使人们<strong>各安其位、各尽其责</strong>，是<strong>安居乐业</strong>的保障。</p>
         </div>
@@ -929,11 +929,11 @@
         </div>
 
         <!-- 考点4 -->
-        <div class="exam-card" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7);border:1px solid #BA68C8;">
+        <div class="exam-card" style="background:linear-gradient(135deg,var(--bg-light),#E1BEE7);border:1px solid #BA68C8;">
           <div class="exam-card-header">
-            <span class="exam-card-num" style="background:#7B1FA2;">4</span>
-            <strong style="color:#7B1FA2;font-size:15px;">📍 常考考点：规则与秩序的关系</strong>
-            <span class="exam-tag" style="background:#7B1FA2;">近10年考了10次</span>
+            <span class="exam-card-num" style="background:var(--primary);">4</span>
+            <strong style="color:var(--primary);font-size:15px;">📍 常考考点：规则与秩序的关系</strong>
+            <span class="exam-tag" style="background:var(--primary);">近10年考了10次</span>
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong><strong>社会规则</strong>是维护<strong>社会秩序</strong>的行为准则，二者<strong>相辅相成</strong>。</p>
         </div>
@@ -1024,27 +1024,6 @@
       }
     }
 
-    /* ========== 答案检查 ========== */
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const explanation = document.getElementById('explanation-' + questionNum);
-      const allOptions = parent.querySelectorAll('.quiz-option');
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
-    
     /* ========== 初始化 ========== */
     document.addEventListener('DOMContentLoaded', function() {
       updateProgressBar();
@@ -1059,6 +1038,7 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>

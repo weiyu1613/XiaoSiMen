@@ -14,11 +14,11 @@
     svg { width: auto !important; max-width: 100% !important; }
     .accordion-header svg { width: auto !important; height: auto !important; }
     :root {
-      --primary: #7B1FA2;
-      --primary-light: #AB47BC;
-      --primary-dark: #4A148C;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
+      --primary-dark: var(--primary-dark);
       --secondary: #CE93D8;
-      --accent: #FF8F00;
+      --accent: var(--accent);
       --bg-light: #faf5ff;
       --bg-card: #ffffff;
       --text-dark: #1a1a2e;
@@ -205,6 +205,65 @@
   </nav>
 
   <main class="main-content">
+    <!-- 环形学习进度组件 -->
+    <div class="progress-ring-container" style="display:flex;align-items:center;gap:16px;padding:20px;background:white;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);max-width:500px;margin:20px auto;">
+      <svg width="80" height="80" viewBox="0 0 80 80" class="progress-ring">
+        <circle cx="40" cy="40" r="34" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+        <circle cx="40" cy="40" r="34" fill="none" stroke="var(--primary)" stroke-width="6"
+                stroke-dasharray="213.6" stroke-dashoffset="213.6"
+                transform="rotate(-90 40 40)" class="progress-ring-fill"
+                style="transition:stroke-dashoffset 0.5s ease;"/>
+      </svg>
+      <div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--primary);" class="progress-percent">0%</div>
+        <div style="font-size:0.85rem;color:#666;">学习进度</div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      function initProgressRing(){
+        // Count lesson cards
+        var cards = document.querySelectorAll('.lesson-card');
+        var total = cards.length;
+        var storeKey = 'teachany_visited';
+        var gradeFolder = (location.pathname.split('/').slice(-2,-1)[0]) || 'grade';
+        var visited = [];
+        try { visited = JSON.parse(localStorage.getItem(storeKey) || '[]'); } catch(e){ visited = []; }
+        if (!Array.isArray(visited)) visited = [];
+        // 记录当前页课件点击 -> 标记为已访问（按年级命名空间隔离）
+        cards.forEach(function(card){
+          card.addEventListener('click', function(){
+            try {
+              var v = JSON.parse(localStorage.getItem(storeKey) || '[]');
+              if (!Array.isArray(v)) v = [];
+              var id = gradeFolder + '/' + card.getAttribute('href');
+              if (v.indexOf(id) === -1) { v.push(id); localStorage.setItem(storeKey, JSON.stringify(v)); }
+            } catch(e){}
+          });
+        });
+        // 统计已访问课件数（基于当前页课件 href 匹配）
+        var completed = 0;
+        cards.forEach(function(card){
+          var id = gradeFolder + '/' + card.getAttribute('href');
+          if (visited.indexOf(id) > -1) completed++;
+        });
+        var percent = total > 0 ? Math.round(completed / total * 100) : 0;
+        var ring = document.querySelector('.progress-ring-fill');
+        var text = document.querySelector('.progress-percent');
+        if (ring && text) {
+          var circumference = 2 * Math.PI * 34;
+          ring.style.strokeDashoffset = circumference * (1 - percent / 100);
+          text.textContent = percent + '%';
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initProgressRing);
+      } else {
+        initProgressRing();
+      }
+    })();
+    </script>
+
 
     <!-- 第一单元 -->
     <div class="accordion-item active" id="unit-1">
@@ -383,6 +442,19 @@
 
   </main>
 
+  <!-- 情境剧场演示区域 -->
+  <section style="max-width: 1400px; margin: 24px auto 0; padding: 0 20px;">
+    <div style="text-align: center; margin-bottom: 18px;">
+      <h2 style="font-family: var(--font-title); font-size: 1.6rem; color: var(--primary-dark, #4A148C); margin-bottom: 6px;">
+        <i class="fas fa-masks-theater"></i> 情境剧场 · 角色抉择
+      </h2>
+      <p style="color: var(--text-muted, #5d6d7e); font-size: 0.95rem;">
+        在真实情境中做出选择，体会道德与法治核心素养的价值
+      </p>
+    </div>
+    <div id="scenario-theater-demo"></div>
+  </section>
+
   <footer class="footer">
     <p class="footer-text">初中7年级道德与法治互动课件系统 · 人教版 · TeachAny v7.14.0</p>
     <div class="footer-tech">
@@ -417,5 +489,38 @@
 
   <script src="shared/mascot.js?v=8.0"></script>
   <script src="shared/badges.js?v=8.0"></script>
+  <script src="shared/scenario-theater.js?v=1.0"></script>
+  <script>
+    // 情境剧场演示初始化
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof ScenarioTheater === 'undefined') return;
+      new ScenarioTheater('scenario-theater-demo', {
+        sceneLabel: '诚信教育',
+        title: '诚信的考验：捡到钱包之后',
+        desc: '放学路上，你在路边捡到一个钱包，里面有现金300元、身份证和几张银行卡。此时四周无人注意，你会怎么做？',
+        roles: [
+          {
+            name: '主动上交',
+            action: '第一时间将钱包交给老师或就近派出所，请他们帮助寻找失主。',
+            consequence: '失主很快找回了钱包，对你表达真诚的感谢；你内心踏实，收获了诚信带来的快乐，也赢得了老师和同学的称赞，体现了诚实守信的品德。',
+            value: '道德修养',
+            optimal: true
+          },
+          {
+            name: '据为己有',
+            action: '把现金留下，把证件随意丢弃。',
+            consequence: '失主因丢失证件焦急奔波，补办手续繁琐；你虽一时得到钱财，却违背了诚信，内心不安，一旦被发现还可能承担法律责任。',
+            value: '法治观念'
+          },
+          {
+            name: '视而不见',
+            action: '假装没看见，直接走开回家。',
+            consequence: '钱包可能被他人拿走或继续遗失，失主无法找回；你错过了践行诚信、帮助他人的机会，也放弃了成长中一次重要的道德选择。',
+            value: '责任意识'
+          }
+        ]
+      });
+    });
+  </script>
 </body>
 </html>

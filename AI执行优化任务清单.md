@@ -46,15 +46,23 @@ d:\AIProject\Trae\XiaoSiMen\
 └── _dev-tools\                         # 开发工具
 ```
 
-## 关键技术事实
+## 关键技术事实（源码审计校正版）
 
 - 首页 `index.html` 是深色风格，学科页/课件页是浅色风格（存在视觉割裂）
 - 七/八年级为静态 HTML，九年级为数据驱动渲染（`render.js` + JSON）
-- 游戏化系统在 `scripts.js` 中：XP 系统（10 级科举称号）、连击（3 连触发）、粒子特效、Web Audio 音效
-- localStorage key 为 `teachany_gamestate`
-- 代码中存在 `if (window.mascotEngine)` 钩子但 `mascotEngine` 从未定义实现
+- 游戏化系统在 `shared/scripts.js` 中：XP 系统（10 级科举称号）、连击（`_currentStreak` 3 连触发）、粒子特效、Web Audio 音效
+- localStorage key 为 `teachany_gamestate`，默认结构：`{xp:0, level:1, streak:0, lastStudyDate:null, totalCorrect:0, totalAnswered:0, lessonsCompleted:[], badges:[], history:{completedLessons:[]}}`
+- **吉祥物系统已实现**：`shared/mascot.js` 包含 4 个学科角色（史小纪/地小探/生小命/法小正），12 种表情状态（idle/happy/confused/excited/encourage/thinking/proud/sad/surprised/sleepy/determined/celebrate），SVG 渲染，自动初始化。但存在事件链断裂（scripts.js 用 `setState()` 直接调用，从未 dispatch mascot 自定义事件）
+- **答题选项已具备可访问性**：选项使用 `<div class="quiz-option" role="button" tabindex="0" aria-label="选项C：元谋人" aria-pressed="false" onkeydown="...">`，已支持键盘导航和屏幕阅读器
+- **XP 难度加权已存在**：`DIFFICULTY_MULTIPLIERS = {basic:1, intermediate:1.5, advanced:2}` 已在代码中定义，但 `data-difficulty` 属性标注系统性错误
 - 课件模板为 8 段式统一结构，四学科仅换配色变量与 emoji
-- 学科配色：历史棕、地理蓝、生物绿、道法紫（生物绿与道法绿辨识度低）
+- **道法配色三方不一致**：首页卡片绿 `#2E7D32`、课件页紫 `#7B1FA2`、吉祥物角色绿 `#2E7D32`
+- **字体不一致**：首页使用 Noto Sans SC + ZCOOL KuaiLe（Google Fonts），课件页仅用系统字体
+- 课件粒子颜色：`['#D4A574','#C17817','#8B4513','#A0522D','#FFD700','#FF6B6B','#4ECDC4']`
+- 音效合成：答对=C5(523.25)→E5(659.25)→G5(783.99) 上行音阶；答错=200Hz 三角波
+- 等级阈值：`[0, 100, 300, 600, 1000, 1500, 2500, 4000, 6000, 10000]`
+- 科举称号链：`['入门学徒', '学堂书生', '秀才', '举人', '进士', '状元', '学者', '大师', '宗师', '至圣先师']`
+- 每题基础 XP：10 × 难度系数（basic×1=10, intermediate×1.5=15, advanced×2=20）
 
 ## 2022 新课标核心素养参考
 
@@ -69,71 +77,265 @@ d:\AIProject\Trae\XiaoSiMen\
 
 ## P0 任务（立即执行，影响所有用户）
 
-### 任务 P0-0a：答题选项可访问性修复（线上版紧急发现）
+> **源码审计说明**：以下 P0-0a ~ P0-0f 为源码级审计发现的真实 Bug，已验证代码行级问题。此前报告中关于"答题选项缺少可访问性"的描述有误 — 源码中选项已使用 `<div role="button" tabindex="0" aria-label="..." aria-pressed="..." onkeydown="...">`，具备完整的键盘/屏幕阅读器支持。
 
-**文件**：各课件 HTML（如 `01_初中历史/七年级/01_d1sy/1.1_bjr/bjr.html`）
+### 任务 P0-0a：旗舰课件 bjr.html 游戏化功能完全失效（源码审计 · 最高优先级）
 
-**问题**：线上版课件页选项未以独立交互元素暴露，DOM 中无 quiz/option 节点。键盘用户无法 Tab 到选项，屏幕阅读器无法识别，违反 WCAG 2.1 AA 标准。
+**文件**：`01_初中历史/七年级/01_d1sy/1.1_bjr/bjr.html`
+
+**问题**：bjr.html（北京人课件，旗舰展示页）内部定义了本地 `checkAnswer(element, isCorrect, questionNum, optionLetter)` 函数（4 参数版），该函数**完全绕过**了 `shared/scripts.js` 中的共享 `checkAnswer` / `awardXP` / `spawnParticles` / `playSound` / `mascotEngine.setState` / `updateStreak`。导致这节课中：
+- 答题不获得 XP
+- 无粒子特效
+- 无音效反馈
+- 吉祥物不响应
+- 连击不计数
+- 学习进度不记录
+
+这是全站最核心的课件页，游戏化系统在此页**完全静默**。
 
 **执行步骤**：
-1. 检查所有课件 HTML 中的答题选项元素
-2. 将 `<div class="option" onclick="...">` 改为 `<button class="option" onclick="..." aria-label="选项A：xxx" aria-pressed="false">`
-3. 确保 `:focus-visible` 样式可见
-4. 添加 `role="radiogroup"` 到题目容器
+1. 打开 `bjr.html`，搜索本地 `function checkAnswer` 定义
+2. 删除本地 4 参数版的 `checkAnswer` 函数
+3. 确保该页面引用的 `shared/scripts.js` 中的共享 `checkAnswer` 被正确调用
+4. 检查 HTML 中 `onclick="checkAnswer(this, true, 1, 'C')"` 调用是否与共享版签名兼容
+5. 如果共享版签名不同，需要调整调用参数或添加适配层
 
-**代码示例**：
+**代码示例**（删除 bjr.html 中的本地覆盖）：
 ```html
-<!-- 修改前（推测） -->
-<div class="quiz-option" onclick="selectAnswer(0)">A. 北京人</div>
-
-<!-- 修改后 -->
-<div class="quiz-container" role="radiogroup" aria-label="选择题">
-  <button class="quiz-option" onclick="selectAnswer(0)" 
-          aria-label="选项A：北京人" 
-          aria-pressed="false"
-          tabindex="0">A. 北京人</button>
-</div>
+<!-- 在 bjr.html 中找到类似以下代码并删除 -->
+<script>
+// 删除这段本地函数，让 shared/scripts.js 的版本生效
+function checkAnswer(element, isCorrect, questionNum, optionLetter) {
+    // ... 本地实现，绕过了所有游戏化功能 ...
+}
+</script>
 ```
 
-**CSS 补充**：
-```css
-.quiz-option:focus-visible {
-  outline: 2px solid var(--subject-primary);
-  outline-offset: 2px;
-}
-.quiz-option[aria-pressed="true"] {
-  background: var(--subject-100);
-  border-color: var(--subject-primary);
-}
-```
-
-**验证**：使用 Tab 键可以逐个聚焦选项，屏幕阅读器能朗读选项内容，回车键可选中。
+**验证**：
+1. 打开 bjr.html，答题后观察 XP 是否增加（检查 localStorage `teachany_gamestate`）
+2. 答对时是否有粒子特效和音效
+3. 吉祥物是否切换表情
+4. 控制台无 `checkAnswer is not defined` 错误
 
 ---
 
-### 任务 P0-0b：AI 脚本路径修复（线上版紧急发现）
+### 任务 P0-0b：连胜计数数据结构不匹配（源码审计）
 
-**文件**：所有引用 `localhost:8080` 的 HTML 文件
+**文件**：`shared/scripts.js`、`index.html`
 
-**问题**：线上版 ai-tutor.js、audio-player.js 等脚本引用 localhost:8080 路径，GitHub Pages 上无法加载，AI 学伴和音效功能完全失效。
+**问题**：`shared/scripts.js` 中 `updateStreak()` 将 `streak` 写为**数字**（`state.streak = 0` 或 `state.streak++`），但 `index.html` 首页读取时用 `state.streak.count`（**对象属性**）。数据结构不匹配导致首页连胜指示器**永远显示 0**。
 
 **执行步骤**：
-1. 全局搜索 `localhost:8080` 并替换为相对路径
-2. 检查所有 `<script src>` 和 `<link href>` 标签
-3. 确保 GitHub Pages 部署前路径正确
+1. 统一数据结构为对象格式：`streak: { count: 0, lastDate: null, maxCount: 0 }`
+2. 修改 `shared/scripts.js` 的 `updateStreak()` 写入对象格式
+3. 修改 `index.html` 读取逻辑确保兼容
 
-**代码示例**：
-```html
-<!-- 修改前 -->
-<script src="http://localhost:8080/shared/ai-tutor.js"></script>
-<link rel="stylesheet" href="http://localhost:8080/shared/styles.css">
+**代码示例**（修改 `shared/scripts.js`）：
+```javascript
+// 修改前（写入数字）
+function updateStreak() {
+    const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+    // ...
+    state.streak = state.streak + 1; // 数字
+    localStorage.setItem('teachany_gamestate', JSON.stringify(state));
+}
 
-<!-- 修改后 -->
-<script src="./shared/ai-tutor.js"></script>
-<link rel="stylesheet" href="./shared/styles.css">
+// 修改后（写入对象）
+function updateStreak() {
+    const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+    const today = new Date().toDateString();
+    
+    if (!state.streak || typeof state.streak === 'number') {
+        // 兼容旧数据：数字转对象
+        state.streak = { count: typeof state.streak === 'number' ? state.streak : 0, lastDate: null, maxCount: 0 };
+    }
+    
+    if (state.streak.lastDate === today) return; // 今日已打卡
+    
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    if (state.streak.lastDate === yesterday) {
+        state.streak.count++;
+    } else {
+        state.streak.count = 1;
+    }
+    state.streak.lastDate = today;
+    state.streak.maxCount = Math.max(state.streak.maxCount, state.streak.count);
+    
+    localStorage.setItem('teachany_gamestate', JSON.stringify(state));
+}
 ```
 
-**验证**：在浏览器控制台无 404 错误，AI 学伴和音效功能正常加载。
+**验证**：学习一课后刷新首页，连胜计数器显示正确数字而非 0。
+
+---
+
+### 任务 P0-0c：连击（Combo）不持久化且无 XP 加成（源码审计）
+
+**文件**：`shared/scripts.js`
+
+**问题**：连击变量 `let _currentStreak = 0` 是内存变量，**不持久化到 localStorage**。页面刷新后连击归零。且连击仅触发视觉通知（`showComboNotification`），**不提供任何 XP 加成**，缺乏实质激励。
+
+**执行步骤**：
+1. 将 `_currentStreak` 持久化到 `teachany_gamestate.currentStreak`
+2. 在 `awardXP()` 中增加连击倍率
+3. 记录 `maxCombo` 到 localStorage
+
+**代码示例**：
+```javascript
+// 修改前
+let _currentStreak = 0; // 内存变量，刷新即丢失
+
+function onAnswerCorrect() {
+    _currentStreak++;
+    if (_currentStreak >= 3) showComboNotification(_currentStreak);
+    awardXP(10); // 固定 10 XP，无视连击
+}
+
+// 修改后
+function onAnswerCorrect(difficulty = 'basic') {
+    const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+    state.currentStreak = (state.currentStreak || 0) + 1;
+    state.maxCombo = Math.max(state.maxCombo || 0, state.currentStreak);
+    
+    // 连击 XP 倍率
+    const baseXP = 10 * (DIFFICULTY_MULTIPLIERS[difficulty] || 1);
+    let multiplier = 1;
+    if (state.currentStreak >= 10) multiplier = 3;
+    else if (state.currentStreak >= 5) multiplier = 2;
+    else if (state.currentStreak >= 3) multiplier = 1.5;
+    
+    const finalXP = Math.floor(baseXP * multiplier);
+    awardXP(finalXP);
+    
+    if (state.currentStreak >= 3) showComboNotification(state.currentStreak, multiplier);
+    
+    localStorage.setItem('teachany_gamestate', JSON.stringify(state));
+}
+
+// 页面加载时恢复连击
+function restoreStreak() {
+    const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+    // 仅在同一学习会话内恢复（30分钟内）
+    if (state.lastStudyTime && Date.now() - state.lastStudyTime < 1800000) {
+        _currentStreak = state.currentStreak || 0;
+    }
+}
+```
+
+**验证**：连答 5 题后 XP 获得 ×2 倍率；刷新页面后 30 分钟内连击数恢复。
+
+---
+
+### 任务 P0-0d：data-difficulty 属性系统性标注错误（源码审计）
+
+**文件**：所有课件 HTML 中带 `data-difficulty` 的题目元素
+
+**问题**：代码中已定义 `DIFFICULTY_MULTIPLIERS = {basic:1, intermediate:1.5, advanced:2}`，但课件 HTML 中 `data-difficulty` 属性标注**系统性错误**：
+- 中等难度题目被标为 `basic`
+- 基础题目被标为 `advanced`
+- `intermediate` 值几乎从未被使用
+
+导致 XP 难度加权系统虽然存在但完全失灵。
+
+**执行步骤**：
+1. 全局搜索所有 `data-difficulty=` 属性
+2. 逐题审核难度标注：记忆型→`basic`，理解型→`intermediate`，应用/分析型→`advanced`
+3. 确保 `intermediate` 被正常使用
+
+**代码示例**（bjr.html 中的修正）：
+```html
+<!-- 修改前（标注错误） -->
+<div class="quiz-question" data-difficulty="advanced">
+    <p>北京人遗址位于哪里？</p>  <!-- 这是记忆型基础题，不应标 advanced -->
+</div>
+
+<!-- 修改后 -->
+<div class="quiz-question" data-difficulty="basic">
+    <p>北京人遗址位于哪里？</p>  <!-- 记忆型 → basic -->
+</div>
+
+<div class="quiz-question" data-difficulty="intermediate">
+    <p>根据北京人的石器特征，分析其生产生活方式。</p>  <!-- 理解型 → intermediate -->
+</div>
+
+<div class="quiz-question" data-difficulty="advanced">
+    <p>比较北京人与元谋人的体质特征差异，探讨人类进化的规律。</p>  <!-- 分析型 → advanced -->
+</div>
+```
+
+**验证**：检查所有课件的 `data-difficulty` 标注，确保三种难度均有使用且标注合理。
+
+---
+
+### 任务 P0-0e：道法学科配色三方不一致（源码审计）
+
+**文件**：`index.html`（首页）、`04_道德与法治/七年级/shared/styles.css`（课件页）、`shared/mascot.js`（吉祥物）
+
+**问题**：道法学科在三个位置使用了不同颜色：
+- 首页学科卡片：绿色 `#2E7D32`（与生物撞色）
+- 课件页 CSS 变量：紫色 `--primary: #7B1FA2`
+- 吉祥物角色配色：绿色 `#2E7D32`
+
+用户从首页点入道法课件时颜色突变，且首页道法与生物卡片难以区分。
+
+**执行步骤**：
+1. 统一道法配色为紫色系（`#7B1FA2`），与课件页一致
+2. 修改首页 `index.html` 中道法卡片的颜色
+3. 修改 `mascot.js` 中法小正角色的配色
+
+**代码示例**：
+```css
+/* index.html 中道法卡片颜色修改 */
+/* 修改前 */
+.subject-daofa { --card-color: #2E7D32; }
+
+/* 修改后 */
+.subject-daofa { --card-color: #7B1FA2; }
+```
+
+```javascript
+// mascot.js 中法小正配色修改
+// 修改前
+const daofaMascot = { color: '#2E7D32', /* ... */ };
+
+// 修改后
+const daofaMascot = { color: '#7B1FA2', /* ... */ };
+```
+
+**验证**：首页道法卡片为紫色，与生物绿色明显区分；进入课件页颜色一致无突变。
+
+---
+
+### 任务 P0-0f：首页与课件页字体不一致（源码审计）
+
+**文件**：`index.html`、各学科 `shared/styles.css`
+
+**问题**：首页使用 Google Fonts（`Noto Sans SC` + `ZCOOL KuaiLe`），课件页仅用系统字体（`-apple-system, BlinkMacSystemFont, sans-serif`）。视觉风格割裂，且课件页在无中文字体的系统上排版退化。
+
+**执行步骤**：
+1. 在各学科 `shared/styles.css` 的 `@import` 或 `<link>` 中引入与首页相同的 Google Fonts
+2. 统一 `font-family` 声明
+
+**代码示例**（添加到各学科 `shared/styles.css` 顶部）：
+```css
+/* 引入与首页一致的字体 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=ZCOOL+KuaiLe&display=swap');
+
+:root {
+    --font-body: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-title: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+}
+
+h1, h2, h3, .title {
+    font-family: var(--font-title);
+}
+```
+
+**验证**：首页与课件页字体一致，标题使用 ZCOOL KuaiLe，正文使用 Noto Sans SC。
 
 ---
 
@@ -727,313 +929,298 @@ function renderBadgeWall() {
 
 ## P1 任务（重点提升）
 
-### 任务 P1-1：吉祥物 IP 落地
+### 任务 P1-1：吉祥物事件链修复与增强（源码审计校正）
 
-**文件**：新建 `shared/mascot.js`、新建 `shared/mascot.css`、各学科 `shared/scripts.js`
+**文件**：`shared/mascot.js`（已存在）、`shared/scripts.js`（已存在）
 
-**问题**：代码有 `window.mascotEngine` 钩子但从未实现，情感锚点完全缺失。
+**问题**：吉祥物系统**已完整实现**（4 角色 × 12 表情 × SVG 渲染），但存在**事件链断裂**：
+- `mascot.js` 监听自定义事件 `mascot:correct` / `mascot:wrong` / `mascot:combo` / `mascot:levelup`
+- `scripts.js` 仅用 `mascotEngine.setState()` 直接调用，**从未 dispatch 上述自定义事件**
+- 导致 mascot.js 中的事件监听器全部空转，部分高级表情（combo、levelup 触发的 celebrate、proud）无法触发
+- 配合 P0-0a 修复后（bjr.html 不再绕过 scripts.js），吉祥物才能正常工作
 
 **执行步骤**：
-1. 创建 `shared/mascot.js`，实现 SVG 吉祥物角色 + 12 态表情状态机
-2. 创建 `shared/mascot.css`，定义吉祥物样式与动画
-3. 在各页面引入 mascot.js，在已有的 `if (window.mascotEngine)` 钩子处接入
+1. 在 `scripts.js` 的答题判定逻辑中，**除了调用 `setState()` 外，同时 dispatch 自定义事件**
+2. 确保 `mascot.js` 的事件监听器与 `scripts.js` 的事件 dispatch 对接
+3. 增加连击和升级时的专属表情触发
 
-**代码示例**（`shared/mascot.js`）：
+**代码示例**（修改 `shared/scripts.js`）：
 ```javascript
-// 吉祥物"小四" - 穿越时空的书童形象
-const MascotEngine = {
-  currentMood: 'idle',
+// 在答题正确逻辑中
+function onAnswerCorrect(combo, difficulty) {
+    // ... 已有的 setState 调用保留 ...
+    if (window.mascotEngine) {
+        window.mascotEngine.setState(combo >= 5 ? 'excited' : 'happy');
+    }
+    
+    // 新增：dispatch 自定义事件，让 mascot.js 的事件监听器也能响应
+    document.dispatchEvent(new CustomEvent('mascot:correct', {
+        detail: { combo, difficulty }
+    }));
+    
+    // 连击事件
+    if (combo >= 3) {
+        document.dispatchEvent(new CustomEvent('mascot:combo', {
+            detail: { count: combo }
+        }));
+    }
+}
 
-  // 12 态表情
-  moods: {
-    idle: { eyes: 'normal', mouth: 'smile', text: '准备好了吗？' },
-    happy: { eyes: 'happy', mouth: 'big-smile', text: '答对了！太棒了！' },
-    encourage: { eyes: 'warm', mouth: 'smile', text: '没关系，再试一次！' },
-    thinking: { eyes: 'thinking', mouth: 'small', text: '让我想想...' },
-    worried: { eyes: 'worried', mouth: 'frown', text: '这个知识点要再看一下哦' },
-    celebrate: { eyes: 'star', mouth: 'big-smile', text: '太厉害了！' },
-    confused: { eyes: 'confused', mouth: 'question', text: '嗯？这个有点难' },
-    excited: { eyes: 'wide', mouth: 'big-smile', text: '连击！继续！' },
-    focused: { eyes: 'focused', mouth: 'serious', text: '专注学习中...' },
-    tired: { eyes: 'half', mouth: 'small', text: '休息一下吧' },
-    curious: { eyes: 'curious', mouth: 'small', text: '为什么呢？' },
-    proud: { eyes: 'proud', mouth: 'big-smile', text: '你真的很优秀！' },
-  },
+// 在答题错误逻辑中
+function onAnswerWrong() {
+    if (window.mascotEngine) {
+        window.mascotEngine.setState('encourage');
+    }
+    
+    document.dispatchEvent(new CustomEvent('mascot:wrong'));
+}
 
-  // 学科变装
-  costumes: {
-    history: { hat: '唐装帽', accessory: '卷轴' },
-    geography: { hat: '探险帽', accessory: '指南针' },
-    biology: { hat: '实验帽', accessory: '放大镜' },
-    politics: { hat: '汉冠', accessory: '竹简' },
-  },
-
-  init() {
-    this.container = document.createElement('div');
-    this.container.id = 'mascot-container';
-    this.container.innerHTML = this.renderSVG('idle', 'history');
-    document.body.appendChild(this.container);
-    window.mascotEngine = this;
-  },
-
-  renderSVG(mood, subject) {
-    const m = this.moods[mood] || this.moods.idle;
-    // SVG 角色（简化版，实际需更精细绘制）
-    return `
-      <div class="mascot-character" data-mood="${mood}">
-        <svg viewBox="0 0 120 140" width="80" height="93">
-          <!-- 身体 -->
-          <ellipse cx="60" cy="100" rx="35" ry="30" fill="#64ffda" opacity="0.9"/>
-          <!-- 头 -->
-          <circle cx="60" cy="55" r="30" fill="#ffd700"/>
-          <!-- 眼睛（根据表情变化） -->
-          ${this.renderEyes(m.eyes)}
-          <!-- 嘴巴（根据表情变化） -->
-          ${this.renderMouth(m.mouth)}
-          <!-- 学科帽子 -->
-          ${this.renderHat(subject)}
-        </svg>
-        <div class="mascot-bubble">${m.text}</div>
-      </div>
-    `;
-  },
-
-  renderEyes(type) {
-    const eyeMap = {
-      normal: '<circle cx="50" cy="50" r="3" fill="#333"/><circle cx="70" cy="50" r="3" fill="#333"/>',
-      happy: '<path d="M47,50 Q50,46 53,50" stroke="#333" stroke-width="2" fill="none"/><path d="M67,50 Q70,46 73,50" stroke="#333" stroke-width="2" fill="none"/>',
-      thinking: '<circle cx="50" cy="50" r="3" fill="#333"/><circle cx="70" cy="48" r="3" fill="#333"/>',
-      worried: '<circle cx="50" cy="52" r="3" fill="#333"/><circle cx="70" cy="52" r="3" fill="#333"/>',
-      star: '<text x="47" y="54" font-size="10" fill="#333">✨</text><text x="67" y="54" font-size="10" fill="#333">✨</text>',
-      confused: '<text x="47" y="54" font-size="10" fill="#333">?</text><text x="67" y="54" font-size="10" fill="#333">?</text>',
-      wide: '<circle cx="50" cy="50" r="5" fill="#fff" stroke="#333"/><circle cx="70" cy="50" r="5" fill="#fff" stroke="#333"/><circle cx="50" cy="50" r="2" fill="#333"/><circle cx="70" cy="50" r="2" fill="#333"/>',
-      focused: '<line x1="45" y1="50" x2="55" y2="50" stroke="#333" stroke-width="2"/><line x1="65" y1="50" x2="75" y2="50" stroke="#333" stroke-width="2"/>',
-      half: '<path d="M47,50 Q50,53 53,50" stroke="#333" stroke-width="2" fill="none"/><path d="M67,50 Q70,53 73,50" stroke="#333" stroke-width="2" fill="none"/>',
-      curious: '<circle cx="50" cy="50" r="4" fill="#333"/><circle cx="70" cy="48" r="4" fill="#333"/>',
-      proud: '<path d="M47,48 Q50,44 53,48" stroke="#333" stroke-width="2" fill="none"/><path d="M67,48 Q70,44 73,48" stroke="#333" stroke-width="2" fill="none"/>',
-      warm: '<circle cx="50" cy="50" r="3" fill="#333"/><circle cx="70" cy="50" r="3" fill="#333"/><path d="M47,52 Q50,55 53,52" stroke="#333" stroke-width="1" fill="none"/>',
-    };
-    return eyeMap[type] || eyeMap.normal;
-  },
-
-  renderMouth(type) {
-    const mouthMap = {
-      smile: '<path d="M52,65 Q60,70 68,65" stroke="#333" stroke-width="2" fill="none"/>',
-      'big-smile': '<path d="M50,63 Q60,75 70,63" stroke="#333" stroke-width="2" fill="#333" opacity="0.3"/>',
-      small: '<line x1="56" y1="66" x2="64" y2="66" stroke="#333" stroke-width="2"/>',
-      frown: '<path d="M52,68 Q60,63 68,68" stroke="#333" stroke-width="2" fill="none"/>',
-      question: '<text x="56" y="68" font-size="10" fill="#333">?</text>',
-      serious: '<line x1="53" y1="66" x2="67" y2="66" stroke="#333" stroke-width="2"/>',
-    };
-    return mouthMap[type] || mouthMap.smile;
-  },
-
-  renderHat(subject) {
-    const hatMap = {
-      history: '<path d="M40,30 L80,30 L75,20 L45,20 Z" fill="#b8860b"/><rect x="35" y="29" width="50" height="4" fill="#8b6914"/>',
-      geography: '<path d="M35,30 Q60,15 85,30" fill="#1e88e5" stroke="#1565c0"/>',
-      biology: '<rect x="42" y="25" width="36" height="8" fill="#2e7d32" rx="2"/>',
-      politics: '<path d="M45,25 L75,25 L70,15 L50,15 Z" fill="#7b1fa2"/>',
-    };
-    return hatMap[subject] || hatMap.history;
-  },
-
-  show(mood, subject) {
-    this.currentMood = mood;
-    const svg = this.renderSVG(mood, subject || this.detectSubject());
-    this.container.innerHTML = svg;
-    this.container.classList.add('active');
-    clearTimeout(this.hideTimer);
-    this.hideTimer = setTimeout(() => {
-      this.container.classList.remove('active');
-    }, 3000);
-  },
-
-  detectSubject() {
-    const path = window.location.pathname;
-    if (path.includes('01_')) return 'history';
-    if (path.includes('02_')) return 'geography';
-    if (path.includes('03_')) return 'biology';
-    if (path.includes('04_')) return 'politics';
-    return 'history';
-  }
-};
-
-// 自动初始化
-if (document.readyState !== 'loading') {
-  MascotEngine.init();
-} else {
-  document.addEventListener('DOMContentLoaded', () => MascotEngine.init());
+// 在升级逻辑中
+function onLevelUp(newLevel, newTitle) {
+    if (window.mascotEngine) {
+        window.mascotEngine.setState('celebrate');
+    }
+    
+    document.dispatchEvent(new CustomEvent('mascot:levelup', {
+        detail: { level: newLevel, title: newTitle }
+    }));
 }
 ```
 
-**代码示例**（`shared/mascot.css`）：
-```css
-#mascot-container {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  z-index: 999;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s, transform 0.3s;
-  pointer-events: none;
-}
-#mascot-container.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-.mascot-character {
-  position: relative;
-  animation: mascot-bounce 0.5s ease;
-}
-@keyframes mascot-bounce {
-  0% { transform: scale(0.8); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-.mascot-bubble {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  color: #333;
-  padding: 8px 14px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  margin-bottom: 8px;
-}
-.mascot-bubble::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: #fff;
-}
-@media (max-width: 768px) {
-  #mascot-container { bottom: 5rem; left: 1rem; transform: scale(0.8); }
-}
-```
-
-**接入方式**（在已有 `if (window.mascotEngine)` 处）：
+**代码示例**（确认 `mascot.js` 的事件监听已存在，无需新建）：
 ```javascript
-// 在 scripts.js 的答题判定逻辑中：
-if (isCorrect) {
-  if (window.mascotEngine) {
-    window.mascotEngine.show(comboCount >= 3 ? 'excited' : 'happy');
-  }
-} else {
-  if (window.mascotEngine) {
-    window.mascotEngine.show('encourage');
-  }
-}
-
-// 升级时：
-if (window.mascotEngine) {
-  window.mascotEngine.show('proud');
-}
+// mascot.js 中已有的事件监听（确认存在即可，无需修改）
+document.addEventListener('mascot:correct', (e) => {
+    // 触发 happy/excited 表情 + 对话气泡
+});
+document.addEventListener('mascot:wrong', () => {
+    // 触发 encourage 表情 + 鼓励语
+});
+document.addEventListener('mascot:combo', (e) => {
+    // 触发 excited/celebrate 表情 + 连击鼓励
+});
+document.addEventListener('mascot:levelup', (e) => {
+    // 触发 proud/celebrate 表情 + 升级祝贺
+});
 ```
 
-**验证**：答对题目时吉祥物出现并显示开心表情，答错时显示鼓励表情。
+**额外增强建议**：
+- 增加 `mascot:idle` 事件：30 秒无操作时吉祥物切换为 `sleepy` 状态
+- 增加 `mascot:thinking` 事件：答题思考超过 20 秒时切换为 `thinking` 状态
+- 对话气泡文本根据学科上下文动态生成
+
+**验证**：
+1. 答对题目时吉祥物显示 happy/excited 表情 + 对话气泡
+2. 连续答对 3 题时触发 combo 专属表情
+3. 升级时触发 celebrate/proud 表情
+4. 30 秒无操作时吉祥物切换为 sleepy
 
 ---
 
-### 任务 P1-2：连续打卡与解锁机制
+### 任务 P1-2：连续打卡增强与日历热力图（源码审计校正）
 
-**文件**：`scripts.js`、各学科 `shared/scripts.js`
+**文件**：`scripts.js`（已存在 streak 逻辑）、`index.html`、`styles.css`
+
+**问题**：连胜系统**已存在**但存在数据结构 Bug（见 P0-0b）。修复 Bug 后，需增加可视化激励：
+- 首页缺少连胜日历热力图
+- 缺少里程碑提醒（7天/30天/100天）
+- 缺少连胜保护道具
+
+**前置依赖**：必须先完成 P0-0b（streak 数据结构修复）
 
 **执行步骤**：
-1. 扩展 `teachany_gamestate` 增加 `streak` 字段
-2. 每次学习时检查日期连续性
-3. 在首页增加日历热力图
+1. 确保 P0-0b 已修复数据结构（`streak: { count, lastDate, maxCount }`）
+2. 扩展 streak 对象增加 `history` 数组和 `freezes` 字段
+3. 在首页增加日历热力图组件
+4. 实现连胜保护道具机制
 
-**代码示例**（添加到 `scripts.js`）：
+**代码示例**（扩展 streak 结构，修改 `scripts.js`）：
 ```javascript
-// 连续打卡
+// 在 P0-0b 修复的基础上扩展
 function updateStreak() {
-  const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
-  const today = new Date().toISOString().split('T')[0];
-
-  if (!state.streak) state.streak = { count: 0, lastDate: null, history: [] };
-
-  if (state.streak.lastDate === today) return; // 今天已打卡
-
-  const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-  if (state.streak.lastDate === yesterday) {
-    state.streak.count++;
-  } else {
-    state.streak.count = 1; // 断签重置
-  }
-
-  state.streak.lastDate = today;
-  state.streak.history.push(today);
-  if (state.streak.history.length > 365) state.streak.history.shift();
-
-  localStorage.setItem('teachany_gamestate', JSON.stringify(state));
-
-  // 里程碑提醒
-  if ([7, 30, 100].includes(state.streak.count)) {
-    showStreakMilestone(state.streak.count);
-  }
+    const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+    const today = new Date().toDateString();
+    
+    // P0-0b 已确保 streak 是对象格式
+    if (!state.streak || typeof state.streak === 'number') {
+        state.streak = { count: 0, lastDate: null, maxCount: 0, history: [], freezes: 1 };
+    }
+    // 确保 history 和 freezes 字段存在（兼容旧数据）
+    if (!state.streak.history) state.streak.history = [];
+    if (state.streak.freezes === undefined) state.streak.freezes = 1;
+    
+    if (state.streak.lastDate === today) return;
+    
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    if (state.streak.lastDate === yesterday) {
+        state.streak.count++;
+    } else if (state.streak.freezes > 0 && state.streak.lastDate) {
+        // 使用连胜保护道具
+        state.streak.freezes--;
+        state.streak.count++;
+    } else {
+        state.streak.count = 1;
+    }
+    state.streak.lastDate = today;
+    state.streak.maxCount = Math.max(state.streak.maxCount, state.streak.count);
+    state.streak.history.push(today);
+    if (state.streak.history.length > 365) state.streak.history.shift();
+    
+    // 每 100 XP 奖励 1 个冻结道具
+    if (state.xp && state.xp % 100 === 0 && state.xp > 0) {
+        state.streak.freezes++;
+    }
+    
+    // 里程碑提醒
+    if ([7, 30, 100].includes(state.streak.count)) {
+        showStreakMilestone(state.streak.count);
+    }
+    
+    localStorage.setItem('teachany_gamestate', JSON.stringify(state));
 }
 
 function showStreakMilestone(days) {
-  const messages = { 7: '连续学习7天！坚持就是胜利！', 30: '连续学习30天！你太棒了！', 100: '连续学习100天！你是学习之神！' };
-  // 显示弹窗（复用 badge-popup 样式）
+    const messages = { 7: '连续学习7天！坚持就是胜利！', 30: '连续学习30天！你太棒了！', 100: '连续学习100天！你是学习之神！' };
+    // 复用 badge-popup 样式显示里程碑弹窗
+    const popup = document.createElement('div');
+    popup.className = 'badge-popup';
+    popup.innerHTML = `
+        <div class="badge-popup-content">
+            <div class="badge-icon">🔥</div>
+            <h3>${messages[days]}</h3>
+        </div>
+    `;
+    document.body.appendChild(popup);
+    setTimeout(() => popup.classList.add('show'), 100);
+    setTimeout(() => popup.remove(), 4000);
 }
 ```
 
-**验证**：连续两天学习后，打卡计数增加；断签后重置为 1。
+**代码示例**（首页日历热力图，添加到 `index.html`）：
+```html
+<section class="streak-calendar">
+  <h3>📅 学习日历</h3>
+  <div class="heatmap-grid" id="heatmap-grid">
+    <!-- JS 动态生成 365 天热力图 -->
+  </div>
+  <div class="streak-stats">
+    <span class="streak-flame">🔥</span>
+    <span class="streak-count" id="streak-count">0</span> 天连胜
+    <span class="streak-freezes">🛡️ <span id="freeze-count">1</span></span>
+    <span class="streak-max">最高 <span id="streak-max">0</span> 天</span>
+  </div>
+</section>
+```
+
+**验证**：连续两天学习后，首页日历热力图显示连续两格高亮，连胜计数 +1，断签后可用保护道具。
 
 ---
 
-### 任务 P1-3：XP 难度加权
+### 任务 P1-3：自适应难度推荐引擎（源码审计校正）
 
-**文件**：各学科 `shared/scripts.js`、各课件 HTML
+**文件**：各学科 `shared/scripts.js`（已存在 `DIFFICULTY_MULTIPLIERS`）
+
+**问题**：XP 难度加权机制**已存在**（`DIFFICULTY_MULTIPLIERS = {basic:1, intermediate:1.5, advanced:2}`），但：
+- `data-difficulty` 属性标注系统性错误（见 P0-0d，需先修复）
+- 连击 XP 倍率不存在（见 P0-0c，需先修复）
+- 缺少自适应难度推荐：系统不会根据学生答题表现动态推荐下一题难度
+
+**前置依赖**：必须先完成 P0-0d（难度标签修复）和 P0-0c（连击 XP 倍率）
 
 **执行步骤**：
-1. 在题目 HTML 增加 `data-difficulty` 属性
-2. 修改 `addXP()` 函数支持难度加权
+1. 确保 P0-0d 已修复 `data-difficulty` 标注
+2. 确保 P0-0c 已实现连击 XP 倍率
+3. 在 `scripts.js` 中增加自适应难度推荐引擎
+4. 根据答题表现动态高亮推荐难度的题目
 
-**代码示例**（课件 HTML）：
-```html
-<div class="question" data-difficulty="basic"> <!-- 基础题 +10XP --> </div>
-<div class="question" data-difficulty="intermediate"> <!-- 提高题 +20XP --> </div>
-<div class="question" data-difficulty="challenge"> <!-- 挑战题 +30XP --> </div>
-```
-
-**代码示例**（修改 `scripts.js` 的 `addXP`）：
+**代码示例**（自适应引擎，添加到 `shared/scripts.js`）：
 ```javascript
-function addXP(questionElement, isCorrect) {
-  if (!isCorrect) return;
+// 自适应难度引擎（纯前端，无需 AI 后端）
+const AdaptiveEngine = {
+    score: 0,             // 难度分数：-5 到 +5
+    recentAnswers: [],    // 最近 5 题答题记录
 
-  const difficulty = questionElement.dataset.difficulty || 'basic';
-  const baseXP = { basic: 10, intermediate: 20, challenge: 30 }[difficulty];
+    recordAnswer(isCorrect, responseTime) {
+        this.recentAnswers.push({ isCorrect, responseTime, timestamp: Date.now() });
+        if (this.recentAnswers.length > 5) this.recentAnswers.shift();
 
-  let finalXP = baseXP;
+        if (isCorrect) {
+            // 快速答对加分更多（< 10 秒）
+            this.score += responseTime < 10000 ? 2 : 1;
+        } else {
+            this.score -= 2;
+        }
+        this.score = Math.max(-5, Math.min(5, this.score));
+        
+        // 持久化
+        const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+        state.adaptiveScore = this.score;
+        localStorage.setItem('teachany_gamestate', JSON.stringify(state));
+    },
 
-  // 连击倍率
-  const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
-  const combo = (state.comboCount || 0) + 1;
-  if (combo >= 10) finalXP = Math.floor(baseXP * 3);
-  else if (combo >= 5) finalXP = Math.floor(baseXP * 2);
-  else if (combo >= 3) finalXP = Math.floor(baseXP * 1.5);
+    getRecommendedDifficulty() {
+        if (this.score >= 3) return 'advanced';      // 连续答对→推荐挑战题
+        if (this.score <= -3) return 'basic';         // 连续答错→推荐基础题
+        return 'intermediate';                         // 默认提高题
+    },
 
-  state.xp = (state.xp || 0) + finalXP;
-  state.comboCount = combo;
-  state.maxCombo = Math.max(state.maxCombo || 0, combo);
-  localStorage.setItem('teachany_gamestate', JSON.stringify(state));
+    getMotivationalMessage() {
+        if (this.score >= 4) return '你状态很好，来挑战一下！';
+        if (this.score <= -3) return '别灰心，先巩固一下基础！';
+        return null;
+    },
 
-  showXPGain(finalXP, combo);
+    // 页面加载时恢复
+    restore() {
+        const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
+        this.score = state.adaptiveScore || 0;
+    }
+};
+
+// 在答题判定后调用
+function onAnswerSubmit(isCorrect, responseTime, difficulty) {
+    AdaptiveEngine.recordAnswer(isCorrect, responseTime);
+    
+    // 高亮推荐难度的题目
+    const recommended = AdaptiveEngine.getRecommendedDifficulty();
+    document.querySelectorAll('[data-difficulty]').forEach(el => {
+        el.classList.remove('recommended');
+        if (el.dataset.difficulty === recommended) {
+            el.classList.add('recommended');
+        }
+    });
+    
+    // 显示推荐提示
+    const message = AdaptiveEngine.getMotivationalMessage();
+    if (message && window.mascotEngine) {
+        document.dispatchEvent(new CustomEvent('mascot:combo', {
+            detail: { message }
+        }));
+    }
 }
 ```
 
-**验证**：挑战题得分高于基础题，连击 5 次后 XP 翻倍。
+**CSS 补充**（推荐难度高亮）：
+```css
+.quiz-question.recommended {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.2);
+    position: relative;
+}
+.quiz-question.recommended::before {
+    content: '⭐ 推荐';
+    position: absolute;
+    top: -12px;
+    right: 12px;
+    background: var(--primary);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+}
+```
+
+**验证**：连续答对 3 题后系统推荐 advanced 难度题目并高亮标注；连续答错 2 题后推荐 basic 难度。
 
 ---
 
@@ -1172,72 +1359,9 @@ function addXP(questionElement, isCorrect) {
 
 ---
 
-### 任务 P1-9：连胜火苗与保护道具（2026 新增）
+### 任务 P1-9：连胜火苗与保护道具（已合并至 P1-2）
 
-**文件**：`scripts.js`、`index.html`、`styles.css`
-
-**问题**：无连胜机制，用户缺乏每日回访动力。
-
-**执行步骤**：
-1. 扩展 `teachany_gamestate` 增加 `streak` 字段
-2. 首页增加连胜火苗图标
-3. 实现"连胜冻结"保护道具
-
-**代码示例**（`scripts.js`）：
-```javascript
-// 连胜系统
-function updateStreak() {
-  const state = JSON.parse(localStorage.getItem('teachany_gamestate') || '{}');
-  const today = new Date().toISOString().split('T')[0];
-  if (!state.streak) state.streak = { count: 0, lastDate: null, freezes: 1, maxCount: 0 };
-
-  if (state.streak.lastDate === today) return;
-
-  const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-  if (state.streak.lastDate === yesterday) {
-    state.streak.count++;
-  } else if (state.streak.freezes > 0 && state.streak.lastDate) {
-    // 使用连胜保护道具
-    state.streak.freezes--;
-    state.streak.count++;
-  } else {
-    state.streak.count = 1; // 断签重置
-  }
-  state.streak.lastDate = today;
-  state.streak.maxCount = Math.max(state.streak.maxCount, state.streak.count);
-  localStorage.setItem('teachany_gamestate', JSON.stringify(state));
-
-  // 每100XP可购买1个连胜冻结道具
-  if (state.xp && state.xp % 100 === 0 && state.xp > 0) {
-    state.streak.freezes = (state.streak.freezes || 0) + 1;
-    localStorage.setItem('teachany_gamestate', JSON.stringify(state));
-  }
-}
-```
-
-**代码示例**（`index.html` 首页状态栏增加火苗）：
-```html
-<div class="streak-indicator">
-  <span class="streak-flame">🔥</span>
-  <span class="streak-count" id="streak-count">0</span>
-  <span class="streak-freezes" title="连胜保护">🛡️<span id="freeze-count">1</span></span>
-</div>
-```
-
-**CSS**：
-```css
-.streak-flame {
-  font-size: 1.2rem;
-  animation: flame-flicker 0.8s ease-in-out infinite alternate;
-}
-@keyframes flame-flicker {
-  0% { transform: scale(1) rotate(-2deg); }
-  100% { transform: scale(1.1) rotate(2deg); }
-}
-.streak-count { font-weight: 700; color: #ff9800; }
-```
-
-**验证**：每日完成1课后火苗数字+1，断签后可用保护道具。
+> **源码审计校正**：此任务原为新建连胜系统，但源码审计发现连胜系统**已存在**（仅存在数据结构 Bug）。连胜火苗、保护道具、里程碑提醒等内容已**合并至 P1-2**（连续打卡增强与日历热力图）。请直接执行 P1-2，无需重复执行本任务。
 
 ---
 
@@ -1311,67 +1435,9 @@ body.focus-mode .card {
 
 ---
 
-### 任务 P1-11：AI 自适应难度引擎（2026 新增）
+### 任务 P1-11：AI 自适应难度引擎（已合并至 P1-3）
 
-**文件**：各学科 `shared/scripts.js`
-
-**问题**：固定难度，好学生觉得简单、差学生觉得难。
-
-**执行步骤**：
-1. 在 `scripts.js` 中维护 `difficultyScore` 变量
-2. 根据答题表现动态调整下一题难度
-3. 纯前端实现，无需 AI 后端
-
-**代码示例**：
-```javascript
-// 自适应难度引擎
-const AdaptiveEngine = {
-  score: 0, // 难度分数：-5 到 +5
-  recentAnswers: [], // 最近5题答题记录
-
-  recordAnswer(isCorrect, responseTime) {
-    this.recentAnswers.push({ isCorrect, responseTime });
-    if (this.recentAnswers.length > 5) this.recentAnswers.shift();
-
-    if (isCorrect) {
-      this.score += responseTime < 10 ? 2 : 1; // 快速答对加分更多
-    } else {
-      this.score -= 2;
-    }
-    this.score = Math.max(-5, Math.min(5, this.score));
-  },
-
-  getRecommendedDifficulty() {
-    if (this.score >= 3) return 'challenge';     // 连续答对→推荐挑战题
-    if (this.score <= -3) return 'basic';         // 连续答错→推荐基础题
-    return 'intermediate';                         // 默认提高题
-  },
-
-  getMotivationalMessage() {
-    if (this.score >= 4) return '你状态很好，来挑战一下！';
-    if (this.score <= -3) return '别灰心，先巩固一下基础！';
-    return null;
-  }
-};
-
-// 在答题判定后调用
-function onAnswerSubmit(isCorrect, responseTime) {
-  AdaptiveEngine.recordAnswer(isCorrect, responseTime);
-  const nextDifficulty = AdaptiveEngine.getRecommendedDifficulty();
-  const message = AdaptiveEngine.getMotivationalMessage();
-
-  if (message && window.mascotEngine) {
-    window.mascotEngine.show(isCorrect ? 'excited' : 'encourage');
-  }
-
-  // 高亮推荐难度的题目
-  document.querySelectorAll(`[data-difficulty="${nextDifficulty}"]`).forEach(el => {
-    el.classList.add('recommended');
-  });
-}
-```
-
-**验证**：连续答对3题后系统推荐挑战题，连续答错2题后推荐基础题。
+> **源码审计校正**：此任务原为新建自适应难度系统，但已在 P1-3（自适应难度推荐引擎）中完整实现。`DIFFICULTY_MULTIPLIERS` 已在源码中存在，自适应推荐引擎代码已写入 P1-3。请直接执行 P1-3，无需重复执行本任务。
 
 ---
 
@@ -1563,26 +1629,33 @@ function showBadgeUnlock(badge) {
 
 ---
 
-## 执行顺序建议
+## 执行顺序建议（源码审计校正版）
 
 ```
-阶段零（紧急修复）:
-  P0-0a 答题选项可访问性修复 → P0-0b AI脚本路径修复
+阶段零（源码 Bug 紧急修复 · 最高优先级）:
+  P0-0a 旗舰课件 bjr.html 游戏化功能失效修复
+  → P0-0b 连胜计数数据结构不匹配修复
+  → P0-0c 连击持久化与 XP 加成
+  → P0-0d data-difficulty 标注错误修复
+  → P0-0e 道法配色三方不一致修复
+  → P0-0f 首页与课件页字体统一
 
-阶段一（P0 基础）:
+阶段一（P0 基础体验）:
   P0-1 深浅色统一 → P0-2 配色重构 → P0-4 导航回溯
   → P0-3 微交互补全 → P0-8 信息密度优化
   → P0-5 核心素养 → P0-6 差异化模板 → P0-7 题型升级
   → P0-9 PBL 闭环
 
-阶段二（P1 提升）:
-  P1-1 吉祥物 IP → P1-2 打卡解锁 → P1-3 XP 加权
+阶段二（P1 系统增强）:
+  P1-1 吉祥物事件链修复（依赖 P0-0a）
+  → P1-2 连续打卡增强（依赖 P0-0b）
+  → P1-3 自适应难度推荐（依赖 P0-0c、P0-0d）
   → P1-4 跨学科 → P1-5 时政库 → P1-6 读图训练
   → P1-7 开卷适配 → P1-8 移动端
-  → P1-9 连胜火苗 → P1-10 专注模式 → P1-11 AI自适应
-  → P1-12 叙事化滚动 → P1-13 徽章分享卡片
+  → P1-10 专注模式 → P1-12 叙事化滚动 → P1-13 徽章分享卡片
+  （P1-9 已合并至 P1-2，P1-11 已合并至 P1-3，无需单独执行）
 
-阶段三（P2 演进）:
+阶段三（P2 长期演进）:
   P2-7 吉祥物成长（衔接 P1-1）
   → P2-1 Bento 布局 → P2-2 科举深化
   → P2-3~P2-6 创意提案
@@ -1600,13 +1673,41 @@ function showBadgeUnlock(badge) {
 8. **学习目标第一（新增）**：游戏化机制必须服务于学习目标，持续 A/B 测试找到激励与干扰的平衡点
 9. **用户控制权（新增）**：AI 功能和情感化设计需提供关闭开关，尊重用户选择
 
-## 本次补充更新总结（2026.06）
+## 本次源码审计校正总结（2026.06 修订版）
 
-基于线上版 `weiyu1613.github.io/XiaoSiMen` 深度体验 + 2026 最新教育科技与 UI 设计趋势研究，本次补充：
+### 重大勘误
 
-- **新增紧急任务 2 个**（P0-0a 可访问性修复、P0-0b 脚本路径修复）
-- **新增 P1 任务 5 个**（连胜火苗、专注模式、AI自适应、叙事化滚动、徽章分享）
-- **优化建议从 28 项扩充至 39 项**
-- **创意提案从 5 个扩充至 10 个**
-- **参考来源从 7 条扩充至 12 条**
-- 新增 Duolingo 游戏化深度对标、2026 趋势对标矩阵、线上版体验发现等分析章节
+本次基于 `https://weiyu1613.github.io/XiaoSiMen/` 线上版深度体验 + **源码级审计**，对前版报告中的错误假设进行了全面修正：
+
+| 勘误项 | 前版错误描述 | 源码审计真实情况 |
+|--------|-------------|-----------------|
+| 吉祥物系统 | "mascotEngine 从未定义实现" | `mascot.js` 已完整实现：4 角色 × 12 表情 × SVG 渲染 × 自动初始化 |
+| 答题可访问性 | "选项未暴露为交互元素，需紧急修复" | 选项已使用 `<div role="button" tabindex="0" aria-label aria-pressed onkeydown>` |
+| XP 难度加权 | "需新增难度加权机制" | `DIFFICULTY_MULTIPLIERS` 已存在，但 `data-difficulty` 标注系统性错误 |
+| 连击系统 | "需新增连击机制" | `_currentStreak` 已存在，但不持久化且无 XP 加成 |
+| 连胜系统 | "需新增连胜系统" | `updateStreak()` 已存在，但数据结构不匹配导致永远显示 0 |
+
+### 新增源码级 Bug 修复任务（6 项 P0）
+
+- **P0-0a**：bjr.html 本地 `checkAnswer` 绕过全部游戏化功能（旗舰课件完全失效）
+- **P0-0b**：streak 数据结构不匹配（数字 vs 对象属性，首页永远显示 0）
+- **P0-0c**：`_currentStreak` 不持久化且无 XP 加成
+- **P0-0d**：`data-difficulty` 属性系统性标注错误
+- **P0-0e**：道法配色三方不一致（首页绿 / 课件紫 / 吉祥物绿）
+- **P0-0f**：首页与课件页字体不一致
+
+### 修正的任务
+
+- **P1-1**：从"新建 mascot.js"改为"修复吉祥物事件链断裂"（scripts.js 从未 dispatch 自定义事件）
+- **P1-2**：从"新建连胜系统"改为"增强已有连胜系统"（修复 Bug + 日历热力图 + 保护道具）
+- **P1-3**：从"新增 XP 难度加权"改为"自适应难度推荐引擎"（加权已存在，需修复标签 + 增加推荐）
+- **P1-9**：已合并至 P1-2（连胜系统已存在，无需新建）
+- **P1-11**：已合并至 P1-3（自适应引擎已在 P1-3 中实现）
+
+### 有效任务统计
+
+- **P0 源码 Bug 修复**：6 项（P0-0a ~ P0-0f）
+- **P0 基础体验**：9 项（P0-1 ~ P0-9）
+- **P1 系统增强**：9 项有效任务（P1-9 和 P1-11 已合并，实际执行 11 项中的 9 项）
+- **P2 长期演进**：7 项
+- **合计有效任务**：31 项

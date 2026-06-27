@@ -14,11 +14,11 @@
     svg { width: auto !important; max-width: 100% !important; }
     .accordion-header svg { width: auto !important; height: auto !important; }
     :root {
-      --primary: #2e7d32;
-      --primary-light: #4caf50;
-      --primary-dark: #1b5e20;
-      --secondary: #81c784;
-      --accent: #388e3c;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
+      --primary-dark: var(--primary-dark);
+      --secondary: var(--secondary);
+      --accent: var(--primary);
       --bg-light: #f1f8e9;
       --bg-card: #ffffff;
       --text-dark: #1a1a2e;
@@ -356,6 +356,65 @@
   </nav>
 
   <main class="main-content">
+    <!-- 环形学习进度组件 -->
+    <div class="progress-ring-container" style="display:flex;align-items:center;gap:16px;padding:20px;background:white;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);max-width:500px;margin:20px auto;">
+      <svg width="80" height="80" viewBox="0 0 80 80" class="progress-ring">
+        <circle cx="40" cy="40" r="34" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+        <circle cx="40" cy="40" r="34" fill="none" stroke="var(--primary)" stroke-width="6"
+                stroke-dasharray="213.6" stroke-dashoffset="213.6"
+                transform="rotate(-90 40 40)" class="progress-ring-fill"
+                style="transition:stroke-dashoffset 0.5s ease;"/>
+      </svg>
+      <div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--primary);" class="progress-percent">0%</div>
+        <div style="font-size:0.85rem;color:#666;">学习进度</div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      function initProgressRing(){
+        // Count lesson cards
+        var cards = document.querySelectorAll('.lesson-card');
+        var total = cards.length;
+        var storeKey = 'teachany_visited';
+        var gradeFolder = (location.pathname.split('/').slice(-2,-1)[0]) || 'grade';
+        var visited = [];
+        try { visited = JSON.parse(localStorage.getItem(storeKey) || '[]'); } catch(e){ visited = []; }
+        if (!Array.isArray(visited)) visited = [];
+        // 记录当前页课件点击 -> 标记为已访问（按年级命名空间隔离）
+        cards.forEach(function(card){
+          card.addEventListener('click', function(){
+            try {
+              var v = JSON.parse(localStorage.getItem(storeKey) || '[]');
+              if (!Array.isArray(v)) v = [];
+              var id = gradeFolder + '/' + card.getAttribute('href');
+              if (v.indexOf(id) === -1) { v.push(id); localStorage.setItem(storeKey, JSON.stringify(v)); }
+            } catch(e){}
+          });
+        });
+        // 统计已访问课件数（基于当前页课件 href 匹配）
+        var completed = 0;
+        cards.forEach(function(card){
+          var id = gradeFolder + '/' + card.getAttribute('href');
+          if (visited.indexOf(id) > -1) completed++;
+        });
+        var percent = total > 0 ? Math.round(completed / total * 100) : 0;
+        var ring = document.querySelector('.progress-ring-fill');
+        var text = document.querySelector('.progress-percent');
+        if (ring && text) {
+          var circumference = 2 * Math.PI * 34;
+          ring.style.strokeDashoffset = circumference * (1 - percent / 100);
+          text.textContent = percent + '%';
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initProgressRing);
+      } else {
+        initProgressRing();
+      }
+    })();
+    </script>
+
 
     <!-- 第1章：动物的运动和行为 -->
     <div class="accordion-item active" id="unit-1">

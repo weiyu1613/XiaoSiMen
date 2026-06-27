@@ -1,5 +1,5 @@
 /* =============================================================
-   TeachAny 通用交互脚本（适用于所有历史课件）
+   TeachAny 通用交互脚本（适用于所有生物课件）
    版本：v8.0.0
    功能：测验题、选项卡、手风琴、锚点、进度条、时间线
    升级：粒子效果 / Web Audio音效 / XP经验系统 / 连击系统
@@ -8,7 +8,7 @@
 
 /* ========== 通用配置 ========== */
 const COURSE_INFO = {
-  subject: 'history',
+  subject: 'biology',
   grade: 'middle-7',
   totalSections: 5,  // 默认5个section，各课件可覆盖
   currentSection: 1
@@ -16,7 +16,7 @@ const COURSE_INFO = {
 
 /* ========== 初始化 ========== */
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('📚 TeachAny 历史课件系统加载完成');
+  console.log('📚 TeachAny 生物课件系统加载完成');
 
   // 自动高亮当前导航
   highlightCurrentNav();
@@ -110,6 +110,7 @@ function checkPreQuiz(element, isCorrect) {
     updateStreak(true);
     showFloatingXP(element, '+' + _gain + ' XP');
     if (window.mascotEngine) window.mascotEngine.setState('happy');
+    document.dispatchEvent(new CustomEvent('mascot:correct'));
     if (feedback) {
       feedback.innerHTML = '<strong>✅ 答对了！</strong> ' +
                          (feedback.dataset.correct || '你的基础知识很扎实！');
@@ -121,6 +122,7 @@ function checkPreQuiz(element, isCorrect) {
     playSound('wrong');
     updateStreak(false);
     if (window.mascotEngine) window.mascotEngine.setState('confused');
+    document.dispatchEvent(new CustomEvent('mascot:wrong'));
     // 高亮正确答案
     parent.querySelectorAll('.quiz-option').forEach(opt => {
       if (opt.onclick && opt.onclick.toString().includes('true')) {
@@ -163,6 +165,7 @@ function checkPostQuiz(element, isCorrect) {
     updateStreak(true);
     showFloatingXP(element, '+' + _gain + ' XP');
     if (window.mascotEngine) window.mascotEngine.setState('happy');
+    document.dispatchEvent(new CustomEvent('mascot:correct'));
     if (feedback) {
       feedback.innerHTML = '<strong>✅ 正确！</strong> ' +
                          (feedback.dataset.correct || '掌握得很好！');
@@ -174,6 +177,7 @@ function checkPostQuiz(element, isCorrect) {
     playSound('wrong');
     updateStreak(false);
     if (window.mascotEngine) window.mascotEngine.setState('confused');
+    document.dispatchEvent(new CustomEvent('mascot:wrong'));
     // 高亮正确答案
     parent.querySelectorAll('.quiz-option').forEach(opt => {
       if (opt.onclick && opt.onclick.toString().includes('true')) {
@@ -194,7 +198,7 @@ function checkPostQuiz(element, isCorrect) {
 }
 
 // 通用答案检查（v8.0 升级版：推荐使用）
-function checkAnswer(element, isCorrect) {
+function checkAnswer(element, isCorrect, questionNum) {
   const parent = element.closest('.quiz-box') || element.closest('.quiz-options').parentElement;
   const feedback = parent.querySelector('.feedback');
   const allOptions = parent.querySelectorAll('.quiz-option');
@@ -216,6 +220,7 @@ function checkAnswer(element, isCorrect) {
     updateStreak(true);
     showFloatingXP(element, '+' + _gain + ' XP');
     if (window.mascotEngine) window.mascotEngine.setState('happy');
+    document.dispatchEvent(new CustomEvent('mascot:correct'));
     if (feedback) {
       feedback.innerHTML = '<strong>✅ 正确！</strong>';
       feedback.className = 'feedback show correct-fb';
@@ -226,6 +231,7 @@ function checkAnswer(element, isCorrect) {
     playSound('wrong');
     updateStreak(false);
     if (window.mascotEngine) window.mascotEngine.setState('confused');
+    document.dispatchEvent(new CustomEvent('mascot:wrong'));
     // 高亮正确答案
     allOptions.forEach(opt => {
       if (opt.onclick && opt.onclick.toString().includes('true')) {
@@ -233,13 +239,62 @@ function checkAnswer(element, isCorrect) {
       }
     });
     if (feedback) {
-      feedback.innerHTML = '<strong>❌ 不对哦。</strong>';
+      var _wrongTip = (element.dataset && element.dataset.feedback) ? element.dataset.feedback : '不对哦。';
+      // 知识点定位提示：若 quiz-container 上设置 data-knowledge-point，则提示对应知识点
+      var _kpHint = '';
+      var _kpContainer = element.closest('.quiz-container');
+      if (_kpContainer && _kpContainer.dataset && _kpContainer.dataset.knowledgePoint) {
+        _kpHint = '<div style="margin-top:8px;font-size:0.9em;color:#6b7280;">💡 知识点定位：请回顾 ' + _kpContainer.dataset.knowledgePoint + ' 部分</div>';
+      }
+      // 相似题推荐：点击后重置当前题目，便于再次作答（再做一道类似题目）
+      var _recBtn = '<div style="margin-top:10px;"><button type="button" onclick="retryQuizQuestion(this)" style="padding:6px 14px;font-size:0.85em;background:var(--primary,#4f46e5);color:#fff;border:none;border-radius:8px;cursor:pointer;">📖 推荐练习：再做一道类似题目</button></div>';
+      feedback.innerHTML = '<strong>❌ ' + _wrongTip + '</strong>' + _kpHint + _recBtn;
       feedback.className = 'feedback show wrong-fb';
     }
   }
 
-  // 禁用
-  allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+  // 显示答案解析（兼容 explanation-N 与 .answer-explanation 两种机制）
+  if (typeof questionNum !== 'undefined' && questionNum !== null) {
+    var _expl = document.getElementById('explanation-' + questionNum);
+    if (_expl) {
+      _expl.classList.add('show');
+    } else {
+      var _explList = document.querySelectorAll('.answer-explanation');
+      if (_explList[questionNum - 1]) _explList[questionNum - 1].classList.add('show');
+    }
+    var _explBox = element.closest('.quiz-box') || element.closest('.quiz-container');
+    if (_explBox) {
+      var _explInner = _explBox.querySelector('.answer-explanation');
+      if (_explInner) _explInner.classList.add('show');
+    }
+    if (element.dataset && element.dataset.explanation) {
+      var _explTarget = document.querySelector(element.dataset.explanation);
+      if (_explTarget) _explTarget.classList.add('show');
+    }
+  }
+
+  // 禁用所有选项（仅 2 参数旧式调用；3 参数模式保留反复尝试能力）
+  if (typeof questionNum === 'undefined' || questionNum === null) {
+    allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+  }
+}
+
+/* 答错后重做同类题目：重置当前题目选项状态与反馈，允许再次作答 */
+function retryQuizQuestion(btn) {
+  var _box = btn.closest('.quiz-box') || btn.closest('.quiz-container') || btn.parentElement;
+  if (!_box) return;
+  var _opts = _box.querySelectorAll('.quiz-option');
+  _opts.forEach(function (opt) {
+    opt.classList.remove('correct', 'wrong');
+    opt.style.pointerEvents = 'auto';
+    opt.style.animation = '';
+  });
+  var _fb = _box.querySelector('.feedback');
+  if (_fb) {
+    _fb.classList.remove('show');
+    _fb.innerHTML = '';
+  }
+  if (window.mascotEngine) window.mascotEngine.setState('idle');
 }
 
 /* ========== 选项卡功能 ========== */

@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #8b4513;
-      --primary-light: #cd853f;
-      --primary-dark: #6b3410;
-      --secondary: #d4a574;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
+      --primary-dark: var(--primary-dark);
+      --secondary: var(--secondary);
       --bg-light: #faf7f2;
       --bg-card: #ffffff;
       --text-dark: #2c1810;
@@ -40,7 +40,7 @@
     .nav-btn:hover { background: var(--primary); color: white; }
 
     /* Hero Section */
-    .hero-section { background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 20%, #3d2b1f 50%, #5c3a21 75%, #8b4513 100%); color: white; padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
+    .hero-section { background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 20%, #3d2b1f 50%, #5c3a21 75%, var(--primary) 100%); color: white; padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
     .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
     .hero-section::after { content: ''; position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(205,133,63,0.15) 0%, transparent 70%); transform: translate(-50%, -50%); animation: pulse 4s ease-in-out infinite; }
     @keyframes pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; } }
@@ -60,7 +60,7 @@
     .progress-container { max-width: 600px; margin: 24px auto 0; text-align: left; }
     .progress-info { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; opacity: 0.9; }
     .progress-track { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
-    .progress-fill { height: 100%; background: linear-gradient(90deg, #d4a574, #cd853f, #8b4513); border-radius: 4px; transition: width 1s ease; box-shadow: 0 0 12px rgba(205,133,63,0.5); }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--primary-light), var(--primary)); border-radius: 4px; transition: width 1s ease; box-shadow: 0 0 12px rgba(205,133,63,0.5); }
 
     .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
     .section-title { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
@@ -152,7 +152,7 @@
   </style>
 </head>
 <body>
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,var(--primary));color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
 <script>
 (function(){
   var btn=document.getElementById('back-to-top');
@@ -179,7 +179,7 @@
   <!-- Nav Bar -->
   <nav class="nav-bar">
 <div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
-  <a href="../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+  <a href="../../index.html" style="color:var(--primary,var(--primary));text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
 </div>
 
     <div class="nav-inner">

@@ -8,10 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #2e7d32;
-      --primary-light: #4caf50;
-      --primary-dark: #1b5e20;
-      --secondary: #81c784;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
+      --primary-dark: var(--primary-dark);
+      --secondary: var(--secondary);
       --bg-light: #f1f8e9;
       --bg-card: #ffffff;
       --text-dark: #1a1a2e;
@@ -29,7 +29,7 @@
     .nav-btn { color: var(--primary); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
     .nav-btn:hover { background: #c8e6c9; }
     .nav-center { font-weight: 700; color: var(--primary); font-size: 14px; text-align: center; flex: 1; }
-    .hero { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
+    .hero { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary-light) 100%); color: white; padding: 40px 20px; text-align: center; }
     .hero h1 { font-size: 2rem; margin: 10px 0; }
     .hero p { font-size: 1.1rem; opacity: 0.9; }
     .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-bottom: 10px; }
@@ -40,12 +40,12 @@
     .section-title .num { margin-right: 8px; }
     .card { background: white; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(46,125,50,0.1); }
     .anchor-points { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid #81c784; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
+    .anchor-btn { flex: 1; min-width: 200px; padding: 12px 16px; background: linear-gradient(135deg, #c8e6c9, #f1f8e9); border: 2px solid var(--secondary); border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); transition: all 0.2s; text-align: center; }
     .anchor-btn:hover { background: linear-gradient(135deg, #a5d6a7, #c8e6c9); border-color: var(--primary-light); }
     .anchor-btn.selected { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; border-color: var(--primary-dark); }
     .quiz-box { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
     .quiz-option { padding: 12px 16px; background: white; border: 2px solid #e8f5e9; border-radius: 10px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
-    .quiz-option:hover { border-color: #81c784; background: #f1f8e9; }
+    .quiz-option:hover { border-color: var(--secondary); background: #f1f8e9; }
     .quiz-option.correct { border-color: #10b981; background: #d1fae5; }
     .quiz-option.wrong { border-color: #ef4444; background: #fee2e2; }
     .opt-letter { display: inline-block; width: 24px; height: 24px; background: var(--primary-dark); color: white; border-radius: 50%; text-align: center; line-height: 24px; font-weight: 700; margin-right: 8px; }
@@ -64,7 +64,7 @@
     .svg-container { background: #f1f8e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
     .svg-container svg { max-width: 100%; height: auto; }
     .svg-caption { margin-top: 12px; font-size: 14px; color: var(--primary); text-align: center; }
-    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid #81c784; background: #f1f8e9; color: var(--primary-dark); padding: 12px 14px; font-size: 16px; margin-top: 8px; }
+    #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid var(--secondary); background: #f1f8e9; color: var(--primary-dark); padding: 12px 14px; font-size: 16px; margin-top: 8px; }
     #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(46,125,50,0.1); border: 1px solid rgba(46,125,50,0.28); color: var(--primary-dark); }
     .answer-explanation { background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; padding: 16px 20px; margin-top: 12px; font-size: 14px; color: #78350f; display: none; }
     .answer-explanation.show { display: block; }
@@ -91,7 +91,7 @@
       height: 64px;
       border-radius: 50%;
       border: none;
-      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
       box-shadow: 0 6px 24px rgba(46,125,50,0.55);
       cursor: pointer;
       display: flex;
@@ -123,7 +123,7 @@
     }
     @keyframes modalIn { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .ai-modal-header {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white;
       padding: 18px 22px;
       display: flex;
@@ -157,19 +157,19 @@
       border: 2px solid #c8e6c9;
       border-radius: 12px;
       font-size: 13.5px;
-      color: #1b5e20;
+      color: var(--primary-dark);
       cursor: pointer;
       transition: all 0.2s;
       font-family: inherit;
       line-height: 1.5;
     }
-    .ai-q-btn:hover { background: #e8f5e9; border-color: #4caf50; }
+    .ai-q-btn:hover { background: #e8f5e9; border-color: var(--primary-light); }
     .ai-answer {
       display: none;
       margin-top: 12px;
       padding: 14px 16px;
       background: #e8f5e9;
-      border-left: 4px solid #2e7d32;
+      border-left: 4px solid var(--primary);
       border-radius: 0 10px 10px 0;
       font-size: 13px;
       line-height: 1.75;
@@ -308,9 +308,9 @@
     </section>
 
     <!-- ⑦ 前测 -->
-        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #558B2F;">
+        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
       <h4 style="color:#33691E;margin-bottom:8px;"><i class="fa-solid fa-flask"></i> 探究实验</h4>
-      <p style="color:#558B2F;font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
+      <p style="color:var(--primary);font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -574,10 +574,10 @@
         <div class="kg-caption">图 · 种子的萌发 知识图谱（点击各分支可跳转对应模块）</div>
       </div>
       <div class="kg-legend">
-        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#4caf50;"></div>概念理解</div>
-        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#388e3c;"></div>实验探究</div>
-        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#66bb6a;"></div>中考考点</div>
-        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:#81c784;"></div>易错警示</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:var(--primary-light);"></div>概念理解</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:var(--primary);"></div>实验探究</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:var(--primary-light);"></div>中考考点</div>
+        <div class="kg-legend-item"><div class="kg-legend-dot" style="background:var(--secondary);"></div>易错警示</div>
       </div>
     </section>
 
@@ -613,9 +613,9 @@
 
     // 锚点选择
     var anchorContents = {
-      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🌱 种子萌发需要哪些环境条件？</h4><p>种子萌发需要三个环境条件：<strong>适宜的温度</strong>（激活酶活性）、<strong>一定的水分</strong>（软化种皮，启动代谢）、<strong>充足的空气</strong>（提供氧气用于呼吸作用）。这三个条件必须<strong>同时具备</strong>，缺一不可。例如，在干燥、低温、淹水的情况下，种子都不会萌发。</p></div>',
-      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔬 种子自身要满足什么条件才能萌发？</h4><p>种子自身必须满足：<strong>胚是完整的</strong>（受损则无法发育）、<strong>胚是活的</strong>（有生命力，煮熟的种子不能萌发）、<strong>度过休眠期</strong>（有些种子成熟后需要休眠一段时间）。即使环境条件完美，自身条件不满足的种子也不会萌发。</p></div>',
-      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">📖 种子萌发的过程是怎样的？</h4><p>过程：①种子吸水膨胀→②<strong>胚根先突破种皮</strong>，发育成根→③胚轴伸长→④胚芽发育成茎和叶。注意：供给幼苗初期营养的是<strong>子叶</strong>（双子叶植物）或<strong>胚乳</strong>（单子叶植物），不是土壤！</p></div>'
+      1: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🌱 种子萌发需要哪些环境条件？</h4><p>种子萌发需要三个环境条件：<strong>适宜的温度</strong>（激活酶活性）、<strong>一定的水分</strong>（软化种皮，启动代谢）、<strong>充足的空气</strong>（提供氧气用于呼吸作用）。这三个条件必须<strong>同时具备</strong>，缺一不可。例如，在干燥、低温、淹水的情况下，种子都不会萌发。</p></div>',
+      2: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🔬 种子自身要满足什么条件才能萌发？</h4><p>种子自身必须满足：<strong>胚是完整的</strong>（受损则无法发育）、<strong>胚是活的</strong>（有生命力，煮熟的种子不能萌发）、<strong>度过休眠期</strong>（有些种子成熟后需要休眠一段时间）。即使环境条件完美，自身条件不满足的种子也不会萌发。</p></div>',
+      3: '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">📖 种子萌发的过程是怎样的？</h4><p>过程：①种子吸水膨胀→②<strong>胚根先突破种皮</strong>，发育成根→③胚轴伸长→④胚芽发育成茎和叶。注意：供给幼苗初期营养的是<strong>子叶</strong>（双子叶植物）或<strong>胚乳</strong>（单子叶植物），不是土壤！</p></div>'
     };
 
     function selectAnchor(btn, id) {
@@ -630,31 +630,8 @@
     function handleCustomQuestion(val) {
       if (val.trim().length < 2) return;
       var display = document.getElementById('anchor-feedback');
-      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！种子萌发的条件、过程和实验设计都是中考常考点，建议结合对照实验的理解来深入思考。</p></div>';
+      display.innerHTML = '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:var(--primary);margin-bottom:8px;">🤔 你的问题：' + val + '</h4><p>这个问题很好！种子萌发的条件、过程和实验设计都是中考常考点，建议结合对照实验的理解来深入思考。</p></div>';
       display.style.display = 'block';
-    }
-
-    function checkAnswer(el, isCorrect, qNum) {
-      var parent = el.parentElement;
-      var options = parent.querySelectorAll('.quiz-option');
-      for (var i = 0; i < options.length; i++) {
-        options[i].classList.remove('correct', 'wrong');
-      }
-      if (isCorrect) {
-        el.classList.add('correct');
-      } else {
-        el.classList.add('wrong');
-      }
-      var fb = document.getElementById('fb-' + qNum);
-      var exp = document.getElementById('exp-' + qNum);
-      if (isCorrect) {
-        fb.className = 'feedback correct-fb show';
-        fb.innerHTML = '<strong>答对了！</strong> 可以点错误选项看看错在哪里。';
-      } else {
-        fb.className = 'feedback wrong-fb show';
-        fb.innerHTML = '<strong>再想想。</strong> 点一下"查看解析"按钮看看详细讲解。';
-      }
-      exp.classList.add('show');
     }
 
     // AI学伴 弹窗控制
@@ -708,6 +685,7 @@
       </div>
     </div>
   </div>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>

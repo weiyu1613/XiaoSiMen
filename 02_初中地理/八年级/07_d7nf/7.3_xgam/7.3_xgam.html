@@ -343,9 +343,9 @@
     </section>
     
     <!-- Section 3: 前测 -->
-        <div class="interactive-map" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #1565C0;">
+        <div class="interactive-map" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
       <h4 style="color:#0D47A1;margin-bottom:8px;"><i class="fa-solid fa-map-location-dot"></i> 读图思考</h4>
-      <p style="color:#1565C0;font-size:14px;">结合课本地图，思考本课涉及的地理事物的空间分布特征。</p>
+      <p style="color:var(--primary);font-size:14px;">结合课本地图，思考本课涉及的地理事物的空间分布特征。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -685,8 +685,8 @@
     </div>
 
     <!-- 新题型：开放性思考题 -->
-    <div class="open-ended" style="background:#e3f2fd;border:2px solid #1565C0;border-radius:12px;padding:20px;margin:16px 0;">
-      <h4 style="color:#0d47a1;margin-bottom:12px;"><i class="fa-solid fa-lightbulb"></i> 开放性思考题</h4>
+    <div class="open-ended" style="background:#e3f2fd;border:2px solid var(--primary);border-radius:12px;padding:20px;margin:16px 0;">
+      <h4 style="color:var(--primary-dark);margin-bottom:12px;"><i class="fa-solid fa-lightbulb"></i> 开放性思考题</h4>
       <p style="font-weight:600;margin-bottom:12px;">结合本课内容，谈谈你的理解和看法。</p>
       <textarea style="width:100%;min-height:80px;padding:12px;border:2px solid #e0e0e0;border-radius:8px;font-family:inherit;resize:vertical;" placeholder="请在此输入你的思考..."></textarea>
       <div style="margin-top:8px;font-size:13px;color:#666;">💡 提示：可以从多角度思考，没有标准答案，鼓励创造性思维。</div>
@@ -738,9 +738,9 @@
         <!-- 考点4 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#f0f9ff,#eff6ff);border:1px solid #bae6fd;">
           <div class="exam-card-header">
-            <span class="exam-card-num" style="background:#0369a1;">4</span>
+            <span class="exam-card-num" style="background:var(--primary);">4</span>
             <strong style="font-size:15px;color:#1e40af;">📍 常考考点：港澳与内地的联系</strong>
-            <span class="exam-tag" style="background:#0369a1;">近10年考了12次</span>
+            <span class="exam-tag" style="background:var(--primary);">近10年考了12次</span>
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>港澳与祖国内地<strong>优势互补</strong>，<strong>共同发展</strong>。</p>
         </div>
@@ -824,27 +824,6 @@
       }
     }
 
-    /* ========== 答案检查 ========== */
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const explanation = document.getElementById('explanation-' + questionNum);
-      const allOptions = parent.querySelectorAll('.quiz-option');
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
-    
     /* ========== 初始化 ========== */
     document.addEventListener('DOMContentLoaded', function() {
       updateProgressBar();
@@ -859,6 +838,7 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/badges.js?v=8.0"></script>
   <!-- P1-8 移动端工具栏 -->
   <div class="mobile-toolbar">

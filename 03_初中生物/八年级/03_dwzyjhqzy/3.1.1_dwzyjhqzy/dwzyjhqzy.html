@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>3.1 动物在生物圈中的作用 | 初中8年级生物</title>
   <style>
-    :root { --primary: #2e7d32; --primary-light: #4caf50; --primary-dark: #1b5e20; --secondary: #81c784; --bg-light: #f1f8e9; --bg-card: #ffffff; --text-dark: #1a1a2e; --text-muted: #5d6d7e; --shadow-sm: 0 2px 8px rgba(46,125,50,0.08); --shadow-md: 0 4px 20px rgba(46,125,50,0.12); --shadow-lg: 0 8px 32px rgba(46,125,50,0.16); }
+    :root { --primary: var(--primary); --primary-light: var(--primary-light); --primary-dark: var(--primary-dark); --secondary: var(--secondary); --bg-light: #f1f8e9; --bg-card: #ffffff; --text-dark: #1a1a2e; --text-muted: #5d6d7e; --shadow-sm: 0 2px 8px rgba(46,125,50,0.08); --shadow-md: 0 4px 20px rgba(46,125,50,0.12); --shadow-lg: 0 8px 32px rgba(46,125,50,0.16); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; }
     ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: rgba(46,125,50,0.05); } ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
@@ -275,9 +275,9 @@
     </section>
 
     <!-- Section 3: 前测 -->
-        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #558B2F;">
+        <div class="lab-task" style="background:linear-gradient(135deg,#F1F8E9,#DCEDC8);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
       <h4 style="color:#33691E;margin-bottom:8px;"><i class="fa-solid fa-flask"></i> 探究实验</h4>
-      <p style="color:#558B2F;font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
+      <p style="color:var(--primary);font-size:14px;">尝试设计一个简单的实验来验证本课学到的生物学原理。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -807,32 +807,6 @@
       }
     }
 
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const explanation = document.getElementById('explanation-' + questionNum);
-      const allOptions = parent.querySelectorAll('.quiz-option');
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) {
-          feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～';
-          feedback.className = 'feedback show correct-fb';
-        }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) {
-          feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？';
-          feedback.className = 'feedback show wrong-fb';
-        }
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
-
     document.addEventListener('DOMContentLoaded', function() {
       updateProgressBar();
       console.log('📚 《动物在生物圈中的作用》课件加载完成（v1.0）');
@@ -846,6 +820,7 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>

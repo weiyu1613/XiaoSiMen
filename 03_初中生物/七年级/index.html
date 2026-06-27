@@ -14,10 +14,10 @@
     svg { width: auto !important; max-width: 100% !important; }
     .accordion-header svg { width: auto !important; height: auto !important; }
     :root {
-      --primary: #2e7d32;
-      --primary-light: #4caf50;
-      --primary-dark: #1b5e20;
-      --secondary: #81c784;
+      --primary: var(--primary);
+      --primary-light: var(--primary-light);
+      --primary-dark: var(--primary-dark);
+      --secondary: var(--secondary);
       --bg-light: #f1f8e9;
       --bg-card: #ffffff;
       --text-dark: #1a1a2e;
@@ -42,7 +42,7 @@
 
     /* ====== Hero Section ====== */
     .hero-section {
-      background: linear-gradient(135deg, #0a3d1a 0%, #1b5e20 30%, #2e7d32 60%, #388e3c 100%);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark) 30%, var(--primary) 60%, var(--primary) 100%);
       color: white;
       padding: 48px 20px;
       text-align: center;
@@ -289,6 +289,65 @@
   </nav>
 
   <main class="main-content">
+    <!-- 环形学习进度组件 -->
+    <div class="progress-ring-container" style="display:flex;align-items:center;gap:16px;padding:20px;background:white;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);max-width:500px;margin:20px auto;">
+      <svg width="80" height="80" viewBox="0 0 80 80" class="progress-ring">
+        <circle cx="40" cy="40" r="34" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+        <circle cx="40" cy="40" r="34" fill="none" stroke="var(--primary)" stroke-width="6"
+                stroke-dasharray="213.6" stroke-dashoffset="213.6"
+                transform="rotate(-90 40 40)" class="progress-ring-fill"
+                style="transition:stroke-dashoffset 0.5s ease;"/>
+      </svg>
+      <div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--primary);" class="progress-percent">0%</div>
+        <div style="font-size:0.85rem;color:#666;">学习进度</div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      function initProgressRing(){
+        // Count lesson cards
+        var cards = document.querySelectorAll('.lesson-card');
+        var total = cards.length;
+        var storeKey = 'teachany_visited';
+        var gradeFolder = (location.pathname.split('/').slice(-2,-1)[0]) || 'grade';
+        var visited = [];
+        try { visited = JSON.parse(localStorage.getItem(storeKey) || '[]'); } catch(e){ visited = []; }
+        if (!Array.isArray(visited)) visited = [];
+        // 记录当前页课件点击 -> 标记为已访问（按年级命名空间隔离）
+        cards.forEach(function(card){
+          card.addEventListener('click', function(){
+            try {
+              var v = JSON.parse(localStorage.getItem(storeKey) || '[]');
+              if (!Array.isArray(v)) v = [];
+              var id = gradeFolder + '/' + card.getAttribute('href');
+              if (v.indexOf(id) === -1) { v.push(id); localStorage.setItem(storeKey, JSON.stringify(v)); }
+            } catch(e){}
+          });
+        });
+        // 统计已访问课件数（基于当前页课件 href 匹配）
+        var completed = 0;
+        cards.forEach(function(card){
+          var id = gradeFolder + '/' + card.getAttribute('href');
+          if (visited.indexOf(id) > -1) completed++;
+        });
+        var percent = total > 0 ? Math.round(completed / total * 100) : 0;
+        var ring = document.querySelector('.progress-ring-fill');
+        var text = document.querySelector('.progress-percent');
+        if (ring && text) {
+          var circumference = 2 * Math.PI * 34;
+          ring.style.strokeDashoffset = circumference * (1 - percent / 100);
+          text.textContent = percent + '%';
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initProgressRing);
+      } else {
+        initProgressRing();
+      }
+    })();
+    </script>
+
 
     <!-- 绪言 -->
     <div class="accordion-item" id="unit-0">
@@ -427,41 +486,32 @@
     </div>
 
   </main>
+    <!-- 3D 模型入口 -->
+    <div style="max-width:1400px;margin:0 auto;padding:24px 20px;">
+      <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:16px;color:var(--primary,#558B2F);">🧬 3D 交互模型</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+        <a href="shared/models/plant-cell-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#e8f5e9);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">🔬</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">植物细胞 3D 模型</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+        <a href="shared/models/animal-cell-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#e8f5e9);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">🔬</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">动物细胞 3D 模型</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+        <a href="shared/models/heart-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#e8f5e9);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">❤️</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">心脏 3D 模型</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+        <a href="shared/models/dna-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#e8f5e9);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">🧬</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">DNA双螺旋 3D 模型</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+      </div>
+    </div>
+
 
   <!-- Footer -->
-  <footer class="footer">
-    <p class="footer-text">初中7年级生物互动课件系统 · 人教版 · TeachAny v7.14.0</p>
-    <div class="footer-tech">
-      <span><i class="fas fa-brain"></i> AI智能</span>
-      <span><i class="fas fa-chart-line"></i> 中考真题</span>
-      <span><i class="fas fa-mobile-alt"></i> 响应式设计</span>
-    </div>
-  </footer>
-
-  <script>
-    function toggleAccordion(id) {
-      var item = document.getElementById(id);
-      var wasActive = item.classList.contains('active');
-
-      document.querySelectorAll('.accordion-item').forEach(function(el) { el.classList.remove('active'); });
-
-      if (!wasActive) {
-        item.classList.add('active');
-        var nav = document.querySelector('.timeline-nav');
-        var navH = nav ? nav.offsetHeight : 0;
-        var itemTop = item.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: Math.max(0, itemTop - navH - 20), behavior: 'smooth' });
-      }
-
-      var unitNum = id.replace('unit-', '');
-      document.querySelectorAll('.timeline-node').forEach(function(node) {
-        node.classList.toggle('active', node.dataset.unit === unitNum);
-      });
-    }
-  </script>
-
-
-  <script src="shared/mascot.js?v=8.0"></script>
-  <script src="shared/badges.js?v=8.0"></script>
-</body>
-</html>

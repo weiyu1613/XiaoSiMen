@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #2e7d32; --primary-light: #4caf50; --primary-dark: #1b5e20; --secondary: #81c784;
+      --primary: var(--primary); --primary-light: var(--primary-light); --primary-dark: var(--primary-dark); --secondary: var(--secondary);
       --bg-light: #f1f8e9; --bg-card: #ffffff; --text-dark: #1a1a2e; --text-muted: #5d6d7e;
       --shadow-sm: 0 2px 8px rgba(46,125,50,0.08); --shadow-md: 0 4px 20px rgba(46,125,50,0.12);
       --shadow-lg: 0 8px 32px rgba(46,125,50,0.16);
@@ -17,7 +17,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: "PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
     ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: rgba(46,125,50,0.05); } ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 3px; }
-    .hero-section { background: linear-gradient(135deg, #0a3d1a 0%, var(--primary) 30%, var(--primary-light) 70%, #2e7d32 100%); color: white; padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
+    .hero-section { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 30%, var(--primary-light) 70%, var(--primary) 100%); color: white; padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
     .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
     .hero-section::after { content: ''; position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%); transform: translate(-50%,-50%); animation: pulse 4s ease-in-out infinite; }
     @keyframes pulse { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.5; } 50% { transform: translate(-50%,-50%) scale(1.15); opacity: 0.8; } }
@@ -33,7 +33,7 @@
     .progress-container { max-width: 600px; margin: 24px auto 0; text-align: left; }
     .progress-info { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; opacity: 0.9; }
     .progress-track { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
-    .progress-fill { height: 100%; background: linear-gradient(90deg, #a5d6a7, #66bb6a, #43a047); border-radius: 4px; transition: width 1s ease; box-shadow: 0 0 12px rgba(76,175,80,0.5); }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #a5d6a7, var(--primary-light), #43a047); border-radius: 4px; transition: width 1s ease; box-shadow: 0 0 12px rgba(76,175,80,0.5); }
     .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
     .section-title { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
     .section-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: var(--shadow-md); }

@@ -394,6 +394,65 @@
   </nav>
 
   <main class="main-content">
+    <!-- 环形学习进度组件 -->
+    <div class="progress-ring-container" style="display:flex;align-items:center;gap:16px;padding:20px;background:white;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);max-width:500px;margin:20px auto;">
+      <svg width="80" height="80" viewBox="0 0 80 80" class="progress-ring">
+        <circle cx="40" cy="40" r="34" fill="none" stroke="#e0e0e0" stroke-width="6"/>
+        <circle cx="40" cy="40" r="34" fill="none" stroke="var(--primary)" stroke-width="6"
+                stroke-dasharray="213.6" stroke-dashoffset="213.6"
+                transform="rotate(-90 40 40)" class="progress-ring-fill"
+                style="transition:stroke-dashoffset 0.5s ease;"/>
+      </svg>
+      <div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--primary);" class="progress-percent">0%</div>
+        <div style="font-size:0.85rem;color:#666;">学习进度</div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      function initProgressRing(){
+        // Count lesson cards
+        var cards = document.querySelectorAll('.lesson-card');
+        var total = cards.length;
+        var storeKey = 'teachany_visited';
+        var gradeFolder = (location.pathname.split('/').slice(-2,-1)[0]) || 'grade';
+        var visited = [];
+        try { visited = JSON.parse(localStorage.getItem(storeKey) || '[]'); } catch(e){ visited = []; }
+        if (!Array.isArray(visited)) visited = [];
+        // 记录当前页课件点击 -> 标记为已访问（按年级命名空间隔离）
+        cards.forEach(function(card){
+          card.addEventListener('click', function(){
+            try {
+              var v = JSON.parse(localStorage.getItem(storeKey) || '[]');
+              if (!Array.isArray(v)) v = [];
+              var id = gradeFolder + '/' + card.getAttribute('href');
+              if (v.indexOf(id) === -1) { v.push(id); localStorage.setItem(storeKey, JSON.stringify(v)); }
+            } catch(e){}
+          });
+        });
+        // 统计已访问课件数（基于当前页课件 href 匹配）
+        var completed = 0;
+        cards.forEach(function(card){
+          var id = gradeFolder + '/' + card.getAttribute('href');
+          if (visited.indexOf(id) > -1) completed++;
+        });
+        var percent = total > 0 ? Math.round(completed / total * 100) : 0;
+        var ring = document.querySelector('.progress-ring-fill');
+        var text = document.querySelector('.progress-percent');
+        if (ring && text) {
+          var circumference = 2 * Math.PI * 34;
+          ring.style.strokeDashoffset = circumference * (1 - percent / 100);
+          text.textContent = percent + '%';
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initProgressRing);
+      } else {
+        initProgressRing();
+      }
+    })();
+    </script>
+
 
     <!-- 第1章 -->
     <div class="accordion-item active" id="unit-1">
@@ -761,53 +820,27 @@
     </div>
 
   </main>
+    <!-- 3D 模型入口 -->
+    <div style="max-width:1400px;margin:0 auto;padding:24px 20px;">
+      <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:16px;color:var(--primary,#1565C0);">🌍 3D 交互模型</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+        <a href="shared/models/globe-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#e3f2fd);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">🌍</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">3D 地球仪</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+        <a href="shared/models/revolution-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#e3f2fd);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">🔄</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">地球公转自转模型</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+        <a href="shared/models/contour-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#e3f2fd);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">⛰️</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">等高线地形 3D 模型</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+      </div>
+    </div>
+
 
   <!-- Footer -->
-  <footer class="footer">
-    <p class="footer-text">初中7年级地理互动课件系统 · 人教版 · TeachAny v7.14.0</p>
-    <div class="footer-tech">
-      <span><i class="fas fa-brain"></i> AI智能</span>
-      <span><i class="fas fa-chart-line"></i> 中考真题</span>
-      <span><i class="fas fa-mobile-alt"></i> 响应式设计</span>
-    </div>
-  </footer>
-
-  <script>
-    function toggleAccordion(id) {
-      const item = document.getElementById(id);
-      const wasActive = item.classList.contains('active');
-      
-      // Close all
-      document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
-      
-      // Open clicked if it was closed
-      if (!wasActive) {
-        item.classList.add('active');
-        // 手动计算滚动位置，避开顶部 sticky 导航栏
-        const nav = document.querySelector('.timeline-nav');
-        const navH = nav ? nav.offsetHeight : 0;
-        const itemTop = item.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: Math.max(0, itemTop - navH - 20), behavior: 'smooth' });
-      }
-      
-      // Update timeline
-      const unitNum = id.replace('unit-', '');
-      document.querySelectorAll('.timeline-node').forEach(node => {
-        node.classList.toggle('active', node.dataset.unit === unitNum);
-      });
-    }
-
-    // Timeline click handlers
-    document.querySelectorAll('.timeline-node').forEach(node => {
-      node.addEventListener('click', () => {
-        const unit = node.dataset.unit;
-        toggleAccordion('unit-' + unit);
-      });
-    });
-  </script>
-
-
-  <script src="shared/mascot.js?v=8.0"></script>
-  <script src="shared/badges.js?v=8.0"></script>
-</body>
-</html>

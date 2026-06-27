@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>地球仪 3D 模型</title>
+<style>
+  :root{
+    --primary:#1565C0; --primary-light:#42A5F5; --primary-dark:#0D47A1;
+    --accent:#00BCD4; --bg:#e8f4fd; --text:#2c3e50; --white:#f0f8ff;
+    --card-bg:rgba(240,248,255,0.96); --border:#90caf9; --shadow:0 6px 24px rgba(13,71,161,0.18);
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'Noto Sans SC',-apple-system,"Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); overflow:hidden;
+  }
+  /* 顶部标题栏 */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 20px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));
+    color:#fff;box-shadow:var(--shadow);
+  }
+  .topbar h1{font-size:20px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+  .topbar h1 .logo{font-size:24px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.16);color:#fff;text-decoration:none;
+    padding:8px 16px;border-radius:30px;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,255,255,0.35);transition:all .25s;
+  }
+  .back-btn:hover{background:rgba(255,255,255,0.3);transform:translateX(-2px);}
+  /* 3D 画布容器 */
+  #scene{position:fixed;inset:0;}
+  #scene canvas{display:block;cursor:grab;}
+  #scene canvas:active{cursor:grabbing;}
+  /* 控制面板 */
+  .panel{
+    position:fixed;z-index:15;background:var(--card-bg);
+    border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);backdrop-filter:blur(6px);
+  }
+  .controls{bottom:20px;left:50%;transform:translateX(-50%);padding:14px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;}
+  .legend{top:74px;right:16px;padding:14px 16px;min-width:190px;max-width:240px;}
+  .legend h3{font-size:14px;color:var(--primary-dark);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .legend-row{display:flex;align-items:center;gap:8px;font-size:13px;margin:5px 0;}
+  .swatch{width:18px;height:10px;border-radius:3px;flex:none;border:1px solid rgba(0,0,0,.1);}
+  .swatch.line{height:0;border-top:3px solid;background:none;}
+  /* 按钮 */
+  .btn{
+    border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;
+    padding:9px 18px;border-radius:30px;transition:all .2s;
+    background:var(--primary);color:#fff;display:inline-flex;align-items:center;gap:6px;
+  }
+  .btn:hover{background:var(--primary-dark);transform:translateY(-1px);}
+  .btn.ghost{background:#fff;color:var(--primary);border:1.5px solid var(--primary);}
+  .btn.ghost:hover{background:var(--bg);}
+  .btn.active{background:var(--accent);}
+  .toggle{display:flex;align-items:center;gap:8px;font-size:13px;}
+  .switch{position:relative;width:42px;height:22px;}
+  .switch input{opacity:0;width:0;height:0;}
+  .slider{position:absolute;inset:0;background:#bbb;border-radius:22px;transition:.3s;cursor:pointer;}
+  .slider:before{content:"";position:absolute;height:16px;width:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;}
+  .switch input:checked + .slider{background:var(--primary);}
+  .switch input:checked + .slider:before{transform:translateX(20px);}
+  .divider{width:1px;height:26px;background:var(--border);}
+  .hint{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--text);opacity:.6;z-index:10;pointer-events:none;}
+  @media (max-width:640px){
+    .topbar h1{font-size:16px;}
+    .legend{max-width:180px;right:8px;padding:10px;}
+    .controls{gap:8px;padding:10px;width:calc(100% - 16px);}
+    .hint{display:none;}
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <h1><span class="logo">🌐</span>地球仪 3D 模型</h1>
+    <a class="back-btn" href="../../index.html">← 返回首页</a>
+  </header>
+
+  <div id="scene"></div>
+
+  <aside class="panel legend">
+    <h3>📍 图例说明</h3>
+    <div class="legend-row"><span class="swatch" style="background:#1a5490"></span>海洋</div>
+    <div class="legend-row"><span class="swatch" style="background:#3d6b2e"></span>陆地</div>
+    <div class="legend-row"><span class="swatch line" style="border-top-color:#e74c3c"></span>赤道（0°）</div>
+    <div class="legend-row"><span class="swatch line" style="border-top-color:#f39c12"></span>北回归线（23.5°N）</div>
+    <div class="legend-row"><span class="swatch line" style="border-top-color:#26A69A"></span>南回归线（23.5°S）</div>
+  </aside>
+
+  <div class="hint">鼠标拖拽旋转视角 · 滚轮缩放</div>
+
+  <div class="panel controls">
+    <button class="btn" id="btn-spin">⏸ 暂停自转</button>
+    <button class="btn ghost" id="btn-reset">🧭 重置视角</button>
+    <div class="divider"></div>
+    <label class="toggle">自转速度
+      <input type="range" id="spin-speed" min="0" max="100" value="30" style="width:90px;">
+    </label>
+    <div class="divider"></div>
+    <label class="toggle">
+      <span class="switch"><input type="checkbox" id="toggle-lines" checked><span class="slider"></span></span>纬线标注
+    </label>
+  </div>
+
+<script type="module">
+import * as THREE from '../lib/three/three.module.js';
+
+/* ============ 基础场景 ============ */
+const container = document.getElementById('scene');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x070d1a);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.set(0, 2.5, 9);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+/* ============ 灯光 ============ */
+scene.add(new THREE.AmbientLight(0x6688aa, 0.7));
+const sunLight = new THREE.DirectionalLight(0xfff2d8, 1.2);
+sunLight.position.set(6, 4, 5);
+scene.add(sunLight);
+const rim = new THREE.DirectionalLight(0x4477ff, 0.4);
+rim.position.set(-6, -2, -4);
+scene.add(rim);
+
+/* ============ 星空背景 ============ */
+function makeStars(){
+  const g = new THREE.BufferGeometry();
+  const n = 1500, pos = new Float32Array(n*3);
+  for(let i=0;i<n;i++){
+    const r = 80 + Math.random()*120;
+    const t = Math.random()*Math.PI*2, p = Math.acos(2*Math.random()-1);
+    pos[i*3]=r*Math.sin(p)*Math.cos(t);
+    pos[i*3+1]=r*Math.sin(p)*Math.sin(t);
+    pos[i*3+2]=r*Math.cos(p);
+  }
+  g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  return new THREE.Points(g, new THREE.PointsMaterial({color:0xffffff, size:0.5, sizeAttenuation:true, transparent:true, opacity:0.8}));
+}
+scene.add(makeStars());
+
+/* ============ 程序化地球纹理 ============ */
+function makeEarthTexture(){
+  const w=2048, h=1024;
+  const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+  const ctx=cv.getContext('2d');
+  // 海洋渐变
+  const og=ctx.createLinearGradient(0,0,0,h);
+  og.addColorStop(0,'#0a2f55'); og.addColorStop(0.5,'#1a5c97'); og.addColorStop(1,'#0a2f55');
+  ctx.fillStyle=og; ctx.fillRect(0,0,w,h);
+  // 海洋噪点
+  for(let i=0;i<2600;i++){
+    ctx.fillStyle='rgba(255,255,255,'+(Math.random()*0.04)+')';
+    ctx.fillRect(Math.random()*w, Math.random()*h, 2, 2);
+  }
+  const toX=lon=>(lon+180)/360*w;
+  const toY=lat=>(90-lat)/180*h;
+  // 平滑闭合多边形
+  function drawShape(pts){
+    if(pts.length<3) return;
+    ctx.beginPath();
+    const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
+    let start=mid(pts[pts.length-1],pts[0]);
+    ctx.moveTo(toX(start[0]),toY(start[1]));
+    for(let i=0;i<pts.length;i++){
+      const cur=pts[i], nxt=pts[(i+1)%pts.length], m=mid(cur,nxt);
+      ctx.quadraticCurveTo(toX(cur[0]),toY(cur[1]),toX(m[0]),toY(m[1]));
+    }
+    ctx.closePath();
+  }
+  function continent(pts, base){
+    drawShape(pts);
+    ctx.fillStyle=base; ctx.fill();
+    // 边缘描边（海岸线）
+    ctx.lineWidth=2; ctx.strokeStyle='rgba(40,60,30,0.5)'; ctx.stroke();
+  }
+  const green='#3d6b2e', greenDry='#7a8b3a', brown='#8b6f3f';
+
+  // 非洲
+  continent([[-17,21],[11,37],[33,32],[43,11],[51,12],[42,-2],[40,-18],[34,-28],[20,-35],[18,-34],[12,-6],[9,3],[-3,4],[-9,6],[-16,14]], green);
+  // 撒哈拉/沙漠叠色
+  drawShape([[-10,30],[11,33],[30,30],[33,18],[10,16],[-8,18]]); ctx.fillStyle=greenDry; ctx.fill();
+  // 欧亚大陆
+  continent([[-10,36],[-9,43],[2,46],[8,54],[16,58],[26,62],[40,66],[60,70],[80,73],[110,72],[140,72],[170,66],[178,60],[160,55],[140,45],[135,35],[122,30],[110,21],[102,11],[97,16],[88,22],[78,8],[76,20],[72,10],[68,22],[60,24],[52,16],[48,12],[43,12],[34,28],[28,36],[22,40],[14,46],[5,44],[-2,40],[-9,38]], green);
+  // 中亚/西亚沙漠
+  drawShape([[45,40],[80,42],[100,40],[95,32],[60,30],[48,34]]); ctx.fillStyle=greenDry; ctx.fill();
+  // 北美
+  continent([[-168,66],[-150,70],[-128,57],[-124,40],[-117,32],[-105,30],[-97,26],[-90,29],[-82,27],[-80,25],[-83,15],[-92,16],[-97,19],[-104,22],[-114,30],[-124,38],[-132,52],[-152,60],[-168,66]], green);
+  // 南美
+  continent([[-78,11],[-62,9],[-50,1],[-37,-5],[-35,-10],[-39,-22],[-48,-26],[-58,-38],[-70,-53],[-74,-50],[-72,-38],[-76,-18],[-80,0],[-80,8]], green);
+  // 澳大利亚
+  continent([[114,-12],[133,-12],[140,-14],[146,-18],[152,-25],[150,-34],[143,-38],[135,-35],[120,-35],[114,-28],[113,-22]], greenDry);
+  // 格陵兰
+  continent([[-52,60],[-30,60],[-15,70],[-20,80],[-40,83],[-55,78],[-58,68]], '#cfe0e6');
+  // 南极洲
+  continent([[-180,-65],[-150,-70],[-120,-67],[-90,-70],[-60,-68],[-30,-72],[0,-70],[30,-73],[60,-68],[90,-71],[120,-67],[150,-72],[180,-66],[180,-90],[-180,-90]], '#e6eef2');
+  // 岛屿（小椭圆）
+  function island(cx,cy,rx,ry,col){
+    ctx.beginPath(); ctx.ellipse(toX(cx),toY(cy),rx,ry,0,0,Math.PI*2);
+    ctx.fillStyle=col; ctx.fill();
+  }
+  island(140,38,16,9,green);      // 日本
+  island(-3,55,10,18,green);      // 英国
+  island(47,-19,12,24,green);     // 马达加斯加
+  island(173,-42,14,8,green);     // 新西兰
+  island(120,-1,28,9,green);      // 印尼群岛
+  island(105,12,20,6,green);      // 菲律宾
+
+  const tex=new THREE.CanvasTexture(cv);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 8;
+  return tex;
+}
+
+/* ============ 地球本体 ============ */
+const R = 2.2;
+const earthGroup = new THREE.Group();
+scene.add(earthGroup);
+
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(R, 96, 96),
+  new THREE.MeshPhongMaterial({ map: makeEarthTexture(), specular:0x223355, shininess:18 })
+);
+earthGroup.add(earth);
+
+// 大气光晕
+const atmosphere = new THREE.Mesh(
+  new THREE.SphereGeometry(R*1.06, 64, 64),
+  new THREE.MeshBasicMaterial({ color:0x4a90e2, transparent:true, opacity:0.12, side:THREE.BackSide, blending:THREE.AdditiveBlending })
+);
+earthGroup.add(atmosphere);
+
+/* ============ 纬线 + 标签 ============ */
+const lineGroup = new THREE.Group();
+earthGroup.add(lineGroup);
+
+function latLine(latDeg, color){
+  const lat=latDeg*Math.PI/180;
+  const r=R*Math.cos(lat)+0.005, y=R*Math.sin(lat);
+  const pts=[], seg=160;
+  for(let i=0;i<=seg;i++){ const t=i/seg*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(t)*r, y, Math.sin(t)*r)); }
+  return new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({color}));
+}
+function label(text, color, latDeg){
+  const cv=document.createElement('canvas'); cv.width=256; cv.height=72;
+  const c=cv.getContext('2d');
+  c.fillStyle='rgba(255,255,255,0.9)';
+  const x=8,y=8,w=240,h=56,rr=14;
+  c.beginPath(); c.moveTo(x+rr,y); c.arcTo(x+w,y,x+w,y+h,rr); c.arcTo(x+w,y+h,x,y+h,rr); c.arcTo(x,y+h,x,y,rr); c.arcTo(x,y,x+w,y,rr); c.closePath(); c.fill();
+  c.strokeStyle=color; c.lineWidth=3; c.stroke();
+  c.fillStyle=color; c.font='bold 26px "Microsoft YaHei",sans-serif';
+  c.textAlign='center'; c.textBaseline='middle'; c.fillText(text,128,38);
+  const tex=new THREE.CanvasTexture(cv);
+  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex, depthTest:false, transparent:true}));
+  sp.scale.set(1.6,0.45,1);
+  const lat=latDeg*Math.PI/180;
+  sp.position.set((R*Math.cos(lat)+0.35)*Math.cos(0.4), R*Math.sin(lat)+0.12, (R*Math.cos(lat)+0.35)*Math.sin(0.4));
+  return sp;
+}
+lineGroup.add(latLine(0,'#e74c3c'));
+lineGroup.add(latLine(23.5,'#f39c12'));
+lineGroup.add(latLine(-23.5,'#26A69A'));
+lineGroup.add(label('赤道 0°','#e74c3c',0));
+lineGroup.add(label('北回归线 23.5°N','#f39c12',23.5));
+lineGroup.add(label('南回归线 23.5°S','#26A69A',-23.5));
+
+// 极轴指示（自转轴，虚线）
+const axisLen=R*1.35;
+const axisLine=new THREE.Line(
+  new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,-axisLen,0),new THREE.Vector3(0,axisLen,0)]),
+  new THREE.LineDashedMaterial({color:0xffffff, dashSize:0.15, gapSize:0.1, transparent:true, opacity:0.5})
+);
+axisLine.computeLineDistances();
+lineGroup.add(axisLine);
+
+/* ============ 轨道控制器（自实现） ============ */
+class Orbit{
+  constructor(cam,dom){this.cam=cam;this.dom=dom;this.target=new THREE.Vector3(0,0,0);
+    this.sph=new THREE.Spherical().setFromVector3(cam.position.clone().sub(this.target));
+    this.minD=4;this.maxD=20;this.minP=0.15;this.maxP=Math.PI-0.15;
+    this.dTheta=0;this.dPhi=0;this.scale=1;this.damp=0.85;this.drag=false;this.prev={x:0,y:0};
+    this._bind();}
+  _bind(){const d=this.dom;
+    d.addEventListener('pointerdown',e=>{this.drag=true;this.prev={x:e.clientX,y:e.clientY};d.setPointerCapture(e.pointerId);});
+    d.addEventListener('pointerup',()=>this.drag=false);
+    d.addEventListener('pointercancel',()=>this.drag=false);
+    d.addEventListener('pointermove',e=>{if(!this.drag)return;this.dTheta-=(e.clientX-this.prev.x)*0.006;this.dPhi-=(e.clientY-this.prev.y)*0.006;this.prev={x:e.clientX,y:e.clientY};});
+    d.addEventListener('wheel',e=>{e.preventDefault();this.scale*=e.deltaY>0?1.08:0.93;},{passive:false});
+  }
+  update(){this.sph.theta+=this.dTheta;this.sph.phi+=this.dPhi;
+    this.sph.phi=Math.max(this.minP,Math.min(this.maxP,this.sph.phi));
+    this.sph.radius*=this.scale;this.sph.radius=Math.max(this.minD,Math.min(this.maxD,this.sph.radius));
+    this.cam.position.setFromSpherical(this.sph).add(this.target);this.cam.lookAt(this.target);
+    this.dTheta*=this.damp;this.dPhi*=this.damp;this.scale=1;}
+}
+const orbit=new Orbit(camera, renderer.domElement);
+
+/* ============ 交互按钮 ============ */
+let spinning=true;
+let spinSpeed=0.3;
+const btnSpin=document.getElementById('btn-spin');
+btnSpin.addEventListener('click',()=>{
+  spinning=!spinning;
+  btnSpin.textContent=spinning?'⏸ 暂停自转':'▶ 开始自转';
+  btnSpin.classList.toggle('ghost',!spinning);
+});
+document.getElementById('spin-speed').addEventListener('input',e=>{ spinSpeed=(e.target.value/100)*1.2; });
+document.getElementById('btn-reset').addEventListener('click',()=>{
+  camera.position.set(0,2.5,9);
+  orbit.sph.setFromVector3(camera.position.clone());
+  earthGroup.rotation.set(0,0,0);
+});
+document.getElementById('toggle-lines').addEventListener('change',e=>{
+  lineGroup.visible=e.target.checked;
+});
+
+/* ============ 动画循环 ============ */
+function animate(){
+  requestAnimationFrame(animate);
+  if(spinning) earthGroup.rotation.y += spinSpeed*0.01;
+  orbit.update();
+  renderer.render(scene,camera);
+}
+animate();
+
+/* ============ 响应式 ============ */
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
+</script>
+</body>
+</html>

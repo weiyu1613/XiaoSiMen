@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>第2课 文艺复兴 | 初中9年级历史</title>
   <style>
-    :root { --primary: #8b4513; --primary-light: #cd853f; --primary-dark: #654321; --secondary: #d4a574; --accent: #a0522d; --bg: #fdf5e6; --text: #2c3e50; --text-light: #666; --white: #fffaf0; --card-bg: #fffaf0; --border: #d2b48c; --success: #27ae60; --danger: #e74c3c; --warning: #f39c12; --info: #3498db; }
+    :root { --primary: var(--primary); --primary-light: var(--primary-light); --primary-dark: #654321; --secondary: var(--secondary); --accent: #a0522d; --bg: #fdf5e6; --text: #2c3e50; --text-light: #666; --white: #fffaf0; --card-bg: #fffaf0; --border: #d2b48c; --success: #27ae60; --danger: #e74c3c; --warning: #f39c12; --info: #3498db; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; min-height: 100vh; }
     ::-webkit-scrollbar { width: 6px; }
@@ -113,7 +113,7 @@
   </style>
 </head>
 <body>
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,var(--primary));color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
 <script>
 (function(){
   var btn=document.getElementById('back-to-top');
@@ -135,7 +135,7 @@
   <div class="progress-label" id="progress-label">第 2/4 节 · 50%</div>
   <nav class="nav-bar">
 <div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
-  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+  <a href="../../../index.html" style="color:var(--primary,var(--primary));text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
 </div>
 
     <div class="nav-inner">
@@ -234,8 +234,8 @@
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
 <div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
-  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
-  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--primary,var(--primary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,var(--secondary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
   <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
 </div>
 
@@ -523,7 +523,7 @@
       <h2 class="section-title"><span class="num">&#127936;</span> 必考分析与考点总结</h2>
       <div class="card">
 <details style="margin:8px 0;">
-<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,var(--primary));padding:8px 0;">展开详细内容</summary>
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -594,22 +594,6 @@
         window.__TEACHANY_LEARNER_QUESTION__ = q;
       }
     }
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      var parent = element.closest('.quiz-box');
-      var feedback = parent.querySelector('.feedback');
-      var explanation = document.getElementById('explanation-' + questionNum);
-      parent.querySelectorAll('.quiz-option').forEach(function(opt){ opt.classList.remove('correct','wrong'); });
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) { feedback.innerHTML = '<strong>&#9989; 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        if (feedback) { feedback.innerHTML = (element.dataset.feedback || '&#10060; 不对哦，再想想！') + '<br><br>&#128073; 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
-        var alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
     function updateProgressBar() {
       var fill = document.getElementById('progress-fill');
       var label = document.getElementById('progress-label');
@@ -620,6 +604,7 @@
       updateProgressBar();
     });
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>

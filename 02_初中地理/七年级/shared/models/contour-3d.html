@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>等高线地形 3D 模型</title>
+<style>
+  :root{
+    --primary:#1565C0; --primary-light:#42A5F5; --primary-dark:#0D47A1;
+    --accent:#00BCD4; --bg:#e8f4fd; --text:#2c3e50; --white:#f0f8ff;
+    --card-bg:rgba(240,248,255,0.97); --border:#90caf9; --shadow:0 6px 24px rgba(13,71,161,0.18);
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'Noto Sans SC',-apple-system,"Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); overflow:hidden;
+  }
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 20px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));
+    color:#fff;box-shadow:var(--shadow);
+  }
+  .topbar h1{font-size:20px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.16);color:#fff;text-decoration:none;
+    padding:8px 16px;border-radius:30px;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,255,255,0.35);transition:all .25s;
+  }
+  .back-btn:hover{background:rgba(255,255,255,0.3);transform:translateX(-2px);}
+  #scene{position:fixed;inset:0;}
+  #scene canvas{display:block;cursor:crosshair;}
+  .panel{
+    position:fixed;z-index:15;background:var(--card-bg);
+    border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);backdrop-filter:blur(6px);
+  }
+  /* 读图说明面板 */
+  .guide{top:74px;left:16px;padding:16px 18px;width:300px;max-height:calc(100vh - 180px);overflow-y:auto;}
+  .guide h3{font-size:15px;color:var(--primary-dark);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  .guide ol{margin:0;padding-left:18px;}
+  .guide li{font-size:13px;line-height:1.7;margin-bottom:6px;}
+  .guide li b{color:var(--primary);}
+  .guide .tip{margin-top:10px;padding:8px 10px;background:rgba(21,101,192,0.08);border-radius:8px;font-size:12px;line-height:1.6;}
+  /* 图例面板 */
+  .legend{top:74px;right:16px;padding:14px 16px;width:180px;}
+  .legend h3{font-size:14px;color:var(--primary-dark);margin-bottom:8px;}
+  .scale{display:flex;align-items:stretch;gap:8px;margin:6px 0;}
+  .scale-bar{width:16px;height:150px;border-radius:4px;border:1px solid #ccc;
+    background:linear-gradient(to top,#1976d2,#00bcd4,#43a047,#fbc02d,#fb8c00,#e53935);}
+  .scale-labels{display:flex;flex-direction:column;justify-content:space-between;font-size:11px;color:var(--text);}
+  .scale-labels span{line-height:1;}
+  .legend-note{font-size:11px;color:var(--text);opacity:.7;margin-top:6px;line-height:1.5;}
+  /* 海拔悬浮提示 */
+  .alt-tip{
+    position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:15;
+    background:var(--card-bg);border:1px solid var(--border);border-radius:30px;
+    padding:6px 16px;font-size:13px;font-weight:600;color:var(--primary-dark);
+    box-shadow:var(--shadow);min-width:140px;text-align:center;
+  }
+  .alt-tip .m{color:var(--accent);font-size:15px;}
+  /* 控制面板 */
+  .controls{bottom:20px;left:50%;transform:translateX(-50%);padding:14px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;}
+  .btn{
+    border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;
+    padding:9px 18px;border-radius:30px;transition:all .2s;
+    background:var(--primary);color:#fff;display:inline-flex;align-items:center;gap:6px;
+  }
+  .btn:hover{background:var(--primary-dark);transform:translateY(-1px);}
+  .btn.ghost{background:#fff;color:var(--primary);border:1.5px solid var(--primary);}
+  .btn.ghost:hover{background:var(--bg);}
+  .toggle{display:flex;align-items:center;gap:8px;font-size:13px;}
+  .switch{position:relative;width:42px;height:22px;}
+  .switch input{opacity:0;width:0;height:0;}
+  .slider{position:absolute;inset:0;background:#bbb;border-radius:22px;transition:.3s;cursor:pointer;}
+  .slider:before{content:"";position:absolute;height:16px;width:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;}
+  .switch input:checked + .slider{background:var(--primary);}
+  .switch input:checked + .slider:before{transform:translateX(20px);}
+  .divider{width:1px;height:26px;background:var(--border);}
+  .hint{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--text);opacity:.6;z-index:10;pointer-events:none;}
+  @media (max-width:820px){
+    .guide{width:240px;font-size:12px;}
+    .legend{width:150px;}
+    .topbar h1{font-size:15px;}
+    .controls{gap:8px;padding:10px;width:calc(100% - 16px);}
+    .hint{display:none;}
+  }
+  @media (max-width:520px){
+    .guide{display:none;}
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>⛰️ 等高线地形 3D 模型</h1>
+    <a class="back-btn" href="../../index.html">← 返回首页</a>
+  </header>
+
+  <div id="scene"></div>
+
+  <div class="alt-tip">将鼠标移到地形上查看海拔 <span class="m" id="alt-val">—</span></div>
+
+  <aside class="panel guide">
+    <h3>📖 等高线地形图读图方法</h3>
+    <ol>
+      <li><b>看疏密：</b>等高线越<b>密集</b>，坡度越<b>陡</b>；越<b>稀疏</b>，坡度越<b>缓</b>。</li>
+      <li><b>看闭合：</b>闭合等高线，中心高四周低为<b>山顶</b>；中心低四周高为<b>洼地</b>（盆地）。</li>
+      <li><b>看弯曲：</b>等高线向低处凸出为<b>山脊</b>；向高处凸出为<b>山谷</b>。</li>
+      <li><b>看重叠：</b>等高线<b>重叠</b>或重合处为<b>陡崖</b>。</li>
+      <li><b>看海拔：</b>同一条等高线上各点海拔<b>相等</b>；相邻等高线的高差（等高距）相同。</li>
+    </ol>
+    <div class="tip">💡 提示：右侧色标从蓝到红表示海拔由低到高；拖拽可旋转地形，滚轮缩放，移动鼠标实时显示该处海拔。</div>
+  </aside>
+
+  <aside class="panel legend">
+    <h3>📍 海拔色标</h3>
+    <div class="scale">
+      <div class="scale-bar"></div>
+      <div class="scale-labels">
+        <span>1200m</span><span>900m</span><span>600m</span><span>300m</span><span>0m</span>
+      </div>
+    </div>
+    <div class="legend-note">等高线颜色随海拔变化：低处蓝、中处绿黄、高处红。</div>
+  </aside>
+
+  <div class="hint">鼠标拖拽旋转 · 滚轮缩放 · 移动查看海拔</div>
+
+  <div class="panel controls">
+    <button class="btn ghost" id="btn-reset">🧭 重置视角</button>
+    <div class="divider"></div>
+    <label class="toggle">
+      <span class="switch"><input type="checkbox" id="toggle-contour" checked><span class="slider"></span></span>等高线
+    </label>
+    <label class="toggle">
+      <span class="switch"><input type="checkbox" id="toggle-labels" checked><span class="slider"></span></span>海拔标注
+    </label>
+    <label class="toggle">
+      <span class="switch"><input type="checkbox" id="toggle-fill" checked><span class="slider"></span></span>地形着色
+    </label>
+    <div class="divider"></div>
+    <label class="toggle">等高线数
+      <input type="range" id="level-count" min="6" max="20" value="12" style="width:90px;">
+      <span id="level-num" style="width:24px;text-align:center;">12</span>
+    </label>
+  </div>
+
+<script type="module">
+import * as THREE from '../lib/three/three.module.js';
+
+/* ============ 场景 ============ */
+const container=document.getElementById('scene');
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x0a1426);
+scene.fog=new THREE.Fog(0x0a1426, 30, 70);
+
+const camera=new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.1, 200);
+camera.position.set(14, 12, 16);
+
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+container.appendChild(renderer.domElement);
+
+/* ============ 灯光 ============ */
+scene.add(new THREE.AmbientLight(0xaeccef, 0.7));
+const dir=new THREE.DirectionalLight(0xfff4e0, 1.1);
+dir.position.set(12, 18, 8);
+scene.add(dir);
+const dir2=new THREE.DirectionalLight(0x88aaff, 0.35);
+dir2.position.set(-10, 8, -6);
+scene.add(dir2);
+
+/* ============ 噪声（value noise + fBm） ============ */
+function hash(x,y){ const s=Math.sin(x*127.1+y*311.7)*43758.5453; return s-Math.floor(s); }
+function lerp(a,b,t){return a+(b-a)*t;}
+function smooth(t){return t*t*(3-2*t);}
+function vnoise(x,y){
+  const xi=Math.floor(x), yi=Math.floor(y);
+  const xf=x-xi, yf=y-yi;
+  const v00=hash(xi,yi), v10=hash(xi+1,yi), v01=hash(xi,yi+1), v11=hash(xi+1,yi+1);
+  const u=smooth(xf), v=smooth(yf);
+  return lerp(lerp(v00,v10,u), lerp(v01,v11,u), v);
+}
+function fbm(x,y){
+  let sum=0, amp=1, freq=1, norm=0;
+  for(let o=0;o<5;o++){ sum+=amp*vnoise(x*freq,y*freq); norm+=amp; amp*=0.5; freq*=2.1; }
+  return sum/norm;
+}
+function smoothstep(a,b,x){ const t=Math.max(0,Math.min(1,(x-a)/(b-a))); return t*t*(3-2*t); }
+
+/* ============ 地形参数与高度函数 ============ */
+const W=16, N=128, maxH=4.2, altMax=1200;  // altMax 米
+const step=W/N;
+function terrainHeight(x,z){
+  const u=x/W+0.5, v=z/W+0.5;
+  let h=fbm(u*3.0, v*3.0);
+  h=Math.pow(h,1.25);
+  const dx=u-0.5, dy=v-0.5, d=Math.sqrt(dx*dx+dy*dy)*2;
+  const fall=1-smoothstep(0.5,1.05,d);
+  h*=fall;
+  const peak=Math.exp(-((dx*dx+dy*dy)*9));
+  h+=0.45*peak;
+  return Math.min(1, Math.max(0,h));
+}
+
+/* ============ 地形网格 ============ */
+const terrainGeo=new THREE.PlaneGeometry(W,W,N,N);
+terrainGeo.rotateX(-Math.PI/2);
+const pos=terrainGeo.attributes.position;
+const colors=new Float32Array(pos.count*3);
+function heightColor(h){
+  const stops=[
+    [0.00,[0.18,0.45,0.27]],
+    [0.22,[0.40,0.62,0.30]],
+    [0.42,[0.70,0.66,0.32]],
+    [0.60,[0.55,0.40,0.24]],
+    [0.78,[0.66,0.52,0.38]],
+    [0.92,[0.92,0.94,0.96]]
+  ];
+  for(let i=0;i<stops.length-1;i++){
+    if(h<=stops[i+1][0]){
+      const t=(h-stops[i][0])/(stops[i+1][0]-stops[i][0]);
+      const a=stops[i][1], b=stops[i+1][1];
+      return [lerp(a[0],b[0],t),lerp(a[1],b[1],t),lerp(a[2],b[2],t)];
+    }
+  }
+  return stops[stops.length-1][1];
+}
+for(let i=0;i<pos.count;i++){
+  const x=pos.getX(i), z=pos.getZ(i);
+  const h=terrainHeight(x,z);
+  pos.setY(i, h*maxH);
+  const c=heightColor(h);
+  colors[i*3]=c[0]; colors[i*3+1]=c[1]; colors[i*3+2]=c[2];
+}
+terrainGeo.setAttribute('color', new THREE.BufferAttribute(colors,3));
+terrainGeo.computeVertexNormals();
+
+const terrainMat=new THREE.MeshPhongMaterial({vertexColors:true, flatShading:false, shininess:6, specular:0x222222});
+const terrain=new THREE.Mesh(terrainGeo, terrainMat);
+scene.add(terrain);
+
+// 海平面（半透明蓝）
+const sea=new THREE.Mesh(
+  new THREE.PlaneGeometry(W*1.1, W*1.1),
+  new THREE.MeshPhongMaterial({color:0x1e6fb0, transparent:true, opacity:0.55, shininess:40, specular:0x6699cc})
+);
+sea.rotation.x=-Math.PI/2; sea.position.y=0.02;
+scene.add(sea);
+
+/* ============ 高度数组（用于等高线提取） ============ */
+const H=[];
+for(let j=0;j<=N;j++){
+  const row=[];
+  for(let i=0;i<=N;i++){
+    const x=-W/2+i*step, z=-W/2+j*step;
+    row.push(terrainHeight(x,z));
+  }
+  H.push(row);
+}
+
+/* ============ 等高线颜色 ============ */
+function contourColor(t){
+  const stops=[
+    [0.0,[0.10,0.46,0.82]],[0.2,[0.00,0.74,0.83]],[0.4,[0.26,0.63,0.28]],
+    [0.6,[0.98,0.75,0.18]],[0.8,[0.98,0.55,0.00]],[1.0,[0.90,0.22,0.21]]
+  ];
+  for(let i=0;i<stops.length-1;i++){
+    if(t<=stops[i+1][0]){
+      const tt=(t-stops[i][0])/(stops[i+1][0]-stops[i][0]);
+      const a=stops[i][1], b=stops[i+1][1];
+      return new THREE.Color(lerp(a[0],b[0],tt),lerp(a[1],b[1],tt),lerp(a[2],b[2],tt));
+    }
+  }
+  return new THREE.Color(...stops[stops.length-1][1]);
+}
+
+/* ============ Marching Squares 提取等高线 ============ */
+const segTable=[
+  [],          //0
+  [[3,0]],     //1
+  [[0,1]],     //2
+  [[3,1]],     //3
+  [[1,2]],     //4
+  [[3,0],[1,2]],//5
+  [[0,2]],     //6
+  [[3,2]],     //7
+  [[2,3]],     //8
+  [[2,0]],     //9
+  [[0,1],[2,3]],//10
+  [[1,2]],     //11
+  [[1,3]],     //12
+  [[0,1]],     //13
+  [[3,0]],     //14
+  []           //15
+];
+const edgeCorners=[[0,1],[1,2],[2,3],[3,0]];
+
+function makeTextSprite(text, hex){
+  const cv=document.createElement('canvas'); cv.width=200; cv.height=64;
+  const c=cv.getContext('2d');
+  c.fillStyle='rgba(255,255,255,0.92)';
+  const x=6,y=6,w=188,h=52,rr=12;
+  c.beginPath(); c.moveTo(x+rr,y); c.arcTo(x+w,y,x+w,y+h,rr); c.arcTo(x+w,y+h,x,y+h,rr); c.arcTo(x,y+h,x,y,rr); c.arcTo(x,y,x+w,y,rr); c.closePath(); c.fill();
+  c.strokeStyle=hex; c.lineWidth=3; c.stroke();
+  c.fillStyle=hex; c.font='bold 24px "Microsoft YaHei",sans-serif';
+  c.textAlign='center'; c.textBaseline='middle'; c.fillText(text,100,34);
+  const tex=new THREE.CanvasTexture(cv);
+  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthTest:false}));
+  sp.scale.set(1.5,0.48,1);
+  return sp;
+}
+
+let contourGroup=new THREE.Group();   // 等高线
+let labelGroup=new THREE.Group();      // 海拔标注 + 标尺
+let scaleGroup=new THREE.Group();      // 侧边高度标尺
+scene.add(contourGroup); scene.add(labelGroup); scene.add(scaleGroup);
+
+let numLevels=12;
+function buildContours(){
+  // 清空
+  while(contourGroup.children.length) contourGroup.remove(contourGroup.children[0]);
+  while(labelGroup.children.length) labelGroup.remove(labelGroup.children[0]);
+  while(scaleGroup.children.length) scaleGroup.remove(scaleGroup.children[0]);
+
+  const M=numLevels;
+  const hMin=0.05, hMax=0.95;
+  // 侧边高度标尺
+  const sx=-W/2-1.0, sz=-W/2-1.0;
+  const poleGeo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(sx,0,sz),new THREE.Vector3(sx,maxH,sz)]);
+  scaleGroup.add(new THREE.Line(poleGeo, new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:0.7})));
+
+  for(let k=0;k<M;k++){
+    const L=hMin+(hMax-hMin)*k/(M-1);
+    const y=L*maxH;
+    const col=contourColor(k/(M-1));
+    const hex='#'+col.getHexString();
+    const pts=[];
+    let firstPt=null;
+    for(let j=0;j<N;j++){
+      for(let i=0;i<N;i++){
+        const h0=H[j][i], h1=H[j][i+1], h2=H[j+1][i+1], h3=H[j+1][i];
+        const cs=(h0>L?1:0)|(h1>L?2:0)|(h2>L?4:0)|(h3>L?8:0);
+        const segs=segTable[cs];
+        if(!segs.length) continue;
+        const x0=-W/2+i*step, x1=-W/2+(i+1)*step;
+        const z0=-W/2+j*step, z1=-W/2+(j+1)*step;
+        const pe=[[x0,z0],[x1,z0],[x1,z1],[x0,z1]];
+        const hh=[h0,h1,h2,h3];
+        function cross(e){
+          const [a,b]=edgeCorners[e];
+          let t=(L-hh[a])/(hh[b]-hh[a]);
+          if(!isFinite(t)) t=0.5;
+          t=Math.max(0,Math.min(1,t));
+          return [lerp(pe[a][0],pe[b][0],t), lerp(pe[a][1],pe[b][1],t)];
+        }
+        for(const s of segs){
+          const A=cross(s[0]), B=cross(s[1]);
+          pts.push(A[0], y, A[1], B[0], y, B[1]);
+          if(!firstPt) firstPt=[A[0], y, A[1]];
+        }
+      }
+    }
+    if(pts.length){
+      const g=new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.Float32BufferAttribute(pts,3));
+      const mat=new THREE.LineBasicMaterial({color:col, transparent:true, opacity:0.92});
+      contourGroup.add(new THREE.LineSegments(g, mat));
+    }
+    // 标尺刻度 + 标注（每隔一条标注一次，避免拥挤）
+    scaleGroup.add(new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(sx,y,sz),new THREE.Vector3(sx+0.5,y,sz)]),
+      new THREE.LineBasicMaterial({color:col})
+    ));
+    if(k%2===0){
+      const sp=makeTextSprite(Math.round(L*altMax)+'m', hex);
+      sp.position.set(sx+1.4, y, sz);
+      scaleGroup.add(sp);
+    }
+    // 等高线上的海拔标注（每隔一条，取首个点）
+    if(firstPt && k%2===0){
+      const sp=makeTextSprite(Math.round(L*altMax)+'m', hex);
+      sp.position.set(firstPt[0], firstPt[1]+0.18, firstPt[2]);
+      labelGroup.add(sp);
+    }
+  }
+}
+buildContours();
+
+/* ============ 轨道控制器 ============ */
+class Orbit{
+  constructor(cam,dom){this.cam=cam;this.dom=dom;this.target=new THREE.Vector3(0,1,0);
+    this.sph=new THREE.Spherical().setFromVector3(cam.position.clone().sub(this.target));
+    this.minD=8;this.maxD=50;this.minP=0.15;this.maxP=Math.PI/2-0.02;
+    this.dTheta=0;this.dPhi=0;this.scale=1;this.damp=0.86;this.drag=false;this.prev={x:0,y:0};
+    this._bind();}
+  _bind(){const d=this.dom;
+    d.addEventListener('pointerdown',e=>{this.drag=true;this.prev={x:e.clientX,y:e.clientY};d.setPointerCapture(e.pointerId);});
+    d.addEventListener('pointerup',()=>this.drag=false);
+    d.addEventListener('pointercancel',()=>this.drag=false);
+    d.addEventListener('pointermove',e=>{if(!this.drag)return;this.dTheta-=(e.clientX-this.prev.x)*0.006;this.dPhi-=(e.clientY-this.prev.y)*0.006;this.prev={x:e.clientX,y:e.clientY};});
+    d.addEventListener('wheel',e=>{e.preventDefault();this.scale*=e.deltaY>0?1.08:0.93;},{passive:false});
+  }
+  update(){this.sph.theta+=this.dTheta;this.sph.phi+=this.dPhi;
+    this.sph.phi=Math.max(this.minP,Math.min(this.maxP,this.sph.phi));
+    this.sph.radius*=this.scale;this.sph.radius=Math.max(this.minD,Math.min(this.maxD,this.sph.radius));
+    this.cam.position.setFromSpherical(this.sph).add(this.target);this.cam.lookAt(this.target);
+    this.dTheta*=this.damp;this.dPhi*=this.damp;this.scale=1;}
+}
+const orbit=new Orbit(camera, renderer.domElement);
+
+/* ============ 海拔悬浮提示（射线检测） ============ */
+const raycaster=new THREE.Raycaster();
+const mouse=new THREE.Vector2();
+const altEl=document.getElementById('alt-val');
+let hoverThrottle=0;
+renderer.domElement.addEventListener('pointermove',e=>{
+  const now=performance.now();
+  if(now-hoverThrottle<40) return; hoverThrottle=now;
+  mouse.x=(e.clientX/window.innerWidth)*2-1;
+  mouse.y=-(e.clientY/window.innerHeight)*2+1;
+  raycaster.setFromCamera(mouse, camera);
+  const hit=raycaster.intersectObject(terrain, false)[0];
+  if(hit){
+    const h=hit.point.y/maxH;
+    altEl.textContent=Math.round(Math.max(0,h)*altMax)+' m';
+  } else {
+    altEl.textContent='—';
+  }
+});
+
+/* ============ 交互按钮 ============ */
+document.getElementById('btn-reset').addEventListener('click',()=>{
+  camera.position.set(14,12,16); orbit.sph.setFromVector3(camera.position.clone().sub(orbit.target));
+});
+document.getElementById('toggle-contour').addEventListener('change',e=>{ contourGroup.visible=e.target.checked; });
+document.getElementById('toggle-labels').addEventListener('change',e=>{ labelGroup.visible=e.target.checked; scaleGroup.visible=e.target.checked; });
+document.getElementById('toggle-fill').addEventListener('change',e=>{
+  terrainMat.vertexColors=e.target.checked;
+  terrainMat.color.setHex(e.target.checked?0xffffff:0x9aa7b5);
+  terrainMat.needsUpdate=true;
+});
+const levelSlider=document.getElementById('level-count');
+const levelNum=document.getElementById('level-num');
+levelSlider.addEventListener('input',e=>{
+  numLevels=parseInt(e.target.value);
+  levelNum.textContent=numLevels;
+  buildContours();
+  // 同步当前显示状态
+  contourGroup.visible=document.getElementById('toggle-contour').checked;
+  const lbl=document.getElementById('toggle-labels').checked;
+  labelGroup.visible=lbl; scaleGroup.visible=lbl;
+});
+
+/* ============ 动画 ============ */
+function animate(){
+  requestAnimationFrame(animate);
+  orbit.update();
+  renderer.render(scene,camera);
+}
+animate();
+
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
+</script>
+</body>
+</html>

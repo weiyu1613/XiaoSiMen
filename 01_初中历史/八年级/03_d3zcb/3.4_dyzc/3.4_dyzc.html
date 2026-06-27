@@ -7,8 +7,8 @@
   <style>
     /* ========== 变量 & 重置 ========== */
     :root {
-      --primary:   #8b4513;
-      --secondary: #cd853f;
+      --primary:   var(--primary);
+      --secondary: var(--primary-light);
       --bg:        #faf7f2;
       --text:      #3d2310;
       --card:      #fff8f0;
@@ -28,7 +28,7 @@
 
     /* ========== 1. 品牌栏 ========== */
     .brand-bar {
-      background: linear-gradient(135deg, var(--primary) 0%, #6b3410 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: #fff;
       padding: 10px 24px;
       display: flex;
@@ -96,7 +96,7 @@
 
     /* ========== 4. Hero区 ========== */
     .hero {
-      background: linear-gradient(160deg, #6b3410 0%, var(--primary) 55%, var(--secondary) 100%);
+      background: linear-gradient(160deg, var(--primary-dark) 0%, var(--primary) 55%, var(--secondary) 100%);
       color: #fff;
       padding: 64px 24px 56px;
       text-align: center;
@@ -282,7 +282,7 @@
       border-radius: 0 10px 10px 0;
       margin-top: 14px;
       font-size: 13px;
-      color: #6b3410;
+      color: var(--primary-dark);
     }
 
     /* 时间线 */
@@ -431,7 +431,7 @@
 
     /* ========== 10. 页脚 ========== */
     .footer {
-      background: linear-gradient(135deg, var(--primary) 0%, #6b3410 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: rgba(255,255,255,.75);
       padding: 32px 24px;
       text-align: center;
@@ -457,7 +457,7 @@
   
     .answer-explanation {
       background: #fef9f0;
-      border-left: 4px solid var(--primary, #8b4513);
+      border-left: 4px solid var(--primary, var(--primary));
       border-radius: 0 8px 8px 0;
       padding: 16px 20px;
       margin-top: 12px;
@@ -466,13 +466,13 @@
       display: none;
     }
     .answer-explanation.show { display: block; }
-    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--primary, #8b4513); }
+    .answer-explanation .explain-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--primary, var(--primary)); }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
 </head>
 <body>
-<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,var(--primary));color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
 <script>
 (function(){
   var btn=document.getElementById('back-to-top');
@@ -497,7 +497,7 @@
 <!-- 3. 导航栏 -->
 <nav class="nav-bar" id="navBar">
 <div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
-  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+  <a href="../../../index.html" style="color:var(--primary,var(--primary));text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
 </div>
 
   <a href="#hero">课程概览</a>
@@ -607,8 +607,8 @@
   <div class="section-wrap">
     <h2 class="section-title">🎯 学习目标</h2>
 <div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
-  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
-  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--primary,var(--primary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,var(--secondary));color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
   <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
 </div>
 
@@ -1180,27 +1180,8 @@ document.querySelectorAll('.quiz-card').forEach(card => {
   });
 });
 
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const explanation = document.getElementById('explanation-' + questionNum);
-      const allOptions = parent.querySelectorAll('.quiz-option');
-      allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
-
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong> 可以点错误选项看看它们错在哪里～'; feedback.className = 'feedback show correct-fb'; }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) { feedback.innerHTML = specificFeedback + '<br><br>💡 换一个选项试试？'; feedback.className = 'feedback show wrong-fb'; }
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
-
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/badges.js?v=8.0"></script>
   <!-- P1-8 移动端工具栏 -->
   <div class="mobile-toolbar">

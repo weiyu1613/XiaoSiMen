@@ -69,7 +69,7 @@
     .section { padding: 0 20px; margin-bottom: 30px; }
     #learner-question-input { width: 100%; border-radius: 12px; border: 1px solid #90caf9; background: #e3f2fd; color: #0d47a1; padding: 12px 14px; font-size: 16px; margin-top: 8px; }
     #anchor-feedback { margin-top: 14px; padding: 14px; border-radius: 12px; background: rgba(21,101,192,0.1); border: 1px solid rgba(21,101,192,0.28); color: #0d47a1; }
-    .anchor-display { background: #F3E5F5; border: 2px solid #7B1FA2; border-radius: 10px; padding: 16px; min-height: 100px; margin-top: 16px; }
+    .anchor-display { background: var(--bg-light); border: 2px solid var(--primary); border-radius: 10px; padding: 16px; min-height: 100px; margin-top: 16px; }
     @media (max-width: 768px) {
       .hero { padding: 20px 14px !important; }
       .hero h1 { font-size: 1.3rem !important; }
@@ -183,9 +183,9 @@
       </div>
     </section>
 
-        <div class="scenario-theater" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid #7B1FA2;">
-      <h4 style="color:#4A148C;margin-bottom:8px;"><i class="fa-solid fa-mask"></i> 情境剧场</h4>
-      <p style="color:#7B1FA2;font-size:14px;">设想你身处本课描述的情境中，你会如何做出选择？请与同学讨论。</p>
+        <div class="scenario-theater" style="background:linear-gradient(135deg,var(--bg-light),#E1BEE7);border-radius:12px;padding:20px;margin:16px 0;border-left:4px solid var(--primary);">
+      <h4 style="color:var(--primary-dark);margin-bottom:8px;"><i class="fa-solid fa-mask"></i> 情境剧场</h4>
+      <p style="color:var(--primary);font-size:14px;">设想你身处本课描述的情境中，你会如何做出选择？请与同学讨论。</p>
     </div>
 
 <section class="section" id="section-prequiz">
@@ -411,23 +411,6 @@
         window.__TEACHANY_LEARNER_QUESTION__ = question;
       }
     }
-    function checkAnswer(element, isCorrect, questionNum, optionLetter) {
-      const parent = element.closest('.quiz-box');
-      const feedback = parent.querySelector('.feedback');
-      const explanation = document.getElementById('explanation-' + questionNum);
-      parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('correct', 'wrong'));
-      if (isCorrect) {
-        element.classList.add('correct');
-        if (feedback) { feedback.innerHTML = '<strong>✅ 答对了！</strong>'; feedback.className = 'feedback show correct-fb'; }
-        if (explanation) explanation.classList.add('show');
-      } else {
-        element.classList.add('wrong');
-        const specificFeedback = element.dataset.feedback || '❌ 不对哦，再想想！';
-        if (feedback) { feedback.innerHTML = specificFeedback; feedback.className = 'feedback show wrong-fb'; }
-        const alreadyCorrect = parent.querySelector('.quiz-option.correct');
-        if (alreadyCorrect && explanation) explanation.classList.add('show');
-      }
-    }
     document.addEventListener('DOMContentLoaded', function() {
       const progress = (COURSE_INFO.currentSection / COURSE_INFO.totalSections) * 100;
       const pf = document.getElementById('progress-fill');
@@ -437,6 +420,7 @@
       console.log('📚 《公民的基本义务》课件加载完成（v1.0）');
     });
   </script>
+  <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/adaptive-engine.js?v=8.0"></script>
 <script src="../../shared/mascot.js?v=8.0"></script>
 <script src="../../shared/badges.js?v=8.0"></script>
