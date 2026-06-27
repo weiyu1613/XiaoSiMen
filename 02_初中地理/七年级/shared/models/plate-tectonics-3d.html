@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>板块构造与大陆漂移 3D</title>
+<style>
+  :root{
+    --primary:#1565C0; --primary-light:#42A5F5; --primary-dark:#0D47A1;
+    --accent:#00BCD4; --bg:#e8f4fd; --text:#2c3e50; --white:#f0f8ff;
+    --card-bg:rgba(240,248,255,0.96); --border:#90caf9; --shadow:0 6px 24px rgba(13,71,161,0.18);
+    --radius:14px;
+    --p-eurasia:#6A1B9A; --p-africa:#F9A825; --p-america:#2E7D32;
+    --p-pacific:#0277BD; --p-indian:#00897B; --p-antarctic:#546E7A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'Noto Sans SC',-apple-system,"Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); overflow:hidden;
+  }
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 20px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));
+    color:#fff;box-shadow:var(--shadow);
+  }
+  .topbar h1{font-size:20px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+  .topbar h1 .logo{font-size:24px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.16);color:#fff;text-decoration:none;
+    padding:8px 16px;border-radius:30px;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,255,255,0.35);transition:all .25s;
+  }
+  .back-btn:hover{background:rgba(255,255,255,0.3);transform:translateX(-2px);}
+  #scene{position:fixed;inset:0;}
+  #scene canvas{display:block;cursor:grab;}
+  #scene canvas:active{cursor:grabbing;}
+  .panel{
+    position:fixed;z-index:15;background:var(--card-bg);
+    border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);backdrop-filter:blur(6px);
+  }
+  /* 右侧图例 */
+  .legend{top:74px;right:16px;padding:14px 16px;width:220px;}
+  .legend h3{font-size:14px;color:var(--primary-dark);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .legend .sec{font-size:12px;color:var(--primary-dark);font-weight:700;margin:10px 0 4px;}
+  .legend-row{display:flex;align-items:center;gap:8px;font-size:12.5px;margin:5px 0;}
+  .sw{width:18px;height:12px;border-radius:3px;flex:none;border:1px solid rgba(0,0,0,.1);}
+  .legend-row .bd{width:22px;height:0;border-top:3px dashed #2e7d32;flex:none;}
+  .legend-row .bd.red{border-top-color:#e53935;}
+  .legend-row .bd.solid{border-top-style:solid;border-top-color:#2e7d32;}
+  /* 左侧说明 */
+  .info{top:74px;left:16px;padding:14px 16px;width:250px;}
+  .info h3{font-size:14px;color:var(--primary-dark);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .info p{font-size:12.5px;line-height:1.6;margin:5px 0;}
+  .info b{color:var(--primary-dark);}
+  /* 底部时间轴 */
+  .timeline{bottom:20px;left:50%;transform:translateX(-50%);padding:14px 20px;width:min(720px,calc(100% - 32px));}
+  .tl-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .tl-time{font-size:18px;font-weight:700;color:var(--primary-dark);}
+  .tl-era{font-size:13px;color:var(--text);opacity:.8;}
+  .era-bar{display:flex;justify-content:space-between;font-size:11px;color:var(--text);opacity:.7;margin:6px 2px 2px;}
+  input[type=range]{-webkit-appearance:none;width:100%;height:8px;border-radius:8px;background:linear-gradient(90deg,var(--primary-light),var(--primary));outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--primary);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.25);}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid var(--primary);cursor:pointer;}
+  .tl-btns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:7px 12px;border-radius:30px;transition:all .2s;background:#fff;color:var(--primary);border:1.5px solid var(--primary);}
+  .btn:hover{background:var(--bg);}
+  .btn.active{background:var(--primary);color:#fff;}
+  .btn.play{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .hint{position:fixed;bottom:170px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--text);opacity:.6;z-index:10;pointer-events:none;white-space:nowrap;}
+  @media (max-width:760px){
+    .info,.legend{display:none;}
+    .hint{display:none;}
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <h1><span class="logo">🌍</span>板块构造与大陆漂移 3D</h1>
+    <a class="back-btn" href="../../index.html">← 返回首页</a>
+  </header>
+
+  <div id="scene"></div>
+
+  <aside class="panel info">
+    <h3>🌋 大陆漂移学说</h3>
+    <p>1912年魏格纳提出<b>大陆漂移学说</b>：地球上的大陆曾经连成一体（<b>泛大陆 Pangea</b>），后经漫长地质时期分裂、漂移至今日的位置。</p>
+    <p>其动力来源于<b>板块构造</b>：岩石圈被分为若干板块，漂浮在软流层上，随地幔对流缓慢移动。</p>
+    <p><b>生长边界</b>：板块张裂，形成海岭（如大西洋中洋脊）。</p>
+    <p><b>消亡边界</b>：板块碰撞，形成海沟与山脉（如喜马拉雅、安第斯山）。</p>
+    <p style="margin-top:8px;opacity:.75;">拖动时间轴，观察2亿年来大陆如何从泛大陆分裂漂移至今天。</p>
+  </aside>
+
+  <aside class="panel legend">
+    <h3>🗺️ 六大板块</h3>
+    <div class="legend-row"><span class="sw" style="background:var(--p-eurasia)"></span>亚欧板块</div>
+    <div class="legend-row"><span class="sw" style="background:var(--p-africa)"></span>非洲板块</div>
+    <div class="legend-row"><span class="sw" style="background:var(--p-america)"></span>美洲板块</div>
+    <div class="legend-row"><span class="sw" style="background:var(--p-pacific)"></span>太平洋板块</div>
+    <div class="legend-row"><span class="sw" style="background:var(--p-indian)"></span>印度洋板块</div>
+    <div class="legend-row"><span class="sw" style="background:var(--p-antarctic)"></span>南极洲板块</div>
+    <div class="sec">板块边界类型</div>
+    <div class="legend-row"><span class="bd"></span>生长边界（张裂）</div>
+    <div class="legend-row"><span class="bd red"></span>消亡边界（碰撞）</div>
+  </aside>
+
+  <div class="hint">鼠标拖拽旋转地球 · 滚轮缩放</div>
+
+  <div class="panel timeline">
+    <div class="tl-head">
+      <span class="tl-time" id="tl-time">现在</span>
+      <span class="tl-era" id="tl-era">第四纪 · 0 百万年前</span>
+    </div>
+    <input type="range" id="tl-slider" min="0" max="1000" value="1000" step="1">
+    <div class="era-bar"><span>2亿年前</span><span>1.5亿</span><span>1亿</span><span>5000万</span><span>现在</span></div>
+    <div class="tl-btns">
+      <button class="btn play" id="btn-play">▶ 自动播放</button>
+      <button class="btn" data-t="0">2亿年前</button>
+      <button class="btn" data-t="250">1.5亿</button>
+      <button class="btn" data-t="500">1亿</button>
+      <button class="btn" data-t="750">5000万</button>
+      <button class="btn active" data-t="1000">现在</button>
+    </div>
+  </div>
+
+<script type="module">
+import * as THREE from '../lib/three/three.module.js';
+
+/* ============ 基础场景 ============ */
+const container = document.getElementById('scene');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x070d1a);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.set(0, 2.4, 8.5);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0x99bbdd, 0.9));
+const sun = new THREE.DirectionalLight(0xfff2d8, 1.1);
+sun.position.set(5, 4, 6); scene.add(sun);
+const rim = new THREE.DirectionalLight(0x4477ff, 0.5);
+rim.position.set(-6, -2, -4); scene.add(rim);
+
+/* 星空 */
+function makeStars(){
+  const g=new THREE.BufferGeometry(); const n=1200,p=new Float32Array(n*3);
+  for(let i=0;i<n;i++){const r=80+Math.random()*120,t=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);
+    p[i*3]=r*Math.sin(ph)*Math.cos(t);p[i*3+1]=r*Math.sin(ph)*Math.sin(t);p[i*3+2]=r*Math.cos(ph);}
+  g.setAttribute('position',new THREE.BufferAttribute(p,3));
+  return new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:0.5,transparent:true,opacity:0.7}));
+}
+scene.add(makeStars());
+
+/* ============ 大陆与板块数据 ============ */
+// 板块颜色
+const PCOL = {
+  eurasia:'#6A1B9A', africa:'#F9A825', america:'#2E7D32',
+  pacific:'#0277BD', indian:'#00897B', antarctic:'#546E7A'
+};
+// 大陆：本地多边形（相对中心的经纬度偏移）+ 所属板块
+const CONTINENTS = {
+  NA: { plate:'america', poly:[[-30,20],[-12,26],[12,22],[18,5],[8,-12],[-8,-16],[-28,-10],[-38,6]] },
+  SA: { plate:'america', poly:[[-15,12],[6,10],[12,-6],[4,-28],[-12,-32],[-22,-14]] },
+  AF: { plate:'africa',  poly:[[-20,28],[-4,32],[16,26],[22,4],[18,-16],[10,-34],[-2,-36],[-16,-18],[-24,2]] },
+  EU: { plate:'eurasia', poly:[[-52,16],[-30,26],[8,22],[58,18],[64,2],[34,-16],[-6,-10],[-42,-4]] },
+  IN: { plate:'indian',  poly:[[-9,6],[9,5],[11,-9],[-9,-11]] },
+  AU: { plate:'indian',  poly:[[-22,9],[16,11],[20,-6],[9,-16],[-16,-13]] }
+};
+// 南极洲：绕极地的带（单独处理）
+// 关键帧：5 个时期，每个大陆的中心 (lon,lat)。t: 0=2亿年前 ... 4=现在
+const KEYS = [
+  // 2亿年前（泛大陆 Pangea）
+  { era:'侏罗纪早期 · 200 百万年前', NA:{lon:-28,lat:30}, SA:{lon:-66,lat:-28}, AF:{lon:-8,lat:2}, EU:{lon:24,lat:42}, IN:{lon:24,lat:-24}, AU:{lon:62,lat:-44} },
+  // 1.5亿年前
+  { era:'侏罗纪晚期 · 150 百万年前', NA:{lon:-58,lat:32}, SA:{lon:-72,lat:-36}, AF:{lon:0,lat:2}, EU:{lon:42,lat:42}, IN:{lon:36,lat:-22}, AU:{lon:92,lat:-50} },
+  // 1亿年前
+  { era:'白垩纪 · 100 百万年前', NA:{lon:-80,lat:36}, SA:{lon:-68,lat:-32}, AF:{lon:8,lat:1}, EU:{lon:62,lat:44}, IN:{lon:52,lat:-12}, AU:{lon:112,lat:-46} },
+  // 5000万年前
+  { era:'古近纪 · 50 百万年前', NA:{lon:-94,lat:40}, SA:{lon:-64,lat:-26}, AF:{lon:15,lat:1}, EU:{lon:80,lat:46}, IN:{lon:70,lat:6}, AU:{lon:126,lat:-36} },
+  // 现在
+  { era:'第四纪 · 0 百万年前', NA:{lon:-100,lat:45}, SA:{lon:-60,lat:-18}, AF:{lon:20,lat:2}, EU:{lon:90,lat:50}, IN:{lon:80,lat:22}, AU:{lon:134,lat:-25} }
+];
+const TIME_LABEL = ['2亿年前','1.5亿年前','1亿年前','5000万年前','现在'];
+
+function lerp(a,b,t){ return a+(b-a)*t; }
+function getCentroid(name, tIdx){
+  // tIdx in [0,4]
+  const seg = Math.max(0, Math.min(3, Math.floor(tIdx)));
+  const f = tIdx - seg;
+  const a = KEYS[seg][name], b = KEYS[seg+1][name];
+  return { lon: lerp(a.lon,b.lon,f), lat: lerp(a.lat,b.lat,f) };
+}
+
+/* ============ 动态地球纹理 ============ */
+const TW=1024, TH=512;
+const tCanvas = document.createElement('canvas'); tCanvas.width=TW; tCanvas.height=TH;
+const tctx = tCanvas.getContext('2d');
+const earthTex = new THREE.CanvasTexture(tCanvas);
+earthTex.colorSpace = THREE.SRGBColorSpace;
+earthTex.anisotropy = 8;
+
+const toX = lon => (lon+180)/360*TW;
+const toY = lat => (90-lat)/180*TH;
+
+function drawGlobe(tIdx){
+  const ctx = tctx;
+  // 海洋底色（太平洋板块区域略深）
+  const og = ctx.createLinearGradient(0,0,0,TH);
+  og.addColorStop(0,'#0a2f55'); og.addColorStop(0.5,'#1565C0'); og.addColorStop(1,'#0a2f55');
+  ctx.fillStyle = og; ctx.fillRect(0,0,TW,TH);
+  // 海洋噪点
+  ctx.fillStyle='rgba(255,255,255,0.04)';
+  for(let i=0;i<900;i++) ctx.fillRect(Math.random()*TW, Math.random()*TH, 2, 2);
+
+  // 太平洋板块标注（中央太平洋区域）
+  ctx.fillStyle='rgba(2,119,189,0.35)';
+  ctx.beginPath(); ctx.ellipse(toX(-160),toY(0),120,90,0,0,Math.PI*2); ctx.fill();
+
+  // 南极洲板块（绕极带）
+  ctx.fillStyle = PCOL.antarctic;
+  ctx.fillRect(0, toY(-62), TW, TH-toY(-62));
+  // 南极洲上缘波浪
+  ctx.beginPath();
+  ctx.moveTo(0, toY(-62));
+  for(let x=0;x<=TW;x+=20){ const y = toY(-62) + Math.sin(x*0.03)*4; ctx.lineTo(x,y); }
+  ctx.lineTo(TW,TH); ctx.lineTo(0,TH); ctx.closePath(); ctx.fill();
+
+  // 绘制各大陆
+  function drawContinent(name){
+    const c = CONTINENTS[name];
+    const cen = getCentroid(name, tIdx);
+    ctx.beginPath();
+    c.poly.forEach((p,i)=>{
+      const lon = cen.lon + p[0];
+      const lat = cen.lat + p[1];
+      const x = toX(lon), y = toY(lat);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.closePath();
+    ctx.fillStyle = PCOL[c.plate]; ctx.fill();
+    ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(0,0,0,0.35)'; ctx.stroke();
+    // 大陆名标注
+    ctx.fillStyle='rgba(255,255,255,0.85)'; ctx.font='bold 11px "Microsoft YaHei",sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    const labelMap = {NA:'北美',SA:'南美',AF:'非洲',EU:'亚欧',IN:'印度',AU:'澳洲'};
+    ctx.fillText(labelMap[name], toX(cen.lon), toY(cen.lat));
+  }
+  ['EU','NA','SA','AF','AU','IN'].forEach(drawContinent);
+
+  // 太平洋板块文字
+  ctx.fillStyle='rgba(255,255,255,0.6)'; ctx.font='bold 12px "Microsoft YaHei",sans-serif';
+  ctx.textAlign='center'; ctx.fillText('太平洋板块', toX(-160), toY(0));
+
+  // 经纬网
+  ctx.strokeStyle='rgba(255,255,255,0.12)'; ctx.lineWidth=1;
+  for(let lon=-150;lon<=150;lon+=30){ ctx.beginPath(); ctx.moveTo(toX(lon),0); ctx.lineTo(toX(lon),TH); ctx.stroke(); }
+  for(let lat=-60;lat<=60;lat+=30){ ctx.beginPath(); ctx.moveTo(0,toY(lat)); ctx.lineTo(TW,toY(lat)); ctx.stroke(); }
+
+  // ============ 板块边界 ============
+  const AF=getCentroid('AF',tIdx), EU=getCentroid('EU',tIdx), NA=getCentroid('NA',tIdx),
+        SA=getCentroid('SA',tIdx), IN=getCentroid('IN',tIdx), AU=getCentroid('AU',tIdx);
+
+  // 生长边界：大西洋中洋脊（位于美洲与非洲/亚欧之间）
+  const ridgeLon = (Math.max(SA.lon, NA.lon) + Math.min(AF.lon, EU.lon))/2;
+  ctx.strokeStyle='#2e7d32'; ctx.lineWidth=3; ctx.setLineDash([10,6]);
+  ctx.beginPath(); ctx.moveTo(toX(ridgeLon), toY(65)); ctx.lineTo(toX(ridgeLon), toY(-55)); ctx.stroke();
+  ctx.setLineDash([]);
+  // 生长边界标签
+  drawLabel(toX(ridgeLon), toY(0), '生长', '#2e7d32');
+
+  // 消亡边界：美洲西岸（太平洋板块俯冲）
+  const westLon = Math.min(NA.lon, SA.lon) - 8;
+  ctx.strokeStyle='#e53935'; ctx.lineWidth=3; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(toX(westLon), toY(60)); ctx.lineTo(toX(westLon), toY(-50)); ctx.stroke();
+  ctx.setLineDash([]);
+  drawLabel(toX(westLon), toY(-10), '消亡', '#e53935');
+
+  // 消亡边界：印度-亚欧碰撞带（喜马拉雅）
+  const colLat = (IN.lat + 5 + EU.lat - 8)/2;
+  ctx.strokeStyle='#e53935'; ctx.lineWidth=3; ctx.setLineDash([4,4]);
+  ctx.beginPath();
+  ctx.moveTo(toX(IN.lon-14), toY(colLat+4));
+  ctx.quadraticCurveTo(toX(IN.lon), toY(colLat-3), toX(IN.lon+16), toY(colLat+3));
+  ctx.stroke();
+  ctx.setLineDash([]);
+  drawLabel(toX(IN.lon+4), toY(colLat+8), '消亡', '#e53935');
+
+  earthTex.needsUpdate = true;
+}
+function drawLabel(x,y,text,color){
+  const ctx=tctx;
+  ctx.font='bold 11px "Microsoft YaHei",sans-serif';
+  const w = ctx.measureText(text).width + 8;
+  ctx.fillStyle='rgba(255,255,255,0.9)';
+  ctx.beginPath(); roundRectPath(ctx, x-w/2, y-8, w, 16, 4); ctx.fill();
+  ctx.strokeStyle=color; ctx.lineWidth=1.5; ctx.stroke();
+  ctx.fillStyle=color; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(text, x, y);
+}
+function roundRectPath(c,x,y,w,h,r){
+  c.beginPath(); c.moveTo(x+r,y);
+  c.arcTo(x+w,y,x+w,y+h,r); c.arcTo(x+w,y+h,x,y+h,r);
+  c.arcTo(x,y+h,x,y,r); c.arcTo(x,y,x+w,y,r); c.closePath();
+}
+
+/* ============ 地球本体 ============ */
+const R = 2.2;
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(R, 96, 96),
+  new THREE.MeshPhongMaterial({ map: earthTex, specular:0x223355, shininess:14 })
+);
+scene.add(earth);
+// 大气
+const atm = new THREE.Mesh(
+  new THREE.SphereGeometry(R*1.06,64,64),
+  new THREE.MeshBasicMaterial({color:0x4a90e2,transparent:true,opacity:0.1,side:THREE.BackSide,blending:THREE.AdditiveBlending})
+);
+scene.add(atm);
+// 自转轴
+const axis=new THREE.Line(
+  new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,-R*1.3,0),new THREE.Vector3(0,R*1.3,0)]),
+  new THREE.LineDashedMaterial({color:0xffffff,dashSize:0.15,gapSize:0.1,transparent:true,opacity:0.4})
+);
+axis.computeLineDistances(); scene.add(axis);
+
+/* ============ 轨道控制器 ============ */
+class Orbit{
+  constructor(cam,dom){this.cam=cam;this.dom=dom;this.target=new THREE.Vector3(0,0,0);
+    this.sph=new THREE.Spherical().setFromVector3(cam.position.clone().sub(this.target));
+    this.minD=4;this.maxD=20;this.minP=0.15;this.maxP=Math.PI-0.15;
+    this.dTheta=0;this.dPhi=0;this.scale=1;this.damp=0.86;this.drag=false;this.prev={x:0,y:0};
+    this._bind();}
+  _bind(){const d=this.dom;
+    d.addEventListener('pointerdown',e=>{this.drag=true;this.prev={x:e.clientX,y:e.clientY};d.setPointerCapture(e.pointerId);});
+    d.addEventListener('pointerup',()=>this.drag=false);
+    d.addEventListener('pointercancel',()=>this.drag=false);
+    d.addEventListener('pointermove',e=>{if(!this.drag)return;this.dTheta-=(e.clientX-this.prev.x)*0.006;this.dPhi-=(e.clientY-this.prev.y)*0.006;this.prev={x:e.clientX,y:e.clientY};});
+    d.addEventListener('wheel',e=>{e.preventDefault();this.scale*=e.deltaY>0?1.08:0.93;},{passive:false});
+  }
+  update(){this.sph.theta+=this.dTheta;this.sph.phi+=this.dPhi;
+    this.sph.phi=Math.max(this.minP,Math.min(this.maxP,this.sph.phi));
+    this.sph.radius*=this.scale;this.sph.radius=Math.max(this.minD,Math.min(this.maxD,this.sph.radius));
+    this.cam.position.setFromSpherical(this.sph).add(this.target);this.cam.lookAt(this.target);
+    this.dTheta*=this.damp;this.dPhi*=this.damp;this.scale=1;}
+}
+const orbit=new Orbit(camera, renderer.domElement);
+
+/* ============ 时间轴交互 ============ */
+const slider = document.getElementById('tl-slider');
+const tlTime = document.getElementById('tl-time');
+const tlEra = document.getElementById('tl-era');
+let tValue = 4;       // 当前时间索引 0..4
+let tTarget = 4;
+let playing = false;
+
+function updateLabel(){
+  // 显示最接近的关键帧标签
+  const idx = Math.round(tValue);
+  tlTime.textContent = TIME_LABEL[idx];
+  tlEra.textContent = KEYS[idx].era;
+  // 高亮按钮
+  document.querySelectorAll('.tl-btns .btn[data-t]').forEach(b=>{
+    b.classList.toggle('active', Math.round(+b.dataset.t/250)===idx);
+  });
+}
+function setTargetFromSlider(v){
+  tTarget = v/250; // 0..4
+}
+
+slider.addEventListener('input', e=>{
+  setTargetFromSlider(+e.target.value);
+  playing = false;
+  document.getElementById('btn-play').textContent='▶ 自动播放';
+});
+
+document.querySelectorAll('.tl-btns .btn[data-t]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const v=+b.dataset.value || +b.dataset.t;
+    tTarget = v/250;
+    slider.value = v;
+    playing = false;
+    document.getElementById('btn-play').textContent='▶ 自动播放';
+  });
+});
+
+const btnPlay = document.getElementById('btn-play');
+btnPlay.addEventListener('click', ()=>{
+  playing = !playing;
+  btnPlay.textContent = playing ? '⏸ 暂停' : '▶ 自动播放';
+  btnPlay.classList.toggle('play', !playing);
+  if(playing && tValue > 3.98){ tTarget = 0; slider.value=0; } // 从头开始
+});
+
+/* ============ 动画循环 ============ */
+let lastDraw = -1;
+function animate(){
+  requestAnimationFrame(animate);
+  if(playing){
+    tTarget += 0.006;
+    if(tTarget > 4){ tTarget = 4; playing=false; btnPlay.textContent='▶ 自动播放'; btnPlay.classList.add('play'); }
+    slider.value = Math.round(tTarget*250);
+  }
+  if(Math.abs(tValue - tTarget) > 0.001){
+    tValue += (tTarget - tValue) * 0.12;
+    updateLabel();
+    drawGlobe(tValue);
+  } else if(tValue !== lastDraw){
+    drawGlobe(tValue); lastDraw = tValue;
+  }
+  earth.rotation.y += 0.0008;
+  orbit.update();
+  renderer.render(scene,camera);
+}
+drawGlobe(4);
+updateLabel();
+animate();
+
+/* ============ 响应式 ============ */
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
+</script>
+</body>
+</html>

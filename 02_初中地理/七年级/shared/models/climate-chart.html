@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>气候图动态生成器</title>
+<style>
+  :root{
+    --primary:#1565C0; --primary-light:#42A5F5; --primary-dark:#0D47A1;
+    --accent:#00BCD4; --bg:#e8f4fd; --text:#2c3e50; --white:#f0f8ff;
+    --card-bg:rgba(240,248,255,0.96); --border:#90caf9; --shadow:0 6px 24px rgba(13,71,161,0.18);
+    --radius:14px; --temp:#e74c3c; --rain:#1565C0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'Noto Sans SC',-apple-system,"Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); overflow-y:auto;
+  }
+  /* 顶部标题栏 */
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 20px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));
+    color:#fff;box-shadow:var(--shadow);
+  }
+  .topbar h1{font-size:20px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+  .topbar h1 .logo{font-size:24px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.16);color:#fff;text-decoration:none;
+    padding:8px 16px;border-radius:30px;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,255,255,0.35);transition:all .25s;
+  }
+  .back-btn:hover{background:rgba(255,255,255,0.3);transform:translateX(-2px);}
+  /* 布局 */
+  .wrap{max-width:1180px;margin:0 auto;padding:18px 16px 40px;}
+  .toolbar{
+    background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:14px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px;
+  }
+  .toolbar label{font-size:14px;font-weight:600;color:var(--primary-dark);display:flex;align-items:center;gap:8px;}
+  select, input[type=number]{
+    font-family:inherit;font-size:14px;padding:7px 10px;border:1.5px solid var(--border);
+    border-radius:8px;background:#fff;color:var(--text);outline:none;transition:border-color .2s;
+  }
+  select:focus, input[type=number]:focus{border-color:var(--primary);}
+  .climate-tag{
+    margin-left:auto;font-size:13px;font-weight:700;color:#fff;background:var(--primary);
+    padding:6px 14px;border-radius:30px;white-space:nowrap;
+  }
+  .btn{
+    border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;
+    padding:8px 16px;border-radius:30px;transition:all .2s;
+    background:var(--primary);color:#fff;
+  }
+  .btn:hover{background:var(--primary-dark);}
+  .btn.ghost{background:#fff;color:var(--primary);border:1.5px solid var(--primary);}
+  .btn.ghost:hover{background:var(--bg);}
+  /* 图表卡片 */
+  .chart-card{
+    background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:16px;margin-bottom:16px;
+  }
+  .chart-card h2{font-size:16px;color:var(--primary-dark);margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+  .chart-card .sub{font-size:12.5px;color:var(--text);opacity:.75;margin-bottom:10px;}
+  #chart{display:block;width:100%;height:420px;}
+  .legend-inline{display:flex;gap:18px;justify-content:center;margin-top:8px;flex-wrap:wrap;}
+  .legend-inline span{font-size:13px;display:inline-flex;align-items:center;gap:6px;}
+  .lg-box{width:16px;height:10px;border-radius:2px;}
+  .lg-line{width:18px;height:0;border-top:3px solid var(--temp);}
+  /* 下半区两栏 */
+  .grid2{display:grid;grid-template-columns:1.1fr 0.9fr;gap:16px;}
+  .card{
+    background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:16px;
+  }
+  .card h3{font-size:15px;color:var(--primary-dark);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  /* 数据表 */
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{padding:6px 4px;text-align:center;border-bottom:1px solid #e3eefb;}
+  th{color:var(--primary-dark);font-weight:700;}
+  th.tcol{color:var(--temp);} th.pcol{color:var(--rain);}
+  td input{width:54px;padding:5px 4px;text-align:center;}
+  .month-label{font-weight:600;color:var(--text);}
+  .modified-note{font-size:12px;color:var(--accent);margin-top:8px;min-height:16px;}
+  /* 判读说明 */
+  .read-list{font-size:13px;line-height:1.7;}
+  .read-list li{margin:6px 0;list-style:none;padding-left:22px;position:relative;}
+  .read-list li:before{content:"";position:absolute;left:0;top:7px;width:10px;height:10px;border-radius:50%;background:var(--primary-light);}
+  .read-list li b{color:var(--primary-dark);}
+  .read-list .r-temp:before{background:var(--temp);}
+  .read-list .r-rain:before{background:var(--rain);}
+  @media (max-width:820px){
+    .grid2{grid-template-columns:1fr;}
+    #chart{height:320px;}
+    .climate-tag{margin-left:0;width:100%;text-align:center;}
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <h1><span class="logo">🌦️</span>气候图动态生成器</h1>
+    <a class="back-btn" href="../../index.html">← 返回首页</a>
+  </header>
+
+  <div class="wrap">
+    <!-- 工具栏 -->
+    <div class="toolbar">
+      <label>📍 选择城市
+        <select id="city-select">
+          <option value="beijing">北京</option>
+          <option value="shanghai">上海</option>
+          <option value="guangzhou">广州</option>
+          <option value="urumqi">乌鲁木齐</option>
+          <option value="lhasa">拉萨</option>
+          <option value="haikou">海口</option>
+        </select>
+      </label>
+      <button class="btn ghost" id="btn-random">🎲 随机数据</button>
+      <button class="btn ghost" id="btn-reset">↺ 还原城市</button>
+      <span class="climate-tag" id="climate-tag">温带季风气候</span>
+    </div>
+
+    <!-- 图表 -->
+    <div class="chart-card">
+      <h2>🌡️ 气温·降水月分布图 <span id="city-name" style="font-size:14px;font-weight:500;opacity:.8;margin-left:6px;"></span></h2>
+      <div class="sub">红色折线为各月平均气温（℃），蓝色柱状为各月降水量（mm）</div>
+      <canvas id="chart"></canvas>
+      <div class="legend-inline">
+        <span><span class="lg-line"></span>气温（℃）</span>
+        <span><span class="lg-box" style="background:var(--rain)"></span>降水量（mm）</span>
+      </div>
+    </div>
+
+    <!-- 数据表 + 判读说明 -->
+    <div class="grid2">
+      <div class="card">
+        <h3>📝 自定义数据（实时生成）</h3>
+        <table>
+          <thead>
+            <tr><th>月份</th><th class="tcol">气温(℃)</th><th class="pcol">降水(mm)</th></tr>
+          </thead>
+          <tbody id="data-body"></tbody>
+        </table>
+        <div class="modified-note" id="modified-note"></div>
+      </div>
+      <div class="card">
+        <h3>📖 气候图判读方法</h3>
+        <ul class="read-list">
+          <li class="r-temp"><b>看气温曲线</b>：最高温出现在几月→判断所在半球（北半球7月最高，南半球1月最高）；最冷月均温判断热量带。</li>
+          <li class="r-rain"><b>看降水柱状</b>：降水集中在夏季为<b>夏雨型</b>，冬季为<b>冬雨型</b>，全年均匀为<b>年雨型</b>，全年稀少为<b>少雨型</b>。</li>
+          <li><b>以温定带</b>：最冷月&gt;15℃热带；0~15℃亚热带；-10~0℃温带；&lt;-10℃寒带。</li>
+          <li><b>以水定型</b>：结合雨季分配，判断季风、大陆性、海洋性、地中海等气候类型。</li>
+          <li><b>曲线与柱高对比</b>：柱高于线＝湿润；线高于柱＝干旱（注意左右坐标比例）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* ============ 城市气候数据 ============ */
+const CITIES = {
+  beijing:   { name:'北京',   climate:'温带季风气候',     temp:[-4,-1,5,14,20,24,26,25,20,13,4,-2],     rain:[3,6,9,26,29,71,176,182,49,19,7,3] },
+  shanghai:  { name:'上海',   climate:'亚热带季风气候',   temp:[4,6,9,15,20,24,28,28,24,19,13,7],       rain:[74,59,94,118,124,169,149,142,137,65,53,47] },
+  guangzhou: { name:'广州',   climate:'南亚热带季风气候', temp:[14,15,18,22,26,28,29,29,27,24,20,16],   rain:[43,65,85,180,284,277,232,226,173,87,35,24] },
+  urumqi:    { name:'乌鲁木齐',climate:'温带大陆性气候',   temp:[-15,-12,-2,10,17,22,24,22,16,6,-5,-12], rain:[8,9,18,32,35,41,32,24,25,20,12,9] },
+  lhasa:     { name:'拉萨',   climate:'高原山地气候',     temp:[-2,1,5,9,13,16,16,15,13,9,3,-1],         rain:[1,2,2,6,25,73,132,137,67,7,1,0] },
+  haikou:    { name:'海口',   climate:'热带季风气候',     temp:[17,18,21,25,27,28,28,28,27,25,22,19],   rain:[18,28,51,92,165,210,210,235,244,235,114,38] }
+};
+const MONTHS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+/* ============ 状态 ============ */
+let currentCity = 'beijing';
+// 当前显示值（用于过渡动画）与目标值
+let curTemp = CITIES.beijing.temp.slice();
+let curRain = CITIES.beijing.rain.slice();
+let tgtTemp = CITIES.beijing.temp.slice();
+let tgtRain = CITIES.beijing.rain.slice();
+let modified = false;
+
+/* ============ Canvas 准备 ============ */
+const canvas = document.getElementById('chart');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){
+  const dpr = Math.min(window.devicePixelRatio||1, 2);
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = Math.round(rect.width * dpr);
+  canvas.height = Math.round(rect.height * dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  draw();
+}
+window.addEventListener('resize', resizeCanvas);
+
+/* ============ 绘图 ============ */
+function draw(){
+  const rect = canvas.getBoundingClientRect();
+  const W = rect.width, H = rect.height;
+  ctx.clearRect(0,0,W,H);
+
+  const padL = 56, padR = 56, padT = 24, padB = 42;
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+
+  // 温度范围
+  const tMin = Math.min(0, ...curTemp, -10);
+  const tMax = Math.max(...curTemp, 30);
+  const tLo = Math.floor(tMin/10)*10;
+  const tHi = Math.ceil(tMax/10)*10;
+  // 降水范围
+  const rMax = Math.max(...curRain, 10);
+  const rHi = Math.ceil(rMax/50)*50;
+
+  const xAt = i => padL + (i+0.5) * (plotW/12);
+  const yTemp = v => padT + plotH * (1 - (v - tLo)/(tHi - tLo));
+  const yRain = v => padT + plotH * (1 - v/rHi);
+
+  // 背景网格
+  ctx.strokeStyle = '#e3eefb'; ctx.lineWidth = 1;
+  ctx.font = '11px "Microsoft YaHei",sans-serif';
+  // 降水刻度（左）
+  const rSteps = 5;
+  for(let i=0;i<=rSteps;i++){
+    const val = rHi * i/rSteps;
+    const y = yRain(val);
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(W-padR,y); ctx.stroke();
+    ctx.fillStyle = '#1565C0';
+    ctx.textAlign='right'; ctx.textBaseline='middle';
+    ctx.fillText(Math.round(val), padL-8, y);
+  }
+  // 温度刻度（右）
+  const tSteps = 5;
+  for(let i=0;i<=tSteps;i++){
+    const val = tLo + (tHi-tLo)*i/tSteps;
+    const y = yTemp(val);
+    if(i>0){ ctx.strokeStyle='#fdecea'; ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(W-padR,y); ctx.stroke(); }
+    ctx.fillStyle = '#e74c3c';
+    ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.fillText(Math.round(val)+'°', W-padR+8, y);
+  }
+  // 0° 参考线
+  if(tLo<0 && tHi>0){
+    const y0 = yTemp(0);
+    ctx.strokeStyle = 'rgba(120,120,120,0.5)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(padL,y0); ctx.lineTo(W-padR,y0); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // 坐标轴
+  ctx.strokeStyle = '#90caf9'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(padL,padT); ctx.lineTo(padL,padT+plotH); ctx.lineTo(W-padR,padT+plotH);
+  ctx.stroke();
+
+  // 轴标题
+  ctx.save();
+  ctx.fillStyle='#1565C0'; ctx.font='bold 12px "Microsoft YaHei",sans-serif';
+  ctx.translate(16, padT+plotH/2); ctx.rotate(-Math.PI/2); ctx.textAlign='center';
+  ctx.fillText('降水量 (mm)', 0, 0);
+  ctx.restore();
+  ctx.save();
+  ctx.fillStyle='#e74c3c'; ctx.font='bold 12px "Microsoft YaHei",sans-serif';
+  ctx.translate(W-16, padT+plotH/2); ctx.rotate(Math.PI/2); ctx.textAlign='center';
+  ctx.fillText('气温 (℃)', 0, 0);
+  ctx.restore();
+
+  // 降水柱状
+  const barW = plotW/12 * 0.55;
+  for(let i=0;i<12;i++){
+    const v = curRain[i];
+    const x = xAt(i) - barW/2;
+    const yTop = yRain(v);
+    const baseY = padT + plotH;
+    const grad = ctx.createLinearGradient(0,yTop,0,baseY);
+    grad.addColorStop(0,'#42A5F5');
+    grad.addColorStop(1,'#1565C0');
+    ctx.fillStyle = grad;
+    roundRect(ctx, x, yTop, barW, baseY-yTop, 3);
+    ctx.fill();
+  }
+
+  // 气温折线
+  ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for(let i=0;i<12;i++){
+    const x = xAt(i), y = yTemp(curTemp[i]);
+    if(i===0) ctx.moveTo(x,y); else {
+      // 平滑曲线（二次贝塞尔）
+      const px = xAt(i-1), py = yTemp(curTemp[i-1]);
+      const cx = (px+x)/2;
+      ctx.quadraticCurveTo(px, py, cx, (py+y)/2);
+      ctx.quadraticCurveTo(x, y, x, y);
+    }
+  }
+  ctx.stroke();
+  // 点
+  for(let i=0;i<12;i++){
+    const x = xAt(i), y = yTemp(curTemp[i]);
+    ctx.fillStyle = '#fff'; ctx.strokeStyle = '#e74c3c'; ctx.lineWidth=2.5;
+    ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2); ctx.fill(); ctx.stroke();
+  }
+
+  // 月份标签
+  ctx.fillStyle = '#2c3e50'; ctx.font = '12px "Microsoft YaHei",sans-serif';
+  ctx.textAlign='center'; ctx.textBaseline='top';
+  for(let i=0;i<12;i++){
+    ctx.fillText(MONTHS[i], xAt(i), padT+plotH+8);
+  }
+}
+function roundRect(c,x,y,w,h,r){
+  if(h<0){ y+=h; h=-h; }
+  if(h<r) r=h;
+  c.beginPath();
+  c.moveTo(x+r,y);
+  c.arcTo(x+w,y,x+w,y+h,r);
+  c.arcTo(x+w,y+h,x,y+h,r);
+  c.arcTo(x,y+h,x,y,r);
+  c.arcTo(x,y,x+w,y,r);
+  c.closePath();
+}
+
+/* ============ 平滑过渡动画 ============ */
+let animating = false;
+function animate(){
+  let moving = false;
+  for(let i=0;i<12;i++){
+    const dt = tgtTemp[i]-curTemp[i];
+    const dr = tgtRain[i]-curRain[i];
+    if(Math.abs(dt)>0.03){ curTemp[i]+=dt*0.18; moving=true; } else curTemp[i]=tgtTemp[i];
+    if(Math.abs(dr)>0.3){ curRain[i]+=dr*0.18; moving=true; } else curRain[i]=tgtRain[i];
+  }
+  draw();
+  if(moving){ requestAnimationFrame(animate); }
+  else { animating=false; }
+}
+function requestAnim(){
+  if(!animating){ animating=true; requestAnimationFrame(animate); }
+}
+
+/* ============ 数据表 ============ */
+const tbody = document.getElementById('data-body');
+function buildTable(){
+  tbody.innerHTML='';
+  for(let i=0;i<12;i++){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="month-label">${MONTHS[i]}</td>
+      <td><input type="number" data-i="${i}" data-k="temp" value="${tgtTemp[i]}" step="0.5"></td>
+      <td><input type="number" data-i="${i}" data-k="rain" value="${tgtRain[i]}" step="1"></td>`;
+    tbody.appendChild(tr);
+  }
+  tbody.querySelectorAll('input').forEach(inp=>{
+    inp.addEventListener('input', e=>{
+      const i = +e.target.dataset.i, k = e.target.dataset.k;
+      let val = parseFloat(e.target.value);
+      if(isNaN(val)) val = 0;
+      if(k==='temp') tgtTemp[i]=val; else tgtRain[i]=val;
+      modified = true;
+      document.getElementById('modified-note').textContent='* 数据已修改，当前为自定义气候图';
+      document.getElementById('climate-tag').textContent='自定义数据';
+      requestAnim();
+    });
+  });
+}
+function fillTable(){
+  const inputs = tbody.querySelectorAll('input');
+  inputs.forEach(inp=>{
+    const i = +inp.dataset.i, k = inp.dataset.k;
+    inp.value = k==='temp'? tgtTemp[i] : tgtRain[i];
+  });
+}
+
+/* ============ 选择城市 ============ */
+function selectCity(key){
+  currentCity = key;
+  const c = CITIES[key];
+  tgtTemp = c.temp.slice();
+  tgtRain = c.rain.slice();
+  modified = false;
+  document.getElementById('city-name').textContent = '· '+c.name;
+  document.getElementById('climate-tag').textContent = c.climate;
+  document.getElementById('modified-note').textContent='';
+  fillTable();
+  requestAnim();
+}
+document.getElementById('city-select').addEventListener('change', e=>selectCity(e.target.value));
+document.getElementById('btn-reset').addEventListener('click', ()=>selectCity(currentCity));
+document.getElementById('btn-random').addEventListener('click', ()=>{
+  // 生成一个有季节规律的随机气候
+  const temp=[], rain=[];
+  for(let i=0;i<12;i++){
+    // 北半球型：7月最高
+    const base = 15 + 15*Math.sin((i-3)/12*Math.PI*2);
+    temp.push(Math.round((base + (Math.random()*6-3))*10)/10);
+    const rbase = 60 + 80*Math.max(0,Math.sin((i-2)/12*Math.PI*2));
+    rain.push(Math.max(0, Math.round(rbase + (Math.random()*40-20))));
+  }
+  tgtTemp=temp; tgtRain=rain; modified=true;
+  document.getElementById('modified-note').textContent='* 已生成随机气候数据';
+  document.getElementById('climate-tag').textContent='随机数据';
+  fillTable();
+  requestAnim();
+});
+
+/* ============ 初始化 ============ */
+buildTable();
+selectCity('beijing');
+resizeCanvas();
+</script>
+</body>
+</html>

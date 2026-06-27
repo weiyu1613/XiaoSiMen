@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>3D 显微镜操作 | 初中生物</title>
+  <style>
+    :root {
+      --primary: #558B2F;
+      --primary-light: #8BC34A;
+      --primary-dark: #33691E;
+      --bg-light: #f1f8e9;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-md: 0 4px 20px rgba(46,125,50,0.12);
+      --shadow-lg: 0 8px 32px rgba(46,125,50,0.18);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+      color: #fff; padding: 14px 20px; box-shadow: var(--shadow-md);
+      position: relative; z-index: 20; flex-shrink: 0;
+    }
+    .header-row {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.18); color: #fff; text-decoration: none;
+      padding: 8px 16px; border-radius: 22px; font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.35); backdrop-filter: blur(8px);
+      transition: background 0.25s; white-space: nowrap;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.32); }
+    .back-btn svg { width: 16px; height: 16px; }
+    .title-block { flex: 1; min-width: 200px; }
+    .title { font-size: 1.45rem; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.18); }
+    .subtitle { font-size: 0.85rem; opacity: 0.92; margin-top: 2px; }
+
+    .stage { flex: 1; position: relative; overflow: hidden; min-height: 0; }
+    #canvas-container { position: absolute; inset: 0; }
+    #canvas-container canvas { display: block; }
+
+    .hint {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,0.85); color: var(--primary-dark);
+      padding: 6px 16px; border-radius: 18px; font-size: 0.8rem;
+      box-shadow: var(--shadow-md); pointer-events: none; z-index: 10; white-space: nowrap;
+    }
+
+    /* 放大倍数面板 */
+    .mag-panel {
+      position: absolute; top: 56px; left: 16px; z-index: 11;
+      background: #fff; border-radius: 14px; box-shadow: var(--shadow-lg);
+      padding: 12px 16px; min-width: 200px; border-top: 4px solid var(--primary);
+    }
+    .mag-panel .mp-title { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; }
+    .mag-panel .mp-line { display: flex; justify-content: space-between; font-size: 0.88rem; margin: 2px 0; }
+    .mag-panel .mp-line span:last-child { color: var(--primary-dark); font-weight: 600; }
+    .mag-panel .mp-total { margin-top: 6px; padding-top: 6px; border-top: 1px dashed #e0e0e0; font-size: 1.05rem; font-weight: 700; color: var(--primary-dark); display: flex; justify-content: space-between; }
+
+    /* 物镜切换按钮 */
+    .obj-panel {
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 11; display: flex; gap: 10px; background: rgba(255,255,255,0.92);
+      padding: 8px 10px; border-radius: 26px; box-shadow: var(--shadow-md);
+    }
+    .obj-btn {
+      border: 2px solid transparent; background: #f1f8e9; color: var(--text-dark);
+      padding: 8px 18px; border-radius: 20px; font-size: 0.88rem; cursor: pointer;
+      font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; gap: 7px;
+    }
+    .obj-btn .ob-dot { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15); }
+    .obj-btn:hover { background: #dcedc8; }
+    .obj-btn.active { background: var(--primary); color: #fff; border-color: var(--primary-dark); box-shadow: 0 3px 10px rgba(46,125,50,0.3); }
+
+    .info-card {
+      position: absolute; top: 56px; right: 16px; width: 280px; max-width: calc(100% - 32px);
+      background: #fff; border-radius: 14px; box-shadow: var(--shadow-lg);
+      padding: 16px 18px; z-index: 15;
+      transform: translateX(120%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+      border-top: 4px solid var(--primary);
+    }
+    .info-card.show { transform: translateX(0); }
+    .info-card .ic-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .info-card .ic-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+    .info-card .ic-name { font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); }
+    .info-card .ic-func { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+    .info-card .ic-close {
+      position: absolute; top: 10px; right: 12px;
+      width: 24px; height: 24px; line-height: 22px; text-align: center;
+      border: none; background: #f1f8e9; color: var(--primary-dark);
+      border-radius: 50%; font-size: 1rem; cursor: pointer;
+    }
+    .info-card .ic-close:hover { background: #dcedc8; }
+
+    .label3d {
+      position: absolute; transform: translate(-50%, -120%);
+      background: rgba(255,255,255,0.92); color: var(--text-dark);
+      font-size: 0.72rem; padding: 2px 8px; border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15); pointer-events: none;
+      white-space: nowrap; z-index: 8; border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .legend {
+      flex-shrink: 0; background: #fff; border-top: 1px solid #e0e0e0;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.05); padding: 12px 16px; z-index: 12;
+    }
+    .legend-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center;
+    }
+    .legend-title { width: 100%; text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2px; font-weight: 600; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; cursor: pointer; transition: opacity 0.2s; }
+    .legend-item:hover { opacity: 0.7; }
+    .legend-dot { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1); }
+
+    @media (max-width: 600px) {
+      .title { font-size: 1.2rem; }
+      .subtitle { font-size: 0.78rem; }
+      .info-card { width: 240px; top: 50px; right: 8px; }
+      .mag-panel { min-width: 170px; top: 50px; left: 8px; padding: 10px 12px; }
+      .obj-btn { font-size: 0.78rem; padding: 7px 12px; }
+      .legend-item { font-size: 0.72rem; }
+      .hint { font-size: 0.7rem; padding: 5px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-row">
+      <a href="../../index.html" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        返回目录
+      </a>
+      <div class="title-block">
+        <div class="title">3D 显微镜操作</div>
+        <div class="subtitle">拖拽旋转 · 滚轮调焦(镜筒升降) · 点击物镜切换倍数</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="stage">
+    <div class="hint">鼠标拖拽旋转 / 滚轮调焦 / 点击物镜或下方按钮切换倍数</div>
+
+    <div class="mag-panel">
+      <div class="mp-title">当前放大倍数</div>
+      <div class="mp-line"><span>目镜</span><span id="mpEye">10×</span></div>
+      <div class="mp-line"><span>物镜</span><span id="mpObj">10×</span></div>
+      <div class="mp-total"><span>总放大</span><span id="mpTotal">100×</span></div>
+    </div>
+
+    <div class="obj-panel" id="objPanel"></div>
+
+    <div id="canvas-container"></div>
+
+    <div class="info-card" id="infoCard">
+      <button class="ic-close" id="icClose">&times;</button>
+      <div class="ic-head">
+        <span class="ic-dot" id="icDot"></span>
+        <span class="ic-name" id="icName">名称</span>
+      </div>
+      <div class="ic-func" id="icFunc">功能说明</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-inner" id="legend">
+      <div class="legend-title">结构图例（点击查看名称与功能）</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from '../lib/three/three.module.js';
+
+    // ===== 结构信息 =====
+    const PARTS = [
+      { id:'eyepiece', name:'目镜',         color:'#90A4AE', func:'靠近眼睛观察的透镜，通常放大 10 倍，将物镜所成的像进一步放大。' },
+      { id:'tube',     name:'镜筒',         color:'#607D8B', func:'连接目镜与物镜转换器，使光路保持同轴，光线由此通过。' },
+      { id:'revolver', name:'物镜转换器',   color:'#455A64', func:'可旋转的圆盘，上面安装多个不同倍数的物镜，转动即可快速更换物镜。' },
+      { id:'objective',name:'物镜',         color:'#E53935', func:'靠近玻片标本的透镜，决定放大倍数。常见 4×、10×、40×，倍数越大越长。' },
+      { id:'stage',    name:'载物台',       color:'#78909C', func:'放置玻片标本的平台，中央有通光孔，两侧有压片夹固定玻片。' },
+      { id:'mirror',   name:'反光镜',       color:'#B0BEC5', func:'一面平面、一面凹面的镜子，反射外部光线经通光孔照亮标本。' },
+      { id:'arm',      name:'镜臂',         color:'#546E7A', func:'显微镜的支架与握持部位，连接镜筒与镜座，搬运时握此处。' },
+      { id:'base',     name:'镜座',         color:'#37474F', func:'显微镜的底座，面积较大，用于稳定支撑整台仪器。' }
+    ];
+    function getPart(id){ return PARTS.find(p=>p.id===id); }
+
+    // ===== 物镜定义（角度按 120° 分布） =====
+    const EYEPIECE_MAG = 10;
+    const OBJECTIVES = [
+      { mag:4,  color:'#E53935', angle:0,             name:'4×  低倍镜' },
+      { mag:10, color:'#FBC02D', angle:2*Math.PI/3,   name:'10× 中倍镜' },
+      { mag:40, color:'#1E88E5', angle:4*Math.PI/3,   name:'40× 高倍镜' }
+    ];
+    let activeObj = 1; // 默认 10×
+
+    // ===== 渲染基础 =====
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf1f8e9);
+
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth/Math.max(1,container.clientHeight), 0.1, 1000);
+    camera.position.set(0, 1.5, 11);
+
+    const renderer = new THREE.WebGLRenderer({ antialias:true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 0.95);
+    keyLight.position.set(6, 10, 7);
+    scene.add(keyLight);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.45);
+    fillLight.position.set(-6, -2, -4);
+    scene.add(fillLight);
+
+    // 整体可旋转
+    const scopeGroup = new THREE.Group();
+    scene.add(scopeGroup);
+    // 镜筒组（调焦时上下移动）：含目镜、镜筒、转换器、物镜
+    const headGroup = new THREE.Group();
+    scopeGroup.add(headGroup);
+
+    const clickableMeshes = [];
+    const labelData = [];
+    function addLabel(mesh, name, color, offsetVec){ labelData.push({ mesh, name, color, offset: offsetVec.clone() }); }
+
+    const metalDark = new THREE.MeshStandardMaterial({ color:0x455A64, roughness:0.45, metalness:0.5 });
+    const metalMid  = new THREE.MeshStandardMaterial({ color:0x607D8B, roughness:0.45, metalness:0.5 });
+    const metalLight= new THREE.MeshStandardMaterial({ color:0x90A4AE, roughness:0.4, metalness:0.5 });
+
+    // --- 镜座（底座） ---
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(2.0, 2.3, 0.5, 40), new THREE.MeshStandardMaterial({ color:0x37474F, roughness:0.5, metalness:0.4 }));
+    base.position.y = -3.4;
+    base.userData = getPart('base');
+    scopeGroup.add(base); clickableMeshes.push(base);
+
+    // --- 镜臂（后方支柱） ---
+    const arm = new THREE.Mesh(new THREE.BoxGeometry(0.7, 4.6, 0.9), new THREE.MeshStandardMaterial({ color:0x546E7A, roughness:0.45, metalness:0.5 }));
+    arm.position.set(0, -0.7, -1.1);
+    arm.userData = getPart('arm');
+    scopeGroup.add(arm); clickableMeshes.push(arm);
+    addLabel(arm, '镜臂', '#546E7A', new THREE.Vector3(0.4, 1.8, -1.1));
+
+    // --- 载物台（固定，不动） ---
+    const stageMat = new THREE.MeshStandardMaterial({ color:0x78909C, roughness:0.5, metalness:0.4 });
+    const stage = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.7, 0.16, 40), stageMat);
+    stage.rotation.x = Math.PI/2;
+    stage.position.set(0, -0.9, 0.35);
+    stage.userData = getPart('stage');
+    scopeGroup.add(stage); clickableMeshes.push(stage);
+    addLabel(stage, '载物台', '#78909C', new THREE.Vector3(1.5, -0.9, 0.35));
+    // 通光孔
+    const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.2, 24), new THREE.MeshStandardMaterial({ color:0x263238 }));
+    hole.rotation.x = Math.PI/2; hole.position.set(0, -0.9, 0.35);
+    scopeGroup.add(hole);
+    // 压片夹
+    const clipMat = new THREE.MeshStandardMaterial({ color:0x37474F, roughness:0.4, metalness:0.6 });
+    [[ -1.0, 0.6 ], [ 1.0, -0.6 ]].forEach(c=>{
+      const clip = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.06, 0.25), clipMat);
+      clip.position.set(c[0], -0.78, 0.35 + c[1]);
+      scopeGroup.add(clip);
+    });
+    // 玻片标本
+    const slide = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.05, 1.0), new THREE.MeshStandardMaterial({ color:0xE3F2FD, transparent:true, opacity:0.7, roughness:0.2 }));
+    slide.position.set(0, -0.8, 0.35);
+    scopeGroup.add(slide);
+    const specimen = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 12), new THREE.MeshStandardMaterial({ color:0x7E57C2, roughness:0.5 }));
+    specimen.position.set(0, -0.76, 0.35);
+    scopeGroup.add(specimen);
+
+    // --- 反光镜（固定，在载物台下方，带镜叉） ---
+    const mirrorYoke = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.7, 12), metalMid);
+    mirrorYoke.position.set(0, -2.2, 0.35);
+    mirrorYoke.rotation.z = Math.PI/2;
+    scopeGroup.add(mirrorYoke);
+    const mirror = new THREE.Mesh(new THREE.CircleGeometry(0.75, 36), new THREE.MeshStandardMaterial({ color:0xECEFF1, roughness:0.15, metalness:0.9, side:THREE.DoubleSide }));
+    mirror.position.set(0, -2.2, 0.35);
+    mirror.rotation.x = -Math.PI/2 + 0.5; // 倾斜朝向光源
+    mirror.userData = getPart('mirror');
+    scopeGroup.add(mirror); clickableMeshes.push(mirror);
+    addLabel(mirror, '反光镜', '#B0BEC5', new THREE.Vector3(0, -3.0, 0.35));
+
+    // ===== 镜筒组（headGroup，调焦上下移动） =====
+    const TURRET_R = 0.6;          // 物镜绕转换器中心的半径
+    const TURRET_CZ = -TURRET_R;   // 转换器中心 z（向后方偏移），使前位物镜落在光轴(z=0)上
+
+    // 镜筒
+    const tube = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 1.7, 32), metalMid);
+    tube.position.set(0, 2.0, 0);
+    tube.userData = getPart('tube');
+    headGroup.add(tube); clickableMeshes.push(tube);
+    addLabel(tube, '镜筒', '#607D8B', new THREE.Vector3(0.5, 2.6, 0));
+
+    // 目镜
+    const eyepiece = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.26, 0.7, 28), metalLight);
+    eyepiece.position.set(0, 3.2, 0);
+    eyepiece.userData = getPart('eyepiece');
+    headGroup.add(eyepiece); clickableMeshes.push(eyepiece);
+    addLabel(eyepiece, '目镜', '#90A4AE', new THREE.Vector3(0.4, 3.8, 0));
+
+    // 物镜转换器（圆盘），位于镜筒下方，中心向后方偏移
+    const turret = new THREE.Mesh(new THREE.CylinderGeometry(0.78, 0.78, 0.18, 40), new THREE.MeshStandardMaterial({ color:0x455A64, roughness:0.5, metalness:0.5 }));
+    turret.position.set(0, 1.05, TURRET_CZ);
+    turret.userData = getPart('revolver');
+    headGroup.add(turret); clickableMeshes.push(turret);
+
+    // 转换器旋转组（物镜挂在下面，绕转换器中心 y 轴旋转）
+    const turretPivot = new THREE.Group();
+    turretPivot.position.set(0, 1.05, TURRET_CZ);
+    headGroup.add(turretPivot);
+
+    // 三个物镜
+    const objMeshes = [];
+    OBJECTIVES.forEach((o, i) => {
+      const len = 0.5 + o.mag * 0.012; // 倍数越大越长
+      const grp = new THREE.Group();
+      // 主体
+      const body = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.13, len, 22), new THREE.MeshStandardMaterial({ color:0x37474F, roughness:0.45, metalness:0.5 }));
+      body.position.y = -len/2 - 0.05;
+      grp.add(body);
+      // 颜色环
+      const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.1, 22), new THREE.MeshStandardMaterial({ color:new THREE.Color(o.color), roughness:0.4, metalness:0.3 }));
+      ring.position.y = -0.04;
+      grp.add(ring);
+      // 顶端小球（便于点击）
+      const cap = new THREE.Mesh(new THREE.SphereGeometry(0.17, 18, 14), new THREE.MeshStandardMaterial({ color:new THREE.Color(o.color), roughness:0.4 }));
+      cap.position.y = 0.0;
+      grp.add(cap);
+
+      // 局部位置：半径 TURRET_R，角度 o.angle（0=前方光轴位置）
+      const lx = TURRET_R * Math.sin(o.angle);
+      const lz = TURRET_R * Math.cos(o.angle);
+      grp.position.set(lx, -0.1, lz);
+
+      const objInfo = { id:'objective', name:'物镜 '+o.name, color:o.color, __objIdx: i, func:getPart('objective').func + '（当前可选：4× / 10× / 40×，目镜 10×）' };
+      grp.children.forEach(c => c.userData = objInfo);
+      grp.userData = objInfo;
+      turretPivot.add(grp);
+      objMeshes.push(grp);
+      clickableMeshes.push(cap, body, ring);
+      if (i === 0) addLabel(cap, '物镜', '#E53935', new THREE.Vector3(0, -0.9, 0));
+    });
+
+    // ===== 标签 DOM =====
+    const labelElements = [];
+    labelData.forEach(ld => {
+      const el = document.createElement('div');
+      el.className = 'label3d'; el.textContent = ld.name;
+      el.style.borderLeft = `3px solid ${ld.color}`;
+      container.appendChild(el); labelElements.push(el);
+    });
+
+    // ===== 图例 =====
+    const legendEl = document.getElementById('legend');
+    PARTS.forEach(o => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      item.innerHTML = `<span class="legend-dot" style="background:${o.color}"></span>${o.name}`;
+      item.addEventListener('click', () => showInfo(o));
+      legendEl.appendChild(item);
+    });
+
+    // ===== 物镜切换按钮 =====
+    const objPanel = document.getElementById('objPanel');
+    OBJECTIVES.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.className = 'obj-btn' + (i===activeObj ? ' active' : '');
+      b.innerHTML = `<span class="ob-dot" style="background:${o.color}"></span>${o.mag}×`;
+      b.addEventListener('click', () => selectObjective(i));
+      objPanel.appendChild(b);
+    });
+
+    // ===== 切换物镜 =====
+    let targetTurretRot = -OBJECTIVES[activeObj].angle;
+    function selectObjective(i){
+      activeObj = i;
+      targetTurretRot = -OBJECTIVES[i].angle;
+      // 更新按钮高亮
+      [...objPanel.children].forEach((b, k)=> b.classList.toggle('active', k===i));
+      updateMag();
+    }
+    function updateMag(){
+      const o = OBJECTIVES[activeObj];
+      document.getElementById('mpEye').textContent = EYEPIECE_MAG + '×';
+      document.getElementById('mpObj').textContent = o.mag + '×';
+      document.getElementById('mpTotal').textContent = (o.mag * EYEPIECE_MAG) + '×';
+    }
+    updateMag();
+
+    // ===== 交互：拖拽旋转 / 滚轮调焦 =====
+    const dom = renderer.domElement;
+    dom.style.touchAction = 'none';
+
+    let isDragging = false;
+    let downX=0, downY=0, prevX=0, prevY=0;
+    let targetRotX = 0.15, targetRotY = -0.35;
+    let curRotX = 0.15, curRotY = -0.35;
+    let autoRotate = true, autoTimer = null;
+
+    // 调焦：镜筒组上下移动
+    let focusY = 0;
+    const FOCUS_MIN = -1.2, FOCUS_MAX = 1.0;
+
+    dom.addEventListener('pointerdown', (e)=>{
+      isDragging = true; autoRotate = false; clearTimeout(autoTimer);
+      downX = prevX = e.clientX; downY = prevY = e.clientY;
+      dom.setPointerCapture(e.pointerId);
+    });
+    dom.addEventListener('pointerup', (e)=>{
+      isDragging = false;
+      const moved = Math.abs(e.clientX-downX) + Math.abs(e.clientY-downY);
+      if (moved < 6) handleClick(e);
+      autoTimer = setTimeout(()=>{ autoRotate = true; }, 2800);
+    });
+    dom.addEventListener('pointercancel', ()=>{ isDragging = false; });
+    dom.addEventListener('pointermove', (e)=>{
+      if(!isDragging) return;
+      targetRotY += (e.clientX - prevX) * 0.008;
+      targetRotX += (e.clientY - prevY) * 0.008;
+      targetRotX = Math.max(-1.3, Math.min(1.3, targetRotX));
+      prevX = e.clientX; prevY = e.clientY;
+    });
+    // 滚轮调焦（镜筒升降）
+    dom.addEventListener('wheel', (e)=>{
+      e.preventDefault();
+      focusY = Math.max(FOCUS_MIN, Math.min(FOCUS_MAX, focusY - e.deltaY * 0.003));
+    }, { passive:false });
+
+    // ===== 射线点击 =====
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    function handleClick(e){
+      const rect = dom.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left)/rect.width)*2 - 1;
+      pointer.y = -((e.clientY - rect.top)/rect.height)*2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(clickableMeshes, false);
+      if (hits.length > 0){
+        const obj = hits[0].object;
+        const ud = obj.userData;
+        // 若点击的是物镜部件 -> 切换到该物镜
+        if (ud && ud.__objIdx !== undefined){
+          selectObjective(ud.__objIdx);
+          showInfo(ud);
+        } else if (ud && ud.id){
+          showInfo(ud);
+        }
+      }
+    }
+
+    // ===== 信息卡 =====
+    const infoCard = document.getElementById('infoCard');
+    const icDot = document.getElementById('icDot');
+    const icName = document.getElementById('icName');
+    const icFunc = document.getElementById('icFunc');
+    function showInfo(o){
+      if(!o) return;
+      icDot.style.background = o.color;
+      icName.textContent = o.name;
+      icFunc.textContent = o.func;
+      infoCard.style.borderTopColor = o.color;
+      infoCard.classList.add('show');
+    }
+    document.getElementById('icClose').addEventListener('click', ()=> infoCard.classList.remove('show'));
+
+    // ===== 标签更新 =====
+    const tmpVec = new THREE.Vector3();
+    function updateLabels(){
+      labelData.forEach((ld, i)=>{
+        const el = labelElements[i];
+        ld.mesh.getWorldPosition(tmpVec);
+        tmpVec.add(ld.offset);
+        tmpVec.project(camera);
+        if (tmpVec.z > 1){ el.style.display='none'; return; }
+        const x = (tmpVec.x*0.5+0.5)*container.clientWidth;
+        const y = (-tmpVec.y*0.5+0.5)*container.clientHeight;
+        el.style.display='block';
+        el.style.left = x+'px'; el.style.top = y+'px';
+      });
+    }
+
+    function onResize(){
+      const w = container.clientWidth, h = container.clientHeight;
+      camera.aspect = w/Math.max(1,h);
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    window.addEventListener('resize', onResize);
+
+    // ===== 动画循环 =====
+    let curTurretRot = targetTurretRot;
+    function animate(){
+      requestAnimationFrame(animate);
+      if (autoRotate && !isDragging) targetRotY += 0.0022;
+      curRotX += (targetRotX - curRotX) * 0.12;
+      curRotY += (targetRotY - curRotY) * 0.12;
+      scopeGroup.rotation.x = curRotX;
+      scopeGroup.rotation.y = curRotY;
+      // 转换器旋转（带阻尼）
+      curTurretRot += (targetTurretRot - curTurretRot) * 0.15;
+      turretPivot.rotation.y = curTurretRot;
+      // 镜筒调焦
+      headGroup.position.y += (focusY - headGroup.position.y) * 0.15;
+
+      updateLabels();
+      renderer.render(scene, camera);
+    }
+    animate();
+    onResize();
+  </script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>3D 细菌结构模型 | 初中生物</title>
+  <style>
+    :root {
+      --primary: #558B2F;
+      --primary-light: #8BC34A;
+      --primary-dark: #33691E;
+      --bg-light: #f1f8e9;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-md: 0 4px 20px rgba(46,125,50,0.12);
+      --shadow-lg: 0 8px 32px rgba(46,125,50,0.18);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+      color: #fff; padding: 14px 20px; box-shadow: var(--shadow-md);
+      position: relative; z-index: 20; flex-shrink: 0;
+    }
+    .header-row {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.18); color: #fff; text-decoration: none;
+      padding: 8px 16px; border-radius: 22px; font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.35); backdrop-filter: blur(8px);
+      transition: background 0.25s; white-space: nowrap;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.32); }
+    .back-btn svg { width: 16px; height: 16px; }
+    .title-block { flex: 1; min-width: 200px; }
+    .title { font-size: 1.45rem; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.18); }
+    .subtitle { font-size: 0.85rem; opacity: 0.92; margin-top: 2px; }
+
+    .stage { flex: 1; position: relative; overflow: hidden; min-height: 0; }
+    #canvas-container { position: absolute; inset: 0; }
+    #canvas-container canvas { display: block; }
+
+    .hint {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,0.85); color: var(--primary-dark);
+      padding: 6px 16px; border-radius: 18px; font-size: 0.8rem;
+      box-shadow: var(--shadow-md); pointer-events: none; z-index: 10; white-space: nowrap;
+    }
+
+    .info-card {
+      position: absolute; top: 56px; right: 16px; width: 290px; max-width: calc(100% - 32px);
+      background: #fff; border-radius: 14px; box-shadow: var(--shadow-lg);
+      padding: 16px 18px; z-index: 15;
+      transform: translateX(120%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+      border-top: 4px solid var(--primary);
+    }
+    .info-card.show { transform: translateX(0); }
+    .info-card .ic-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .info-card .ic-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+    .info-card .ic-name { font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); }
+    .info-card .ic-func { font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; }
+    .info-card .ic-close {
+      position: absolute; top: 10px; right: 12px;
+      width: 24px; height: 24px; line-height: 22px; text-align: center;
+      border: none; background: #f1f8e9; color: var(--primary-dark);
+      border-radius: 50%; font-size: 1rem; cursor: pointer;
+    }
+    .info-card .ic-close:hover { background: #dcedc8; }
+
+    .label3d {
+      position: absolute; transform: translate(-50%, -120%);
+      background: rgba(255,255,255,0.92); color: var(--text-dark);
+      font-size: 0.72rem; padding: 2px 8px; border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15); pointer-events: none;
+      white-space: nowrap; z-index: 8; border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .legend {
+      flex-shrink: 0; background: #fff; border-top: 1px solid #e0e0e0;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.05); padding: 12px 16px; z-index: 12;
+    }
+    .legend-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center;
+    }
+    .legend-title { width: 100%; text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2px; font-weight: 600; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; cursor: pointer; transition: opacity 0.2s; }
+    .legend-item:hover { opacity: 0.7; }
+    .legend-dot { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1); }
+
+    @media (max-width: 600px) {
+      .title { font-size: 1.2rem; }
+      .subtitle { font-size: 0.78rem; }
+      .info-card { width: 250px; top: 50px; right: 8px; }
+      .legend-item { font-size: 0.72rem; }
+      .hint { font-size: 0.7rem; padding: 5px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-row">
+      <a href="../../index.html" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        返回目录
+      </a>
+      <div class="title-block">
+        <div class="title">3D 细菌结构模型</div>
+        <div class="subtitle">剖面显示各层结构 · 鞭毛摆动动画 · 点击结构查看名称与功能</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="stage">
+    <div class="hint">鼠标拖拽旋转 / 滚轮缩放 / 点击结构或图例查看详情</div>
+    <div id="canvas-container"></div>
+    <div class="info-card" id="infoCard">
+      <button class="ic-close" id="icClose">&times;</button>
+      <div class="ic-head">
+        <span class="ic-dot" id="icDot"></span>
+        <span class="ic-name" id="icName">名称</span>
+      </div>
+      <div class="ic-func" id="icFunc">功能说明</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-inner" id="legend">
+      <div class="legend-title">结构图例（点击查看名称与功能）</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from '../lib/three/three.module.js';
+
+    // ===== 结构信息 =====
+    const PARTS = [
+      { id:'capsule',   name:'荚膜',   color:'#C8E6C9', func:'某些细菌细胞壁外的一层黏液状物质，起保护作用，抵御吞噬和干燥。' },
+      { id:'wall',      name:'细胞壁', color:'#43A047', func:'保护和支持细胞，维持细菌形态，并非所有细菌都有（与动植物细胞壁成分不同）。' },
+      { id:'membrane',  name:'细胞膜', color:'#00ACC1', func:'紧贴细胞壁内侧，控制物质进出细胞，是选择性透过性膜。' },
+      { id:'cytoplasm', name:'细胞质', color:'#FFE082', func:'细胞膜内的透明黏稠液体，是生命活动的物质基础，含多种酶和核糖体。' },
+      { id:'dna',       name:'DNA（核区）', color:'#7B1FA2', func:'细菌没有成形的细胞核，DNA 集中在拟核（核区），控制遗传特性。' },
+      { id:'flagellum', name:'鞭毛',   color:'#6D4C41', func:'从细胞体内伸出的长丝状结构，通过摆动使细菌在液体中游动。' },
+      { id:'pilus',     name:'菌毛',   color:'#9575CD', func:'细胞表面细短、数目众多的丝状结构，有助于细菌附着于物体表面。' }
+    ];
+    function getPart(id){ return PARTS.find(p=>p.id===id); }
+
+    // ===== 渲染基础 =====
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf1f8e9);
+
+    const camera = new THREE.PerspectiveCamera(50, container.clientWidth/Math.max(1,container.clientHeight), 0.1, 1000);
+    camera.position.set(0, 0.5, 13);
+
+    const renderer = new THREE.WebGLRenderer({ antialias:true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.72));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 0.9);
+    keyLight.position.set(6, 9, 7);
+    scene.add(keyLight);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.45);
+    fillLight.position.set(-6, -3, -4);
+    scene.add(fillLight);
+
+    const bactGroup = new THREE.Group();
+    scene.add(bactGroup);
+
+    const clickableMeshes = [];
+    const labelData = [];
+    function addLabel(mesh, name, color, offsetVec){ labelData.push({ mesh, name, color, offset: offsetVec.clone() }); }
+
+    // ===== 剖面：用 SphereGeometry 去除朝向相机的 90° 楔形（phiStart=3π/4, phiLength=1.5π） =====
+    // 这样既保留 3D 外形，又剖开露出内部各层。DoubleSide 使剖面内侧可见。
+    const PHI_START = 3*Math.PI/4;
+    const PHI_LEN   = 1.5*Math.PI;
+
+    // 半径分层（细菌略呈椭球，整体在 group 上拉伸）
+    const R = { capsule:2.2, wall:1.9, membrane:1.6, cytoplasm:1.3 };
+
+    function layerMesh(radius, color, opacity){
+      const geo = new THREE.SphereGeometry(radius, 56, 36, PHI_START, PHI_LEN);
+      const mat = new THREE.MeshStandardMaterial({ color:new THREE.Color(color), roughness:0.5, transparent: opacity<1, opacity: opacity, side: THREE.DoubleSide });
+      return new THREE.Mesh(geo, mat);
+    }
+
+    // --- 荚膜（外层，半透明凝胶状） ---
+    const capsule = layerMesh(R.capsule, '#C8E6C9', 0.42);
+    capsule.userData = getPart('capsule');
+    bactGroup.add(capsule); clickableMeshes.push(capsule);
+    addLabel(capsule, '荚膜', '#C8E6C9', new THREE.Vector3(0, 2.6, 0));
+
+    // --- 细胞壁 ---
+    const wall = layerMesh(R.wall, '#43A047', 1);
+    wall.userData = getPart('wall');
+    bactGroup.add(wall); clickableMeshes.push(wall);
+    addLabel(wall, '细胞壁', '#43A047', new THREE.Vector3(0, 1.9, 0));
+
+    // --- 细胞膜 ---
+    const membrane = layerMesh(R.membrane, '#00ACC1', 1);
+    membrane.userData = getPart('membrane');
+    bactGroup.add(membrane); clickableMeshes.push(membrane);
+    addLabel(membrane, '细胞膜', '#00ACC1', new THREE.Vector3(0, 1.2, 0));
+
+    // --- 细胞质 ---
+    const cytoplasm = layerMesh(R.cytoplasm, '#FFE082', 0.92);
+    cytoplasm.userData = getPart('cytoplasm');
+    bactGroup.add(cytoplasm); clickableMeshes.push(cytoplasm);
+    addLabel(cytoplasm, '细胞质', '#FFE082', new THREE.Vector3(0, 0.4, 0));
+
+    // --- DNA（核区）：拟核松散盘绕的环 + 小核 ---
+    const dnaGroup = new THREE.Group();
+    const dnaMat = new THREE.MeshStandardMaterial({ color:0x7B1FA2, roughness:0.45 });
+    const dna1 = new THREE.Mesh(new THREE.TorusKnotGeometry(0.55, 0.11, 110, 16, 2, 3), dnaMat);
+    dnaGroup.add(dna1);
+    const dna2 = new THREE.Mesh(new THREE.TorusGeometry(0.4, 0.08, 12, 40), dnaMat);
+    dna2.rotation.set(Math.PI/3, Math.PI/4, 0); dna2.position.set(0.2, 0.2, 0.1);
+    dnaGroup.add(dna2);
+    dnaGroup.position.set(0, -0.2, 0.3);
+    dna1.userData = getPart('dna'); dna2.userData = getPart('dna');
+    bactGroup.add(dnaGroup); clickableMeshes.push(dna1, dna2);
+    addLabel(dna1, 'DNA（核区）', '#7B1FA2', new THREE.Vector3(0, -0.9, 0.6));
+
+    // --- 菌毛（细胞表面细短丝，避开剖面缺口区域分布） ---
+    const pilusMat = new THREE.MeshStandardMaterial({ color:0x9575CD, roughness:0.5 });
+    const pilusInfo = getPart('pilus');
+    const pilusGeo = new THREE.CylinderGeometry(0.018, 0.018, 0.45, 8);
+    // 在保留的 270° 区域(避开 phi∈(π/4,3π/4))内分布菌毛
+    const upY = new THREE.Vector3(0,1,0);
+    for (let i = 0; i < 46; i++){
+      let phi = Math.random() * Math.PI * 2;
+      // 若落入缺口范围，平移到保留区
+      if (phi > Math.PI/4 && phi < 3*Math.PI/4) phi += Math.PI/2;
+      const theta = Math.acos(2*Math.random()-1); // 0..π
+      const rr = R.capsule + 0.02;
+      const x = rr * Math.sin(theta) * Math.cos(phi);
+      const y = rr * Math.cos(theta);
+      const z = rr * Math.sin(theta) * Math.sin(phi);
+      const dir = new THREE.Vector3(x, y, z).normalize();
+      const p = new THREE.Mesh(pilusGeo, pilusMat);
+      // 中心放在表面外侧，沿径向外伸
+      p.position.copy(dir.clone().multiplyScalar(rr + 0.22));
+      p.quaternion.setFromUnitVectors(upY, dir);
+      p.userData = pilusInfo;
+      bactGroup.add(p); clickableMeshes.push(p);
+    }
+
+    // --- 鞭毛（从一端伸出，摆动动画） ---
+    const flagellumMat = new THREE.MeshStandardMaterial({ color:0x6D4C41, roughness:0.55 });
+    const flagellumInfo = getPart('flagellum');
+    const flagella = [];
+    const FLAG_BASE = new THREE.Vector3(-R.capsule, -0.3, 0); // 左端
+    const FLAG_DIR = new THREE.Vector3(-1, -0.15, 0).normalize();
+    // 与方向垂直的“波动轴”
+    const FLAG_PERP = new THREE.Vector3(0, 1, 0);
+    const SEG = 13, STEP = 0.19, AMP = 0.26;
+    for (let f = 0; f < 3; f++){
+      const grp = new THREE.Group();
+      const segs = [];
+      const offset = (f-1) * 0.18;
+      const base = FLAG_BASE.clone().add(new THREE.Vector3(0, 0, offset));
+      for (let i = 0; i <= SEG; i++){
+        const radius = 0.07 - i*0.0025;
+        const seg = new THREE.Mesh(new THREE.SphereGeometry(Math.max(0.025, radius), 10, 8), flagellumMat);
+        seg.userData = flagellumInfo;
+        grp.add(seg); segs.push(seg); clickableMeshes.push(seg);
+      }
+      bactGroup.add(grp);
+      flagella.push({ segs, base, phase: f*0.9 });
+    }
+    addLabel(flagella[0].segs[0], '鞭毛', '#6D4C41', new THREE.Vector3(-2.3, 0.7, 0));
+
+    // 整体呈球形（球菌），保持鞭毛/菌毛不被拉伸变形
+    bactGroup.rotation.y = 0.2;
+
+    // ===== 标签 DOM =====
+    const labelElements = [];
+    labelData.forEach(ld => {
+      const el = document.createElement('div');
+      el.className = 'label3d'; el.textContent = ld.name;
+      el.style.borderLeft = `3px solid ${ld.color}`;
+      container.appendChild(el); labelElements.push(el);
+    });
+
+    // ===== 图例 =====
+    const legendEl = document.getElementById('legend');
+    PARTS.forEach(o => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      item.innerHTML = `<span class="legend-dot" style="background:${o.color}"></span>${o.name}`;
+      item.addEventListener('click', () => showInfo(o));
+      legendEl.appendChild(item);
+    });
+
+    // ===== 交互：拖拽旋转 / 滚轮缩放 =====
+    const dom = renderer.domElement;
+    dom.style.touchAction = 'none';
+
+    let isDragging = false;
+    let downX=0, downY=0, prevX=0, prevY=0;
+    let targetRotX = 0.1, targetRotY = 0.2;
+    let curRotX = 0.1, curRotY = 0.2;
+    // 细菌剖面：默认不自动旋转，避免剖面缺口转开
+    let autoRotate = false, autoTimer = null;
+
+    dom.addEventListener('pointerdown', (e)=>{
+      isDragging = true; autoRotate = false; clearTimeout(autoTimer);
+      downX = prevX = e.clientX; downY = prevY = e.clientY;
+      dom.setPointerCapture(e.pointerId);
+    });
+    dom.addEventListener('pointerup', (e)=>{
+      isDragging = false;
+      const moved = Math.abs(e.clientX-downX) + Math.abs(e.clientY-downY);
+      if (moved < 6) handleClick(e);
+    });
+    dom.addEventListener('pointercancel', ()=>{ isDragging = false; });
+    dom.addEventListener('pointermove', (e)=>{
+      if(!isDragging) return;
+      targetRotY += (e.clientX - prevX) * 0.008;
+      targetRotX += (e.clientY - prevY) * 0.008;
+      targetRotX = Math.max(-1.3, Math.min(1.3, targetRotX));
+      prevX = e.clientX; prevY = e.clientY;
+    });
+    dom.addEventListener('wheel', (e)=>{
+      e.preventDefault();
+      camera.position.z = Math.max(6, Math.min(20, camera.position.z + e.deltaY * 0.012));
+    }, { passive:false });
+
+    // ===== 射线点击 =====
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    function handleClick(e){
+      const rect = dom.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left)/rect.width)*2 - 1;
+      pointer.y = -((e.clientY - rect.top)/rect.height)*2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(clickableMeshes, false);
+      if (hits.length > 0 && hits[0].object.userData && hits[0].object.userData.id){
+        showInfo(hits[0].object.userData);
+      }
+    }
+
+    // ===== 信息卡 =====
+    const infoCard = document.getElementById('infoCard');
+    const icDot = document.getElementById('icDot');
+    const icName = document.getElementById('icName');
+    const icFunc = document.getElementById('icFunc');
+    function showInfo(o){
+      if(!o || !o.id) return;
+      icDot.style.background = o.color;
+      icName.textContent = o.name;
+      icFunc.textContent = o.func;
+      infoCard.style.borderTopColor = o.color;
+      infoCard.classList.add('show');
+    }
+    document.getElementById('icClose').addEventListener('click', ()=> infoCard.classList.remove('show'));
+
+    // ===== 标签更新 =====
+    const tmpVec = new THREE.Vector3();
+    function updateLabels(){
+      labelData.forEach((ld, i)=>{
+        const el = labelElements[i];
+        ld.mesh.getWorldPosition(tmpVec);
+        tmpVec.add(ld.offset);
+        tmpVec.project(camera);
+        if (tmpVec.z > 1){ el.style.display='none'; return; }
+        const x = (tmpVec.x*0.5+0.5)*container.clientWidth;
+        const y = (-tmpVec.y*0.5+0.5)*container.clientHeight;
+        el.style.display='block';
+        el.style.left = x+'px'; el.style.top = y+'px';
+      });
+    }
+
+    function onResize(){
+      const w = container.clientWidth, h = container.clientHeight;
+      camera.aspect = w/Math.max(1,h);
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    window.addEventListener('resize', onResize);
+
+    // ===== 动画循环（鞭毛摆动） =====
+    let phase = 0;
+    function animate(){
+      requestAnimationFrame(animate);
+      curRotX += (targetRotX - curRotX) * 0.12;
+      curRotY += (targetRotY - curRotY) * 0.12;
+      bactGroup.rotation.x = curRotX;
+      bactGroup.rotation.y = curRotY;
+
+      // 鞭毛行波摆动
+      phase += 0.18;
+      flagella.forEach(fl => {
+        fl.segs.forEach((seg, i) => {
+          const len = i * STEP;
+          const wave = Math.sin(phase - i * 0.55 + fl.phase) * AMP * (i/SEG);
+          const pos = fl.base.clone()
+            .add(FLAG_DIR.clone().multiplyScalar(len))
+            .add(FLAG_PERP.clone().multiplyScalar(wave));
+          seg.position.copy(pos);
+        });
+      });
+      // DNA 轻微转动
+      dnaGroup.rotation.y += 0.004;
+
+      updateLabels();
+      renderer.render(scene, camera);
+    }
+    animate();
+    onResize();
+  </script>
+</body>
+</html>

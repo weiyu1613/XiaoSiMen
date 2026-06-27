@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识图谱示例 · 第一单元 史前时期 | TeachAny</title>
+
+  <!-- ECharts 5.x（CDN 引入，按 P2-10 要求） -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <!-- 知识图谱组件 -->
+  <script src="./knowledge-graph.js"></script>
+
+  <style>
+    :root {
+      --primary: #8B4513;
+      --primary-light: #A0522D;
+      --accent: #D4A574;
+      --bg: #fdf5e6;
+      --text: #2c3e50;
+      --radius: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* 顶部品牌栏 */
+    .brand-bar {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      padding: 10px 0;
+    }
+    .brand-bar .container {
+      max-width: 1100px; margin: 0 auto; padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .brand-tag { font-size: 12px; opacity: 0.85; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #0d2818 0%, #1a4d2e 35%, var(--primary) 100%);
+      color: #fff; padding: 48px 20px; text-align: center;
+    }
+    .hero h1 { font-size: 2rem; margin-bottom: 8px; letter-spacing: 2px; }
+    .hero p { opacity: 0.92; font-size: 0.98rem; max-width: 720px; margin: 0 auto; }
+
+    /* 主区 */
+    .main { max-width: 1200px; margin: 0 auto; padding: 28px 20px 60px; }
+
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      justify-content: space-between; margin-bottom: 16px;
+    }
+    .toolbar .hint { font-size: 13px; color: #8b7355; }
+    .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn {
+      padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer;
+      font-size: 13px; font-weight: 600; color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(139,69,19,0.3); }
+    .btn.secondary { background: linear-gradient(135deg, #64748b, #94a3b8); }
+
+    /* 布局：图谱 + 详情面板 */
+    .graph-layout {
+      display: grid; grid-template-columns: 1fr 300px; gap: 18px;
+    }
+    .graph-card {
+      background: #fff; border-radius: var(--radius); padding: 12px;
+      box-shadow: 0 4px 20px rgba(139,69,19,0.1);
+      border: 1px solid #ecdcc4;
+    }
+    #graph-container { width: 100%; height: 620px; }
+
+    .side-panel {
+      background: #fff; border-radius: var(--radius); padding: 18px;
+      box-shadow: 0 4px 20px rgba(139,69,19,0.1);
+      border: 1px solid #ecdcc4; height: 620px; overflow-y: auto;
+    }
+    .side-panel h3 { color: var(--primary); font-size: 16px; margin-bottom: 12px; }
+    .legend-list { list-style: none; margin-bottom: 18px; }
+    .legend-list li {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 0; font-size: 13px; color: #555;
+    }
+    .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+    .detail-box {
+      background: #fffaf0; border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0; padding: 14px; font-size: 13px;
+      color: #5d4037; min-height: 80px;
+    }
+    .detail-box .d-name { font-weight: 700; font-size: 15px; color: var(--primary); margin-bottom: 6px; }
+    .detail-box .d-cat { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #f0e6d6; color: #8b7355; margin-bottom: 8px; }
+    .detail-box .d-empty { color: #aaa; text-align: center; padding: 18px 0; }
+
+    .tips {
+      margin-top: 16px; background: #eef6ff; border-radius: 10px; padding: 14px 16px;
+      font-size: 13px; color: #1e40af; line-height: 1.8;
+    }
+    .tips b { color: #1e3a8a; }
+
+    .footer { text-align: center; padding: 24px 20px; color: #8b7355; font-size: 12px; }
+
+    @media (max-width: 860px) {
+      .graph-layout { grid-template-columns: 1fr; }
+      #graph-container { height: 480px; }
+      .side-panel { height: auto; max-height: 360px; }
+      .hero h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 品牌栏 -->
+  <div class="brand-bar">
+    <div class="container">
+      <div class="brand-logo">📚 TeachAny · 初中历史</div>
+      <div class="brand-tag">P2-10 知识图谱示例</div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1>第一单元：史前时期 · 知识图谱</h1>
+    <p>中国境内早期人类与文明起源 —— 北京人 · 原始农耕生活 · 远古的传说。点击节点可展开/折叠子知识点，悬停查看详情，滚轮缩放，拖拽平移。</p>
+  </header>
+
+  <!-- 主区 -->
+  <main class="main">
+
+    <div class="toolbar">
+      <span class="hint">💡 提示：带 ▸ 的节点可点击展开，▾ 表示已展开可折叠</span>
+      <div class="btn-group">
+        <button class="btn" onclick="kg.expandAll()">全部展开</button>
+        <button class="btn secondary" onclick="kg.collapseToRoot()">折叠到根</button>
+        <button class="btn secondary" onclick="resetView()">重置视图</button>
+      </div>
+    </div>
+
+    <div class="graph-layout">
+      <div class="graph-card">
+        <div id="graph-container"></div>
+      </div>
+      <aside class="side-panel">
+        <h3>分类图例</h3>
+        <ul class="legend-list" id="legend-list"></ul>
+        <h3>知识点详情</h3>
+        <div class="detail-box" id="detail-box">
+          <div class="d-empty">点击图谱中的知识点查看详情</div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="tips">
+      <b>使用说明：</b>
+      ① 单击<b>父节点</b>（如"北京人"）展开或折叠其子知识点；② <b>悬停</b>节点显示简介与子知识点数量；③
+      <b>滚轮</b>缩放、<b>拖拽</b>节点与画布；④ 虚线箭头表示知识点之间的<b>演进/关联关系</b>（如"打制石器→磨制石器"）。
+    </div>
+
+  </main>
+
+  <footer class="footer">© TeachAny · 初中7年级历史 · 第一单元 · 知识图谱组件 v1.0</footer>
+
+  <script>
+    /* ===== 第一单元：史前时期 知识图谱数据 ===== */
+    var graphData = {
+      categories: ['单元', '史前人类', '农耕文明', '传说时代'],
+      nodes: [
+        // 单元根节点
+        { id: 'unit1', name: '第一单元 史前时期', category: '单元', value: '中国境内早期人类与文明起源' },
+
+        // 三大主题（对应三课）
+        { id: 'bjr',  name: '北京人',       category: '史前人类', value: '第1课 · 中国境内早期人类的代表' },
+        { id: 'nysh', name: '原始农耕生活', category: '农耕文明', value: '第2课 · 半坡与河姆渡的原始农业' },
+        { id: 'ygcs', name: '远古的传说',   category: '传说时代', value: '第3课 · 炎黄联盟与禅让制' },
+
+        // 北京人 课的知识点
+        { id: 'ymr',   name: '元谋人',     category: '史前人类', value: '距今约170万年，发现于云南元谋，中国境内已知最早的古人类。' },
+        { id: 'tz',    name: '体质特征',   category: '史前人类', value: '头骨像猿（前额低平、眉骨粗大），四肢像人，处于从猿到人的过渡阶段。' },
+        { id: 'sdr',   name: '山顶洞人',   category: '史前人类', value: '距今约3万年，会人工取火，掌握磨制和钻孔技术。' },
+        { id: 'yhnl',  name: '用火能力',   category: '史前人类', value: '北京人使用天然火并保存火种；山顶洞人已能人工取火。' },
+        { id: 'dzsq',  name: '打制石器',   category: '史前人类', value: '旧石器时代的标志，北京人用打制方法制作砍砸器、刮削器、尖状器。' },
+        { id: 'fxlc',  name: '发现历程',   category: '史前人类', value: '1921年安特生发现遗址，1929年裴文中发现第一个北京人头盖骨化石。' },
+
+        // 原始农耕生活 课的知识点
+        { id: 'bpjm',  name: '半坡居民',   category: '农耕文明', value: '黄河流域（陕西西安），种植粟，半地穴式房屋，彩陶（人面鱼纹彩陶盆）。' },
+        { id: 'hmdjm', name: '河姆渡居民', category: '农耕文明', value: '长江流域（浙江余姚），种植水稻，干栏式房屋，黑陶，会雕刻。' },
+        { id: 'msq',   name: '磨制石器',   category: '农耕文明', value: '新石器时代的标志，石器表面光滑锋利，生产效率提高。' },
+        { id: 'rgqh',  name: '人工取火',   category: '农耕文明', value: '新石器时代居民掌握人工取火，摆脱对天然火的依赖。' },
+        { id: 'ysny',  name: '原始农业',   category: '农耕文明', value: '农作物种植、家畜饲养、聚落、磨制石器共同构成原始农业的标志。' },
+
+        // 远古的传说 课的知识点
+        { id: 'yhlm',  name: '炎黄联盟',   category: '传说时代', value: '炎帝与黄帝部落联合击败蚩尤，形成华夏族，后人称"炎黄子孙"。' },
+        { id: 'hdgx',  name: '黄帝贡献',   category: '传说时代', value: '相传黄帝造宫室、制衣裳、挖井、造舟车，其属下仓颉造字、伶伦制音律。' },
+        { id: 'szs',   name: '禅让制',     category: '传说时代', value: '尧将首领之位让给舜，舜让给禹，以德才为标准民主推举贤能。' },
+        { id: 'ysy',   name: '尧舜禹',     category: '传说时代', value: '传说中的贤君，尧舜禹相继禅让，大禹治水造福百姓。' }
+      ],
+      links: [
+        // 树形层级（type 默认 tree）
+        { source: 'unit1', target: 'bjr' },
+        { source: 'unit1', target: 'nysh' },
+        { source: 'unit1', target: 'ygcs' },
+
+        { source: 'bjr', target: 'ymr' },
+        { source: 'bjr', target: 'tz' },
+        { source: 'bjr', target: 'sdr' },
+        { source: 'bjr', target: 'yhnl' },
+        { source: 'bjr', target: 'dzsq' },
+        { source: 'bjr', target: 'fxlc' },
+
+        { source: 'nysh', target: 'bpjm' },
+        { source: 'nysh', target: 'hmdjm' },
+        { source: 'nysh', target: 'msq' },
+        { source: 'nysh', target: 'rgqh' },
+        { source: 'nysh', target: 'ysny' },
+
+        { source: 'ygcs', target: 'yhlm' },
+        { source: 'ygcs', target: 'hdgx' },
+        { source: 'ygcs', target: 'szs' },
+        { source: 'ygcs', target: 'ysy' },
+
+        // 关联关系（type: cross）
+        { source: 'dzsq', target: 'msq',  value: '工具演进：打制→磨制', type: 'cross' },
+        { source: 'yhnl', target: 'rgqh', value: '用火演进：天然火→人工取火', type: 'cross' },
+        { source: 'sdr',  target: 'ysny', value: '生产演进：采集狩猎→原始农业', type: 'cross' },
+        { source: 'bpjm', target: 'hmdjm',value: '南北农耕对比', type: 'cross' },
+        { source: 'hdgx', target: 'yhlm', value: '黄帝为联盟首领', type: 'cross' }
+      ]
+    };
+
+    /* ===== 颜色图例（与 knowledge-graph.js 配色一致） ===== */
+    var LEGEND_COLORS = {
+      '单元': '#6a1b9a',
+      '史前人类': '#8B4513',
+      '农耕文明': '#2e7d32',
+      '传说时代': '#1565C0'
+    };
+
+    function renderLegend() {
+      var ul = document.getElementById('legend-list');
+      ul.innerHTML = '';
+      graphData.categories.forEach(function (cat) {
+        var li = document.createElement('li');
+        li.innerHTML = '<span class="legend-dot" style="background:' + (LEGEND_COLORS[cat] || '#888') + '"></span>' + cat;
+        ul.appendChild(li);
+      });
+    }
+
+    function showDetail(node) {
+      var box = document.getElementById('detail-box');
+      if (!node) {
+        box.innerHTML = '<div class="d-empty">点击图谱中的知识点查看详情</div>';
+        return;
+      }
+      box.innerHTML =
+        '<div class="d-name">' + (node.name || node.id) + '</div>' +
+        '<div class="d-cat">' + (node.category || '知识点') + '</div>' +
+        '<div>' + (node.value || '暂无详细描述') + '</div>';
+    }
+
+    /* ===== 初始化知识图谱 ===== */
+    var kg;
+    function initGraph() {
+      kg = new KnowledgeGraph('graph-container', graphData, {
+        repulsion: 240,
+        edgeLength: [60, 150],
+        gravity: 0.08,
+        onLeafClick: function (node) { showDetail(node); },
+        onToggle: function (id, expanded, inst) {
+          // 展开父节点时也可在详情区显示
+          showDetail(inst.nodeMap[id]);
+        }
+      });
+
+      // 节点点击（含父节点）也更新详情面板
+      if (kg.chart) {
+        kg.chart.on('click', function (params) {
+          if (params.dataType === 'node' && params.data && params.data._raw) {
+            showDetail(params.data._raw);
+          }
+        });
+      }
+    }
+
+    function resetView() {
+      if (!kg || !kg.chart) return;
+      // 重新折叠到根并复位缩放
+      kg.collapseToRoot();
+      kg.chart.setOption({ series: [{ zoom: 1, center: ['50%', '50%'] }] });
+      showDetail(null);
+    }
+
+    /* ===== 启动 ===== */
+    renderLegend();
+    // 等待 ECharts 就绪后初始化
+    function boot() {
+      if (window.echarts) { initGraph(); }
+      else { setTimeout(boot, 100); }
+    }
+    if (document.readyState !== 'loading') { boot(); }
+    else { document.addEventListener('DOMContentLoaded', boot); }
+  </script>
+
+</body>
+</html>
