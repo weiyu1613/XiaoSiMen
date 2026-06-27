@@ -537,6 +537,18 @@
   <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- Brand Bar -->
 <div class="brand-bar">
@@ -558,6 +570,10 @@
 
 <!-- Navigation Bar -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <a href="../../index.html">🏠 首页</a>
     <span class="sep">›</span>
     <a href="../d3zg.html">📖 第三单元</a>
@@ -695,7 +711,7 @@
     </div>
 
     <!-- Pre-test -->
-    <div class="quiz-box" id="preTest">
+    <div class="quiz-box" id="preTest" data-difficulty="intermediate">
         <div class="quiz-header">
             <div class="quiz-title">📝 前测 — 课前自测</div>
             <span class="difficulty-badge diff-basic">共4题</span>
@@ -705,29 +721,29 @@
         <!-- Q1 -->
         <div class="question-item">
             <div class="question-text"><span class="q-num">1.</span> 以下不属于自然资源的是（　　）</div>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre1', '下列选项中，哪一个是人类加工制造的而非直接从自然界获取的？阳光是天然的，石油是天然的，棉花是天然的，而钢铁是经过人类冶炼加工制造的，属于工业产品。')">A. 阳光</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre1', '石油是埋藏在地下的天然能源，属于自然资源。')">B. 石油</button>
-            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre1', '正确！钢铁是经过人类冶炼加工制造的工业产品，不是直接从自然界获取的，所以不属于自然资源。')">C. 钢铁</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre1', '棉花是农产品，从自然界种植获得，属于自然资源。')">D. 棉花</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre1', '下列选项中，哪一个是人类加工制造的而非直接从自然界获取的？阳光是天然的，石油是天然的，棉花是天然的，而钢铁是经过人类冶炼加工制造的，属于工业产品。')" aria-label="选项A：阳光" aria-pressed="false">A. 阳光</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre1', '石油是埋藏在地下的天然能源，属于自然资源。')" aria-label="选项B：石油" aria-pressed="false">B. 石油</button>
+            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre1', '正确！钢铁是经过人类冶炼加工制造的工业产品，不是直接从自然界获取的，所以不属于自然资源。')" aria-label="选项C：钢铁" aria-pressed="false">C. 钢铁</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre1', '棉花是农产品，从自然界种植获得，属于自然资源。')" aria-label="选项D：棉花" aria-pressed="false">D. 棉花</button>
             <div class="feedback" id="pre1-fb"></div>
         </div>
 
         <!-- Q2 -->
         <div class="question-item">
             <div class="question-text"><span class="q-num">2.</span> 下列属于可再生资源的是（　　）</div>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre2', '煤炭是化石能源，形成需要数亿年，在人类时间尺度上不可再生，属于非可再生资源。')">A. 煤炭</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre2', '铁矿是矿产资源，形成时间极长，属于非可再生资源。')">B. 铁矿</button>
-            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre2', '正确！水资源在自然界中通过水循环不断更新，在合理利用的前提下可以循环使用，属于可再生资源。')">C. 水资源</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre2', '天然气是化石能源，形成需要漫长地质年代，属于非可再生资源。')">D. 天然气</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre2', '煤炭是化石能源，形成需要数亿年，在人类时间尺度上不可再生，属于非可再生资源。')" aria-label="选项A：煤炭" aria-pressed="false">A. 煤炭</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre2', '铁矿是矿产资源，形成时间极长，属于非可再生资源。')" aria-label="选项B：铁矿" aria-pressed="false">B. 铁矿</button>
+            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre2', '正确！水资源在自然界中通过水循环不断更新，在合理利用的前提下可以循环使用，属于可再生资源。')" aria-label="选项C：水资源" aria-pressed="false">C. 水资源</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre2', '天然气是化石能源，形成需要漫长地质年代，属于非可再生资源。')" aria-label="选项D：天然气" aria-pressed="false">D. 天然气</button>
             <div class="feedback" id="pre2-fb"></div>
         </div>
 
         <!-- Q3 -->
         <div class="question-item">
             <div class="question-text"><span class="q-num">3.</span> 关于自然资源的特征，以下说法正确的是（　　）</div>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre3', '自然资源是有限的，地球上的资源总量不是取之不尽的，需要合理利用和保护。')">A. 自然资源是取之不尽的</button>
-            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre3', '正确！自然资源的分布受地理环境影响，确实存在明显的不均匀性，如煤炭主要分布在北方，水资源南多北少。')">B. 自然资源的分布是均匀的</button>
-            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre3', '正确！自然资源的分布受地理环境影响，确实存在明显的不均匀性，如煤炭主要分布在北方，水资源南多北少。')">C. 自然资源的分布具有不均匀性</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre3', '自然资源是有限的，地球上的资源总量不是取之不尽的，需要合理利用和保护。')" aria-label="选项A：自然资源是取之不尽的" aria-pressed="false">A. 自然资源是取之不尽的</button>
+            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre3', '正确！自然资源的分布受地理环境影响，确实存在明显的不均匀性，如煤炭主要分布在北方，水资源南多北少。')" aria-label="选项B：自然资源的分布是均匀的" aria-pressed="false">B. 自然资源的分布是均匀的</button>
+            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre3', '正确！自然资源的分布受地理环境影响，确实存在明显的不均匀性，如煤炭主要分布在北方，水资源南多北少。')" aria-label="选项C：自然资源的分布具有不均匀性" aria-pressed="false">C. 自然资源的分布具有不均匀性</button>
             <button class="quiz-option" onclick="checkAnswer(this, false, 'pre3', '自然资源之间确实存在相互联系，但说它们"毫无关系"是错误的。')">D. 各种自然资源之间毫无关系</button>
             <div class="feedback" id="pre3-fb"></div>
         </div>
@@ -736,8 +752,8 @@
         <div class="question-item">
             <div class="question-text"><span class="q-num">4.</span>（挑战题）我国自然资源的基本特征是（　　）</div>
             <button class="quiz-option" onclick="checkAnswer(this, false, 'pre4', '虽然我国资源种类多样，但不能说"总量不足"，而是总量丰富，只是人均不足。')">A. 总量不足，种类单一</button>
-            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre4', '正确！我国自然资源的基本特征是：总量丰富，种类齐全，但人均资源占有量远低于世界平均水平；同时自然资源分布不均。')">B. 总量丰富，人均不足，分布不均</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre4', '我国自然资源种类齐全，并非种类单一。')">C. 种类单一，分布均匀</button>
+            <button class="quiz-option" onclick="checkAnswer(this, true, 'pre4', '正确！我国自然资源的基本特征是：总量丰富，种类齐全，但人均资源占有量远低于世界平均水平；同时自然资源分布不均。')" aria-label="选项B：总量丰富，人均不足，分布不均" aria-pressed="false">B. 总量丰富，人均不足，分布不均</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'pre4', '我国自然资源种类齐全，并非种类单一。')" aria-label="选项C：种类单一，分布均匀" aria-pressed="false">C. 种类单一，分布均匀</button>
             <button class="quiz-option" onclick="checkAnswer(this, false, 'pre4', '我国人均资源占有量远低于世界平均水平，不存在"人均充足"的情况。')">D. 总量丰富，人均充足</button>
             <div class="feedback" id="pre4-fb"></div>
         </div>
@@ -945,7 +961,7 @@
     </div>
 
     <!-- Post-test -->
-    <div class="quiz-box" id="postTest">
+    <div class="quiz-box" id="postTest" data-difficulty="intermediate">
         <div class="quiz-header">
             <div class="quiz-title">📝 后测 — 课后巩固</div>
             <span class="difficulty-badge diff-improved">共3题</span>
@@ -955,20 +971,20 @@
         <!-- Post Q1 -->
         <div class="question-item">
             <div class="question-text"><span class="q-num">1.</span>（2022·广东改编）下列关于自然资源的说法，正确的是（　　）</div>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'post1', '钢铁不是自然资源，是人类加工制造的工业产品。')">A. 钢铁是一种自然资源</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'post1', '太阳能虽然是可再生能源，但如果人类当前技术无法利用（如阴雨天气、夜晚），就不能算作可利用的自然资源。')">B. 所有自然资源都是取之不尽的</button>
-            <button class="quiz-option" onclick="checkAnswer(this, true, 'post1', '正确！太阳能、风能、水能等在自然界中不断更新，可以循环利用，属于可再生资源。')">C. 太阳能、风能属于可再生资源</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'post1', '煤炭的形成需要数亿年，在人类时间尺度上不可再生。')">D. 煤炭、石油都是可再生资源</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'post1', '钢铁不是自然资源，是人类加工制造的工业产品。')" aria-label="选项A：钢铁是一种自然资源" aria-pressed="false">A. 钢铁是一种自然资源</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'post1', '太阳能虽然是可再生能源，但如果人类当前技术无法利用（如阴雨天气、夜晚），就不能算作可利用的自然资源。')" aria-label="选项B：所有自然资源都是取之不尽的" aria-pressed="false">B. 所有自然资源都是取之不尽的</button>
+            <button class="quiz-option" onclick="checkAnswer(this, true, 'post1', '正确！太阳能、风能、水能等在自然界中不断更新，可以循环利用，属于可再生资源。')" aria-label="选项C：太阳能、风能属于可再生资源" aria-pressed="false">C. 太阳能、风能属于可再生资源</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'post1', '煤炭的形成需要数亿年，在人类时间尺度上不可再生。')" aria-label="选项D：煤炭、石油都是可再生资源" aria-pressed="false">D. 煤炭、石油都是可再生资源</button>
             <div class="feedback" id="post1-fb"></div>
         </div>
 
         <!-- Post Q2 -->
         <div class="question-item">
             <div class="question-text"><span class="q-num">2.</span>（2023·山东改编）我国自然资源的基本国情是（　　）</div>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'post2', '我国人均资源不足，不是人均充足。')">A. 总量不足，人均充足</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'post2', '我国资源种类齐全，不是种类单一。')">B. 种类单一，分布均匀</button>
-            <button class="quiz-option" onclick="checkAnswer(this, true, 'post2', '正确！我国自然资源总量丰富、种类齐全，但人口众多导致人均资源占有量不足，且资源分布受地理环境影响很不均衡。')">C. 总量丰富，人均不足，分布不均</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'post2', '我国总量丰富，许多资源总量居世界前列，不是总量不足。')">D. 总量不足，种类单一</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'post2', '我国人均资源不足，不是人均充足。')" aria-label="选项A：总量不足，人均充足" aria-pressed="false">A. 总量不足，人均充足</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'post2', '我国资源种类齐全，不是种类单一。')" aria-label="选项B：种类单一，分布均匀" aria-pressed="false">B. 种类单一，分布均匀</button>
+            <button class="quiz-option" onclick="checkAnswer(this, true, 'post2', '正确！我国自然资源总量丰富、种类齐全，但人口众多导致人均资源占有量不足，且资源分布受地理环境影响很不均衡。')" aria-label="选项C：总量丰富，人均不足，分布不均" aria-pressed="false">C. 总量丰富，人均不足，分布不均</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'post2', '我国总量丰富，许多资源总量居世界前列，不是总量不足。')" aria-label="选项D：总量不足，种类单一" aria-pressed="false">D. 总量不足，种类单一</button>
             <div class="feedback" id="post2-fb"></div>
         </div>
 
@@ -1011,13 +1027,16 @@
             <button class="quiz-option" onclick="checkAnswer(this, false, 'post3', '南方地区降水多，并非"南少北多"，此项说反了。')">A. 南少北多</button>
             <button class="quiz-option" onclick="checkAnswer(this, true, 'post3', '正确！从年降水量分布图可以看出，北方地区（特别是西北）降水少，南方地区降水多，整体呈现"南多北少"的特点，这与夏季风的影响密切相关。')">B. 南多北少</button>
             <button class="quiz-option" onclick="checkAnswer(this, false, 'post3', '从图中可以看到降水分布差异明显，北方和西北有明显少雨区，并非"东西均匀"。')">C. 东西均匀</button>
-            <button class="quiz-option" onclick="checkAnswer(this, false, 'post3', '降水是气象现象，水资源确实南多北少，但选项说的是降水的空间分布特点。')">D. 无法判断</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false, 'post3', '降水是气象现象，水资源确实南多北少，但选项说的是降水的空间分布特点。')" aria-label="选项D：无法判断" aria-pressed="false">D. 无法判断</button>
             <div class="feedback" id="post3-fb"></div>
         </div>
     </div>
 
     <!-- Key Exam Points -->
     <div class="card" id="examAnalysis">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="section-title">
             <span class="icon">📊</span>
             <h2>必考分析与考点总结</h2>
@@ -1050,7 +1069,9 @@
             <p>核心特征：<strong>"总量丰富、人均不足、分布不均"</strong>。考试常结合具体数据（耕地、水资源、矿产等的人均占有量）进行计算题或读图分析。</p>
             <div class="answer-explanation">💡 考试重点：能够根据数据计算人均，理解"总量大但人均小"的含义</div>
         </div>
-    </div>
+    
+</details>
+</div>
 
     <!-- AI Buddy Slot -->
     <div class="ai-buddy-slot">
@@ -1139,5 +1160,6 @@
     updateProgressBar();
 </script>
 
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

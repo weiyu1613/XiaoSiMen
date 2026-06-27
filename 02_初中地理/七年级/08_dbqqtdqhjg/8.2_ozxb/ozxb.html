@@ -92,6 +92,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-globe-europe"></i> TeachAny · 初中地理</div>
     <div class="brand-tag">互动课件 v7.14</div>
@@ -100,7 +112,11 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 6/10 节 · 60%</div>
   
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dbqqtdqhjg.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第八章：东半球的地区</div>
@@ -175,6 +191,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 记住欧洲西部的地理位置和范围</li>
@@ -193,16 +215,16 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】欧洲西部主要气候类型是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：温带海洋性气候" aria-pressed="false">
             <span class="opt-letter">A</span> 温带海洋性气候
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 热带季风气候不在欧洲西部！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：热带季风气候" aria-pressed="false" data-feedback="❌ 热带季风气候不在欧洲西部！">
             <span class="opt-letter">B</span> 热带季风气候
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 热带沙漠气候不在欧洲西部！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：热带沙漠气候" aria-pressed="false" data-feedback="❌ 热带沙漠气候不在欧洲西部！">
             <span class="opt-letter">C</span> 热带沙漠气候
           </div>
         </div>
@@ -214,16 +236,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】欧洲西部地形以什么为主？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：平原和山地" aria-pressed="false">
             <span class="opt-letter">A</span> 平原和山地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 欧洲西部高原面积不大！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：高原为主" aria-pressed="false" data-feedback="❌ 欧洲西部高原面积不大！">
             <span class="opt-letter">B</span> 高原为主
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 欧洲西部盆地不多！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：盆地为主" aria-pressed="false" data-feedback="❌ 欧洲西部盆地不多！">
             <span class="opt-letter">C</span> 盆地为主
           </div>
         </div>
@@ -340,16 +362,16 @@
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: #0369a1; margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】欧洲西部畜牧业发达的原因是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：温带海洋性气候适合牧草生长" aria-pressed="false">
             <span class="opt-letter">A</span> 温带海洋性气候适合牧草生长
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 热带气候不适合牧草生长！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：热带气候广阔" aria-pressed="false" data-feedback="❌ 热带气候不适合牧草生长！">
             <span class="opt-letter">B</span> 热带气候广阔
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 欧洲西部草原面积不大！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：热带草原广阔" aria-pressed="false" data-feedback="❌ 欧洲西部草原面积不大！">
             <span class="opt-letter">C</span> 热带草原广阔
           </div>
         </div>
@@ -444,6 +466,8 @@
       console.log('📚 《欧洲西部》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

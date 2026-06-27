@@ -135,10 +135,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">互动课件 v7.14</div></div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d3sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第三单元：秦汉时期</div>
@@ -194,6 +210,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道<strong>文景之治</strong>的含义（文帝、景帝）</li>
@@ -206,42 +228,42 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】"文景之治"发生在哪个朝代？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 文景之治是西汉的，不是秦朝！"><span class="opt-letter">A</span> 秦朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 西汉</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 文景之治是西汉的，不是东汉！"><span class="opt-letter">C</span> 东汉</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦朝" aria-pressed="false" data-feedback="❌ 文景之治是西汉的，不是秦朝！"><span class="opt-letter">A</span> 秦朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：西汉" aria-pressed="false"><span class="opt-letter">B</span> 西汉</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：东汉" aria-pressed="false" data-feedback="❌ 文景之治是西汉的，不是东汉！"><span class="opt-letter">C</span> 东汉</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 西汉</strong></p><p style="margin-top: 8px;"><strong>"文景之治"</strong>是指<strong>西汉汉文帝、汉景帝</strong>统治时期出现的<strong>盛世局面</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】"文景之治"的两位皇帝是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 汉文帝、汉景帝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 汉武帝是景帝的儿子，不是'文景'！"><span class="opt-letter">B</span> 汉景帝、汉武帝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 刘邦是汉高祖，不是'文景'！"><span class="opt-letter">C</span> 刘邦、汉文帝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：汉文帝、汉景帝" aria-pressed="false"><span class="opt-letter">A</span> 汉文帝、汉景帝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：汉景帝、汉武帝" aria-pressed="false" data-feedback="❌ 汉武帝是景帝的儿子，不是'文景'！"><span class="opt-letter">B</span> 汉景帝、汉武帝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：刘邦、汉文帝" aria-pressed="false" data-feedback="❌ 刘邦是汉高祖，不是'文景'！"><span class="opt-letter">C</span> 刘邦、汉文帝</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 汉文帝、汉景帝</strong></p><p style="margin-top: 8px;"><strong>汉文帝刘恒</strong>（前180-前157年在位）、<strong>汉景帝刘启</strong>（前157-前141年在位），父子两代推行<strong>休养生息</strong>政策，出现盛世。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】"文景之治"局面出现的主要原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 罢黜百家是汉武帝的措施，不是文景时期！"><span class="opt-letter">A</span> 罢黜百家，独尊儒术</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 继续推行休养生息政策</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 文景时期没有实行推恩令，那是汉武帝的措施！"><span class="opt-letter">C</span> 颁布推恩令</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：罢黜百家，独尊儒术" aria-pressed="false" data-feedback="❌ 罢黜百家是汉武帝的措施，不是文景时期！"><span class="opt-letter">A</span> 罢黜百家，独尊儒术</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：继续推行休养生息政策" aria-pressed="false"><span class="opt-letter">B</span> 继续推行休养生息政策</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：颁布推恩令" aria-pressed="false" data-feedback="❌ 文景时期没有实行推恩令，那是汉武帝的措施！"><span class="opt-letter">C</span> 颁布推恩令</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 继续推行休养生息政策</strong></p><p style="margin-top: 8px;">文景两代<strong>继续推行</strong>刘邦开始的<strong>休养生息</strong>政策（减轻赋税、徭役），使社会经济得到恢复和发展。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列哪一项不属于"文景之治"的表现？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 减轻赋税是文景之治的表现，不符合题意！"><span class="opt-letter">A</span> 减轻赋税</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 国力增强是文景之治的表现，不符合题意！"><span class="opt-letter">B</span> 国力增强</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 颁布推恩令</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：减轻赋税" aria-pressed="false" data-feedback="❌ 减轻赋税是文景之治的表现，不符合题意！"><span class="opt-letter">A</span> 减轻赋税</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：国力增强" aria-pressed="false" data-feedback="❌ 国力增强是文景之治的表现，不符合题意！"><span class="opt-letter">B</span> 国力增强</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：颁布推恩令" aria-pressed="false"><span class="opt-letter">C</span> 颁布推恩令</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 颁布推恩令</strong></p><p style="margin-top: 8px;"><strong>"推恩令"</strong>是<strong>汉武帝</strong>巩固大一统的措施，<strong>不是</strong>文景之治时期的内容。</p></div>
@@ -250,6 +272,9 @@
     <section class="section" id="section-wenjing">
       <h2 class="section-title"><span class="num">📖</span> 文景之治</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 什么是"文景之治"？</h3>
         <div class="concept-box" style="margin-top: 16px;">
           <div class="label">核心概念 · 文景之治</div>
@@ -264,7 +289,9 @@
           <div class="timeline-item"><h4>社会稳定</h4><p>社会秩序安定，<strong>人口增长</strong>，<strong>国库充盈</strong>。</p></div>
         </div>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 文景之治的表现</div><p>✅ <strong>经济：</strong>赋税减轻（三十税一），徭役减轻</p><p style="margin-top: 6px;">✅ <strong>政治：</strong>社会安定，人口增长</p><p style="margin-top: 6px;">✅ <strong>国力：</strong>国库充盈，为汉武帝大一统奠定基础</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-significance">
       <h2 class="section-title"><span class="num">🌟</span> 文景之治的历史意义</h2>
@@ -300,44 +327,44 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】"文景之治"出现在哪位皇帝统治时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 刘邦是汉高祖，不是'文景'！"><span class="opt-letter">A</span> 刘邦</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 汉文帝、汉景帝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 汉武帝是景帝的儿子，不是'文景'！"><span class="opt-letter">C</span> 汉武帝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：刘邦" aria-pressed="false" data-feedback="❌ 刘邦是汉高祖，不是'文景'！"><span class="opt-letter">A</span> 刘邦</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：汉文帝、汉景帝" aria-pressed="false"><span class="opt-letter">B</span> 汉文帝、汉景帝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：汉武帝" aria-pressed="false" data-feedback="❌ 汉武帝是景帝的儿子，不是'文景'！"><span class="opt-letter">C</span> 汉武帝</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 汉文帝、汉景帝</strong></p><p style="margin-top: 8px;"><strong>"文景之治"</strong>是指<strong>西汉汉文帝刘恒、汉景帝刘启</strong>统治时期出现的盛世局面。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）"文景之治"时期推行的政策是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 休养生息</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ '独尊儒术'是汉武帝的措施，不是文景时期！"><span class="opt-letter">B</span> 独尊儒术</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ '推恩令'是汉武帝的措施，不是文景时期！"><span class="opt-letter">C</span> 推恩令</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：休养生息" aria-pressed="false"><span class="opt-letter">A</span> 休养生息</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：独尊儒术" aria-pressed="false" data-feedback="❌ '独尊儒术'是汉武帝的措施，不是文景时期！"><span class="opt-letter">B</span> 独尊儒术</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：推恩令" aria-pressed="false" data-feedback="❌ '推恩令'是汉武帝的措施，不是文景时期！"><span class="opt-letter">C</span> 推恩令</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 休养生息</strong></p><p style="margin-top: 8px;">文景两代<strong>继续推行</strong>刘邦开始的<strong>休养生息</strong>政策，使社会经济得到恢复和发展，出现了"文景之治"的盛世局面。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）"文景之治"为哪位皇帝的大一统奠定了基础？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 秦始皇是秦朝的，不是汉朝的！"><span class="opt-letter">A</span> 秦始皇</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')"><span class="opt-letter">B</span> 汉武帝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 光武帝是东汉的，不是西汉的！"><span class="opt-letter">C</span> 光武帝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦始皇" aria-pressed="false" data-feedback="❌ 秦始皇是秦朝的，不是汉朝的！"><span class="opt-letter">A</span> 秦始皇</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：汉武帝" aria-pressed="false"><span class="opt-letter">B</span> 汉武帝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：光武帝" aria-pressed="false" data-feedback="❌ 光武帝是东汉的，不是西汉的！"><span class="opt-letter">C</span> 光武帝</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 汉武帝</strong></p><p style="margin-top: 8px;"><strong>"文景之治"</strong>使西汉<strong>国力增强、国库充盈</strong>，为<strong>汉武帝巩固大一统</strong>奠定了<strong>坚实的物质基础</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"京师之钱累巨万，贯朽而不可校。太仓之粟陈陈相因，充溢露积于外，至腐败不可食。"——《史记·平准书》</div>
         <p style="margin-bottom:10px;font-weight:600;">材料反映了哪个时期的盛世局面？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料说'京师之钱累巨万'，不是指秦朝！"><span class="opt-letter">A</span> 秦朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')"><span class="opt-letter">B</span> 文景之治</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料没提到光武，不是指东汉！"><span class="opt-letter">C</span> 光武中兴</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦朝" aria-pressed="false" data-feedback="❌ 材料说'京师之钱累巨万'，不是指秦朝！"><span class="opt-letter">A</span> 秦朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：文景之治" aria-pressed="false"><span class="opt-letter">B</span> 文景之治</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：光武中兴" aria-pressed="false" data-feedback="❌ 材料没提到光武，不是指东汉！"><span class="opt-letter">C</span> 光武中兴</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 文景之治</strong></p><p style="margin-top: 8px;">材料描述了<strong>国库钱粮充盈</strong>的景象（"京师之钱累巨万"、"太仓之粟陈陈相因"），这反映的是<strong>"文景之治"</strong>时期的盛世局面。</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 材料分析题方法</div><ol style="padding-left: 20px; line-height: 1.8;"><li><strong>先读材料：</strong>理解材料意思（国库充盈、粮食多到腐烂）</li><li><strong>再联系课本：</strong>回忆"文景之治"的表现</li><li><strong>排除无中生有：</strong>材料没提到的选项不选</li></ol></div></div>
@@ -414,7 +441,9 @@
       console.log('📚 《文景之治》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>
 

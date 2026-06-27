@@ -101,6 +101,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <div class="brand-bar">
     <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
@@ -115,6 +127,10 @@
 </div>
 
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../d9zhn.html" class="nav-btn"><i class="fas fa-list"></i> 单元</a>
@@ -195,28 +211,28 @@
         <h2><i class="fas fa-question-circle"></i> 课前思考（前测）</h2>
         <div class="quiz-question">
             <h4>1. 【基础】中国人民政治协商会议第一届全体会议召开于？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1948年还没有召开政协会议。">A. 1948年9月</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1949年9月，第一届中国人民政治协商会议在北平隆重召开。">B. 1949年9月</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1949年10月是开国大典的时间，不是政协会议。">C. 1949年10月</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1948年9月" aria-pressed="false" data-feedback="❌ 错误。1948年还没有召开政协会议。">A. 1948年9月</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：1949年9月" aria-pressed="false" data-feedback="✅ 正确！1949年9月，第一届中国人民政治协商会议在北平隆重召开。">B. 1949年9月</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：1949年10月" aria-pressed="false" data-feedback="❌ 错误。1949年10月是开国大典的时间，不是政协会议。">C. 1949年10月</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【提高】《中国人民政治协商会议共同纲领》的作用是什么？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！《共同纲领》在当时起到了临时宪法的作用，是新中国的施政方针。">A. 起临时宪法作用</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《共同纲领》不是正式宪法，1954年才颁布第一部宪法。">B. 是新中国第一部正式宪法</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《共同纲领》是全国性文件，不是只针对政协。">C. 仅规定政协的组织原则</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项A：起临时宪法作用" aria-pressed="false" data-feedback="✅ 正确！《共同纲领》在当时起到了临时宪法的作用，是新中国的施政方针。">A. 起临时宪法作用</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：是新中国第一部正式宪法" aria-pressed="false" data-feedback="❌ 错误。《共同纲领》不是正式宪法，1954年才颁布第一部宪法。">B. 是新中国第一部正式宪法</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：仅规定政协的组织原则" aria-pressed="false" data-feedback="❌ 错误。《共同纲领》是全国性文件，不是只针对政协。">C. 仅规定政协的组织原则</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【挑战】新中国成立的历史意义，下列说法不正确的是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 这个说法是正确的。新中国成立确实结束了一百多年来被侵略被奴役的屈辱历史。">A. 结束了被侵略被奴役的屈辱历史</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！这个说法不正确。新中国成立标志着新民主主义革命的胜利，而不是社会主义改造的完成。社会主义改造完成是1956年。">B. 标志着社会主义改造的完成</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 这个说法是正确的。新中国成立确实壮大了世界和平民主和社会主义力量。">C. 壮大了世界和平民主和社会主义力量</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：结束了被侵略被奴役的屈辱历史" aria-pressed="false" data-feedback="❌ 这个说法是正确的。新中国成立确实结束了一百多年来被侵略被奴役的屈辱历史。">A. 结束了被侵略被奴役的屈辱历史</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：标志着社会主义改造的完成" aria-pressed="false" data-feedback="✅ 正确！这个说法不正确。新中国成立标志着新民主主义革命的胜利，而不是社会主义改造的完成。社会主义改造完成是1956年。">B. 标志着社会主义改造的完成</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：壮大了世界和平民主和社会主义力量" aria-pressed="false" data-feedback="❌ 这个说法是正确的。新中国成立确实壮大了世界和平民主和社会主义力量。">C. 壮大了世界和平民主和社会主义力量</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -281,28 +297,28 @@
         <h2><i class="fas fa-clipboard-check"></i> 课后检测（后测）</h2>
         <div class="quiz-question">
             <h4>1. 【⭐ 基础】开国大典举行于哪一天？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。9月1日是政协会议期间，不是开国大典。">A. 1949年9月1日</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1949年10月1日下午3时，开国大典在北京天安门广场隆重举行。">B. 1949年10月1日</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。10月10日不是开国大典的日期。">C. 1949年10月10日</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1949年9月1日" aria-pressed="false" data-feedback="❌ 错误。9月1日是政协会议期间，不是开国大典。">A. 1949年9月1日</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：1949年10月1日" aria-pressed="false" data-feedback="✅ 正确！1949年10月1日下午3时，开国大典在北京天安门广场隆重举行。">B. 1949年10月1日</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：1949年10月10日" aria-pressed="false" data-feedback="❌ 错误。10月10日不是开国大典的日期。">C. 1949年10月10日</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【⭐⭐ 提高】（2023·广东）新中国成立的历史意义是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。社会主义改造完成是1956年，不是新中国成立的意义。">A. 标志着社会主义改造完成</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！新中国成立结束了中国一百多年来被侵略被奴役的屈辱历史，中国人民从此站起来了。">B. 结束了被侵略被奴役的屈辱历史</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。改革开放是1978年开始的，与新中国成立无关。">C. 标志着改革开放的开始</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：标志着社会主义改造完成" aria-pressed="false" data-feedback="❌ 错误。社会主义改造完成是1956年，不是新中国成立的意义。">A. 标志着社会主义改造完成</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：结束了被侵略被奴役的屈辱历史" aria-pressed="false" data-feedback="✅ 正确！新中国成立结束了中国一百多年来被侵略被奴役的屈辱历史，中国人民从此站起来了。">B. 结束了被侵略被奴役的屈辱历史</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：标志着改革开放的开始" aria-pressed="false" data-feedback="❌ 错误。改革开放是1978年开始的，与新中国成立无关。">C. 标志着改革开放的开始</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【⭐⭐⭐ 挑战】下列关于《共同纲领》的表述，正确的是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《共同纲领》起临时宪法作用，不是正式宪法。">A. 是新中国第一部正式宪法</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！《共同纲领》在当时起到了临时宪法的作用，规定了新中国的国家性质和施政方针。">B. 起临时宪法作用</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《共同纲领》是由政协会议通过的，不是人民代表大会。">C. 由全国人民代表大会制定</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：是新中国第一部正式宪法" aria-pressed="false" data-feedback="❌ 错误。《共同纲领》起临时宪法作用，不是正式宪法。">A. 是新中国第一部正式宪法</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：起临时宪法作用" aria-pressed="false" data-feedback="✅ 正确！《共同纲领》在当时起到了临时宪法的作用，规定了新中国的国家性质和施政方针。">B. 起临时宪法作用</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：由全国人民代表大会制定" aria-pressed="false" data-feedback="❌ 错误。《共同纲领》是由政协会议通过的，不是人民代表大会。">C. 由全国人民代表大会制定</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -383,6 +399,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -257,6 +257,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -269,7 +281,11 @@
   <div class="progress-label" id="progress-label">第 1/4 节 · 25%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../02_d2zgrj.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
@@ -356,6 +372,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 掌握中国地形复杂多样、山区面积大的特点</li>
@@ -376,16 +398,16 @@
       </p>
       
       <!-- 基础题1：地形特点 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】中国地形的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 平原多、山地少不符合中国实际！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：平原多、山地少" aria-pressed="false" data-feedback="❌ 平原多、山地少不符合中国实际！">
             <span class="opt-letter">A</span> 平原多、山地少
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：复杂多样，山区面积广大" aria-pressed="false">
             <span class="opt-letter">B</span> 复杂多样，山区面积广大
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 地形单一不是中国特点！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：地形单一" aria-pressed="false" data-feedback="❌ 地形单一不是中国特点！">
             <span class="opt-letter">C</span> 地形单一
           </div>
         </div>
@@ -398,16 +420,16 @@
       </div>
 
       <!-- 基础题2：地势特征 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】中国地势的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 东高西低不是中国地势特征！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：东高西低" aria-pressed="false" data-feedback="❌ 东高西低不是中国地势特征！">
             <span class="opt-letter">A</span> 东高西低
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 南高北低也不是中国地势特征！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：南高北低" aria-pressed="false" data-feedback="❌ 南高北低也不是中国地势特征！">
             <span class="opt-letter">B</span> 南高北低
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西高东低，呈三级阶梯状分布" aria-pressed="false">
             <span class="opt-letter">C</span> 西高东低，呈三级阶梯状分布
           </div>
         </div>
@@ -420,16 +442,16 @@
       </div>
       
       <!-- 提高题3：三级阶梯 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】关于中国三级阶梯的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 第一级阶梯海拔在4000米以上，不是2000米！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：第一级阶梯海拔在2000米以上" aria-pressed="false" data-feedback="❌ 第一级阶梯海拔在4000米以上，不是2000米！">
             <span class="opt-letter">A</span> 第一级阶梯海拔在2000米以上
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 第二级阶梯海拔在1000-2000米，不是500-1000米！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：第二级阶梯海拔在500-1000米" aria-pressed="false" data-feedback="❌ 第二级阶梯海拔在1000-2000米，不是500-1000米！">
             <span class="opt-letter">B</span> 第二级阶梯海拔在500-1000米
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：第三级阶梯海拔在500米以下" aria-pressed="false">
             <span class="opt-letter">C</span> 第三级阶梯海拔在500米以下
           </div>
         </div>
@@ -447,16 +469,16 @@
       </div>
 
       <!-- 挑战题4：地形影响 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】地形地势对气候的影响，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：西高东低的地势使湿润气流难以深入内陆" aria-pressed="false">
             <span class="opt-letter">A</span> 西高东低的地势使湿润气流难以深入内陆
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 西高东低的地势会使湿润气流更容易深入内陆！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：西高东低的地势使湿润气流容易深入内陆" aria-pressed="false" data-feedback="❌ 西高东低的地势会使湿润气流更容易深入内陆！">
             <span class="opt-letter">B</span> 西高东低的地势使湿润气流容易深入内陆
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 西高东低的地势不会使降水分布均匀！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西高东低的地势使降水分布均匀" aria-pressed="false" data-feedback="❌ 西高东低的地势不会使降水分布均匀！">
             <span class="opt-letter">C</span> 西高东低的地势使降水分布均匀
           </div>
         </div>
@@ -637,16 +659,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】中国最大的平原是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 长江中下游平原不是最大的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：长江中下游平原" aria-pressed="false" data-feedback="❌ 长江中下游平原不是最大的！">
             <span class="opt-letter">A</span> 长江中下游平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 华北平原不是最大的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：华北平原" aria-pressed="false" data-feedback="❌ 华北平原不是最大的！">
             <span class="opt-letter">B</span> 华北平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：东北平原" aria-pressed="false">
             <span class="opt-letter">C</span> 东北平原
           </div>
         </div>
@@ -659,16 +681,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·全国中考）中国地势西高东低，呈三级阶梯状分布，这有利于？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：沿海与内陆的经济文化交流" aria-pressed="false">
             <span class="opt-letter">A</span> 沿海与内陆的经济文化交流
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 这会使湿润气流难以深入内陆，而不是容易深入！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：湿润气流深入内陆" aria-pressed="false" data-feedback="❌ 这会使湿润气流难以深入内陆，而不是容易深入！">
             <span class="opt-letter">B</span> 湿润气流深入内陆
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 这不会使降水分布均匀！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：降水分布均匀" aria-pressed="false" data-feedback="❌ 这不会使降水分布均匀！">
             <span class="opt-letter">C</span> 降水分布均匀
           </div>
         </div>
@@ -681,16 +703,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·全国中考）下列地形区中，位于第二级阶梯的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 东北平原位于第三级阶梯！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：东北平原" aria-pressed="false" data-feedback="❌ 东北平原位于第三级阶梯！">
             <span class="opt-letter">A</span> 东北平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：四川盆地" aria-pressed="false">
             <span class="opt-letter">B</span> 四川盆地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 青藏高原位于第一级阶梯！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：青藏高原" aria-pressed="false" data-feedback="❌ 青藏高原位于第一级阶梯！">
             <span class="opt-letter">C</span> 青藏高原
           </div>
         </div>
@@ -708,6 +730,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -757,7 +782,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>东北平原（最大）、华北平原（黄河冲积）、长江中下游平原（水网密布）、青藏高原（世界屋脊）、黄土高原（黄土深厚）、云贵高原（喀斯特地貌）。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -860,6 +887,8 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

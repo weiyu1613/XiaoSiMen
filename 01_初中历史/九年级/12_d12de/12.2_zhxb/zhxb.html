@@ -218,6 +218,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -231,6 +243,10 @@
 
   <!-- ========== ③ 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d12de.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -337,17 +353,17 @@
             <div class="quiz-question">
               <span class="star">★</span>欧洲一体化从什么领域开始？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 政治联合是后来的事，欧洲一体化从经济开始。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.政治" aria-pressed="false" data-feedback="❌ 政治联合是后来的事，欧洲一体化从经济开始。">
                 <span class="opt-letter">A</span><label>A. 政治</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'B')" data-feedback="❌ 欧洲一体化从经济开始，不是军事。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.军事" aria-pressed="false" data-feedback="❌ 欧洲一体化从经济开始，不是军事。">
                 <span class="opt-letter">B</span><label>B. 军事</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.经济" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 经济</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 文化交流不是欧洲一体化的起点。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.文化" aria-pressed="false" data-feedback="❌ 文化交流不是欧洲一体化的起点。">
                 <span class="opt-letter">D</span><label>D. 文化</label>
               </div>
             </div>
@@ -364,17 +380,17 @@
             <div class="quiz-question">
               <span class="star">★</span>日本经济在二战后迅速崛起的外部因素是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 这是内部因素，不是外部因素。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.日本国民素质" aria-pressed="false" data-feedback="❌ 这是内部因素，不是外部因素。">
                 <span class="opt-letter">A</span><label>A. 日本国民素质</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.美国的大力扶植" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 美国的大力扶植</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 马歇尔计划是针对西欧的，不适用于日本。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.马歇尔计划" aria-pressed="false" data-feedback="❌ 马歇尔计划是针对西欧的，不适用于日本。">
                 <span class="opt-letter">C</span><label>C. 马歇尔计划</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 日本本身资源匮乏。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.日本丰富资源" aria-pressed="false" data-feedback="❌ 日本本身资源匮乏。">
                 <span class="opt-letter">D</span><label>D. 日本丰富资源</label>
               </div>
             </div>
@@ -391,17 +407,17 @@
             <div class="quiz-question">
               <span class="star">★</span>欧洲联盟正式成立是在哪一年？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 1957年签署《罗马条约》成立的是欧洲经济共同体。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1957" aria-pressed="false" data-feedback="❌ 1957年签署《罗马条约》成立的是欧洲经济共同体。">
                 <span class="opt-letter">A</span><label>A. 1957</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'B')" data-feedback="❌ 1967年合并为欧共体，还不是欧盟。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1967" aria-pressed="false" data-feedback="❌ 1967年合并为欧共体，还不是欧盟。">
                 <span class="opt-letter">B</span><label>B. 1967</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1993" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 1993</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 1999年是欧元作为记账货币启动。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.1999" aria-pressed="false" data-feedback="❌ 1999年是欧元作为记账货币启动。">
                 <span class="opt-letter">D</span><label>D. 1999</label>
               </div>
             </div>
@@ -418,17 +434,17 @@
             <div class="quiz-question">
               <span class="star">★</span>二战后西欧国家走向联合的根本原因是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 对抗苏联是政治原因，不是根本原因。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.对抗苏联" aria-pressed="false" data-feedback="❌ 对抗苏联是政治原因，不是根本原因。">
                 <span class="opt-letter">A</span><label>A. 对抗苏联</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 摆脱美国控制是次要原因。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.摆脱美国控制" aria-pressed="false" data-feedback="❌ 摆脱美国控制是次要原因。">
                 <span class="opt-letter">B</span><label>B. 摆脱美国控制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.恢复和发展经济的需要" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 恢复和发展经济的需要</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'D')" data-feedback="❌ 联合国不是欧洲一体化的主要推动者。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.联合国推动" aria-pressed="false" data-feedback="❌ 联合国不是欧洲一体化的主要推动者。">
                 <span class="opt-letter">D</span><label>D. 联合国推动</label>
               </div>
             </div>
@@ -565,17 +581,17 @@
             <div class="quiz-question">
               <span class="star">★</span>欧元成为欧盟单一货币是在哪一年？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 1993年是欧盟成立，不是欧元流通。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1993" aria-pressed="false" data-feedback="❌ 1993年是欧盟成立，不是欧元流通。">
                 <span class="opt-letter">A</span><label>A. 1993</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'B')" data-feedback="❌ 1999年欧元作为记账货币启动，但纸币硬币尚未流通。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1999" aria-pressed="false" data-feedback="❌ 1999年欧元作为记账货币启动，但纸币硬币尚未流通。">
                 <span class="opt-letter">B</span><label>B. 1999</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.2002" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 2002</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 2004年是欧盟东扩，与欧元无关。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.2004" aria-pressed="false" data-feedback="❌ 2004年是欧盟东扩，与欧元无关。">
                 <span class="opt-letter">D</span><label>D. 2004</label>
               </div>
             </div>
@@ -592,17 +608,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2021·安徽中考）日本经济在二战后迅速发展的根本原因是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 这是外部因素，不是根本原因！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.美国扶植" aria-pressed="false" data-feedback="❌ 这是外部因素，不是根本原因！">
                 <span class="opt-letter">A</span><label>A. 美国扶植</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ 这是外部因素，不是根本原因！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.朝鲜战争特需" aria-pressed="false" data-feedback="❌ 这是外部因素，不是根本原因！">
                 <span class="opt-letter">B</span><label>B. 朝鲜战争特需</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.日本政府制定适当的经济政策" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 日本政府制定适当的经济政策</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 加入联合国与经济发展关系不大。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.加入联合国" aria-pressed="false" data-feedback="❌ 加入联合国与经济发展关系不大。">
                 <span class="opt-letter">D</span><label>D. 加入联合国</label>
               </div>
             </div>
@@ -619,17 +635,17 @@
             <div class="quiz-question">
               <span class="star">★</span>福利国家制度的实质是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 完全消灭贫富差距不现实，福利国家只是缩小差距。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.消灭贫富差距" aria-pressed="false" data-feedback="❌ 完全消灭贫富差距不现实，福利国家只是缩小差距。">
                 <span class="opt-letter">A</span><label>A. 消灭贫富差距</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.国家干预分配，保障公民基本生活" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 国家干预分配，保障公民基本生活</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'C')" data-feedback="❌ 福利国家仍然是资本主义私有制。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.实行公有制" aria-pressed="false" data-feedback="❌ 福利国家仍然是资本主义私有制。">
                 <span class="opt-letter">C</span><label>C. 实行公有制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 市场调节仍然存在，福利国家只是干预分配。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.取消市场调节" aria-pressed="false" data-feedback="❌ 市场调节仍然存在，福利国家只是干预分配。">
                 <span class="opt-letter">D</span><label>D. 取消市场调节</label>
               </div>
             </div>
@@ -646,17 +662,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2022·湖南中考）欧盟的成立对世界格局的影响是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 欧盟削弱而非强化了两极格局。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.强化了两极格局" aria-pressed="false" data-feedback="❌ 欧盟削弱而非强化了两极格局。">
                 <span class="opt-letter">A</span><label>A. 强化了两极格局</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.推动世界多极化趋势" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 推动世界多极化趋势</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 夸大了欧盟的影响，美国并未衰落。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.导致美国衰落" aria-pressed="false" data-feedback="❌ 夸大了欧盟的影响，美国并未衰落。">
                 <span class="opt-letter">C</span><label>C. 导致美国衰落</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'D')" data-feedback="❌ 欧盟不可能取代联合国。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.取代了联合国" aria-pressed="false" data-feedback="❌ 欧盟不可能取代联合国。">
                 <span class="opt-letter">D</span><label>D. 取代了联合国</label>
               </div>
             </div>
@@ -676,6 +692,9 @@
     <!-- ========== ⑩ 必考分析与考点总结 ========== -->
     <section class="section">
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
           <div class="exam-cards">
@@ -705,7 +724,9 @@
             </div>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ========== AI学伴 ========== -->
@@ -803,6 +824,8 @@
       console.log('📚 《战后资本主义的新变化》课件加载完成（v7.14.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -133,10 +133,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">互动课件 v7.14</div></div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d3sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第三单元：秦汉时期</div>
@@ -192,6 +208,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道<strong>汉武帝巩固大一统</strong>的措施（政治、思想、经济）</li>
@@ -204,42 +226,42 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】汉武帝叫什么名字？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 刘邦是汉高祖，不是汉武帝！"><span class="opt-letter">A</span> 刘邦</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 刘恒是汉文帝，不是汉武帝！"><span class="opt-letter">B</span> 刘恒</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')"><span class="opt-letter">C</span> 刘彻</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：刘邦" aria-pressed="false" data-feedback="❌ 刘邦是汉高祖，不是汉武帝！"><span class="opt-letter">A</span> 刘邦</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：刘恒" aria-pressed="false" data-feedback="❌ 刘恒是汉文帝，不是汉武帝！"><span class="opt-letter">B</span> 刘恒</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：刘彻" aria-pressed="false"><span class="opt-letter">C</span> 刘彻</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 刘彻</strong></p><p style="margin-top: 8px;">汉武帝名叫<strong>刘彻</strong>，是汉景帝的儿子，<strong>前141年—前87年</strong>在位，是西汉<strong>最有作为</strong>的皇帝之一。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】"推恩令"是谁颁布的？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ '推恩令'是汉武帝颁布的，不是秦始皇！"><span class="opt-letter">A</span> 秦始皇</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 汉武帝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ '推恩令'是汉武帝颁布的，不是汉景帝！"><span class="opt-letter">C</span> 汉景帝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦始皇" aria-pressed="false" data-feedback="❌ '推恩令'是汉武帝颁布的，不是秦始皇！"><span class="opt-letter">A</span> 秦始皇</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：汉武帝" aria-pressed="false"><span class="opt-letter">B</span> 汉武帝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：汉景帝" aria-pressed="false" data-feedback="❌ '推恩令'是汉武帝颁布的，不是汉景帝！"><span class="opt-letter">C</span> 汉景帝</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 汉武帝</strong></p><p style="margin-top: 8px;"><strong>"推恩令"</strong>是<strong>汉武帝</strong>颁布的政治措施，用来<strong>削弱诸侯王势力</strong>，加强中央集权。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】"独尊儒术"是谁建议汉武帝实行的？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 主父偃建议的是'推恩令'，不是'独尊儒术'！"><span class="opt-letter">A</span> 主父偃</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 董仲舒</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 卫青是军事将领，不是'独尊儒术'的建议者！"><span class="opt-letter">C</span> 卫青</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：主父偃" aria-pressed="false" data-feedback="❌ 主父偃建议的是'推恩令'，不是'独尊儒术'！"><span class="opt-letter">A</span> 主父偃</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：董仲舒" aria-pressed="false"><span class="opt-letter">B</span> 董仲舒</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：卫青" aria-pressed="false" data-feedback="❌ 卫青是军事将领，不是'独尊儒术'的建议者！"><span class="opt-letter">C</span> 卫青</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 董仲舒</strong></p><p style="margin-top: 8px;"><strong>董仲舒</strong>建议汉武帝"<strong>罢黜百家，独尊儒术</strong>"，把儒家学说作为封建正统思想。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列哪一项不属于汉武帝巩固大一统的措施？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ '推恩令'是汉武帝的措施，不符合题意！"><span class="opt-letter">A</span> 颁布推恩令</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ '独尊儒术'是汉武帝的措施，不符合题意！"><span class="opt-letter">B</span> 独尊儒术</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 休养生息</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：颁布推恩令" aria-pressed="false" data-feedback="❌ '推恩令'是汉武帝的措施，不符合题意！"><span class="opt-letter">A</span> 颁布推恩令</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：独尊儒术" aria-pressed="false" data-feedback="❌ '独尊儒术'是汉武帝的措施，不符合题意！"><span class="opt-letter">B</span> 独尊儒术</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：休养生息" aria-pressed="false"><span class="opt-letter">C</span> 休养生息</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 休养生息</strong></p><p style="margin-top: 8px;"><strong>"休养生息"</strong>是<strong>刘邦、吕后、文帝、景帝</strong>推行的政策，<strong>不是</strong>汉武帝的措施。汉武帝的措施是<strong>巩固大一统</strong>（推恩令、独尊儒术、盐铁专卖等）。</p></div>
@@ -248,6 +270,9 @@
     <section class="section" id="section-measures">
       <h2 class="section-title"><span class="num">👑</span> 汉武帝巩固大一统的措施</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 背景</h3>
         <p>汉朝经过<strong>文景之治</strong>，国力强盛。汉武帝即位后，采取一系列措施，<strong>巩固大一统</strong>局面。</p>
         <h3 style="margin-top: 20px; color: #8b4513;">📖 主要措施</h3>
@@ -258,11 +283,16 @@
           <div class="policy-card"><h4>⚔️ 军事：北击匈奴</h4><p>派遣<strong>卫青、霍去病</strong>北击匈奴，<strong>解除匈奴威胁</strong>。</p></div>
         </div>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 汉武帝巩固大一统的措施</div><p>✅ <strong>政治：</strong>颁布推恩令（削弱诸侯王势力）</p><p style="margin-top: 6px;">✅ <strong>思想：</strong>独尊儒术（董仲舒建议）</p><p style="margin-top: 6px;">✅ <strong>经济：</strong>盐铁专卖（增加财政收入）</p><p style="margin-top: 6px;">✅ <strong>军事：</strong>北击匈奴（卫青、霍去病）</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-ruxue">
       <h2 class="section-title"><span class="num">📖</span> "独尊儒术"</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 什么是"独尊儒术"？</h3>
         <div class="concept-box" style="margin-top: 16px;">
           <div class="label">核心概念 · 独尊儒术</div>
@@ -285,49 +315,51 @@
           </svg>
           <p class="svg-caption">图3-9 从董仲舒建议到独尊儒术</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】汉武帝巩固大一统的措施中，属于政治方面的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')"><span class="opt-letter">A</span> 颁布推恩令</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ '独尊儒术'是思想方面的措施，不是政治方面！"><span class="opt-letter">B</span> 独尊儒术</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ '盐铁专卖'是经济方面的措施，不是政治方面！"><span class="opt-letter">C</span> 盐铁专卖</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：颁布推恩令" aria-pressed="false"><span class="opt-letter">A</span> 颁布推恩令</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：独尊儒术" aria-pressed="false" data-feedback="❌ '独尊儒术'是思想方面的措施，不是政治方面！"><span class="opt-letter">B</span> 独尊儒术</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：盐铁专卖" aria-pressed="false" data-feedback="❌ '盐铁专卖'是经济方面的措施，不是政治方面！"><span class="opt-letter">C</span> 盐铁专卖</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 颁布推恩令</strong></p><p style="margin-top: 8px;"><strong>推恩令</strong>是<strong>政治方面</strong>的措施，用来<strong>削弱诸侯王势力</strong>，加强中央集权。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）"独尊儒术"的建议者是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 主父偃建议的是'推恩令'，不是'独尊儒术'！"><span class="opt-letter">A</span> 主父偃</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')"><span class="opt-letter">B</span> 董仲舒</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 卫青是军事将领，不是'独尊儒术'的建议者！"><span class="opt-letter">C</span> 卫青</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：主父偃" aria-pressed="false" data-feedback="❌ 主父偃建议的是'推恩令'，不是'独尊儒术'！"><span class="opt-letter">A</span> 主父偃</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：董仲舒" aria-pressed="false"><span class="opt-letter">B</span> 董仲舒</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：卫青" aria-pressed="false" data-feedback="❌ 卫青是军事将领，不是'独尊儒术'的建议者！"><span class="opt-letter">C</span> 卫青</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 董仲舒</strong></p><p style="margin-top: 8px;"><strong>董仲舒</strong>建议汉武帝"<strong>罢黜百家，独尊儒术</strong>"。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）汉武帝巩固大一统的历史意义是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 这是秦始皇统一的意义，不是汉武帝巩固大一统的意义！"><span class="opt-letter">A</span> 结束春秋战国分裂</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')"><span class="opt-letter">B</span> 巩固了大一统局面，使西汉进入鼎盛时期</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 这是汉朝建立的意义，不是汉武帝巩固大一统的意义！"><span class="opt-letter">C</span> 结束秦末战乱</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：结束春秋战国分裂" aria-pressed="false" data-feedback="❌ 这是秦始皇统一的意义，不是汉武帝巩固大一统的意义！"><span class="opt-letter">A</span> 结束春秋战国分裂</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：巩固了大一统局面，使西汉进入鼎盛时期" aria-pressed="false"><span class="opt-letter">B</span> 巩固了大一统局面，使西汉进入鼎盛时期</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：结束秦末战乱" aria-pressed="false" data-feedback="❌ 这是汉朝建立的意义，不是汉武帝巩固大一统的意义！"><span class="opt-letter">C</span> 结束秦末战乱</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 巩固了大一统局面，使西汉进入鼎盛时期</strong></p><p style="margin-top: 8px;">汉武帝巩固大一统，使西汉<strong>进入鼎盛时期</strong>，是中国历史上<strong>一个重要里程碑</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"诸不在六艺之科、孔子之术者，皆绝其道，勿使并进。"——董仲舒</div>
         <p style="margin-bottom:10px;font-weight:600;">材料反映了董仲舒的什么建议？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料说'皆绝其道'，不是奖励耕战！"><span class="opt-letter">A</span> 奖励耕战</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')"><span class="opt-letter">B</span> 罢黜百家，独尊儒术</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料说'孔子之术'，不是废除儒家！"><span class="opt-letter">C</span> 废除儒家</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：奖励耕战" aria-pressed="false" data-feedback="❌ 材料说'皆绝其道'，不是奖励耕战！"><span class="opt-letter">A</span> 奖励耕战</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：罢黜百家，独尊儒术" aria-pressed="false"><span class="opt-letter">B</span> 罢黜百家，独尊儒术</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：废除儒家" aria-pressed="false" data-feedback="❌ 材料说'孔子之术'，不是废除儒家！"><span class="opt-letter">C</span> 废除儒家</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 罢黜百家，独尊儒术</strong></p><p style="margin-top: 8px;">材料反映了董仲舒"<strong>罢黜百家，独尊儒术</strong>"的建议（"诸不在六艺之科、孔子之术者，皆绝其道"）。</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 材料分析题方法</div><ol style="padding-left: 20px; line-height: 1.8;"><li><strong>先读材料：</strong>圈出关键词（"孔子之术"、"皆绝其道"）</li><li><strong>再联系课本：</strong>回忆"独尊儒术"的内容</li><li><strong>排除无中生有：</strong>材料没提到的选项不选</li></ol></div></div>
@@ -404,6 +436,8 @@
       console.log('📚 《汉武帝巩固大一统》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

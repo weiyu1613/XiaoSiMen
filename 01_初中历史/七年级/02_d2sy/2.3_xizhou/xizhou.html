@@ -205,6 +205,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -219,7 +231,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d2sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第二单元：夏商周时期</div>
@@ -305,6 +321,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道西周建立的时间、建立者、都城</li>
@@ -325,16 +347,16 @@
       </p>
       
       <!-- 基础题1：西周建立者 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】西周的建立者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 商汤是商朝的建立者，不是西周的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：商汤" aria-pressed="false" data-feedback="❌ 商汤是商朝的建立者，不是西周的！">
             <span class="opt-letter">A</span> 商汤
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 大禹是夏朝的建立者，不是西周的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：大禹" aria-pressed="false" data-feedback="❌ 大禹是夏朝的建立者，不是西周的！">
             <span class="opt-letter">B</span> 大禹
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：周武王" aria-pressed="false">
             <span class="opt-letter">C</span> 周武王
           </div>
         </div>
@@ -347,16 +369,16 @@
       </div>
 
       <!-- 基础题2：分封制目的 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】西周实行分封制的主要目的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 分封制是巩固统治，不是促进贸易！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：促进经济贸易" aria-pressed="false" data-feedback="❌ 分封制是巩固统治，不是促进贸易！">
             <span class="opt-letter">A</span> 促进经济贸易
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：巩固统治，稳定政局" aria-pressed="false">
             <span class="opt-letter">B</span> 巩固统治，稳定政局
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 分封制是巩固统治，不是传播文化！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：推动文化传播" aria-pressed="false" data-feedback="❌ 分封制是巩固统治，不是传播文化！">
             <span class="opt-letter">C</span> 推动文化传播
           </div>
         </div>
@@ -369,16 +391,16 @@
       </div>
       
       <!-- 提高题3：宗法制 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】宗法制的核心是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 禅让制是尧舜禹时期'选贤任能'的制度，不是宗法制的核心！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：禅让制" aria-pressed="false" data-feedback="❌ 禅让制是尧舜禹时期'选贤任能'的制度，不是宗法制的核心！">
             <span class="opt-letter">A</span> 禅让制
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：嫡长子继承制" aria-pressed="false">
             <span class="opt-letter">B</span> 嫡长子继承制
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 科举制是隋唐才出现的选官制度，和宗法制无关！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：科举制" aria-pressed="false" data-feedback="❌ 科举制是隋唐才出现的选官制度，和宗法制无关！">
             <span class="opt-letter">C</span> 科举制
           </div>
         </div>
@@ -396,16 +418,16 @@
       </div>
 
       <!-- 挑战题4：烽火戏诸侯 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】"烽火戏诸侯"的故事与哪位君主有关？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 周武王是西周的建立者，不是'烽火戏诸侯'的君主！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：周武王" aria-pressed="false" data-feedback="❌ 周武王是西周的建立者，不是'烽火戏诸侯'的君主！">
             <span class="opt-letter">A</span> 周武王
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 周平王是东周的第一位君主（迁都洛邑），不是'烽火戏诸侯'的君主！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：周平王" aria-pressed="false" data-feedback="❌ 周平王是东周的第一位君主（迁都洛邑），不是'烽火戏诸侯'的君主！">
             <span class="opt-letter">B</span> 周平王
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：周幽王" aria-pressed="false">
             <span class="opt-letter">C</span> 周幽王
           </div>
         </div>
@@ -469,6 +491,9 @@
       <h2 class="section-title"><span class="num">🏛️</span> 分封制与宗法制</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">👑 分封制</h3>
         <p><strong>目的：</strong>巩固统治，稳定政局，巩固疆土</p>
         <p style="margin-top: 8px;"><strong>内容：</strong>周天子把<strong>土地</strong>和<strong>人民</strong>分封给<strong>宗室、功臣、先代贵族</strong>等，建立诸侯国。诸侯必须<strong>服从天子命令</strong>，向天子<strong>朝贡、述职、作战</strong>。</p>
@@ -544,7 +569,9 @@
             <tr><td><strong>分封制</strong></td><td>分封土地和人民</td><td>巩固统治</td><td>宗法制的具体体现</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: 核心内容 - 西周的灭亡 -->
@@ -576,16 +603,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】西周实行分封制的目的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 分封制是巩固统治，不是促进贸易！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：促进经济贸易" aria-pressed="false" data-feedback="❌ 分封制是巩固统治，不是促进贸易！">
             <span class="opt-letter">A</span> 促进经济贸易
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：巩固统治，稳定政局" aria-pressed="false">
             <span class="opt-letter">B</span> 巩固统治，稳定政局
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 分封制是巩固统治，不是选拔官员！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：选拔优秀人才" aria-pressed="false" data-feedback="❌ 分封制是巩固统治，不是选拔官员！">
             <span class="opt-letter">C</span> 选拔优秀人才
           </div>
         </div>
@@ -598,16 +625,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）西周实行分封制，诸侯对天子的主要义务是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 诸侯是独立统治诸侯国，不是直接管理全国！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：直接管理全国政务" aria-pressed="false" data-feedback="❌ 诸侯是独立统治诸侯国，不是直接管理全国！">
             <span class="opt-letter">A</span> 直接管理全国政务
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：朝贡、述职、随从作战" aria-pressed="false">
             <span class="opt-letter">B</span> 朝贡、述职、随从作战
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 诸侯是受封者，不是分封者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：继续分封土地给下属" aria-pressed="false" data-feedback="❌ 诸侯是受封者，不是分封者！">
             <span class="opt-letter">C</span> 继续分封土地给下属
           </div>
         </div>
@@ -620,16 +647,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）宗法制的核心是什么？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 禅让制是尧舜禹时期'选贤任能'的制度，不是宗法制的核心！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：禅让制" aria-pressed="false" data-feedback="❌ 禅让制是尧舜禹时期'选贤任能'的制度，不是宗法制的核心！">
             <span class="opt-letter">A</span> 禅让制
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：嫡长子继承制" aria-pressed="false">
             <span class="opt-letter">B</span> 嫡长子继承制
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 科举制是隋唐才出现的选官制度，和宗法制无关！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：科举制" aria-pressed="false" data-feedback="❌ 科举制是隋唐才出现的选官制度，和宗法制无关！">
             <span class="opt-letter">C</span> 科举制
           </div>
         </div>
@@ -642,20 +669,20 @@
       </div>
 
       <!-- 后测题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料】</strong>"周天子把土地和人民分封给诸侯，诸侯必须服从天子命令，向天子朝贡、述职。诸侯在自己的封国内，可以将土地再分封给卿大夫。" ——摘编自《中国历史》七年级上册
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，分封制的层级结构是怎样的？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料说'诸侯必须服从天子命令'，不是天子服从诸侯！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：天子服从诸侯" aria-pressed="false" data-feedback="❌ 材料说'诸侯必须服从天子命令'，不是天子服从诸侯！">
             <span class="opt-letter">A</span> 天子服从诸侯
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：天子→诸侯→卿大夫→士" aria-pressed="false">
             <span class="opt-letter">B</span> 天子 → 诸侯 → 卿大夫 → 士
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料没有提到'士'直接管理百姓，这是无中生有！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：士直接管理百姓" aria-pressed="false" data-feedback="❌ 材料没有提到'士'直接管理百姓，这是无中生有！">
             <span class="opt-letter">C</span> 士直接管理百姓
           </div>
         </div>
@@ -681,6 +708,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -741,7 +771,9 @@
             <tr style="background:#fdf4ff;"><td>材料题</td><td>★★★★☆</td><td>给材料分析分封制层级</td><td>掌握"天子→诸侯→卿大夫→士"结构</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -863,6 +895,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -520,6 +520,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- 1. 品牌栏 -->
   <div class="brand-bar">
     <div class="brand-logo">
@@ -580,6 +592,12 @@
   <!-- 7. 学习目标 -->
   <div class="objectives-section" id="objectives">
     <h2 class="section-title">学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
     <div class="objectives-grid">
       <div class="objective-card">
         <i class="fas fa-calendar-alt"></i>
@@ -776,15 +794,15 @@
   <!-- 9. 互动测验 -->
   <div class="quiz-section" id="quiz">
     <h2 class="section-title">互动测验</h2>
-    <div class="quiz-container">
+    <div class="quiz-container" data-difficulty="intermediate">
       <!-- 问题1 -->
       <div class="quiz-question" data-correct="0">
         <h4>1. 中国共产党第一次全国代表大会召开的时间是？</h4>
-        <div class="quiz-options">
-          <div class="quiz-option" data-index="0" data-feedback="正确答案！1921年7月23日，中共一大在上海开幕，后转移到浙江嘉兴南湖游船上继续进行。">A. 1921年7月23日</div>
-          <div class="quiz-option" data-index="1" data-feedback="错误。1919年是五四运动爆发的时间，不是中共一大召开的时间。中共一大召开于1921年。">B. 1919年5月4日</div>
-          <div class="quiz-option" data-index="2" data-feedback="错误。1924年是国民党一大召开的时间，标志着第一次国共合作正式形成。中共一大召开于1921年。">C. 1924年1月</div>
-          <div class="quiz-option" data-index="3" data-feedback="错误。1927年是蒋介石发动四一二反革命政变的时间，不是中共一大召开的时间。中共一大召开于1921年。">D. 1927年4月12日</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.1921年7月23日" aria-pressed="false" data-index="0" data-feedback="正确答案！1921年7月23日，中共一大在上海开幕，后转移到浙江嘉兴南湖游船上继续进行。">A. 1921年7月23日</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.1919年5月4日" aria-pressed="false" data-index="1" data-feedback="错误。1919年是五四运动爆发的时间，不是中共一大召开的时间。中共一大召开于1921年。">B. 1919年5月4日</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.1924年1月" aria-pressed="false" data-index="2" data-feedback="错误。1924年是国民党一大召开的时间，标志着第一次国共合作正式形成。中共一大召开于1921年。">C. 1924年1月</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.1927年4月12日" aria-pressed="false" data-index="3" data-feedback="错误。1927年是蒋介石发动四一二反革命政变的时间，不是中共一大召开的时间。中共一大召开于1921年。">D. 1927年4月12日</div>
         </div>
         <div class="quiz-feedback"></div>
       </div>
@@ -792,11 +810,11 @@
       <!-- 问题2 -->
       <div class="quiz-question" data-correct="1">
         <h4>2. 中共一大后期转移到哪里召开？</h4>
-        <div class="quiz-options">
-          <div class="quiz-option" data-index="0" data-feedback="错误。上海是中共一大开幕的地点，但因遭到法租界巡捕搜查，会议被迫转移，没有在上海闭幕。">A. 上海</div>
-          <div class="quiz-option" data-index="1" data-feedback="正确答案！因遭到法租界巡捕搜查，中共一大转移到浙江嘉兴南湖的一艘游船上继续进行并胜利闭幕。">B. 浙江嘉兴南湖游船</div>
-          <div class="quiz-option" data-index="2" data-feedback="错误。浙江绍兴不是中共一大召开的地点。中共一大开幕在上海，闭幕在浙江嘉兴南湖游船。">C. 浙江绍兴</div>
-          <div class="quiz-option" data-index="3" data-feedback="错误。江西井冈山是毛泽东建立的第一个农村革命根据地，不是中共一大的召开地点。">D. 江西井冈山</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.上海" aria-pressed="false" data-index="0" data-feedback="错误。上海是中共一大开幕的地点，但因遭到法租界巡捕搜查，会议被迫转移，没有在上海闭幕。">A. 上海</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.浙江嘉兴南湖游船" aria-pressed="false" data-index="1" data-feedback="正确答案！因遭到法租界巡捕搜查，中共一大转移到浙江嘉兴南湖的一艘游船上继续进行并胜利闭幕。">B. 浙江嘉兴南湖游船</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.浙江绍兴" aria-pressed="false" data-index="2" data-feedback="错误。浙江绍兴不是中共一大召开的地点。中共一大开幕在上海，闭幕在浙江嘉兴南湖游船。">C. 浙江绍兴</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.江西井冈山" aria-pressed="false" data-index="3" data-feedback="错误。江西井冈山是毛泽东建立的第一个农村革命根据地，不是中共一大的召开地点。">D. 江西井冈山</div>
         </div>
         <div class="quiz-feedback"></div>
       </div>
@@ -804,11 +822,11 @@
       <!-- 问题3 -->
       <div class="quiz-question" data-correct="2">
         <h4>3. 出席中共一大的代表有13人，他们代表着全国多少名党员？</h4>
-        <div class="quiz-options">
-          <div class="quiz-option" data-index="0" data-feedback="错误。13名代表代表的不是13名党员，而是更多。请再仔细想一想。">A. 13名</div>
-          <div class="quiz-option" data-index="1" data-feedback="错误。中共一大召开时，全国党员人数已经超过30人，达到了50多人。">B. 30多名</div>
-          <div class="quiz-option" data-index="2" data-feedback="正确答案！出席中共一大的13名代表，代表着全国50多名党员。这表明中国共产党从成立之初就是一个有组织的政党。">C. 50多名</div>
-          <div class="quiz-option" data-index="3" data-feedback="错误。中共一大召开时，全国党员人数是50多名，还没有达到100名。">D. 100多名</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.13名" aria-pressed="false" data-index="0" data-feedback="错误。13名代表代表的不是13名党员，而是更多。请再仔细想一想。">A. 13名</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.30多名" aria-pressed="false" data-index="1" data-feedback="错误。中共一大召开时，全国党员人数已经超过30人，达到了50多人。">B. 30多名</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.50多名" aria-pressed="false" data-index="2" data-feedback="正确答案！出席中共一大的13名代表，代表着全国50多名党员。这表明中国共产党从成立之初就是一个有组织的政党。">C. 50多名</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.100多名" aria-pressed="false" data-index="3" data-feedback="错误。中共一大召开时，全国党员人数是50多名，还没有达到100名。">D. 100多名</div>
         </div>
         <div class="quiz-feedback"></div>
       </div>
@@ -816,11 +834,11 @@
       <!-- 问题4 -->
       <div class="quiz-question" data-correct="3">
         <h4>4. 中国共产党成立被认为是什么？</h4>
-        <div class="quiz-options">
-          <div class="quiz-option" data-index="0" data-feedback="错误。虽然中国共产党成立确实是一个重要事件，但教材中使用的标准表述是'开天辟地的大事变'。">A. 偶然的历史事件</div>
-          <div class="quiz-option" data-index="1" data-feedback="错误。中国共产党的成立不是普通的政治事件，而是具有深远历史意义的重大事件。">B. 普通的政治事件</div>
-          <div class="quiz-option" data-index="2" data-feedback="错误。中国共产党的成立不是结束，而是一个伟大的开始，给中国革命带来了希望。">C. 结束旧时代的事件</div>
-          <div class="quiz-option" data-index="3" data-feedback="正确答案！中国共产党的成立是'开天辟地的大事变'，使中国革命的面貌焕然一新。这是教材中的标准表述。">D. 开天辟地的大事变</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.偶然的历史事件" aria-pressed="false" data-index="0" data-feedback="错误。虽然中国共产党成立确实是一个重要事件，但教材中使用的标准表述是'开天辟地的大事变'。">A. 偶然的历史事件</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.普通的政治事件" aria-pressed="false" data-index="1" data-feedback="错误。中国共产党的成立不是普通的政治事件，而是具有深远历史意义的重大事件。">B. 普通的政治事件</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.结束旧时代的事件" aria-pressed="false" data-index="2" data-feedback="错误。中国共产党的成立不是结束，而是一个伟大的开始，给中国革命带来了希望。">C. 结束旧时代的事件</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.开天辟地的大事变" aria-pressed="false" data-index="3" data-feedback="正确答案！中国共产党的成立是'开天辟地的大事变'，使中国革命的面貌焕然一新。这是教材中的标准表述。">D. 开天辟地的大事变</div>
         </div>
         <div class="quiz-feedback"></div>
       </div>
@@ -828,11 +846,11 @@
       <!-- 问题5（额外加题） -->
       <div class="quiz-question" data-correct="0">
         <h4>5. 中共一大确定党的中心任务是什么？</h4>
-        <div class="quiz-options">
-          <div class="quiz-option" data-index="0" data-feedback="正确答案！中共一大确定党的中心任务是组织领导工人阶级，开展工人运动。这体现了党成立初期的工作重点。">A. 组织领导工人阶级，开展工人运动</div>
-          <div class="quiz-option" data-index="1" data-feedback="错误。建立农村革命根据地是毛泽东在创建井冈山根据地后提出的策略，不是中共一大确定的中心任务。">B. 建立农村革命根据地</div>
-          <div class="quiz-option" data-index="2" data-feedback="错误。国共合作是后来（1924年）才提出的，不是中共一大确定的中心任务。中共一大时共产党还是独立的政党。">C. 与国民党合作</div>
-          <div class="quiz-option" data-index="3" data-feedback="错误。虽然武装斗争后来成为革命的重要形式，但中共一大确定的中心任务是开展工人运动，不是立即进行武装斗争。">D. 立即进行武装斗争</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.组织领导工人阶级，开展工人运动" aria-pressed="false" data-index="0" data-feedback="正确答案！中共一大确定党的中心任务是组织领导工人阶级，开展工人运动。这体现了党成立初期的工作重点。">A. 组织领导工人阶级，开展工人运动</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.建立农村革命根据地" aria-pressed="false" data-index="1" data-feedback="错误。建立农村革命根据地是毛泽东在创建井冈山根据地后提出的策略，不是中共一大确定的中心任务。">B. 建立农村革命根据地</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.与国民党合作" aria-pressed="false" data-index="2" data-feedback="错误。国共合作是后来（1924年）才提出的，不是中共一大确定的中心任务。中共一大时共产党还是独立的政党。">C. 与国民党合作</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.立即进行武装斗争" aria-pressed="false" data-index="3" data-feedback="错误。虽然武装斗争后来成为革命的重要形式，但中共一大确定的中心任务是开展工人运动，不是立即进行武装斗争。">D. 立即进行武装斗争</div>
         </div>
         <div class="quiz-feedback"></div>
       </div>
@@ -958,16 +976,16 @@
     <!-- Section: 前测 -->
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】中国共产党成立于哪一年？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1921年" aria-pressed="false">
             <span class="opt-letter">A</span> 1921年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 答错了，正确答案是：1921年">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1919年" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：1921年">
             <span class="opt-letter">B</span> 1919年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 答错了，正确答案是：1921年">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1924年" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：1921年">
             <span class="opt-letter">C</span> 1924年
           </div>
         </div>
@@ -977,16 +995,16 @@
           <p><strong>正确答案：A. 1921年</strong></p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】中共一大召开的地点是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：上海（后转移到嘉兴南湖）" aria-pressed="false">
             <span class="opt-letter">A</span> 上海（后转移到嘉兴南湖）
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 答错了，正确答案是：上海（后转移到嘉兴南湖）">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北京" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：上海（后转移到嘉兴南湖）">
             <span class="opt-letter">B</span> 北京
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 答错了，正确答案是：上海（后转移到嘉兴南湖）">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：广州" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：上海（后转移到嘉兴南湖）">
             <span class="opt-letter">C</span> 广州
           </div>
         </div>
@@ -996,16 +1014,16 @@
           <p><strong>正确答案：A. 上海（后转移到嘉兴南湖）</strong></p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐ 基础】中共第一任中央局书记是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：陈独秀" aria-pressed="false">
             <span class="opt-letter">A</span> 陈独秀
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 答错了，正确答案是：陈独秀">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李大钊" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：陈独秀">
             <span class="opt-letter">B</span> 李大钊
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 答错了，正确答案是：陈独秀">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：毛泽东" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：陈独秀">
             <span class="opt-letter">C</span> 毛泽东
           </div>
         </div>
@@ -1020,16 +1038,16 @@
     <!-- Section: 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐⭐ 提高·中考真题】下列关于中国共产党成立的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1921年7月，中共一大召开，中国共产党成立" aria-pressed="false">
             <span class="opt-letter">A</span> 1921年7月，中共一大召开，中国共产党成立
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：1921年7月，中共一大召开，中国共产党成立">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：1921年7月，中共一大召开，中国共产党成立">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：1921年7月，中共一大召开，中国共产党成立">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：1921年7月，中共一大召开，中国共产党成立">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -1040,16 +1058,16 @@
           <p style="margin-top: 8px;">1921年7月，中共一大召开，中国共产党成立</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】下列关于中国共产党成立的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：召开地点：上海（后转移到浙江嘉兴南湖）" aria-pressed="false">
             <span class="opt-letter">A</span> 召开地点：上海（后转移到浙江嘉兴南湖）
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：召开地点：上海（后转移到浙江嘉兴南湖）">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：召开地点：上海（后转移到浙江嘉兴南湖）">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：召开地点：上海（后转移到浙江嘉兴南湖）">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：召开地点：上海（后转移到浙江嘉兴南湖）">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -1060,16 +1078,16 @@
           <p style="margin-top: 8px;">召开地点：上海（后转移到浙江嘉兴南湖）</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高·中考真题】下列关于中国共产党成立的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：选举陈独秀为中央局书记" aria-pressed="false">
             <span class="opt-letter">A</span> 选举陈独秀为中央局书记
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：选举陈独秀为中央局书记">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：选举陈独秀为中央局书记">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：选举陈独秀为中央局书记">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：选举陈独秀为中央局书记">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -1122,6 +1140,8 @@
       <div data-teachany-tutor-card></div>
     </section>
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

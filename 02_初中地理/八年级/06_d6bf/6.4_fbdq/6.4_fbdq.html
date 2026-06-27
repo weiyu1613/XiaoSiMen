@@ -192,6 +192,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
@@ -203,7 +215,11 @@
   <div class="progress-label" id="progress-label">第 4/4 节 · 100%</div>
   
   <!-- ========== ③ 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d6bf.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六章：北方地区</div>
@@ -289,6 +305,12 @@
     <!-- Section 2: ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解北京的地理位置和自然环境特征</li>
@@ -309,16 +331,16 @@
       </p>
       
       <!-- 基础题1：北京地理位置 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】北京位于我国的哪个地理区域？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：北方地区" aria-pressed="false">
             <span class="opt-letter">A</span> 北方地区
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 南方地区位于秦岭-淮河以南，北京位于北方！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：南方地区" aria-pressed="false" data-feedback="❌ 南方地区位于秦岭-淮河以南，北京位于北方！">
             <span class="opt-letter">B</span> 南方地区
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 西北地区位于400mm等降水量线以西，北京位于北方！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西北地区" aria-pressed="false" data-feedback="❌ 西北地区位于400mm等降水量线以西，北京位于北方！">
             <span class="opt-letter">C</span> 西北地区
           </div>
         </div>
@@ -331,16 +353,16 @@
       </div>
 
       <!-- 基础题2：北京地势 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】北京的地势特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：西北高，东南低" aria-pressed="false">
             <span class="opt-letter">A</span> 西北高，东南低
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 北京的地势是西北高东南低，不是东南高西北低！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：东南高，西北低" aria-pressed="false" data-feedback="❌ 北京的地势是西北高东南低，不是东南高西北低！">
             <span class="opt-letter">B</span> 东南高，西北低
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 北京的地势不是西高东低，是西北高东南低！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西高东低" aria-pressed="false" data-feedback="❌ 北京的地势不是西高东低，是西北高东南低！">
             <span class="opt-letter">C</span> 西高东低
           </div>
         </div>
@@ -353,16 +375,16 @@
       </div>
       
       <!-- 提高题3：北京城市职能 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】北京是全国的什么中心？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：政治中心" aria-pressed="false">
             <span class="opt-letter">A</span> 政治中心
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 上海是全国的经济中心，不是北京！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：经济中心" aria-pressed="false" data-feedback="❌ 上海是全国的经济中心，不是北京！">
             <span class="opt-letter">B</span> 经济中心
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 广州是全国的贸易中心之一，不是北京！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：贸易中心" aria-pressed="false" data-feedback="❌ 广州是全国的贸易中心之一，不是北京！">
             <span class="opt-letter">C</span> 贸易中心
           </div>
         </div>
@@ -375,16 +397,16 @@
       </div>
 
       <!-- 挑战题4：北京历史文化 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】北京的世界文化遗产不包括？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 故宫是北京的世界文化遗产！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：故宫" aria-pressed="false" data-feedback="❌ 故宫是北京的世界文化遗产！">
             <span class="opt-letter">A</span> 故宫
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 长城是北京的世界文化遗产！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：长城" aria-pressed="false" data-feedback="❌ 长城是北京的世界文化遗产！">
             <span class="opt-letter">B</span> 长城
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西湖" aria-pressed="false">
             <span class="opt-letter">C</span> 西湖
           </div>
         </div>
@@ -497,16 +519,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】北京的地势特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：西北高，东南低" aria-pressed="false">
             <span class="opt-letter">A</span> 西北高，东南低
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 北京的地势是西北高东南低，不是东南高西北低！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：东南高，西北低" aria-pressed="false" data-feedback="❌ 北京的地势是西北高东南低，不是东南高西北低！">
             <span class="opt-letter">B</span> 东南高，西北低
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 北京的地势不是西高东低，是西北高东南低！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西高东低" aria-pressed="false" data-feedback="❌ 北京的地势不是西高东低，是西北高东南低！">
             <span class="opt-letter">C</span> 西高东低
           </div>
         </div>
@@ -519,16 +541,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·北京中考）北京的城市职能不包括？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#f0f9ff;color:#0369a1;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 政治中心是北京的城市职能之一！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：政治中心" aria-pressed="false" data-feedback="❌ 政治中心是北京的城市职能之一！">
             <span class="opt-letter">A</span> 政治中心
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 文化中心是北京的城市职能之一！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：文化中心" aria-pressed="false" data-feedback="❌ 文化中心是北京的城市职能之一！">
             <span class="opt-letter">B</span> 文化中心
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：经济中心" aria-pressed="false">
             <span class="opt-letter">C</span> 经济中心
           </div>
         </div>
@@ -541,16 +563,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·北京中考）关于北京的发展，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#f0f9ff;color:#0369a1;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 北京的发展不是要扩大城市规模，而是疏解非首都功能！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：扩大城市规模" aria-pressed="false" data-feedback="❌ 北京的发展不是要扩大城市规模，而是疏解非首都功能！">
             <span class="opt-letter">A</span> 扩大城市规模
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 北京的发展不是要拆除胡同四合院，而是保护历史文化！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：拆除胡同四合院" aria-pressed="false" data-feedback="❌ 北京的发展不是要拆除胡同四合院，而是保护历史文化！">
             <span class="opt-letter">B</span> 拆除胡同四合院
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：建设雄安新区" aria-pressed="false">
             <span class="opt-letter">C</span> 建设雄安新区
           </div>
         </div>
@@ -727,6 +749,8 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

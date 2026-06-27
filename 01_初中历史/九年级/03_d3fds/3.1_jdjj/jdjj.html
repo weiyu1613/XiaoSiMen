@@ -117,6 +117,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -126,6 +138,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d3fds.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -192,6 +208,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 知道基督教兴起的时间、地点及早期传播情况</li>
@@ -206,12 +228,12 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【&#11088; 基础】基督教创立于？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="&#10060; 公元4世纪时基督教已成为罗马国教，创立时间更早！">A. 公元4世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">B. 公元1世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 公元前1世纪时基督教尚未创立！">C. 公元前1世纪</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.公元4世纪" aria-pressed="false" data-feedback="&#10060; 公元4世纪时基督教已成为罗马国教，创立时间更早！">A. 公元4世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.公元1世纪" aria-pressed="false">B. 公元1世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.公元前1世纪" aria-pressed="false" data-feedback="&#10060; 公元前1世纪时基督教尚未创立！">C. 公元前1世纪</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -230,12 +252,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【&#11088; 基础】法兰克王国的建立者是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">A. 克洛维</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="&#10060; 查理曼是法兰克王国鼎盛时期的统治者，不是建立者！">B. 查理曼</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 屋大维是古罗马的政治家，不是法兰克王国的！">C. 屋大维</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.克洛维" aria-pressed="false">A. 克洛维</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.查理曼" aria-pressed="false" data-feedback="&#10060; 查理曼是法兰克王国鼎盛时期的统治者，不是建立者！">B. 查理曼</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.屋大维" aria-pressed="false" data-feedback="&#10060; 屋大维是古罗马的政治家，不是法兰克王国的！">C. 屋大维</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -245,12 +267,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【&#11088;&#11088; 提高】关于"封君封臣制"，正确的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 封君封臣制是双向的权利义务关系，不只是单向的"管理"！">A. 封君拥有绝对权力，封臣只有义务</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">B. 封君与封臣之间互有权利和义务</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 这种制度主要存在于西欧，有独特性！">C. 这种制度只存在于西欧</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.封君拥有绝对权力，封臣只有义务" aria-pressed="false" data-feedback="&#10060; 封君封臣制是双向的权利义务关系，不只是单向的"管理"！">A. 封君拥有绝对权力，封臣只有义务</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.封君与封臣之间互有权利和义务" aria-pressed="false">B. 封君与封臣之间互有权利和义务</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.这种制度只存在于西欧" aria-pressed="false" data-feedback="&#10060; 这种制度主要存在于西欧，有独特性！">C. 这种制度只存在于西欧</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -417,12 +439,12 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【&#11088; 基础】基督教正式成为罗马国教是在？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="&#10060; 313年的米兰敕令是承认合法地位，不是定为国教！">A. 313年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="&#10060; 1世纪是基督教创立时间，还没有成为国教！">B. 1世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">C. 4世纪末</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.313年" aria-pressed="false" data-feedback="&#10060; 313年的米兰敕令是承认合法地位，不是定为国教！">A. 313年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1世纪" aria-pressed="false" data-feedback="&#10060; 1世纪是基督教创立时间，还没有成为国教！">B. 1世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.4世纪末" aria-pressed="false">C. 4世纪末</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -432,12 +454,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>2. 【&#11088;&#11088; 提高·中考真题】（2023·多地中考）关于封君封臣制，正确的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="&#10060; 封地是维系关系的纽带，但不是"只有义务没有权利"！封君也有义务！">A. 封地是封臣唯一的义务来源</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">B. 封君与封臣之间互有权利义务</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="&#10060; 封臣的身份在得到封君认可后可世袭！"不可世袭"是错的！">C. 封臣的身份不可世袭</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.封地是封臣唯一的义务来源" aria-pressed="false" data-feedback="&#10060; 封地是维系关系的纽带，但不是"只有义务没有权利"！封君也有义务！">A. 封地是封臣唯一的义务来源</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.封君与封臣之间互有权利义务" aria-pressed="false">B. 封君与封臣之间互有权利义务</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.封臣的身份不可世袭" aria-pressed="false" data-feedback="&#10060; 封臣的身份在得到封君认可后可世袭！"不可世袭"是错的！">C. 封臣的身份不可世袭</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -452,16 +474,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>3. 【&#11088;&#11088;&#11088; 挑战·材料分析】<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">&#128196; 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:0.88rem;line-height:1.8;">
           <strong>【材料】</strong>"丕平把罗马城和拉文纳总督区赠给教皇，史称'丕平献土'。从此，罗马城及其周围地区便划归教皇管辖，形成教皇国，这就是近代教皇国的开始。" ——摘自人教版九年级历史上册
         </div>
         <p style="margin-bottom:10px;font-weight:600;font-size:0.9rem;">根据材料和所学知识，回答：教皇国形成的基础是什么？有何影响？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="&#10060; 丕平献土是"土地"赠予，不是单纯的"宗教影响力"！">A. 基督教的宗教影响力</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">B. 世俗王权（矮子丕平）的支持</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="&#10060; 丕平献土发生在8世纪，不是查理曼帝国时期！">C. 查理曼帝国的征服</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.基督教的宗教影响力" aria-pressed="false" data-feedback="&#10060; 丕平献土是"土地"赠予，不是单纯的"宗教影响力"！">A. 基督教的宗教影响力</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.世俗王权（矮子丕平）的支持" aria-pressed="false">B. 世俗王权（矮子丕平）的支持</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.查理曼帝国的征服" aria-pressed="false" data-feedback="&#10060; 丕平献土发生在8世纪，不是查理曼帝国时期！">C. 查理曼帝国的征服</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -568,6 +590,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

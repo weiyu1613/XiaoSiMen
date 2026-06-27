@@ -76,10 +76,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 2/31 节 · 6.4%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d1zjsh.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第一单元：走进社会生活</div>
@@ -128,6 +144,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解社会化的含义和必要性 <span class="tag tag-theory">关联：社会化理论</span></li>
         <li>✅ 了解社会化的主要途径 <span class="tag tag-theory">关联：社会学习理论</span></li>
@@ -140,12 +162,12 @@
     <section><h2 class="section-title">📝 前测：检验先备知识</h2>
       <p style="color:#1565c0;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】社会化的本质是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：社会化定义</span>"><span class="opt-letter">A</span> 从自然人成长为社会人</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 社会化是人的成长过程，不是动物行为。<br><span class='tag tag-mistake'>归因：混淆人的社会化与动物行为</span>"><span class="opt-letter">B</span> 学习动物的行为</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 社会化是动态过程，不是固定状态。<br><span class='tag tag-mistake'>归因：误解社会化的动态性</span>"><span class="opt-letter">C</span> 一种固定的状态</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：从自然人成长为社会人" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：社会化定义</span>"><span class="opt-letter">A</span> 从自然人成长为社会人</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：学习动物的行为" aria-pressed="false" data-fb="❌ 社会化是人的成长过程，不是动物行为。<br><span class='tag tag-mistake'>归因：混淆人的社会化与动物行为</span>"><span class="opt-letter">B</span> 学习动物的行为</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：一种固定的状态" aria-pressed="false" data-fb="❌ 社会化是动态过程，不是固定状态。<br><span class='tag tag-mistake'>归因：误解社会化的动态性</span>"><span class="opt-letter">C</span> 一种固定的状态</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -156,12 +178,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐ 基础】下列属于社会化途径的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：学校教育是重要社会化途径</span>"><span class="opt-letter">A</span> 学校教育</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 睡觉是生理活动，不属社会化途径。<br><span class='tag tag-mistake'>归因：混淆生理活动与社会化</span>"><span class="opt-letter">B</span> 独自睡觉</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 发呆是个人行为，不属社会化途径。<br><span class='tag tag-mistake'>归因：个人行为不等于社会互动</span>"><span class="opt-letter">C</span> 发呆</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：学校教育" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：学校教育是重要社会化途径</span>"><span class="opt-letter">A</span> 学校教育</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：独自睡觉" aria-pressed="false" data-fb="❌ 睡觉是生理活动，不属社会化途径。<br><span class='tag tag-mistake'>归因：混淆生理活动与社会化</span>"><span class="opt-letter">B</span> 独自睡觉</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：发呆" aria-pressed="false" data-fb="❌ 发呆是个人行为，不属社会化途径。<br><span class='tag tag-mistake'>归因：个人行为不等于社会互动</span>"><span class="opt-letter">C</span> 发呆</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析</div>
@@ -169,12 +191,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐ 提高】亲社会行为的特点是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 亲社会行为有益于社会，不只对自己。<br><span class='tag tag-mistake'>归因：误解亲社会行为定义</span>"><span class="opt-letter">A</span> 只对自己有益</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：亲社会行为定义</span>"><span class="opt-letter">B</span> 有益于他人和社会</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 亲社会行为是积极行为。<br><span class='tag tag-mistake'>归因：混淆积极与消极行为</span>"><span class="opt-letter">C</span> 对社会有害</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只对自己有益" aria-pressed="false" data-fb="❌ 亲社会行为有益于社会，不只对自己。<br><span class='tag tag-mistake'>归因：误解亲社会行为定义</span>"><span class="opt-letter">A</span> 只对自己有益</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：有益于他人和社会" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：亲社会行为定义</span>"><span class="opt-letter">B</span> 有益于他人和社会</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：对社会有害" aria-pressed="false" data-fb="❌ 亲社会行为是积极行为。<br><span class='tag tag-mistake'>归因：混淆积极与消极行为</span>"><span class="opt-letter">C</span> 对社会有害</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析</div>
@@ -182,12 +204,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>4. 【⭐⭐⭐ 中考】关于社会化，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,4)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：社会化贯穿人的一生</span>"><span class="opt-letter">A</span> 社会化贯穿人的一生</div>
-          <div class="quiz-option" onclick="chk(this,false,4)" data-fb="❌ 社会化是持续终生的。<br><span class='tag tag-mistake'>归因：误解社会化时间范围</span>"><span class="opt-letter">B</span> 社会化只发生在童年</div>
-          <div class="quiz-option" onclick="chk(this,false,4)" data-fb="❌ 社会对个人成长有积极作用。<br><span class='tag tag-mistake'>归因：消极看待社会影响</span>"><span class="opt-letter">C</span> 社会化与社会无关</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：社会化贯穿人的一生" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：社会化贯穿人的一生</span>"><span class="opt-letter">A</span> 社会化贯穿人的一生</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：社会化只发生在童年" aria-pressed="false" data-fb="❌ 社会化是持续终生的。<br><span class='tag tag-mistake'>归因：误解社会化时间范围</span>"><span class="opt-letter">B</span> 社会化只发生在童年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：社会化与社会无关" aria-pressed="false" data-fb="❌ 社会对个人成长有积极作用。<br><span class='tag tag-mistake'>归因：消极看待社会影响</span>"><span class="opt-letter">C</span> 社会化与社会无关</div>
         </div>
         <div class="feedback" id="fb4"></div>
         <div class="answer-explanation" id="exp4"><div class="explain-title">📖 详细解析 + 中考提示</div>
@@ -244,12 +266,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】【2023·广东中考改编】下列属于亲社会行为的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！志愿服务是典型亲社会行为。<br><span class='tag tag-kp'>知识点：亲社会行为定义</span>"><span class="opt-letter">A</span> 参加社区志愿服务</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 独自玩游戏是个人行为。<br><span class='tag tag-mistake'>归因：混淆个人行为与社会行为</span>"><span class="opt-letter">B</span> 独自玩游戏</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 在家吃饭不属亲社会行为。<br><span class='tag tag-mistake'>归因：个人活动不等于社会参与</span>"><span class="opt-letter">C</span> 在家吃饭</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：参加社区志愿服务" aria-pressed="false" data-fb="✅ 正确！志愿服务是典型亲社会行为。<br><span class='tag tag-kp'>知识点：亲社会行为定义</span>"><span class="opt-letter">A</span> 参加社区志愿服务</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：独自玩游戏" aria-pressed="false" data-fb="❌ 独自玩游戏是个人行为。<br><span class='tag tag-mistake'>归因：混淆个人行为与社会行为</span>"><span class="opt-letter">B</span> 独自玩游戏</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：在家吃饭" aria-pressed="false" data-fb="❌ 在家吃饭不属亲社会行为。<br><span class='tag tag-mistake'>归因：个人活动不等于社会参与</span>"><span class="opt-letter">C</span> 在家吃饭</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析（中考真题改编）</div>
@@ -257,12 +279,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】社会化的主要途径不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！独自发呆不属社会化途径。<br><span class='tag tag-kp'>知识点：社会化途径</span>"><span class="opt-letter">A</span> 独自发呆</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 学校教育是社会化途径。<br><span class='tag tag-mistake'>归因：误判社会化途径</span>"><span class="opt-letter">B</span> 学校教育</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 家庭教育是社会化途径。<br><span class='tag tag-mistake'>归因：误判社会化途径</span>"><span class="opt-letter">C</span> 家庭教育</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：独自发呆" aria-pressed="false" data-fb="✅ 正确！独自发呆不属社会化途径。<br><span class='tag tag-kp'>知识点：社会化途径</span>"><span class="opt-letter">A</span> 独自发呆</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：学校教育" aria-pressed="false" data-fb="❌ 学校教育是社会化途径。<br><span class='tag tag-mistake'>归因：误判社会化途径</span>"><span class="opt-letter">B</span> 学校教育</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：家庭教育" aria-pressed="false" data-fb="❌ 家庭教育是社会化途径。<br><span class='tag tag-mistake'>归因：误判社会化途径</span>"><span class="opt-letter">C</span> 家庭教育</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析</div>
@@ -270,12 +292,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 挑战】关于亲社会行为，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 亲社会行为是积极行为。<br><span class='tag tag-mistake'>归因：混淆积极与消极行为</span>"><span class="opt-letter">A</span> 对社会有害</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 亲社会行为需要培养。<br><span class='tag tag-mistake'>归因：误解行为养成</span>"><span class="opt-letter">B</span> 无需培养</div>
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：亲社会行为意义</span>"><span class="opt-letter">C</span> 有利于社会和谐</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：对社会有害" aria-pressed="false" data-fb="❌ 亲社会行为是积极行为。<br><span class='tag tag-mistake'>归因：混淆积极与消极行为</span>"><span class="opt-letter">A</span> 对社会有害</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：无需培养" aria-pressed="false" data-fb="❌ 亲社会行为需要培养。<br><span class='tag tag-mistake'>归因：误解行为养成</span>"><span class="opt-letter">B</span> 无需培养</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：有利于社会和谐" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：亲社会行为意义</span>"><span class="opt-letter">C</span> 有利于社会和谐</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析</div>
@@ -345,6 +367,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

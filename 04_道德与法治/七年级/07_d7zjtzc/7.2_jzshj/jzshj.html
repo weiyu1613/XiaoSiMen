@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 25/31 节 · 80.6%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d7zjtzc.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第七单元：在集体中成长</div>
@@ -129,6 +145,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解集体生活对涵养品格的作用 <span class="tag tag-theory">关联：品格教育理论</span></li>
         <li>✅ 认识集体生活对发展个性的作用 <span class="tag tag-theory">关联：个性发展理论</span></li>
@@ -142,12 +164,12 @@
       <p style="color:#4caf50;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】在集体中涵养品格，最重要的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 只关注自己成绩是<strong>自我中心</strong>，不是涵养品格。<br><span class='tag tag-mistake'>归因：自我中心，缺乏集体意识</span>"><span class="opt-letter">A</span> 只关注自己的成绩</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：培养负责任的态度和能力</span>"><span class="opt-letter">B</span> 培养负责任的态度和能力</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 避免与任何人交往是<strong>社交回避</strong>，不利于品格发展。<br><span class='tag tag-mistake'>归因：社交回避，缺乏交往意识</span>"><span class="opt-letter">C</span> 避免与任何人交往</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只关注自己的成绩" aria-pressed="false" data-fb="❌ 只关注自己成绩是<strong>自我中心</strong>，不是涵养品格。<br><span class='tag tag-mistake'>归因：自我中心，缺乏集体意识</span>"><span class="opt-letter">A</span> 只关注自己的成绩</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：培养负责任的态度和能力" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：培养负责任的态度和能力</span>"><span class="opt-letter">B</span> 培养负责任的态度和能力</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：避免与任何人交往" aria-pressed="false" data-fb="❌ 避免与任何人交往是<strong>社交回避</strong>，不利于品格发展。<br><span class='tag tag-mistake'>归因：社交回避，缺乏交往意识</span>"><span class="opt-letter">C</span> 避免与任何人交往</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -159,12 +181,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】在集体中发展个性，下列做法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 完全按照自己的方式行事是<strong>我行我素</strong>，不是发展个性。<br><span class='tag tag-mistake'>归因：将个性误解为随心所欲</span>"><span class="opt-letter">A</span> 完全按照自己的方式行事</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：包容他人不同，学习他人优点</span>"><span class="opt-letter">B</span> 包容他人的不同，学习他人的优点</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 要求别人都按照自己的方式行事是<strong>强加于人</strong>，违背个性发展。<br><span class='tag tag-mistake'>归因：控制欲强，不理解个性发展的本质</span>"><span class="opt-letter">C</span> 要求别人都按照自己的方式行事</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：完全按照自己的方式行事" aria-pressed="false" data-fb="❌ 完全按照自己的方式行事是<strong>我行我素</strong>，不是发展个性。<br><span class='tag tag-mistake'>归因：将个性误解为随心所欲</span>"><span class="opt-letter">A</span> 完全按照自己的方式行事</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：包容他人的不同，学习他人的优点" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：包容他人不同，学习他人优点</span>"><span class="opt-letter">B</span> 包容他人的不同，学习他人的优点</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：要求别人都按照自己的方式行事" aria-pressed="false" data-fb="❌ 要求别人都按照自己的方式行事是<strong>强加于人</strong>，违背个性发展。<br><span class='tag tag-mistake'>归因：控制欲强，不理解个性发展的本质</span>"><span class="opt-letter">C</span> 要求别人都按照自己的方式行事</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -176,12 +198,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于集体生活与个人成长，下列理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 集体生活<strong>不是</strong>限制个性发展，而是<strong>促进</strong>个性发展。<br><span class='tag tag-mistake'>归因：将集体与个性对立起来，是错误理解</span>"><span class="opt-letter">A</span> 集体生活会限制个性发展</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 个性发展<strong>不是</strong>随心所欲，而是在<strong>集体规范中</strong>实现自我。<br><span class='tag tag-mistake'>归因：将个性误解为无约束的自由</span>"><span class="opt-letter">B</span> 个性发展就是随心所欲</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体生活促进个性完善</span>"><span class="opt-letter">C</span> 集体生活有助于我们完善个性</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：集体生活会限制个性发展" aria-pressed="false" data-fb="❌ 集体生活<strong>不是</strong>限制个性发展，而是<strong>促进</strong>个性发展。<br><span class='tag tag-mistake'>归因：将集体与个性对立起来，是错误理解</span>"><span class="opt-letter">A</span> 集体生活会限制个性发展</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：个性发展就是随心所欲" aria-pressed="false" data-fb="❌ 个性发展<strong>不是</strong>随心所欲，而是在<strong>集体规范中</strong>实现自我。<br><span class='tag tag-mistake'>归因：将个性误解为无约束的自由</span>"><span class="opt-letter">B</span> 个性发展就是随心所欲</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：集体生活有助于我们完善个性" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体生活促进个性完善</span>"><span class="opt-letter">C</span> 集体生活有助于我们完善个性</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -196,6 +218,9 @@
     <!-- ===== 正文知识 ===== -->
     <section><h2 class="section-title">📚 一、在集体中涵养品格</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#4caf50;">📖 集体生活如何帮助涵养品格？</h3>
         <div class="concept-box"><div class="label">💡 涵养品格的两个方面 <span class="tag tag-theory">关联：品格教育理论</span></div>
           <p>① <strong>培养负责任的态度和能力</strong></p>
@@ -211,7 +236,9 @@
           <p><strong>注意：</strong>涵养品格<strong>不是</strong>靠说教，而是靠<strong>实践</strong>！</p>
           <p style="margin-top:6px;">在集体中担任角色、承担责任，才能真正培养<strong>负责任的态度和能力</strong>。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">📚 二、在集体中发展个性</h2>
@@ -240,6 +267,9 @@
 
     <section><h2 class="section-title">📚 三、集体生活的作用</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#4caf50;">📖 集体生活对我们有什么作用？</h3>
         <div class="concept-box"><div class="label">🌟 集体生活的四大作用 <span class="tag tag-theory">关联：社会学习理论</span></div>
           <p>① <strong>学会接纳他人</strong> → 包容不同的性格和想法</p>
@@ -254,19 +284,21 @@
           <p>② <strong>个人主义</strong>：只考虑自己，不顾及集体和他人，<strong>以自我为中心</strong>。</p>
           <p style="margin-top:8px;">集体生活鼓励<strong>健康的个性发展</strong>，反对<strong>极端的个人主义</strong>。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
       <p style="color:#4caf50;margin-bottom:16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】在集体中涵养品格，主要表现为？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 只关注自己成绩<strong>不是</strong>涵养品格。<br><span class='tag tag-mistake'>归因：自我中心，缺乏集体意识</span>"><span class="opt-letter">A</span> 只关注自己的成绩</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：培养负责任的态度</span>"><span class="opt-letter">B</span> 培养负责任的态度和能力</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 避免与人交往<strong>不利于</strong>品格发展。<br><span class='tag tag-mistake'>归因：社交回避</span>"><span class="opt-letter">C</span> 避免与人交往</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只关注自己的成绩" aria-pressed="false" data-fb="❌ 只关注自己成绩<strong>不是</strong>涵养品格。<br><span class='tag tag-mistake'>归因：自我中心，缺乏集体意识</span>"><span class="opt-letter">A</span> 只关注自己的成绩</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：培养负责任的态度和能力" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：培养负责任的态度</span>"><span class="opt-letter">B</span> 培养负责任的态度和能力</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：避免与人交往" aria-pressed="false" data-fb="❌ 避免与人交往<strong>不利于</strong>品格发展。<br><span class='tag tag-mistake'>归因：社交回避</span>"><span class="opt-letter">C</span> 避免与人交往</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -274,12 +306,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】在集体中发展个性，下列做法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 坚持自己总是对是<strong>固执己见</strong>，不是发展个性。<br><span class='tag tag-mistake'>归因：固执己见，缺乏反思精神</span>"><span class="opt-letter">A</span> 坚持自己总是对的</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：包容差异，学习优点</span>"><span class="opt-letter">B</span> 包容他人的不同，学习他人的优点</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 要求别人都听自己的<strong>是强加于人</strong>，不是发展个性。<br><span class='tag tag-mistake'>归因：控制欲强，不理解个性发展</span>"><span class="opt-letter">C</span> 要求别人都听自己的</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：坚持自己总是对的" aria-pressed="false" data-fb="❌ 坚持自己总是对是<strong>固执己见</strong>，不是发展个性。<br><span class='tag tag-mistake'>归因：固执己见，缺乏反思精神</span>"><span class="opt-letter">A</span> 坚持自己总是对的</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：包容他人的不同，学习他人的优点" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：包容差异，学习优点</span>"><span class="opt-letter">B</span> 包容他人的不同，学习他人的优点</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：要求别人都听自己的" aria-pressed="false" data-fb="❌ 要求别人都听自己的<strong>是强加于人</strong>，不是发展个性。<br><span class='tag tag-mistake'>归因：控制欲强，不理解个性发展</span>"><span class="opt-letter">C</span> 要求别人都听自己的</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -287,12 +319,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考真题】关于集体生活与个人成长的关系，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！集体生活确实能促进个性发展。<br><span class='tag tag-kp'>知识点：集体促进个性完善</span>"><span class="opt-letter">A</span> 集体生活可以促进个性发展</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 个性发展<strong>不是</strong>我行我素，而是在集体中<strong>实现自我</strong>。<br><span class='tag tag-mistake'>归因：将个性误解为随心所欲</span>"><span class="opt-letter">B</span> 个性发展就是我行我素</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 集体生活<strong>不是</strong>没有作用，而是<strong>重要作用</strong>。<br><span class='tag tag-mistake'>归因：虚无主义理解</span>"><span class="opt-letter">C</span> 集体生活对个人成长没有作用</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：集体生活可以促进个性发展" aria-pressed="false" data-fb="✅ 正确！集体生活确实能促进个性发展。<br><span class='tag tag-kp'>知识点：集体促进个性完善</span>"><span class="opt-letter">A</span> 集体生活可以促进个性发展</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：个性发展就是我行我素" aria-pressed="false" data-fb="❌ 个性发展<strong>不是</strong>我行我素，而是在集体中<strong>实现自我</strong>。<br><span class='tag tag-mistake'>归因：将个性误解为随心所欲</span>"><span class="opt-letter">B</span> 个性发展就是我行我素</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：集体生活对个人成长没有作用" aria-pressed="false" data-fb="❌ 集体生活<strong>不是</strong>没有作用，而是<strong>重要作用</strong>。<br><span class='tag tag-mistake'>归因：虚无主义理解</span>"><span class="opt-letter">C</span> 集体生活对个人成长没有作用</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -305,6 +337,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -350,7 +385,9 @@
           <p style="margin-top:10px;font-size:13px;color:#065f46;"><span class="tag tag-mistake">常见陷阱</span> 将集体生活的作用<strong>低估或无视</strong>。</p>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -380,6 +417,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

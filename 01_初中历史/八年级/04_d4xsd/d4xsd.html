@@ -259,6 +259,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- Brand Bar -->
 <div class="brand-bar">
@@ -279,6 +291,10 @@
 
 <!-- Nav Bar -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
         <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
@@ -479,17 +495,17 @@
         <div class="quiz-section">
             <div class="quiz-question">
                 <h4>1. 改革开放的起点是哪一年？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1966年是文化大革命开始的年份，不是改革开放的起点。">
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1966年" aria-pressed="false" data-feedback="❌ 错误。1966年是文化大革命开始的年份，不是改革开放的起点。">
                         <span class="opt-letter">A</span> 1966年
                     </button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1976年是文化大革命结束的年份，改革开放尚未开始。">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：1976年" aria-pressed="false" data-feedback="❌ 错误。1976年是文化大革命结束的年份，改革开放尚未开始。">
                         <span class="opt-letter">B</span> 1976年
                     </button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1978年12月，中共十一届三中全会召开，作出了改革开放的伟大决策，标志着改革开放的开始。">
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：1978年" aria-pressed="false" data-feedback="✅ 正确！1978年12月，中共十一届三中全会召开，作出了改革开放的伟大决策，标志着改革开放的开始。">
                         <span class="opt-letter">C</span> 1978年
                     </button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1980年是设立经济特区的年份，改革开放已经开始了。">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：1980年" aria-pressed="false" data-feedback="❌ 错误。1980年是设立经济特区的年份，改革开放已经开始了。">
                         <span class="opt-letter">D</span> 1980年
                     </button>
                 </div>
@@ -498,17 +514,17 @@
 
             <div class="quiz-question">
                 <h4>2. 农村改革率先在哪个村试行？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1978年，安徽凤阳小岗村的18户农民秘密签订契约，试行'大包干'，开创了家庭联产承包责任制的先河。">
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项A：小岗村" aria-pressed="false" data-feedback="✅ 正确！1978年，安徽凤阳小岗村的18户农民秘密签订契约，试行'大包干'，开创了家庭联产承包责任制的先河。">
                         <span class="opt-letter">A</span> 小岗村
                     </button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。大寨村是农业学大寨运动的典型，不是农村改革率先试行的地方。">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：大寨村" aria-pressed="false" data-feedback="❌ 错误。大寨村是农业学大寨运动的典型，不是农村改革率先试行的地方。">
                         <span class="opt-letter">B</span> 大寨村
                     </button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。华西村是共同富裕的典型，但不是家庭联产承包责任制的首发地。">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：华西村" aria-pressed="false" data-feedback="❌ 错误。华西村是共同富裕的典型，但不是家庭联产承包责任制的首发地。">
                         <span class="opt-letter">C</span> 华西村
                     </button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。南街村是集体经济的典型，与农村改革率先试行无关。">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：南街村" aria-pressed="false" data-feedback="❌ 错误。南街村是集体经济的典型，与农村改革率先试行无关。">
                         <span class="opt-letter">D</span> 南街村
                     </button>
                 </div>
@@ -517,17 +533,17 @@
 
             <div class="quiz-question">
                 <h4>3. 我国第一个经济特区是哪个城市？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。上海浦东是1990年才开发开放的，不是第一个经济特区。">
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：上海" aria-pressed="false" data-feedback="❌ 错误。上海浦东是1990年才开发开放的，不是第一个经济特区。">
                         <span class="opt-letter">A</span> 上海
                     </button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1980年，深圳、珠海、汕头、厦门设立为经济特区，其中深圳是第一个也是最成功的经济特区。">
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：深圳" aria-pressed="false" data-feedback="✅ 正确！1980年，深圳、珠海、汕头、厦门设立为经济特区，其中深圳是第一个也是最成功的经济特区。">
                         <span class="opt-letter">B</span> 深圳
                     </button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。海南是1988年才建省并设立经济特区的，不是第一个。">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：海南" aria-pressed="false" data-feedback="❌ 错误。海南是1988年才建省并设立经济特区的，不是第一个。">
                         <span class="opt-letter">C</span> 海南
                     </button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。广州是对外开放城市，但不是第一个经济特区。">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：广州" aria-pressed="false" data-feedback="❌ 错误。广州是对外开放城市，但不是第一个经济特区。">
                         <span class="opt-letter">D</span> 广州
                     </button>
                 </div>
@@ -608,5 +624,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
   <script src="../shared/mascot.js?v=8.0"></script>
+  <script src="../shared/badges.js?v=8.0"></script>
 </body>
 </html>

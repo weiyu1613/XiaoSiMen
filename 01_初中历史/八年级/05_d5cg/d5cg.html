@@ -149,6 +149,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- ① 品牌栏 -->
 <div class="brand-bar">
@@ -166,6 +178,10 @@
 
 <!-- ③ 导航栏 -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
         <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
@@ -341,28 +357,28 @@
             <h2><i class="fas fa-question-circle"></i> 单元前测</h2>
             <div class="quiz-question">
                 <h4>1. 国共第一次合作正式形成的标志是？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。中共一大是1921年召开的，标志着中国共产党诞生，不是国共合作形成的标志。">A. 中共一大召开</button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1924年，中国国民党第一次全国代表大会召开，标志着国共第一次合作正式形成。">B. 国民党一大召开</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。黄埔军校建立是国共合作的成果之一，不是合作形成的标志。">C. 黄埔军校建立</button>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：中共一大召开" aria-pressed="false" data-feedback="❌ 错误。中共一大是1921年召开的，标志着中国共产党诞生，不是国共合作形成的标志。">A. 中共一大召开</button>
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：国民党一大召开" aria-pressed="false" data-feedback="✅ 正确！1924年，中国国民党第一次全国代表大会召开，标志着国共第一次合作正式形成。">B. 国民党一大召开</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：黄埔军校建立" aria-pressed="false" data-feedback="❌ 错误。黄埔军校建立是国共合作的成果之一，不是合作形成的标志。">C. 黄埔军校建立</button>
                 </div>
                 <div class="feedback"></div>
             </div>
             <div class="quiz-question">
                 <h4>2. 北伐战争的主要对象是？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。北伐战争的主要对象是北洋军阀，不是清政府。">A. 清政府</button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！北伐战争的主要对象是北洋军阀吴佩孚、孙传芳、张作霖。">B. 北洋军阀</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。日本侵略者不是北伐战争的主要对象。">C. 日本侵略者</button>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：清政府" aria-pressed="false" data-feedback="❌ 错误。北伐战争的主要对象是北洋军阀，不是清政府。">A. 清政府</button>
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：北洋军阀" aria-pressed="false" data-feedback="✅ 正确！北伐战争的主要对象是北洋军阀吴佩孚、孙传芳、张作霖。">B. 北洋军阀</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：日本侵略者" aria-pressed="false" data-feedback="❌ 错误。日本侵略者不是北伐战争的主要对象。">C. 日本侵略者</button>
                 </div>
                 <div class="feedback"></div>
             </div>
             <div class="quiz-question">
                 <h4>3. 井冈山革命根据地创建的意义是？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。井冈山根据地是农村革命根据地，不是城市起义的地点。">A. 城市起义的地点</button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！井冈山革命根据地的创建，开辟了"农村包围城市、武装夺取政权"的正确革命道路。">B. 开辟农村包围城市道路</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。长征是在井冈山根据地创建之后发生的历史事件。">C. 红军长征的起点</button>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：城市起义的地点" aria-pressed="false" data-feedback="❌ 错误。井冈山根据地是农村革命根据地，不是城市起义的地点。">A. 城市起义的地点</button>
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：开辟农村包围城市道路" aria-pressed="false" data-feedback="✅ 正确！井冈山革命根据地的创建，开辟了"农村包围城市、武装夺取政权"的正确革命道路。">B. 开辟农村包围城市道路</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：红军长征的起点" aria-pressed="false" data-feedback="❌ 错误。长征是在井冈山根据地创建之后发生的历史事件。">C. 红军长征的起点</button>
                 </div>
                 <div class="feedback"></div>
             </div>
@@ -449,5 +465,6 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
   <script src="../shared/mascot.js?v=8.0"></script>
+  <script src="../shared/badges.js?v=8.0"></script>
 </body>
 </html>

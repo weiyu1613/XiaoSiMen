@@ -130,6 +130,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -138,7 +150,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d6sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六单元：辽宋夏金元时期</div>
@@ -201,6 +217,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道活字印刷术的发明者和意义</li>
@@ -217,12 +239,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】活字印刷术的发明者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 毕昇</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 蔡伦是东汉改进造纸术的，不是活字印刷！"><span class="opt-letter">B</span> 蔡伦</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 张衡是东汉发明地动仪的，不是活字印刷！"><span class="opt-letter">C</span> 张衡</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：毕昇" aria-pressed="false"><span class="opt-letter">A</span> 毕昇</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：蔡伦" aria-pressed="false" data-feedback="❌ 蔡伦是东汉改进造纸术的，不是活字印刷！"><span class="opt-letter">B</span> 蔡伦</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：张衡" aria-pressed="false" data-feedback="❌ 张衡是东汉发明地动仪的，不是活字印刷！"><span class="opt-letter">C</span> 张衡</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -230,12 +252,12 @@
           <p><strong>北宋</strong>时期，<strong>毕昇</strong>发明<strong>活字印刷术</strong>，比欧洲早400多年。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】指南针应用于航海是在？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 战国时期是指南针的萌芽（司南），不是应用于航海！"><span class="opt-letter">A</span> 战国时期</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 北宋时期</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 唐朝是指南针发明时期，不是应用于航海！"><span class="opt-letter">C</span> 唐朝时期</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：战国时期" aria-pressed="false" data-feedback="❌ 战国时期是指南针的萌芽（司南），不是应用于航海！"><span class="opt-letter">A</span> 战国时期</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北宋时期" aria-pressed="false"><span class="opt-letter">B</span> 北宋时期</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：唐朝时期" aria-pressed="false" data-feedback="❌ 唐朝是指南针发明时期，不是应用于航海！"><span class="opt-letter">C</span> 唐朝时期</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -243,12 +265,12 @@
           <p><strong>北宋</strong>时期，指南针开始应用于航海，促进世界航海事业发展。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】"婉约派"宋词的代表人物是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 苏轼是豪放派代表，不是婉约派！"><span class="opt-letter">A</span> 苏轼</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 李清照</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 辛弃疾是豪放派代表，不是婉约派！"><span class="opt-letter">C</span> 辛弃疾</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：苏轼" aria-pressed="false" data-feedback="❌ 苏轼是豪放派代表，不是婉约派！"><span class="opt-letter">A</span> 苏轼</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李清照" aria-pressed="false"><span class="opt-letter">B</span> 李清照</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：辛弃疾" aria-pressed="false" data-feedback="❌ 辛弃疾是豪放派代表，不是婉约派！"><span class="opt-letter">C</span> 辛弃疾</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -256,12 +278,12 @@
           <p><strong>李清照</strong>是<strong>婉约派</strong>代表人物，词风委婉含蓄。苏轼、辛弃疾是<strong>豪放派</strong>代表。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】火药开始用于军事是在？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 唐朝是火药发明时期，不是用于军事的时期！"><span class="opt-letter">A</span> 唐朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')"><span class="opt-letter">B</span> 宋元时期</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 明清时期火药已广泛使用，不是开始！"><span class="opt-letter">C</span> 明清时期</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐朝" aria-pressed="false" data-feedback="❌ 唐朝是火药发明时期，不是用于军事的时期！"><span class="opt-letter">A</span> 唐朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：宋元时期" aria-pressed="false"><span class="opt-letter">B</span> 宋元时期</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：明清时期" aria-pressed="false" data-feedback="❌ 明清时期火药已广泛使用，不是开始！"><span class="opt-letter">C</span> 明清时期</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -293,12 +315,17 @@
         </ul>
       </div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>三、火药</h3>
         <p><strong>发明</strong>：唐朝时期发明火药</p>
         <p><strong>应用</strong>：<strong>宋元时期</strong>开始用于军事</p>
         <p><strong>传播</strong>：13世纪经阿拉伯人传入欧洲</p>
         <p><strong>意义</strong>：改变战争方式，推动欧洲资产阶级革命</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>四、宋元文化</h3>
         <p><strong>1. 宋词</strong>：</p>
@@ -320,20 +347,30 @@
     <section class="section" id="deep-content">
       <h2 class="section-title"><span class="num">🔍</span> 深入内容</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>四大发明的世界影响</h3>
         <p><strong>1. 造纸术</strong>：促进文化传播，推动教育普及</p>
         <p><strong>2. 印刷术</strong>：促进文艺复兴和宗教改革</p>
         <p><strong>3. 指南针</strong>：促进新航路开辟和全球化</p>
         <p><strong>4. 火药</strong>：改变战争方式，推动欧洲资产阶级革命</p>
         <p><strong>总结</strong>：四大发明对世界文明发展作出巨大贡献。</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>宋词繁荣的原因</h3>
         <p><strong>1. 经济基础</strong>：宋元经济繁荣，城市生活丰富</p>
         <p><strong>2. 阶级基础</strong>：市民阶层壮大，需要通俗文学</p>
         <p><strong>3. 文化政策</strong>：重文轻武，文化氛围宽松</p>
         <p><strong>4. 技术条件</strong>：印刷术普及，文学作品广泛传播</p>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">📝</span> 后测：检验学习效果</h2>
@@ -343,12 +380,12 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
         <span style="margin-left: 12px; color: var(--accent);">⚡ 含中考真题</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】"资治通鉴"的作者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 司马迁是西汉《史记》作者，不是《资治通鉴》！"><span class="opt-letter">A</span> 司马迁</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 司马光</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 苏轼是宋词豪放派代表，不是史学家！"><span class="opt-letter">C</span> 苏轼</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：司马迁" aria-pressed="false" data-feedback="❌ 司马迁是西汉《史记》作者，不是《资治通鉴》！"><span class="opt-letter">A</span> 司马迁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：司马光" aria-pressed="false"><span class="opt-letter">B</span> 司马光</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：苏轼" aria-pressed="false" data-feedback="❌ 苏轼是宋词豪放派代表，不是史学家！"><span class="opt-letter">C</span> 苏轼</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -356,12 +393,12 @@
           <p><strong>司马光</strong>主持编纂<strong>《资治通鉴》</strong>，是中国第一部编年体通史。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐ 基础】元曲《窦娥冤》的作者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')"><span class="opt-letter">A</span> 关汉卿</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 马致远是元曲四大家之一，但不是《窦娥冤》作者！"><span class="opt-letter">B</span> 马致远</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 李清照是宋词婉约派代表，不是元曲作者！"><span class="opt-letter">C</span> 李清照</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：关汉卿" aria-pressed="false"><span class="opt-letter">A</span> 关汉卿</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：马致远" aria-pressed="false" data-feedback="❌ 马致远是元曲四大家之一，但不是《窦娥冤》作者！"><span class="opt-letter">B</span> 马致远</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李清照" aria-pressed="false" data-feedback="❌ 李清照是宋词婉约派代表，不是元曲作者！"><span class="opt-letter">C</span> 李清照</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -369,12 +406,12 @@
           <p><strong>关汉卿</strong>是元曲奠基人，代表作<strong>《窦娥冤》</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】"豪放派"宋词的代表人物不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="❌ 苏轼是豪放派代表，题目问'不包括'！"><span class="opt-letter">A</span> 苏轼</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'B')" data-feedback="❌ 辛弃疾是豪放派代表，题目问'不包括'！"><span class="opt-letter">B</span> 辛弃疾</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'C')"><span class="opt-letter">C</span> 李清照</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：苏轼" aria-pressed="false" data-feedback="❌ 苏轼是豪放派代表，题目问'不包括'！"><span class="opt-letter">A</span> 苏轼</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：辛弃疾" aria-pressed="false" data-feedback="❌ 辛弃疾是豪放派代表，题目问'不包括'！"><span class="opt-letter">B</span> 辛弃疾</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李清照" aria-pressed="false"><span class="opt-letter">C</span> 李清照</div>
         </div>
         <div class="feedback" id="feedback-7"></div>
         <div class="answer-explanation" id="explanation-7">
@@ -382,7 +419,7 @@
           <p><strong>李清照</strong>是<strong>婉约派</strong>代表，不是豪放派。豪放派代表是苏轼、辛弃疾。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】阅读材料，回答问题：<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
         <div style="background: #f9fafb; border-left: 4px solid #8b4513; padding: 16px; margin-bottom: 16px; border-radius: 0 8px 8px 0;">
           <p><strong>材料</strong>：</p>
@@ -390,10 +427,10 @@
           <p>——沈括《梦溪笔谈》</p>
           <p><strong>问题</strong>：这段材料描述的是哪项发明？（　）</p>
         </div>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'A')" data-feedback="❌ 造纸术在西汉已有，不是'印数十百千本'！"><span class="opt-letter">A</span> 造纸术</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'B')"><span class="opt-letter">B</span> 活字印刷术</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 雕版印刷术效率低，不是'极为神速'！"><span class="opt-letter">C</span> 雕版印刷术</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：造纸术" aria-pressed="false" data-feedback="❌ 造纸术在西汉已有，不是'印数十百千本'！"><span class="opt-letter">A</span> 造纸术</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：活字印刷术" aria-pressed="false"><span class="opt-letter">B</span> 活字印刷术</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：雕版印刷术" aria-pressed="false" data-feedback="❌ 雕版印刷术效率低，不是'极为神速'！"><span class="opt-letter">C</span> 雕版印刷术</div>
         </div>
         <div class="feedback" id="feedback-8"></div>
         <div class="answer-explanation" id="explanation-8">
@@ -550,6 +587,8 @@
   </script>
     <!-- 标准模块脚本（必须） -->
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

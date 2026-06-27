@@ -101,6 +101,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- ① 品牌栏 -->
 <div class="brand-bar">
@@ -118,6 +130,10 @@
 
 <!-- ③ 导航栏 -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../d5cg.html" class="nav-btn"><i class="fas fa-arrow-left"></i> 单元</a>
@@ -203,28 +219,28 @@
         <h2><i class="fas fa-question-circle"></i> 课前思考（前测）</h2>
         <div class="quiz-question">
             <h4>1. 【基础】红军长征开始于哪一年？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1927年是南昌起义和井冈山根据地创建的年份。">A. 1927年</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1934年10月，中央红军（红一方面军）从江西瑞金出发，开始长征。">B. 1934年</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1935年是遵义会议召开和长征途中重要战斗的年份。">C. 1935年</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1927年" aria-pressed="false" data-feedback="❌ 错误。1927年是南昌起义和井冈山根据地创建的年份。">A. 1927年</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：1934年" aria-pressed="false" data-feedback="✅ 正确！1934年10月，中央红军（红一方面军）从江西瑞金出发，开始长征。">B. 1934年</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：1935年" aria-pressed="false" data-feedback="❌ 错误。1935年是遵义会议召开和长征途中重要战斗的年份。">C. 1935年</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【提高】遵义会议确立了谁在党中央的领导地位？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。周恩来在遵义会议上支持毛泽东的正确主张，但不是最高领导人。">A. 周恩来</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！遵义会议确立了毛泽东在全党和全军的领导地位，是中国共产党历史上生死攸关的转折点。">B. 毛泽东</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。朱德是红军总司令，但遵义会议确立的是毛泽东的领导地位。">C. 朱德</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：周恩来" aria-pressed="false" data-feedback="❌ 错误。周恩来在遵义会议上支持毛泽东的正确主张，但不是最高领导人。">A. 周恩来</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：毛泽东" aria-pressed="false" data-feedback="✅ 正确！遵义会议确立了毛泽东在全党和全军的领导地位，是中国共产党历史上生死攸关的转折点。">B. 毛泽东</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：朱德" aria-pressed="false" data-feedback="❌ 错误。朱德是红军总司令，但遵义会议确立的是毛泽东的领导地位。">C. 朱德</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【挑战】红军三大主力会师于哪里？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。井冈山是革命根据地，不是三大主力会师地点。">A. 井冈山</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1936年10月，红军三大主力（红一、红二、红四方面军）在甘肃会宁胜利会师，标志着长征胜利结束。">B. 甘肃会宁</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。吴起镇是红一方面军长征胜利的终点，不是三大主力会师地点。">C. 陕西吴起镇</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：井冈山" aria-pressed="false" data-feedback="❌ 错误。井冈山是革命根据地，不是三大主力会师地点。">A. 井冈山</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：甘肃会宁" aria-pressed="false" data-feedback="✅ 正确！1936年10月，红军三大主力（红一、红二、红四方面军）在甘肃会宁胜利会师，标志着长征胜利结束。">B. 甘肃会宁</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：陕西吴起镇" aria-pressed="false" data-feedback="❌ 错误。吴起镇是红一方面军长征胜利的终点，不是三大主力会师地点。">C. 陕西吴起镇</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -312,28 +328,28 @@
         <h2><i class="fas fa-clipboard-check"></i> 课后检测（后测）</h2>
         <div class="quiz-question">
             <h4>1. 【⭐ 基础】红军长征的主要原因是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。日军侵华是1937年全面抗战爆发后的情况，不是长征的主要原因。">A. 日军侵华</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！由于王明"左"倾错误领导，第五次反"围剿"失败，红军被迫进行战略转移，开始长征。">B. 第五次反"围剿"失败</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。国共合作破裂是1927年，长征是1934年开始的。">C. 国共合作破裂</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：日军侵华" aria-pressed="false" data-feedback="❌ 错误。日军侵华是1937年全面抗战爆发后的情况，不是长征的主要原因。">A. 日军侵华</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：第五次反&quot;围剿&quot;失败" aria-pressed="false" data-feedback="✅ 正确！由于王明"左"倾错误领导，第五次反"围剿"失败，红军被迫进行战略转移，开始长征。">B. 第五次反"围剿"失败</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：国共合作破裂" aria-pressed="false" data-feedback="❌ 错误。国共合作破裂是1927年，长征是1934年开始的。">C. 国共合作破裂</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【⭐⭐ 提高·中考真题】（2023·江苏）遵义会议的历史意义是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！遵义会议纠正了"左"倾错误，确立了毛泽东的领导地位，是中国共产党历史上生死攸关的转折点。">A. 生死攸关的转折点</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。标志中国共产党诞生的是1921年的中共一大。">B. 标志着中国共产党诞生</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。长征胜利结束的标志是1936年三大主力在会宁会师。">C. 标志着长征胜利结束</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项A：生死攸关的转折点" aria-pressed="false" data-feedback="✅ 正确！遵义会议纠正了"左"倾错误，确立了毛泽东的领导地位，是中国共产党历史上生死攸关的转折点。">A. 生死攸关的转折点</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：标志着中国共产党诞生" aria-pressed="false" data-feedback="❌ 错误。标志中国共产党诞生的是1921年的中共一大。">B. 标志着中国共产党诞生</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：标志着长征胜利结束" aria-pressed="false" data-feedback="❌ 错误。长征胜利结束的标志是1936年三大主力在会宁会师。">C. 标志着长征胜利结束</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【⭐⭐⭐ 挑战】红军三大主力会师于？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。井冈山是革命根据地，不是三大主力会师地点。">A. 井冈山</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1936年10月，红一、红二、红四方面军在甘肃会宁胜利会师，标志着长征完全胜利。">B. 甘肃会宁</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。吴起镇是红一方面军到达陕北的地点，不是三大主力会师地点。">C. 陕西吴起镇</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：井冈山" aria-pressed="false" data-feedback="❌ 错误。井冈山是革命根据地，不是三大主力会师地点。">A. 井冈山</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：甘肃会宁" aria-pressed="false" data-feedback="✅ 正确！1936年10月，红一、红二、红四方面军在甘肃会宁胜利会师，标志着长征完全胜利。">B. 甘肃会宁</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：陕西吴起镇" aria-pressed="false" data-feedback="❌ 错误。吴起镇是红一方面军到达陕北的地点，不是三大主力会师地点。">C. 陕西吴起镇</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -415,6 +431,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

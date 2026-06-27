@@ -181,6 +181,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -194,6 +206,10 @@
 
   <!-- ③ 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../zwwdsh.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -282,6 +298,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 说明植物是生物圈的"生产者"（通过光合作用制造有机物）</li>
@@ -299,12 +321,12 @@
       <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
 
       <!-- 基础题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 植物在生物圈中扮演的角色是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 消费者</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">B</span> 生产者</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 分解者</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 非生物成分</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：消费者" aria-pressed="false"><span class="opt-letter">A</span> 消费者</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：生产者" aria-pressed="false"><span class="opt-letter">B</span> 生产者</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：分解者" aria-pressed="false"><span class="opt-letter">C</span> 分解者</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：非生物成分" aria-pressed="false"><span class="opt-letter">D</span> 非生物成分</div>
         <div class="feedback" id="fb-1"></div>
         <div class="answer-explanation" id="exp-1">
           <strong>解析：</strong>植物能够通过<strong>光合作用</strong>制造有机物，是生物圈中的<strong>生产者</strong>。消费者是动物，分解者是细菌和真菌。
@@ -312,12 +334,12 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 植物维持碳—氧平衡的作用是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 吸收氧气，释放二氧化碳</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">B</span> 吸收二氧化碳，释放氧气</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 只吸收二氧化碳</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 只释放氧气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：吸收氧气，释放二氧化碳" aria-pressed="false"><span class="opt-letter">A</span> 吸收氧气，释放二氧化碳</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：吸收二氧化碳，释放氧气" aria-pressed="false"><span class="opt-letter">B</span> 吸收二氧化碳，释放氧气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只吸收二氧化碳" aria-pressed="false"><span class="opt-letter">C</span> 只吸收二氧化碳</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：只释放氧气" aria-pressed="false"><span class="opt-letter">D</span> 只释放氧气</div>
         <div class="feedback" id="fb-2"></div>
         <div class="answer-explanation" id="exp-2">
           <strong>解析：</strong>通过光合作用，植物<strong>吸收二氧化碳，释放氧气</strong>，从而维持大气中二氧化碳和氧气的<strong>平衡</strong>（碳—氧平衡）。
@@ -325,12 +347,12 @@
       </div>
 
       <!-- 挑战题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关植物在自然界中的作用，<strong>错误</strong>的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 植物是生物圈中的生产者</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 植物通过蒸腾作用促进水循环</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 植物进行呼吸作用时会破坏碳—氧平衡</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 植物可以防风固沙、保持水土</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：植物是生物圈中的生产者" aria-pressed="false"><span class="opt-letter">A</span> 植物是生物圈中的生产者</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：植物通过蒸腾作用促进水循环" aria-pressed="false"><span class="opt-letter">B</span> 植物通过蒸腾作用促进水循环</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：植物进行呼吸作用时会破坏碳—氧平衡" aria-pressed="false"><span class="opt-letter">C</span> 植物进行呼吸作用时会破坏碳—氧平衡</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：植物可以防风固沙、保持水土" aria-pressed="false"><span class="opt-letter">D</span> 植物可以防风固沙、保持水土</div>
         <div class="feedback" id="fb-3"></div>
         <div class="answer-explanation" id="exp-3">
           <strong>解析：</strong>C是错误的。呼吸作用虽然消耗氧气、释放二氧化碳，但植物光合作用吸收的二氧化碳远多于呼吸作用释放的，总体上<strong>维持碳—氧平衡</strong>。
@@ -420,24 +442,24 @@
       <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
       <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">1. 植物在生物圈中的作用是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 只提供食物</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">B</span> 提供有机物、维持碳—氧平衡、促进水循环</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 只进行光合作用</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 只提供氧气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只提供食物" aria-pressed="false"><span class="opt-letter">A</span> 只提供食物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：提供有机物、维持碳—氧平衡、促进水循环" aria-pressed="false"><span class="opt-letter">B</span> 提供有机物、维持碳—氧平衡、促进水循环</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只进行光合作用" aria-pressed="false"><span class="opt-letter">C</span> 只进行光合作用</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：只提供氧气" aria-pressed="false"><span class="opt-letter">D</span> 只提供氧气</div>
         <div class="feedback" id="fb-4"></div>
         <div class="answer-explanation" id="exp-4">
           <strong>解析：</strong>植物在生物圈中有多重作用：①作为生产者提供有机物；②维持碳—氧平衡；③促进水循环；④防风固沙、保持水土；⑤提供栖息地和食物。
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】"大树底下好乘凉"说明植物可以（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 只进行光合作用</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">B</span> 调节气候、降温增湿</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 只提供氧气</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 只进行呼吸作用</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只进行光合作用" aria-pressed="false"><span class="opt-letter">A</span> 只进行光合作用</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：调节气候、降温增湿" aria-pressed="false"><span class="opt-letter">B</span> 调节气候、降温增湿</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只提供氧气" aria-pressed="false"><span class="opt-letter">C</span> 只提供氧气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：只进行呼吸作用" aria-pressed="false"><span class="opt-letter">D</span> 只进行呼吸作用</div>
         <div class="feedback" id="fb-5"></div>
         <div class="answer-explanation" id="exp-5">
           <strong>解析：</strong>"大树底下好乘凉"体现了植物对环境的调节作用：①<strong>蒸腾作用</strong>带走热量，降低温度；②叶片遮挡阳光；③增加空气湿度。
@@ -648,6 +670,8 @@
       </div>
     </div>
   </div>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

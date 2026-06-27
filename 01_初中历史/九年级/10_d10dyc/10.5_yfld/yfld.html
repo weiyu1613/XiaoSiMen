@@ -219,6 +219,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -238,7 +250,11 @@
   <div class="progress-label" id="progress-label">第 5/5 节 · 100%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../10.4_sljs/sljs.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d10dyc.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -344,6 +360,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道印度的非暴力不合作运动</li>
@@ -366,19 +388,19 @@
       </p>
       
       <!-- 前测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】印度非暴力不合作运动的领导者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 凯末尔是土耳其革命的领导者！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：凯末尔" aria-pressed="false" data-feedback="❌ 凯末尔是土耳其革命的领导者！">
             <span class="opt-letter">A</span> 凯末尔
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：甘地" aria-pressed="false">
             <span class="opt-letter">B</span> 甘地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 札格卢勒是埃及华夫脱运动的领导者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：札格卢勒" aria-pressed="false" data-feedback="❌ 札格卢勒是埃及华夫脱运动的领导者！">
             <span class="opt-letter">C</span> 札格卢勒
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 卡德纳斯是墨西哥改革的领导者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：卡德纳斯" aria-pressed="false" data-feedback="❌ 卡德纳斯是墨西哥改革的领导者！">
             <span class="opt-letter">D</span> 卡德纳斯
           </div>
         </div>
@@ -401,19 +423,19 @@
       </div>
 
       <!-- 前测题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】1930年，甘地为打破英国盐税垄断而发起的运动是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 手工纺织运动是抵制英国纺织品，不是打破盐税垄断！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：手工纺织运动" aria-pressed="false" data-feedback="❌ 手工纺织运动是抵制英国纺织品，不是打破盐税垄断！">
             <span class="opt-letter">A</span> 手工纺织运动
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 绝食抗议是甘地的手段之一，但不是打破盐税垄断的运动！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：绝食抗议" aria-pressed="false" data-feedback="❌ 绝食抗议是甘地的手段之一，但不是打破盐税垄断的运动！">
             <span class="opt-letter">B</span> 绝食抗议
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：食盐进军" aria-pressed="false">
             <span class="opt-letter">C</span> 食盐进军
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'D')" data-feedback="❌ 不交税运动是运动内容之一，但食盐进军是打破盐税垄断的标志性事件！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：不交税运动" aria-pressed="false" data-feedback="❌ 不交税运动是运动内容之一，但食盐进军是打破盐税垄断的标志性事件！">
             <span class="opt-letter">D</span> 不交税运动
           </div>
         </div>
@@ -435,19 +457,19 @@
       </div>
       
       <!-- 前测题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】凯末尔革命发生在哪个国家？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 伊朗（波斯）没有发生凯末尔革命！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：伊朗" aria-pressed="false" data-feedback="❌ 伊朗（波斯）没有发生凯末尔革命！">
             <span class="opt-letter">A</span> 伊朗
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：土耳其" aria-pressed="false">
             <span class="opt-letter">B</span> 土耳其
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 希腊是土耳其的交战方，不是凯末尔革命发生地！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：希腊" aria-pressed="false" data-feedback="❌ 希腊是土耳其的交战方，不是凯末尔革命发生地！">
             <span class="opt-letter">C</span> 希腊
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'D')" data-feedback="❌ 埃及发生的是华夫脱运动！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：埃及" aria-pressed="false" data-feedback="❌ 埃及发生的是华夫脱运动！">
             <span class="opt-letter">D</span> 埃及
           </div>
         </div>
@@ -460,19 +482,19 @@
       </div>
 
       <!-- 前测题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】关于一战后亚非拉民族民主运动高涨的原因，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：一战削弱了帝国主义力量" aria-pressed="false">
             <span class="opt-letter">A</span> 一战削弱了帝国主义力量
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 社会主义国家的支持不是主要原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：社会主义国家的支持" aria-pressed="false" data-feedback="❌ 社会主义国家的支持不是主要原因！">
             <span class="opt-letter">B</span> 社会主义国家的支持
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 冷战结束时1991年，与一战后时间不符！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：冷战结束" aria-pressed="false" data-feedback="❌ 冷战结束时1991年，与一战后时间不符！">
             <span class="opt-letter">C</span> 冷战结束
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'D')" data-feedback="❌ 联合国成立于1945年，一战后还没有联合国！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：联合国的调解" aria-pressed="false" data-feedback="❌ 联合国成立于1945年，一战后还没有联合国！">
             <span class="opt-letter">D</span> 联合国的调解
           </div>
         </div>
@@ -492,6 +514,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG世界地图 -->
         <div class="svg-container">
           <svg viewBox="0 0 800 450" width="800" height="450" xmlns="http://www.w3.org/2000/svg">
@@ -568,7 +593,9 @@
           <text x="700" y="60" text-anchor="middle" fill="#2c3e50" font-size="14" font-weight="bold">1947年</text>
           <text x="700" y="120" text-anchor="middle" fill="#666" font-size="12">印度独立</text>
         </svg>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: 土耳其凯末尔革命 -->
@@ -609,6 +636,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <p><strong>背景：</strong>一战后，英国继续在埃及维持殖民统治。</p>
         
         <p style="margin-top: 12px;"><strong>领导人：</strong>札格卢勒</p>
@@ -624,7 +654,9 @@
           <p>埃及华夫脱运动<strong>并未实现完全独立</strong>，只是有条件承认独立。</p>
           <p style="margin-top: 6px;">英国仍保留<strong>驻军权</strong>、<strong>苏伊士运河控制权</strong>等特权。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 7: 拉丁美洲 -->
@@ -664,19 +696,19 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】凯末尔改革的中心任务是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 凯末尔改革废除的是苏丹制，而不是建立苏丹国！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：建立苏丹国" aria-pressed="false" data-feedback="❌ 凯末尔改革废除的是苏丹制，而不是建立苏丹国！">
             <span class="opt-letter">A</span> 建立苏丹国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 凯末尔改革是世俗化改革，废除伊斯兰教统治！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：维护伊斯兰教统治" aria-pressed="false" data-feedback="❌ 凯末尔改革是世俗化改革，废除伊斯兰教统治！">
             <span class="opt-letter">B</span> 维护伊斯兰教统治
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：世俗化和工业化" aria-pressed="false">
             <span class="opt-letter">C</span> 世俗化和工业化
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'D')" data-feedback="❌ 凯末尔改革是废除君主专制，而不是恢复！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：恢复君主专制" aria-pressed="false" data-feedback="❌ 凯末尔改革是废除君主专制，而不是恢复！">
             <span class="opt-letter">D</span> 恢复君主专制
           </div>
         </div>
@@ -689,19 +721,19 @@
       </div>
 
       <!-- 后测题2（中考真题） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考改编）关于埃及华夫脱运动的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 华夫脱运动是由埃及人民发起的反殖民运动！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：由英国殖民者发起" aria-pressed="false" data-feedback="❌ 华夫脱运动是由埃及人民发起的反殖民运动！">
             <span class="opt-letter">A</span> 由英国殖民者发起
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 英国并未完全撤出埃及，仍保留大量特权！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：导致英国完全撤出埃及" aria-pressed="false" data-feedback="❌ 英国并未完全撤出埃及，仍保留大量特权！">
             <span class="opt-letter">B</span> 导致英国完全撤出埃及
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：迫使英国有条件承认埃及独立" aria-pressed="false">
             <span class="opt-letter">C</span> 迫使英国有条件承认埃及独立
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'D')" data-feedback="❌ 埃及并未建立共和国，而是保留君主制！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：建立了共和国" aria-pressed="false" data-feedback="❌ 埃及并未建立共和国，而是保留君主制！">
             <span class="opt-letter">D</span> 建立了共和国
           </div>
         </div>
@@ -719,19 +751,19 @@
       </div>
 
       <!-- 后测题3（材料分析） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·材料分析】"将外国资本控制的石油企业收归国有，分配土地给农民，推进世俗教育。"这最可能是哪个国家的改革？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 印度没有进行石油国有化改革！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：印度" aria-pressed="false" data-feedback="❌ 印度没有进行石油国有化改革！">
             <span class="opt-letter">A</span> 印度
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 土耳其凯末尔改革重点是世俗化，不是石油国有化！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：土耳其" aria-pressed="false" data-feedback="❌ 土耳其凯末尔改革重点是世俗化，不是石油国有化！">
             <span class="opt-letter">B</span> 土耳其
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：墨西哥" aria-pressed="false">
             <span class="opt-letter">C</span> 墨西哥
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'D')" data-feedback="❌ 伊朗没有进行这样的改革！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：伊朗" aria-pressed="false" data-feedback="❌ 伊朗没有进行这样的改革！">
             <span class="opt-letter">D</span> 伊朗
           </div>
         </div>
@@ -749,19 +781,19 @@
       </div>
 
       <!-- 后测题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战】一战后民族民主运动高涨的根本原因是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 一战的影响是直接原因，不是根本原因！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：一战的影响" aria-pressed="false" data-feedback="❌ 一战的影响是直接原因，不是根本原因！">
             <span class="opt-letter">A</span> 一战的影响
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'B')" data-feedback="❌ 十月革命的鼓舞是外部因素，不是根本原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：十月革命的鼓舞" aria-pressed="false" data-feedback="❌ 十月革命的鼓舞是外部因素，不是根本原因！">
             <span class="opt-letter">B</span> 十月革命的鼓舞
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：帝国主义力量的削弱和殖民地人民民族意识的觉醒" aria-pressed="false">
             <span class="opt-letter">C</span> 帝国主义力量的削弱和殖民地人民民族意识的觉醒
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'D')" data-feedback="❌ 联合国成立于1945年，时间不符！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：联合国的支持" aria-pressed="false" data-feedback="❌ 联合国成立于1945年，时间不符！">
             <span class="opt-letter">D</span> 联合国的支持
           </div>
         </div>
@@ -785,6 +817,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -844,7 +879,9 @@
             <tr style="background:#ffffff;"><td><strong>墨西哥</strong></td><td>卡德纳斯</td><td>卡德纳斯改革</td><td>石油国有化</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -989,6 +1026,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） --></script></script></script></script></script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -98,6 +98,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny \u00b7 初中历史</span></div>
@@ -107,6 +119,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
   <div class="progress-label" id="progress-label">第 1/6 节 \u00b7 16%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d3fds.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -170,6 +186,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 知道西欧庄园的兴起、范围和经营方式</li>
@@ -182,12 +204,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【&#11088; 基础】西欧庄园大约存在于什么时期？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="&#10060; 庄园是封建时代的产物，15世纪后逐渐衰落！">A. 5~10世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">B. 9~14世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 庄园经济的鼎盛期是9~14世纪！">C. 15~18世纪</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.5~10世纪" aria-pressed="false" data-feedback="&#10060; 庄园是封建时代的产物，15世纪后逐渐衰落！">A. 5~10世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.9~14世纪" aria-pressed="false">B. 9~14世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.15~18世纪" aria-pressed="false" data-feedback="&#10060; 庄园经济的鼎盛期是9~14世纪！">C. 15~18世纪</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -196,12 +218,12 @@
           <p style="margin-top:6px;">西欧庄园是<strong>9世纪</strong>开始出现，随着封建制度确立而发展，<strong>14世纪</strong>后随着商品经济和城市发展逐渐衰落解体。</p>
         </div>
       </div>
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="intermediate">
         <h3>2. 【&#11088; 基础】庄园的土地分为哪两部分？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="&#10060; 口粮田不是标准的历史术语！">A. 口粮田和劳役田</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">B. 自营地和份地</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 私有地不是庄园土地的标准分类！">C. 私有地和公有地</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.口粮田和劳役田" aria-pressed="false" data-feedback="&#10060; 口粮田不是标准的历史术语！">A. 口粮田和劳役田</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.自营地和份地" aria-pressed="false">B. 自营地和份地</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.私有地和公有地" aria-pressed="false" data-feedback="&#10060; 私有地不是庄园土地的标准分类！">C. 私有地和公有地</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -210,12 +232,12 @@
           <p style="margin-top:6px;"><strong>自营地</strong>：领主直接经营的土地，收入归领主。<strong>份地</strong>：佃户从领主处获得的土地，佃户可在上面耕作以维持生计，需承担各种义务。</p>
         </div>
       </div>
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="intermediate">
         <h3>3. 【&#11088;&#11088; 提高】关于庄园法庭，正确的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 庄园法庭由领主主持，不是国王派官员！">A. 庄园法庭由国王派官员主持</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">B. 庄园法庭维护封建秩序，惩罚佃户的不服从行为</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 庄园法庭是领主统治庄园的工具，不是保护佃户！">C. 庄园法庭保障佃户的权益，限制领主权力</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.庄园法庭由国王派官员主持" aria-pressed="false" data-feedback="&#10060; 庄园法庭由领主主持，不是国王派官员！">A. 庄园法庭由国王派官员主持</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.庄园法庭维护封建秩序，惩罚佃户的不服从行为" aria-pressed="false">B. 庄园法庭维护封建秩序，惩罚佃户的不服从行为</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.庄园法庭保障佃户的权益，限制领主权力" aria-pressed="false" data-feedback="&#10060; 庄园法庭是领主统治庄园的工具，不是保护佃户！">C. 庄园法庭保障佃户的权益，限制领主权力</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -348,12 +370,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【&#11088; 基础】庄园经济的基本特征是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="&#10060; 庄园是自给自足的封闭经济，不需要商品交换！">A. 以商品交换为主</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">B. 自给自足的自然经济</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="&#10060; 庄园是封建经济的核心，不是资本主义经济！">C. 资本主义萌芽</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.以商品交换为主" aria-pressed="false" data-feedback="&#10060; 庄园是自给自足的封闭经济，不需要商品交换！">A. 以商品交换为主</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.自给自足的自然经济" aria-pressed="false">B. 自给自足的自然经济</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.资本主义萌芽" aria-pressed="false" data-feedback="&#10060; 庄园是封建经济的核心，不是资本主义经济！">C. 资本主义萌芽</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -362,12 +384,12 @@
           <p style="margin-top:6px;">庄园是自给自足的封闭经济单位，生产目的是满足领主和佃户自身需要，而非市场交换。</p>
         </div>
       </div>
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="intermediate">
         <h3>2. 【&#11088;&#11088; 提高·中考真题】（2023·多地中考）西欧庄园佃户的主要义务不包括？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="&#10060; 无偿劳役是佃户的核心义务之一！">A. 无偿劳役</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="&#10060; 缴纳贡赋也是佃户的基本义务！">B. 缴纳贡赋</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')">C. 参加十字军东征</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.无偿劳役" aria-pressed="false" data-feedback="&#10060; 无偿劳役是佃户的核心义务之一！">A. 无偿劳役</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.缴纳贡赋" aria-pressed="false" data-feedback="&#10060; 缴纳贡赋也是佃户的基本义务！">B. 缴纳贡赋</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.参加十字军东征" aria-pressed="false">C. 参加十字军东征</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -463,6 +485,8 @@
       }
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

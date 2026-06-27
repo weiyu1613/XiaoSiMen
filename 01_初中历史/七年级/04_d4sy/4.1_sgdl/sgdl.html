@@ -231,6 +231,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -250,7 +262,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d4sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
@@ -346,6 +362,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道官渡之战和赤壁之战的时间、双方、结果</li>
@@ -368,16 +390,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】官渡之战发生在哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 200年才是官渡之战的正确时间！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：208年" aria-pressed="false" data-feedback="❌ 200年才是官渡之战的正确时间！">
             <span class="opt-letter">A</span> 208年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：200年" aria-pressed="false">
             <span class="opt-letter">B</span> 200年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 220年是曹丕称帝的时间，不是官渡之战！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：220年" aria-pressed="false" data-feedback="❌ 220年是曹丕称帝的时间，不是官渡之战！">
             <span class="opt-letter">C</span> 220年
           </div>
         </div>
@@ -390,16 +412,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】赤壁之战的双方是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：曹操vs孙刘联军" aria-pressed="false">
             <span class="opt-letter">A</span> 曹操 vs 孙刘联军
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 官渡之战才是曹操 vs 袁绍！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：曹操vs袁绍" aria-pressed="false" data-feedback="❌ 官渡之战才是曹操 vs 袁绍！">
             <span class="opt-letter">B</span> 曹操 vs 袁绍
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 赤壁之战时刘备和孙权已经联合！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：曹操vs刘备" aria-pressed="false" data-feedback="❌ 赤壁之战时刘备和孙权已经联合！">
             <span class="opt-letter">C</span> 曹操 vs 刘备
           </div>
         </div>
@@ -412,16 +434,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于官渡之战的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 官渡之战是曹操以少胜多，不是以多胜少！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：曹操以多胜少，大败袁绍" aria-pressed="false" data-feedback="❌ 官渡之战是曹操以少胜多，不是以多胜少！">
             <span class="opt-letter">A</span> 曹操以多胜少，大败袁绍
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：曹操以少胜多，为统一北方奠定基础" aria-pressed="false">
             <span class="opt-letter">B</span> 曹操以少胜多，为统一北方奠定基础
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 官渡之战发生在北方（河南），不在长江流域！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：战争发生在长江流域" aria-pressed="false" data-feedback="❌ 官渡之战发生在北方（河南），不在长江流域！">
             <span class="opt-letter">C</span> 战争发生在长江流域
           </div>
         </div>
@@ -434,16 +456,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列关于三国鼎立的表述，全部正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 220年曹丕称帝建立魏，不是196年！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：220年刘备称帝建立蜀汉" aria-pressed="false" data-feedback="❌ 220年曹丕称帝建立魏，不是196年！">
             <span class="opt-letter">A</span> 220年刘备称帝建立蜀汉
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 222年孙权称王（229年称帝），而且顺序不对！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：221年孙权称帝建立吴" aria-pressed="false" data-feedback="❌ 222年孙权称王（229年称帝），而且顺序不对！">
             <span class="opt-letter">B</span> 221年孙权称帝建立吴
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：220年曹丕称帝建立魏，221年刘备称帝建立蜀汉，229年孙权称帝建立吴" aria-pressed="false">
             <span class="opt-letter">C</span> 220年曹丕称帝建立魏，221年刘备称帝建立蜀汉，229年孙权称帝建立吴
           </div>
         </div>
@@ -468,6 +490,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG:官渡之战示意图 -->
         <div class="svg-container">
           <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
@@ -518,7 +543,9 @@
           <div class="label">核心概念</div>
           <p><strong>以少胜多的原因：</strong>曹操善用谋略（奇袭乌巢），袁绍骄傲轻敌、内部不和。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: 核心内容 - 赤壁之战 -->
@@ -528,6 +555,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG:赤壁之战示意图 -->
         <div class="svg-container">
           <svg viewBox="0 0 600 400" width="600" height="400" xmlns="http://www.w3.org/2000/svg">
@@ -575,7 +605,9 @@
           <div class="label">⚠️ 高频考点</div>
           <p>考试中常考查"赤壁之战<strong>没有</strong>奠定三国鼎立局面"——这是<strong>错误</strong>的！赤壁之战<strong>奠定了</strong>三国鼎立局面。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: 核心内容 - 三国建立 -->
@@ -643,16 +675,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】官渡之战发生在哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 208年是赤壁之战的时间，不是官渡之战！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：208年" aria-pressed="false" data-feedback="❌ 208年是赤壁之战的时间，不是官渡之战！">
             <span class="opt-letter">A</span> 208年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：200年" aria-pressed="false">
             <span class="opt-letter">B</span> 200年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 220年是曹丕称帝的时间，不是官渡之战！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：220年" aria-pressed="false" data-feedback="❌ 220年是曹丕称帝的时间，不是官渡之战！">
             <span class="opt-letter">C</span> 220年
           </div>
         </div>
@@ -665,16 +697,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖北中考）赤壁之战的影响是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 赤壁之战是孙刘联军赢了，不是曹操统一了北方！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：曹操统一了北方" aria-pressed="false" data-feedback="❌ 赤壁之战是孙刘联军赢了，不是曹操统一了北方！">
             <span class="opt-letter">A</span> 曹操统一了北方
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：奠定了三国鼎立局面的基础" aria-pressed="false">
             <span class="opt-letter">B</span> 奠定了三国鼎立局面的基础
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 220年曹丕称帝才建立魏国，赤壁之战时还没有三国！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：标志着三国鼎立局面正式形成" aria-pressed="false" data-feedback="❌ 220年曹丕称帝才建立魏国，赤壁之战时还没有三国！">
             <span class="opt-letter">C</span> 标志着三国鼎立局面正式形成
           </div>
         </div>
@@ -692,16 +724,16 @@
       </div>
 
       <!-- 后测挑战题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·安徽中考）下列关于三国建立的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 220年是曹丕称帝建立魏，不是刘备！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：220年刘备称帝建立蜀汉" aria-pressed="false" data-feedback="❌ 220年是曹丕称帝建立魏，不是刘备！">
             <span class="opt-letter">A</span> 220年刘备称帝建立蜀汉
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 孙权229年才称帝，不是221年！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：221年孙权称帝建立吴" aria-pressed="false" data-feedback="❌ 孙权229年才称帝，不是221年！">
             <span class="opt-letter">B</span> 221年孙权称帝建立吴
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：220年曹丕称帝建立魏，221年刘备称帝建立蜀汉，229年孙权称帝建立吴" aria-pressed="false">
             <span class="opt-letter">C</span> 220年曹丕称帝建立魏，221年刘备称帝建立蜀汉，229年孙权称帝建立吴
           </div>
         </div>
@@ -724,20 +756,20 @@
       </div>
 
       <!-- 后测挑战题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料】</strong>"曹操在官渡之战中以少胜多，大败袁绍，为统一北方奠定了基础。但在赤壁之战中，拥有优势兵力的曹操却惨遭失败，奠定了三国鼎立局面的基础。"
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，曹操在官渡之战和赤壁之战中一胜一败的主要原因是？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 曹操的兵力多少只是表面原因，不是主要原因！官渡之战曹操兵力少却赢了，赤壁之战兵力多却输了。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：曹操的兵力多少" aria-pressed="false" data-feedback="❌ 曹操的兵力多少只是表面原因，不是主要原因！官渡之战曹操兵力少却赢了，赤壁之战兵力多却输了。">
             <span class="opt-letter">A</span> 曹操的兵力多少
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：战略战术是否得当、内部是否团结" aria-pressed="false">
             <span class="opt-letter">B</span> 战略战术是否得当、内部是否团结
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 地理因素有一定影响，但不是主要原因！主要还是战略战术和内部团结问题。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：地理环境的差异" aria-pressed="false" data-feedback="❌ 地理因素有一定影响，但不是主要原因！主要还是战略战术和内部团结问题。">
             <span class="opt-letter">C</span> 地理环境的差异
           </div>
         </div>
@@ -776,6 +808,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -833,7 +868,9 @@
             <tr style="background:#fdf4ff;"><td>填空题</td><td>★★☆☆☆</td><td>填三国建立时间</td><td>记住220、221、229</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -983,6 +1020,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

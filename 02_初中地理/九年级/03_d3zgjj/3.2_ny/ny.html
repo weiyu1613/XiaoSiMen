@@ -74,10 +74,26 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 2/3 节 · 67%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第三单元：中国的经济发展</div>
@@ -131,6 +147,12 @@
 </section>
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
 <li>✅ 了解我国农业的部门构成及分布</li>
 <li>✅ 掌握南北方农业差异</li>
@@ -140,32 +162,32 @@
 </section>
 <section class="section" id="section-prequiz">
 <h2 class="section-title"><span class="num">📝</span> 前测</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1. 【⭐ 基础】我国南方地区的主要粮食作物是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 小麦是北方主要作物！"><span class="opt-letter">A</span> 小麦</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 水稻</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 玉米不是南方主要作物！"><span class="opt-letter">C</span> 玉米</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：小麦" aria-pressed="false" data-feedback="❌ 小麦是北方主要作物！"><span class="opt-letter">A</span> 小麦</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：水稻" aria-pressed="false"><span class="opt-letter">B</span> 水稻</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：玉米" aria-pressed="false" data-feedback="❌ 玉米不是南方主要作物！"><span class="opt-letter">C</span> 玉米</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 水稻</strong></p><p style="margin-top:8px;">南方水热条件好，以<strong>水稻</strong>为主（水田农业）。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2. 【⭐⭐ 提高】我国四大牧区是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'A')"><span class="opt-letter">A</span> 内蒙古、新疆、青海、西藏</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'B')" data-feedback="❌ 四川不是四大牧区之一！"><span class="opt-letter">B</span> 内蒙古、新疆、四川、西藏</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 云南不是四大牧区之一！"><span class="opt-letter">C</span> 内蒙古、云南、青海、西藏</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：内蒙古、新疆、青海、西藏" aria-pressed="false"><span class="opt-letter">A</span> 内蒙古、新疆、青海、西藏</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：内蒙古、新疆、四川、西藏" aria-pressed="false" data-feedback="❌ 四川不是四大牧区之一！"><span class="opt-letter">B</span> 内蒙古、新疆、四川、西藏</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：内蒙古、云南、青海、西藏" aria-pressed="false" data-feedback="❌ 云南不是四大牧区之一！"><span class="opt-letter">C</span> 内蒙古、云南、青海、西藏</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A</strong></p><p style="margin-top:8px;">四大牧区：<strong>内蒙古、新疆、青海、西藏</strong>。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3. 【⭐⭐⭐ 挑战】我国农业发展的制约因素不包括？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 水资源不足是重要制约因素！"><span class="opt-letter">A</span> 水资源不足</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 劳动力严重不足</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 耕地减少是重要制约因素！"><span class="opt-letter">C</span> 耕地减少</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：水资源不足" aria-pressed="false" data-feedback="❌ 水资源不足是重要制约因素！"><span class="opt-letter">A</span> 水资源不足</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：劳动力严重不足" aria-pressed="false"><span class="opt-letter">B</span> 劳动力严重不足</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：耕地减少" aria-pressed="false" data-feedback="❌ 耕地减少是重要制约因素！"><span class="opt-letter">C</span> 耕地减少</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;">我国农业劳动力充裕，<strong>不是制约因素</strong>。制约因素是水资源不足、耕地减少、生态环境恶化等。</p></div>
@@ -220,32 +242,32 @@
 </section>
 <section class="section" id="section-postquiz">
 <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1. 【⭐ 基础】我国北方的主要糖料作物是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'A')"><span class="opt-letter">A</span> 甜菜</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'B')" data-feedback="❌ 甘蔗是南方糖料作物！"><span class="opt-letter">B</span> 甘蔗</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 花生是油料作物！"><span class="opt-letter">C</span> 花生</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：甜菜" aria-pressed="false"><span class="opt-letter">A</span> 甜菜</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：甘蔗" aria-pressed="false" data-feedback="❌ 甘蔗是南方糖料作物！"><span class="opt-letter">B</span> 甘蔗</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：花生" aria-pressed="false" data-feedback="❌ 花生是油料作物！"><span class="opt-letter">C</span> 花生</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 甜菜</strong></p><p style="margin-top:8px;">北方气候温凉，适合种植<strong>甜菜</strong>；南方气候湿热，适合种植<strong>甘蔗</strong>。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2. 【⭐⭐ 提高】我国耕地红线是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'A')" data-feedback="❌ 16亿亩不够！"><span class="opt-letter">A</span> 16亿亩</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'B')"><span class="opt-letter">B</span> 18亿亩</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 20亿亩过高！"><span class="opt-letter">C</span> 20亿亩</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：16亿亩" aria-pressed="false" data-feedback="❌ 16亿亩不够！"><span class="opt-letter">A</span> 16亿亩</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：18亿亩" aria-pressed="false"><span class="opt-letter">B</span> 18亿亩</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：20亿亩" aria-pressed="false" data-feedback="❌ 20亿亩过高！"><span class="opt-letter">C</span> 20亿亩</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 18亿亩</strong></p><p style="margin-top:8px;">我国坚守<strong>18亿亩耕地红线</strong>，确保粮食安全。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·福建中考）我国东部农耕区畜牧业的特点是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 农耕区以圈养为主！"><span class="opt-letter">A</span> 以放牧为主</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'B')"><span class="opt-letter">B</span> 以圈养为主，占畜牧业产值比重大</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 农耕区畜牧业产值并不低！"><span class="opt-letter">C</span> 产值低于牧区</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：以放牧为主" aria-pressed="false" data-feedback="❌ 农耕区以圈养为主！"><span class="opt-letter">A</span> 以放牧为主</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：以圈养为主，占畜牧业产值比重大" aria-pressed="false"><span class="opt-letter">B</span> 以圈养为主，占畜牧业产值比重大</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：产值低于牧区" aria-pressed="false" data-feedback="❌ 农耕区畜牧业产值并不低！"><span class="opt-letter">C</span> 产值低于牧区</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;">东部农耕区畜牧业以<strong>圈养</strong>为主，虽然牧区面积大，但<strong>农耕区畜牧业产值比重大</strong>。</p></div>
@@ -279,5 +301,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《农业》课件加载完成')});
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

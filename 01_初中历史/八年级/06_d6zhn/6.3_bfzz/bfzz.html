@@ -306,6 +306,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -318,7 +330,11 @@
   <div class="progress-label" id="progress-label">第 3/5 节 · 60%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d6zhn.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六单元：中华民族的抗日战争</div>
@@ -410,6 +426,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="knowledge-grid">
         <div class="knowledge-card">
           <h4>📚 知识与技能</h4>
@@ -448,16 +470,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】抗日战争全面爆发的时间是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1931年是九一八事变，抗日战争开始，但不是全面爆发！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1931年" aria-pressed="false" data-feedback="❌ 1931年是九一八事变，抗日战争开始，但不是全面爆发！">
             <span class="opt-letter">A</span> 1931年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1937年" aria-pressed="false">
             <span class="opt-letter">B</span> 1937年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1945年是抗日战争胜利的时间，不是全面爆发！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1945年" aria-pressed="false" data-feedback="❌ 1945年是抗日战争胜利的时间，不是全面爆发！">
             <span class="opt-letter">C</span> 1945年
           </div>
         </div>
@@ -470,16 +492,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】正面战场主要由哪支军队作战？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 八路军主要在敌后战场作战，不是正面战场的主力！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：八路军" aria-pressed="false" data-feedback="❌ 八路军主要在敌后战场作战，不是正面战场的主力！">
             <span class="opt-letter">A</span> 八路军
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：国民党军队" aria-pressed="false">
             <span class="opt-letter">B</span> 国民党军队
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 新四军也是敌后战场的部队，不是正面战场主力！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：新四军" aria-pressed="false" data-feedback="❌ 新四军也是敌后战场的部队，不是正面战场主力！">
             <span class="opt-letter">C</span> 新四军
           </div>
         </div>
@@ -492,16 +514,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】台儿庄大捷的指挥者是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 蒋介石是国民政府领导人，但不是台儿庄战役的直接指挥者！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蒋介石" aria-pressed="false" data-feedback="❌ 蒋介石是国民政府领导人，但不是台儿庄战役的直接指挥者！">
             <span class="opt-letter">A</span> 蒋介石
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李宗仁" aria-pressed="false">
             <span class="opt-letter">B</span> 李宗仁
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 彭德怀指挥的是百团大战，不是台儿庄战役！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：彭德怀" aria-pressed="false" data-feedback="❌ 彭德怀指挥的是百团大战，不是台儿庄战役！">
             <span class="opt-letter">C</span> 彭德怀
           </div>
         </div>
@@ -514,16 +536,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】抗战以来规模最大的战役是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 台儿庄大捷是最大胜利，但不是规模最大的战役！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：台儿庄大捷" aria-pressed="false" data-feedback="❌ 台儿庄大捷是最大胜利，但不是规模最大的战役！">
             <span class="opt-letter">A</span> 台儿庄大捷
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：武汉会战" aria-pressed="false">
             <span class="opt-letter">B</span> 武汉会战
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 淞沪会战是粉碎'三个月灭亡中国'的战役，但不是规模最大的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：淞沪会战" aria-pressed="false" data-feedback="❌ 淞沪会战是粉碎'三个月灭亡中国'的战役，但不是规模最大的！">
             <span class="opt-letter">C</span> 淞沪会战
           </div>
         </div>
@@ -541,6 +563,9 @@
       <h2 class="section-title"><span class="num">⏱️</span> 正面战场主要会战时间轴</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="timeline">
           <div class="timeline-item">
             <div class="timeline-dot"></div>
@@ -587,7 +612,9 @@
             </div>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: 核心知识讲解 - 台儿庄大捷 -->
@@ -773,16 +800,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】台儿庄大捷的指挥者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 蒋介石是国民政府领导人，但不是台儿庄战役的直接指挥者！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蒋介石" aria-pressed="false" data-feedback="❌ 蒋介石是国民政府领导人，但不是台儿庄战役的直接指挥者！">
             <span class="opt-letter">A</span> 蒋介石
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李宗仁" aria-pressed="false">
             <span class="opt-letter">B</span> 李宗仁
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 李宗仁是台儿庄大捷的指挥者，不是彭德怀！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：彭德怀" aria-pressed="false" data-feedback="❌ 李宗仁是台儿庄大捷的指挥者，不是彭德怀！">
             <span class="opt-letter">C</span> 彭德怀
           </div>
         </div>
@@ -795,16 +822,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）武汉会战结束后，抗日战争进入？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 战略防御阶段是1937年7月-1938年10月，武汉会战前！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：战略防御阶段" aria-pressed="false" data-feedback="❌ 战略防御阶段是1937年7月-1938年10月，武汉会战前！">
             <span class="opt-letter">A</span> 战略防御阶段
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：战略相持阶段" aria-pressed="false">
             <span class="opt-letter">B</span> 战略相持阶段
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 战略反攻阶段是1943年后，不是武汉会战后！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：战略反攻阶段" aria-pressed="false" data-feedback="❌ 战略反攻阶段是1943年后，不是武汉会战后！">
             <span class="opt-letter">C</span> 战略反攻阶段
           </div>
         </div>
@@ -817,16 +844,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）关于正面战场的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 正面战场主要由国民党军队作战，不是共产党军队！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：正面战场由共产党军队主力作战" aria-pressed="false" data-feedback="❌ 正面战场主要由国民党军队作战，不是共产党军队！">
             <span class="opt-letter">A</span> 正面战场由共产党军队主力作战
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 正面战场在战略防御阶段起了主力作用，不是反攻阶段！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：正面战场在反攻阶段起了主力作用" aria-pressed="false" data-feedback="❌ 正面战场在战略防御阶段起了主力作用，不是反攻阶段！">
             <span class="opt-letter">B</span> 正面战场在反攻阶段起了主力作用
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：正面战场粉碎了日军速战速决的战略企图" aria-pressed="false">
             <span class="opt-letter">C</span> 正面战场粉碎了日军速战速决的战略企图
           </div>
         </div>
@@ -844,6 +871,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -889,7 +919,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>淞沪会战粉碎了日军"<strong>三个月灭亡中国</strong>"的企图。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -1047,6 +1079,8 @@
       console.log('📚 《正面战场的抗战》课件加载完成（v7.14）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

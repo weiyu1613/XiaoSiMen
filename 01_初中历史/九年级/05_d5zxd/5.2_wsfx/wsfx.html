@@ -113,6 +113,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-palette"></i><span>TeachAny · 初中历史</span></div>
@@ -122,6 +134,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 2/4 节 · 50%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d5zxd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -214,6 +230,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 理解人文主义的核心内涵，认识其与神学思想的对立</li>
@@ -228,16 +250,16 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【&#11088; 基础】文艺复兴的核心思想是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="&#10060; 神权主义是中世纪教会推崇的思想，恰恰是文艺复兴反对的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：神权主义" aria-pressed="false" data-feedback="&#10060; 神权主义是中世纪教会推崇的思想，恰恰是文艺复兴反对的！">
             <span class="opt-letter">A</span> 神权主义
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：人文主义" aria-pressed="false">
             <span class="opt-letter">B</span> 人文主义
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 理性主义是启蒙运动的核心思想，不是文艺复兴！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：理性主义" aria-pressed="false" data-feedback="&#10060; 理性主义是启蒙运动的核心思想，不是文艺复兴！">
             <span class="opt-letter">C</span> 理性主义
           </div>
         </div>
@@ -249,16 +271,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【&#11088; 基础】文艺复兴最先兴起于？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：意大利" aria-pressed="false">
             <span class="opt-letter">A</span> 意大利
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="&#10060; 英国是文艺复兴后期扩展到的国家，莎士比亚是英国代表！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：英国" aria-pressed="false" data-feedback="&#10060; 英国是文艺复兴后期扩展到的国家，莎士比亚是英国代表！">
             <span class="opt-letter">B</span> 英国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 法国不是文艺复兴的发源地！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：法国" aria-pressed="false" data-feedback="&#10060; 法国不是文艺复兴的发源地！">
             <span class="opt-letter">C</span> 法国
           </div>
         </div>
@@ -270,16 +292,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【&#11088;&#11088; 提高】文艺复兴的"复兴"指的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 文艺复兴并非真的回到古代，而是借古创新！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：完全恢复古希腊罗马文化" aria-pressed="false" data-feedback="&#10060; 文艺复兴并非真的回到古代，而是借古创新！">
             <span class="opt-letter">A</span> 完全恢复古希腊罗马文化
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：借复兴古希腊罗马文化之名，宣扬资产阶级新思想" aria-pressed="false">
             <span class="opt-letter">B</span> 借复兴古希腊罗马文化之名，宣扬资产阶级新思想
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 复兴的是古典文化，不是宗教文化！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：复兴中世纪的宗教文化" aria-pressed="false" data-feedback="&#10060; 复兴的是古典文化，不是宗教文化！">
             <span class="opt-letter">C</span> 复兴中世纪的宗教文化
           </div>
         </div>
@@ -398,16 +420,16 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【&#11088; 基础·中考真题】文艺复兴的核心思想是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：人文主义" aria-pressed="false">
             <span class="opt-letter">A</span> 人文主义
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="&#10060; 理性主义是启蒙运动的核心！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：理性主义" aria-pressed="false" data-feedback="&#10060; 理性主义是启蒙运动的核心！">
             <span class="opt-letter">B</span> 理性主义
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="&#10060; 自由主义是19世纪的思想！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：自由主义" aria-pressed="false" data-feedback="&#10060; 自由主义是19世纪的思想！">
             <span class="opt-letter">C</span> 自由主义
           </div>
         </div>
@@ -423,16 +445,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>2. 【&#11088;&#11088; 提高】但丁被称为"文艺复兴先驱"的原因是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="&#10060; 但丁的成就不仅在绘画，他是文学家！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：他是著名的画家" aria-pressed="false" data-feedback="&#10060; 但丁的成就不仅在绘画，他是文学家！">
             <span class="opt-letter">A</span> 他是著名的画家
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：他最早通过作品批判教会，表达人文主义思想" aria-pressed="false">
             <span class="opt-letter">B</span> 他最早通过作品批判教会，表达人文主义思想
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="&#10060; 莎士比亚是英国人，比但丁晚！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：他创立了英国文学" aria-pressed="false" data-feedback="&#10060; 莎士比亚是英国人，比但丁晚！">
             <span class="opt-letter">C</span> 他创立了英国文学
           </div>
         </div>
@@ -444,16 +466,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>3. 【&#11088;&#11088;&#11088; 挑战】文艺复兴的实质是？<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="&#10060; 复古只是表面形式，不是实质！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：古希腊罗马文化的复兴运动" aria-pressed="false" data-feedback="&#10060; 复古只是表面形式，不是实质！">
             <span class="opt-letter">A</span> 古希腊罗马文化的复兴运动
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：新兴资产阶级的思想解放运动" aria-pressed="false">
             <span class="opt-letter">B</span> 新兴资产阶级的思想解放运动
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="&#10060; 文艺复兴不是宗教运动，而是反教会束缚的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：天主教会的宗教改革运动" aria-pressed="false" data-feedback="&#10060; 文艺复兴不是宗教运动，而是反教会束缚的！">
             <span class="opt-letter">C</span> 天主教会的宗教改革运动
           </div>
         </div>
@@ -474,6 +496,9 @@
     <section class="section" id="section-exam">
       <h2 class="section-title"><span class="num">&#127936;</span> 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -504,7 +529,9 @@
           </ul>
           <p style="font-size:0.82rem;color:#666;margin-top:4px;">&#128161; 记忆口诀：但"先"达"艺"莎"文"</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -567,6 +594,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

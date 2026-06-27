@@ -39,6 +39,18 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -51,7 +63,11 @@
   <div class="progress-label" id="progress-label">第 2/3 节 · 67%</div>
 
   <!-- ③ 导航栏 -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../zj.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六章：真菌</div>
@@ -130,6 +146,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 掌握真菌细胞的基本结构</li>
@@ -145,12 +167,12 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】真菌细胞与细菌细胞最显著的区别是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 真菌和细菌都有细胞壁，这不是最显著区别！"><span class="opt-letter">A</span> 有无细胞壁</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 有无成形的细胞核</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 真菌和细菌都有细胞膜，这不是区别！"><span class="opt-letter">C</span> 有无细胞膜</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：有无细胞壁" aria-pressed="false" data-feedback="❌ 真菌和细菌都有细胞壁，这不是最显著区别！"><span class="opt-letter">A</span> 有无细胞壁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：有无成形的细胞核" aria-pressed="false"><span class="opt-letter">B</span> 有无成形的细胞核</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：有无细胞膜" aria-pressed="false" data-feedback="❌ 真菌和细菌都有细胞膜，这不是区别！"><span class="opt-letter">C</span> 有无细胞膜</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -160,12 +182,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】下列哪种结构真菌有而细菌没有？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ DNA是遗传物质，真菌和细菌都有DNA！"><span class="opt-letter">A</span> DNA</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 核膜</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 真菌和细菌都有细胞壁，只是成分不同！"><span class="opt-letter">C</span> 细胞壁</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：DNA" aria-pressed="false" data-feedback="❌ DNA是遗传物质，真菌和细菌都有DNA！"><span class="opt-letter">A</span> DNA</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：核膜" aria-pressed="false"><span class="opt-letter">B</span> 核膜</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞壁" aria-pressed="false" data-feedback="❌ 真菌和细菌都有细胞壁，只是成分不同！"><span class="opt-letter">C</span> 细胞壁</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -175,12 +197,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】真菌不能进行光合作用的原因是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 真菌有细胞壁，但这不是不能光合作用的原因！"><span class="opt-letter">A</span> 没有细胞壁</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 没有叶绿体</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 真菌有成形的细胞核，这是真核生物的特征！"><span class="opt-letter">C</span> 没有细胞核</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：没有细胞壁" aria-pressed="false" data-feedback="❌ 真菌有细胞壁，但这不是不能光合作用的原因！"><span class="opt-letter">A</span> 没有细胞壁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：没有叶绿体" aria-pressed="false"><span class="opt-letter">B</span> 没有叶绿体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：没有细胞核" aria-pressed="false" data-feedback="❌ 真菌有成形的细胞核，这是真核生物的特征！"><span class="opt-letter">C</span> 没有细胞核</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -195,6 +217,9 @@
     <section class="section" id="section-structure">
       <h2 class="section-title"><span class="num">🔬</span> 真菌细胞的基本结构</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <p style="font-size:15px;line-height:1.8;margin-bottom:16px;">真菌细胞具有以下基本结构：</p>
         <ul style="padding-left:20px;line-height:2;">
           <li>🧱 <strong>细胞壁</strong>——保护和支持细胞（真菌细胞壁含几丁质）</li>
@@ -232,7 +257,9 @@
           </svg>
           <p class="svg-caption">图6-6 真菌细胞结构（注意：有成形的细胞核 ⭐）</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section class="section" id="section-compare-bacteria">
@@ -283,6 +310,9 @@
     <section class="section" id="section-nutrition">
       <h2 class="section-title"><span class="num">🍽️</span> 真菌的营养方式</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <p style="font-size:15px;line-height:1.8;">真菌<strong>没有叶绿体</strong>，不能自己制造有机物，必须从外界获取有机物 → <strong>异养</strong></p>
         <ul style="padding-left:20px;line-height:2;margin-top:12px;">
           <li>🍂 <strong>腐生</strong>——分解枯枝落叶、尸体等<strong>无生命</strong>有机物获取营养<br><span style="color:#5d6d7e;font-size:13px;">例：蘑菇分解土壤中的有机物；霉菌分解面包</span></li>
@@ -299,19 +329,21 @@
           <div class="label">⚠️ 易错警示</div>
           <p><strong>考试陷阱：</strong>"所有真菌都是腐生的"→ ❌ 错！有些真菌是寄生的，如引起皮肤病的真菌。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ⑨ 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】真菌属于什么生物？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 原核生物是没有成形细胞核的，如细菌！真菌有成形细胞核，是真核生物！"><span class="opt-letter">A</span> 原核生物</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 真核生物</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 病毒没有细胞结构，而真菌有完整的细胞结构！"><span class="opt-letter">C</span> 病毒</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：原核生物" aria-pressed="false" data-feedback="❌ 原核生物是没有成形细胞核的，如细菌！真菌有成形细胞核，是真核生物！"><span class="opt-letter">A</span> 原核生物</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：真核生物" aria-pressed="false"><span class="opt-letter">B</span> 真核生物</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：病毒" aria-pressed="false" data-feedback="❌ 病毒没有细胞结构，而真菌有完整的细胞结构！"><span class="opt-letter">C</span> 病毒</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -321,12 +353,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】真菌与细菌的根本区别在于真菌有？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,11,'A')" data-feedback="❌ 真菌和细菌都有细胞壁，只是成分不同！"><span class="opt-letter">A</span> 细胞壁</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,11,'B')"><span class="opt-letter">B</span> 成形的细胞核</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 真菌和细菌都有细胞膜！"><span class="opt-letter">C</span> 细胞膜</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞壁" aria-pressed="false" data-feedback="❌ 真菌和细菌都有细胞壁，只是成分不同！"><span class="opt-letter">A</span> 细胞壁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：成形的细胞核" aria-pressed="false"><span class="opt-letter">B</span> 成形的细胞核</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞膜" aria-pressed="false" data-feedback="❌ 真菌和细菌都有细胞膜！"><span class="opt-letter">C</span> 细胞膜</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -336,12 +368,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】下列关于真菌营养方式的叙述正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 真菌没有叶绿体，不能进行光合作用！"><span class="opt-letter">A</span> 都能进行光合作用</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,12,'B')"><span class="opt-letter">B</span> 都是异养</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 真菌有腐生和寄生两种方式，不都是寄生！"><span class="opt-letter">C</span> 都是寄生</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：都能进行光合作用" aria-pressed="false" data-feedback="❌ 真菌没有叶绿体，不能进行光合作用！"><span class="opt-letter">A</span> 都能进行光合作用</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：都是异养" aria-pressed="false"><span class="opt-letter">B</span> 都是异养</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：都是寄生" aria-pressed="false" data-feedback="❌ 真菌有腐生和寄生两种方式，不都是寄生！"><span class="opt-letter">C</span> 都是寄生</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -356,6 +388,9 @@
     <section class="section" id="section-exam">
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -388,7 +423,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>陷阱：</strong>名字带"菌"≠ 细菌！酵母菌、霉菌→ <strong>真菌</strong>（真核）；大肠杆菌、乳酸菌→ <strong>细菌</strong>（原核）。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -474,6 +511,8 @@
 
     document.addEventListener('DOMContentLoaded', function() { updateProgressBar(); console.log('📚 《真菌的结构》课件加载完成'); });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

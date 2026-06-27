@@ -101,6 +101,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <div class="brand-bar">
     <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
@@ -115,6 +127,10 @@
 </div>
 
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../d5cg.html" class="nav-btn"><i class="fas fa-list"></i> 单元</a>
@@ -195,28 +211,28 @@
         <h2><i class="fas fa-question-circle"></i> 课前思考（前测）</h2>
         <div class="quiz-question">
             <h4>1. 【基础】国共第一次合作正式形成的标志是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。中共一大是1921年召开的，标志中国共产党诞生。">A. 中共一大</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1924年，中国国民党第一次全国代表大会在广州召开，标志着国共第一次合作正式形成。">B. 国民党一大</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。黄埔军校建立是国共合作的成果，不是合作形成的标志。">C. 黄埔军校建立</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：中共一大" aria-pressed="false" data-feedback="❌ 错误。中共一大是1921年召开的，标志中国共产党诞生。">A. 中共一大</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：国民党一大" aria-pressed="false" data-feedback="✅ 正确！1924年，中国国民党第一次全国代表大会在广州召开，标志着国共第一次合作正式形成。">B. 国民党一大</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：黄埔军校建立" aria-pressed="false" data-feedback="❌ 错误。黄埔军校建立是国共合作的成果，不是合作形成的标志。">C. 黄埔军校建立</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【提高】黄埔军校的创建者是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。毛泽东没有直接创建黄埔军校。">A. 毛泽东</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！在苏联和中国共产党帮助下，孙中山创办了黄埔军校（中国国民党陆军军官学校），蒋介石任校长，周恩来任政治部主任。">B. 孙中山</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。周恩来曾任黄埔军校政治部主任，但不是创建者。">C. 周恩来</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：毛泽东" aria-pressed="false" data-feedback="❌ 错误。毛泽东没有直接创建黄埔军校。">A. 毛泽东</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：孙中山" aria-pressed="false" data-feedback="✅ 正确！在苏联和中国共产党帮助下，孙中山创办了黄埔军校（中国国民党陆军军官学校），蒋介石任校长，周恩来任政治部主任。">B. 孙中山</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：周恩来" aria-pressed="false" data-feedback="❌ 错误。周恩来曾任黄埔军校政治部主任，但不是创建者。">C. 周恩来</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【挑战】北伐战争基本推翻了哪个集团的统治？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。清政府1912年已被辛亥革命推翻。">A. 清政府</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！北伐战争的主要对象是北洋军阀吴佩孚、孙传芳、张作霖，北伐军基本推翻了北洋军阀的统治。">B. 北洋军阀</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。日本侵略者不是北伐战争的主要对象。">C. 日本侵略者</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：清政府" aria-pressed="false" data-feedback="❌ 错误。清政府1912年已被辛亥革命推翻。">A. 清政府</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：北洋军阀" aria-pressed="false" data-feedback="✅ 正确！北伐战争的主要对象是北洋军阀吴佩孚、孙传芳、张作霖，北伐军基本推翻了北洋军阀的统治。">B. 北洋军阀</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：日本侵略者" aria-pressed="false" data-feedback="❌ 错误。日本侵略者不是北伐战争的主要对象。">C. 日本侵略者</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -290,28 +306,28 @@
         <h2><i class="fas fa-clipboard-check"></i> 课后检测（后测）</h2>
         <div class="quiz-question">
             <h4>1. 【⭐ 基础】国民党一大召开于哪一年？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1921年是中国共产党成立的年份。">A. 1921年</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1924年1月，中国国民党第一次全国代表大会在广州召开，国共第一次合作正式形成。">B. 1924年</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1927年是国共合作破裂的年份。">C. 1927年</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1921年" aria-pressed="false" data-feedback="❌ 错误。1921年是中国共产党成立的年份。">A. 1921年</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：1924年" aria-pressed="false" data-feedback="✅ 正确！1924年1月，中国国民党第一次全国代表大会在广州召开，国共第一次合作正式形成。">B. 1924年</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：1927年" aria-pressed="false" data-feedback="❌ 错误。1927年是国共合作破裂的年份。">C. 1927年</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【⭐⭐ 提高·中考真题】（2023·广东）黄埔军校建立的重要意义是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。黄埔军校培养了军事人才，但不是北伐开始的直接标志。">A. 标志着北伐战争开始</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！黄埔军校培养了大批军事政治人才，为北伐战争的胜利奠定了基础。">B. 为北伐战争准备了军事人才</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。国共合作破裂是1927年，黄埔军校建立是1924年。">C. 标志着国共合作破裂</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：标志着北伐战争开始" aria-pressed="false" data-feedback="❌ 错误。黄埔军校培养了军事人才，但不是北伐开始的直接标志。">A. 标志着北伐战争开始</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：为北伐战争准备了军事人才" aria-pressed="false" data-feedback="✅ 正确！黄埔军校培养了大批军事政治人才，为北伐战争的胜利奠定了基础。">B. 为北伐战争准备了军事人才</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：标志着国共合作破裂" aria-pressed="false" data-feedback="❌ 错误。国共合作破裂是1927年，黄埔军校建立是1924年。">C. 标志着国共合作破裂</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【⭐⭐⭐ 挑战】第一次国共合作破裂的标志是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。中共一大标志中国共产党诞生，不是国共合作破裂的标志。">A. 中共一大召开</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1927年蒋介石发动四一二反革命政变，汪精卫发动七一五反革命政变，第一次国共合作全面破裂，大革命失败。">B. 四一二和七一五反革命政变</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。南昌起义是中共独立领导武装斗争的开始，不是国共合作破裂的标志。">C. 南昌起义</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：中共一大召开" aria-pressed="false" data-feedback="❌ 错误。中共一大标志中国共产党诞生，不是国共合作破裂的标志。">A. 中共一大召开</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：四一二和七一五反革命政变" aria-pressed="false" data-feedback="✅ 正确！1927年蒋介石发动四一二反革命政变，汪精卫发动七一五反革命政变，第一次国共合作全面破裂，大革命失败。">B. 四一二和七一五反革命政变</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：南昌起义" aria-pressed="false" data-feedback="❌ 错误。南昌起义是中共独立领导武装斗争的开始，不是国共合作破裂的标志。">C. 南昌起义</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -392,6 +408,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

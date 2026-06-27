@@ -201,6 +201,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -213,7 +225,11 @@
   <div class="progress-label" id="progress-label">第 2/6 节 · 33.3%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../swhxb.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一单元：生物和细胞</div>
@@ -308,6 +324,12 @@
     <!-- Section2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 记住生物的6个基本特征</li>
@@ -328,16 +350,16 @@
       </p>
       
       <!-- 基础题1：生物特征 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】下列不属于生物特征的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 能进行呼吸是生物的特征！所有生物都要呼吸。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：能进行呼吸" aria-pressed="false" data-feedback="❌ 能进行呼吸是生物的特征！所有生物都要呼吸。">
             <span class="opt-letter">A</span> 能进行呼吸
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 能生长和繁殖是生物的特征！生物能由小长大并产生后代。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：能生长和繁殖" aria-pressed="false" data-feedback="❌ 能生长和繁殖是生物的特征！生物能由小长大并产生后代。">
             <span class="opt-letter">B</span> 能生长和繁殖
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：能运动" aria-pressed="false">
             <span class="opt-letter">C</span> 能运动
           </div>
         </div>
@@ -359,16 +381,16 @@
       </div>
 
       <!-- 基础题2：遗传变异 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】"种瓜得瓜，种豆得豆"说明生物具有？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：遗传特性" aria-pressed="false">
             <span class="opt-letter">A</span> 遗传特性
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 变异是指亲子间或子代个体间的差异，而题目说的是相似性！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：变异特性" aria-pressed="false" data-feedback="❌ 变异是指亲子间或子代个体间的差异，而题目说的是相似性！">
             <span class="opt-letter">B</span> 变异特性
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 生长和繁殖是指生物由小长大并产生后代，题目强调的是相似性！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：生长和繁殖" aria-pressed="false" data-feedback="❌ 生长和繁殖是指生物由小长大并产生后代，题目强调的是相似性！">
             <span class="opt-letter">C</span> 生长和繁殖
           </div>
         </div>
@@ -484,16 +506,16 @@
       <h2 class="section-title"><span class="num">📝</span> 后测：巩固与应用</h2>
       
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【中考真题】下列说法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'A')" data-feedback="❌ 能运动不是生物的特征！植物不能运动但也是生物。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：能运动的是生物" aria-pressed="false" data-feedback="❌ 能运动不是生物的特征！植物不能运动但也是生物。">
             <span class="opt-letter">A</span> 能运动的是生物
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'B')" data-feedback="❌ 病毒虽然没有细胞结构，但它能繁殖，属于生物！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：病毒没有细胞结构，所以不是生物" aria-pressed="false" data-feedback="❌ 病毒虽然没有细胞结构，但它能繁殖，属于生物！">
             <span class="opt-letter">B</span> 病毒没有细胞结构，所以不是生物
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 101, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 101, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：生物能进行呼吸（除少数外）" aria-pressed="false">
             <span class="opt-letter">C</span> 生物能进行呼吸（除少数外）
           </div>
         </div>
@@ -511,16 +533,16 @@
       </div>
 
       <!-- 后测题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【应用题】下列哪一现象不能说明生物能对外界刺激作出反应？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'A')" data-feedback="❌ 含羞草叶子合拢是对触碰的刺激作出反应，能说明生物能对外界刺激反应！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：含羞草受到触碰后叶子合拢" aria-pressed="false" data-feedback="❌ 含羞草叶子合拢是对触碰的刺激作出反应，能说明生物能对外界刺激反应！">
             <span class="opt-letter">A</span> 含羞草受到触碰后叶子合拢
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'B')" data-feedback="❌ 向日葵向太阳转动是对光照的刺激作出反应，能说明生物能对外界刺激反应！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：向日葵的花盘朝向太阳" aria-pressed="false" data-feedback="❌ 向日葵向太阳转动是对光照的刺激作出反应，能说明生物能对外界刺激反应！">
             <span class="opt-letter">B</span> 向日葵的花盘朝向太阳
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 102, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 102, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：机器人按照程序跳舞" aria-pressed="false">
             <span class="opt-letter">C</span> 机器人按照程序跳舞
           </div>
         </div>
@@ -543,6 +565,9 @@
       <h2 class="section-title"><span class="num">📊</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color: #2e7d32; margin-bottom: 16px;">📈 中考考频统计</h3>
         
         <div class="exam-card" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
@@ -592,7 +617,9 @@
             <li><strong>蘑菇</strong>不是植物，是真菌（无叶绿素，不能光合作用）</li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -858,6 +885,8 @@
     updateProgress();
   </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

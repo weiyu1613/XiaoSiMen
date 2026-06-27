@@ -39,6 +39,18 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -51,7 +63,11 @@
   <div class="progress-label" id="progress-label">第 1/3 节 · 33%</div>
 
   <!-- ③ 导航栏 -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../zj.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六章：真菌</div>
@@ -127,6 +143,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 认识酵母菌、霉菌和蘑菇等常见真菌</li>
@@ -143,12 +165,12 @@
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       <p style="color:#2e7d32;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】下列哪种生物属于真菌？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 大肠杆菌是细菌（原核生物），不是真菌！"><span class="opt-letter">A</span> 大肠杆菌</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 酵母菌</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 乳酸菌是细菌（原核生物），不是真菌！"><span class="opt-letter">C</span> 乳酸菌</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：大肠杆菌" aria-pressed="false" data-feedback="❌ 大肠杆菌是细菌（原核生物），不是真菌！"><span class="opt-letter">A</span> 大肠杆菌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：酵母菌" aria-pressed="false"><span class="opt-letter">B</span> 酵母菌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：乳酸菌" aria-pressed="false" data-feedback="❌ 乳酸菌是细菌（原核生物），不是真菌！"><span class="opt-letter">C</span> 乳酸菌</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -158,12 +180,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】酵母菌和细菌最主要的区别是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 酵母菌和细菌都有细胞壁，这不是主要区别！"><span class="opt-letter">A</span> 有无细胞壁</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 有无成形的细胞核</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 酵母菌和细菌都有DNA，这不是主要区别！"><span class="opt-letter">C</span> 有无DNA</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：有无细胞壁" aria-pressed="false" data-feedback="❌ 酵母菌和细菌都有细胞壁，这不是主要区别！"><span class="opt-letter">A</span> 有无细胞壁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：有无成形的细胞核" aria-pressed="false"><span class="opt-letter">B</span> 有无成形的细胞核</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：有无DNA" aria-pressed="false" data-feedback="❌ 酵母菌和细菌都有DNA，这不是主要区别！"><span class="opt-letter">C</span> 有无DNA</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -173,12 +195,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】下列关于蘑菇的叙述正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 蘑菇没有叶绿体，不能进行光合作用！"><span class="opt-letter">A</span> 蘑菇能进行光合作用</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 蘑菇由菌丝构成</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 蘑菇是多细胞真菌，不是单细胞生物！"><span class="opt-letter">C</span> 蘑菇是单细胞生物</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蘑菇能进行光合作用" aria-pressed="false" data-feedback="❌ 蘑菇没有叶绿体，不能进行光合作用！"><span class="opt-letter">A</span> 蘑菇能进行光合作用</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：蘑菇由菌丝构成" aria-pressed="false"><span class="opt-letter">B</span> 蘑菇由菌丝构成</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蘑菇是单细胞生物" aria-pressed="false" data-feedback="❌ 蘑菇是多细胞真菌，不是单细胞生物！"><span class="opt-letter">C</span> 蘑菇是单细胞生物</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -373,12 +395,12 @@
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color:#2e7d32;margin-bottom:16px;">包含中考真题与高频考点，答错了会详细讲解错因！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】酵母菌的生殖方式是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 分裂生殖是细菌的生殖方式，酵母菌是出芽生殖！"><span class="opt-letter">A</span> 分裂生殖</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 出芽生殖</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 孢子生殖是霉菌和蘑菇的生殖方式，酵母菌主要靠出芽生殖！"><span class="opt-letter">C</span> 孢子生殖</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：分裂生殖" aria-pressed="false" data-feedback="❌ 分裂生殖是细菌的生殖方式，酵母菌是出芽生殖！"><span class="opt-letter">A</span> 分裂生殖</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：出芽生殖" aria-pressed="false"><span class="opt-letter">B</span> 出芽生殖</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：孢子生殖" aria-pressed="false" data-feedback="❌ 孢子生殖是霉菌和蘑菇的生殖方式，酵母菌主要靠出芽生殖！"><span class="opt-letter">C</span> 孢子生殖</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -388,12 +410,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】青霉产生的青霉素属于？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,true,11,'A')"><span class="opt-letter">A</span> 抗生素</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 青霉素不是维生素，它是抗生素，能抑制细菌细胞壁合成！"><span class="opt-letter">B</span> 维生素</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 青霉素不是激素，它是一种抗生素！"><span class="opt-letter">C</span> 激素</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：抗生素" aria-pressed="false"><span class="opt-letter">A</span> 抗生素</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：维生素" aria-pressed="false" data-feedback="❌ 青霉素不是维生素，它是抗生素，能抑制细菌细胞壁合成！"><span class="opt-letter">B</span> 维生素</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：激素" aria-pressed="false" data-feedback="❌ 青霉素不是激素，它是一种抗生素！"><span class="opt-letter">C</span> 激素</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -403,12 +425,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】蘑菇的地下部分是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 蘑菇没有根，它不是植物！地下部分是菌丝！"><span class="opt-letter">A</span> 菌根</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,12,'B')"><span class="opt-letter">B</span> 菌丝</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 蘑菇没有根这种器官，它是真菌不是植物！"><span class="opt-letter">C</span> 根</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：菌根" aria-pressed="false" data-feedback="❌ 蘑菇没有根，它不是植物！地下部分是菌丝！"><span class="opt-letter">A</span> 菌根</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：菌丝" aria-pressed="false"><span class="opt-letter">B</span> 菌丝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：根" aria-pressed="false" data-feedback="❌ 蘑菇没有根这种器官，它是真菌不是植物！"><span class="opt-letter">C</span> 根</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -423,6 +445,9 @@
     <section class="section" id="section-exam">
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -460,7 +485,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>陷阱：</strong>"XX菌是细菌"→ 注意！酵母菌、霉菌都是<strong>真菌</strong>（真核），只有XX杆菌、XX球菌、XX螺旋菌才是<strong>细菌</strong>（原核）！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -547,6 +574,8 @@
 
     document.addEventListener('DOMContentLoaded', function() { updateProgressBar(); console.log('📚 《真菌的多样性》课件加载完成'); });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

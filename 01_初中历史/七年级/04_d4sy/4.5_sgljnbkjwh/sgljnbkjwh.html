@@ -231,6 +231,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -250,7 +262,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d4sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第四单元：政权分立与民族交融</div>
@@ -359,6 +375,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道祖冲之的主要成就</li>
@@ -381,16 +403,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】祖冲之的主要成就是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 造纸术是蔡伦改进的，不是祖冲之的成就！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：改进造纸术" aria-pressed="false" data-feedback="❌ 造纸术是蔡伦改进的，不是祖冲之的成就！">
             <span class="opt-letter">A</span> 改进造纸术
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 《齐民要术》是贾思勰写的，不是祖冲之！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：撰写《齐民要术》" aria-pressed="false" data-feedback="❌ 《齐民要术》是贾思勰写的，不是祖冲之！">
             <span class="opt-letter">B</span> 撰写《齐民要术》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：计算圆周率到小数点后第七位" aria-pressed="false">
             <span class="opt-letter">C</span> 计算圆周率到小数点后第七位
           </div>
         </div>
@@ -413,16 +435,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】《齐民要术》的作者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 祖冲之是数学家，不是《齐民要术》的作者！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：祖冲之" aria-pressed="false" data-feedback="❌ 祖冲之是数学家，不是《齐民要术》的作者！">
             <span class="opt-letter">A</span> 祖冲之
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：贾思勰" aria-pressed="false">
             <span class="opt-letter">B</span> 贾思勰
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 王羲之是书法家，不是《齐民要术》的作者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：王羲之" aria-pressed="false" data-feedback="❌ 王羲之是书法家，不是《齐民要术》的作者！">
             <span class="opt-letter">C</span> 王羲之
           </div>
         </div>
@@ -435,16 +457,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于祖冲之的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ "祖冲之是西汉时期人"是错的！祖冲之是南朝时期的人。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：祖冲之是西汉时期人" aria-pressed="false" data-feedback="❌ "祖冲之是西汉时期人"是错的！祖冲之是南朝时期的人。">
             <span class="opt-letter">A</span> 祖冲之是西汉时期人
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：祖冲之计算出圆周率在3.1415926和3.1415927之间" aria-pressed="false">
             <span class="opt-letter">B</span> 祖冲之计算出圆周率在3.1415926和3.1415927之间
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ "祖冲之发明了造纸术"是错的！造纸术是蔡伦改进的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：祖冲之发明了造纸术" aria-pressed="false" data-feedback="❌ "祖冲之发明了造纸术"是错的！造纸术是蔡伦改进的。">
             <span class="opt-letter">C</span> 祖冲之发明了造纸术
           </div>
         </div>
@@ -462,16 +484,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列关于三国两晋南北朝科技文化的表述，全部正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ "祖冲之写《齐民要术》"是错的！《齐民要术》是贾思勰写的。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：祖冲之写《齐民要术》+王羲之写《水经注》" aria-pressed="false" data-feedback="❌ "祖冲之写《齐民要术》"是错的！《齐民要术》是贾思勰写的。">
             <span class="opt-letter">A</span> 祖冲之写《齐民要术》+ 王羲之写《水经注》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ "贾思勰计算圆周率"是错的！计算圆周率的是祖冲之。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：贾思勰计算圆周率+郦道元写《齐民要术》" aria-pressed="false" data-feedback="❌ "贾思勰计算圆周率"是错的！计算圆周率的是祖冲之。">
             <span class="opt-letter">B</span> 贾思勰计算圆周率 + 郦道元写《齐民要术》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：祖冲之计算圆周率+贾思勰写《齐民要术》" aria-pressed="false">
             <span class="opt-letter">C</span> 祖冲之计算圆周率 + 贾思勰写《齐民要术》
           </div>
         </div>
@@ -505,6 +527,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG:祖冲之与圆周率 -->
         <div class="svg-container">
           <svg viewBox="0 0 800 350" width="800" height="350" xmlns="http://www.w3.org/2000/svg">
@@ -554,7 +579,9 @@
           <div class="label">核心概念</div>
           <p><strong>圆周率：</strong>圆的周长与直径的比值（π）。祖冲之的计算成果在当时世界上是最精确的，直到15世纪才被阿拉伯数学家打破。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: 核心内容 - 贾思勰与《齐民要术》 -->
@@ -564,6 +591,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG:《齐民要术》 -->
         <div class="svg-container">
           <svg viewBox="0 0 900 400" width="900" height="400" xmlns="http://www.w3.org/2000/svg">
@@ -619,7 +649,9 @@
           <p>考试中常出现"<strong>祖冲之撰写《齐民要术》</strong>"这样的错误表述，一定要判断为<strong>错误</strong>！</p>
           <p style="margin-top: 8px;">正确的表述是："<strong>贾思勰</strong>撰写《齐民要术》"。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: 核心内容 - 书法与石窟艺术 -->
@@ -629,6 +661,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG:书法与石窟艺术 -->
         <div class="svg-container">
           <svg viewBox="0 0 800 450" width="800" height="450" xmlns="http://www.w3.org/2000/svg">
@@ -689,7 +724,9 @@
           <div class="label">核心概念</div>
           <p><strong>文化特点：</strong>三国两晋南北朝时期的文化呈现<strong>多元性</strong>，融合了汉族与少数民族、中国与外来的文化元素。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 7: 后测（4道题：含中考真题+材料分析） -->
@@ -702,16 +739,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】祖冲之是哪一时期的人？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 祖冲之不是西汉时期的人！他是南朝时期的人。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：西汉" aria-pressed="false" data-feedback="❌ 祖冲之不是西汉时期的人！他是南朝时期的人。">
             <span class="opt-letter">A</span> 西汉
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：南朝" aria-pressed="false">
             <span class="opt-letter">B</span> 南朝
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 祖冲之不是唐朝时期的人！他是南朝时期的人。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：唐朝" aria-pressed="false" data-feedback="❌ 祖冲之不是唐朝时期的人！他是南朝时期的人。">
             <span class="opt-letter">C</span> 唐朝
           </div>
         </div>
@@ -724,16 +761,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）下列关于《齐民要术》的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 《齐民要术》是农书，不是军事著作！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：是一部军事著作" aria-pressed="false" data-feedback="❌ 《齐民要术》是农书，不是军事著作！">
             <span class="opt-letter">A</span> 是一部军事著作
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：是中国现存最早最完整的农书" aria-pressed="false">
             <span class="opt-letter">B</span> 是中国现存最早最完整的农书
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 《齐民要术》是贾思勰写的，不是祖冲之！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：作者是祖冲之" aria-pressed="false" data-feedback="❌ 《齐民要术》是贾思勰写的，不是祖冲之！">
             <span class="opt-letter">C</span> 作者是祖冲之
           </div>
         </div>
@@ -752,16 +789,16 @@
       </div>
 
       <!-- 后测挑战题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·四川中考）下列关于三国两晋南北朝文化的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ "王羲之撰写《齐民要术》"是错的！王羲之是书法家，写《齐民要术》的是贾思勰。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：王羲之撰写《齐民要术》" aria-pressed="false" data-feedback="❌ "王羲之撰写《齐民要术》"是错的！王羲之是书法家，写《齐民要术》的是贾思勰。">
             <span class="opt-letter">A</span> 王羲之撰写《齐民要术》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：王羲之被誉为&quot;书圣&quot;，代表作《兰亭序》" aria-pressed="false">
             <span class="opt-letter">B</span> 王羲之被誉为"书圣"，代表作《兰亭序》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ "云冈石窟位于河南洛阳"是错的！云冈石窟位于山西大同，龙门石窟才在洛阳。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：云冈石窟位于河南洛阳" aria-pressed="false" data-feedback="❌ "云冈石窟位于河南洛阳"是错的！云冈石窟位于山西大同，龙门石窟才在洛阳。">
             <span class="opt-letter">C</span> 云冈石窟位于河南洛阳
           </div>
         </div>
@@ -779,20 +816,20 @@
       </div>
 
       <!-- 后测挑战题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料】</strong>"祖冲之是南朝时期的杰出科学家，计算出圆周率在3.1415926和3.1415927之间，领先世界近千年。贾思勰是北朝农学家，撰写了《齐民要术》，这是中国现存最早最完整的农书。王羲之是东晋书法家，被誉为'书圣'。" ——摘自人教版七年级历史上册
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，祖冲之的主要成就是什么？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料明确说"贾思勰撰写《齐民要术》"，所以"祖冲之撰写《齐民要术》"是错的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：撰写《齐民要术》" aria-pressed="false" data-feedback="❌ 材料明确说"贾思勰撰写《齐民要术》"，所以"祖冲之撰写《齐民要术》"是错的！">
             <span class="opt-letter">A</span> 撰写《齐民要术》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：计算出圆周率在3.1415926和3.1415927之间" aria-pressed="false">
             <span class="opt-letter">B</span> 计算出圆周率在3.1415926和3.1415927之间
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料明确说"王羲之是书法家"，所以"祖冲之是书法家"是错的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：是书法家，代表作《兰亭序》" aria-pressed="false" data-feedback="❌ 材料明确说"王羲之是书法家"，所以"祖冲之是书法家"是错的！">
             <span class="opt-letter">C</span> 是书法家，代表作《兰亭序》
           </div>
         </div>
@@ -820,6 +857,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -879,7 +919,9 @@
             <tr style="background:#fdf4ff;"><td>填空题</td><td>★★★★☆</td><td>填人物/著作/成就</td><td>记住关键人物</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -1031,6 +1073,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

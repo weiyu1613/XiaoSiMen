@@ -102,6 +102,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-map"></i> TeachAny · 初中地理</div>
     <div class="brand-tag">互动课件 v7.14</div>
@@ -110,7 +122,11 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 3/9 节 · 37%</div>
   
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dqydt.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一章：地球和地图</div>
@@ -185,6 +201,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道地图的三要素</li>
@@ -204,16 +226,16 @@
       </p>
       
       <!-- 基础题1：地图三要素 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】地图的三要素是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 颜色、形状、大小不是地图三要素！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：颜色、形状、大小" aria-pressed="false" data-feedback="❌ 颜色、形状、大小不是地图三要素！">
             <span class="opt-letter">A</span> 颜色、形状、大小
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：方向、比例尺、图例和注记" aria-pressed="false">
             <span class="opt-letter">B</span> 方向、比例尺、图例和注记
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 经纬线、等高线、等深线不是地图三要素！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：经纬线、等高线、等深线" aria-pressed="false" data-feedback="❌ 经纬线、等高线、等深线不是地图三要素！">
             <span class="opt-letter">C</span> 经纬线、等高线、等深线
           </div>
         </div>
@@ -226,16 +248,16 @@
       </div>
 
       <!-- 基础题2：比例尺换算 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】比例尺1:100000表示图上1厘米代表实地距离？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 1千米应该是1:100000的比例尺表示！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1米" aria-pressed="false" data-feedback="❌ 1千米应该是1:100000的比例尺表示！">
             <span class="opt-letter">A</span> 1米
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 10千米不对，计算错误！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：10千米" aria-pressed="false" data-feedback="❌ 10千米不对，计算错误！">
             <span class="opt-letter">B</span> 10千米
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1千米" aria-pressed="false">
             <span class="opt-letter">C</span> 1千米
           </div>
         </div>
@@ -248,16 +270,16 @@
       </div>
 
       <!-- 提高题3：指向标定向法 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于指向标定向法的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 指向标箭头永远指向北方，不是南方！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：指向标箭头永远指向南方" aria-pressed="false" data-feedback="❌ 指向标箭头永远指向北方，不是南方！">
             <span class="opt-letter">A</span> 指向标箭头永远指向南方
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：指向标定向法适用于有指向标的地图" aria-pressed="false">
             <span class="opt-letter">B</span> 指向标定向法适用于有指向标的地图
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 指向标定向法适用于所有有指向标的地图，包括城市地图！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：指向标定向法不适用于城市地图" aria-pressed="false" data-feedback="❌ 指向标定向法适用于所有有指向标的地图，包括城市地图！">
             <span class="opt-letter">C</span> 指向标定向法不适用于城市地图
           </div>
         </div>
@@ -270,16 +292,16 @@
       </div>
 
       <!-- 挑战题4：综合三种定向方法 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列关于地图方向判定的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：无指向标和经纬网的地图，用一般定向法（上北下南，左西右东）" aria-pressed="false">
             <span class="opt-letter">A</span> 无指向标和经纬网的地图，用一般定向法（上北下南，左西右东）
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 有指向标的地图应该用指向标定向法，不是一般定向法！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：有指向标的地图，用一般定向法" aria-pressed="false" data-feedback="❌ 有指向标的地图应该用指向标定向法，不是一般定向法！">
             <span class="opt-letter">B</span> 有指向标的地图，用一般定向法
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 有经纬网的地图应该用经纬网定向法，不是指向标定向法！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：有经纬网的地图，用指向标定向法" aria-pressed="false" data-feedback="❌ 有经纬网的地图应该用经纬网定向法，不是指向标定向法！">
             <span class="opt-letter">C</span> 有经纬网的地图，用指向标定向法
           </div>
         </div>
@@ -424,16 +446,16 @@
       <p style="color: #0369a1; margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】下列比例尺中，最大的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1:1000" aria-pressed="false">
             <span class="opt-letter">A</span> 1:1000
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 1:10000的比例尺比1:1000小！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1:10000" aria-pressed="false" data-feedback="❌ 1:10000的比例尺比1:1000小！">
             <span class="opt-letter">B</span> 1:10000
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 1:100000的比例尺最小！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1:100000" aria-pressed="false" data-feedback="❌ 1:100000的比例尺最小！">
             <span class="opt-letter">C</span> 1:100000
           </div>
         </div>
@@ -446,16 +468,16 @@
       </div>
 
       <!-- 后测题2（中考真题） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）在无指向标和无经纬网的地图上，方向判定的方法是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：上北下南，左西右东" aria-pressed="false">
             <span class="opt-letter">A</span> 上北下南，左西右东
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 一般定向法是上北下南，左西右东，不是左东右西！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：上北下南，左东右西" aria-pressed="false" data-feedback="❌ 一般定向法是上北下南，左西右东，不是左东右西！">
             <span class="opt-letter">B</span> 上北下南，左东右西
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 指向标定向法才用指向标箭头，无指向标和经纬网的地图用一般定向法！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：指向标箭头指向北方" aria-pressed="false" data-feedback="❌ 指向标定向法才用指向标箭头，无指向标和经纬网的地图用一般定向法！">
             <span class="opt-letter">C</span> 指向标箭头指向北方
           </div>
         </div>
@@ -468,16 +490,16 @@
       </div>
 
       <!-- 后测题3（中考真题·综合题） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·四川中考）某地图的比例尺为1:50000，图上距离为2厘米，则实地距离为（ ）米；若该地图有指向标，则指向标箭头指向（ ）。<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1000米，北方" aria-pressed="false">
             <span class="opt-letter">A</span> 1000米，北方
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 计算错误：2厘米 × 50000 = 100000厘米 = 1000米，不是100米；指向标箭头指向北方，不是南方！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：100米，南方" aria-pressed="false" data-feedback="❌ 计算错误：2厘米 × 50000 = 100000厘米 = 1000米，不是100米；指向标箭头指向北方，不是南方！">
             <span class="opt-letter">B</span> 100米，南方
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 计算错误：2厘米 × 50000 = 100000厘米 = 1000米，不是10000米；指向标箭头指向北方，不是东方！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：10000米，东方" aria-pressed="false" data-feedback="❌ 计算错误：2厘米 × 50000 = 100000厘米 = 1000米，不是10000米；指向标箭头指向北方，不是东方！">
             <span class="opt-letter">C</span> 10000米，东方
           </div>
         </div>
@@ -607,6 +629,8 @@
       console.log('📚 《地图的阅读》课件加载完成（v1.1）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

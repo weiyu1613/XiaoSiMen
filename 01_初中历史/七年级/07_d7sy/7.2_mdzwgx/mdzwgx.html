@@ -124,6 +124,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -132,7 +144,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d7sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第七单元：明清时期</div>
@@ -195,6 +211,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道郑和下西洋的时间、目的、意义</li>
@@ -211,12 +233,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】郑和下西洋发生在哪个朝代？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 唐朝是对外开放时期，但不是郑和下西洋的朝代！"><span class="opt-letter">A</span> 唐朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 明朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 清朝是闭关锁国时期，不是郑和下西洋的朝代！"><span class="opt-letter">C</span> 清朝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐朝" aria-pressed="false" data-feedback="❌ 唐朝是对外开放时期，但不是郑和下西洋的朝代！"><span class="opt-letter">A</span> 唐朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：明朝" aria-pressed="false"><span class="opt-letter">B</span> 明朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：清朝" aria-pressed="false" data-feedback="❌ 清朝是闭关锁国时期，不是郑和下西洋的朝代！"><span class="opt-letter">C</span> 清朝</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -224,12 +246,12 @@
           <p><strong>明朝</strong>前期，<strong>郑和</strong>七次下西洋，是世界航海史上的壮举。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】郑和下西洋的目的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 掠夺财富不是主要目的，主要是宣扬国威！"><span class="opt-letter">A</span> 掠夺财富</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 宣扬国威，加强联系</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 寻找黄金不是主要目的！"><span class="opt-letter">C</span> 寻找黄金</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：掠夺财富" aria-pressed="false" data-feedback="❌ 掠夺财富不是主要目的，主要是宣扬国威！"><span class="opt-letter">A</span> 掠夺财富</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：宣扬国威，加强联系" aria-pressed="false"><span class="opt-letter">B</span> 宣扬国威，加强联系</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：寻找黄金" aria-pressed="false" data-feedback="❌ 寻找黄金不是主要目的！"><span class="opt-letter">C</span> 寻找黄金</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -237,12 +259,12 @@
           <p>郑和下西洋的目的是<strong>宣扬国威、加强海外联系、促进贸易</strong>。这是和平外交，不是殖民掠夺。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】"封侯非我意，但愿海波平"是谁的名言？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')"><span class="opt-letter">A</span> 戚继光</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 郑成功是收复台湾的民族英雄，不是抗倭名将！"><span class="opt-letter">B</span> 郑成功</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 岳飞是南宋抗金名将，不是明朝抗倭将领！"><span class="opt-letter">C</span> 岳飞</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：戚继光" aria-pressed="false"><span class="opt-letter">A</span> 戚继光</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：郑成功" aria-pressed="false" data-feedback="❌ 郑成功是收复台湾的民族英雄，不是抗倭名将！"><span class="opt-letter">B</span> 郑成功</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：岳飞" aria-pressed="false" data-feedback="❌ 岳飞是南宋抗金名将，不是明朝抗倭将领！"><span class="opt-letter">C</span> 岳飞</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -250,12 +272,12 @@
           <p><strong>戚继光</strong>是明朝抗倭名将，他的名言是"<strong>封侯非我意，但愿海波平</strong>"，表达爱国情怀。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】明朝对外政策从开放转向闭关的标志是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 郑和下西洋是开放的象征，不是闭关标志！"><span class="opt-letter">A</span> 郑和下西洋</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')"><span class="opt-letter">B</span> 戚继光抗倭后实行海禁</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 葡萄牙占澳门是被动事件，不是政策转变标志！"><span class="opt-letter">C</span> 葡萄牙占澳门</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：郑和下西洋" aria-pressed="false" data-feedback="❌ 郑和下西洋是开放的象征，不是闭关标志！"><span class="opt-letter">A</span> 郑和下西洋</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：戚继光抗倭后实行海禁" aria-pressed="false"><span class="opt-letter">B</span> 戚继光抗倭后实行海禁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：葡萄牙占澳门" aria-pressed="false" data-feedback="❌ 葡萄牙占澳门是被动事件，不是政策转变标志！"><span class="opt-letter">C</span> 葡萄牙占澳门</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -267,6 +289,9 @@
     <section class="section" id="core-content">
       <h2 class="section-title"><span class="num">📚</span> 核心内容</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>一、郑和下西洋</h3>
         <p><strong>时间</strong>：<strong>1405-1433年</strong>（明成祖时期）</p>
         <p><strong>次数</strong>：<strong>7次</strong></p>
@@ -288,7 +313,9 @@
           <li>② 促进中外经济文化交流</li>
           <li>③ 比欧洲新航路开辟早半个多世纪</li>
         </ul>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>二、戚继光抗倭</h3>
         <p><strong>背景</strong>：</p>
@@ -319,6 +346,9 @@
         </ul>
       </div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>四、明朝对外政策的转变</h3>
         <p><strong>前期</strong>：开放（郑和下西洋）</p>
         <p><strong>中期后</strong>：闭关（海禁政策）</p>
@@ -329,7 +359,9 @@
           <li>③ 明政府为维护统治，实行海禁</li>
         </ul>
         <p><strong>影响</strong>：阻碍中外交流，导致中国逐渐落后于世界</p>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="deep-content">
       <h2 class="section-title"><span class="num">🔍</span> 深入内容</h2>
@@ -348,12 +380,17 @@
         </ul>
       </div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>戚继光抗倭的精神内涵</h3>
         <p><strong>1. 爱国主义精神</strong>："封侯非我意，但愿海波平"</p>
         <p><strong>2. 英勇无畏精神</strong>：九战九捷，不怕牺牲</p>
         <p><strong>3. 纪律严明精神</strong>：戚家军纪律严明，战斗力强</p>
         <p><strong>4. 民族自强精神</strong>：保卫海疆，维护国家主权</p>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">📝</span> 后测：检验学习效果</h2>
@@ -363,12 +400,12 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
         <span style="margin-left: 12px; color: var(--accent);">⚡ 含中考真题</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】郑和下西洋共几次？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 郑和下西洋是7次，不是3次！"><span class="opt-letter">A</span> 3次</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 7次</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 郑和没有下西洋10次！"><span class="opt-letter">C</span> 10次</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：3次" aria-pressed="false" data-feedback="❌ 郑和下西洋是7次，不是3次！"><span class="opt-letter">A</span> 3次</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：7次" aria-pressed="false"><span class="opt-letter">B</span> 7次</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：10次" aria-pressed="false" data-feedback="❌ 郑和没有下西洋10次！"><span class="opt-letter">C</span> 10次</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -376,12 +413,12 @@
           <p>郑和<strong>七次</strong>下西洋（1405-1433年）。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐ 基础】戚继光抗倭的地区是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 西北不是戚继光抗倭的地区！"><span class="opt-letter">A</span> 西北地区</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')"><span class="opt-letter">B</span> 东南沿海</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 东北不是戚继光抗倭的地区！"><span class="opt-letter">C</span> 东北地区</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：西北地区" aria-pressed="false" data-feedback="❌ 西北不是戚继光抗倭的地区！"><span class="opt-letter">A</span> 西北地区</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：东南沿海" aria-pressed="false"><span class="opt-letter">B</span> 东南沿海</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：东北地区" aria-pressed="false" data-feedback="❌ 东北不是戚继光抗倭的地区！"><span class="opt-letter">C</span> 东北地区</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -389,12 +426,12 @@
           <p>戚继光在<strong>东南沿海</strong>（浙江、福建、广东）抗击倭寇。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】葡萄牙侵占澳门始于哪一年？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'A')"><span class="opt-letter">A</span> 1553年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'B')" data-feedback="❌ 1842年是《南京条约》签订时间，不是葡萄牙占澳门！"><span class="opt-letter">B</span> 1842年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="❌ 1999年是澳门回归时间，不是被侵占时间！"><span class="opt-letter">C</span> 1999年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1553年" aria-pressed="false"><span class="opt-letter">A</span> 1553年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1842年" aria-pressed="false" data-feedback="❌ 1842年是《南京条约》签订时间，不是葡萄牙占澳门！"><span class="opt-letter">B</span> 1842年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1999年" aria-pressed="false" data-feedback="❌ 1999年是澳门回归时间，不是被侵占时间！"><span class="opt-letter">C</span> 1999年</div>
         </div>
         <div class="feedback" id="feedback-7"></div>
         <div class="answer-explanation" id="explanation-7">
@@ -402,7 +439,7 @@
           <p><strong>1553年</strong>，葡萄牙人贿赂明朝官员，获得在澳门的居住权，后长期占据。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】阅读材料，回答问题：<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
         <div style="background: #f9fafb; border-left: 4px solid #8b4513; padding: 16px; margin-bottom: 16px; border-radius: 0 8px 8px 0;">
           <p><strong>材料</strong>：</p>
@@ -410,10 +447,10 @@
           <p>——《明史·戚继光传》</p>
           <p><strong>问题</strong>：戚继光为提高军队战斗力采取了什么措施？（　）</p>
         </div>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'A')"><span class="opt-letter">A</span> 招募义乌兵，教以击刺法</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'B')" data-feedback="❌ 材料中没有提到购买洋枪洋炮！"><span class="opt-letter">B</span> 购买洋枪洋炮</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 材料中没有提到与倭寇谈判！"><span class="opt-letter">C</span> 与倭寇谈判</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：招募义乌兵，教以击刺法" aria-pressed="false"><span class="opt-letter">A</span> 招募义乌兵，教以击刺法</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：购买洋枪洋炮" aria-pressed="false" data-feedback="❌ 材料中没有提到购买洋枪洋炮！"><span class="opt-letter">B</span> 购买洋枪洋炮</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：与倭寇谈判" aria-pressed="false" data-feedback="❌ 材料中没有提到与倭寇谈判！"><span class="opt-letter">C</span> 与倭寇谈判</div>
         </div>
         <div class="feedback" id="feedback-8"></div>
         <div class="answer-explanation" id="explanation-8">
@@ -469,6 +506,9 @@
         </h2>
         
         <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
           <!-- 考点1 -->
           <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
             <div class="exam-card-header">
@@ -521,7 +561,9 @@
               <tr style="background:#ffffff;"><td>材料题</td><td>★★★☆☆</td><td>给史料，分析对外交流意义</td><td>理解"和平外交"的理念</td></tr>
             </table>
           </div>
-        </div>
+        
+</details>
+</div>
       </section>
 
 <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
@@ -611,6 +653,8 @@
   </script>
     <!-- 标准模块脚本（必须） -->
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

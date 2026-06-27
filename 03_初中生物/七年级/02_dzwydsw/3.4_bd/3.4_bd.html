@@ -68,10 +68,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-virus"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 8/10 节 · 80%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
     <div class="nav-center">第二单元：多种多样的生物</div>
@@ -129,6 +145,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 描述病毒的主要特征（无细胞结构、寄生生活）</li>
@@ -141,21 +163,21 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🔬</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】病毒没有细胞结构，它由什么组成？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'A')" data-feedback="❌ 病毒没有细胞膜！"><span class="opt-letter">A</span> 细胞膜+细胞质+核酸</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 0, 'B')"><span class="opt-letter">B</span> 蛋白质外壳+核酸</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'C')" data-feedback="❌ 病毒没有细胞壁！"><span class="opt-letter">C</span> 细胞壁+核酸</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'D')" data-feedback="❌ 病毒没有细胞器！"><span class="opt-letter">D</span> 细胞膜+细胞器+核酸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞膜+细胞质+核酸" aria-pressed="false" data-feedback="❌ 病毒没有细胞膜！"><span class="opt-letter">A</span> 细胞膜+细胞质+核酸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 0, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：蛋白质外壳+核酸" aria-pressed="false"><span class="opt-letter">B</span> 蛋白质外壳+核酸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞壁+核酸" aria-pressed="false" data-feedback="❌ 病毒没有细胞壁！"><span class="opt-letter">C</span> 细胞壁+核酸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：细胞膜+细胞器+核酸" aria-pressed="false" data-feedback="❌ 病毒没有细胞器！"><span class="opt-letter">D</span> 细胞膜+细胞器+核酸</div>
         <div class="feedback" id="feedback-0"></div>
         <div class="answer-explanation" id="explanation-0"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 蛋白质外壳+核酸</strong></p><p style="margin-top:8px;">病毒<strong>没有细胞结构</strong>，只由<strong>蛋白质外壳（衣壳）</strong>和内部<strong>核酸（DNA或RNA）</strong>组成。这是它与所有细胞生物的本质区别。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】病毒只能寄生在活细胞内，原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 病毒没有线粒体！"><span class="opt-letter">A</span> 病毒需要线粒体供能</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 病毒没有细胞结构，无法独立进行新陈代谢</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 病毒有核酸！"><span class="opt-letter">C</span> 病毒体内没有遗传物质</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 病毒有蛋白质！"><span class="opt-letter">D</span> 病毒不含蛋白质</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：病毒需要线粒体供能" aria-pressed="false" data-feedback="❌ 病毒没有线粒体！"><span class="opt-letter">A</span> 病毒需要线粒体供能</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：病毒没有细胞结构，无法独立进行新陈代谢" aria-pressed="false"><span class="opt-letter">B</span> 病毒没有细胞结构，无法独立进行新陈代谢</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：病毒体内没有遗传物质" aria-pressed="false" data-feedback="❌ 病毒有核酸！"><span class="opt-letter">C</span> 病毒体内没有遗传物质</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：病毒不含蛋白质" aria-pressed="false" data-feedback="❌ 病毒有蛋白质！"><span class="opt-letter">D</span> 病毒不含蛋白质</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 病毒没有细胞结构，无法独立进行新陈代谢</strong></p><p style="margin-top:8px;">病毒没有细胞结构，没有细胞器，无法独立进行<strong>新陈代谢</strong>。它必须利用宿主细胞的物质和能量来完成自我复制，这是它必须寄生在活细胞内的根本原因。</p></div>
       </div>
@@ -233,19 +255,19 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】病毒的结构组成是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 病毒没有细胞结构！"><span class="opt-letter">A</span> 细胞壁+细胞膜+核酸</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 蛋白质外壳+核酸</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 病毒没有细胞膜！"><span class="opt-letter">C</span> 细胞膜+细胞质+核酸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞壁+细胞膜+核酸" aria-pressed="false" data-feedback="❌ 病毒没有细胞结构！"><span class="opt-letter">A</span> 细胞壁+细胞膜+核酸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：蛋白质外壳+核酸" aria-pressed="false"><span class="opt-letter">B</span> 蛋白质外壳+核酸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞膜+细胞质+核酸" aria-pressed="false" data-feedback="❌ 病毒没有细胞膜！"><span class="opt-letter">C</span> 细胞膜+细胞质+核酸</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 蛋白质外壳+核酸</strong></p><p style="margin-top:8px;">病毒<strong>没有细胞结构</strong>，只由<strong>蛋白质外壳（衣壳）</strong>和内部<strong>核酸（DNA或RNA）</strong>组成。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】病毒只能寄生在活细胞内，原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 病毒没有细胞结构，无法独立完成新陈代谢</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 病毒有核酸！"><span class="opt-letter">B</span> 病毒没有核酸</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 病毒不需要所有物质！"><span class="opt-letter">C</span> 病毒需要所有营养物质</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：病毒没有细胞结构，无法独立完成新陈代谢" aria-pressed="false"><span class="opt-letter">A</span> 病毒没有细胞结构，无法独立完成新陈代谢</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：病毒没有核酸" aria-pressed="false" data-feedback="❌ 病毒有核酸！"><span class="opt-letter">B</span> 病毒没有核酸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：病毒需要所有营养物质" aria-pressed="false" data-feedback="❌ 病毒不需要所有物质！"><span class="opt-letter">C</span> 病毒需要所有营养物质</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 病毒没有细胞结构，无法独立完成新陈代谢</strong></p><p style="margin-top:8px;">病毒没有细胞结构，无法独立进行<strong>新陈代谢</strong>。它必须利用宿主细胞的<strong>物质和能量</strong>来合成自身的蛋白质和核酸，完成繁殖。</p></div>
       </div>
@@ -301,6 +323,8 @@
       if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

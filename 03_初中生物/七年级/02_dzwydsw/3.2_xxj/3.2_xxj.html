@@ -103,6 +103,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-bug"></i> TeachAny · 初中生物</div>
@@ -111,7 +123,11 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 6/10 节 · 60%</div>
 
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
     <div class="nav-center">第二单元：多种多样的生物</div>
@@ -187,6 +203,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 识别细菌的三种形态（球菌、杆菌、螺旋菌）</li>
@@ -201,11 +223,11 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】细菌的形态可分为哪三类？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 球菌、杆菌、螺旋菌</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 细菌没有这三种形态！"><span class="opt-letter">B</span> 霉菌、酵母菌、放线菌</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 这是植物细胞的形态，不是细菌！"><span class="opt-letter">C</span> 圆形、长方形、正方形</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：球菌、杆菌、螺旋菌" aria-pressed="false"><span class="opt-letter">A</span> 球菌、杆菌、螺旋菌</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：霉菌、酵母菌、放线菌" aria-pressed="false" data-feedback="❌ 细菌没有这三种形态！"><span class="opt-letter">B</span> 霉菌、酵母菌、放线菌</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：圆形、长方形、正方形" aria-pressed="false" data-feedback="❌ 这是植物细胞的形态，不是细菌！"><span class="opt-letter">C</span> 圆形、长方形、正方形</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
           <div class="explain-title">📖 详细解析</div>
@@ -214,11 +236,11 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】细菌的繁殖方式是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 孢子繁殖是真菌和蕨类的繁殖方式！"><span class="opt-letter">A</span> 孢子繁殖</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 分裂生殖</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 出芽生殖是酵母菌的繁殖方式！"><span class="opt-letter">C</span> 出芽生殖</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：孢子繁殖" aria-pressed="false" data-feedback="❌ 孢子繁殖是真菌和蕨类的繁殖方式！"><span class="opt-letter">A</span> 孢子繁殖</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：分裂生殖" aria-pressed="false"><span class="opt-letter">B</span> 分裂生殖</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：出芽生殖" aria-pressed="false" data-feedback="❌ 出芽生殖是酵母菌的繁殖方式！"><span class="opt-letter">C</span> 出芽生殖</div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
           <div class="explain-title">📖 详细解析</div>
@@ -227,11 +249,11 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】细菌与植物细胞的主要区别是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 两者都有细胞壁！"><span class="opt-letter">A</span> 细菌没有细胞壁</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 两者都没有叶绿体，但这是相同点！"><span class="opt-letter">B</span> 细菌有叶绿体</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')"><span class="opt-letter">C</span> 细菌没有成形的细胞核</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌没有细胞壁" aria-pressed="false" data-feedback="❌ 两者都有细胞壁！"><span class="opt-letter">A</span> 细菌没有细胞壁</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细菌有叶绿体" aria-pressed="false" data-feedback="❌ 两者都没有叶绿体，但这是相同点！"><span class="opt-letter">B</span> 细菌有叶绿体</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细菌没有成形的细胞核" aria-pressed="false"><span class="opt-letter">C</span> 细菌没有成形的细胞核</div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
           <div class="explain-title">📖 详细解析</div>
@@ -342,6 +364,9 @@
     <section class="section" id="section-bacteria-reproduction">
       <h2 class="section-title"><span class="num">🔄</span> 细菌的生殖与芽孢</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box">
           <div class="label">核心概念 · 分裂生殖</div>
           <p>在适宜条件下，细菌进行<strong>分裂生殖</strong>：一个细菌分裂成两个。两个细菌再分裂成四个，以此类推。<strong>速度极快</strong>，在适宜条件下约每20-30分钟分裂一次。</p>
@@ -402,7 +427,9 @@
           <div class="label">⚠️ 易错警示 · 芽孢不是繁殖</div>
           <p>很多同学误以为芽孢是细菌的繁殖方式，这是错误的！<strong>芽孢是细菌在恶劣环境下的休眠结构</strong>，不是生殖细胞。细菌的繁殖方式是<strong>分裂生殖</strong>。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- 核心知识：细菌与人类 -->
@@ -446,11 +473,11 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】关于细菌结构的叙述，正确的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 细菌没有成形细胞核，DNA集中在核区！"><span class="opt-letter">A</span> 细菌有成形的细胞核</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 细菌没有成形细胞核</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 细菌没有叶绿体！"><span class="opt-letter">C</span> 细菌有叶绿体</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌有成形的细胞核" aria-pressed="false" data-feedback="❌ 细菌没有成形细胞核，DNA集中在核区！"><span class="opt-letter">A</span> 细菌有成形的细胞核</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细菌没有成形细胞核" aria-pressed="false"><span class="opt-letter">B</span> 细菌没有成形细胞核</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细菌有叶绿体" aria-pressed="false" data-feedback="❌ 细菌没有叶绿体！"><span class="opt-letter">C</span> 细菌有叶绿体</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
           <div class="explain-title">📖 详细解析</div>
@@ -459,11 +486,11 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）关于芽孢的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 芽孢是细菌的休眠体，不是繁殖方式</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 芽孢是休眠体，不是生殖细胞！"><span class="opt-letter">B</span> 芽孢是细菌的生殖细胞</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 细菌繁殖是分裂生殖，不是芽孢！"><span class="opt-letter">C</span> 芽孢是细菌的繁殖方式</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：芽孢是细菌的休眠体，不是繁殖方式" aria-pressed="false"><span class="opt-letter">A</span> 芽孢是细菌的休眠体，不是繁殖方式</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：芽孢是细菌的生殖细胞" aria-pressed="false" data-feedback="❌ 芽孢是休眠体，不是生殖细胞！"><span class="opt-letter">B</span> 芽孢是细菌的生殖细胞</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：芽孢是细菌的繁殖方式" aria-pressed="false" data-feedback="❌ 细菌繁殖是分裂生殖，不是芽孢！"><span class="opt-letter">C</span> 芽孢是细菌的繁殖方式</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
           <div class="explain-title">📖 详细解析</div>
@@ -472,11 +499,11 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】细菌和真菌的主要区别是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 两者都没有叶绿体！"><span class="opt-letter">A</span> 细菌有细胞核，真菌没有</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 两者都不形成芽孢！"><span class="opt-letter">B</span> 只有细菌能形成芽孢</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')"><span class="opt-letter">C</span> 细菌无成形细胞核，真菌有成形细胞核</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌有细胞核，真菌没有" aria-pressed="false" data-feedback="❌ 两者都没有叶绿体！"><span class="opt-letter">A</span> 细菌有细胞核，真菌没有</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：只有细菌能形成芽孢" aria-pressed="false" data-feedback="❌ 两者都不形成芽孢！"><span class="opt-letter">B</span> 只有细菌能形成芽孢</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细菌无成形细胞核，真菌有成形细胞核" aria-pressed="false"><span class="opt-letter">C</span> 细菌无成形细胞核，真菌有成形细胞核</div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
           <div class="explain-title">📖 详细解析</div>
@@ -579,6 +606,8 @@
       console.log('📚 《3.2 细菌》课件加载完成（v7.14）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

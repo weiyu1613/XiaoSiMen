@@ -213,6 +213,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -225,7 +237,11 @@
   <div class="progress-label" id="progress-label">第 1/4 节 · 25%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
@@ -313,6 +329,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解洋务运动的背景、内容和失败原因</li>
@@ -393,16 +415,16 @@
       <h2 class="section-title"><span class="num">🎮</span> 互动测验</h2>
       <p style="color: var(--primary); margin-bottom: 16px;">每道题都有详细的错因分析，答错了要认真学习哦！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】学习历史课程，对我们的启示是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 20, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：以史为鉴，面向未来" aria-pressed="false">
             <span class="opt-letter">A</span> 以史为鉴，面向未来
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 学习历史是为了从中吸取教训，不是无用之举！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：历史已经过去，无需学习" aria-pressed="false" data-feedback="❌ 学习历史是为了从中吸取教训，不是无用之举！">
             <span class="opt-letter">B</span> 历史已经过去，无需学习
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 学习历史需要思考和理解，不能只记事实！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只需记住事实，无需思考" aria-pressed="false" data-feedback="❌ 学习历史需要思考和理解，不能只记事实！">
             <span class="opt-letter">C</span> 只需记住事实，无需思考
           </div>
         </div>
@@ -426,16 +448,16 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】中国近代化探索开始于哪个运动？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：洋务运动" aria-pressed="false">
             <span class="opt-letter">A</span> 洋务运动
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 戊戌变法是政治制度改革，不是近代化的开端！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：戊戌变法" aria-pressed="false" data-feedback="❌ 戊戌变法是政治制度改革，不是近代化的开端！">
             <span class="opt-letter">B</span> 戊戌变法
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 辛亥革命是资产阶级革命，比洋务运动晚！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：辛亥革命" aria-pressed="false" data-feedback="❌ 辛亥革命是资产阶级革命，比洋务运动晚！">
             <span class="opt-letter">C</span> 辛亥革命
           </div>
         </div>
@@ -447,16 +469,16 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】洋务运动的口号是什么？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 这是新文化运动的口号，不是洋务运动的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：民主与科学" aria-pressed="false" data-feedback="❌ 这是新文化运动的口号，不是洋务运动的！">
             <span class="opt-letter">A</span> 民主与科学
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：自强、求富" aria-pressed="false">
             <span class="opt-letter">B</span> 自强、求富
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 这是戊戌变法的口号！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：变法维新" aria-pressed="false" data-feedback="❌ 这是戊戌变法的口号！">
             <span class="opt-letter">C</span> 变法维新
           </div>
         </div>
@@ -468,16 +490,16 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】下列哪项不属于洋务派创办的企业？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 江南制造总局是洋务派最大的军事企业，1865年曾国藩/李鸿章创办于上海！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：江南制造总局" aria-pressed="false" data-feedback="❌ 江南制造总局是洋务派最大的军事企业，1865年曾国藩/李鸿章创办于上海！">
             <span class="opt-letter">A</span> 江南制造总局
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：轮船招商局（民用）—等等，这也是洋务派的" aria-pressed="false">
             <span class="opt-letter">B</span> 轮船招商局（民用）— 等等，这也是洋务派的
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 福州船政局是左宗棠创办的军事企业！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：福州船政局" aria-pressed="false" data-feedback="❌ 福州船政局是左宗棠创办的军事企业！">
             <span class="opt-letter">C</span> 福州船政局
           </div>
         </div>
@@ -499,12 +521,12 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】中国近代化探索开始于哪个运动？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 洋务运动</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 戊戌变法是政治制度改革，不是近代化的开端！"><span class="opt-letter">B</span> 戊戌变法</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 辛亥革命比洋务运动晚！"><span class="opt-letter">C</span> 辛亥革命</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：洋务运动" aria-pressed="false"><span class="opt-letter">A</span> 洋务运动</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：戊戌变法" aria-pressed="false" data-feedback="❌ 戊戌变法是政治制度改革，不是近代化的开端！"><span class="opt-letter">B</span> 戊戌变法</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：辛亥革命" aria-pressed="false" data-feedback="❌ 辛亥革命比洋务运动晚！"><span class="opt-letter">C</span> 辛亥革命</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -514,12 +536,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】洋务运动的口号是什么？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 这是新文化运动的口号！"><span class="opt-letter">A</span> 民主与科学</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 自强、求富</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 这是戊戌变法的口号！"><span class="opt-letter">C</span> 变法维新</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：民主与科学" aria-pressed="false" data-feedback="❌ 这是新文化运动的口号！"><span class="opt-letter">A</span> 民主与科学</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：自强、求富" aria-pressed="false"><span class="opt-letter">B</span> 自强、求富</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：变法维新" aria-pressed="false" data-feedback="❌ 这是戊戌变法的口号！"><span class="opt-letter">C</span> 变法维新</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -529,12 +551,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】洋务派创办的下列企业中，属于民用的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 江南制造总局是最大的军事工业企业！"><span class="opt-letter">A</span> 江南制造总局</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 轮船招商局</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 福州船政局是左宗棠创办的军事企业！"><span class="opt-letter">C</span> 福州船政局</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：江南制造总局" aria-pressed="false" data-feedback="❌ 江南制造总局是最大的军事工业企业！"><span class="opt-letter">A</span> 江南制造总局</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：轮船招商局" aria-pressed="false"><span class="opt-letter">B</span> 轮船招商局</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：福州船政局" aria-pressed="false" data-feedback="❌ 福州船政局是左宗棠创办的军事企业！"><span class="opt-letter">C</span> 福州船政局</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -551,16 +573,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】洋务运动的口号是什么？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 自强是洋务运动的口号，求富是其根本目的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：自强、求富" aria-pressed="false" data-feedback="❌ 自强是洋务运动的口号，求富是其根本目的！">
             <span class="opt-letter">A</span> 自强、求富
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：师夷长技以制夷" aria-pressed="false">
             <span class="opt-letter">B</span> 师夷长技以制夷
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 变法图强是戊戌变法的口号！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：变法图强" aria-pressed="false" data-feedback="❌ 变法图强是戊戌变法的口号！">
             <span class="opt-letter">C</span> 变法图强
           </div>
         </div>
@@ -573,16 +595,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）洋务运动失败的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 部分官员腐败不是根本原因，封建制度才是！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：部分官员腐败" aria-pressed="false" data-feedback="❌ 部分官员腐败不是根本原因，封建制度才是！">
             <span class="opt-letter">A</span> 部分官员腐败
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 没有引进西方先进技术不是根本原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：没有引进西方先进技术" aria-pressed="false" data-feedback="❌ 没有引进西方先进技术不是根本原因！">
             <span class="opt-letter">B</span> 没有引进西方先进技术
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：封建制度的束缚" aria-pressed="false">
             <span class="opt-letter">C</span> 封建制度的束缚
           </div>
         </div>
@@ -595,16 +617,16 @@
       </div>
 
       <!-- 后测题3（甲午中日战争相关） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】甲午中日战争爆发的直接导火索是什么？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 日本蓄谋已久，但直接导火索是朝鲜事件">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：日本明治维新成功" aria-pressed="false" data-feedback="❌ 日本蓄谋已久，但直接导火索是朝鲜事件">
             <span class="opt-letter">A</span> 日本明治维新成功
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：朝鲜东学党起义" aria-pressed="false">
             <span class="opt-letter">B</span> 朝鲜东学党起义
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 这是战争背景，不是直接导火索">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：洋务运动失败" aria-pressed="false" data-feedback="❌ 这是战争背景，不是直接导火索">
             <span class="opt-letter">C</span> 洋务运动失败
           </div>
         </div>
@@ -617,16 +639,16 @@
       </div>
 
       <!-- 后测题4（马关条约相关） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战】《马关条约》对中国影响最深远的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 赔款严重，但不是最深远的影响">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：赔款白银2亿两" aria-pressed="false" data-feedback="❌ 赔款严重，但不是最深远的影响">
             <span class="opt-letter">A</span> 赔款白银2亿两
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 割让领土严重，但不是最深远的影响">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：割让台湾及澎湖列岛" aria-pressed="false" data-feedback="❌ 割让领土严重，但不是最深远的影响">
             <span class="opt-letter">B</span> 割让台湾及澎湖列岛
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：允许日本在华设厂" aria-pressed="false">
             <span class="opt-letter">C</span> 允许日本在华设厂
           </div>
         </div>
@@ -644,6 +666,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 考点分析</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -689,7 +714,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>甲午战争对中国社会的影响（民族危机加深、刺激救亡图存运动）。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     
   
@@ -806,5 +833,6 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

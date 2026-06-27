@@ -97,13 +97,29 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar">
 <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
 <div class="brand-tag">互动课件 v7.14</div>
 </div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 2/2 节 · 100%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第一单元：中国的地理差异</div>
@@ -163,6 +179,12 @@
 <!-- 2. 学习目标 -->
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card">
 <ul style="list-style:none;padding-left:0;line-height:2;">
 <li>✅ 掌握四大地理区域的名称和位置</li>
@@ -178,34 +200,34 @@
 <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
 <p style="color:#2471a3;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
 
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1. 【⭐ 基础】我国四大地理区域是指？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 东西划分不完整！"><span class="opt-letter">A</span> 东部、西部、南部、北部</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 北方地区、南方地区、西北地区、青藏地区</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 华中不是四大区域之一！"><span class="opt-letter">C</span> 华北、华中、华南、西北</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：东部、西部、南部、北部" aria-pressed="false" data-feedback="❌ 东西划分不完整！"><span class="opt-letter">A</span> 东部、西部、南部、北部</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北方地区、南方地区、西北地区、青藏地区" aria-pressed="false"><span class="opt-letter">B</span> 北方地区、南方地区、西北地区、青藏地区</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：华北、华中、华南、西北" aria-pressed="false" data-feedback="❌ 华中不是四大区域之一！"><span class="opt-letter">C</span> 华北、华中、华南、西北</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;">我国四大地理区域是<strong>北方地区、南方地区、西北地区、青藏地区</strong>，是综合考虑地理位置、自然和人文地理特点划分的。</p></div>
 </div>
 
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2. 【⭐⭐ 提高】北方地区与南方地区的分界线是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'A')"><span class="opt-letter">A</span> 秦岭—淮河一线</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'B')" data-feedback="❌ 大兴安岭是西北与北方的大致分界！"><span class="opt-letter">B</span> 大兴安岭—太行山</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 昆仑山是青藏与西北的分界！"><span class="opt-letter">C</span> 昆仑山—祁连山</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦岭—淮河一线" aria-pressed="false"><span class="opt-letter">A</span> 秦岭—淮河一线</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：大兴安岭—太行山" aria-pressed="false" data-feedback="❌ 大兴安岭是西北与北方的大致分界！"><span class="opt-letter">B</span> 大兴安岭—太行山</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：昆仑山—祁连山" aria-pressed="false" data-feedback="❌ 昆仑山是青藏与西北的分界！"><span class="opt-letter">C</span> 昆仑山—祁连山</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 秦岭—淮河一线</strong></p><p style="margin-top:8px;"><strong>秦岭—淮河</strong>一线是北方与南方地区的分界线，也是1月0℃等温线和800mm等降水量线。</p></div>
 </div>
 
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3. 【⭐⭐⭐ 挑战】划分四大区域的主要依据是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 仅按经济划分不够全面！"><span class="opt-letter">A</span> 经济发展水平</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 地理位置、自然和人文地理特点</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 仅按人口划分不合理！"><span class="opt-letter">C</span> 人口密度</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：经济发展水平" aria-pressed="false" data-feedback="❌ 仅按经济划分不够全面！"><span class="opt-letter">A</span> 经济发展水平</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：地理位置、自然和人文地理特点" aria-pressed="false"><span class="opt-letter">B</span> 地理位置、自然和人文地理特点</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：人口密度" aria-pressed="false" data-feedback="❌ 仅按人口划分不合理！"><span class="opt-letter">C</span> 人口密度</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;">四大地理区域是综合<strong>地理位置、自然和人文地理特点</strong>划分的，包括气候、地形、农业、风俗等多方面因素。</p></div>
@@ -323,34 +345,34 @@
 <section class="section" id="section-postquiz">
 <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
 
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1. 【⭐ 基础】青藏地区的主要自然特征是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 干旱是西北地区的特征！"><span class="opt-letter">A</span> 干旱</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 高寒</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 湿润是南方地区的特征！"><span class="opt-letter">C</span> 湿润</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：干旱" aria-pressed="false" data-feedback="❌ 干旱是西北地区的特征！"><span class="opt-letter">A</span> 干旱</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：高寒" aria-pressed="false"><span class="opt-letter">B</span> 高寒</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：湿润" aria-pressed="false" data-feedback="❌ 湿润是南方地区的特征！"><span class="opt-letter">C</span> 湿润</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 高寒</strong></p><p style="margin-top:8px;">青藏地区因海拔高，形成<strong>高寒</strong>的自然特征，是世界上海拔最高的高原。</p></div>
 </div>
 
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2. 【⭐⭐ 提高·中考真题】西北地区与北方地区的大致分界线是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'A')" data-feedback="❌ 秦岭—淮河是南北分界线！"><span class="opt-letter">A</span> 秦岭—淮河</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'B')"><span class="opt-letter">B</span> 400mm等降水量线</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 昆仑山—祁连山是青藏地区与其他区域的分界！"><span class="opt-letter">C</span> 昆仑山—祁连山</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦岭—淮河" aria-pressed="false" data-feedback="❌ 秦岭—淮河是南北分界线！"><span class="opt-letter">A</span> 秦岭—淮河</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：400mm等降水量线" aria-pressed="false"><span class="opt-letter">B</span> 400mm等降水量线</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：昆仑山—祁连山" aria-pressed="false" data-feedback="❌ 昆仑山—祁连山是青藏地区与其他区域的分界！"><span class="opt-letter">C</span> 昆仑山—祁连山</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 400mm等降水量线</strong></p><p style="margin-top:8px;">400mm等降水量线大致经过<strong>大兴安岭—阴山—贺兰山</strong>，是西北地区与北方地区的大致分界。</p></div>
 </div>
 
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2023·湖南中考）关于四大地理区域说法正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 青藏地区不是干旱，而是高寒！"><span class="opt-letter">A</span> 青藏地区的主要特征是干旱</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'B')"><span class="opt-letter">B</span> 北方地区与南方地区的分界线是秦岭—淮河</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 西北地区也有绿洲农业！"><span class="opt-letter">C</span> 西北地区完全不能发展农业</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：青藏地区的主要特征是干旱" aria-pressed="false" data-feedback="❌ 青藏地区不是干旱，而是高寒！"><span class="opt-letter">A</span> 青藏地区的主要特征是干旱</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北方地区与南方地区的分界线是秦岭—淮河" aria-pressed="false"><span class="opt-letter">B</span> 北方地区与南方地区的分界线是秦岭—淮河</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西北地区完全不能发展农业" aria-pressed="false" data-feedback="❌ 西北地区也有绿洲农业！"><span class="opt-letter">C</span> 西北地区完全不能发展农业</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;"><strong>秦岭—淮河</strong>一线是北方与南方地区的分界线，这是四大区域划分中最核心的界线。</p></div>
@@ -401,5 +423,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《四大地理区域》课件加载完成（v1.0）')});
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -80,13 +80,29 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div>
     <div class="brand-tag">互动课件 v1.0</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d8cs.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第八单元：走进法治天地</div>
@@ -149,6 +165,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span>🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2">
           <li>✅ 理解公平正义对个人和社会的重要价值</li>
@@ -162,15 +184,15 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span>📝</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】下列说法正确的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 公平是相对的，不同人对公平的感受可能不同！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：公平是绝对的" aria-pressed="false" data-feedback="❌ 公平是相对的，不同人对公平的感受可能不同！">
           <span class="opt-letter">A</span> 公平是绝对的
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1,'B')">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：公平是相对的" aria-pressed="false">
           <span class="opt-letter">B</span> 公平是相对的
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 正义是社会制度的重要价值！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：正义无关紧要" aria-pressed="false" data-feedback="❌ 正义是社会制度的重要价值！">
           <span class="opt-letter">C</span> 正义无关紧要
         </div>
         <div class="feedback" id="feedback-1"></div>
@@ -181,15 +203,15 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px">
+      <div class="quiz-box" style="margin-top:20px" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】公平正义对个人成长有什么作用？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 公平正义有利于个人发展，不是阻碍！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：阻碍个人发展" aria-pressed="false" data-feedback="❌ 公平正义有利于个人发展，不是阻碍！">
           <span class="opt-letter">A</span> 阻碍个人发展
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2,'B')">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：为个人发展提供良好的环境" aria-pressed="false">
           <span class="opt-letter">B</span> 为个人发展提供良好的环境
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 公平正义对社会有重要价值！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只影响社会不影响个人" aria-pressed="false" data-feedback="❌ 公平正义对社会有重要价值！">
           <span class="opt-letter">C</span> 只影响社会不影响个人
         </div>
         <div class="feedback" id="feedback-2"></div>
@@ -273,15 +295,15 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span>✅</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】关于公平，下列说法正确的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 公平不等于平均主义！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：公平就是绝对平均" aria-pressed="false" data-feedback="❌ 公平不等于平均主义！">
           <span class="opt-letter">A</span> 公平就是绝对平均
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,10,'B')">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：公平是相对的，处理事情合情合理" aria-pressed="false">
           <span class="opt-letter">B</span> 公平是相对的，处理事情合情合理
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 公平是社会制度的重要价值！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：公平可有可无" aria-pressed="false" data-feedback="❌ 公平是社会制度的重要价值！">
           <span class="opt-letter">C</span> 公平可有可无
         </div>
         <div class="feedback" id="feedback-10"></div>
@@ -292,15 +314,15 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px">
+      <div class="quiz-box" style="margin-top:20px" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）公平正义是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fff3e0;color:#e65100">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this,false,11,'A')" data-feedback="❌ 公平正义不仅是个人问题！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只是个人问题" aria-pressed="false" data-feedback="❌ 公平正义不仅是个人问题！">
           <span class="opt-letter">A</span> 只是个人问题
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 公平正义非常重要！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：空洞的口号" aria-pressed="false" data-feedback="❌ 公平正义非常重要！">
           <span class="opt-letter">B</span> 空洞的口号
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,11,'C')">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：社会和谐稳定的重要基础" aria-pressed="false">
           <span class="opt-letter">C</span> 社会和谐稳定的重要基础
         </div>
         <div class="feedback" id="feedback-11"></div>
@@ -399,6 +421,8 @@
       console.log('📚 《公平正义的价值》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

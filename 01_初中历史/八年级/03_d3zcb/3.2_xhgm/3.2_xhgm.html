@@ -343,6 +343,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- 1. 品牌栏 -->
 <div class="brand-bar">
@@ -453,6 +465,12 @@
 <!-- 7. 学习目标 -->
 <section class="section-block" id="objectives">
   <h2 class="section-title"><i class="fas fa-bullseye"></i> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
   <div class="objective-card">
     <ul class="objective-list">
       <li><i class="fas fa-check-circle"></i><span>掌握五四运动的爆发时间（1919年5月4日）及主要经过</span></li>
@@ -618,19 +636,19 @@
     <div class="quiz-item" data-q="1">
       <div class="q-num">第 1 题</div>
       <div class="q-text">五四运动的爆发时间是？</div>
-      <div class="quiz-option" data-opt="A" data-correct="true" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A1919年5月4日" aria-pressed="false" data-opt="A" data-correct="true">
         <span class="opt-label">A</span>
         <span>1919年5月4日</span>
       </div>
-      <div class="quiz-option" data-opt="B" data-feedback="错因解析：1918年11月是第一次世界大战结束的时间，并非五四运动爆发时间。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B1918年11月" aria-pressed="false" data-opt="B" data-feedback="错因解析：1918年11月是第一次世界大战结束的时间，并非五四运动爆发时间。">
         <span class="opt-label">B</span>
         <span>1918年11月</span>
       </div>
-      <div class="quiz-option" data-opt="C" data-feedback="错因解析：1921年7月是中国共产党成立的时间，时间相差较远。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C1921年7月" aria-pressed="false" data-opt="C" data-feedback="错因解析：1921年7月是中国共产党成立的时间，时间相差较远。">
         <span class="opt-label">C</span>
         <span>1921年7月</span>
       </div>
-      <div class="quiz-option" data-opt="D" data-feedback="错因解析：1915年5月是新文化运动开始的时间，请注意区分。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D1915年5月" aria-pressed="false" data-opt="D" data-feedback="错因解析：1915年5月是新文化运动开始的时间，请注意区分。">
         <span class="opt-label">D</span>
         <span>1915年5月</span>
       </div>
@@ -641,19 +659,19 @@
     <div class="quiz-item" data-q="2">
       <div class="q-num">第 2 题</div>
       <div class="q-text">五四运动的导火索是？</div>
-      <div class="quiz-option" data-opt="A" data-feedback="错因解析：甲午战争失败是1894年，时间过早，不是五四运动的直接导火索。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A甲午战争失败" aria-pressed="false" data-opt="A" data-feedback="错因解析：甲午战争失败是1894年，时间过早，不是五四运动的直接导火索。">
         <span class="opt-label">A</span>
         <span>甲午战争失败</span>
       </div>
-      <div class="quiz-option" data-opt="B" data-correct="true" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B巴黎和会中国外交失败" aria-pressed="false" data-opt="B" data-correct="true">
         <span class="opt-label">B</span>
         <span>巴黎和会中国外交失败</span>
       </div>
-      <div class="quiz-option" data-opt="C" data-feedback="错因解析：九一八事变发生在1931年，时间在五四运动之后，不可能是导火索。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C九一八事变" aria-pressed="false" data-opt="C" data-feedback="错因解析：九一八事变发生在1931年，时间在五四运动之后，不可能是导火索。">
         <span class="opt-label">C</span>
         <span>九一八事变</span>
       </div>
-      <div class="quiz-option" data-opt="D" data-feedback="错因解析：袁世凯称帝是1916年，虽然也是卖国行为，但不是五四运动这次事件的直接导火索。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D袁世凯称帝" aria-pressed="false" data-opt="D" data-feedback="错因解析：袁世凯称帝是1916年，虽然也是卖国行为，但不是五四运动这次事件的直接导火索。">
         <span class="opt-label">D</span>
         <span>袁世凯称帝</span>
       </div>
@@ -664,19 +682,19 @@
     <div class="quiz-item" data-q="3">
       <div class="q-num">第 3 题</div>
       <div class="q-text">五四运动期间，"外争主权，内除国贼"口号中的"国贼"主要指？</div>
-      <div class="quiz-option" data-opt="A" data-feedback="错因解析：蔡元培是支持学生的北大校长，是学生的保护者，并非国贼。注意不要与卖国贼混淆。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A蔡元培" aria-pressed="false" data-opt="A" data-feedback="错因解析：蔡元培是支持学生的北大校长，是学生的保护者，并非国贼。注意不要与卖国贼混淆。">
         <span class="opt-label">A</span>
         <span>蔡元培</span>
       </div>
-      <div class="quiz-option" data-opt="B" data-correct="true" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B曹汝霖、章宗祥、陆宗舆" aria-pressed="false" data-opt="B" data-correct="true">
         <span class="opt-label">B</span>
         <span>曹汝霖、章宗祥、陆宗舆</span>
       </div>
-      <div class="quiz-option" data-opt="C" data-feedback="错因解析：李大钊是马克思主义传播者、五四运动的领导人物之一，绝对不是国贼。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C李大钊" aria-pressed="false" data-opt="C" data-feedback="错因解析：李大钊是马克思主义传播者、五四运动的领导人物之一，绝对不是国贼。">
         <span class="opt-label">C</span>
         <span>李大钊</span>
       </div>
-      <div class="quiz-option" data-opt="D" data-feedback="错因解析：陈独秀是新文化运动领袖和五四运动的指导思想人物，不是国贼。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D陈独秀" aria-pressed="false" data-opt="D" data-feedback="错因解析：陈独秀是新文化运动领袖和五四运动的指导思想人物，不是国贼。">
         <span class="opt-label">D</span>
         <span>陈独秀</span>
       </div>
@@ -687,19 +705,19 @@
     <div class="quiz-item" data-q="4">
       <div class="q-num">第 4 题</div>
       <div class="q-text">五四运动最重要的历史意义是？</div>
-      <div class="quiz-option" data-opt="A" data-feedback="错因解析：五四运动不是以失败告终，而是取得了重要胜利——迫使北洋政府拒签和约、罢免三个卖国贼。题目问的是"最重要的历史意义"，这是过程而非意义本身。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A迫使北洋政府拒签和约" aria-pressed="false" data-opt="A" data-feedback="错因解析：五四运动不是以失败告终，而是取得了重要胜利——迫使北洋政府拒签和约、罢免三个卖国贼。题目问的是"最重要的历史意义"，这是过程而非意义本身。" onclick="selectOpt(this)">
         <span class="opt-label">A</span>
         <span>迫使北洋政府拒签和约</span>
       </div>
-      <div class="quiz-option" data-opt="B" data-correct="true" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B新民主主义革命的伟大开端" aria-pressed="false" data-opt="B" data-correct="true">
         <span class="opt-label">B</span>
         <span>新民主主义革命的伟大开端</span>
       </div>
-      <div class="quiz-option" data-opt="C" data-feedback="错因解析：推翻封建帝制是辛亥革命（1911年）的成果，张冠李戴了。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C推翻封建帝制" aria-pressed="false" data-opt="C" data-feedback="错因解析：推翻封建帝制是辛亥革命（1911年）的成果，张冠李戴了。">
         <span class="opt-label">C</span>
         <span>推翻封建帝制</span>
       </div>
-      <div class="quiz-option" data-opt="D" data-feedback="错因解析：中国共产党成立于1921年，五四运动为其奠定了基础，但不能说成是中共成立本身的意义。" onclick="selectOpt(this)">
+      <div class="quiz-option" role="button" tabindex="0" onclick="selectOpt(this)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D标志着中国共产党成立" aria-pressed="false" data-opt="D" data-feedback="错因解析：中国共产党成立于1921年，五四运动为其奠定了基础，但不能说成是中共成立本身的意义。">
         <span class="opt-label">D</span>
         <span>标志着中国共产党成立</span>
       </div>
@@ -713,16 +731,16 @@
     <!-- Section: 前测 -->
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】五四运动爆发的直接原因是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：巴黎和会外交失败" aria-pressed="false">
             <span class="opt-letter">A</span> 巴黎和会外交失败
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 答错了，正确答案是：巴黎和会外交失败">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北洋军阀统治" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：巴黎和会外交失败">
             <span class="opt-letter">B</span> 北洋军阀统治
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 答错了，正确答案是：巴黎和会外交失败">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：日本提出二十一条" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：巴黎和会外交失败">
             <span class="opt-letter">C</span> 日本提出二十一条
           </div>
         </div>
@@ -732,16 +750,16 @@
           <p><strong>正确答案：A. 巴黎和会外交失败</strong></p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】五四运动爆发于哪一年？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1919年" aria-pressed="false">
             <span class="opt-letter">A</span> 1919年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 答错了，正确答案是：1919年">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1911年" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：1919年">
             <span class="opt-letter">B</span> 1911年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 答错了，正确答案是：1919年">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1921年" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：1919年">
             <span class="opt-letter">C</span> 1921年
           </div>
         </div>
@@ -751,16 +769,16 @@
           <p><strong>正确答案：A. 1919年</strong></p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐ 基础】五四运动的口号是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：外争主权，内除国贼" aria-pressed="false">
             <span class="opt-letter">A</span> 外争主权，内除国贼
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 答错了，正确答案是：外争主权，内除国贼">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：驱除鞑虏，恢复中华" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：外争主权，内除国贼">
             <span class="opt-letter">B</span> 驱除鞑虏，恢复中华
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 答错了，正确答案是：外争主权，内除国贼">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：打倒列强，除军阀" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：外争主权，内除国贼">
             <span class="opt-letter">C</span> 打倒列强，除军阀
           </div>
         </div>
@@ -775,16 +793,16 @@
     <!-- Section: 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐⭐ 提高·中考真题】下列关于五四运动的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1919年5月4日，五四运动爆发" aria-pressed="false">
             <span class="opt-letter">A</span> 1919年5月4日，五四运动爆发
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -795,16 +813,16 @@
           <p style="margin-top: 8px;">1919年5月4日，五四运动爆发</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】下列关于五四运动的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：导火索：巴黎和会中国外交失败" aria-pressed="false">
             <span class="opt-letter">A</span> 导火索：巴黎和会中国外交失败
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：导火索：巴黎和会中国外交失败">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：导火索：巴黎和会中国外交失败">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：导火索：巴黎和会中国外交失败">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：导火索：巴黎和会中国外交失败">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -815,16 +833,16 @@
           <p style="margin-top: 8px;">导火索：巴黎和会中国外交失败</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高·中考真题】下列关于五四运动的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：口号：&quot;外争主权，内除国贼&quot;" aria-pressed="false">
             <span class="opt-letter">A</span> 口号："外争主权，内除国贼"
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：口号："外争主权，内除国贼"">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：口号："外争主权，内除国贼"">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：口号："外争主权，内除国贼"">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：口号："外争主权，内除国贼"">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -974,6 +992,8 @@
 
   </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -135,6 +135,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -144,6 +156,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 4/5 节 · 80%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d10dyc.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -220,6 +236,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 了解新经济政策实施的原因、内容和影响</li>
@@ -239,19 +261,19 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】苏联成立于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1917年俄国先后发生二月革命和十月革命，此时苏维埃政权刚建立，苏联尚未成立。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1917年" aria-pressed="false" data-feedback="❌ 1917年俄国先后发生二月革命和十月革命，此时苏维埃政权刚建立，苏联尚未成立。">
             <span class="opt-letter">A</span> 1917年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1922年" aria-pressed="false">
             <span class="opt-letter">B</span> 1922年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1924年是列宁逝世的时间，不是苏联成立的时间。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1924年" aria-pressed="false" data-feedback="❌ 1924年是列宁逝世的时间，不是苏联成立的时间。">
             <span class="opt-letter">C</span> 1924年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 1936年苏联颁布新宪法，标志着斯大林模式形成，但苏联成立于1922年。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：1936年" aria-pressed="false" data-feedback="❌ 1936年苏联颁布新宪法，标志着斯大林模式形成，但苏联成立于1922年。">
             <span class="opt-letter">D</span> 1936年
           </div>
         </div>
@@ -267,19 +289,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】新经济政策实施前，苏俄实行的是什么经济政策？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：战时共产主义政策" aria-pressed="false">
             <span class="opt-letter">A</span> 战时共产主义政策
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 计划经济是斯大林时期才全面推行的，不是新经济政策之前的政策。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：计划经济" aria-pressed="false" data-feedback="❌ 计划经济是斯大林时期才全面推行的，不是新经济政策之前的政策。">
             <span class="opt-letter">B</span> 计划经济
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 市场经济是资本主义的经济模式，与苏俄当时的社会制度不符。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：市场经济" aria-pressed="false" data-feedback="❌ 市场经济是资本主义的经济模式，与苏俄当时的社会制度不符。">
             <span class="opt-letter">C</span> 市场经济
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'D')" data-feedback="❌ 新政是指美国罗斯福新政（1933年），与苏俄无关。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：新政" aria-pressed="false" data-feedback="❌ 新政是指美国罗斯福新政（1933年），与苏俄无关。">
             <span class="opt-letter">D</span> 新政
           </div>
         </div>
@@ -291,19 +313,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】新经济政策的核心内容是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 余粮收集制是战时共产主义政策的内容，不是新经济政策！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：余粮收集制" aria-pressed="false" data-feedback="❌ 余粮收集制是战时共产主义政策的内容，不是新经济政策！">
             <span class="opt-letter">A</span> 余粮收集制
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：以粮食税代替余粮收集制" aria-pressed="false">
             <span class="opt-letter">B</span> 以粮食税代替余粮收集制
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 农业集体化是斯大林时期（1927年后）推行的政策，不是新经济政策的内容。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：农业集体化" aria-pressed="false" data-feedback="❌ 农业集体化是斯大林时期（1927年后）推行的政策，不是新经济政策的内容。">
             <span class="opt-letter">C</span> 农业集体化
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'D')" data-feedback="❌ 土地改革在十月革命后已经完成，不是新经济政策的核心内容。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：土地改革" aria-pressed="false" data-feedback="❌ 土地改革在十月革命后已经完成，不是新经济政策的核心内容。">
             <span class="opt-letter">D</span> 土地改革
           </div>
         </div>
@@ -315,19 +337,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列哪项是斯大林模式的主要特征？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 市场经济和民主政治恰恰是斯大林模式所排斥的！斯大林模式的特点是高度集权。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：市场经济和民主政治" aria-pressed="false" data-feedback="❌ 市场经济和民主政治恰恰是斯大林模式所排斥的！斯大林模式的特点是高度集权。">
             <span class="opt-letter">A</span> 市场经济和民主政治
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 优先发展轻工业和农业是斯大林模式的对立面。斯大林强调的是优先发展重工业！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：优先发展轻工业和农业" aria-pressed="false" data-feedback="❌ 优先发展轻工业和农业是斯大林模式的对立面。斯大林强调的是优先发展重工业！">
             <span class="opt-letter">B</span> 优先发展轻工业和农业
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：高度集中的政治经济体制" aria-pressed="false">
             <span class="opt-letter">C</span> 高度集中的政治经济体制
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'D')" data-feedback="❌ 自由放任是自由资本主义的特征，与斯大林模式完全相反。斯大林模式强调国家指令性计划。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：自由放任" aria-pressed="false" data-feedback="❌ 自由放任是自由资本主义的特征，与斯大林模式完全相反。斯大林模式强调国家指令性计划。">
             <span class="opt-letter">D</span> 自由放任
           </div>
         </div>
@@ -593,19 +615,19 @@
         包含中考真题与高频考点分析，答错了会详细讲解错因！
       </p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>5. 【⭐ 基础】苏联工业总产值跃居欧洲第一是在哪个计划完成后？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 一五计划期间（1928-1932）苏联建成了大型基础项目，但工业产值尚未达到欧洲第一。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：第一个五年计划" aria-pressed="false" data-feedback="❌ 一五计划期间（1928-1932）苏联建成了大型基础项目，但工业产值尚未达到欧洲第一。">
             <span class="opt-letter">A</span> 第一个五年计划
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：第二个五年计划" aria-pressed="false">
             <span class="opt-letter">B</span> 第二个五年计划
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 第三个五年计划因1941年苏德战争爆发而中断，没有正常完成。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：第三个五年计划" aria-pressed="false" data-feedback="❌ 第三个五年计划因1941年苏德战争爆发而中断，没有正常完成。">
             <span class="opt-letter">C</span> 第三个五年计划
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'D')" data-feedback="❌ 苏联没有第四个五年计划的说法。苏联的五年计划体系到1941年因战争中断。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：第四个五年计划" aria-pressed="false" data-feedback="❌ 苏联没有第四个五年计划的说法。苏联的五年计划体系到1941年因战争中断。">
             <span class="opt-letter">D</span> 第四个五年计划
           </div>
         </div>
@@ -617,19 +639,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>6. 【⭐⭐ 提高】（2023·山东中考改编）苏联实行新经济政策的主要目的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 加快军事建设是一五计划后期斯大林时期的任务，不是1921年新经济政策的目的。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：加快军事建设" aria-pressed="false" data-feedback="❌ 加快军事建设是一五计划后期斯大林时期的任务，不是1921年新经济政策的目的。">
             <span class="opt-letter">A</span> 加快军事建设
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：恢复国民经济，巩固工农联盟" aria-pressed="false">
             <span class="opt-letter">B</span> 恢复国民经济，巩固工农联盟
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 发展重工业是斯大林工业化方针的内容，不是新经济政策的主要目的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：优先发展重工业" aria-pressed="false" data-feedback="❌ 发展重工业是斯大林工业化方针的内容，不是新经济政策的主要目的。">
             <span class="opt-letter">C</span> 优先发展重工业
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'D')" data-feedback="❌ 农业集体化是斯大林1927年后推行的政策，与新经济政策的方向相反！新经济政策鼓励个体经营。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：实现农业集体化" aria-pressed="false" data-feedback="❌ 农业集体化是斯大林1927年后推行的政策，与新经济政策的方向相反！新经济政策鼓励个体经营。">
             <span class="opt-letter">D</span> 实现农业集体化
           </div>
         </div>
@@ -649,24 +671,24 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>7. 【⭐⭐⭐ 挑战·材料分析】<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📄 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:0.88rem;line-height:1.8;">
           <strong>【材料一】</strong>"苏联的工业化以重工业为核心，通过指令性计划集中全国的人力、物力、财力，在短期内完成了西方国家几十年才能实现的工业化。"<br><br>
           <strong>【材料二】</strong>"1936年苏联新宪法规定：苏联是工农社会主义国家。它的经济基础是社会主义经济体系和生产资料的社会主义公有制。"
         </div>
         <p style="margin-bottom:10px;font-weight:600;font-size:0.9rem;">上述材料共同反映了苏联哪一历史特征？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="❌ 新经济政策在1928年左右就被终止了，材料反映的是斯大林时期的工业化成就和体制。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：新经济政策的成功" aria-pressed="false" data-feedback="❌ 新经济政策在1928年左右就被终止了，材料反映的是斯大林时期的工业化成就和体制。">
             <span class="opt-letter">A</span> 新经济政策的成功
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：苏联模式的形成与特征" aria-pressed="false">
             <span class="opt-letter">B</span> 苏联模式的形成与特征
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="❌ 材料反映的是1936年前后的苏联状况，而苏联解体是1991年，相差甚远。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：苏联解体的原因" aria-pressed="false" data-feedback="❌ 材料反映的是1936年前后的苏联状况，而苏联解体是1991年，相差甚远。">
             <span class="opt-letter">C</span> 苏联解体的原因
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'D')" data-feedback="❌ 材料未涉及二战信息，且1936年二战尚未开打（二战1939年爆发）。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：二战后苏联的恢复" aria-pressed="false" data-feedback="❌ 材料未涉及二战信息，且1936年二战尚未开打（二战1939年爆发）。">
             <span class="opt-letter">D</span> 二战后苏联的恢复
           </div>
         </div>
@@ -686,19 +708,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>8. 【⭐⭐⭐ 挑战】（2022·湖南中考改编）苏联农业集体化后，农业长期发展缓慢的主要原因是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'A')" data-feedback="❌ 自然灾害不是主要原因。苏联农业问题本质上是体制问题，而不是自然条件问题。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：自然灾害频繁" aria-pressed="false" data-feedback="❌ 自然灾害不是主要原因。苏联农业问题本质上是体制问题，而不是自然条件问题。">
             <span class="opt-letter">A</span> 自然灾害频繁
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'B')" data-feedback="❌ 苏联农业长期发展缓慢，不存在农民积极性的问题。农民生产积极性恰恰是被体制压抑了。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：农民生产积极性高涨" aria-pressed="false" data-feedback="❌ 苏联农业长期发展缓慢，不存在农民积极性的问题。农民生产积极性恰恰是被体制压抑了。">
             <span class="opt-letter">B</span> 农民生产积极性高涨
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：国家以牺牲农业为代价发展重工业" aria-pressed="false">
             <span class="opt-letter">C</span> 国家以牺牲农业为代价发展重工业
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'D')" data-feedback="❌ 苏联实行的是义务交售制，农产品价格被压得很低，不是价格过高的问题。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：农产品价格过高" aria-pressed="false" data-feedback="❌ 苏联实行的是义务交售制，农产品价格被压得很低，不是价格过高的问题。">
             <span class="opt-letter">D</span> 农产品价格过高
           </div>
         </div>
@@ -725,6 +747,9 @@
     <section class="section" id="section-exam">
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -784,7 +809,9 @@
             <li><strong>斯大林模式</strong>（1936年形成）：高度集中的政治经济体制</li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -848,6 +875,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

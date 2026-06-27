@@ -135,10 +135,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">互动课件 v7.14</div></div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d3sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第三单元：秦汉时期</div>
@@ -194,6 +210,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道<strong>陈胜吴广起义</strong>（大泽乡起义）</li>
@@ -206,42 +228,42 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】陈胜吴广起义发生在哪里？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 巨鹿是项羽破釜沉舟的地方，不是陈胜吴广起义地点！"><span class="opt-letter">A</span> 巨鹿</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 大泽乡</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 陈县是陈胜建张楚政权的地方，不是起义爆发地！"><span class="opt-letter">C</span> 陈县</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：巨鹿" aria-pressed="false" data-feedback="❌ 巨鹿是项羽破釜沉舟的地方，不是陈胜吴广起义地点！"><span class="opt-letter">A</span> 巨鹿</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：大泽乡" aria-pressed="false"><span class="opt-letter">B</span> 大泽乡</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：陈县" aria-pressed="false" data-feedback="❌ 陈县是陈胜建张楚政权的地方，不是起义爆发地！"><span class="opt-letter">C</span> 陈县</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 大泽乡</strong></p><p style="margin-top: 8px;"><strong>前209年</strong>，陈胜、吴广在<strong>大泽乡</strong>（今安徽宿州）起义，这是中国历史上<strong>第一次大规模的农民起义</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】起义提出的口号是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> "王侯将相宁有种乎"</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ '约法三章'是刘邦入咸阳时的口号，不是陈胜吴广的！"><span class="opt-letter">B</span> "约法三章"</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ '破釜沉舟'是项羽的故事，不是陈胜吴广的口号！"><span class="opt-letter">C</span> "破釜沉舟"</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：&quot;王侯将相宁有种乎&quot;" aria-pressed="false"><span class="opt-letter">A</span> "王侯将相宁有种乎"</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：&quot;约法三章&quot;" aria-pressed="false" data-feedback="❌ '约法三章'是刘邦入咸阳时的口号，不是陈胜吴广的！"><span class="opt-letter">B</span> "约法三章"</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：&quot;破釜沉舟&quot;" aria-pressed="false" data-feedback="❌ '破釜沉舟'是项羽的故事，不是陈胜吴广的口号！"><span class="opt-letter">C</span> "破釜沉舟"</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. "王侯将相宁有种乎"</strong></p><p style="margin-top: 8px;">陈胜、吴广提出的口号：<strong>"王侯将相宁有种乎！"</strong>（那些称王侯拜将相的人，难道就是天生的贵种吗？）——号召大家反抗秦朝。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】秦朝灭亡于哪一年？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 前221年是秦统一，不是灭亡！"><span class="opt-letter">A</span> 前221年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 前202年是汉朝建立，不是秦朝灭亡！"><span class="opt-letter">B</span> 前202年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')"><span class="opt-letter">C</span> 前207年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：前221年" aria-pressed="false" data-feedback="❌ 前221年是秦统一，不是灭亡！"><span class="opt-letter">A</span> 前221年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：前202年" aria-pressed="false" data-feedback="❌ 前202年是汉朝建立，不是秦朝灭亡！"><span class="opt-letter">B</span> 前202年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：前207年" aria-pressed="false"><span class="opt-letter">C</span> 前207年</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 前207年</strong></p><p style="margin-top: 8px;"><strong>前207年</strong>，刘邦率军攻入咸阳，<strong>秦朝灭亡</strong>。秦朝从统一到灭亡，只存在了<strong>14年</strong>（前221-前207年）。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】"破釜沉舟"与谁有关？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ '破釜沉舟'不是陈胜的故事！"><span class="opt-letter">A</span> 陈胜</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')"><span class="opt-letter">B</span> 项羽</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ '破釜沉舟'不是刘邦的故事！"><span class="opt-letter">C</span> 刘邦</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：陈胜" aria-pressed="false" data-feedback="❌ '破釜沉舟'不是陈胜的故事！"><span class="opt-letter">A</span> 陈胜</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：项羽" aria-pressed="false"><span class="opt-letter">B</span> 项羽</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：刘邦" aria-pressed="false" data-feedback="❌ '破釜沉舟'不是刘邦的故事！"><span class="opt-letter">C</span> 刘邦</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 项羽</strong></p><p style="margin-top: 8px;"><strong>巨鹿之战</strong>（前207年），<strong>项羽</strong>率领楚军"<strong>破釜沉舟</strong>"（砸破锅、凿沉船），以必死的决心打败秦军主力。<strong>破釜沉舟</strong>比喻下定决心、不留退路。</p></div>
@@ -250,6 +272,9 @@
     <section class="section" id="section-process">
       <h2 class="section-title"><span class="num">⚔️</span> 陈胜吴广起义</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 起义背景</h3>
         <div class="concept-box" style="margin-top: 16px;">
           <div class="label">核心概念 · 秦朝暴政</div>
@@ -267,11 +292,16 @@
           <div class="timeline-item"><h4>前209年 · 起义失败</h4><p>陈胜、吴广被部下杀害，起义失败。但起义<strong>沉重打击了秦朝统治</strong>。</p></div>
         </div>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 陈胜吴广起义</div><p>✅ <strong>时间：</strong>前209年</p><p style="margin-top: 6px;">✅ <strong>地点：</strong>大泽乡（今安徽宿州）</p><p style="margin-top: 6px;">✅ <strong>意义：</strong>中国历史上<strong>第一次大规模农民起义</strong>，沉重打击了秦朝。</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-qin-collapse">
       <h2 class="section-title"><span class="num">📉</span> 秦朝灭亡与楚汉之争</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 秦朝灭亡</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li><strong>前207年</strong>：刘邦率军攻入咸阳，秦王子婴投降，<strong>秦朝灭亡</strong></li>
@@ -299,49 +329,51 @@
           </svg>
           <p class="svg-caption">图3-3 从秦亡到汉兴</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】中国历史上第一次大规模农民起义是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')"><span class="opt-letter">A</span> 陈胜吴广起义</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 黄巾起义是东汉末年的，不是第一次！"><span class="opt-letter">B</span> 黄巾起义</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 黄巢起义是唐朝末年的，不是第一次！"><span class="opt-letter">C</span> 黄巢起义</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：陈胜吴广起义" aria-pressed="false"><span class="opt-letter">A</span> 陈胜吴广起义</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：黄巾起义" aria-pressed="false" data-feedback="❌ 黄巾起义是东汉末年的，不是第一次！"><span class="opt-letter">B</span> 黄巾起义</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：黄巢起义" aria-pressed="false" data-feedback="❌ 黄巢起义是唐朝末年的，不是第一次！"><span class="opt-letter">C</span> 黄巢起义</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 陈胜吴广起义</strong></p><p style="margin-top: 8px;"><strong>前209年</strong>，陈胜、吴广领导的<strong>大泽乡起义</strong>，是中国历史上<strong>第一次大规模的农民起义</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）"王侯将相宁有种乎"是谁提出的？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 陈胜、吴广</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ '王侯将相宁有种乎'不是项羽提出的！"><span class="opt-letter">B</span> 项羽</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ '王侯将相宁有种乎'不是刘邦提出的！"><span class="opt-letter">C</span> 刘邦</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：陈胜、吴广" aria-pressed="false"><span class="opt-letter">A</span> 陈胜、吴广</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：项羽" aria-pressed="false" data-feedback="❌ '王侯将相宁有种乎'不是项羽提出的！"><span class="opt-letter">B</span> 项羽</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：刘邦" aria-pressed="false" data-feedback="❌ '王侯将相宁有种乎'不是刘邦提出的！"><span class="opt-letter">C</span> 刘邦</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 陈胜、吴广</strong></p><p style="margin-top: 8px;">这句话是<strong>陈胜、吴广</strong>在大泽乡起义时提出的口号，意思是：<strong>"那些称王侯拜将相的人，难道就是天生的贵种吗？"</strong>——号召大家反抗秦朝的暴政。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）楚汉之争的结果是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 项羽在垓下之战失败，乌江自刎，没有赢！"><span class="opt-letter">A</span> 项羽胜利</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')"><span class="opt-letter">B</span> 刘邦胜利</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 楚汉之争没有平分天下，刘邦统一了天下！"><span class="opt-letter">C</span> 平分天下</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：项羽胜利" aria-pressed="false" data-feedback="❌ 项羽在垓下之战失败，乌江自刎，没有赢！"><span class="opt-letter">A</span> 项羽胜利</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：刘邦胜利" aria-pressed="false"><span class="opt-letter">B</span> 刘邦胜利</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：平分天下" aria-pressed="false" data-feedback="❌ 楚汉之争没有平分天下，刘邦统一了天下！"><span class="opt-letter">C</span> 平分天下</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 刘邦胜利</strong></p><p style="margin-top: 8px;"><strong>前202年</strong>，刘邦在<strong>垓下</strong>围困项羽，项羽<strong>乌江自刎</strong>。刘邦胜利，建立<strong>汉朝</strong>（西汉）。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"秦王扫六合，虎视何雄哉！挥剑决浮云，诸侯尽西来。"——李白《古风》</div>
         <p style="margin-bottom:10px;font-weight:600;">秦朝灭亡的根本原因是？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料没提到农民起义，根本原因是暴政！"><span class="opt-letter">A</span> 农民起义</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')"><span class="opt-letter">B</span> 秦朝暴政</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料没提到项羽，根本原因是暴政！"><span class="opt-letter">C</span> 项羽破釜沉舟</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：农民起义" aria-pressed="false" data-feedback="❌ 材料没提到农民起义，根本原因是暴政！"><span class="opt-letter">A</span> 农民起义</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：秦朝暴政" aria-pressed="false"><span class="opt-letter">B</span> 秦朝暴政</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：项羽破釜沉舟" aria-pressed="false" data-feedback="❌ 材料没提到项羽，根本原因是暴政！"><span class="opt-letter">C</span> 项羽破釜沉舟</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 秦朝暴政</strong></p><p style="margin-top: 8px;">秦朝灭亡的<strong>根本原因</strong>是<strong>暴政</strong>（赋税沉重、徭役繁重、刑罚残酷）。农民起义是<strong>直接原因</strong>，但暴政才是<strong>根源</strong>。</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 根本原因 vs 直接原因</div><ul style="padding-left: 20px; line-height: 1.8;"><li><strong>根本原因：</strong>深层次、长期积累的原因（如暴政、制度问题）</li><li><strong>直接原因：</strong>直接触发事件（如起义、战争）</li></ul></div></div>
@@ -418,6 +450,8 @@
       console.log('📚 《秦末农民起义》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

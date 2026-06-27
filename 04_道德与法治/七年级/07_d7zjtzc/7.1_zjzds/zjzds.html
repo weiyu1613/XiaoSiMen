@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 24/31 节 · 77.4%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d7zjtzc.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第七单元：在集体中成长</div>
@@ -127,6 +143,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解集体的含义，知道集体是有组织的整体 <span class="tag tag-theory">关联：组织社会学</span></li>
         <li>✅ 感受集体的温暖，体会归属感和安全感 <span class="tag tag-theory">关联：归属感理论</span></li>
@@ -140,12 +162,12 @@
       <p style="color:#4caf50;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列属于集体的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 公园里的人群是<strong>偶然聚集</strong>，没有组织性，不是集体。<br><span class='tag tag-mistake'>归因：混淆了'人群'和'集体'的概念</span>"><span class="opt-letter">A</span> 公园里游玩的人群</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体是人们联合起来的有组织的整体</span>"><span class="opt-letter">B</span> 七年级（1）班</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 公交车上的乘客是<strong>临时组合</strong>，缺乏共同目标，不是集体。<br><span class='tag tag-mistake'>归因：忽略了集体的组织性特征</span>"><span class="opt-letter">C</span> 公交车上的乘客</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：公园里游玩的人群" aria-pressed="false" data-fb="❌ 公园里的人群是<strong>偶然聚集</strong>，没有组织性，不是集体。<br><span class='tag tag-mistake'>归因：混淆了'人群'和'集体'的概念</span>"><span class="opt-letter">A</span> 公园里游玩的人群</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：七年级（1）班" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体是人们联合起来的有组织的整体</span>"><span class="opt-letter">B</span> 七年级（1）班</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：公交车上的乘客" aria-pressed="false" data-fb="❌ 公交车上的乘客是<strong>临时组合</strong>，缺乏共同目标，不是集体。<br><span class='tag tag-mistake'>归因：忽略了集体的组织性特征</span>"><span class="opt-letter">C</span> 公交车上的乘客</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -157,12 +179,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】在集体中感受到温暖，主要来源于？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 物质奖励只是<strong>外在激励</strong>，不是集体温暖的核心来源。<br><span class='tag tag-mistake'>归因：只看到表层现象，未理解集体温暖的本质</span>"><span class="opt-letter">A</span> 集体给的物质奖励</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体温暖来源于被接纳、被尊重、被理解</span>"><span class="opt-letter">B</span> 被认可和接纳，得到尊重和理解</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 集体不是<strong>无原则的迁就</strong>，真正的温暖是有原则的关爱。<br><span class='tag tag-mistake'>归因：误解了集体温暖的真正含义</span>"><span class="opt-letter">C</span> 集体对每个人无条件迁就</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：集体给的物质奖励" aria-pressed="false" data-fb="❌ 物质奖励只是<strong>外在激励</strong>，不是集体温暖的核心来源。<br><span class='tag tag-mistake'>归因：只看到表层现象，未理解集体温暖的本质</span>"><span class="opt-letter">A</span> 集体给的物质奖励</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：被认可和接纳，得到尊重和理解" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体温暖来源于被接纳、被尊重、被理解</span>"><span class="opt-letter">B</span> 被认可和接纳，得到尊重和理解</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：集体对每个人无条件迁就" aria-pressed="false" data-fb="❌ 集体不是<strong>无原则的迁就</strong>，真正的温暖是有原则的关爱。<br><span class='tag tag-mistake'>归因：误解了集体温暖的真正含义</span>"><span class="opt-letter">C</span> 集体对每个人无条件迁就</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -174,12 +196,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于集体力量，下列理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 集体力量<strong>不是</strong>个人力量的简单相加，而是<strong>乘数效应</strong>。<br><span class='tag tag-mistake'>归因：线性思维，不理解系统论的整体性原理</span>"><span class="opt-letter">A</span> 集体力量就是每个人力量的简单相加</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 集体力量<strong>可以</strong>影响甚至改变一个人，这是集体的重要作用。<br><span class='tag tag-mistake'>归因：低估了集体的社会化功能</span>"><span class="opt-letter">B</span> 集体力量不能改变个人</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体力量来源于成员共同目标和团结协作</span>"><span class="opt-letter">C</span> 集体力量来源于成员共同的目标和团结协作</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：集体力量就是每个人力量的简单相加" aria-pressed="false" data-fb="❌ 集体力量<strong>不是</strong>个人力量的简单相加，而是<strong>乘数效应</strong>。<br><span class='tag tag-mistake'>归因：线性思维，不理解系统论的整体性原理</span>"><span class="opt-letter">A</span> 集体力量就是每个人力量的简单相加</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：集体力量不能改变个人" aria-pressed="false" data-fb="❌ 集体力量<strong>可以</strong>影响甚至改变一个人，这是集体的重要作用。<br><span class='tag tag-mistake'>归因：低估了集体的社会化功能</span>"><span class="opt-letter">B</span> 集体力量不能改变个人</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：集体力量来源于成员共同的目标和团结协作" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体力量来源于成员共同目标和团结协作</span>"><span class="opt-letter">C</span> 集体力量来源于成员共同的目标和团结协作</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -194,6 +216,9 @@
     <!-- ===== 正文知识 ===== -->
     <section><h2 class="section-title">📚 一、集体的含义</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#4caf50;">📖 什么是集体？</h3>
         <div class="concept-box"><div class="label">💡 核心定义 <span class="tag tag-theory">关联：组织社会学</span></div>
           <p>集体是<strong>人们联合起来的有组织的整体</strong>。</p>
@@ -210,11 +235,16 @@
           <p>① <strong>群体</strong>：只是人员的聚集（如商场里的人群），缺乏组织性和共同目标。</p>
           <p>② <strong>集体</strong>：是有组织的、有共同目标的、成员有归属感的整体（如班级、学校、社团）。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">📚 二、集体的温暖</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#4caf50;">📖 在集体中如何感受到温暖？</h3>
         <div class="concept-box"><div class="label">✨ 集体温暖的四个表现 <span class="tag tag-theory">关联：归属感理论</span></div>
           <p>① <strong>被认可和接纳</strong>：新同学加入时，大家欢迎他 <span class="tag tag-theory">社会接纳</span></p>
@@ -225,7 +255,9 @@
         <div style="background:#f1f8f4;border-radius:8px;padding:16px;margin-top:16px;font-style:italic;color:#1b5e20;">
           "一个人只有把自己和集体事业融合在一起的时候，才能最有力量。" —— 雷锋<span class="tag tag-kp">集体主义精神</span>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">📚 三、集体荣誉感</h2>
@@ -252,6 +284,9 @@
 
     <section><h2 class="section-title">📚 四、集体力量的来源与作用</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#4caf50;">📖 集体力量从哪里来？</h3>
         <div class="concept-box"><div class="label">💪 集体力量的两个来源 <span class="tag tag-theory">关联：系统论</span></div>
           <p>① <strong>成员共同的目标</strong>：大家心往一处想，劲往一处使</p>
@@ -276,19 +311,21 @@
           <p style="font-style:italic;color:#1b5e20;">"单丝不成线，独木不成林。" —— 中国谚语<span class="tag tag-kp">集体力量</span></p>
           <p style="font-style:italic;color:#1b5e20;margin-top:8px;">"团结就是力量。" —— 谚语<span class="tag tag-kp">团结协作</span></p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
       <p style="color:#4caf50;margin-bottom:16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列属于集体的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 大街上的人群是<strong>偶然聚集</strong>，不是集体。<br><span class='tag tag-mistake'>归因：未理解集体的组织性特征</span>"><span class="opt-letter">A</span> 大街上的人群</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：学校是有组织的整体</span>"><span class="opt-letter">B</span> 我们的学校</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 电影院观众是<strong>临时聚集</strong>，缺乏共同目标。<br><span class='tag tag-mistake'>归因：混淆了临时聚集和集体</span>"><span class="opt-letter">C</span> 电影院里的观众</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：大街上的人群" aria-pressed="false" data-fb="❌ 大街上的人群是<strong>偶然聚集</strong>，不是集体。<br><span class='tag tag-mistake'>归因：未理解集体的组织性特征</span>"><span class="opt-letter">A</span> 大街上的人群</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：我们的学校" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：学校是有组织的整体</span>"><span class="opt-letter">B</span> 我们的学校</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：电影院里的观众" aria-pressed="false" data-fb="❌ 电影院观众是<strong>临时聚集</strong>，缺乏共同目标。<br><span class='tag tag-mistake'>归因：混淆了临时聚集和集体</span>"><span class="opt-letter">C</span> 电影院里的观众</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -296,12 +333,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】集体荣誉感的作用是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 集体荣誉感<strong>不是</strong>只对个人有用，对集体也有重要作用。<br><span class='tag tag-mistake'>归因：片面理解，忽略了集体荣誉感的集体价值</span>"><span class="opt-letter">A</span> 只对个人的成长有用</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体荣誉感激励我们前进</span>"><span class="opt-letter">B</span> 令我们骄傲自豪，激励我们不断前进</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 集体荣誉感<strong>不是</strong>没有任何作用，它是集体的精神动力。<br><span class='tag tag-mistake'>归因：虚无主义理解，否定集体荣誉感的价值</span>"><span class="opt-letter">C</span> 没有任何实际作用</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只对个人的成长有用" aria-pressed="false" data-fb="❌ 集体荣誉感<strong>不是</strong>只对个人有用，对集体也有重要作用。<br><span class='tag tag-mistake'>归因：片面理解，忽略了集体荣誉感的集体价值</span>"><span class="opt-letter">A</span> 只对个人的成长有用</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：令我们骄傲自豪，激励我们不断前进" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体荣誉感激励我们前进</span>"><span class="opt-letter">B</span> 令我们骄傲自豪，激励我们不断前进</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：没有任何实际作用" aria-pressed="false" data-fb="❌ 集体荣誉感<strong>不是</strong>没有任何作用，它是集体的精神动力。<br><span class='tag tag-mistake'>归因：虚无主义理解，否定集体荣誉感的价值</span>"><span class="opt-letter">C</span> 没有任何实际作用</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -309,12 +346,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考真题】关于集体力量，下列观点正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！集体力量确实能完成个人无法完成的事。<br><span class='tag tag-kp'>知识点：集体力量的作用</span>"><span class="opt-letter">A</span> 集体力量可以完成个人无法完成的事</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 集体力量<strong>不是</strong>个人力量的简单相加，而是<strong>乘数效应</strong>。<br><span class='tag tag-mistake'>归因：线性思维，不理解系统论的整体性</span>"><span class="opt-letter">B</span> 集体力量就是每个人力量的简单相加</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 集体力量的大小<strong>取决于</strong>成员的协作程度，不是<strong>取决于人数多少</strong>。<br><span class='tag tag-mistake'>归因：数量思维，忽略了质量和协作的重要性</span>"><span class="opt-letter">C</span> 集体力量大小取决于人数多少</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：集体力量可以完成个人无法完成的事" aria-pressed="false" data-fb="✅ 正确！集体力量确实能完成个人无法完成的事。<br><span class='tag tag-kp'>知识点：集体力量的作用</span>"><span class="opt-letter">A</span> 集体力量可以完成个人无法完成的事</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：集体力量就是每个人力量的简单相加" aria-pressed="false" data-fb="❌ 集体力量<strong>不是</strong>个人力量的简单相加，而是<strong>乘数效应</strong>。<br><span class='tag tag-mistake'>归因：线性思维，不理解系统论的整体性</span>"><span class="opt-letter">B</span> 集体力量就是每个人力量的简单相加</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：集体力量大小取决于人数多少" aria-pressed="false" data-fb="❌ 集体力量的大小<strong>取决于</strong>成员的协作程度，不是<strong>取决于人数多少</strong>。<br><span class='tag tag-mistake'>归因：数量思维，忽略了质量和协作的重要性</span>"><span class="opt-letter">C</span> 集体力量大小取决于人数多少</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -327,6 +364,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -372,7 +412,9 @@
           <p style="margin-top:10px;font-size:13px;color:#065f46;"><span class="tag tag-mistake">常见陷阱</span> "简单相加论""人数决定论"等<strong>错误理解</strong>。</p>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -402,6 +444,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

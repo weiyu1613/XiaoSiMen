@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 17/31 节 · 54.8%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d5qcsg.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第五单元：青春时光</div>
@@ -127,6 +143,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 了解青春期的生理变化 <span class="tag tag-theory">关联：生理发展理论</span></li>
         <li>✅ 认识青春期的心理变化 <span class="tag tag-theory">关联：认知发展理论</span></li>
@@ -140,12 +162,12 @@
       <p style="color:#e91e63;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】青春期是指哪个年龄段？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 7-12岁是<strong>童年晚期</strong>，还没有进入青春期。<br><span class='tag tag-mistake'>归因：对青春期起始年龄认识不清</span>"><span class="opt-letter">A</span> 7-12岁</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：青春期一般为10-19岁</span>"><span class="opt-letter">B</span> 10-19岁</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 20-30岁已经是<strong>青年期</strong>，不是青春期了。<br><span class='tag tag-mistake'>归因：混淆了青春期和青年期的界限</span>"><span class="opt-letter">C</span> 20-30岁</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：7-12岁" aria-pressed="false" data-fb="❌ 7-12岁是<strong>童年晚期</strong>，还没有进入青春期。<br><span class='tag tag-mistake'>归因：对青春期起始年龄认识不清</span>"><span class="opt-letter">A</span> 7-12岁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：10-19岁" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：青春期一般为10-19岁</span>"><span class="opt-letter">B</span> 10-19岁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：20-30岁" aria-pressed="false" data-fb="❌ 20-30岁已经是<strong>青年期</strong>，不是青春期了。<br><span class='tag tag-mistake'>归因：混淆了青春期和青年期的界限</span>"><span class="opt-letter">C</span> 20-30岁</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -157,12 +179,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】青春期最显著的生理变化是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 身高体重增长是<strong>外部表现</strong>，不是最显著的变化。<br><span class='tag tag-mistake'>归因：只看到表象，未理解本质</span>"><span class="opt-letter">A</span> 身高体重迅速增长</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：生殖器官发育成熟是青春期最显著的变化</span>"><span class="opt-letter">B</span> 生殖器官发育成熟</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 大脑重量增加主要在<strong>婴幼儿期</strong>，青春期变化不大。<br><span class='tag tag-mistake'>归因：对大脑发育时期认识错误</span>"><span class="opt-letter">C</span> 大脑重量明显增加</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：身高体重迅速增长" aria-pressed="false" data-fb="❌ 身高体重增长是<strong>外部表现</strong>，不是最显著的变化。<br><span class='tag tag-mistake'>归因：只看到表象，未理解本质</span>"><span class="opt-letter">A</span> 身高体重迅速增长</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：生殖器官发育成熟" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：生殖器官发育成熟是青春期最显著的变化</span>"><span class="opt-letter">B</span> 生殖器官发育成熟</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：大脑重量明显增加" aria-pressed="false" data-fb="❌ 大脑重量增加主要在<strong>婴幼儿期</strong>，青春期变化不大。<br><span class='tag tag-mistake'>归因：对大脑发育时期认识错误</span>"><span class="opt-letter">C</span> 大脑重量明显增加</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -174,12 +196,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】面对青春期的生理变化，正确的做法是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ <strong>自卑逃避</strong>是不健康的应对方式，会导致心理问题。<br><span class='tag tag-mistake'>归因：缺乏自我接纳意识</span>"><span class="opt-letter">A</span> 因为变化而自卑，逃避社交</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ <strong>嘲笑他人</strong>是不尊重的表现，会伤害同学感情。<br><span class='tag tag-mistake'>归因：缺乏同理心和尊重意识</span>"><span class="opt-letter">B</span> 嘲笑同伴的身体变化</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：悦纳生理变化，追求外在美与内在美的统一</span>"><span class="opt-letter">C</span> 悦纳变化，不自卑，追求外在美与内在美的统一</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：因为变化而自卑，逃避社交" aria-pressed="false" data-fb="❌ <strong>自卑逃避</strong>是不健康的应对方式，会导致心理问题。<br><span class='tag tag-mistake'>归因：缺乏自我接纳意识</span>"><span class="opt-letter">A</span> 因为变化而自卑，逃避社交</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：嘲笑同伴的身体变化" aria-pressed="false" data-fb="❌ <strong>嘲笑他人</strong>是不尊重的表现，会伤害同学感情。<br><span class='tag tag-mistake'>归因：缺乏同理心和尊重意识</span>"><span class="opt-letter">B</span> 嘲笑同伴的身体变化</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：悦纳变化，不自卑，追求外在美与内在美的统一" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：悦纳生理变化，追求外在美与内在美的统一</span>"><span class="opt-letter">C</span> 悦纳变化，不自卑，追求外在美与内在美的统一</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -236,12 +258,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】青春期生理变化的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 青春期变化是<strong>显著的</strong>，不是不明显的！<br><span class='tag tag-mistake'>归因：对青春期变化认识不足</span>"><span class="opt-letter">A</span> 变化不明显</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：青春期生理变化显著</span>"><span class="opt-letter">B</span> 身体外形、内部器官、性机能都发生变化</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 只有女生有青春期变化？<strong>错误</strong>！男生也有。<br><span class='tag tag-mistake'>归因：性别认知偏差</span>"><span class="opt-letter">C</span> 只有女生有变化</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：变化不明显" aria-pressed="false" data-fb="❌ 青春期变化是<strong>显著的</strong>，不是不明显的！<br><span class='tag tag-mistake'>归因：对青春期变化认识不足</span>"><span class="opt-letter">A</span> 变化不明显</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：身体外形、内部器官、性机能都发生变化" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：青春期生理变化显著</span>"><span class="opt-letter">B</span> 身体外形、内部器官、性机能都发生变化</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只有女生有变化" aria-pressed="false" data-fb="❌ 只有女生有青春期变化？<strong>错误</strong>！男生也有。<br><span class='tag tag-mistake'>归因：性别认知偏差</span>"><span class="opt-letter">C</span> 只有女生有变化</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -249,12 +271,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】处理青春期心理矛盾的方法是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ <strong>封闭自己</strong>会加剧心理矛盾，不利于心理健康。<br><span class='tag tag-mistake'>归因：选择了错误的应对方式</span>"><span class="opt-letter">A</span> 封闭自己，不与人交流</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：参加集体活动、求助他人、培养兴趣爱好、自我调节</span>"><span class="opt-letter">B</span> 参加集体活动、求助他人、培养兴趣爱好、自我调节</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ <strong>放纵情绪</strong>会伤害他人，不利于人际关系。<br><span class='tag tag-mistake'>归因：情绪管理方式错误</span>"><span class="opt-letter">C</span> 放纵情绪，想做什么就做什么</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：封闭自己，不与人交流" aria-pressed="false" data-fb="❌ <strong>封闭自己</strong>会加剧心理矛盾，不利于心理健康。<br><span class='tag tag-mistake'>归因：选择了错误的应对方式</span>"><span class="opt-letter">A</span> 封闭自己，不与人交流</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：参加集体活动、求助他人、培养兴趣爱好、自我调节" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：参加集体活动、求助他人、培养兴趣爱好、自我调节</span>"><span class="opt-letter">B</span> 参加集体活动、求助他人、培养兴趣爱好、自我调节</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：放纵情绪，想做什么就做什么" aria-pressed="false" data-fb="❌ <strong>放纵情绪</strong>会伤害他人，不利于人际关系。<br><span class='tag tag-mistake'>归因：情绪管理方式错误</span>"><span class="opt-letter">C</span> 放纵情绪，想做什么就做什么</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -262,12 +284,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于悦纳青春期变化，说法正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！悦纳自己是健康发展的基础。<br><span class='tag tag-kp'>知识点：悦纳自我</span>"><span class="opt-letter">A</span> 悦纳自己的生理变化，不自卑</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ <strong>只关注外表</strong>是片面的，应该追求外在美与内在美的统一。<br><span class='tag tag-mistake'>归因：价值观偏差，过于注重外表</span>"><span class="opt-letter">B</span> 只要外表漂亮就好，不用提升内在</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ <strong>嘲笑他人</strong>是不尊重的表现，会伤害同学感情。<br><span class='tag tag-mistake'>归因：缺乏同理心和尊重意识</span>"><span class="opt-letter">C</span> 嘲笑同伴的身体变化</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：悦纳自己的生理变化，不自卑" aria-pressed="false" data-fb="✅ 正确！悦纳自己是健康发展的基础。<br><span class='tag tag-kp'>知识点：悦纳自我</span>"><span class="opt-letter">A</span> 悦纳自己的生理变化，不自卑</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：只要外表漂亮就好，不用提升内在" aria-pressed="false" data-fb="❌ <strong>只关注外表</strong>是片面的，应该追求外在美与内在美的统一。<br><span class='tag tag-mistake'>归因：价值观偏差，过于注重外表</span>"><span class="opt-letter">B</span> 只要外表漂亮就好，不用提升内在</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：嘲笑同伴的身体变化" aria-pressed="false" data-fb="❌ <strong>嘲笑他人</strong>是不尊重的表现，会伤害同学感情。<br><span class='tag tag-mistake'>归因：缺乏同理心和尊重意识</span>"><span class="opt-letter">C</span> 嘲笑同伴的身体变化</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -280,6 +302,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);border:1px solid #f48fb1;">
           <div class="exam-card-header">
@@ -326,7 +351,9 @@
           </ul>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -356,6 +383,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

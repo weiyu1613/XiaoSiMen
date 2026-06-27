@@ -114,6 +114,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-anchor"></i><span>TeachAny · 初中历史</span></div>
@@ -123,6 +135,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 4/4 节 · 100%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d5zxd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -210,6 +226,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 了解葡萄牙、西班牙的早期殖民活动</li>
@@ -224,16 +246,16 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【&#11088; 基础】最早进行殖民掠夺的国家是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：葡萄牙和西班牙" aria-pressed="false">
             <span class="opt-letter">A</span> 葡萄牙和西班牙
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="&#10060; 英国是后来才成为殖民强国的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：英国和法国" aria-pressed="false" data-feedback="&#10060; 英国是后来才成为殖民强国的。">
             <span class="opt-letter">B</span> 英国和法国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 荷兰的殖民活动晚于葡西。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：荷兰和葡萄牙" aria-pressed="false" data-feedback="&#10060; 荷兰的殖民活动晚于葡西。">
             <span class="opt-letter">C</span> 荷兰和葡萄牙
           </div>
         </div>
@@ -245,16 +267,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【&#11088; 基础】"三角贸易"中，从非洲运往美洲的是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="&#10060; 工业品是从欧洲运往非洲的。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：工业品" aria-pressed="false" data-feedback="&#10060; 工业品是从欧洲运往非洲的。">
             <span class="opt-letter">A</span> 工业品
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：黑人奴隶" aria-pressed="false">
             <span class="opt-letter">B</span> 黑人奴隶
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 糖、烟草是从美洲运回欧洲的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：糖和烟草" aria-pressed="false" data-feedback="&#10060; 糖、烟草是从美洲运回欧洲的。">
             <span class="opt-letter">C</span> 糖和烟草
           </div>
         </div>
@@ -266,16 +288,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【&#11088;&#11088; 提高】英国打败西班牙无敌舰队的时间是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 1492年是哥伦布发现美洲。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1492年" aria-pressed="false" data-feedback="&#10060; 1492年是哥伦布发现美洲。">
             <span class="opt-letter">A</span> 1492年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1588年" aria-pressed="false">
             <span class="opt-letter">B</span> 1588年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 1640年是英国资产阶级革命开始。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1640年" aria-pressed="false" data-feedback="&#10060; 1640年是英国资产阶级革命开始。">
             <span class="opt-letter">C</span> 1640年
           </div>
         </div>
@@ -420,16 +442,16 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【&#11088; 基础·中考真题】17世纪成为最大殖民国家的是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="&#10060; 葡萄牙是最早殖民的国家，但后来被英国超越。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：葡萄牙" aria-pressed="false" data-feedback="&#10060; 葡萄牙是最早殖民的国家，但后来被英国超越。">
             <span class="opt-letter">A</span> 葡萄牙
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：英国" aria-pressed="false">
             <span class="opt-letter">B</span> 英国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="&#10060; 西班牙在16世纪是最强的，但17世纪被英国超越。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西班牙" aria-pressed="false" data-feedback="&#10060; 西班牙在16世纪是最强的，但17世纪被英国超越。">
             <span class="opt-letter">C</span> 西班牙
           </div>
         </div>
@@ -441,16 +463,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>2. 【&#11088;&#11088; 提高】三角贸易对非洲最深远的影响是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="&#10060; 文化冲击是影响之一，但不是最深远的影响。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：文化传统受到冲击" aria-pressed="false" data-feedback="&#10060; 文化冲击是影响之一，但不是最深远的影响。">
             <span class="opt-letter">A</span> 文化传统受到冲击
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：丧失近亿精壮人口，导致长期贫困落后" aria-pressed="false">
             <span class="opt-letter">B</span> 丧失近亿精壮人口，导致长期贫困落后
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="&#10060; 基础设施被破坏只是表面影响，人口流失才是根本。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：基础设施被严重破坏" aria-pressed="false" data-feedback="&#10060; 基础设施被破坏只是表面影响，人口流失才是根本。">
             <span class="opt-letter">C</span> 基础设施被严重破坏
           </div>
         </div>
@@ -462,16 +484,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>3. 【&#11088;&#11088;&#11088; 挑战】如何辩证看待殖民掠夺的历史影响？<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="&#10060; 虽然客观上有促进作用，但不能忽视其罪恶本质。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：殖民掠夺完全是好事，促进了世界发展" aria-pressed="false" data-feedback="&#10060; 虽然客观上有促进作用，但不能忽视其罪恶本质。">
             <span class="opt-letter">A</span> 殖民掠夺完全是好事，促进了世界发展
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：殖民掠夺本质是罪恶的，但客观上促进了全球联系" aria-pressed="false">
             <span class="opt-letter">B</span> 殖民掠夺本质是罪恶的，但客观上促进了全球联系
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="&#10060; 这太绝对了，殖民掠夺客观上确实产生了某些积极影响。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：殖民掠夺只有害处，没有任何积极影响" aria-pressed="false" data-feedback="&#10060; 这太绝对了，殖民掠夺客观上确实产生了某些积极影响。">
             <span class="opt-letter">C</span> 殖民掠夺只有害处，没有任何积极影响
           </div>
         </div>
@@ -489,6 +511,9 @@
       <h2 class="section-title"><span class="num">&#127936;</span> 必考分析与考点总结</h2>
 
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -523,7 +548,9 @@
           </div>
           <p style="font-size:0.85rem;line-height:1.7;"><strong>崛起路线：</strong>打败西班牙(1588)&rarr;打败荷兰(17世纪)&rarr;打败法国(18世纪)&rarr;成为"日不落帝国"</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -586,6 +613,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

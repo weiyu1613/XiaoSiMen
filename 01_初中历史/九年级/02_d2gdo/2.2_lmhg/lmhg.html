@@ -225,6 +225,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -244,7 +256,11 @@
   <div class="progress-label" id="progress-label">第 2/3 节 · 67%</div>
   
   <!-- ========== ③ 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d2gdo.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第二单元：古代欧洲文明</div>
@@ -357,6 +373,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道罗马城邦的地理位置和罗马共和国的建立</li>
@@ -380,16 +402,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】罗马城邦起源于哪个半岛？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：意大利半岛" aria-pressed="false">
             <span class="opt-letter">A</span> 意大利半岛
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 巴尔干半岛是古希腊文明的发源地，不是罗马！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：巴尔干半岛" aria-pressed="false" data-feedback="❌ 巴尔干半岛是古希腊文明的发源地，不是罗马！">
             <span class="opt-letter">B</span> 巴尔干半岛
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 伊比利亚半岛是今天的西班牙和葡萄牙所在地，不是罗马的发源地！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：伊比利亚半岛" aria-pressed="false" data-feedback="❌ 伊比利亚半岛是今天的西班牙和葡萄牙所在地，不是罗马的发源地！">
             <span class="opt-letter">C</span> 伊比利亚半岛
           </div>
         </div>
@@ -402,16 +424,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】罗马共和国建立于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 公元前753年是传说中的罗马城建城之年，此时还是王政时代！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：公元前753年" aria-pressed="false" data-feedback="❌ 公元前753年是传说中的罗马城建城之年，此时还是王政时代！">
             <span class="opt-letter">A</span> 公元前753年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：公元前509年" aria-pressed="false">
             <span class="opt-letter">B</span> 公元前509年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 公元前27年是屋大维建立罗马帝国的时间，不是共和国建立的年份！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：公元前27年" aria-pressed="false" data-feedback="❌ 公元前27年是屋大维建立罗马帝国的时间，不是共和国建立的年份！">
             <span class="opt-letter">C</span> 公元前27年
           </div>
         </div>
@@ -424,16 +446,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】罗马共和国的最高权力机构是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：元老院" aria-pressed="false">
             <span class="opt-letter">A</span> 元老院
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 执政官是共和国的最高行政长官，但只有两人且任期仅一年，权力受元老院制约，不是最高权力机构！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：执政官" aria-pressed="false" data-feedback="❌ 执政官是共和国的最高行政长官，但只有两人且任期仅一年，权力受元老院制约，不是最高权力机构！">
             <span class="opt-letter">B</span> 执政官
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 公民大会虽然名义上是最高权力机关，但实际权力掌握在元老院手中！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：公民大会" aria-pressed="false" data-feedback="❌ 公民大会虽然名义上是最高权力机关，但实际权力掌握在元老院手中！">
             <span class="opt-letter">C</span> 公民大会
           </div>
         </div>
@@ -455,16 +477,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】"罗马不是一天建成的"——以下哪个事件标志着罗马从共和国转变为帝国？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 凯撒虽然被授予"终身独裁官"权力，但他不久即被刺杀，罗马并未在他手下正式成为帝国！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：凯撒成为终身独裁官" aria-pressed="false" data-feedback="❌ 凯撒虽然被授予"终身独裁官"权力，但他不久即被刺杀，罗马并未在他手下正式成为帝国！">
             <span class="opt-letter">A</span> 凯撒成为终身独裁官
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：屋大维获授&quot;奥古斯都&quot;称号" aria-pressed="false">
             <span class="opt-letter">B</span> 屋大维获授"奥古斯都"称号
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 斯巴达克起义虽然动摇了共和国根基，但它并未使罗马转变为帝国！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：斯巴达克起义爆发" aria-pressed="false" data-feedback="❌ 斯巴达克起义虽然动摇了共和国根基，但它并未使罗马转变为帝国！">
             <span class="opt-letter">C</span> 斯巴达克起义爆发
           </div>
         </div>
@@ -491,6 +513,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color: #8b4513;">📖 罗马城邦的兴起</h3>
         <p>公元前1000年左右，<strong>拉丁人</strong>在意大利半岛中部的<strong>台伯河畔</strong>建立了罗马城邦。传说罗马城由<strong>罗慕路斯</strong>于公元前753年建立。</p>
 
@@ -582,7 +607,9 @@
           <div class="label">核心概念</div>
           <p><strong>共和国衰亡原因：</strong>① 奴隶制激化社会矛盾 ② 军事将领拥兵自重 ③ 共和制无法管理庞大帝国 ④ 斯巴达克起义的冲击</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- 板块2：罗马帝国 -->
@@ -592,6 +619,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color: #8b4513;">👑 屋大维与帝国的建立</h3>
         <p>公元前27年，<strong>屋大维</strong>被元老院授予<strong>"奥古斯都"</strong>（意为"神圣的""至尊者"）称号，首创<strong>"元首制"</strong>。他表面上维持共和制的形式，实际上独揽大权，罗马从此进入帝国时代。</p>
 
@@ -675,7 +705,9 @@
           <tr><td>军事</td><td>防御较强</td><td>军力薄弱</td></tr>
           <tr><td>存续</td><td>延续至1453年</td><td>476年灭亡</td></tr>
         </table>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- 板块3：罗马法 -->
@@ -685,6 +717,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color: #8b4513;">📜 《十二铜表法》</h3>
         <p>公元前450年左右，罗马颁布了<strong>《十二铜表法》</strong>，这是罗马<strong>第一部成文法</strong>。它将习惯法条文刻在十二块铜板上公布，限制了贵族对法律的随意解释，一定程度上保护了平民的利益。</p>
 
@@ -748,7 +783,9 @@
           <div class="label">⚠️ 高频考点</div>
           <p>考试中常考"<strong>罗马法对后世法律产生深远影响</strong>"这一表述，务必记住！同时注意：<strong>万民法≠适用于所有人</strong>，仅适用于"自由民"，奴隶不在此列。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ========== ⑨ 后测 ========== -->
@@ -761,16 +798,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】罗马帝国建立的时间是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 公元前509年是罗马共和国建立的时间！帝国比共和国晚得多。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：公元前509年" aria-pressed="false" data-feedback="❌ 公元前509年是罗马共和国建立的时间！帝国比共和国晚得多。">
             <span class="opt-letter">A</span> 公元前509年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：公元前27年" aria-pressed="false">
             <span class="opt-letter">B</span> 公元前27年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 公元476年是西罗马帝国灭亡的时间，不是帝国建立！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：公元476年" aria-pressed="false" data-feedback="❌ 公元476年是西罗马帝国灭亡的时间，不是帝国建立！">
             <span class="opt-letter">C</span> 公元476年
           </div>
         </div>
@@ -783,16 +820,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考改编）罗马法从习惯法到成文法的里程碑是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《十二铜表法》" aria-pressed="false">
             <span class="opt-letter">A</span> 《十二铜表法》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 万民法是帝国时期适用于所有自由民的法律，不是第一部成文法！它是在十二铜表法之后发展的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：万民法" aria-pressed="false" data-feedback="❌ 万民法是帝国时期适用于所有自由民的法律，不是第一部成文法！它是在十二铜表法之后发展的。">
             <span class="opt-letter">B</span> 万民法
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 《查士丁尼法典》是6世纪东罗马帝国对罗马法的系统总结，远晚于十二铜表法！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：《查士丁尼法典》" aria-pressed="false" data-feedback="❌ 《查士丁尼法典》是6世纪东罗马帝国对罗马法的系统总结，远晚于十二铜表法！">
             <span class="opt-letter">C</span> 《查士丁尼法典》
           </div>
         </div>
@@ -811,16 +848,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·广东中考改编）西罗马帝国灭亡标志着？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 封建社会的开始是另一层含义。西罗马灭亡直接标志着的是奴隶社会的终结，而非封建社会的开始。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：欧洲封建社会的开始" aria-pressed="false" data-feedback="❌ 封建社会的开始是另一层含义。西罗马灭亡直接标志着的是奴隶社会的终结，而非封建社会的开始。">
             <span class="opt-letter">A</span> 欧洲封建社会的开始
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：西欧奴隶社会的终结" aria-pressed="false">
             <span class="opt-letter">B</span> 西欧奴隶社会的终结
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 东罗马帝国（拜占庭帝国）一直延续到1453年才灭亡，476年灭亡的只是西罗马帝国！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：整个罗马帝国的终结" aria-pressed="false" data-feedback="❌ 东罗马帝国（拜占庭帝国）一直延续到1453年才灭亡，476年灭亡的只是西罗马帝国！">
             <span class="opt-letter">C</span> 整个罗马帝国的终结
           </div>
         </div>
@@ -838,21 +875,21 @@
       </div>
 
       <!-- 后测题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料一】</strong>"第十二表法（即《十二铜表法》）公布后，贵族不能像过去那样随意解释法律，平民的利益得到了一定保护。" ——摘编自教材<br><br>
           <strong>【材料二】</strong>"罗马法……包含了契约、债权、继承等各种法律关系的基本概念和原则，成为近代西方各国法律的渊源。" ——摘编自《罗马法原论》
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，分析罗马法的发展特点及其对后世的影响。</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料一和材料二分别说明了罗马法的不同方面，仅说"保护平民利益"不全面！还需要答出对后世法律的深远影响。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：罗马法保护了平民利益，限制了贵族特权" aria-pressed="false" data-feedback="❌ 材料一和材料二分别说明了罗马法的不同方面，仅说"保护平民利益"不全面！还需要答出对后世法律的深远影响。">
             <span class="opt-letter">A</span> 罗马法保护了平民利益，限制了贵族特权
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：罗马法从习惯法走向成文法，从公民法走向万民法，对后世法律影响深远" aria-pressed="false">
             <span class="opt-letter">B</span> 罗马法从习惯法走向成文法，从公民法走向万民法，对后世法律影响深远
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ "仅适用于罗马公民"是错的！万民法适用于帝国境内一切自由民，适用范围是不断扩大的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：罗马法体系完善，但仅适用于罗马公民" aria-pressed="false" data-feedback="❌ "仅适用于罗马公民"是错的！万民法适用于帝国境内一切自由民，适用范围是不断扩大的。">
             <span class="opt-letter">C</span> 罗马法体系完善，但仅适用于罗马公民
           </div>
         </div>
@@ -880,6 +917,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -942,7 +982,9 @@
             <tr style="background:#ffffff;"><td>填空题</td><td>★★☆☆☆</td><td>关键年份和事件</td><td>BC509/BC27/AD476</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -1087,6 +1129,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

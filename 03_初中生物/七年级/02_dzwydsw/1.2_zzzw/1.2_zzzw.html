@@ -69,10 +69,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-seedling"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 2/10 节 · 20%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
     <div class="nav-center">第二单元：多种多样的生物</div>
@@ -132,6 +148,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 识别裸子植物和被子植物，说出主要区别</li>
@@ -145,11 +167,11 @@
     <!-- 前测 -->
     <section class="section">
       <h2 class="section-title"><span class="num">📝</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列属于被子植物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 松树是裸子植物，种子没有果皮包被！"><span class="opt-letter">A</span> 松树</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 水稻</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 银杏是裸子植物！"><span class="opt-letter">C</span> 银杏</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：松树" aria-pressed="false" data-feedback="❌ 松树是裸子植物，种子没有果皮包被！"><span class="opt-letter">A</span> 松树</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：水稻" aria-pressed="false"><span class="opt-letter">B</span> 水稻</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：银杏" aria-pressed="false" data-feedback="❌ 银杏是裸子植物！"><span class="opt-letter">C</span> 银杏</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
           <div class="explain-title">📖 详细解析</div>
@@ -157,11 +179,11 @@
           <p style="margin-top:8px;">水稻是<strong>被子植物</strong>，种子被果皮（谷壳）包被。松树和银杏都是<strong>裸子植物</strong>，种子裸露，没有果皮包被。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】裸子植物和被子植物的根本区别是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 种子是否被果皮包被</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 两者都有根茎叶！"><span class="opt-letter">B</span> 是否有根茎叶</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 两者都是种子繁殖！"><span class="opt-letter">C</span> 繁殖方式不同</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：种子是否被果皮包被" aria-pressed="false"><span class="opt-letter">A</span> 种子是否被果皮包被</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：是否有根茎叶" aria-pressed="false" data-feedback="❌ 两者都有根茎叶！"><span class="opt-letter">B</span> 是否有根茎叶</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：繁殖方式不同" aria-pressed="false" data-feedback="❌ 两者都是种子繁殖！"><span class="opt-letter">C</span> 繁殖方式不同</div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
           <div class="explain-title">📖 详细解析</div>
@@ -239,19 +261,19 @@
     <!-- 后测 -->
     <section class="section">
       <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列属于裸子植物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 水稻是被子植物！"><span class="opt-letter">A</span> 水稻</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 雪松</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 苹果是被子植物！"><span class="opt-letter">C</span> 苹果</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：水稻" aria-pressed="false" data-feedback="❌ 水稻是被子植物！"><span class="opt-letter">A</span> 水稻</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：雪松" aria-pressed="false"><span class="opt-letter">B</span> 雪松</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：苹果" aria-pressed="false" data-feedback="❌ 苹果是被子植物！"><span class="opt-letter">C</span> 苹果</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 雪松</strong></p><p style="margin-top:8px;">雪松是<strong>裸子植物</strong>，种子裸露。水稻和苹果都是<strong>被子植物</strong>。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高·中考真题】（2022·北京中考）花生去皮后，剥去的那层"红衣"是？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 果皮</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 种皮才是种子的皮！"><span class="opt-letter">B</span> 种皮</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 花生的可食用部分是子叶！"><span class="opt-letter">C</span> 子叶</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：果皮" aria-pressed="false"><span class="opt-letter">A</span> 果皮</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：种皮" aria-pressed="false" data-feedback="❌ 种皮才是种子的皮！"><span class="opt-letter">B</span> 种皮</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：子叶" aria-pressed="false" data-feedback="❌ 花生的可食用部分是子叶！"><span class="opt-letter">C</span> 子叶</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 果皮</strong></p><p style="margin-top:8px;">花生是<strong>被子植物</strong>的果实。"红衣"是<strong>果皮</strong>（由子房壁发育而来），里面白色的部分是种子（种皮+子叶+胚）。</p></div>
       </div>
@@ -313,6 +335,8 @@
       if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

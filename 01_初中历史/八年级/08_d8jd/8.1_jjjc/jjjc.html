@@ -218,6 +218,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -230,7 +242,11 @@
   <div class="progress-label" id="progress-label">第 1/2 节 · 50%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d8jd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第八单元：近代经济、社会生活与教育文化事业的发展</div>
@@ -317,6 +333,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解民族资本主义的产生和发展历程</li>
@@ -337,16 +359,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】中国近代民族资本主义产生于哪个时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 鸦片战争时期民族资本主义还没有产生！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：鸦片战争时期" aria-pressed="false" data-feedback="❌ 鸦片战争时期民族资本主义还没有产生！">
             <span class="opt-letter">A</span> 鸦片战争时期
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：洋务运动到清末" aria-pressed="false">
             <span class="opt-letter">B</span> 洋务运动到清末
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 甲午战争后民族资本主义已经初步发展了！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：甲午战争后" aria-pressed="false" data-feedback="❌ 甲午战争后民族资本主义已经初步发展了！">
             <span class="opt-letter">C</span> 甲午战争后
           </div>
         </div>
@@ -359,16 +381,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】民族资本主义的"短暂春天"出现在？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 鸦片战争时期民族资本主义还没有产生！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：鸦片战争后" aria-pressed="false" data-feedback="❌ 鸦片战争时期民族资本主义还没有产生！">
             <span class="opt-letter">A</span> 鸦片战争后
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 甲午战争后民族资本主义只是初步发展，不是'短暂春天'！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：甲午战争后" aria-pressed="false" data-feedback="❌ 甲午战争后民族资本主义只是初步发展，不是'短暂春天'！">
             <span class="opt-letter">B</span> 甲午战争后
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：一战期间" aria-pressed="false">
             <span class="opt-letter">C</span> 一战期间
           </div>
         </div>
@@ -381,16 +403,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列哪项不是民族资本主义"短暂春天"的原因？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 辛亥革命是'短暂春天'的原因之一，不符合题意！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：辛亥革命的影响" aria-pressed="false" data-feedback="❌ 辛亥革命是'短暂春天'的原因之一，不符合题意！">
             <span class="opt-letter">A</span> 辛亥革命的影响
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 实业救国思潮是'短暂春天'的原因之一，不符合题意！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：实业救国思潮的推动" aria-pressed="false" data-feedback="❌ 实业救国思潮是'短暂春天'的原因之一，不符合题意！">
             <span class="opt-letter">B</span> 实业救国思潮的推动
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：欧洲列强放松对华经济侵略" aria-pressed="false">
             <span class="opt-letter">C</span> 欧洲列强放松对华经济侵略
           </div>
         </div>
@@ -569,19 +591,19 @@
       </p>
 
       <!-- 测验题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列哪项不是近代社会生活变化的表现？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'A')" data-feedback="❌ 剪辫易服是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：剪辫易服" aria-pressed="false" data-feedback="❌ 剪辫易服是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
             <span class="opt-letter">A</span> 剪辫易服
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 废止缠足是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：废止缠足" aria-pressed="false" data-feedback="❌ 废止缠足是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
             <span class="opt-letter">B</span> 废止缠足
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 20, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：缠足陋习继续盛行" aria-pressed="false">
             <span class="opt-letter">C</span> 缠足陋习继续盛行
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'D')" data-feedback="❌ 改称呼是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：改称呼" aria-pressed="false" data-feedback="❌ 改称呼是近代社会生活变化的表现，不符合题目要求（选择不是的）！">
             <span class="opt-letter">D</span> 改称呼
           </div>
         </div>
@@ -603,16 +625,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】民族资本主义"短暂春天"出现在哪个时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 甲午战争后民族资本主义只是初步发展，不是'短暂春天'！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：甲午战争后" aria-pressed="false" data-feedback="❌ 甲午战争后民族资本主义只是初步发展，不是'短暂春天'！">
             <span class="opt-letter">A</span> 甲午战争后
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：一战期间" aria-pressed="false">
             <span class="opt-letter">B</span> 一战期间
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 抗日战争时期民族资本主义日益萎缩，不是'短暂春天'！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：抗日战争时期" aria-pressed="false" data-feedback="❌ 抗日战争时期民族资本主义日益萎缩，不是'短暂春天'！">
             <span class="opt-letter">C</span> 抗日战争时期
           </div>
         </div>
@@ -625,16 +647,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）下列关于近代民族资本主义发展的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 民族资本主义产生于洋务运动时期，不是鸦片战争后！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：鸦片战争后立即产生" aria-pressed="false" data-feedback="❌ 民族资本主义产生于洋务运动时期，不是鸦片战争后！">
             <span class="opt-letter">A</span> 鸦片战争后立即产生
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：一战期间出现&quot;短暂春天&quot;" aria-pressed="false">
             <span class="opt-letter">B</span> 一战期间出现"短暂春天"
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 民族资本主义发展整体落后，不是迅速超越外国资本！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：迅速超越外国资本" aria-pressed="false" data-feedback="❌ 民族资本主义发展整体落后，不是迅速超越外国资本！">
             <span class="opt-letter">C</span> 迅速超越外国资本
           </div>
         </div>
@@ -652,6 +674,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 考点分析</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: var(--primary);">📖 核心考点解析</h3>
         
         <!-- 考点1 -->
@@ -701,7 +726,9 @@
             <p>民族资本主义<strong>整体落后</strong>，不是"迅速发展"或"超过外国资本"。考试常在这里设置陷阱。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     
   
@@ -812,5 +839,6 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

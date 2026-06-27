@@ -69,10 +69,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-microscope"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 5/10 节 · 50%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
     <div class="nav-center">第二单元：多种多样的生物</div>
@@ -130,6 +146,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 说明微生物分布广泛的特点</li>
@@ -202,21 +224,21 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🔬</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】微生物分布的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'A')" data-feedback="❌ 微生物不是只分布在水里！"><span class="opt-letter">A</span> 只分布在水中</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'B')" data-feedback="❌ 微生物不是只分布在生物体内！"><span class="opt-letter">B</span> 只分布在生物体内</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 0, 'C')"><span class="opt-letter">C</span> 无处不在</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'D')" data-feedback="❌ 微生物分布极广，不只是土壤！"><span class="opt-letter">D</span> 只分布在土壤中</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只分布在水中" aria-pressed="false" data-feedback="❌ 微生物不是只分布在水里！"><span class="opt-letter">A</span> 只分布在水中</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：只分布在生物体内" aria-pressed="false" data-feedback="❌ 微生物不是只分布在生物体内！"><span class="opt-letter">B</span> 只分布在生物体内</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 0, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：无处不在" aria-pressed="false"><span class="opt-letter">C</span> 无处不在</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：只分布在土壤中" aria-pressed="false" data-feedback="❌ 微生物分布极广，不只是土壤！"><span class="opt-letter">D</span> 只分布在土壤中</div>
         <div class="feedback" id="feedback-0"></div>
         <div class="answer-explanation" id="explanation-0"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 无处不在</strong></p><p style="margin-top:8px;">微生物分布<strong>极其广泛</strong>：土壤（最多）、水中、空气中、人体表面/体内、温泉、冰川……几乎无处不在。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】下列关于培养细菌真菌的步骤，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 灭菌应该在接种之前！"><span class="opt-letter">A</span> 接种→灭菌→配制培养基→培养</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 配制培养基→灭菌→接种→培养→观察</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 培养应在接种之后！"><span class="opt-letter">C</span> 灭菌→接种→配制培养基→培养</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 顺序完全颠倒！"><span class="opt-letter">D</span> 培养→接种→灭菌→观察</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：接种→灭菌→配制培养基→培养" aria-pressed="false" data-feedback="❌ 灭菌应该在接种之前！"><span class="opt-letter">A</span> 接种→灭菌→配制培养基→培养</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：配制培养基→灭菌→接种→培养→观察" aria-pressed="false"><span class="opt-letter">B</span> 配制培养基→灭菌→接种→培养→观察</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：灭菌→接种→配制培养基→培养" aria-pressed="false" data-feedback="❌ 培养应在接种之后！"><span class="opt-letter">C</span> 灭菌→接种→配制培养基→培养</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：培养→接种→灭菌→观察" aria-pressed="false" data-feedback="❌ 顺序完全颠倒！"><span class="opt-letter">D</span> 培养→接种→灭菌→观察</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 配制培养基→灭菌→接种→培养→观察</strong></p><p style="margin-top:8px;">顺序非常关键：先配制培养基，再<strong>灭菌</strong>（杀死所有杂菌），再<strong>接种</strong>（接入目标菌种），最后在适宜条件下<strong>培养</strong>并观察。</p></div>
       </div>
@@ -259,19 +281,19 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列环境中，微生物最多的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 清洁的空气微生物较少！"><span class="opt-letter">A</span> 清洁的空气</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 土壤中</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 冰川中微生物较少！"><span class="opt-letter">C</span> 冰川中</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：清洁的空气" aria-pressed="false" data-feedback="❌ 清洁的空气微生物较少！"><span class="opt-letter">A</span> 清洁的空气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：土壤中" aria-pressed="false"><span class="opt-letter">B</span> 土壤中</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：冰川中" aria-pressed="false" data-feedback="❌ 冰川中微生物较少！"><span class="opt-letter">C</span> 冰川中</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 土壤中</strong></p><p style="margin-top:8px;">土壤是微生物的大本营，1克沃土中含<strong>上亿个</strong>微生物。土壤提供水分、有机物等适宜条件。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】灭菌和消毒的主要区别是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 两者都是杀死微生物！"><span class="opt-letter">A</span> 灭菌杀死所有微生物，消毒只杀死部分</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')"><span class="opt-letter">B</span> 灭菌能杀死芽孢，消毒不能</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 消毒使用化学药剂，不是物理方法！"><span class="opt-letter">C</span> 消毒用高温，灭菌用化学药剂</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：灭菌杀死所有微生物，消毒只杀死部分" aria-pressed="false" data-feedback="❌ 两者都是杀死微生物！"><span class="opt-letter">A</span> 灭菌杀死所有微生物，消毒只杀死部分</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：灭菌能杀死芽孢，消毒不能" aria-pressed="false"><span class="opt-letter">B</span> 灭菌能杀死芽孢，消毒不能</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：消毒用高温，灭菌用化学药剂" aria-pressed="false" data-feedback="❌ 消毒使用化学药剂，不是物理方法！"><span class="opt-letter">C</span> 消毒用高温，灭菌用化学药剂</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 灭菌能杀死芽孢，消毒不能</strong></p><p style="margin-top:8px;">灭菌可以杀死<strong>所有微生物及其芽孢</strong>，消毒只能杀死<strong>病原微生物</strong>，芽孢是细菌的休眠体，对恶劣环境有极强抵抗力，只有灭菌才能将其杀死。</p></div>
       </div>
@@ -327,6 +349,8 @@
       if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

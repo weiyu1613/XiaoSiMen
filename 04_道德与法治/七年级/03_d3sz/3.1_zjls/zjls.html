@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-chalkboard-user"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 9/31 节 · 29.0%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d3sz.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第三单元：师长情谊</div>
@@ -127,6 +143,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 了解教师的作用 <span class="tag tag-theory">关联：教师角色理论</span></li>
         <li>✅ 理解教师风格多样的原因 <span class="tag tag-theory">关联：个体差异理论</span></li>
@@ -140,12 +162,12 @@
       <p style="color:#c0392b;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】教师的主要作用是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 教师的作用<strong>不仅仅是</strong>管纪律，这只是其中一个方面。<br><span class='tag tag-mistake'>归因：片面理解教师角色</span>"><span class="opt-letter">A</span> 管纪律</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：教师传授知识、指导做人</span>"><span class="opt-letter">B</span> 传授知识、指导做人</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 教师<strong>不是</strong>只陪玩耍，教育工作远不止于此。<br><span class='tag tag-mistake'>归因：低估教师职业的专业性</span>"><span class="opt-letter">C</span> 陪玩耍</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：管纪律" aria-pressed="false" data-fb="❌ 教师的作用<strong>不仅仅是</strong>管纪律，这只是其中一个方面。<br><span class='tag tag-mistake'>归因：片面理解教师角色</span>"><span class="opt-letter">A</span> 管纪律</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：传授知识、指导做人" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：教师传授知识、指导做人</span>"><span class="opt-letter">B</span> 传授知识、指导做人</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：陪玩耍" aria-pressed="false" data-fb="❌ 教师<strong>不是</strong>只陪玩耍，教育工作远不止于此。<br><span class='tag tag-mistake'>归因：低估教师职业的专业性</span>"><span class="opt-letter">C</span> 陪玩耍</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -157,12 +179,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】为什么不同老师教学风格不同？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 年龄只是<strong>影响因素之一</strong>，不是唯一原因。<br><span class='tag tag-mistake'>归因：单一归因，忽略多因素影响</span>"><span class="opt-letter">A</span> 只因为年龄不同</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：年龄、学识、阅历、性格等差异导致风格不同</span>"><span class="opt-letter">B</span> 因年龄、学识、阅历、性格等不同</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 所有老师教学风格<strong>并不相同</strong>，这正是本课的要点。<br><span class='tag tag-mistake'>归因：与事实相反，未观察到个体差异</span>"><span class="opt-letter">C</span> 所有老师都一样</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只因为年龄不同" aria-pressed="false" data-fb="❌ 年龄只是<strong>影响因素之一</strong>，不是唯一原因。<br><span class='tag tag-mistake'>归因：单一归因，忽略多因素影响</span>"><span class="opt-letter">A</span> 只因为年龄不同</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：因年龄、学识、阅历、性格等不同" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：年龄、学识、阅历、性格等差异导致风格不同</span>"><span class="opt-letter">B</span> 因年龄、学识、阅历、性格等不同</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：所有老师都一样" aria-pressed="false" data-fb="❌ 所有老师教学风格<strong>并不相同</strong>，这正是本课的要点。<br><span class='tag tag-mistake'>归因：与事实相反，未观察到个体差异</span>"><span class="opt-letter">C</span> 所有老师都一样</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -174,12 +196,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于教师的作用，以下理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 教师<strong>不是</strong>万能的，也有局限性。<br><span class='tag tag-mistake'>归因：绝对化思维，神化教师角色</span>"><span class="opt-letter">A</span> 教师能解决所有问题</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 教师的作用<strong>不可替代</strong>，这是共识。<br><span class='tag tag-mistake'>归因：低估教师职业的重要性</span>"><span class="opt-letter">B</span> 教师的作用可以被取代</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：教师是人类文明的传承者</span>"><span class="opt-letter">C</span> 教师是人类文明的传承者</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：教师能解决所有问题" aria-pressed="false" data-fb="❌ 教师<strong>不是</strong>万能的，也有局限性。<br><span class='tag tag-mistake'>归因：绝对化思维，神化教师角色</span>"><span class="opt-letter">A</span> 教师能解决所有问题</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：教师的作用可以被取代" aria-pressed="false" data-fb="❌ 教师的作用<strong>不可替代</strong>，这是共识。<br><span class='tag tag-mistake'>归因：低估教师职业的重要性</span>"><span class="opt-letter">B</span> 教师的作用可以被取代</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：教师是人类文明的传承者" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：教师是人类文明的传承者</span>"><span class="opt-letter">C</span> 教师是人类文明的传承者</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -226,6 +248,9 @@
 
     <section><h2 class="section-title">🤝 尊重老师的"不同"</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box"><div class="label">✨ 如何尊重不同风格的老师 <span class="tag tag-theory">关联：多元尊重理论</span></div>
           <p>① <strong>承认差异</strong>：认识到每位老师都有自己的特点 <span class="tag tag-theory">认知接纳</span></p>
           <p>② <strong>发现优点</strong>：善于发现不同风格老师的优点 <span class="tag tag-theory">积极归因</span></p>
@@ -236,7 +261,9 @@
           <p><strong>错误做法：</strong>只喜欢某一种风格的老师，排斥其他风格的老师。</p>
           <p><strong>正确做法：</strong>尊重并接受每位老师的差异，从他们身上学习不同的优点。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">✨ 每位老师都有独特的魅力</h2>
@@ -258,12 +285,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】以下哪项不是教师的作用？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 传授知识是教师的重要作用！<br><span class='tag tag-mistake'>归因：未理解教师的核心职能</span>"><span class="opt-letter">A</span> 传授知识</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 指导做人是教师的重要作用！<br><span class='tag tag-mistake'>归因：忽略了教师的育人功能</span>"><span class="opt-letter">B</span> 指导做人</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！教师的作用不是替代学生学习。<br><span class='tag tag-kp'>知识点：教师是引导者而非替代者</span>"><span class="opt-letter">C</span> 替代学生学习</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：传授知识" aria-pressed="false" data-fb="❌ 传授知识是教师的重要作用！<br><span class='tag tag-mistake'>归因：未理解教师的核心职能</span>"><span class="opt-letter">A</span> 传授知识</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：指导做人" aria-pressed="false" data-fb="❌ 指导做人是教师的重要作用！<br><span class='tag tag-mistake'>归因：忽略了教师的育人功能</span>"><span class="opt-letter">B</span> 指导做人</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：替代学生学习" aria-pressed="false" data-fb="✅ 正确！教师的作用不是替代学生学习。<br><span class='tag tag-kp'>知识点：教师是引导者而非替代者</span>"><span class="opt-letter">C</span> 替代学生学习</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -271,12 +298,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】面对不同风格的老师，正确的做法是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 只喜欢某一种风格会限制自己的学习。<br><span class='tag tag-mistake'>归因：片面认知，缺乏包容性</span>"><span class="opt-letter">A</span> 只喜欢一种风格</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！尊重差异、发现优点。<br><span class='tag tag-kp'>知识点：尊重不同风格的老师</span>"><span class="opt-letter">B</span> 尊重差异，发现优点</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 排斥其他风格会失去学习机会。<br><span class='tag tag-mistake'>归因：排斥心理，未理解多元价值</span>"><span class="opt-letter">C</span> 排斥其他风格</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只喜欢一种风格" aria-pressed="false" data-fb="❌ 只喜欢某一种风格会限制自己的学习。<br><span class='tag tag-mistake'>归因：片面认知，缺乏包容性</span>"><span class="opt-letter">A</span> 只喜欢一种风格</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：尊重差异，发现优点" aria-pressed="false" data-fb="✅ 正确！尊重差异、发现优点。<br><span class='tag tag-kp'>知识点：尊重不同风格的老师</span>"><span class="opt-letter">B</span> 尊重差异，发现优点</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：排斥其他风格" aria-pressed="false" data-fb="❌ 排斥其他风格会失去学习机会。<br><span class='tag tag-mistake'>归因：排斥心理，未理解多元价值</span>"><span class="opt-letter">C</span> 排斥其他风格</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -284,12 +311,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】以下关于教师的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！教师风格多样是客观事实。<br><span class='tag tag-kp'>知识点：教师风格多样性</span>"><span class="opt-letter">A</span> 教师风格多样，各有特点</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 优秀教师<strong>不是</strong>完美无缺的，也有不足。<br><span class='tag tag-mistake'>归因：绝对化思维，神化教师</span>"><span class="opt-letter">B</span> 优秀教师完美无缺</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 我们<strong>应该</strong>尊重不同风格的老师，而不是只喜欢一种。<br><span class='tag tag-mistake'>归因：片面认知，缺乏多元尊重意识</span>"><span class="opt-letter">C</span> 只喜欢一种风格就好</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：教师风格多样，各有特点" aria-pressed="false" data-fb="✅ 正确！教师风格多样是客观事实。<br><span class='tag tag-kp'>知识点：教师风格多样性</span>"><span class="opt-letter">A</span> 教师风格多样，各有特点</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：优秀教师完美无缺" aria-pressed="false" data-fb="❌ 优秀教师<strong>不是</strong>完美无缺的，也有不足。<br><span class='tag tag-mistake'>归因：绝对化思维，神化教师</span>"><span class="opt-letter">B</span> 优秀教师完美无缺</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只喜欢一种风格就好" aria-pressed="false" data-fb="❌ 我们<strong>应该</strong>尊重不同风格的老师，而不是只喜欢一种。<br><span class='tag tag-mistake'>归因：片面认知，缺乏多元尊重意识</span>"><span class="opt-letter">C</span> 只喜欢一种风格就好</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -302,6 +329,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -347,7 +377,9 @@
           </ul>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -377,6 +409,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

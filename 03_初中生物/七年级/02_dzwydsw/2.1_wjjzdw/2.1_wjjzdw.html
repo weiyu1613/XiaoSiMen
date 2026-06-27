@@ -69,10 +69,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-spider"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 3/10 节 · 30%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
     <div class="nav-center">第二单元：多种多样的生物</div>
@@ -140,6 +156,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 识别腔肠动物、扁形动物、线形动物、环节动物、软体动物和节肢动物</li>
@@ -153,27 +175,27 @@
     <!-- 前测 -->
     <section class="section">
       <h2 class="section-title"><span class="num">📝</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列动物中，属于节肢动物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 蝗虫</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 蚯蚓是环节动物！"><span class="opt-letter">B</span> 蚯蚓</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 水螅是腔肠动物！"><span class="opt-letter">C</span> 水螅</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蝗虫" aria-pressed="false"><span class="opt-letter">A</span> 蝗虫</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：蚯蚓" aria-pressed="false" data-feedback="❌ 蚯蚓是环节动物！"><span class="opt-letter">B</span> 蚯蚓</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：水螅" aria-pressed="false" data-feedback="❌ 水螅是腔肠动物！"><span class="opt-letter">C</span> 水螅</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 蝗虫</strong></p><p style="margin-top:8px;">蝗虫属于<strong>节肢动物</strong>，具有身体和附肢分节、体表外骨骼等特征。节肢动物是<strong>地球上种类最多的动物类群</strong>。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐ 基础】蚯蚓的身体由许多相似的环节构成，属于哪类动物？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 线形动物身体线形，如蛔虫！"><span class="opt-letter">A</span> 线形动物</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 环节动物</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 软体动物身体柔软，有贝壳！"><span class="opt-letter">C</span> 软体动物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：线形动物" aria-pressed="false" data-feedback="❌ 线形动物身体线形，如蛔虫！"><span class="opt-letter">A</span> 线形动物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：环节动物" aria-pressed="false"><span class="opt-letter">B</span> 环节动物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：软体动物" aria-pressed="false" data-feedback="❌ 软体动物身体柔软，有贝壳！"><span class="opt-letter">C</span> 软体动物</div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 环节动物</strong></p><p style="margin-top:8px;">蚯蚓的身体由许多<strong>相似的环节</strong>构成，属于<strong>环节动物</strong>。环节动物还包括沙蚕、水蛭（蚂蟥）等。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐ 提高】节肢动物成为地球上种类最多的动物类群，主要原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 节肢动物没有肺！"><span class="opt-letter">A</span> 有肺可以呼吸</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 身体和附肢分节，演化出翅和多种口器</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 节肢动物没有脊椎！"><span class="opt-letter">C</span> 有脊椎支撑</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：有肺可以呼吸" aria-pressed="false" data-feedback="❌ 节肢动物没有肺！"><span class="opt-letter">A</span> 有肺可以呼吸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：身体和附肢分节，演化出翅和多种口器" aria-pressed="false"><span class="opt-letter">B</span> 身体和附肢分节，演化出翅和多种口器</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：有脊椎支撑" aria-pressed="false" data-feedback="❌ 节肢动物没有脊椎！"><span class="opt-letter">C</span> 有脊椎支撑</div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 身体和附肢分节，演化出翅和多种口器</strong></p><p style="margin-top:8px;">节肢动物身体和附肢<strong>分节</strong>，可高度特化；<strong>外骨骼</strong>保护身体并防止水分蒸发；<strong>翅</strong>的出现使其能飞行，<strong>多种口器</strong>适应不同食物，这些特征使其成为地球上<strong>种类最多</strong>的动物类群。</p></div>
       </div>
@@ -253,19 +275,19 @@
     <!-- 后测 -->
     <section class="section">
       <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列动物中，属于软体动物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 蜜蜂是节肢动物！"><span class="opt-letter">A</span> 蜜蜂</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 水蛭是环节动物！"><span class="opt-letter">B</span> 水蛭</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')"><span class="opt-letter">C</span> 扇贝</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蜜蜂" aria-pressed="false" data-feedback="❌ 蜜蜂是节肢动物！"><span class="opt-letter">A</span> 蜜蜂</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：水蛭" aria-pressed="false" data-feedback="❌ 水蛭是环节动物！"><span class="opt-letter">B</span> 水蛭</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：扇贝" aria-pressed="false"><span class="opt-letter">C</span> 扇贝</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 扇贝</strong></p><p style="margin-top:8px;">扇贝属于<strong>软体动物</strong>，身体柔软，有贝壳保护。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高·中考真题】（2022·山东中考）关于节肢动物的说法，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 蜘蛛不是昆虫！"><span class="opt-letter">A</span> 蜘蛛是昆虫</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')"><span class="opt-letter">B</span> 身体和附肢分节是节肢动物的特征</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 节肢动物没有脊柱！"><span class="opt-letter">C</span> 节肢动物有脊柱</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蜘蛛是昆虫" aria-pressed="false" data-feedback="❌ 蜘蛛不是昆虫！"><span class="opt-letter">A</span> 蜘蛛是昆虫</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：身体和附肢分节是节肢动物的特征" aria-pressed="false"><span class="opt-letter">B</span> 身体和附肢分节是节肢动物的特征</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：节肢动物有脊柱" aria-pressed="false" data-feedback="❌ 节肢动物没有脊柱！"><span class="opt-letter">C</span> 节肢动物有脊柱</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 身体和附肢分节是节肢动物的特征</strong></p><p style="margin-top:8px;"><strong>节肢动物</strong>的最大特征是<strong>身体和附肢分节</strong>，这是它们成为地球上种类最多的动物类群的重要原因。</p></div>
       </div>
@@ -327,6 +349,8 @@
       if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

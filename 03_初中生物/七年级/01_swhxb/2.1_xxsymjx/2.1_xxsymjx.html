@@ -201,6 +201,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -213,7 +225,11 @@
   <div class="progress-label" id="progress-label">第 3/6 节 · 50%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../swhxb.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一单元：生物和细胞</div>
@@ -304,6 +320,12 @@
     <!-- Section2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 说出显微镜的基本构造</li>
@@ -324,16 +346,16 @@
       </p>
       
       <!-- 基础题1：显微镜构造 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】显微镜的光学部件是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 镜臂是支撑部件，不是光学部件！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：镜臂和镜柱" aria-pressed="false" data-feedback="❌ 镜臂是支撑部件，不是光学部件！">
             <span class="opt-letter">A</span> 镜臂和镜柱
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：目镜和物镜" aria-pressed="false">
             <span class="opt-letter">B</span> 目镜和物镜
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 载物台和遮光器是承载和调节光线部件，不是光学部件！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：载物台和遮光器" aria-pressed="false" data-feedback="❌ 载物台和遮光器是承载和调节光线部件，不是光学部件！">
             <span class="opt-letter">C</span> 载物台和遮光器
           </div>
         </div>
@@ -351,16 +373,16 @@
       </div>
 
       <!-- 基础题2：放大倍数 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】显微镜的放大倍数 = ？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 目镜倍数减去物镜倍数不是放大倍数！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：目镜倍数-物镜倍数" aria-pressed="false" data-feedback="❌ 目镜倍数减去物镜倍数不是放大倍数！">
             <span class="opt-letter">A</span> 目镜倍数 - 物镜倍数
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：目镜倍数×物镜倍数" aria-pressed="false">
             <span class="opt-letter">B</span> 目镜倍数 × 物镜倍数
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 目镜倍数加上物镜倍数不是放大倍数！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：目镜倍数+物镜倍数" aria-pressed="false" data-feedback="❌ 目镜倍数加上物镜倍数不是放大倍数！">
             <span class="opt-letter">C</span> 目镜倍数 + 物镜倍数
           </div>
         </div>
@@ -468,6 +490,9 @@
       <h2 class="section-title"><span class="num">💡</span> 显微镜的成像特点</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #2e7d32;">📖 成倒像</h3>
         <p style="line-height: 1.8;">显微镜下的物像是<strong>倒像</strong>（上下颠倒、左右相反）。</p>
         
@@ -496,7 +521,9 @@
             <li><strong>低倍镜 vs 高倍镜</strong>：低倍镜视野亮、细胞小、数目多；高倍镜视野暗、细胞大、数目少</li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section6: 后测 -->
@@ -504,16 +531,16 @@
       <h2 class="section-title"><span class="num">📝</span> 后测：巩固与应用</h2>
       
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【中考真题】显微镜视野中的物像是"p"，标本是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'A')" data-feedback="❌ 显微镜成倒像，标本旋转180°才是物像！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：p" aria-pressed="false" data-feedback="❌ 显微镜成倒像，标本旋转180°才是物像！">
             <span class="opt-letter">A</span> p
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'B')" data-feedback="❌ 显微镜成倒像，标本旋转180°才是物像！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：q" aria-pressed="false" data-feedback="❌ 显微镜成倒像，标本旋转180°才是物像！">
             <span class="opt-letter">B</span> q
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 101, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 101, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：d" aria-pressed="false">
             <span class="opt-letter">C</span> d
           </div>
         </div>
@@ -531,16 +558,16 @@
       </div>
 
       <!-- 后测题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【应用题】用显微镜观察时，如果视野太暗，应该？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'A')" data-feedback="❌ 改用小光圈会让视野更暗！应该用大光圈。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：改用小光圈" aria-pressed="false" data-feedback="❌ 改用小光圈会让视野更暗！应该用大光圈。">
             <span class="opt-letter">A</span> 改用小光圈
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 102, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 102, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：改用大光圈或使用凹面镜" aria-pressed="false">
             <span class="opt-letter">B</span> 改用大光圈或使用凹面镜
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'C')" data-feedback="❌ 平面镜反射光线弱，凹面镜反射光线强！视野暗应该用凹面镜。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：改用平面镜" aria-pressed="false" data-feedback="❌ 平面镜反射光线弱，凹面镜反射光线强！视野暗应该用凹面镜。">
             <span class="opt-letter">C</span> 改用平面镜
           </div>
         </div>
@@ -563,6 +590,9 @@
       <h2 class="section-title"><span class="num">📊</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color: #2e7d32; margin-bottom: 16px;">📈 中考考频统计</h3>
         
         <div class="exam-card" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
@@ -611,7 +641,9 @@
             <li><strong>低倍镜 vs 高倍镜</strong>：低倍镜→视野亮、细胞小、数目多；高倍镜→视野暗、细胞大、数目少</li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -866,6 +898,8 @@
     </div>
   </div>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

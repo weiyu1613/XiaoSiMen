@@ -493,6 +493,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- 1. 品牌栏 -->
 <div class="brand-bar">
@@ -511,6 +523,10 @@
 
 <!-- 3. 导航栏 -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-left">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../d7jf.html" class="nav-btn"><i class="fas fa-layer-group"></i> 章节目录</a>
@@ -664,6 +680,12 @@
 <!-- 7. 学习目标 -->
 <section id="objectives">
     <h2 class="section-title"><i class="fas fa-bullseye"></i> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
     <div class="objective-grid">
         <div class="objective-card">
             <div class="obj-icon"><i class="fa-solid fa-landmark"></i></div>
@@ -712,11 +734,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"辽沈战役是三大战役的第一个，但揭开战略反攻序幕的是刘邓大军挺进大别山（1947年6月），而非辽沈战役（1948年9月）。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"淮海战役是三大战役中歼敌最多、规模最大的战役，但战略反攻始于更早的挺进大别山。","D":"渡江战役发生在1949年4月，是解放战争的最后阶段，此时战略反攻早已开始。"}'>
             <span class="quiz-badge">基础</span>
             <h4>1. 揭开人民解放军战略反攻序幕的事件是？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 辽沈战役</div>
-                <div class="quiz-option" data-value="B">B. 刘邓大军挺进大别山</div>
-                <div class="quiz-option" data-value="C">C. 淮海战役</div>
-                <div class="quiz-option" data-value="D">D. 渡江战役</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.辽沈战役" aria-pressed="false" data-value="A">A. 辽沈战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.刘邓大军挺进大别山" aria-pressed="false" data-value="B">B. 刘邓大军挺进大别山</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.淮海战役" aria-pressed="false" data-value="C">C. 淮海战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.渡江战役" aria-pressed="false" data-value="D">D. 渡江战役</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -724,11 +746,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"辽沈战役解放了东北全境，歼敌47万余人，但歼敌数量最多的是淮海战役。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"平津战役使华北全境基本解放，但其歼敌数量（52万）少于淮海战役（55万）。","D":"渡江战役解放了南京，但三大战役中不包括渡江战役，且渡江战役歼敌数量也不是最多的。"}'>
             <span class="quiz-badge">提高</span>
             <h4>2. 三大战役中，歼敌数量最多的是？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 辽沈战役</div>
-                <div class="quiz-option" data-value="B">B. 淮海战役</div>
-                <div class="quiz-option" data-value="C">C. 平津战役</div>
-                <div class="quiz-option" data-value="D">D. 渡江战役</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.辽沈战役" aria-pressed="false" data-value="A">A. 辽沈战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.淮海战役" aria-pressed="false" data-value="B">B. 淮海战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.平津战役" aria-pressed="false" data-value="C">C. 平津战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.渡江战役" aria-pressed="false" data-value="D">D. 渡江战役</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -736,11 +758,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"北平和平解放是平津战役的成果，并非渡江战役的结果。渡江战役发生在1949年4月。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"东北解放是辽沈战役的结果（1948年11月），远早于渡江战役（1949年4月）。","D":"西北地区解放的时间晚于渡江战役，不在渡江战役的作战范围之内。"}'>
             <span class="quiz-badge challenge">挑战</span>
             <h4>3. 渡江战役的结果是？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 解放北平</div>
-                <div class="quiz-option" data-value="B">B. 解放南京，推翻国民党统治</div>
-                <div class="quiz-option" data-value="C">C. 解放东北</div>
-                <div class="quiz-option" data-value="D">D. 解放西北</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.解放北平" aria-pressed="false" data-value="A">A. 解放北平</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.解放南京，推翻国民党统治" aria-pressed="false" data-value="B">B. 解放南京，推翻国民党统治</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.解放东北" aria-pressed="false" data-value="C">C. 解放东北</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.解放西北" aria-pressed="false" data-value="D">D. 解放西北</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -831,11 +853,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"辽沈战役（1948年9—11月）是战略决战阶段的开始，而战略反攻早在1947年6月就已开始。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"淮海战役（1948年11月—1949年1月）是战略决战阶段的重要战役，但战略反攻的标志是更早的挺进大别山。","D":"平津战役（1948年11月—1949年1月）是三大战役中的最后一个，不是战略反攻的标志。"}'>
             <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
             <h4>1.（中考真题）标志人民解放军转入战略反攻的事件是（　　）</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 辽沈战役</div>
-                <div class="quiz-option" data-value="B">B. 刘邓大军挺进大别山</div>
-                <div class="quiz-option" data-value="C">C. 淮海战役</div>
-                <div class="quiz-option" data-value="D">D. 平津战役</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.辽沈战役" aria-pressed="false" data-value="A">A. 辽沈战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.刘邓大军挺进大别山" aria-pressed="false" data-value="B">B. 刘邓大军挺进大别山</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.淮海战役" aria-pressed="false" data-value="C">C. 淮海战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.平津战役" aria-pressed="false" data-value="D">D. 平津战役</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -843,22 +865,22 @@
         <div class="quiz-question" data-correct="C" data-feedback='{"A":"辽沈战役解放了东北全境，但华北全境的基本解放是平津战役的结果。","B":"淮海战役解放了长江中下游以北的广大地区，但华北全境的基本解放是平津战役的成果。","C":"✅ 答对了！可以点错误选项看看它们错在哪～","D":"渡江战役解放了南京，但华北全境的基本解放早在之前就已由平津战役完成。"}'>
             <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
             <h4>2.（中考真题）三大战役中，使华北全境基本解放的是（　　）</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 辽沈战役</div>
-                <div class="quiz-option" data-value="B">B. 淮海战役</div>
-                <div class="quiz-option" data-value="C">C. 平津战役</div>
-                <div class="quiz-option" data-value="D">D. 渡江战役</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.辽沈战役" aria-pressed="false" data-value="A">A. 辽沈战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.淮海战役" aria-pressed="false" data-value="B">B. 淮海战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.平津战役" aria-pressed="false" data-value="C">C. 平津战役</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.渡江战役" aria-pressed="false" data-value="D">D. 渡江战役</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
 
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"抗日战争在1945年8月就已胜利结束，渡江战役（1949年4月）已不属于抗日战争范畴。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"新中国成立是1949年10月1日，晚于渡江战役（1949年4月），渡江战役为新中国的成立扫清了障碍。","D":"三大战役胜利是在1949年1月，早于渡江战役（1949年4月），渡江战役是三大战役的延续和发展。"}'>
             <h4>3. 1949年4月，人民解放军横渡长江，解放南京的意义是（　　）</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 抗日战争胜利</div>
-                <div class="quiz-option" data-value="B">B. 标志着统治中国22年的国民党政权覆灭</div>
-                <div class="quiz-option" data-value="C">C. 新中国成立</div>
-                <div class="quiz-option" data-value="D">D. 三大战役胜利</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.抗日战争胜利" aria-pressed="false" data-value="A">A. 抗日战争胜利</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.标志着统治中国22年的国民党政权覆灭" aria-pressed="false" data-value="B">B. 标志着统治中国22年的国民党政权覆灭</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.新中国成立" aria-pressed="false" data-value="C">C. 新中国成立</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.三大战役胜利" aria-pressed="false" data-value="D">D. 三大战役胜利</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -995,6 +1017,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
 });
 </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

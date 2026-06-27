@@ -204,6 +204,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -216,7 +228,11 @@
   <div class="progress-label" id="progress-label">第 1/3 节 · 33%</div>
   
   <!-- ========== ③ 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dyddxgw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第1章：动物的运动和行为</div>
@@ -302,6 +318,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 举例说明动物运动的主要方式</li>
@@ -322,16 +344,16 @@
       </p>
       
       <!-- 基础题1：动物运动方式 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】鱼类主要的运动方式是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：游泳" aria-pressed="false">
             <span class="opt-letter">A</span> 游泳
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 飞行是鸟类和昆虫的主要运动方式，鱼类生活在水中！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：飞行" aria-pressed="false" data-feedback="❌ 飞行是鸟类和昆虫的主要运动方式，鱼类生活在水中！">
             <span class="opt-letter">B</span> 飞行
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 行走是陆地动物的运动方式，鱼类生活在水中！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：行走" aria-pressed="false" data-feedback="❌ 行走是陆地动物的运动方式，鱼类生活在水中！">
             <span class="opt-letter">C</span> 行走
           </div>
         </div>
@@ -344,16 +366,16 @@
       </div>
 
       <!-- 基础题2：鸟类运动方式 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】鸟类特有的运动方式是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 游泳是鱼类的运动方式，鸟类虽然能游泳但不是特有！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：游泳" aria-pressed="false" data-feedback="❌ 游泳是鱼类的运动方式，鸟类虽然能游泳但不是特有！">
             <span class="opt-letter">A</span> 游泳
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：飞行" aria-pressed="false">
             <span class="opt-letter">B</span> 飞行
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 爬行是蛇、蜥蜴等动物的运动方式，鸟类不是！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：爬行" aria-pressed="false" data-feedback="❌ 爬行是蛇、蜥蜴等动物的运动方式，鸟类不是！">
             <span class="opt-letter">C</span> 爬行
           </div>
         </div>
@@ -366,16 +388,16 @@
       </div>
       
       <!-- 提高题3：蛇的运动方式 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】蛇的运动方式是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 蛇没有脚，不能行走！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：行走" aria-pressed="false" data-feedback="❌ 蛇没有脚，不能行走！">
             <span class="opt-letter">A</span> 行走
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 蛇没有翅膀，不能飞行！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：飞行" aria-pressed="false" data-feedback="❌ 蛇没有翅膀，不能飞行！">
             <span class="opt-letter">B</span> 飞行
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：爬行" aria-pressed="false">
             <span class="opt-letter">C</span> 爬行
           </div>
         </div>
@@ -393,6 +415,9 @@
       <h2 class="section-title"><span class="num">🌿</span> 动物运动的主要方式</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #2e7d32;">📖 水中游泳</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li>生活在<strong>水中</strong>的动物（鱼、鲸鱼、海豚）主要通过<strong>游泳</strong>来运动</li>
@@ -487,7 +512,9 @@
           <p><strong>记忆口诀：</strong>"水中游，陆地走，空中飞来蛇爬行"</p>
           <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"所有动物都能飞行"→ 错误！只有鸟类、昆虫等具备飞行能力！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ⑨ 后测 -->
@@ -498,16 +525,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】鱼的游泳主要依靠？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 鱼游泳主要依靠鳍和尾部的摆动，而不只是尾！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：尾鳍" aria-pressed="false" data-feedback="❌ 鱼游泳主要依靠鳍和尾部的摆动，而不只是尾！">
             <span class="opt-letter">A</span> 尾鳍
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：鳍和尾部的协调摆动" aria-pressed="false">
             <span class="opt-letter">B</span> 鳍和尾部的协调摆动
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 鱼没有四肢，不能依靠四肢划水！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：四肢划水" aria-pressed="false" data-feedback="❌ 鱼没有四肢，不能依靠四肢划水！">
             <span class="opt-letter">C</span> 四肢划水
           </div>
         </div>
@@ -520,16 +547,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考改编）关于动物运动方式的描述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#f9a825;color:#e65100;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 鸟类飞行依靠翅膀扇动产生升力，不只是翅膀形状！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：鸟类飞行只依靠翅膀的形状" aria-pressed="false" data-feedback="❌ 鸟类飞行依靠翅膀扇动产生升力，不只是翅膀形状！">
             <span class="opt-letter">A</span> 鸟类飞行只依靠翅膀的形状
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：动物的运动方式与其生活环境相适应" aria-pressed="false">
             <span class="opt-letter">B</span> 动物的运动方式与其生活环境相适应
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 蛇没有脚，依靠腹部鳞片与地面的摩擦爬行！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蛇有脚，用脚爬行" aria-pressed="false" data-feedback="❌ 蛇没有脚，依靠腹部鳞片与地面的摩擦爬行！">
             <span class="opt-letter">C</span> 蛇有脚，用脚爬行
           </div>
         </div>
@@ -542,16 +569,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南中考改编）鱼的身体呈流线型的目的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#f9a825;color:#e65100;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 流线型身体是为了减少阻力，不是为了美观！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：美观" aria-pressed="false" data-feedback="❌ 流线型身体是为了减少阻力，不是为了美观！">
             <span class="opt-letter">A</span> 美观
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 流线型身体不能帮助呼吸，鱼的呼吸依靠鳃！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：帮助呼吸" aria-pressed="false" data-feedback="❌ 流线型身体不能帮助呼吸，鱼的呼吸依靠鳃！">
             <span class="opt-letter">B</span> 帮助呼吸
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：减少水的阻力" aria-pressed="false">
             <span class="opt-letter">C</span> 减少水的阻力
           </div>
         </div>
@@ -569,6 +596,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fce4ec,#ffebee);border:1px solid #ef9a9a;">
           <div class="exam-card-header">
@@ -613,7 +643,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>蛇没有脚，依靠<strong>腹部鳞片与地面的摩擦</strong>和<strong>肌肉交替收缩</strong>爬行。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -730,6 +762,8 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

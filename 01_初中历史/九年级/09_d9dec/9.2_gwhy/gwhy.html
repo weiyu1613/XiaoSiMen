@@ -394,6 +394,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -413,7 +425,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d9dec.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
@@ -521,6 +537,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解工业革命后人口增长的趋势和原因</li>
@@ -543,16 +565,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】工业革命后，人口增长的主要原因是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 战争会导致人口减少，不是增长的原因！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：战争减少" aria-pressed="false" data-feedback="❌ 战争会导致人口减少，不是增长的原因！">
             <span class="opt-letter">A</span> 战争减少
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：医疗条件改善，死亡率下降" aria-pressed="false">
             <span class="opt-letter">B</span> 医疗条件改善，死亡率下降
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 出生率下降会导致人口增长放缓，不是主要原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：出生率大幅下降" aria-pressed="false" data-feedback="❌ 出生率下降会导致人口增长放缓，不是主要原因！">
             <span class="opt-letter">C</span> 出生率大幅下降
           </div>
         </div>
@@ -573,16 +595,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】工业革命后，人口主要向哪里迁移？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 农村人口是迁出地，不是迁入地！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：从城市迁往农村" aria-pressed="false" data-feedback="❌ 农村人口是迁出地，不是迁入地！">
             <span class="opt-letter">A</span> 从城市迁往农村
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：从农村迁往城市" aria-pressed="false">
             <span class="opt-letter">B</span> 从农村迁往城市
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 工业革命后国际移民增加，但国内人口迁移的主要方向是农村到城市！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：从欧洲迁往亚洲" aria-pressed="false" data-feedback="❌ 工业革命后国际移民增加，但国内人口迁移的主要方向是农村到城市！">
             <span class="opt-letter">C</span> 从欧洲迁往亚洲
           </div>
         </div>
@@ -595,16 +617,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于城市化的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 城市化是指城市人口比例上升，不是农村人口比例上升！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：城市化就是农村人口比例不断上升" aria-pressed="false" data-feedback="❌ 城市化是指城市人口比例上升，不是农村人口比例上升！">
             <span class="opt-letter">A</span> 城市化就是农村人口比例不断上升
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 城市化带来了住房紧张、环境污染等问题，不是只有好处！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：城市化只会带来好处，没有弊端" aria-pressed="false" data-feedback="❌ 城市化带来了住房紧张、环境污染等问题，不是只有好处！">
             <span class="opt-letter">B</span> 城市化只会带来好处，没有弊端
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：城市化伴随着城市人口比例上升和城市规模扩大" aria-pressed="false">
             <span class="opt-letter">C</span> 城市化伴随着城市人口比例上升和城市规模扩大
           </div>
         </div>
@@ -621,16 +643,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】工业革命后，社会矛盾激化的根本原因是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 人口增长是工业化带来的结果，不是社会矛盾激化的根本原因！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：人口过快增长" aria-pressed="false" data-feedback="❌ 人口增长是工业化带来的结果，不是社会矛盾激化的根本原因！">
             <span class="opt-letter">A</span> 人口过快增长
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 城市化是社会变化的表现，不是社会矛盾激化的根本原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：城市化进程加快" aria-pressed="false" data-feedback="❌ 城市化是社会变化的表现，不是社会矛盾激化的根本原因！">
             <span class="opt-letter">B</span> 城市化进程加快
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：贫富差距扩大，资产阶级与无产阶级矛盾尖锐" aria-pressed="false">
             <span class="opt-letter">C</span> 贫富差距扩大，资产阶级与无产阶级矛盾尖锐
           </div>
         </div>
@@ -764,16 +786,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】工业革命后人口快速增长的根本原因是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 出生率上升是人口增长的次要原因，根本原因是死亡率下降！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：出生率大幅上升" aria-pressed="false" data-feedback="❌ 出生率上升是人口增长的次要原因，根本原因是死亡率下降！">
             <span class="opt-letter">A</span> 出生率大幅上升
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：医疗条件改善，死亡率下降" aria-pressed="false">
             <span class="opt-letter">B</span> 医疗条件改善，死亡率下降
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 战争减少不是工业革命后人口增长的普遍原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：战争减少，和平时期到来" aria-pressed="false" data-feedback="❌ 战争减少不是工业革命后人口增长的普遍原因！">
             <span class="opt-letter">C</span> 战争减少，和平时期到来
           </div>
         </div>
@@ -786,16 +808,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2022·江苏中考）工业革命后，城市人口比例不断上升的过程称为？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 工业化是指工业产值占比上升，不是人口向城市集聚的过程！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：工业化" aria-pressed="false" data-feedback="❌ 工业化是指工业产值占比上升，不是人口向城市集聚的过程！">
             <span class="opt-letter">A</span> 工业化
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：城市化" aria-pressed="false">
             <span class="opt-letter">B</span> 城市化
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 现代化是一个更广泛的概念，不是特指人口向城市集聚的过程！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：现代化" aria-pressed="false" data-feedback="❌ 现代化是一个更广泛的概念，不是特指人口向城市集聚的过程！">
             <span class="opt-letter">C</span> 现代化
           </div>
         </div>
@@ -814,16 +836,16 @@
       </div>
 
       <!-- 后测提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】工业革命后，最早开始城市化的国家是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：英国" aria-pressed="false">
             <span class="opt-letter">A</span> 英国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 法国是早期工业化国家，但城市化开始时间晚于英国！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：法国" aria-pressed="false" data-feedback="❌ 法国是早期工业化国家，但城市化开始时间晚于英国！">
             <span class="opt-letter">B</span> 法国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 美国城市化开始于19世纪中期，晚于英国！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：美国" aria-pressed="false" data-feedback="❌ 美国城市化开始于19世纪中期，晚于英国！">
             <span class="opt-letter">C</span> 美国
           </div>
         </div>
@@ -836,20 +858,20 @@
       </div>
 
       <!-- 后测挑战题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料】</strong>"工业革命后，资产阶级越来越富有，而无产阶级除了自己的劳动力之外一无所有，生活极度贫困。贫富差距的扩大，导致工人运动此起彼伏。"——摘自人教版九年级历史上册
         </div>
         <p style="margin-bottom:10px;font-weight:600;">这段材料反映的工业革命带来的核心社会问题是？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料没有提到环境问题，核心讲的是贫富差距和阶级矛盾！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：城市环境污染严重" aria-pressed="false" data-feedback="❌ 材料没有提到环境问题，核心讲的是贫富差距和阶级矛盾！">
             <span class="opt-letter">A</span> 城市环境污染严重
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：贫富差距扩大，阶级矛盾激化" aria-pressed="false">
             <span class="opt-letter">B</span> 贫富差距扩大，阶级矛盾激化
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料没有提到教育问题，核心讲的是贫富差距和阶级矛盾！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：教育普及程度低" aria-pressed="false" data-feedback="❌ 材料没有提到教育问题，核心讲的是贫富差距和阶级矛盾！">
             <span class="opt-letter">C</span> 教育普及程度低
           </div>
         </div>
@@ -877,6 +899,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -936,7 +961,9 @@
             <tr style="background:#fdf4ff;"><td>填空题</td><td>★★☆☆☆</td><td>填最早城市化的国家、第一部《工厂法》颁布国家</td><td>背熟英国、1833年</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴模块 -->
@@ -1161,6 +1188,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

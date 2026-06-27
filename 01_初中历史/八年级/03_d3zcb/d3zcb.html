@@ -264,6 +264,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -276,7 +288,11 @@
   <div class="progress-label" id="progress-label">第 3 单元 · 新民主主义革命的兴起</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
@@ -369,6 +385,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul class="objectives-list">
           <li>✅ 了解五四运动的背景、过程和历史意义</li>
@@ -421,6 +443,9 @@
       <h2 class="section-title"><span class="num">📖</span> 核心概念</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">🔑 重要概念</h3>
         
         <div class="concept-box" style="margin-top: 16px;">
@@ -442,7 +467,9 @@
           <div class="label">北伐战争</div>
           <p>1926-1927年，国民革命军向北洋军阀发动的军事行动，旨在统一中国。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: 单元测验 -->
@@ -453,16 +480,16 @@
       </p>
 
       <!-- 测验题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】五四运动爆发于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1911年是辛亥革命爆发的时间，不是五四运动！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1911年" aria-pressed="false" data-feedback="❌ 1911年是辛亥革命爆发的时间，不是五四运动！">
             <span class="opt-letter">A</span> 1911年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1919年" aria-pressed="false">
             <span class="opt-letter">B</span> 1919年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1921年是中国共产党诞生的时间，不是五四运动！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1921年" aria-pressed="false" data-feedback="❌ 1921年是中国共产党诞生的时间，不是五四运动！">
             <span class="opt-letter">C</span> 1921年
           </div>
         </div>
@@ -470,16 +497,16 @@
       </div>
 
       <!-- 测验题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】下列关于中国共产党诞生的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 中国共产党诞生于1921年，不是1919年！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：诞生于1919年" aria-pressed="false" data-feedback="❌ 中国共产党诞生于1921年，不是1919年！">
             <span class="opt-letter">A</span> 诞生于1919年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：第一次全国代表大会在上海召开" aria-pressed="false">
             <span class="opt-letter">B</span> 第一次全国代表大会在上海召开
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 中国共产党是无产阶级政党，不是资产阶级政党！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：是资产阶级政党" aria-pressed="false" data-feedback="❌ 中国共产党是无产阶级政党，不是资产阶级政党！">
             <span class="opt-letter">C</span> 是资产阶级政党
           </div>
         </div>
@@ -487,16 +514,16 @@
       </div>
 
       <!-- 测验题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 挑战】北伐战争的主要对象是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 北伐战争的对象是北洋军阀，不是帝国主义国家！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：英、法、美等帝国主义国家" aria-pressed="false" data-feedback="❌ 北伐战争的对象是北洋军阀，不是帝国主义国家！">
             <span class="opt-letter">A</span> 英、法、美等帝国主义国家
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 北伐战争的对象是北洋军阀，不是清政府！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：清政府" aria-pressed="false" data-feedback="❌ 北伐战争的对象是北洋军阀，不是清政府！">
             <span class="opt-letter">B</span> 清政府
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：北洋军阀（吴佩孚、孙传芳、张作霖）" aria-pressed="false">
             <span class="opt-letter">C</span> 北洋军阀（吴佩孚、孙传芳、张作霖）
           </div>
         </div>
@@ -606,5 +633,6 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 单元 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -179,6 +179,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -191,7 +203,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d3yd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第三单元：勇担社会责任</div>
@@ -253,6 +269,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
 <li>✅ 了解社会角色的含义</li>
@@ -273,16 +295,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】我们的生活离不开社会，主要体现在？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 这只是其中一方面，社会生活是多方面的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只需要物质生活" aria-pressed="false" data-feedback="❌ 这只是其中一方面，社会生活是多方面的！">
             <span class="opt-letter">A</span> 只需要物质生活
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：包括物质生活和精神生活" aria-pressed="false">
             <span class="opt-letter">B</span> 包括物质生活和精神生活
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 社会生活包括学校、社区等各方面，不仅限于家庭！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只需要家庭生活" aria-pressed="false" data-feedback="❌ 社会生活包括学校、社区等各方面，不仅限于家庭！">
             <span class="opt-letter">C</span> 只需要家庭生活
           </div>
         </div>
@@ -295,16 +317,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】下列属于社会生活的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 睡觉是个人行为，不属于社会生活！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：在家睡觉" aria-pressed="false" data-feedback="❌ 睡觉是个人行为，不属于社会生活！">
             <span class="opt-letter">A</span> 在家睡觉
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：参加社区志愿服务" aria-pressed="false">
             <span class="opt-letter">B</span> 参加社区志愿服务
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 独自看书是个人行为，不属于社会生活！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：独自看书" aria-pressed="false" data-feedback="❌ 独自看书是个人行为，不属于社会生活！">
             <span class="opt-letter">C</span> 独自看书
           </div>
         </div>
@@ -317,16 +339,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】关于个人与社会的关系，下列说法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 个人与社会是相互依存的关系，个人离不开社会！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：个人可以脱离社会独立生存" aria-pressed="false" data-feedback="❌ 个人与社会是相互依存的关系，个人离不开社会！">
             <span class="opt-letter">A</span> 个人可以脱离社会独立生存
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 这种说法过于绝对，个人与社会是相互影响的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：社会对个人只有约束作用" aria-pressed="false" data-feedback="❌ 这种说法过于绝对，个人与社会是相互影响的！">
             <span class="opt-letter">B</span> 社会对个人只有约束作用
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：个人是社会的有机组成部分" aria-pressed="false">
             <span class="opt-letter">C</span> 个人是社会的有机组成部分
           </div>
         </div>
@@ -339,16 +361,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】"人的本质不是单个人所固有的抽象物，在其现实性上，它是一切社会关系的总和。"这句话说明了？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：人是社会的人" aria-pressed="false">
             <span class="opt-letter">A</span> 人是社会的人
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这句话强调的是人的社会性，而不是人的独立性！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：人可以脱离社会而存在" aria-pressed="false" data-feedback="❌ 这句话强调的是人的社会性，而不是人的独立性！">
             <span class="opt-letter">B</span> 人可以脱离社会而存在
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 社会关系是人存在的方式，不是可有可无的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：社会关系对人来说可有可无" aria-pressed="false" data-feedback="❌ 社会关系是人存在的方式，不是可有可无的！">
             <span class="opt-letter">C</span> 社会关系对人来说可有可无
           </div>
         </div>
@@ -421,6 +443,9 @@
       <h2 class="section-title"><span class="num">👥</span> 我们都是社会的一员</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #1565c0;">📖 个人与社会的关系</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li>个人是社会的<strong>有机组成部分</strong></li>
@@ -439,7 +464,9 @@
           <p><strong>考试陷阱：</strong>"个人可以脱离社会而独立存在" → 错误！</p>
           <p style="margin-top: 6px;"><strong>正确认识：</strong>个人是社会的有机组成部分，人的生存和发展离不开社会。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: 核心内容 - 人的成长离不开社会 -->
@@ -474,16 +501,16 @@ id="section-postquiz">
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】社会生活的内容非常丰富，包括？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 社会生活不仅包括物质生活，还包括精神生活！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只有物质生活" aria-pressed="false" data-feedback="❌ 社会生活不仅包括物质生活，还包括精神生活！">
             <span class="opt-letter">A</span> 只有物质生活
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：物质生活和精神生活" aria-pressed="false">
             <span class="opt-letter">B</span> 物质生活和精神生活
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 社会生活不仅限于娱乐活动！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只有娱乐活动" aria-pressed="false" data-feedback="❌ 社会生活不仅限于娱乐活动！">
             <span class="opt-letter">C</span> 只有娱乐活动
           </div>
         </div>
@@ -496,16 +523,16 @@ id="section-postquiz">
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·北京中考）"人的成长离不开社会"，这说明？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fff3e0;color:#e65100;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 人不能脱离社会独立生存！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：人可以脱离社会独立生存" aria-pressed="false" data-feedback="❌ 人不能脱离社会独立生存！">
             <span class="opt-letter">A</span> 人可以脱离社会独立生存
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：人的成长需要社会提供条件" aria-pressed="false">
             <span class="opt-letter">B</span> 人的成长需要社会提供条件
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 社会对个人成长有重要作用，不是可有可无的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：社会对个人成长没有影响" aria-pressed="false" data-feedback="❌ 社会对个人成长有重要作用，不是可有可无的！">
             <span class="opt-letter">C</span> 社会对个人成长没有影响
           </div>
         </div>
@@ -518,16 +545,16 @@ id="section-postquiz">
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·江苏中考）下列行为属于亲社会行为的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fff3e0;color:#e65100;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 沉迷网络游戏是不良行为，不是亲社会行为！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：沉迷网络游戏" aria-pressed="false" data-feedback="❌ 沉迷网络游戏是不良行为，不是亲社会行为！">
             <span class="opt-letter">A</span> 沉迷网络游戏
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 随地吐痰是不文明行为，不是亲社会行为！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：随地吐痰" aria-pressed="false" data-feedback="❌ 随地吐痰是不文明行为，不是亲社会行为！">
             <span class="opt-letter">B</span> 随地吐痰
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：参加社区志愿服务" aria-pressed="false">
             <span class="opt-letter">C</span> 参加社区志愿服务
           </div>
         </div>
@@ -545,6 +572,9 @@ id="section-postquiz">
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);border:1px solid #90caf9;">
           <div class="exam-card-header">
@@ -589,7 +619,9 @@ id="section-postquiz">
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong><strong>亲社会行为</strong>是指有益于他人和社会的行为，如帮助他人、参与公益活动等。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -679,6 +711,8 @@ id="section-postquiz">
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

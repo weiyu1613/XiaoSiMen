@@ -367,6 +367,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
     <div class="container">
@@ -386,6 +398,10 @@
   
   <!-- ========== 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d9dec.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -495,6 +511,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道第二次工业革命的时间、标志和主要内容</li>
@@ -517,16 +539,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】第二次工业革命开始于什么时候？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 18世纪60年代是第一次工业革命开始的时间！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：18世纪60年代" aria-pressed="false" data-feedback="❌ 18世纪60年代是第一次工业革命开始的时间！">
             <span class="opt-letter">A</span> 18世纪60年代
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：19世纪70年代" aria-pressed="false">
             <span class="opt-letter">B</span> 19世纪70年代
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 20世纪初是第二次工业革命深入发展的时期，不是开始时间！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：20世纪初" aria-pressed="false" data-feedback="❌ 20世纪初是第二次工业革命深入发展的时期，不是开始时间！">
             <span class="opt-letter">C</span> 20世纪初
           </div>
         </div>
@@ -549,16 +571,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】第二次工业革命的主要标志是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 蒸汽机的发明和使用是第一次工业革命的主要标志！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蒸汽机的发明和使用" aria-pressed="false" data-feedback="❌ 蒸汽机的发明和使用是第一次工业革命的主要标志！">
             <span class="opt-letter">A</span> 蒸汽机的发明和使用
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：电力的广泛应用" aria-pressed="false">
             <span class="opt-letter">B</span> 电力的广泛应用
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 计算机的发明和应用是第三次科技革命的内容！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：计算机的发明和应用" aria-pressed="false" data-feedback="❌ 计算机的发明和应用是第三次科技革命的内容！">
             <span class="opt-letter">C</span> 计算机的发明和应用
           </div>
         </div>
@@ -571,16 +593,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于第二次工业革命成就的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 瓦特改进蒸汽机是第一次工业革命的成就，不是第二次！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：瓦特改进蒸汽机" aria-pressed="false" data-feedback="❌ 瓦特改进蒸汽机是第一次工业革命的成就，不是第二次！">
             <span class="opt-letter">A</span> 瓦特改进蒸汽机
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 史蒂芬孙发明火车是第一次工业革命的成就！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：史蒂芬孙发明火车" aria-pressed="false" data-feedback="❌ 史蒂芬孙发明火车是第一次工业革命的成就！">
             <span class="opt-letter">B</span> 史蒂芬孙发明火车
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：爱迪生发明耐用白炽灯泡" aria-pressed="false">
             <span class="opt-letter">C</span> 爱迪生发明耐用白炽灯泡
           </div>
         </div>
@@ -599,16 +621,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】第二次工业革命与第一次相比，最突出的不同是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 两次工业革命都带来生产力的巨大飞跃，这不是最突出的不同！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：都带来生产力的巨大飞跃" aria-pressed="false" data-feedback="❌ 两次工业革命都带来生产力的巨大飞跃，这不是最突出的不同！">
             <span class="opt-letter">A</span> 都带来生产力的巨大飞跃
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 两次工业革命都首先在英国发生，然后扩展到其他国家，这也不是最突出的不同！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：都首先发生在英国" aria-pressed="false" data-feedback="❌ 两次工业革命都首先在英国发生，然后扩展到其他国家，这也不是最突出的不同！">
             <span class="opt-letter">B</span> 都首先发生在英国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：科学与技术的结合更加紧密" aria-pressed="false">
             <span class="opt-letter">C</span> 科学与技术的结合更加紧密
           </div>
         </div>
@@ -711,6 +733,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>📈 一、生产力极大提高</h3>
         <p>第二次工业革命使生产力出现了<strong>惊人的提高</strong>，工业生产进入"电气时代""钢铁时代"。</p>
         
@@ -724,7 +749,9 @@
           <div class="label">核心概念</div>
           <p><strong>垄断组织：</strong>少数大企业通过协议或联合，控制一个或几个部门的生产、价格和市场，获取高额利润。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: 两次工业革命比较 -->
@@ -778,16 +805,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】第二次工业革命开始的标志是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 蒸汽机的发明是第一次工业革命的标志，不是第二次！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蒸汽机的发明" aria-pressed="false" data-feedback="❌ 蒸汽机的发明是第一次工业革命的标志，不是第二次！">
             <span class="opt-letter">A</span> 蒸汽机的发明
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：电力的广泛应用" aria-pressed="false">
             <span class="opt-letter">B</span> 电力的广泛应用
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 计算机的发明是第三次科技革命的成果，和第二次工业革命无关！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：计算机的发明" aria-pressed="false" data-feedback="❌ 计算机的发明是第三次科技革命的成果，和第二次工业革命无关！">
             <span class="opt-letter">C</span> 计算机的发明
           </div>
         </div>
@@ -808,16 +835,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）第二次工业革命中，促进石油开采业和石油化工发展的主要发明是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 蒸汽机以煤炭为燃料，促进的是煤炭工业的发展，和石油无关！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蒸汽机" aria-pressed="false" data-feedback="❌ 蒸汽机以煤炭为燃料，促进的是煤炭工业的发展，和石油无关！">
             <span class="opt-letter">A</span> 蒸汽机
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：内燃机" aria-pressed="false">
             <span class="opt-letter">B</span> 内燃机
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 发电机是电力工业的核心设备，和石油开采没有直接关系！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：发电机" aria-pressed="false" data-feedback="❌ 发电机是电力工业的核心设备，和石油开采没有直接关系！">
             <span class="opt-letter">C</span> 发电机
           </div>
         </div>
@@ -836,16 +863,16 @@
       </div>
 
       <!-- 后测提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】第二次工业革命中，被称为"发明大王"的美国发明家是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 牛顿是英国科学家，主要贡献在物理学（万有引力），不是第二次工业革命的发明家！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：牛顿" aria-pressed="false" data-feedback="❌ 牛顿是英国科学家，主要贡献在物理学（万有引力），不是第二次工业革命的发明家！">
             <span class="opt-letter">A</span> 牛顿
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：爱迪生" aria-pressed="false">
             <span class="opt-letter">B</span> 爱迪生
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 卡尔·本茨是汽车发明者，不是"发明大王"，他的发明数量远少于爱迪生！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：卡尔·本茨" aria-pressed="false" data-feedback="❌ 卡尔·本茨是汽车发明者，不是"发明大王"，他的发明数量远少于爱迪生！">
             <span class="opt-letter">C</span> 卡尔·本茨
           </div>
         </div>
@@ -858,20 +885,20 @@
       </div>
 
       <!-- 后测挑战题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
           <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
             <strong>【材料】</strong>"第二次工业革命中，科学研究的成果同工业生产的结合更加紧密，许多技术发明都来源于科学家的实验室，而不是工匠的实践经验。"<br>——摘自人教版九年级历史上册
           </div>
           <p style="margin-bottom:10px;font-weight:600;">这段材料说明第二次工业革命的突出特点是？</p>
-          <div class="quiz-options">
-            <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 技术发明依赖工匠经验是第一次工业革命的特点，材料明确说发明来源于科学家实验室，所以这个选项错误！">
+          <div class="quiz-options" role="radiogroup" aria-label="选择题">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：技术发明依赖工匠经验" aria-pressed="false" data-feedback="❌ 技术发明依赖工匠经验是第一次工业革命的特点，材料明确说发明来源于科学家实验室，所以这个选项错误！">
               <span class="opt-letter">A</span> 技术发明依赖工匠经验
             </div>
-            <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：科学与技术的结合更加紧密" aria-pressed="false">
               <span class="opt-letter">B</span> 科学与技术的结合更加紧密
             </div>
-            <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 第二次工业革命在多个资本主义国家同时发生，不是只在少数国家，这个选项不符合史实！">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只在少数资本主义国家发生" aria-pressed="false" data-feedback="❌ 第二次工业革命在多个资本主义国家同时发生，不是只在少数国家，这个选项不符合史实！">
               <span class="opt-letter">C</span> 只在少数资本主义国家发生
             </div>
           </div>
@@ -899,6 +926,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -959,7 +989,9 @@
             <tr style="background:#fdf4ff;"><td>填空题</td><td>★★☆☆☆</td><td>填开始时间、核心标志、时代特征</td><td>背熟19世纪70年代、电力、电气时代</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴模块 -->
@@ -1115,6 +1147,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

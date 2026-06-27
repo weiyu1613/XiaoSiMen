@@ -232,6 +232,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -245,6 +257,10 @@
 
   <!-- ③ 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -356,17 +372,17 @@
             <div class="quiz-question">
               <span class="star">★</span>1853年，率舰队进入日本浦贺港，打开日本国门的国家是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 英国曾在18世纪中期两次来华，不是黑船事件的主角！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.英国" aria-pressed="false" data-feedback="❌ 英国曾在18世纪中期两次来华，不是黑船事件的主角！">
                 <span class="opt-letter">A</span><label>A. 英国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.美国" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 美国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 法国在19世纪中期曾入侵越南，但不是黑船事件的主角！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.法国" aria-pressed="false" data-feedback="❌ 法国在19世纪中期曾入侵越南，但不是黑船事件的主角！">
                 <span class="opt-letter">C</span><label>C. 法国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 俄国在19世纪中期曾入侵中国黑龙江，但不是黑船事件的主角！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.俄国" aria-pressed="false" data-feedback="❌ 俄国在19世纪中期曾入侵中国黑龙江，但不是黑船事件的主角！">
                 <span class="opt-letter">D</span><label>D. 俄国</label>
               </div>
             </div>
@@ -386,17 +402,17 @@
             <div class="quiz-question">
               <span class="star">★</span>明治维新在政治方面的核心措施是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 废除等级制度是社会改革，不是政治核心！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.废除等级制度" aria-pressed="false" data-feedback="❌ 废除等级制度是社会改革，不是政治核心！">
                 <span class="opt-letter">A</span><label>A. 废除等级制度</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'B')" data-feedback="❌ 实施征兵制是军事改革！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.实施征兵制" aria-pressed="false" data-feedback="❌ 实施征兵制是军事改革！">
                 <span class="opt-letter">B</span><label>B. 实施征兵制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.废藩置县" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 废藩置县</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 文明开化是社会/文化改革！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.文明开化" aria-pressed="false" data-feedback="❌ 文明开化是社会/文化改革！">
                 <span class="opt-letter">D</span><label>D. 文明开化</label>
               </div>
             </div>
@@ -416,17 +432,17 @@
             <div class="quiz-question">
               <span class="star">★</span>关于明治维新性质的下列说法，正确的是？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 这是资产阶级革命的特征，明治维新是改革不是革命！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.反封建的资产阶级革命" aria-pressed="false" data-feedback="❌ 这是资产阶级革命的特征，明治维新是改革不是革命！">
                 <span class="opt-letter">A</span><label>A. 反封建的资产阶级革命</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.自上而下的资产阶层改革" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 自上而下的资产阶层改革</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'C')" data-feedback="❌ 这是农民起义的特征！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.自下而上的农民起义" aria-pressed="false" data-feedback="❌ 这是农民起义的特征！">
                 <span class="opt-letter">C</span><label>C. 自下而上的农民起义</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 这是完全意义的资产阶层革命！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.完全意义上的资产阶层革命" aria-pressed="false" data-feedback="❌ 这是完全意义的资产阶层革命！">
                 <span class="opt-letter">D</span><label>D. 完全意义上的资产阶层革命</label>
               </div>
             </div>
@@ -446,17 +462,17 @@
             <div class="quiz-question">
               <span class="star">★</span>与俄国1861年改革、中国洋务运动相比，明治维新最突出的特点是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 由武士阶层领导——不完全正确，倒幕主力是下级武士，但也有资产阶级参与！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.由武士阶层领导" aria-pressed="false" data-feedback="❌ 由武士阶层领导——不完全正确，倒幕主力是下级武士，但也有资产阶级参与！">
                 <span class="opt-letter">A</span><label>A. 由武士阶层领导</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 保留了封建残余是明治维新的缺点，不是特点！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.保留了封建残余" aria-pressed="false" data-feedback="❌ 保留了封建残余是明治维新的缺点，不是特点！">
                 <span class="opt-letter">B</span><label>B. 保留了封建残余</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 引进西方技术是三者共有的特征！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.引进西方技术" aria-pressed="false" data-feedback="❌ 引进西方技术是三者共有的特征！">
                 <span class="opt-letter">C</span><label>C. 引进西方技术</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'D')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.改革后走上对外扩张道路" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">D</span><label>D. 改革后走上对外扩张道路</label>
               </div>
             </div>
@@ -676,17 +692,17 @@
             <div class="quiz-question">
               <span class="star">★</span>明治维新在社会生活方面提倡"文明开化"，下述做法不符合这一主题的是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 建立近代高等学府是文明开化的内容！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.建立近代高等学府" aria-pressed="false" data-feedback="❌ 建立近代高等学府是文明开化的内容！">
                 <span class="opt-letter">A</span><label>A. 建立近代高等学府</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.创办近代化军队" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 创办近代化军队</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 派遣留学生赴欧美是文明开化的重要内容！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.派遣留学生赴欧美" aria-pressed="false" data-feedback="❌ 派遣留学生赴欧美是文明开化的重要内容！">
                 <span class="opt-letter">C</span><label>C. 派遣留学生赴欧美</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 采用西方服饰、改进饮食风俗是文明开化的典型表现！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.采用西方饮食服饰" aria-pressed="false" data-feedback="❌ 采用西方服饰、改进饮食风俗是文明开化的典型表现！">
                 <span class="opt-letter">D</span><label>D. 采用西方饮食服饰</label>
               </div>
             </div>
@@ -702,17 +718,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2020·山东中考）明治维新为日本经济发展注入了新的活力，其中最关键的措施是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 废除等级制度是社会改革！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.废除等级制度" aria-pressed="false" data-feedback="❌ 废除等级制度是社会改革！">
                 <span class="opt-letter">A</span><label>A. 废除等级制度</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ 建立新式军队是军事改革！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.建立新式军队" aria-pressed="false" data-feedback="❌ 建立新式军队是军事改革！">
                 <span class="opt-letter">B</span><label>B. 建立新式军队</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.实行土地改革，确认土地私有" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 实行土地改革，确认土地私有</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 发展教育是社会改革！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.大力发展教育" aria-pressed="false" data-feedback="❌ 发展教育是社会改革！">
                 <span class="opt-letter">D</span><label>D. 大力发展教育</label>
               </div>
             </div>
@@ -733,17 +749,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2019·江苏南通中考）19世纪中后期，为解决俄国落后局面而进行的改革是？日本为摆脱民族危机而进行的改革是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 洋务运动是中国的改革，不是俄国的！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.洋务运动·明治维新" aria-pressed="false" data-feedback="❌ 洋务运动是中国的改革，不是俄国的！">
                 <span class="opt-letter">A</span><label>A. 洋务运动 · 明治维新</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1861年改革·明治维新" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 1861年改革 · 明治维新</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'C')" data-feedback="❌ 只有一个改革，不是两个！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.资产阶级改革·明治维新" aria-pressed="false" data-feedback="❌ 只有一个改革，不是两个！">
                 <span class="opt-letter">C</span><label>C. 资产阶级改革 · 明治维新</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 洋务运动不是俄国的！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.1861年改革·洋务运动" aria-pressed="false" data-feedback="❌ 洋务运动不是俄国的！">
                 <span class="opt-letter">D</span><label>D. 1861年改革 · 洋务运动</label>
               </div>
             </div>
@@ -763,17 +779,17 @@
             <div class="quiz-question">
               <span class="star">★</span>关于明治维新和洋务运动的相同点，下列表述错误的是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 两者都发生在19世纪中后期——正确！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.都发生在19世纪中后期" aria-pressed="false" data-feedback="❌ 两者都发生在19世纪中后期——正确！">
                 <span class="opt-letter">A</span><label>A. 都发生在19世纪中后期</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 两者都是自上而下的改革——正确！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.都是自上而下的改革" aria-pressed="false" data-feedback="❌ 两者都是自上而下的改革——正确！">
                 <span class="opt-letter">B</span><label>B. 都是自上而下的改革</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 两者都主张向西方学习——正确！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.都主张向西方学习" aria-pressed="false" data-feedback="❌ 两者都主张向西方学习——正确！">
                 <span class="opt-letter">C</span><label>C. 都主张向西方学习</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'D')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.都取得完全成功并长期执行" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">D</span><label>D. 都取得完全成功并长期执行</label>
               </div>
             </div>
@@ -798,6 +814,9 @@
     <!-- ⑩ 必考分析与考点总结 -->
     <section class="section">
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
           <div class="exam-cards">
@@ -836,7 +855,9 @@
             <p style="margin-top: 6px;"><strong>易错5：</strong>洋务运动是"中国"的改革，1861年改革是"俄国"的改革，不能混淆！</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -939,6 +960,8 @@
       console.log('🏯 《日本明治维新》课件加载完成（v7.14.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -79,10 +79,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 30/31 节 · 96.8%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d8zjfztd.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第八单元：走进法治天地</div>
@@ -145,6 +161,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解未成年人需要特殊保护的原因 <span class="tag tag-theory">关联：未成年人保护理论</span></li>
         <li>✅ 了解保护未成年人的相关法律法规 <span class="tag tag-theory">关联：未成年人保护法</span></li>
@@ -158,12 +180,12 @@
       <p style="color:#2196f3;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】未成年人是指未满多少周岁的公民？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 16周岁是<strong>部分民事行为能力</strong>的年龄，不是未成年人的定义。<br><span class='tag tag-mistake'>归因：混淆了不同年龄节点的法律意义</span>"><span class="opt-letter">A</span> 16周岁</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：未成年人定义</span>"><span class="opt-letter">B</span> 18周岁</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 20周岁是<strong>完全民事行为能力</strong>年龄，不是未成年人定义。<br><span class='tag tag-mistake'>归因：混淆了成年与未成年的界限</span>"><span class="opt-letter">C</span> 20周岁</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：16周岁" aria-pressed="false" data-fb="❌ 16周岁是<strong>部分民事行为能力</strong>的年龄，不是未成年人的定义。<br><span class='tag tag-mistake'>归因：混淆了不同年龄节点的法律意义</span>"><span class="opt-letter">A</span> 16周岁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：18周岁" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：未成年人定义</span>"><span class="opt-letter">B</span> 18周岁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：20周岁" aria-pressed="false" data-fb="❌ 20周岁是<strong>完全民事行为能力</strong>年龄，不是未成年人定义。<br><span class='tag tag-mistake'>归因：混淆了成年与未成年的界限</span>"><span class="opt-letter">C</span> 20周岁</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -175,12 +197,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】下列哪些是保护未成年人的专门法律？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 宪法是<strong>根本大法</strong>，不是专门保护未成年人的法律。<br><span class='tag tag-mistake'>归因：混淆了根本法与专门法的区别</span>"><span class="opt-letter">A</span> 宪法</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：未成年人保护专门法律</span>"><span class="opt-letter">B</span> 未成年人保护法和预防未成年人犯罪法</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 婚姻法是<strong>调整婚姻家庭关系</strong>的法律，不是专门保护未成年人的法律。<br><span class='tag tag-mistake'>归因：混淆了不同法律的调整对象</span>"><span class="opt-letter">C</span> 婚姻法</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：宪法" aria-pressed="false" data-fb="❌ 宪法是<strong>根本大法</strong>，不是专门保护未成年人的法律。<br><span class='tag tag-mistake'>归因：混淆了根本法与专门法的区别</span>"><span class="opt-letter">A</span> 宪法</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：未成年人保护法和预防未成年人犯罪法" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：未成年人保护专门法律</span>"><span class="opt-letter">B</span> 未成年人保护法和预防未成年人犯罪法</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：婚姻法" aria-pressed="false" data-fb="❌ 婚姻法是<strong>调整婚姻家庭关系</strong>的法律，不是专门保护未成年人的法律。<br><span class='tag tag-mistake'>归因：混淆了不同法律的调整对象</span>"><span class="opt-letter">C</span> 婚姻法</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -192,12 +214,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】下列关于四大保护的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ <strong>家庭保护</strong>是父母或其他监护人的职责，学校保护是学校等教育机构的责任。<br><span class='tag tag-mistake'>归因：混淆了家庭保护与学校保护的主体</span>"><span class="opt-letter">A</span> 家庭保护是学校等教育机构的责任</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ <strong>社会保护</strong>是全社会创造有利于未成年人健康成长的社会环境，司法保护是司法机关的职责。<br><span class='tag tag-mistake'>归因：混淆了社会保护与司法保护的主体</span>"><span class="opt-letter">B</span> 社会保护是司法机关的职责</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：四大保护的主体和内容</span>"><span class="opt-letter">C</span> 司法保护是司法机关依法履行职责对未成年人实施的专门保护</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：家庭保护是学校等教育机构的责任" aria-pressed="false" data-fb="❌ <strong>家庭保护</strong>是父母或其他监护人的职责，学校保护是学校等教育机构的责任。<br><span class='tag tag-mistake'>归因：混淆了家庭保护与学校保护的主体</span>"><span class="opt-letter">A</span> 家庭保护是学校等教育机构的责任</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：社会保护是司法机关的职责" aria-pressed="false" data-fb="❌ <strong>社会保护</strong>是全社会创造有利于未成年人健康成长的社会环境，司法保护是司法机关的职责。<br><span class='tag tag-mistake'>归因：混淆了社会保护与司法保护的主体</span>"><span class="opt-letter">B</span> 社会保护是司法机关的职责</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：司法保护是司法机关依法履行职责对未成年人实施的专门保护" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：四大保护的主体和内容</span>"><span class="opt-letter">C</span> 司法保护是司法机关依法履行职责对未成年人实施的专门保护</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -232,6 +254,9 @@
 
     <section><h2 class="section-title">📜 保护未成年人的法律</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#2196f3;">📖 保护未成年人的法律体系</h3>
         
         <div class="concept-box"><div class="label">普通法律 <span class="tag tag-theory">关联：法律体系的构成</span></div>
@@ -251,7 +276,9 @@
           <tr><td><strong>普通法</strong></td><td>婚姻法、义务教育法等</td><td>在不同领域保护未成年人</td></tr>
           <tr><td><strong>专门法</strong></td><td>未成年人保护法、预防未成年人犯罪法</td><td>全面系统保护未成年人</td></tr>
         </table>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">🏫 四大保护</h2>
@@ -322,12 +349,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】未成年人是指未满多少周岁的公民？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：未成年人定义</span>"><span class="opt-letter">A</span> 18周岁</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 16周岁是<strong>部分民事行为能力</strong>的起点，不是未成年人的定义。<br><span class='tag tag-mistake'>归因：混淆了不同年龄节点的法律意义</span>"><span class="opt-letter">B</span> 16周岁</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 20周岁是<strong>完全民事行为能力</strong>年龄，不是未成年人定义。<br><span class='tag tag-mistake'>归因：混淆了成年与未成年的界限</span>"><span class="opt-letter">C</span> 20周岁</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：18周岁" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：未成年人定义</span>"><span class="opt-letter">A</span> 18周岁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：16周岁" aria-pressed="false" data-fb="❌ 16周岁是<strong>部分民事行为能力</strong>的起点，不是未成年人的定义。<br><span class='tag tag-mistake'>归因：混淆了不同年龄节点的法律意义</span>"><span class="opt-letter">B</span> 16周岁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：20周岁" aria-pressed="false" data-fb="❌ 20周岁是<strong>完全民事行为能力</strong>年龄，不是未成年人定义。<br><span class='tag tag-mistake'>归因：混淆了成年与未成年的界限</span>"><span class="opt-letter">C</span> 20周岁</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -335,12 +362,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】下列哪些属于四大保护？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：四大保护</span>"><span class="opt-letter">A</span> 家庭保护、学校保护、社会保护、司法保护</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ <strong>政府保护</strong>不是四大保护的内容，而是后来增加的保护类型。<br><span class='tag tag-mistake'>归因：混淆了四大保护与其他保护类型</span>"><span class="opt-letter">B</span> 家庭保护、政府保护、社会保护、司法保护</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ <strong>网络保护</strong>不是四大保护的内容，而是后来增加的保护类型。<br><span class='tag tag-mistake'>归因：混淆了四大保护与其他保护类型</span>"><span class="opt-letter">C</span> 家庭保护、学校保护、网络保护、司法保护</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：家庭保护、学校保护、社会保护、司法保护" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：四大保护</span>"><span class="opt-letter">A</span> 家庭保护、学校保护、社会保护、司法保护</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：家庭保护、政府保护、社会保护、司法保护" aria-pressed="false" data-fb="❌ <strong>政府保护</strong>不是四大保护的内容，而是后来增加的保护类型。<br><span class='tag tag-mistake'>归因：混淆了四大保护与其他保护类型</span>"><span class="opt-letter">B</span> 家庭保护、政府保护、社会保护、司法保护</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：家庭保护、学校保护、网络保护、司法保护" aria-pressed="false" data-fb="❌ <strong>网络保护</strong>不是四大保护的内容，而是后来增加的保护类型。<br><span class='tag tag-mistake'>归因：混淆了四大保护与其他保护类型</span>"><span class="opt-letter">C</span> 家庭保护、学校保护、网络保护、司法保护</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -348,12 +375,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】下列关于四大保护主体的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：司法保护的主体</span>"><span class="opt-letter">A</span> 司法保护的主体是司法机关</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 家庭保护的主体是<strong>父母或其他监护人</strong>，不是学校。<br><span class='tag tag-mistake'>归因：混淆了家庭保护与学校保护的主体</span>"><span class="opt-letter">B</span> 家庭保护的主体是学校等教育机构</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 社会保护的主体是<strong>全社会</strong>，不是司法机关。<br><span class='tag tag-mistake'>归因：混淆了社会保护与司法保护的主体</span>"><span class="opt-letter">C</span> 社会保护的主体是司法机关</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：司法保护的主体是司法机关" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：司法保护的主体</span>"><span class="opt-letter">A</span> 司法保护的主体是司法机关</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：家庭保护的主体是学校等教育机构" aria-pressed="false" data-fb="❌ 家庭保护的主体是<strong>父母或其他监护人</strong>，不是学校。<br><span class='tag tag-mistake'>归因：混淆了家庭保护与学校保护的主体</span>"><span class="opt-letter">B</span> 家庭保护的主体是学校等教育机构</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：社会保护的主体是司法机关" aria-pressed="false" data-fb="❌ 社会保护的主体是<strong>全社会</strong>，不是司法机关。<br><span class='tag tag-mistake'>归因：混淆了社会保护与司法保护的主体</span>"><span class="opt-letter">C</span> 社会保护的主体是司法机关</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -366,6 +393,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -426,7 +456,9 @@
           </ul>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -456,6 +488,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

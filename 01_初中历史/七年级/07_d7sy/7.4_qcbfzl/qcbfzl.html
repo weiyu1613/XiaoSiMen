@@ -124,6 +124,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -132,7 +144,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d7sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第七单元：明清时期</div>
@@ -195,6 +211,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道军机处的设立者和职能</li>
@@ -211,12 +233,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】军机处设立于哪个朝代？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 明朝没有军机处，那是清朝的机构！"><span class="opt-letter">A</span> 明朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 清朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 唐朝没有军机处！"><span class="opt-letter">C</span> 唐朝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：明朝" aria-pressed="false" data-feedback="❌ 明朝没有军机处，那是清朝的机构！"><span class="opt-letter">A</span> 明朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：清朝" aria-pressed="false"><span class="opt-letter">B</span> 清朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：唐朝" aria-pressed="false" data-feedback="❌ 唐朝没有军机处！"><span class="opt-letter">C</span> 唐朝</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -224,12 +246,12 @@
           <p><strong>军机处</strong>是<strong>清朝雍正</strong>设立的中央决策机构，标志君主专制达到顶峰。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】"文字狱"是指？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 文字狱不是监狱，是思想控制！"><span class="opt-letter">A</span> 关押犯人的监狱</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 因文字获罪的案件</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 文字狱不是书法比赛！"><span class="opt-letter">C</span> 书法比赛</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：关押犯人的监狱" aria-pressed="false" data-feedback="❌ 文字狱不是监狱，是思想控制！"><span class="opt-letter">A</span> 关押犯人的监狱</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：因文字获罪的案件" aria-pressed="false"><span class="opt-letter">B</span> 因文字获罪的案件</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：书法比赛" aria-pressed="false" data-feedback="❌ 文字狱不是书法比赛！"><span class="opt-letter">C</span> 书法比赛</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -237,12 +259,12 @@
           <p><strong>文字狱</strong>是统治者从文人文字中找"罪证"，制造冤案，<strong>加强思想控制</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】清朝闭关锁国的根本目的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 促进贸易不是目的，闭关锁国是限制贸易！"><span class="opt-letter">A</span> 促进贸易</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 维护封建统治</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 学习西方不是目的，闭关锁国是排斥西方！"><span class="opt-letter">C</span> 学习西方</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：促进贸易" aria-pressed="false" data-feedback="❌ 促进贸易不是目的，闭关锁国是限制贸易！"><span class="opt-letter">A</span> 促进贸易</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：维护封建统治" aria-pressed="false"><span class="opt-letter">B</span> 维护封建统治</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：学习西方" aria-pressed="false" data-feedback="❌ 学习西方不是目的，闭关锁国是排斥西方！"><span class="opt-letter">C</span> 学习西方</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -250,12 +272,12 @@
           <p>清朝实行<strong>闭关锁国</strong>政策的根本目的是<strong>维护封建统治</strong>，防止人民接触外界思想。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】明清君主专制加强的共同措施是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 废除丞相只是明朝措施，清朝沿用！"><span class="opt-letter">A</span> 废除丞相</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 实行科举只是沿用，不是加强专制的措施！"><span class="opt-letter">B</span> 实行科举</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 加强思想控制</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：废除丞相" aria-pressed="false" data-feedback="❌ 废除丞相只是明朝措施，清朝沿用！"><span class="opt-letter">A</span> 废除丞相</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：实行科举" aria-pressed="false" data-feedback="❌ 实行科举只是沿用，不是加强专制的措施！"><span class="opt-letter">B</span> 实行科举</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：加强思想控制" aria-pressed="false"><span class="opt-letter">C</span> 加强思想控制</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -267,6 +289,9 @@
     <section class="section" id="core-content">
       <h2 class="section-title"><span class="num">📚</span> 核心内容</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>一、设立军机处</h3>
         <p><strong>时间</strong>：<strong>雍正</strong>时期（1729年）</p>
         <p><strong>原因</strong>：处理西北军务，加强皇权</p>
@@ -281,7 +306,9 @@
           <li>① 君主专制<strong>达到顶峰</strong></li>
           <li>② 行政决策<strong>完全由皇帝独断</strong></li>
         </ul>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>二、制造文字狱</h3>
         <p><strong>含义</strong>：</p>
@@ -303,6 +330,9 @@
         </ul>
       </div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>三、闭关锁国政策</h3>
         <p><strong>含义</strong>：严格限制对外贸易和交往</p>
         <p><strong>表现</strong>：</p>
@@ -322,7 +352,9 @@
           <li>① <strong>积极</strong>：短期内保护了封建经济</li>
           <li>② <strong>消极</strong>：使中国<strong>落后于世界</strong>，导致近代被动挨打</li>
         </ul>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>四、其他专制措施</h3>
         <p><strong>1. 奏折制度</strong>：</p>
@@ -403,12 +435,12 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
         <span style="margin-left: 12px; color: var(--accent);">⚡ 含中考真题</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】军机处设立于哪个皇帝时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 康熙时期没有设立军机处！"><span class="opt-letter">A</span> 康熙</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 雍正</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 乾隆时期沿用军机处，但不是设立者！"><span class="opt-letter">C</span> 乾隆</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：康熙" aria-pressed="false" data-feedback="❌ 康熙时期没有设立军机处！"><span class="opt-letter">A</span> 康熙</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：雍正" aria-pressed="false"><span class="opt-letter">B</span> 雍正</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：乾隆" aria-pressed="false" data-feedback="❌ 乾隆时期沿用军机处，但不是设立者！"><span class="opt-letter">C</span> 乾隆</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -416,12 +448,12 @@
           <p><strong>雍正</strong>时期设立<strong>军机处</strong>，君主专制达到顶峰。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐ 基础】清朝唯一的通商口岸是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 厦门不是清朝唯一的通商口岸！"><span class="opt-letter">A</span> 厦门</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')"><span class="opt-letter">B</span> 广州</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 上海在清朝闭关锁国时期不对外开放！"><span class="opt-letter">C</span> 上海</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：厦门" aria-pressed="false" data-feedback="❌ 厦门不是清朝唯一的通商口岸！"><span class="opt-letter">A</span> 厦门</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：广州" aria-pressed="false"><span class="opt-letter">B</span> 广州</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：上海" aria-pressed="false" data-feedback="❌ 上海在清朝闭关锁国时期不对外开放！"><span class="opt-letter">C</span> 上海</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -429,12 +461,12 @@
           <p>清朝实行闭关锁国，只开<strong>广州</strong>一处通商（通过"广州十三行"）。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】军机处的主要职能是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="❌ 军机处无决策权，不能决策！"><span class="opt-letter">A</span> 决策政务</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'B')"><span class="opt-letter">B</span> 跪受笔录，承旨遵办</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="❌ 军机处不是监察机构！"><span class="opt-letter">C</span> 监察百官</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：决策政务" aria-pressed="false" data-feedback="❌ 军机处无决策权，不能决策！"><span class="opt-letter">A</span> 决策政务</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：跪受笔录，承旨遵办" aria-pressed="false"><span class="opt-letter">B</span> 跪受笔录，承旨遵办</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：监察百官" aria-pressed="false" data-feedback="❌ 军机处不是监察机构！"><span class="opt-letter">C</span> 监察百官</div>
         </div>
         <div class="feedback" id="feedback-7"></div>
         <div class="answer-explanation" id="explanation-7">
@@ -442,7 +474,7 @@
           <p>军机大臣<strong>跪受笔录</strong>，按照皇帝旨意办事，<strong>无决策权</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】阅读材料，回答问题：<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
         <div style="background: #f9fafb; border-left: 4px solid #8b4513; padding: 16px; margin-bottom: 16px; border-radius: 0 8px 8px 0;">
           <p><strong>材料</strong>：</p>
@@ -450,10 +482,10 @@
           <p>——引自《清史稿》</p>
           <p><strong>问题</strong>：材料说明军机处有什么特点？（　）</p>
         </div>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'A')" data-feedback="❌ 材料说军机处总揽军国大计，不是无足轻重！"><span class="opt-letter">A</span> 无足轻重</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'B')"><span class="opt-letter">B</span> 权力很大，但无决策权</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 材料没有提到军机处撤销！"><span class="opt-letter">C</span> 已被撤销</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：无足轻重" aria-pressed="false" data-feedback="❌ 材料说军机处总揽军国大计，不是无足轻重！"><span class="opt-letter">A</span> 无足轻重</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：权力很大，但无决策权" aria-pressed="false"><span class="opt-letter">B</span> 权力很大，但无决策权</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：已被撤销" aria-pressed="false" data-feedback="❌ 材料没有提到军机处撤销！"><span class="opt-letter">C</span> 已被撤销</div>
         </div>
         <div class="feedback" id="feedback-8"></div>
         <div class="answer-explanation" id="explanation-8">
@@ -509,6 +541,9 @@
         </h2>
         
         <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
           <!-- 考点1 -->
           <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
             <div class="exam-card-header">
@@ -561,7 +596,9 @@
               <tr style="background:#ffffff;"><td>材料题</td><td>★★★☆☆</td><td>给史料，分析君主专制加强</td><td>理解"顶峰"的含义</td></tr>
             </table>
           </div>
-        </div>
+        
+</details>
+</div>
       </section>
 
 <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
@@ -651,6 +688,8 @@
   </script>
     <!-- 标准模块脚本（必须） -->
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

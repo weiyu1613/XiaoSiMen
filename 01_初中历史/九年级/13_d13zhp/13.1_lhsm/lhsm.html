@@ -218,6 +218,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -231,6 +243,10 @@
 
   <!-- ========== ③ 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d13zhp.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -332,17 +348,17 @@
             <div class="quiz-question">
               <span class="star">★</span>联合国的创始文件是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 《大西洋宪章》是1941年美英战时宣言，不是联合国创始文件。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.《大西洋宪章》" aria-pressed="false" data-feedback="❌ 《大西洋宪章》是1941年美英战时宣言，不是联合国创始文件。">
                 <span class="opt-letter">A</span><label>A. 《大西洋宪章》</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.《联合国宪章》" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 《联合国宪章》</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 《世界人权宣言》是1948年联合国大会通过的人权文件，晚于联合国成立。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.《世界人权宣言》" aria-pressed="false" data-feedback="❌ 《世界人权宣言》是1948年联合国大会通过的人权文件，晚于联合国成立。">
                 <span class="opt-letter">C</span><label>C. 《世界人权宣言》</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 《和平协定》不是联合国的创始文件。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.《和平协定》" aria-pressed="false" data-feedback="❌ 《和平协定》不是联合国的创始文件。">
                 <span class="opt-letter">D</span><label>D. 《和平协定》</label>
               </div>
             </div>
@@ -359,17 +375,17 @@
             <div class="quiz-question">
               <span class="star">★</span>安理会常任理事国有几个？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 安理会常任理事国不是3个。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.3个" aria-pressed="false" data-feedback="❌ 安理会常任理事国不是3个。">
                 <span class="opt-letter">A</span><label>A. 3个</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.5个" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 5个</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 安理会共有15个理事国，但常任理事国只有5个。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.8个" aria-pressed="false" data-feedback="❌ 安理会共有15个理事国，但常任理事国只有5个。">
                 <span class="opt-letter">C</span><label>C. 8个</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 10个是安理会的非常任理事国数量，常任理事国是5个。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.10个" aria-pressed="false" data-feedback="❌ 10个是安理会的非常任理事国数量，常任理事国是5个。">
                 <span class="opt-letter">D</span><label>D. 10个</label>
               </div>
             </div>
@@ -386,17 +402,17 @@
             <div class="quiz-question">
               <span class="star">★</span>WTO（世界贸易组织）的前身是？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 国际货币基金组织（IMF）是布雷顿森林体系下的金融组织，不是WTO的前身。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.国际货币基金组织" aria-pressed="false" data-feedback="❌ 国际货币基金组织（IMF）是布雷顿森林体系下的金融组织，不是WTO的前身。">
                 <span class="opt-letter">A</span><label>A. 国际货币基金组织</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.关贸总协定（GATT）" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 关贸总协定（GATT）</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'C')" data-feedback="❌ 世界银行是国际金融机构，不是WTO的前身。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.世界银行" aria-pressed="false" data-feedback="❌ 世界银行是国际金融机构，不是WTO的前身。">
                 <span class="opt-letter">C</span><label>C. 世界银行</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 联合国开发计划署是联合国的发展援助机构，与贸易组织不同。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.联合国开发计划署" aria-pressed="false" data-feedback="❌ 联合国开发计划署是联合国的发展援助机构，与贸易组织不同。">
                 <span class="opt-letter">D</span><label>D. 联合国开发计划署</label>
               </div>
             </div>
@@ -413,17 +429,17 @@
             <div class="quiz-question">
               <span class="star">★</span>下列关于经济全球化的说法，不正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 跨国公司确实是经济全球化的主要推动力，这个说法正确。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.跨国公司是主要推动力" aria-pressed="false" data-feedback="❌ 跨国公司确实是经济全球化的主要推动力，这个说法正确。">
                 <span class="opt-letter">A</span><label>A. 跨国公司是主要推动力</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 经济全球化确实有利于生产要素在全球流动，这个说法正确。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.有利于生产要素在全球流动" aria-pressed="false" data-feedback="❌ 经济全球化确实有利于生产要素在全球流动，这个说法正确。">
                 <span class="opt-letter">B</span><label>B. 有利于生产要素在全球流动</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.对所有国家都是有利无害" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 对所有国家都是有利无害</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'D')" data-feedback="❌ 发展中国家确实面临机遇与挑战并存的局面，这个说法正确。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.发展中国家机遇与挑战并存" aria-pressed="false" data-feedback="❌ 发展中国家确实面临机遇与挑战并存的局面，这个说法正确。">
                 <span class="opt-letter">D</span><label>D. 发展中国家机遇与挑战并存</label>
               </div>
             </div>
@@ -549,17 +565,17 @@
             <div class="quiz-question">
               <span class="star">★</span>世界贸易组织成立于哪一年？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 1945年是联合国成立年份，不是WTO。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1945年" aria-pressed="false" data-feedback="❌ 1945年是联合国成立年份，不是WTO。">
                 <span class="opt-letter">A</span><label>A. 1945年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'B')" data-feedback="❌ 1990年不是WTO成立年份。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1990年" aria-pressed="false" data-feedback="❌ 1990年不是WTO成立年份。">
                 <span class="opt-letter">B</span><label>B. 1990年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1995年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 1995年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 2000年不是WTO成立年份。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.2000年" aria-pressed="false" data-feedback="❌ 2000年不是WTO成立年份。">
                 <span class="opt-letter">D</span><label>D. 2000年</label>
               </div>
             </div>
@@ -576,17 +592,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2022·陕西中考）中国加入WTO是在哪一年？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 2000年不是中国加入WTO的年份。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.2000年" aria-pressed="false" data-feedback="❌ 2000年不是中国加入WTO的年份。">
                 <span class="opt-letter">A</span><label>A. 2000年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.2001年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 2001年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'C')" data-feedback="❌ 2002年不是中国加入WTO的年份。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.2002年" aria-pressed="false" data-feedback="❌ 2002年不是中国加入WTO的年份。">
                 <span class="opt-letter">C</span><label>C. 2002年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 2010年不是中国加入WTO的年份。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.2010年" aria-pressed="false" data-feedback="❌ 2010年不是中国加入WTO的年份。">
                 <span class="opt-letter">D</span><label>D. 2010年</label>
               </div>
             </div>
@@ -603,17 +619,17 @@
             <div class="quiz-question">
               <span class="star">★</span>安理会五个常任理事国不包括？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 中国是安理会五个常任理事国之一。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.中国" aria-pressed="false" data-feedback="❌ 中国是安理会五个常任理事国之一。">
                 <span class="opt-letter">A</span><label>A. 中国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'B')" data-feedback="❌ 法国是安理会五个常任理事国之一。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.法国" aria-pressed="false" data-feedback="❌ 法国是安理会五个常任理事国之一。">
                 <span class="opt-letter">B</span><label>B. 法国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.日本" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 日本</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 英国是安理会五个常任理事国之一。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.英国" aria-pressed="false" data-feedback="❌ 英国是安理会五个常任理事国之一。">
                 <span class="opt-letter">D</span><label>D. 英国</label>
               </div>
             </div>
@@ -630,17 +646,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2021·山东中考）下列关于联合国的叙述，正确的是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 联合国成立于1945年，不是1944年。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.成立于1944年" aria-pressed="false" data-feedback="❌ 联合国成立于1945年，不是1944年。">
                 <span class="opt-letter">A</span><label>A. 成立于1944年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 总部设在纽约，不是巴黎。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.总部设在巴黎" aria-pressed="false" data-feedback="❌ 总部设在纽约，不是巴黎。">
                 <span class="opt-letter">B</span><label>B. 总部设在巴黎</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.宗旨是维护国际和平与安全" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 宗旨是维护国际和平与安全</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'D')" data-feedback="❌ 安理会是核心机构，不是秘书处。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.秘书处是核心机构" aria-pressed="false" data-feedback="❌ 安理会是核心机构，不是秘书处。">
                 <span class="opt-letter">D</span><label>D. 秘书处是核心机构</label>
               </div>
             </div>
@@ -767,6 +783,8 @@
 
     console.log('📚 第13.1课《联合国与世界贸易组织》页面加载完成（v7.14）');
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

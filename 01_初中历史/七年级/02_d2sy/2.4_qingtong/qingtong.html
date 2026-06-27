@@ -135,6 +135,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -143,7 +155,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d2sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第二单元：夏商周时期</div>
@@ -201,6 +217,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道商朝青铜器的高超工艺</li>
@@ -213,42 +235,42 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】目前世界上发现的最大的青铜器是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 四羊方尊是精美青铜器，但不是最大的！"><span class="opt-letter">A</span> 四羊方尊</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 司母戊鼎</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 毛公鼎是西周青铜器，但不是最大的！"><span class="opt-letter">C</span> 毛公鼎</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：四羊方尊" aria-pressed="false" data-feedback="❌ 四羊方尊是精美青铜器，但不是最大的！"><span class="opt-letter">A</span> 四羊方尊</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：司母戊鼎" aria-pressed="false"><span class="opt-letter">B</span> 司母戊鼎</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：毛公鼎" aria-pressed="false" data-feedback="❌ 毛公鼎是西周青铜器，但不是最大的！"><span class="opt-letter">C</span> 毛公鼎</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 司母戊鼎</strong></p><p style="margin-top: 8px;"><strong>司母戊鼎</strong>（后母戊鼎）是商朝后期铸造的<strong>青铜鼎</strong>，重达<strong>832.84公斤</strong>，是<strong>目前世界上发现的最大的青铜器</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】甲骨文主要出现在哪个朝代？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 夏朝还没有成熟的文字！"><span class="opt-letter">A</span> 夏朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 商朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 周朝已有青铜器，但甲骨文主要出现在商朝！"><span class="opt-letter">C</span> 周朝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：夏朝" aria-pressed="false" data-feedback="❌ 夏朝还没有成熟的文字！"><span class="opt-letter">A</span> 夏朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：商朝" aria-pressed="false"><span class="opt-letter">B</span> 商朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：周朝" aria-pressed="false" data-feedback="❌ 周朝已有青铜器，但甲骨文主要出现在商朝！"><span class="opt-letter">C</span> 周朝</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 商朝</strong></p><p style="margin-top: 8px;"><strong>甲骨文</strong>是<strong>商朝</strong>人刻在<strong>龟甲</strong>和<strong>兽骨</strong>上的文字，主要用于<strong>占卜</strong>。1899年由<strong>王懿荣</strong>首次发现。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】甲骨文最主要的用途是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 甲骨文是商朝人占卜用的，不是写诗！"><span class="opt-letter">A</span> 写诗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 占卜</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 甲骨文是文字，不是铸青铜器！"><span class="opt-letter">C</span> 铸青铜器</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：写诗" aria-pressed="false" data-feedback="❌ 甲骨文是商朝人占卜用的，不是写诗！"><span class="opt-letter">A</span> 写诗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：占卜" aria-pressed="false"><span class="opt-letter">B</span> 占卜</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：铸青铜器" aria-pressed="false" data-feedback="❌ 甲骨文是文字，不是铸青铜器！"><span class="opt-letter">C</span> 铸青铜器</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 占卜</strong></p><p style="margin-top: 8px;">商朝人<strong>迷信鬼神</strong>，用<strong>龟甲和兽骨</strong>进行<strong>占卜</strong>，把占卜结果刻在甲骨上，这些文字就是<strong>甲骨文</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】甲骨文的历史意义不包括？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 这是甲骨文的意义之一，不是答案！"><span class="opt-letter">A</span> 是中国已发现的古代文字中年代最早的</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这是甲骨文的意义之一，不是答案！"><span class="opt-letter">B</span> 对研究商朝历史有重要价值</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 是青铜器铸造技术的体现</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：是中国已发现的古代文字中年代最早的" aria-pressed="false" data-feedback="❌ 这是甲骨文的意义之一，不是答案！"><span class="opt-letter">A</span> 是中国已发现的古代文字中年代最早的</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：对研究商朝历史有重要价值" aria-pressed="false" data-feedback="❌ 这是甲骨文的意义之一，不是答案！"><span class="opt-letter">B</span> 对研究商朝历史有重要价值</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：是青铜器铸造技术的体现" aria-pressed="false"><span class="opt-letter">C</span> 是青铜器铸造技术的体现</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 是青铜器铸造技术的体现</strong></p><p style="margin-top: 8px;"><strong>甲骨文</strong>是<strong>文字</strong>，不是青铜器！<strong>甲骨文的意义</strong>：① 是中国已发现的古代文字中<strong>年代最早</strong>的；② 对研究<strong>商朝历史</strong>有重要价值；③ 是<strong>汉字的起源</strong>。</p></div>
@@ -288,6 +310,9 @@
     <section class="section" id="section-oracle">
       <h2 class="section-title"><span class="num">📜</span> 甲骨文</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 甲骨文的发现与意义</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li><strong>发现时间：</strong>1899年</li>
@@ -312,49 +337,51 @@
           </svg>
           <p class="svg-caption">图4-3 甲骨文与汉字的关系</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】司母戊鼎是哪个朝代的青铜器？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 夏朝还没有青铜器！"><span class="opt-letter">A</span> 夏朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 商朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 周朝有青铜器，但司母戊鼎是商朝的！"><span class="opt-letter">C</span> 周朝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：夏朝" aria-pressed="false" data-feedback="❌ 夏朝还没有青铜器！"><span class="opt-letter">A</span> 夏朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：商朝" aria-pressed="false"><span class="opt-letter">B</span> 商朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：周朝" aria-pressed="false" data-feedback="❌ 周朝有青铜器，但司母戊鼎是商朝的！"><span class="opt-letter">C</span> 周朝</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 商朝</strong></p><p style="margin-top: 8px;"><strong>司母戊鼎</strong>是<strong>商朝后期</strong>铸造的，是<strong>目前世界上发现的最大的青铜器</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）甲骨文的历史意义是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 甲骨文是占卜用的，不是铸青铜器！"><span class="opt-letter">A</span> 是青铜器铸造技术的体现</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')"><span class="opt-letter">B</span> 是汉字的起源，对研究商朝历史有重要价值</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 甲骨文是文字，不是编钟！"><span class="opt-letter">C</span> 是春秋战国时期编钟的代表</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：是青铜器铸造技术的体现" aria-pressed="false" data-feedback="❌ 甲骨文是占卜用的，不是铸青铜器！"><span class="opt-letter">A</span> 是青铜器铸造技术的体现</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：是汉字的起源，对研究商朝历史有重要价值" aria-pressed="false"><span class="opt-letter">B</span> 是汉字的起源，对研究商朝历史有重要价值</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：是春秋战国时期编钟的代表" aria-pressed="false" data-feedback="❌ 甲骨文是文字，不是编钟！"><span class="opt-letter">C</span> 是春秋战国时期编钟的代表</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 是汉字的起源，对研究商朝历史有重要价值</strong></p><p style="margin-top: 8px;"><strong>甲骨文</strong>是<strong>汉字的起源</strong>，对研究<strong>商朝历史</strong>有重要价值。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）甲骨文的发现者是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 司马迁是西汉史学家，不是甲骨文发现者！"><span class="opt-letter">A</span> 司马迁</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')"><span class="opt-letter">B</span> 王懿荣</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 孔子是春秋时期人，不是甲骨文发现者！"><span class="opt-letter">C</span> 孔子</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：司马迁" aria-pressed="false" data-feedback="❌ 司马迁是西汉史学家，不是甲骨文发现者！"><span class="opt-letter">A</span> 司马迁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：王懿荣" aria-pressed="false"><span class="opt-letter">B</span> 王懿荣</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：孔子" aria-pressed="false" data-feedback="❌ 孔子是春秋时期人，不是甲骨文发现者！"><span class="opt-letter">C</span> 孔子</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 王懿荣</strong></p><p style="margin-top: 8px;">1899年，清朝学者<strong>王懿荣</strong>首次发现<strong>甲骨文</strong>。甲骨文出土于<strong>河南安阳</strong>（商朝都城殷的遗址）。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"甲骨文是商朝人刻在龟甲和兽骨上的文字，主要用于占卜。它是中国已发现的古代文字中年代最早的，是汉字的起源。"</div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，甲骨文的主要用途是什么？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料没有提到写诗！"><span class="opt-letter">A</span> 写诗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')"><span class="opt-letter">B</span> 占卜</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料没有提到铸青铜器！"><span class="opt-letter">C</span> 铸青铜器</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：写诗" aria-pressed="false" data-feedback="❌ 材料没有提到写诗！"><span class="opt-letter">A</span> 写诗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：占卜" aria-pressed="false"><span class="opt-letter">B</span> 占卜</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：铸青铜器" aria-pressed="false" data-feedback="❌ 材料没有提到铸青铜器！"><span class="opt-letter">C</span> 铸青铜器</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 占卜</strong></p><p style="margin-top: 8px;">材料明确说"主要用于<strong>占卜</strong>"。答题时要<strong>紧扣材料</strong>，不能凭感觉选！</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 材料分析题方法</div><ol style="padding-left: 20px; line-height: 1.8;"><li><strong>先读材料：</strong>圈出关键词（"占卜""汉字起源"）</li><li><strong>再联系课本：</strong>回忆甲骨文的知识点</li><li><strong>排除无中生有：</strong>材料没提到的选项不选</li></ol></div></div>
@@ -449,6 +476,8 @@
       console.log('📚 《青铜器与甲骨文》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

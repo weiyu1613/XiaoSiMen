@@ -68,10 +68,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-dna"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 10/10 节 · 100%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
     <div class="nav-center">第二单元：多种多样的生物</div>
@@ -126,6 +142,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 理解分类等级从种到界的完整体系</li>
@@ -138,21 +160,21 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🔬</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】在分类等级中，哪两个等级的生物亲缘关系最近？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'A')" data-feedback="❌ 同目范围太大！"><span class="opt-letter">A</span> 同目</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 0, 'B')"><span class="opt-letter">B</span> 同属</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'C')" data-feedback="❌ 同科范围比同属大！"><span class="opt-letter">C</span> 同科</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 0, 'D')" data-feedback="❌ 同纲范围太大！"><span class="opt-letter">D</span> 同纲</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：同目" aria-pressed="false" data-feedback="❌ 同目范围太大！"><span class="opt-letter">A</span> 同目</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 0, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：同属" aria-pressed="false"><span class="opt-letter">B</span> 同属</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：同科" aria-pressed="false" data-feedback="❌ 同科范围比同属大！"><span class="opt-letter">C</span> 同科</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 0, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：同纲" aria-pressed="false" data-feedback="❌ 同纲范围太大！"><span class="opt-letter">D</span> 同纲</div>
         <div class="feedback" id="feedback-0"></div>
         <div class="answer-explanation" id="explanation-0"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 同属</strong></p><p style="margin-top:8px;">分类等级越<strong>低</strong>（种→属→科→目→纲→门→界），共同特征越多，亲缘关系越近。<strong>属</strong>比<strong>科</strong>、<strong>目</strong>等级更低，所以同属的生物亲缘关系最近。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】狼和狗属于同一物种，依据是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 外观不能判断物种！"><span class="opt-letter">A</span> 外观相似</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 可以自由交配并产生可育后代</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 同域分布不能判断物种！"><span class="opt-letter">C</span> 生活环境相同</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 食物相同不能判断！"><span class="opt-letter">D</span> 食物类型相同</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：外观相似" aria-pressed="false" data-feedback="❌ 外观不能判断物种！"><span class="opt-letter">A</span> 外观相似</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：可以自由交配并产生可育后代" aria-pressed="false"><span class="opt-letter">B</span> 可以自由交配并产生可育后代</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：生活环境相同" aria-pressed="false" data-feedback="❌ 同域分布不能判断物种！"><span class="opt-letter">C</span> 生活环境相同</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：食物类型相同" aria-pressed="false" data-feedback="❌ 食物相同不能判断！"><span class="opt-letter">D</span> 食物类型相同</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 可以自由交配并产生可育后代</strong></p><p style="margin-top:8px;">判断<strong>种</strong>的标准是：<strong>能否自由交配并产生可育后代</strong>。狼和狗可以交配，产生的狼狗也能继续繁殖（可育），所以它们属于同一物种的不同品种。</p></div>
       </div>
@@ -161,6 +183,9 @@
     <section class="section">
       <h2 class="section-title"><span class="num">🔬</span> 分类等级与亲缘关系</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box"><div class="label">核心概念 · 分类等级的规律</div>
           <ul style="padding-left:20px;line-height:2;">
             <li>📈 <strong>等级越低（种→界）：</strong>共同特征越多，亲缘关系越近</li>
@@ -218,24 +243,26 @@
         <div class="warn-box"><div class="label">⚠️ 易错警示</div>
           <p><strong>误区：</strong>同属的生物一定可以交配产生后代<br><strong>纠正：</strong>不一定！同属但不同种之间也可能存在<strong>生殖隔离</strong>。能否产生可育后代是判断<strong>种</strong>的标准，不是属的标准。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section class="section">
       <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】在生物分类等级中，哪两个等级的生物亲缘关系最近？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 同科范围比同属大！"><span class="opt-letter">A</span> 同科</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 同目范围太大！"><span class="opt-letter">B</span> 同目</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')"><span class="opt-letter">C</span> 同属</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：同科" aria-pressed="false" data-feedback="❌ 同科范围比同属大！"><span class="opt-letter">A</span> 同科</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：同目" aria-pressed="false" data-feedback="❌ 同目范围太大！"><span class="opt-letter">B</span> 同目</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：同属" aria-pressed="false"><span class="opt-letter">C</span> 同属</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 同属</strong></p><p style="margin-top:8px;">分类等级越<strong>低</strong>，共同特征越多，亲缘关系越近。<strong>属</strong>比<strong>科</strong>、<strong>目</strong>等级更低，所以同属的生物亲缘关系最近。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）下列关于生物分类的说法，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 同纲比同目范围大！"><span class="opt-letter">A</span> 分类等级越高，共同特征越多</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')"><span class="opt-letter">B</span> 分类等级越低，共同特征越多</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 种是最基本的，不是最大的！"><span class="opt-letter">C</span> 种是最大的分类单位</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：分类等级越高，共同特征越多" aria-pressed="false" data-feedback="❌ 同纲比同目范围大！"><span class="opt-letter">A</span> 分类等级越高，共同特征越多</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：分类等级越低，共同特征越多" aria-pressed="false"><span class="opt-letter">B</span> 分类等级越低，共同特征越多</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：种是最大的分类单位" aria-pressed="false" data-feedback="❌ 种是最基本的，不是最大的！"><span class="opt-letter">C</span> 种是最大的分类单位</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 分类等级越低，共同特征越多</strong></p><p style="margin-top:8px;"><strong>界→门→纲→目→科→属→种</strong>，从大到小。<strong>种</strong>最小，共同特征最多，亲缘关系最近。<strong>界</strong>最大，共同特征最少。</p></div>
       </div>
@@ -299,6 +326,8 @@
       if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '% ✅ 完成！';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

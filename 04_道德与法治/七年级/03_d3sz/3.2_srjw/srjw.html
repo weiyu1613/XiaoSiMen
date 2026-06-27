@@ -74,10 +74,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-user-group"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 10/31 节 · 32.3%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d3sz.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第三单元：师长情谊</div>
@@ -126,6 +142,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解师生交往的良好状态 <span class="tag tag-theory">关联：人际关系理论</span></li>
         <li>✅ 学会正确对待老师的表扬 <span class="tag tag-theory">关联：强化理论</span></li>
@@ -139,12 +161,12 @@
       <p style="color:#c0392b;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】师生交往的良好状态是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 只听老师的话是<strong>单向沟通</strong>，不是良好状态。<br><span class='tag tag-mistake'>归因：误解良好师生关系的本质</span>"><span class="opt-letter">A</span> 只听老师的话</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：彼此尊重、求同存异、共同成长</span>"><span class="opt-letter">B</span> 彼此尊重、求同存异、共同成长</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 与老师对抗会<strong>破坏</strong>师生关系。<br><span class='tag tag-mistake'>归因：错误理解师生关系的互动性</span>"><span class="opt-letter">C</span> 与老师对抗</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只听老师的话" aria-pressed="false" data-fb="❌ 只听老师的话是<strong>单向沟通</strong>，不是良好状态。<br><span class='tag tag-mistake'>归因：误解良好师生关系的本质</span>"><span class="opt-letter">A</span> 只听老师的话</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：彼此尊重、求同存异、共同成长" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：彼此尊重、求同存异、共同成长</span>"><span class="opt-letter">B</span> 彼此尊重、求同存异、共同成长</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：与老师对抗" aria-pressed="false" data-fb="❌ 与老师对抗会<strong>破坏</strong>师生关系。<br><span class='tag tag-mistake'>归因：错误理解师生关系的互动性</span>"><span class="opt-letter">C</span> 与老师对抗</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -156,12 +178,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】对待老师的表扬，应该？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 骄傲自满会<strong>停滞不前</strong>，不是正确态度。<br><span class='tag tag-mistake'>归因：错误理解表扬的意义</span>"><span class="opt-letter">A</span> 骄傲自满</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：表扬意味着肯定、鼓励和期待，要再接再厉</span>"><span class="opt-letter">B</span> 再接再厉，继续努力</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 不以为然会<strong>错失成长机会</strong>。<br><span class='tag tag-mistake'>归因：忽视表扬的激励作用</span>"><span class="opt-letter">C</span> 不以为然</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：骄傲自满" aria-pressed="false" data-fb="❌ 骄傲自满会<strong>停滞不前</strong>，不是正确态度。<br><span class='tag tag-mistake'>归因：错误理解表扬的意义</span>"><span class="opt-letter">A</span> 骄傲自满</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：再接再厉，继续努力" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：表扬意味着肯定、鼓励和期待，要再接再厉</span>"><span class="opt-letter">B</span> 再接再厉，继续努力</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：不以为然" aria-pressed="false" data-fb="❌ 不以为然会<strong>错失成长机会</strong>。<br><span class='tag tag-mistake'>归因：忽视表扬的激励作用</span>"><span class="opt-letter">C</span> 不以为然</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -173,12 +195,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于师生交往，以下理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 老师<strong>不是</strong>权威，师生应该平等。<br><span class='tag tag-mistake'>归因：权威型师生观，不符合现代教育理念</span>"><span class="opt-letter">A</span> 老师是绝对权威</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：师生应该彼此尊重、平等交往</span>"><span class="opt-letter">B</span> 师生应该彼此尊重</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 可以不尊重老师是<strong>错误</strong>的。<br><span class='tag tag-mistake'>归因：缺乏尊重意识，违背师生交往原则</span>"><span class="opt-letter">C</span> 可以不尊重老师</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：老师是绝对权威" aria-pressed="false" data-fb="❌ 老师<strong>不是</strong>权威，师生应该平等。<br><span class='tag tag-mistake'>归因：权威型师生观，不符合现代教育理念</span>"><span class="opt-letter">A</span> 老师是绝对权威</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：师生应该彼此尊重" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：师生应该彼此尊重、平等交往</span>"><span class="opt-letter">B</span> 师生应该彼此尊重</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：可以不尊重老师" aria-pressed="false" data-fb="❌ 可以不尊重老师是<strong>错误</strong>的。<br><span class='tag tag-mistake'>归因：缺乏尊重意识，违背师生交往原则</span>"><span class="opt-letter">C</span> 可以不尊重老师</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -223,6 +245,9 @@
 
     <section><h2 class="section-title">🤝 与老师沟通的方法</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box"><div class="label">✨ 沟通技巧 <span class="tag tag-theory">关联：沟通技巧理论</span></div>
           <p>① <strong>礼貌待师</strong>：使用礼貌用语，尊重老师 <span class="tag tag-theory">礼貌原则</span></p>
           <p>② <strong>注意场合</strong>：选择合适的时机和地点 <span class="tag tag-theory">情境理论</span></p>
@@ -233,18 +258,20 @@
           <p><strong>记忆口诀：</strong>"<strong>礼貌、场合、分寸、主动</strong>"</p>
           <p style="margin-top:6px;"><strong>考试陷阱：</strong>"与老师称兄道弟"→ 错误！要注意<strong>师生边界</strong>！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】老师的批评意味着？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 批评不是找茬，是关心和提醒！<br><span class='tag tag-mistake'>归因：误解批评的性质</span>"><span class="opt-letter">A</span> 老师找茬</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：批评意味着关心、提醒和劝诫</span>"><span class="opt-letter">B</span> 关心、提醒和劝诫</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 批评不是放弃，而是希望你好！<br><span class='tag tag-mistake'>归因：消极理解批评意图</span>"><span class="opt-letter">C</span> 老师放弃你</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：老师找茬" aria-pressed="false" data-fb="❌ 批评不是找茬，是关心和提醒！<br><span class='tag tag-mistake'>归因：误解批评的性质</span>"><span class="opt-letter">A</span> 老师找茬</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：关心、提醒和劝诫" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：批评意味着关心、提醒和劝诫</span>"><span class="opt-letter">B</span> 关心、提醒和劝诫</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：老师放弃你" aria-pressed="false" data-fb="❌ 批评不是放弃，而是希望你好！<br><span class='tag tag-mistake'>归因：消极理解批评意图</span>"><span class="opt-letter">C</span> 老师放弃你</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -252,12 +279,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】与老师沟通时，不应该？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 礼貌待师是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">A</span> 礼貌待师</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 不注意场合会导致沟通失败。<br><span class='tag tag-kp'>知识点：注意沟通场合</span>"><span class="opt-letter">B</span> 不注意场合</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 主动提问是正确的！<br><span class='tag tag-mistake'>归因：误将正确做法视为错误</span>"><span class="opt-letter">C</span> 主动提问</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：礼貌待师" aria-pressed="false" data-fb="❌ 礼貌待师是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">A</span> 礼貌待师</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：不注意场合" aria-pressed="false" data-fb="✅ 不注意场合会导致沟通失败。<br><span class='tag tag-kp'>知识点：注意沟通场合</span>"><span class="opt-letter">B</span> 不注意场合</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：主动提问" aria-pressed="false" data-fb="❌ 主动提问是正确的！<br><span class='tag tag-mistake'>归因：误将正确做法视为错误</span>"><span class="opt-letter">C</span> 主动提问</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -265,12 +292,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】以下关于师生交往的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！教学相长是师生关系的理想状态。<br><span class='tag tag-kp'>知识点：教学相长</span>"><span class="opt-letter">A</span> 教学相长，共同成长</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 师生应该<strong>平等</strong>，不是服从关系。<br><span class='tag tag-mistake'>归因：权威型师生观，不符合现代理念</span>"><span class="opt-letter">B</span> 学生应该绝对服从</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 表扬和批评<strong>都是关爱</strong>，不是找茬。<br><span class='tag tag-mistake'>归因：误解教师行为的动机</span>"><span class="opt-letter">C</span> 批评就是找茬</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：教学相长，共同成长" aria-pressed="false" data-fb="✅ 正确！教学相长是师生关系的理想状态。<br><span class='tag tag-kp'>知识点：教学相长</span>"><span class="opt-letter">A</span> 教学相长，共同成长</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：学生应该绝对服从" aria-pressed="false" data-fb="❌ 师生应该<strong>平等</strong>，不是服从关系。<br><span class='tag tag-mistake'>归因：权威型师生观，不符合现代理念</span>"><span class="opt-letter">B</span> 学生应该绝对服从</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：批评就是找茬" aria-pressed="false" data-fb="❌ 表扬和批评<strong>都是关爱</strong>，不是找茬。<br><span class='tag tag-mistake'>归因：误解教师行为的动机</span>"><span class="opt-letter">C</span> 批评就是找茬</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -283,6 +310,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -328,7 +358,9 @@
           </ul>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -358,6 +390,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

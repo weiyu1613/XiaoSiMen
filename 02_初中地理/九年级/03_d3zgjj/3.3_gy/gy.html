@@ -74,10 +74,26 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 3/3 节 · 100%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第三单元：中国的经济发展</div>
@@ -128,6 +144,12 @@
 </section>
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
 <li>✅ 了解我国工业的分布特点</li>
 <li>✅ 掌握四大工业基地的位置和特点</li>
@@ -137,32 +159,32 @@
 </section>
 <section class="section" id="section-prequiz">
 <h2 class="section-title"><span class="num">📝</span> 前测</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1. 【⭐ 基础】国民经济的主导产业是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 农业是基础，不是主导！"><span class="opt-letter">A</span> 农业</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 工业</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 服务业不是主导产业！"><span class="opt-letter">C</span> 服务业</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：农业" aria-pressed="false" data-feedback="❌ 农业是基础，不是主导！"><span class="opt-letter">A</span> 农业</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：工业" aria-pressed="false"><span class="opt-letter">B</span> 工业</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：服务业" aria-pressed="false" data-feedback="❌ 服务业不是主导产业！"><span class="opt-letter">C</span> 服务业</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 工业</strong></p><p style="margin-top:8px;"><strong>工业</strong>是国民经济的主导产业，农业是基础。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2. 【⭐⭐ 提高】我国最大的综合性工业基地是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'A')"><span class="opt-letter">A</span> 沪宁杭工业基地</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'B')" data-feedback="❌ 京津唐不是最大的综合性！"><span class="opt-letter">B</span> 京津唐工业基地</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 辽中南是重工业基地！"><span class="opt-letter">C</span> 辽中南工业基地</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：沪宁杭工业基地" aria-pressed="false"><span class="opt-letter">A</span> 沪宁杭工业基地</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：京津唐工业基地" aria-pressed="false" data-feedback="❌ 京津唐不是最大的综合性！"><span class="opt-letter">B</span> 京津唐工业基地</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：辽中南工业基地" aria-pressed="false" data-feedback="❌ 辽中南是重工业基地！"><span class="opt-letter">C</span> 辽中南工业基地</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 沪宁杭工业基地</strong></p><p style="margin-top:8px;"><strong>沪宁杭</strong>是我国最大的综合性工业基地，以上海为中心。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3. 【⭐⭐⭐ 挑战】我国工业分布的特点是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'A')"><span class="opt-letter">A</span> 东部多、西部少，沿海多、内陆少</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'B')" data-feedback="❌ 工业分布不均匀！"><span class="opt-letter">B</span> 均匀分布</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 西部不是工业密集区！"><span class="opt-letter">C</span> 西多东少</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：东部多、西部少，沿海多、内陆少" aria-pressed="false"><span class="opt-letter">A</span> 东部多、西部少，沿海多、内陆少</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：均匀分布" aria-pressed="false" data-feedback="❌ 工业分布不均匀！"><span class="opt-letter">B</span> 均匀分布</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西多东少" aria-pressed="false" data-feedback="❌ 西部不是工业密集区！"><span class="opt-letter">C</span> 西多东少</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A</strong></p><p style="margin-top:8px;">我国工业<strong>东部多西部少、沿海多内陆少</strong>，与经济发展水平一致。</p></div>
@@ -171,6 +193,9 @@
 <section class="section" id="section-bases">
 <h2 class="section-title"><span class="num">🏭</span> 四大工业基地</h2>
 <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 <table class="latitude-longitude">
 <tr><th>工业基地</th><th>位置</th><th>特点</th><th>中心</th></tr>
 <tr><td><strong>辽中南</strong></td><td>辽宁中南部</td><td>重工业基地</td><td>沈阳、大连</td></tr>
@@ -185,6 +210,8 @@
 <p>📌 <strong>沪宁杭</strong>：全国最大综合性</p>
 <p>📌 <strong>珠三角</strong>：轻工业为主（电子、服装）</p>
 </div>
+
+</details>
 </div>
 </section>
 <section class="section" id="section-hightech">
@@ -210,32 +237,32 @@
 </section>
 <section class="section" id="section-postquiz">
 <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1. 【⭐ 基础】我国最大的重工业基地是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'A')"><span class="opt-letter">A</span> 辽中南</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'B')" data-feedback="❌ 京津唐是综合性！"><span class="opt-letter">B</span> 京津唐</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 珠三角以轻工业为主！"><span class="opt-letter">C</span> 珠三角</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：辽中南" aria-pressed="false"><span class="opt-letter">A</span> 辽中南</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：京津唐" aria-pressed="false" data-feedback="❌ 京津唐是综合性！"><span class="opt-letter">B</span> 京津唐</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：珠三角" aria-pressed="false" data-feedback="❌ 珠三角以轻工业为主！"><span class="opt-letter">C</span> 珠三角</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 辽中南</strong></p><p style="margin-top:8px;"><strong>辽中南</strong>是我国最大的重工业基地，依托丰富的煤铁资源发展钢铁、机械等。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2. 【⭐⭐ 提高·中考真题】高新技术产业的特点是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'A')"><span class="opt-letter">A</span> 科技人员比重大，研发投入高</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 高新技术产品更新换代快！"><span class="opt-letter">B</span> 产品更新慢</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 高新技术产业不是以劳动密集为主！"><span class="opt-letter">C</span> 以劳动密集为主</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：科技人员比重大，研发投入高" aria-pressed="false"><span class="opt-letter">A</span> 科技人员比重大，研发投入高</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：产品更新慢" aria-pressed="false" data-feedback="❌ 高新技术产品更新换代快！"><span class="opt-letter">B</span> 产品更新慢</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：以劳动密集为主" aria-pressed="false" data-feedback="❌ 高新技术产业不是以劳动密集为主！"><span class="opt-letter">C</span> 以劳动密集为主</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A</strong></p><p style="margin-top:8px;">高新技术产业<strong>科技人员比重大、研发投入高、产品更新快</strong>。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3. 【⭐⭐⭐ 挑战】我国高新技术产业分布特点是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'A')"><span class="opt-letter">A</span> 大分散、小集中</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'B')" data-feedback="❌ 不是只集中不分散！"><span class="opt-letter">B</span> 高度集中</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 不是均匀分散！"><span class="opt-letter">C</span> 完全分散</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：大分散、小集中" aria-pressed="false"><span class="opt-letter">A</span> 大分散、小集中</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：高度集中" aria-pressed="false" data-feedback="❌ 不是只集中不分散！"><span class="opt-letter">B</span> 高度集中</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：完全分散" aria-pressed="false" data-feedback="❌ 不是均匀分散！"><span class="opt-letter">C</span> 完全分散</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 大分散、小集中</strong></p><p style="margin-top:8px;">高新技术产业依附大城市，呈现<strong>大分散、小集中</strong>的分布特点。</p></div>
@@ -269,5 +296,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《工业》课件加载完成')});
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

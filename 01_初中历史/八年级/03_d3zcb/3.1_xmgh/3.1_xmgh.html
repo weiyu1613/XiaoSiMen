@@ -239,6 +239,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- Brand Bar -->
 <div class="brand-bar">
@@ -256,6 +268,10 @@
 
 <!-- Nav -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
@@ -512,44 +528,44 @@
         <div class="quiz-section">
             <div class="quiz-question">
                 <h4>1. 五四运动爆发的直接原因是？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。袁世凯复辟帝制发生在1915年，不是五四运动爆发的直接原因。">A. 袁世凯复辟帝制</button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1919年巴黎和会拒绝中国收回山东主权的要求，消息传到北京，5月4日学生集会天安门，五四运动爆发。">B. 巴黎和会中国外交失败</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。中国共产党成立是在1921年，五四运动发生在1919年，时间顺序不对。">C. 中国共产党成立</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。北伐战争发生在1926年，比五四运动晚7年，不是导火索。">D. 北伐战争开始</button>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：袁世凯复辟帝制" aria-pressed="false" data-feedback="❌ 错误。袁世凯复辟帝制发生在1915年，不是五四运动爆发的直接原因。">A. 袁世凯复辟帝制</button>
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：巴黎和会中国外交失败" aria-pressed="false" data-feedback="✅ 正确！1919年巴黎和会拒绝中国收回山东主权的要求，消息传到北京，5月4日学生集会天安门，五四运动爆发。">B. 巴黎和会中国外交失败</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：中国共产党成立" aria-pressed="false" data-feedback="❌ 错误。中国共产党成立是在1921年，五四运动发生在1919年，时间顺序不对。">C. 中国共产党成立</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：北伐战争开始" aria-pressed="false" data-feedback="❌ 错误。北伐战争发生在1926年，比五四运动晚7年，不是导火索。">D. 北伐战争开始</button>
                 </div>
                 <div class="feedback"></div>
             </div>
 
             <div class="quiz-question">
                 <h4>2. 五四运动的历史意义是什么？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命发生在1911年，比五四运动早8年，不是其意义。">A. 推翻了清朝统治</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。中国共产党成立于1921年，五四运动促进马克思主义传播，为中共成立准备条件，但不是直接成立了中共。">B. 成立了中国共产党</button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！五四运动是彻底的反帝反封建的爱国运动，促进马克思主义传播，标志着新民主主义革命的伟大开端。">C. 新民主主义革命的开端</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。北伐战争发生在1926年，五四运动发生在1919年，不可能标志北伐开始。">D. 标志着北伐战争开始</button>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：推翻了清朝统治" aria-pressed="false" data-feedback="❌ 错误。辛亥革命发生在1911年，比五四运动早8年，不是其意义。">A. 推翻了清朝统治</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：成立了中国共产党" aria-pressed="false" data-feedback="❌ 错误。中国共产党成立于1921年，五四运动促进马克思主义传播，为中共成立准备条件，但不是直接成立了中共。">B. 成立了中国共产党</button>
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：新民主主义革命的开端" aria-pressed="false" data-feedback="✅ 正确！五四运动是彻底的反帝反封建的爱国运动，促进马克思主义传播，标志着新民主主义革命的伟大开端。">C. 新民主主义革命的开端</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：标志着北伐战争开始" aria-pressed="false" data-feedback="❌ 错误。北伐战争发生在1926年，五四运动发生在1919年，不可能标志北伐开始。">D. 标志着北伐战争开始</button>
                 </div>
                 <div class="feedback"></div>
             </div>
 
             <div class="quiz-question">
                 <h4>3. 中国共产党成立于哪一年？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1911年是辛亥革命爆发的年份，中国共产党尚未成立。">A. 1911年</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1919年是五四运动爆发的年份，中国共产党成立是在2年后。">B. 1919年</button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1921年7月23日，中共一大在上海召开，后转移到浙江嘉兴南湖游船，标志着中国共产党正式成立。">C. 1921年</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1924年是国民党一大召开、国共第一次合作形成的年份，不是中共成立时间。">D. 1924年</button>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1911年" aria-pressed="false" data-feedback="❌ 错误。1911年是辛亥革命爆发的年份，中国共产党尚未成立。">A. 1911年</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：1919年" aria-pressed="false" data-feedback="❌ 错误。1919年是五四运动爆发的年份，中国共产党成立是在2年后。">B. 1919年</button>
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：1921年" aria-pressed="false" data-feedback="✅ 正确！1921年7月23日，中共一大在上海召开，后转移到浙江嘉兴南湖游船，标志着中国共产党正式成立。">C. 1921年</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：1924年" aria-pressed="false" data-feedback="❌ 错误。1924年是国民党一大召开、国共第一次合作形成的年份，不是中共成立时间。">D. 1924年</button>
                 </div>
                 <div class="feedback"></div>
             </div>
 
             <div class="quiz-question">
                 <h4>4. 北伐战争的主要对象是？</h4>
-                <div class="quiz-options">
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。英法联军是第二次鸦片战争（1856-1860年）的对手，不是北伐战争的对象。">A. 英法联军</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。八国联军是1900年侵华战争的对手，北伐战争的对象是国内军阀。">B. 八国联军</button>
-                    <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！北伐战争的对象是北洋军阀三派：吴佩孚、孙传芳、张作霖。">C. 北洋军阀</button>
-                    <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。日本侵略军是抗日战争（1937-1945年）的对手，北伐战争时日本尚未大规模侵华。">D. 日本侵略军</button>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：英法联军" aria-pressed="false" data-feedback="❌ 错误。英法联军是第二次鸦片战争（1856-1860年）的对手，不是北伐战争的对象。">A. 英法联军</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：八国联军" aria-pressed="false" data-feedback="❌ 错误。八国联军是1900年侵华战争的对手，北伐战争的对象是国内军阀。">B. 八国联军</button>
+                    <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：北洋军阀" aria-pressed="false" data-feedback="✅ 正确！北伐战争的对象是北洋军阀三派：吴佩孚、孙传芳、张作霖。">C. 北洋军阀</button>
+                    <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：日本侵略军" aria-pressed="false" data-feedback="❌ 错误。日本侵略军是抗日战争（1937-1945年）的对手，北伐战争时日本尚未大规模侵华。">D. 日本侵略军</button>
                 </div>
                 <div class="feedback"></div>
             </div>
@@ -560,16 +576,16 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】新民主主义革命开端的标志是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：五四运动" aria-pressed="false">
             <span class="opt-letter">A</span> 五四运动
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 答错了，正确答案是：五四运动">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：辛亥革命" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：五四运动">
             <span class="opt-letter">B</span> 辛亥革命
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 答错了，正确答案是：五四运动">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：中国共产党成立" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：五四运动">
             <span class="opt-letter">C</span> 中国共产党成立
           </div>
         </div>
@@ -580,16 +596,16 @@
         </div>
       </div>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】五四运动爆发于哪一年？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1919年" aria-pressed="false">
             <span class="opt-letter">A</span> 1919年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 答错了，正确答案是：1919年">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1911年" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：1919年">
             <span class="opt-letter">B</span> 1911年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 答错了，正确答案是：1919年">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1921年" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：1919年">
             <span class="opt-letter">C</span> 1921年
           </div>
         </div>
@@ -600,16 +616,16 @@
         </div>
       </div>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐ 基础】下列哪项不是新民主主义革命的特点？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：无产阶级领导" aria-pressed="false">
             <span class="opt-letter">A</span> 无产阶级领导
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 答错了，正确答案是：无产阶级领导">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：资产阶级革命" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：无产阶级领导">
             <span class="opt-letter">B</span> 资产阶级革命
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 答错了，正确答案是：无产阶级领导">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：马克思主义指导" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：无产阶级领导">
             <span class="opt-letter">C</span> 马克思主义指导
           </div>
         </div>
@@ -624,16 +640,16 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐⭐ 提高·中考真题】下列关于新民主主义革命兴起的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：五四运动是新民主主义革命的开端" aria-pressed="false">
             <span class="opt-letter">A</span> 五四运动是新民主主义革命的开端
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：五四运动是新民主主义革命的开端">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：五四运动是新民主主义革命的开端">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：五四运动是新民主主义革命的开端">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：五四运动是新民主主义革命的开端">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -645,16 +661,16 @@
         </div>
       </div>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】下列关于新民主主义革命兴起的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1919年5月4日，五四运动爆发" aria-pressed="false">
             <span class="opt-letter">A</span> 1919年5月4日，五四运动爆发
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：1919年5月4日，五四运动爆发">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -666,16 +682,16 @@
         </div>
       </div>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高·中考真题】下列关于新民主主义革命兴起的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：无产阶级登上历史舞台" aria-pressed="false">
             <span class="opt-letter">A</span> 无产阶级登上历史舞台
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：无产阶级登上历史舞台">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：无产阶级登上历史舞台">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：无产阶级登上历史舞台">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：无产阶级登上历史舞台">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -817,6 +833,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

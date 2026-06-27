@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -135,10 +135,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">互动课件 v7.14</div></div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d5sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第五单元：繁荣与开放的社会</div>
@@ -194,6 +210,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解<strong>盛唐经济</strong>的繁荣</li>
@@ -206,42 +228,42 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">难度递进：<span class="difficulty-badge difficulty-基础">⭐ 基础</span> → <span class="difficulty-badge difficulty-提高">⭐⭐ 提高</span> → <span class="difficulty-badge difficulty-挑战">⭐⭐⭐ 挑战</span></p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】"开元盛世"是哪位皇帝的统治？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ '开元盛世'是唐玄宗的统治，不是唐太宗！"><span class="opt-letter">A</span> 唐太宗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 唐玄宗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ '开元盛世'是唐玄宗的统治，不是唐高宗！"><span class="opt-letter">C</span> 唐高宗</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐太宗" aria-pressed="false" data-feedback="❌ '开元盛世'是唐玄宗的统治，不是唐太宗！"><span class="opt-letter">A</span> 唐太宗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：唐玄宗" aria-pressed="false"><span class="opt-letter">B</span> 唐玄宗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：唐高宗" aria-pressed="false" data-feedback="❌ '开元盛世'是唐玄宗的统治，不是唐高宗！"><span class="opt-letter">C</span> 唐高宗</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 唐玄宗</strong></p><p style="margin-top: 8px;"><strong>"开元盛世"</strong>是<strong>唐玄宗李隆基</strong>的统治。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】唐朝的都城是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 唐朝的都城是长安，不是洛阳！"><span class="opt-letter">A</span> 洛阳</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 长安</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 唐朝的都城是长安，不是余杭！"><span class="opt-letter">C</span> 余杭</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：洛阳" aria-pressed="false" data-feedback="❌ 唐朝的都城是长安，不是洛阳！"><span class="opt-letter">A</span> 洛阳</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：长安" aria-pressed="false"><span class="opt-letter">B</span> 长安</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：余杭" aria-pressed="false" data-feedback="❌ 唐朝的都城是长安，不是余杭！"><span class="opt-letter">C</span> 余杭</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 长安</strong></p><p style="margin-top: 8px;">唐朝的都城是<strong>长安</strong>（今西安）。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列哪一诗句描写盛唐气象？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')"><span class="opt-letter">A</span> "稻米流脂粟米白，公私仓廪俱丰实"</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ '国破山河在'描写的是安史之乱后的残破景象，不是盛唐气象！"><span class="opt-letter">B</span> "国破山河在，城春草木深"</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ '朱门酒肉臭'描写的是社会矛盾，不是盛唐气象！"><span class="opt-letter">C</span> "朱门酒肉臭，路有冻死骨"</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：&quot;稻米流脂粟米白，公私仓廪俱丰实&quot;" aria-pressed="false"><span class="opt-letter">A</span> "稻米流脂粟米白，公私仓廪俱丰实"</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：&quot;国破山河在，城春草木深&quot;" aria-pressed="false" data-feedback="❌ '国破山河在'描写的是安史之乱后的残破景象，不是盛唐气象！"><span class="opt-letter">B</span> "国破山河在，城春草木深"</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：&quot;朱门酒肉臭，路有冻死骨&quot;" aria-pressed="false" data-feedback="❌ '朱门酒肉臭'描写的是社会矛盾，不是盛唐气象！"><span class="opt-letter">C</span> "朱门酒肉臭，路有冻死骨"</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. "稻米流脂粟米白，公私仓廪俱丰实"</strong></p><p style="margin-top: 8px;">这句诗出自杜甫的《忆昔》，描写<strong>盛唐经济繁荣</strong>的景象。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列哪一项不是盛唐气象的表现？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ '经济繁荣'是盛唐气象的表现，不符合题意！"><span class="opt-letter">A</span> 经济繁荣</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ '文化昌盛'是盛唐气象的表现，不符合题意！"><span class="opt-letter">B</span> 文化昌盛</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 藩镇割据</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：经济繁荣" aria-pressed="false" data-feedback="❌ '经济繁荣'是盛唐气象的表现，不符合题意！"><span class="opt-letter">A</span> 经济繁荣</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：文化昌盛" aria-pressed="false" data-feedback="❌ '文化昌盛'是盛唐气象的表现，不符合题意！"><span class="opt-letter">B</span> 文化昌盛</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：藩镇割据" aria-pressed="false"><span class="opt-letter">C</span> 藩镇割据</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 藩镇割据</strong></p><p style="margin-top: 8px;"><strong>藩镇割据</strong>是<strong>安史之乱后</strong>的现象，<strong>不是</strong>盛唐气象的表现。</p></div>
@@ -250,6 +272,9 @@
     <section class="section" id="section-economy">
       <h2 class="section-title"><span class="num">📍</span> 盛唐经济繁荣</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 农业</h3>
         <div class="event-box">
           <div class="event-title">📍 盛唐农业</div>
@@ -275,11 +300,16 @@
           </div>
         </div>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 盛唐经济</div><p>✅ <strong>农业：</strong>曲辕犁、筒车</p><p style="margin-top: 6px;">✅ <strong>手工业：</strong>唐三彩、蜀锦</p><p style="margin-top: 6px;">✅ <strong>商业：</strong>长安是国际性大都市</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-culture">
       <h2 class="section-title"><span class="num">🎨</span> 盛唐文化昌盛</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 诗歌</h3>
         <div class="event-box" style="margin-top: 16px;">
           <div class="event-title">🎨 盛唐诗歌</div>
@@ -311,11 +341,16 @@
           </svg>
           <p class="svg-caption">图5-4 从经济繁荣到盛唐气象</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-ethnic">
       <h2 class="section-title"><span class="num">🤝</span> 唐朝的民族关系</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 民族政策</h3>
         <p>唐朝实行<strong>开明</strong>的民族政策，被北方各族尊称为<strong>"天可汗"</strong>（唐太宗）。</p>
         <h3 style="margin-top: 20px; color: #8b4513;">📖 典型事例</h3>
@@ -334,49 +369,51 @@
           <li>③ 丰富了<strong>中华文化</strong></li>
         </ul>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 唐朝民族关系</div><p>✅ <strong>政策：</strong>开明民族政策</p><p style="margin-top: 6px;">✅ <strong>称号：</strong>唐太宗被尊为"天可汗"</p><p style="margin-top: 6px;">✅ <strong>事例：</strong>文成公主入藏（嫁给松赞干布）</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】"开元盛世"是哪位皇帝的统治？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ '开元盛世'是唐玄宗的统治，不是唐太宗！"><span class="opt-letter">A</span> 唐太宗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 唐玄宗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ '开元盛世'是唐玄宗的统治，不是唐高宗！"><span class="opt-letter">C</span> 唐高宗</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐太宗" aria-pressed="false" data-feedback="❌ '开元盛世'是唐玄宗的统治，不是唐太宗！"><span class="opt-letter">A</span> 唐太宗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：唐玄宗" aria-pressed="false"><span class="opt-letter">B</span> 唐玄宗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：唐高宗" aria-pressed="false" data-feedback="❌ '开元盛世'是唐玄宗的统治，不是唐高宗！"><span class="opt-letter">C</span> 唐高宗</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 唐玄宗</strong></p><p style="margin-top: 8px;"><strong>"开元盛世"</strong>是<strong>唐玄宗李隆基</strong>的统治。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）下列哪一诗句描写盛唐气象？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> "稻米流脂粟米白，公私仓廪俱丰实"</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ '国破山河在'描写的是安史之乱后的残破景象，不是盛唐气象！"><span class="opt-letter">B</span> "国破山河在，城春草木深"</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ '朱门酒肉臭'描写的是社会矛盾，不是盛唐气象！"><span class="opt-letter">C</span> "朱门酒肉臭，路有冻死骨"</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：&quot;稻米流脂粟米白，公私仓廪俱丰实&quot;" aria-pressed="false"><span class="opt-letter">A</span> "稻米流脂粟米白，公私仓廪俱丰实"</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：&quot;国破山河在，城春草木深&quot;" aria-pressed="false" data-feedback="❌ '国破山河在'描写的是安史之乱后的残破景象，不是盛唐气象！"><span class="opt-letter">B</span> "国破山河在，城春草木深"</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：&quot;朱门酒肉臭，路有冻死骨&quot;" aria-pressed="false" data-feedback="❌ '朱门酒肉臭'描写的是社会矛盾，不是盛唐气象！"><span class="opt-letter">C</span> "朱门酒肉臭，路有冻死骨"</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. "稻米流脂粟米白，公私仓廪俱丰实"</strong></p><p style="margin-top: 8px;">这句诗出自杜甫的《忆昔》，描写<strong>盛唐经济繁荣</strong>的景象。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）唐朝实行什么样的民族政策？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'A')"><span class="opt-letter">A</span> 开明民族政策</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 唐朝实行开明民族政策，不是高压政策！"><span class="opt-letter">B</span> 高压民族政策</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 唐朝实行开明民族政策，不是隔离政策！"><span class="opt-letter">C</span> 隔离政策</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：开明民族政策" aria-pressed="false"><span class="opt-letter">A</span> 开明民族政策</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：高压民族政策" aria-pressed="false" data-feedback="❌ 唐朝实行开明民族政策，不是高压政策！"><span class="opt-letter">B</span> 高压民族政策</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：隔离政策" aria-pressed="false" data-feedback="❌ 唐朝实行开明民族政策，不是隔离政策！"><span class="opt-letter">C</span> 隔离政策</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 开明民族政策</strong></p><p style="margin-top: 8px;">唐朝实行<strong>开明</strong>的民族政策，被北方各族尊称为<strong>"天可汗"</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"自从贵主和亲后，一半胡风似汉家。"——摘自唐诗</div>
         <p style="margin-bottom:10px;font-weight:600;">材料反映唐朝民族关系的什么特点？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'A')"><span class="opt-letter">A</span> 民族交融，互相学习</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'B')" data-feedback="❌ 材料说'一半胡风似汉家'，不是战争冲突！"><span class="opt-letter">B</span> 战争冲突，互相敌视</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料说'一半胡风似汉家'，不是隔离封闭！"><span class="opt-letter">C</span> 隔离封闭，互不往来</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：民族交融，互相学习" aria-pressed="false"><span class="opt-letter">A</span> 民族交融，互相学习</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：战争冲突，互相敌视" aria-pressed="false" data-feedback="❌ 材料说'一半胡风似汉家'，不是战争冲突！"><span class="opt-letter">B</span> 战争冲突，互相敌视</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：隔离封闭，互不往来" aria-pressed="false" data-feedback="❌ 材料说'一半胡风似汉家'，不是隔离封闭！"><span class="opt-letter">C</span> 隔离封闭，互不往来</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 民族交融，互相学习</strong></p><p style="margin-top: 8px;">材料反映了唐朝<strong>民族交融，互相学习</strong>的特点。</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 材料分析题方法</div><ol style="padding-left: 20px; line-height: 1.8;"><li><strong>先读材料：</strong>圈出关键词（"贵主和亲"、"胡风似汉家"）</li><li><strong>再联系课本：</strong>回忆文成公主入藏</li><li><strong>排除无中生有：</strong>材料没提到的选项不选</li></ol></div></div>
@@ -411,4 +448,4 @@
     anchorContents[1] = `<h3>📍 问题1：盛唐经济有多繁荣？</h3><p><strong>农业：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>① <strong>工具：</strong>发明曲辕犁、筒车</li><li>② <strong>水利：</strong>修建大量水利工程</li><li>③ <strong>产量：</strong>粮食产量大幅提高</li></ul><p><strong>手工业：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>① <strong>丝织业：</strong>蜀锦、宋锦</li><li>② <strong>陶瓷业：</strong>唐三彩、越窑青瓷、邢窑白瓷</li><li>③ <strong>造船业：</strong>世界领先</li></ul><p><strong>商业：</strong><strong>长安</strong>是当时国际性大都市</p><p style="margin-top: 12px;">💡 <strong>记忆口诀：</strong>"曲辕犁、筒车、唐三彩"</p>`;
     anchorContents[2] = `<h3>📍 问题2：盛唐文化有什么特点？</h3><p><strong>诗歌：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>① <strong>李白：</strong>诗仙，浪漫主义诗人</li><li>② <strong>杜甫：</strong>诗圣，现实主义诗人</li><li>③ <strong>白居易：</strong>诗魔，通俗易读</li></ul><p><strong>书法与绘画：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>① <strong>书法：</strong>颜真卿（颜体）、柳公权（柳体）</li><li>② <strong>绘画：</strong>阎立本（《步辇图》）、吴道子（画圣）</li></ul><p><strong>音乐与舞蹈：</strong>融合中外，《霓裳羽衣曲》是代表</p><p style="margin-top: 12px;">🎨 <strong>智慧：</strong>盛唐文化是<strong>中外融合</strong>的典范</p>`;
     anchorContents[3] = `<h3>📍 问题3：唐朝的民族关系如何？</h3><p><strong>民族政策：</strong><strong>开明</strong>民族政策，唐太宗被尊为<strong>"天可汗"</strong></p><p><strong>典型事例：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>① <strong>文成公主入藏：</strong>嫁给松赞干布（吐蕃赞普）</li><li>② <strong>意义：</strong>促进了汉藏友好关系</li></ul><p><strong>历史意义：</strong></p><ul style="padding-left:20px;line-height:1.8;"><li>①
-
+  <script src="../../shared/badges.js?v=8.0"></script>

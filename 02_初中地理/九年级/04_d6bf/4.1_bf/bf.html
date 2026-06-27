@@ -74,10 +74,26 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 1/4 节 · 25%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第一单元：北方地区</div>
@@ -104,6 +120,12 @@
 </section>
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;"><li>✅ 了解北方地区的自然特征</li>
 <li>✅ 掌握北方地区农业特点</li>
 <li>✅ 理解黑土地与黄土地的差异</li>
@@ -111,11 +133,11 @@
 </section>
 <section class="section" id="section-prequiz">
 <h2 class="section-title"><span class="num">📝</span> 前测</h2>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>1. 【基础】北方地区的主要气候类型是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options"><div class="quiz-option" onclick="checkAnswer(this,true,1,'A')" ><span class="opt-letter">A</span> 温带季风气候</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')"  data-feedback="南方地区才是亚热带季风！"><span class="opt-letter">A</span> 亚热带季风气候</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')"  data-feedback="西北地区才是温带大陆性！"><span class="opt-letter">A</span> 温带大陆性气候</div></div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题"><div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：温带季风气候" aria-pressed="false"><span class="opt-letter">A</span> 温带季风气候</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：亚热带季风气候" aria-pressed="false" data-feedback="南方地区才是亚热带季风！"><span class="opt-letter">A</span> 亚热带季风气候</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：温带大陆性气候" aria-pressed="false" data-feedback="西北地区才是温带大陆性！"><span class="opt-letter">A</span> 温带大陆性气候</div></div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>温带季风气候</strong></p></div>
 </div>
@@ -134,18 +156,18 @@
 </section>
 <section class="section" id="section-postquiz">
 <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>10. 【基础】北方地区耕地类型主要是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options"><div class="quiz-option" onclick="checkAnswer(this,false,10,'A')"  data-feedback="水田是南方的！"><span class="opt-letter">A</span> 水田</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'A')" ><span class="opt-letter">A</span> 旱地</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')"  data-feedback="草地是西部的！"><span class="opt-letter">A</span> 草地</div></div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题"><div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：水田" aria-pressed="false" data-feedback="水田是南方的！"><span class="opt-letter">A</span> 水田</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：旱地" aria-pressed="false"><span class="opt-letter">A</span> 旱地</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：草地" aria-pressed="false" data-feedback="草地是西部的！"><span class="opt-letter">A</span> 草地</div></div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>旱地</strong></p></div>
-</div><div class="quiz-box" style="margin-top:20px;">
+</div><div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>11. 【提高】东北平原的熟制是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options"><div class="quiz-option" onclick="checkAnswer(this,true,11,'B')" ><span class="opt-letter">B</span> 一年一熟</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')"  data-feedback="华北平原才是两年三熟/一年两熟！"><span class="opt-letter">B</span> 一年两熟</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')"  data-feedback="南方才是一年三熟！"><span class="opt-letter">B</span> 一年三熟</div></div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题"><div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：一年一熟" aria-pressed="false"><span class="opt-letter">B</span> 一年一熟</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：一年两熟" aria-pressed="false" data-feedback="华北平原才是两年三熟/一年两熟！"><span class="opt-letter">B</span> 一年两熟</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：一年三熟" aria-pressed="false" data-feedback="南方才是一年三熟！"><span class="opt-letter">B</span> 一年三熟</div></div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>一年一熟</strong></p></div>
 </div>
@@ -176,5 +198,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 课件加载完成')})
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

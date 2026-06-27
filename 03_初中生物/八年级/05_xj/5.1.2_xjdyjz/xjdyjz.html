@@ -81,6 +81,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-biohazard"></i> TeachAny · 初中生物</div>
@@ -90,7 +102,11 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 2/2 节 · 100%</div>
   <!-- ③ 导航栏 -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../xj.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第5章：细菌</div>
@@ -175,6 +191,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 掌握细菌的<strong>基本结构</strong>（细胞壁、细胞膜、细胞质、DNA集中区域）</li>
@@ -188,12 +210,12 @@
     <!-- ⑦ 前测 -->
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】植物细胞具有而动物细胞没有的结构是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 细胞膜动植物细胞都有。"><span class="opt-letter">A</span> 细胞膜</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 细胞壁和叶绿体</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 细胞核动植物细胞都有。"><span class="opt-letter">C</span> 细胞核</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞膜" aria-pressed="false" data-feedback="❌ 细胞膜动植物细胞都有。"><span class="opt-letter">A</span> 细胞膜</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细胞壁和叶绿体" aria-pressed="false"><span class="opt-letter">B</span> 细胞壁和叶绿体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞核" aria-pressed="false" data-feedback="❌ 细胞核动植物细胞都有。"><span class="opt-letter">C</span> 细胞核</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -203,12 +225,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】生命活动的控制中心是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,true,2,'A')"><span class="opt-letter">A</span> 细胞核</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'B')" data-feedback="❌ 细胞质是进行生命活动的场所，但不是控制中心。"><span class="opt-letter">B</span> 细胞质</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 细胞壁起支持和保护作用，不是控制中心。"><span class="opt-letter">C</span> 细胞壁</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞核" aria-pressed="false"><span class="opt-letter">A</span> 细胞核</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细胞质" aria-pressed="false" data-feedback="❌ 细胞质是进行生命活动的场所，但不是控制中心。"><span class="opt-letter">B</span> 细胞质</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞壁" aria-pressed="false" data-feedback="❌ 细胞壁起支持和保护作用，不是控制中心。"><span class="opt-letter">C</span> 细胞壁</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -218,12 +240,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】细胞结构中，起支持和保护作用的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,true,3,'A')"><span class="opt-letter">A</span> 细胞壁</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'B')" data-feedback="❌ 液泡主要起储存物质和维持渗透压的作用。"><span class="opt-letter">B</span> 液泡</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 细胞膜控制物质进出，不是起主要的支持作用。"><span class="opt-letter">C</span> 细胞膜</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞壁" aria-pressed="false"><span class="opt-letter">A</span> 细胞壁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：液泡" aria-pressed="false" data-feedback="❌ 液泡主要起储存物质和维持渗透压的作用。"><span class="opt-letter">B</span> 液泡</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞膜" aria-pressed="false" data-feedback="❌ 细胞膜控制物质进出，不是起主要的支持作用。"><span class="opt-letter">C</span> 细胞膜</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -240,6 +262,9 @@
 
       <!-- 知识点1：细菌的基本结构 -->
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:var(--primary);margin-bottom:12px;">🧬 一、细菌的基本结构</h3>
         <p style="margin-bottom:12px;">细菌是<strong>单细胞生物</strong>，一个细菌就是一个细胞。细菌的细胞由以下基本结构组成：</p>
 
@@ -295,10 +320,15 @@
           <p><strong>高频错误：</strong>"细菌有细胞核"→ ❌ 细菌<strong>没有成形的细胞核</strong>，只有DNA集中区域！</p>
           <p style="margin-top:6px;"><strong>正确说法：</strong>细菌有<strong>DNA集中的区域</strong>，但<strong>没有成形的细胞核</strong>。</p>
         </div>
-      </div>
+      
+</details>
+</div>
 
       <!-- 知识点2：细菌的特殊结构 -->
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:var(--primary);margin-bottom:12px;">🛡️ 二、细菌的特殊结构</h3>
 
         <!-- SVG: 带有特殊结构的细菌 -->
@@ -352,7 +382,9 @@
           <p><strong>正确：</strong>细菌的生殖方式是<strong>分裂生殖</strong>（二分裂）。芽孢只是<strong>休眠体</strong>，不是用来繁殖的。</p>
           <p style="margin-top:6px;"><strong>记忆口诀：</strong>"芽孢是休眠，不是生小孩"</p>
         </div>
-      </div>
+      
+</details>
+</div>
 
       <!-- 知识点3：与动植物细胞的比较 -->
       <div class="card">
@@ -382,6 +414,9 @@
 
       <!-- 知识点4：细菌的繁殖 -->
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:var(--primary);margin-bottom:12px;">🔄 四、细菌的生殖方式</h3>
 
         <!-- SVG: 分裂生殖 -->
@@ -429,18 +464,20 @@
           <p>12小时 → 2²⁴ ≈ 1677万个</p>
           <p style="margin-top:6px;color:var(--primary-dark);"><strong>➡ 这就是为什么食物放久了会腐败的原因！</strong></p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ⑨ 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】细菌区别于动植物细胞的最主要特征是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 细菌确实有细胞壁，但植物细胞也有，这不是最根本的区别。"><span class="opt-letter">A</span> 有细胞壁</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 没有成形的细胞核</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 细菌是单细胞生物，但这不是其独特的特征（有些真核生物也是单细胞）。"><span class="opt-letter">C</span> 是单细胞生物</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：有细胞壁" aria-pressed="false" data-feedback="❌ 细菌确实有细胞壁，但植物细胞也有，这不是最根本的区别。"><span class="opt-letter">A</span> 有细胞壁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：没有成形的细胞核" aria-pressed="false"><span class="opt-letter">B</span> 没有成形的细胞核</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：是单细胞生物" aria-pressed="false" data-feedback="❌ 细菌是单细胞生物，但这不是其独特的特征（有些真核生物也是单细胞）。"><span class="opt-letter">C</span> 是单细胞生物</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -450,12 +487,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高】关于芽孢的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;margin-left:8px;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,11,'A')" data-feedback="❌ 芽孢不是生殖细胞，这是最常见错误！"><span class="opt-letter">A</span> 芽孢是细菌的生殖细胞</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 芽孢萌发后产生一个细菌，不是多个。"><span class="opt-letter">B</span> 一个芽孢萌发后产生多个细菌</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,11,'C')"><span class="opt-letter">C</span> 芽孢是细菌抵抗不良环境的休眠体</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：芽孢是细菌的生殖细胞" aria-pressed="false" data-feedback="❌ 芽孢不是生殖细胞，这是最常见错误！"><span class="opt-letter">A</span> 芽孢是细菌的生殖细胞</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：一个芽孢萌发后产生多个细菌" aria-pressed="false" data-feedback="❌ 芽孢萌发后产生一个细菌，不是多个。"><span class="opt-letter">B</span> 一个芽孢萌发后产生多个细菌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：芽孢是细菌抵抗不良环境的休眠体" aria-pressed="false"><span class="opt-letter">C</span> 芽孢是细菌抵抗不良环境的休眠体</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -465,12 +502,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2023·重庆中考）细菌不具有的结构是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;margin-left:8px;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 细菌有细胞壁，这是正确的说法。"><span class="opt-letter">A</span> 细胞壁</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,12,'B')" data-feedback="❌ 细菌的细胞质内确实有DNA集中区域。"><span class="opt-letter">B</span> DNA集中区域</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,12,'C')"><span class="opt-letter">C</span> 成形的细胞核</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞壁" aria-pressed="false" data-feedback="❌ 细菌有细胞壁，这是正确的说法。"><span class="opt-letter">A</span> 细胞壁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：DNA集中区域" aria-pressed="false" data-feedback="❌ 细菌的细胞质内确实有DNA集中区域。"><span class="opt-letter">B</span> DNA集中区域</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：成形的细胞核" aria-pressed="false"><span class="opt-letter">C</span> 成形的细胞核</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -480,12 +517,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐ 提高】细菌的生殖方式是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,true,13,'A')"><span class="opt-letter">A</span> 分裂生殖</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,13,'B')" data-feedback="❌ 孢子生殖是真菌（如蘑菇、霉菌）的生殖方式，不是细菌的。"><span class="opt-letter">B</span> 孢子生殖</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,13,'C')" data-feedback="❌ 出芽生殖是酵母菌的生殖方式，不是细菌的。"><span class="opt-letter">C</span> 出芽生殖</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,13,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：分裂生殖" aria-pressed="false"><span class="opt-letter">A</span> 分裂生殖</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,13,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：孢子生殖" aria-pressed="false" data-feedback="❌ 孢子生殖是真菌（如蘑菇、霉菌）的生殖方式，不是细菌的。"><span class="opt-letter">B</span> 孢子生殖</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,13,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：出芽生殖" aria-pressed="false" data-feedback="❌ 出芽生殖是酵母菌的生殖方式，不是细菌的。"><span class="opt-letter">C</span> 出芽生殖</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13">
@@ -647,6 +684,8 @@
       if (pLabel) pLabel.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(pct) + '%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

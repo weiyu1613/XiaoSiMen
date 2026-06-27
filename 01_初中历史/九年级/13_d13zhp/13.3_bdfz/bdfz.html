@@ -218,6 +218,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -231,6 +243,10 @@
 
   <!-- ========== ③ 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d13zhp.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -342,17 +358,17 @@
             <div class="quiz-question">
               <span class="star">★</span>第三次科技革命的核心是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 蒸汽机是第一次科技革命的标志，不是第三次。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.蒸汽机" aria-pressed="false" data-feedback="❌ 蒸汽机是第一次科技革命的标志，不是第三次。">
                 <span class="opt-letter">A</span><label>A. 蒸汽机</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'B')" data-feedback="❌ 电力是第二次科技革命的标志，不是第三次。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.电力" aria-pressed="false" data-feedback="❌ 电力是第二次科技革命的标志，不是第三次。">
                 <span class="opt-letter">B</span><label>B. 电力</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.计算机与信息技术" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 计算机与信息技术</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 航天技术只是第三次科技革命的领域之一，不是核心。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.航天技术" aria-pressed="false" data-feedback="❌ 航天技术只是第三次科技革命的领域之一，不是核心。">
                 <span class="opt-letter">D</span><label>D. 航天技术</label>
               </div>
             </div>
@@ -369,17 +385,17 @@
             <div class="quiz-question">
               <span class="star">★</span>1992年里约联合国环境与发展大会通过了？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 《京都议定书》是1997年通过的，不是1992年里约峰会。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.《京都议定书》" aria-pressed="false" data-feedback="❌ 《京都议定书》是1997年通过的，不是1992年里约峰会。">
                 <span class="opt-letter">A</span><label>A. 《京都议定书》</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'B')" data-feedback="❌ 《巴黎协定》是2015年通过的，不是1992年里约峰会。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.《巴黎协定》" aria-pressed="false" data-feedback="❌ 《巴黎协定》是2015年通过的，不是1992年里约峰会。">
                 <span class="opt-letter">B</span><label>B. 《巴黎协定》</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.《21世纪议程》" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 《21世纪议程》</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 《蒙特利尔议定书》是1987年通过的，是保护臭氧层的协议。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.《蒙特利尔议定书》" aria-pressed="false" data-feedback="❌ 《蒙特利尔议定书》是1987年通过的，是保护臭氧层的协议。">
                 <span class="opt-letter">D</span><label>D. 《蒙特利尔议定书》</label>
               </div>
             </div>
@@ -396,17 +412,17 @@
             <div class="quiz-question">
               <span class="star">★</span>第一台电子计算机ENIAC诞生于？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ ENIAC不是诞生于英国。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.英国1943年" aria-pressed="false" data-feedback="❌ ENIAC不是诞生于英国。">
                 <span class="opt-letter">A</span><label>A. 英国1943年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'B')" data-feedback="❌ ENIAC不是诞生于德国。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.德国1944年" aria-pressed="false" data-feedback="❌ ENIAC不是诞生于德国。">
                 <span class="opt-letter">B</span><label>B. 德国1944年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.美国1946年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 美国1946年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ ENIAC不是诞生于苏联。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.苏联1947年" aria-pressed="false" data-feedback="❌ ENIAC不是诞生于苏联。">
                 <span class="opt-letter">D</span><label>D. 苏联1947年</label>
               </div>
             </div>
@@ -423,17 +439,17 @@
             <div class="quiz-question">
               <span class="star">★</span>1996年克隆羊多莉的诞生表明？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 多莉羊的诞生不等于人类可以克隆人，各国伦理上普遍禁止克隆人实验。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.人类可以克隆人" aria-pressed="false" data-feedback="❌ 多莉羊的诞生不等于人类可以克隆人，各国伦理上普遍禁止克隆人实验。">
                 <span class="opt-letter">A</span><label>A. 人类可以克隆人</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.生物工程取得重大突破" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 生物工程取得重大突破</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 多莉羊与农业工业化无直接关联。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.农业实现工业化" aria-pressed="false" data-feedback="❌ 多莉羊与农业工业化无直接关联。">
                 <span class="opt-letter">C</span><label>C. 农业实现工业化</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'D')" data-feedback="❌ 计算机取代人类与克隆羊无任何关联。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.计算机取代人类" aria-pressed="false" data-feedback="❌ 计算机取代人类与克隆羊无任何关联。">
                 <span class="opt-letter">D</span><label>D. 计算机取代人类</label>
               </div>
             </div>
@@ -635,17 +651,17 @@
             <div class="quiz-question">
               <span class="star">★</span>互联网技术的普及使世界？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 互联网的作用是促进联系而非分裂。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.更加分裂" aria-pressed="false" data-feedback="❌ 互联网的作用是促进联系而非分裂。">
                 <span class="opt-letter">A</span><label>A. 更加分裂</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.更加紧密联系" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 更加紧密联系</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 互联网推动社会进入信息时代，而非退回工业时代。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.退回工业时代" aria-pressed="false" data-feedback="❌ 互联网推动社会进入信息时代，而非退回工业时代。">
                 <span class="opt-letter">C</span><label>C. 退回工业时代</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 虽然促进了跨国交流，但并未取消国家边界。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.取消国家边界" aria-pressed="false" data-feedback="❌ 虽然促进了跨国交流，但并未取消国家边界。">
                 <span class="opt-letter">D</span><label>D. 取消国家边界</label>
               </div>
             </div>
@@ -662,17 +678,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2022·河南改编）第三次科技革命影响不包括？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ A（推动生产力发展）是第三次科技革命的积极影响。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.推动生产力发展" aria-pressed="false" data-feedback="❌ A（推动生产力发展）是第三次科技革命的积极影响。">
                 <span class="opt-letter">A</span><label>A. 推动生产力发展</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ B（改变人类生活方式）是第三次科技革命的积极影响。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.改变人类生活方式" aria-pressed="false" data-feedback="❌ B（改变人类生活方式）是第三次科技革命的积极影响。">
                 <span class="opt-letter">B</span><label>B. 改变人类生活方式</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.减少环境污染" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 减少环境污染</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ D（推动经济全球化）是第三次科技革命的积极影响。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.推动经济全球化" aria-pressed="false" data-feedback="❌ D（推动经济全球化）是第三次科技革命的积极影响。">
                 <span class="opt-letter">D</span><label>D. 推动经济全球化</label>
               </div>
             </div>
@@ -689,17 +705,17 @@
             <div class="quiz-question">
               <span class="star">★</span>人口过快增长带来的问题不包括？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 粮食短缺是人口过快增长的真实问题。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.粮食短缺" aria-pressed="false" data-feedback="❌ 粮食短缺是人口过快增长的真实问题。">
                 <span class="opt-letter">A</span><label>A. 粮食短缺</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'B')" data-feedback="❌ 资源紧张是人口过快增长的真实问题。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.资源紧张" aria-pressed="false" data-feedback="❌ 资源紧张是人口过快增长的真实问题。">
                 <span class="opt-letter">B</span><label>B. 资源紧张</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'C')" data-feedback="❌ 就业压力增大是人口过快增长的真实问题。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.就业压力增大" aria-pressed="false" data-feedback="❌ 就业压力增大是人口过快增长的真实问题。">
                 <span class="opt-letter">C</span><label>C. 就业压力增大</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'D')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.全球气温下降" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">D</span><label>D. 全球气温下降</label>
               </div>
             </div>
@@ -716,17 +732,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2023·江苏改编）面对全球生态问题，合理措施是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 停止发展工业过于极端，发展是解决环境问题的基础。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.停止发展工业" aria-pressed="false" data-feedback="❌ 停止发展工业过于极端，发展是解决环境问题的基础。">
                 <span class="opt-letter">A</span><label>A. 停止发展工业</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.发达国家与发展中国家合作走可持续发展道路" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 发达国家与发展中国家合作走可持续发展道路</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 生态问题具有全球性，依靠单一国家不可能解决。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.依靠单一国家解决" aria-pressed="false" data-feedback="❌ 生态问题具有全球性，依靠单一国家不可能解决。">
                 <span class="opt-letter">C</span><label>C. 依靠单一国家解决</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'D')" data-feedback="❌ 退回到农业社会不现实，历史不会倒退。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.退回到农业社会" aria-pressed="false" data-feedback="❌ 退回到农业社会不现实，历史不会倒退。">
                 <span class="opt-letter">D</span><label>D. 退回到农业社会</label>
               </div>
             </div>
@@ -746,6 +762,9 @@
     <!-- ========== ⑩ 必考分析 ========== -->
     <section class="section">
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
           <div class="exam-cards">
@@ -766,7 +785,9 @@
             </div>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ========== AI学伴 ========== -->
@@ -859,6 +880,8 @@
 
     console.log('📚 第13.3课《不断发展的现代社会》页面加载完成（v7.14）');
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

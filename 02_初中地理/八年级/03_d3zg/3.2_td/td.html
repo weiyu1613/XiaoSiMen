@@ -321,6 +321,18 @@
   <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
     <!-- 导航栏 -->
     <nav class="navbar">
         <div>
@@ -660,7 +672,7 @@
         <div class="quiz-question" id="quiz1">
             <p><strong>题目 1：</strong>读"中国土地利用类型分布图"，回答下列问题。</p>
             <p>我国耕地主要分布在（ ）</p>
-            <ul class="quiz-options">
+            <ul class="quiz-options" role="radiogroup" aria-label="选择题">
                 <li onclick="checkAnswer(this, false, 'quiz1')">A. 西北部的内蒙古高原</li>
                 <li onclick="checkAnswer(this, true, 'quiz1')">B. 东部季风区的平原和盆地</li>
                 <li onclick="checkAnswer(this, false, 'quiz1')">C. 西部干旱地区</li>
@@ -670,7 +682,7 @@
 
         <div class="quiz-question" id="quiz2">
             <p><strong>题目 2：</strong>关于我国土地资源的叙述，正确的是（ ）</p>
-            <ul class="quiz-options">
+            <ul class="quiz-options" role="radiogroup" aria-label="选择题">
                 <li onclick="checkAnswer(this, false, 'quiz2')">A. 耕地比重较大，约占国土面积的一半</li>
                 <li onclick="checkAnswer(this, false, 'quiz2')">B. 草地主要分布在东部地区</li>
                 <li onclick="checkAnswer(this, true, 'quiz2')">C. 林地主要分布在东北、西南和东南部山区</li>
@@ -680,7 +692,7 @@
 
         <div class="quiz-question" id="quiz3">
             <p><strong>题目 3：</strong>我国土地资源保护的基本国策是（ ）</p>
-            <ul class="quiz-options">
+            <ul class="quiz-options" role="radiogroup" aria-label="选择题">
                 <li onclick="checkAnswer(this, false, 'quiz3')">A. 围湖造田，扩大耕地面积</li>
                 <li onclick="checkAnswer(this, false, 'quiz3')">B. 大力开垦荒地，增加耕地</li>
                 <li onclick="checkAnswer(this, true, 'quiz3')">C. 十分珍惜和合理利用每一寸土地，切实保护耕地</li>
@@ -690,7 +702,7 @@
 
         <div class="quiz-question" id="quiz4">
             <p><strong>题目 4（读图题）：</strong>读图判断，我国西北地区主要的土地类型是（ ）</p>
-            <ul class="quiz-options">
+            <ul class="quiz-options" role="radiogroup" aria-label="选择题">
                 <li onclick="checkAnswer(this, false, 'quiz4')">A. 耕地为主</li>
                 <li onclick="checkAnswer(this, false, 'quiz4')">B. 林地为主</li>
                 <li onclick="checkAnswer(this, true, 'quiz4')">C. 草地和难利用土地为主</li>
@@ -805,5 +817,6 @@
             updateProgressBar();
         });
     </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

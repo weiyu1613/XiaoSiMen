@@ -493,6 +493,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- 1. 品牌栏 -->
 <div class="brand-bar">
@@ -511,6 +523,10 @@
 
 <!-- 3. 导航栏 -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-left">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../d6zhn.html" class="nav-btn"><i class="fas fa-layer-group"></i> 章节目录</a>
@@ -665,6 +681,12 @@
 <!-- 7. 学习目标 -->
 <section id="objectives">
     <h2 class="section-title"><i class="fas fa-bullseye"></i> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
     <div class="objective-grid">
         <div class="objective-card">
             <div class="obj-icon"><i class="fa-solid fa-landmark"></i></div>
@@ -713,11 +735,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"九一八事变发生在沈阳，而非北京。日本选择沈阳是因为东北是日本蓄谋已久的侵略目标。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"九一八事变发生在1931年，而非1937年。1937年是七七事变（全面抗战开始）。","D":"九一八事变是日本蓄意发动的侵略事件，并非中国军队挑衅。日军自炸南满铁路嫁祸中国守军。"}'>
             <span class="quiz-badge">基础</span>
             <h4>1. 九一八事变发生在哪一年？日军制造的借口是什么？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 1937年，卢沟桥事变</div>
-                <div class="quiz-option" data-value="B">B. 1931年，柳条湖事件</div>
-                <div class="quiz-option" data-value="C">C. 1935年，华北事变</div>
-                <div class="quiz-option" data-value="D">D. 1932年，一·二八事变</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.1937年，卢沟桥事变" aria-pressed="false" data-value="A">A. 1937年，卢沟桥事变</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.1931年，柳条湖事件" aria-pressed="false" data-value="B">B. 1931年，柳条湖事件</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.1935年，华北事变" aria-pressed="false" data-value="C">C. 1935年，华北事变</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.1932年，一·二八事变" aria-pressed="false" data-value="D">D. 1932年，一·二八事变</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -725,11 +747,11 @@
         <div class="quiz-question" data-correct="C" data-feedback='{"A":"不抵抗政策导致东北三省迅速沦陷，而非仅损失一省。不到半年，东北全境沦陷。","B":"不抵抗政策的影响远不止暂时退让，它导致东北三省完全沦陷，激起了全国人民的愤怒。","C":"✅ 答对了！可以点错误选项看看它们错在哪～","D":"不抵抗政策恰恰阻碍了统一战线的形成，而非促进。它使得日本更加肆无忌惮地侵略。"}'>
             <span class="quiz-badge">提高</span>
             <h4>2. 蒋介石对九一八事变采取"不抵抗政策"的根本原因是什么？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 军事实力不足以抵抗日本</div>
-                <div class="quiz-option" data-value="B">B. 寄希望于国际联盟的干预</div>
-                <div class="quiz-option" data-value="C">C. 坚持"攘外必先安内"政策，集中力量围剿红军</div>
-                <div class="quiz-option" data-value="D">D. 认为东北三省无关紧要</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.军事实力不足以抵抗日本" aria-pressed="false" data-value="A">A. 军事实力不足以抵抗日本</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.寄希望于国际联盟的干预" aria-pressed="false" data-value="B">B. 寄希望于国际联盟的干预</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.坚持&quot;攘外必先安内&quot;政策，集中力量围剿红军" aria-pressed="false" data-value="C">C. 坚持"攘外必先安内"政策，集中力量围剿红军</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.认为东北三省无关紧要" aria-pressed="false" data-value="D">D. 认为东北三省无关紧要</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -737,11 +759,11 @@
         <div class="quiz-question" data-correct="D" data-feedback='{"A":"西安事变的发动者是张学良和杨虎城，而非中国共产党。中共是主张和平解决的一方。","B":"西安事变的结果是和平解决，蒋介石被释放，而非被处死。","C":"西安事变和平解决后，蒋介石并未立即宣布全面抗战。全面抗战始于1937年七七事变。","D":"✅ 答对了！可以点错误选项看看它们错在哪～"}'>
             <span class="quiz-badge challenge">挑战</span>
             <h4>3. 西安事变和平解决最重要的历史意义是什么？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 中国共产党夺取了全国政权</div>
-                <div class="quiz-option" data-value="B">B. 蒋介石被处死，国民政府瓦解</div>
-                <div class="quiz-option" data-value="C">C. 中国立即开始了全面抗战</div>
-                <div class="quiz-option" data-value="D">D. 十年内战基本停止，抗日民族统一战线初步形成</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.中国共产党夺取了全国政权" aria-pressed="false" data-value="A">A. 中国共产党夺取了全国政权</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.蒋介石被处死，国民政府瓦解" aria-pressed="false" data-value="B">B. 蒋介石被处死，国民政府瓦解</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.中国立即开始了全面抗战" aria-pressed="false" data-value="C">C. 中国立即开始了全面抗战</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.十年内战基本停止，抗日民族统一战线初步形成" aria-pressed="false" data-value="D">D. 十年内战基本停止，抗日民族统一战线初步形成</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -828,22 +850,22 @@
         <div class="quiz-question" data-correct="A" data-feedback='{"A":"✅ 答对了！可以点错误选项看看它们错在哪～","B":"七七事变（1937年）才是全面抗战的开始，九一八事变是局部抗战的起点。","C":"西安事变（1936年）是促成了统一战线初步形成的事件，不是局部抗战的起点。","D":"一二九运动（1935年）是抗日救亡运动的新高潮，但局部抗战的起点是九一八事变。"}'>
             <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
             <h4>1.（中考真题）中国人民局部抗日战争开始的标志是（　　）</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 九一八事变</div>
-                <div class="quiz-option" data-value="B">B. 七七事变</div>
-                <div class="quiz-option" data-value="C">C. 西安事变</div>
-                <div class="quiz-option" data-value="D">D. 一二九运动</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.九一八事变" aria-pressed="false" data-value="A">A. 九一八事变</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.七七事变" aria-pressed="false" data-value="B">B. 七七事变</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.西安事变" aria-pressed="false" data-value="C">C. 西安事变</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.一二九运动" aria-pressed="false" data-value="D">D. 一二九运动</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
 
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"张学良和杨虎城发动西安事变的目的是逼蒋抗日，而非推翻国民政府。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"中国共产党主张和平解决西安事变，而不是策划发动。中共是从民族利益出发推动和平解决。","D":"西安事变和平解决后，蒋介石被迫接受了停止内战、联共抗日的主张，并未拒绝。"}'>
             <h4>2. 西安事变发生后，中国共产党主张和平解决，其根本出发点是（　　）</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 推翻国民政府的统治</div>
-                <div class="quiz-option" data-value="B">B. 全民族利益高于一切</div>
-                <div class="quiz-option" data-value="C">C. 策划西安事变的发动</div>
-                <div class="quiz-option" data-value="D">D. 迫使蒋介石拒绝抗日</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.推翻国民政府的统治" aria-pressed="false" data-value="A">A. 推翻国民政府的统治</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.全民族利益高于一切" aria-pressed="false" data-value="B">B. 全民族利益高于一切</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.策划西安事变的发动" aria-pressed="false" data-value="C">C. 策划西安事变的发动</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.迫使蒋介石拒绝抗日" aria-pressed="false" data-value="D">D. 迫使蒋介石拒绝抗日</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -851,11 +873,11 @@
         <div class="quiz-question" data-correct="C" data-feedback='{"A":"西安事变和平解决使国共由对抗走向合作，这是正确的。但此题问的是最重要的意义。","B":"东北问题在西安事变前就已存在，这不是西安事变和平解决最重要的意义。","C":"✅ 答对了！可以点错误选项看看它们错在哪～","D":"全面抗战始于1937年七七事变，而非西安事变和平解决后立即开始。"}'>
             <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
             <h4>3.（中考真题）西安事变和平解决最重要的历史意义是（　　）</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 国共两党开始合作</div>
-                <div class="quiz-option" data-value="B">B. 收复了东北三省</div>
-                <div class="quiz-option" data-value="C">C. 十年内战基本停止，抗日民族统一战线初步形成</div>
-                <div class="quiz-option" data-value="D">D. 中国开始了全面抗战</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.国共两党开始合作" aria-pressed="false" data-value="A">A. 国共两党开始合作</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.收复了东北三省" aria-pressed="false" data-value="B">B. 收复了东北三省</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.十年内战基本停止，抗日民族统一战线初步形成" aria-pressed="false" data-value="C">C. 十年内战基本停止，抗日民族统一战线初步形成</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.中国开始了全面抗战" aria-pressed="false" data-value="D">D. 中国开始了全面抗战</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -993,6 +1015,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
 });
 </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

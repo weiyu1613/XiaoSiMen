@@ -66,11 +66,27 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-dna"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../xjhztd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第四章：细菌和真菌</div>
@@ -137,32 +153,32 @@
 <section class="section" id="section-prequiz">
 <h2 class="stitle">📝 前测：检验先备知识</h2>
 <p style="color:var(--primary);margin-bottom:16px;">难度递进：<span class="difficulty-badge d1"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge d2"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge d3"><i class="fa-solid fa-star"></i> 挑战</span></p>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1.【⭐基础】关于菌落的叙述，正确的是？<span class="difficulty-badge d1">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 菌落是肉眼可见的集合体，不是单个细菌！"><span class="opt-letter">A</span> 菌落就是一个细菌</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 菌落是由一个细菌或真菌繁殖后形成的肉眼可见的集合体</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 不同菌落形态不同，可以区分！"><span class="opt-letter">C</span> 所有菌落的形态都相同</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：菌落就是一个细菌" aria-pressed="false" data-feedback="❌ 菌落是肉眼可见的集合体，不是单个细菌！"><span class="opt-letter">A</span> 菌落就是一个细菌</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：菌落是由一个细菌或真菌繁殖后形成的肉眼可见的集合体" aria-pressed="false"><span class="opt-letter">B</span> 菌落是由一个细菌或真菌繁殖后形成的肉眼可见的集合体</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：所有菌落的形态都相同" aria-pressed="false" data-feedback="❌ 不同菌落形态不同，可以区分！"><span class="opt-letter">C</span> 所有菌落的形态都相同</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="et">📖 详细解析</div><p><strong>正确答案：B</strong>。菌落是指一个细菌或真菌在培养基上繁殖后形成的肉眼可见的集合体。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2.【⭐⭐提高】细菌菌落和真菌菌落的主要区别？<span class="difficulty-badge d2">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 细菌菌落小，真菌菌落大！记反了。"><span class="opt-letter">A</span> 细菌菌落大，真菌菌落小</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 细菌菌落小且光滑，真菌菌落大且呈绒毛状</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 两者形态差异大，可以区分！"><span class="opt-letter">C</span> 无法区分</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌菌落大，真菌菌落小" aria-pressed="false" data-feedback="❌ 细菌菌落小，真菌菌落大！记反了。"><span class="opt-letter">A</span> 细菌菌落大，真菌菌落小</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细菌菌落小且光滑，真菌菌落大且呈绒毛状" aria-pressed="false"><span class="opt-letter">B</span> 细菌菌落小且光滑，真菌菌落大且呈绒毛状</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：无法区分" aria-pressed="false" data-feedback="❌ 两者形态差异大，可以区分！"><span class="opt-letter">C</span> 无法区分</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="et">📖 详细解析</div><p><strong>正确答案：B</strong>。细菌菌落小、光滑黏稠；真菌菌落大、呈绒毛状/絮状。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3.【⭐⭐⭐挑战】培养细菌和真菌的正确步骤顺序？<span class="difficulty-badge d3">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'A')"><span class="opt-letter">A</span> 配制培养基→高温灭菌→接种→恒温培养</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'B')" data-feedback="❌ 先接种再灭菌会把微生物杀死！"><span class="opt-letter">B</span> 配制培养基→接种→高温灭菌→恒温培养</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 必须先配培养基再灭菌！"><span class="opt-letter">C</span> 接种→配制培养基→高温灭菌→恒温培养</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：配制培养基→高温灭菌→接种→恒温培养" aria-pressed="false"><span class="opt-letter">A</span> 配制培养基→高温灭菌→接种→恒温培养</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：配制培养基→接种→高温灭菌→恒温培养" aria-pressed="false" data-feedback="❌ 先接种再灭菌会把微生物杀死！"><span class="opt-letter">B</span> 配制培养基→接种→高温灭菌→恒温培养</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：接种→配制培养基→高温灭菌→恒温培养" aria-pressed="false" data-feedback="❌ 必须先配培养基再灭菌！"><span class="opt-letter">C</span> 接种→配制培养基→高温灭菌→恒温培养</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="et">📖 详细解析</div><p><strong>正确答案：A</strong>。灭菌必须在接种之前，否则杂菌会影响实验结果。</p></div>
@@ -263,32 +279,32 @@
 <section class="section" id="section-postquiz">
 <h2 class="stitle">✅ 后测：检验学习成果</h2>
 <p style="color:var(--primary);margin-bottom:16px;">包含中考真题与高频考点分析！</p>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1.【⭐基础】细菌菌落和真菌菌落的区别，错误的是？<span class="difficulty-badge d1">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'A')"><span class="opt-letter">A</span> 细菌菌落比真菌菌落大</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'B')" data-feedback="❌ 这是对的！细菌菌落确实较小。"><span class="opt-letter">B</span> 细菌菌落较小</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 这是对的！真菌菌落确实呈绒毛状。"><span class="opt-letter">C</span> 真菌菌落呈绒毛状</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌菌落比真菌菌落大" aria-pressed="false"><span class="opt-letter">A</span> 细菌菌落比真菌菌落大</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细菌菌落较小" aria-pressed="false" data-feedback="❌ 这是对的！细菌菌落确实较小。"><span class="opt-letter">B</span> 细菌菌落较小</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：真菌菌落呈绒毛状" aria-pressed="false" data-feedback="❌ 这是对的！真菌菌落确实呈绒毛状。"><span class="opt-letter">C</span> 真菌菌落呈绒毛状</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="et">📖 详细解析</div><p><strong>正确答案：A</strong>。细菌菌落比真菌菌落<strong>小</strong>，不是大！</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2.【⭐⭐提高·中考真题】（2023·广东）培养细菌时，培养基必须先高温灭菌，目的是？<span class="difficulty-badge d2">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'A')"><span class="opt-letter">A</span> 杀死培养基和培养皿上原有的细菌和真菌</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 灭菌不是为了杀死要培养的菌！"><span class="opt-letter">B</span> 杀死要培养的细菌</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 灭菌是杀灭杂菌，不是促进生长！"><span class="opt-letter">C</span> 促进细菌快速生长</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：杀死培养基和培养皿上原有的细菌和真菌" aria-pressed="false"><span class="opt-letter">A</span> 杀死培养基和培养皿上原有的细菌和真菌</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：杀死要培养的细菌" aria-pressed="false" data-feedback="❌ 灭菌不是为了杀死要培养的菌！"><span class="opt-letter">B</span> 杀死要培养的细菌</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：促进细菌快速生长" aria-pressed="false" data-feedback="❌ 灭菌是杀灭杂菌，不是促进生长！"><span class="opt-letter">C</span> 促进细菌快速生长</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="et">📖 详细解析</div><p><strong>正确答案：A</strong>。高温灭菌目的是杀死原有杂菌，避免干扰实验。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3.【⭐⭐⭐挑战·中考真题】（2022·北京）下列环境中，细菌和真菌最多的是？<span class="difficulty-badge d3">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 深海火山口温度极高，只有极少数嗜热菌！"><span class="opt-letter">A</span> 深海火山口</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'B')"><span class="opt-letter">B</span> 富含有机物的潮湿土壤</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 干燥沙漠缺水，微生物很少！"><span class="opt-letter">C</span> 干燥的沙漠</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：深海火山口" aria-pressed="false" data-feedback="❌ 深海火山口温度极高，只有极少数嗜热菌！"><span class="opt-letter">A</span> 深海火山口</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：富含有机物的潮湿土壤" aria-pressed="false"><span class="opt-letter">B</span> 富含有机物的潮湿土壤</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干燥的沙漠" aria-pressed="false" data-feedback="❌ 干燥沙漠缺水，微生物很少！"><span class="opt-letter">C</span> 干燥的沙漠</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="et">📖 详细解析</div><p><strong>正确答案：B</strong>。富含有机物的潮湿土壤具备水分、适宜温度、有机物等全部生存条件，微生物最多。</p></div>
@@ -330,6 +346,8 @@ function handleCustomQuestion(q){if(q.trim()){document.getElementById('anchor-di
 function checkAnswer(el,ok,qn,letter){var box=el.closest('.quiz-box');var fb=box.querySelector('.feedback');var exp=document.getElementById('explanation-'+qn);box.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('correct','wrong')});if(ok){el.classList.add('correct');if(fb){fb.innerHTML='<strong>✅ 答对了！</strong>';fb.className='feedback show correct-fb';}if(exp)exp.classList.add('show');}else{el.classList.add('wrong');var sf=el.dataset.feedback||'❌ 不对哦，再想想！';if(fb){fb.innerHTML=sf+'<br><br>💡 换一个选项试试？';fb.className='feedback show wrong-fb';}if(exp)exp.classList.add('show');}}
 document.addEventListener('DOMContentLoaded',function(){var pf=document.getElementById('progress-fill');var pl=document.getElementById('progress-label');if(pf)pf.style.width=(COURSE_INFO.currentSection/COURSE_INFO.totalSections*100)+'%';if(pl)pl.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(COURSE_INFO.currentSection/COURSE_INFO.totalSections*100)+'%';});
 </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

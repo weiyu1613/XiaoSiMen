@@ -78,10 +78,26 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 1/3 节 · 33%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第二单元：中国的自然资源</div>
@@ -133,6 +149,12 @@
 </section>
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
 <li>✅ 理解自然资源的概念和分类</li>
 <li>✅ 区分可再生资源和非可再生资源</li>
@@ -142,32 +164,32 @@
 </section>
 <section class="section" id="section-prequiz">
 <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1. 【⭐ 基础】下列属于自然资源的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 水泥是人工加工的产品，不是自然资源！"><span class="opt-letter">A</span> 水泥</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 阳光</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 面包是加工食品，不是自然资源！"><span class="opt-letter">C</span> 面包</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：水泥" aria-pressed="false" data-feedback="❌ 水泥是人工加工的产品，不是自然资源！"><span class="opt-letter">A</span> 水泥</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：阳光" aria-pressed="false"><span class="opt-letter">B</span> 阳光</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：面包" aria-pressed="false" data-feedback="❌ 面包是加工食品，不是自然资源！"><span class="opt-letter">C</span> 面包</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 阳光</strong></p><p style="margin-top:8px;">自然资源是<strong>存在于自然界</strong>、能为人类提供福利的物质和能量。阳光是自然资源，水泥和面包是人工产品。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2. 【⭐⭐ 提高】下列属于非可再生资源的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 森林是可再生资源，可以重新种植！"><span class="opt-letter">A</span> 森林</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 煤炭</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 水资源是可再生资源，可以循环更新！"><span class="opt-letter">C</span> 水</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：森林" aria-pressed="false" data-feedback="❌ 森林是可再生资源，可以重新种植！"><span class="opt-letter">A</span> 森林</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：煤炭" aria-pressed="false"><span class="opt-letter">B</span> 煤炭</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：水" aria-pressed="false" data-feedback="❌ 水资源是可再生资源，可以循环更新！"><span class="opt-letter">C</span> 水</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 煤炭</strong></p><p style="margin-top:8px;">煤炭是经过漫长地质年代形成的<strong>非可再生资源</strong>，用一点少一点，不可再生。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3. 【⭐⭐⭐ 挑战】关于我国自然资源说法正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 我国人均资源量不足！"><span class="opt-letter">A</span> 人均资源丰富</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 总量丰富，人均不足</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 我国资源总量是丰富的！"><span class="opt-letter">C</span> 总量不足，人均丰富</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：人均资源丰富" aria-pressed="false" data-feedback="❌ 我国人均资源量不足！"><span class="opt-letter">A</span> 人均资源丰富</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：总量丰富，人均不足" aria-pressed="false"><span class="opt-letter">B</span> 总量丰富，人均不足</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：总量不足，人均丰富" aria-pressed="false" data-feedback="❌ 我国资源总量是丰富的！"><span class="opt-letter">C</span> 总量不足，人均丰富</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 总量丰富，人均不足</strong></p><p style="margin-top:8px;">我国自然资源<strong>总量丰富</strong>，但因人口众多，<strong>人均资源不足</strong>，很多资源人均量低于世界平均水平。</p></div>
@@ -239,32 +261,32 @@
 </section>
 <section class="section" id="section-postquiz">
 <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1. 【⭐ 基础】下列属于可再生资源的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 石油是非可再生资源！"><span class="opt-letter">A</span> 石油</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 太阳能</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 铁矿是非可再生资源！"><span class="opt-letter">C</span> 铁矿</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：石油" aria-pressed="false" data-feedback="❌ 石油是非可再生资源！"><span class="opt-letter">A</span> 石油</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：太阳能" aria-pressed="false"><span class="opt-letter">B</span> 太阳能</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：铁矿" aria-pressed="false" data-feedback="❌ 铁矿是非可再生资源！"><span class="opt-letter">C</span> 铁矿</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 太阳能</strong></p><p style="margin-top:8px;">太阳能取之不尽、用之不竭，属于<strong>可再生资源</strong>。石油和铁矿都是非可再生资源。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2. 【⭐⭐ 提高·中考真题】（2023·河北中考）关于我国自然资源说法正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'A')"><span class="opt-letter">A</span> 总量丰富，人均不足</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 我国资源分布不均！"><span class="opt-letter">B</span> 资源分布均匀</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 可再生资源也需要保护！"><span class="opt-letter">C</span> 可再生资源无需保护</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：总量丰富，人均不足" aria-pressed="false"><span class="opt-letter">A</span> 总量丰富，人均不足</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：资源分布均匀" aria-pressed="false" data-feedback="❌ 我国资源分布不均！"><span class="opt-letter">B</span> 资源分布均匀</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：可再生资源无需保护" aria-pressed="false" data-feedback="❌ 可再生资源也需要保护！"><span class="opt-letter">C</span> 可再生资源无需保护</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A</strong></p><p style="margin-top:8px;">我国自然资源<strong>总量丰富</strong>（资源大国），但因人口众多，<strong>人均不足</strong>。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3. 【⭐⭐⭐ 挑战】（2022·浙江中考）对非可再生资源的正确态度是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 不能禁止使用，应节约使用！"><span class="opt-letter">A</span> 禁止使用</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'B')"><span class="opt-letter">B</span> 节约使用，综合利用</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 非可再生资源用完不可再生，应该节约！"><span class="opt-letter">C</span> 尽量多开采</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：禁止使用" aria-pressed="false" data-feedback="❌ 不能禁止使用，应节约使用！"><span class="opt-letter">A</span> 禁止使用</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：节约使用，综合利用" aria-pressed="false"><span class="opt-letter">B</span> 节约使用，综合利用</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：尽量多开采" aria-pressed="false" data-feedback="❌ 非可再生资源用完不可再生，应该节约！"><span class="opt-letter">C</span> 尽量多开采</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;">非可再生资源用一点少一点，应<strong>节约使用、综合利用</strong>，同时开发替代资源。</p></div>
@@ -298,5 +320,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《自然资源的基本特征》课件加载完成')});
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

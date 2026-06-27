@@ -135,6 +135,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -144,6 +156,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/5 节 · 20%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d10dyc.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -218,6 +234,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 知道萨拉热窝事件是一战导火索</li>
@@ -232,19 +254,19 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【&#11088; 基础】第一次世界大战的导火索是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：萨拉热窝事件" aria-pressed="false">
             <span class="opt-letter">A</span> 萨拉热窝事件
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="&#10060; 马恩河战役是1914年9月的重要战役，是一战的进程事件，不是导火索。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：马恩河战役" aria-pressed="false" data-feedback="&#10060; 马恩河战役是1914年9月的重要战役，是一战的进程事件，不是导火索。">
             <span class="opt-letter">B</span> 马恩河战役
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 凡尔登战役是1916年的战役，是一战最惨烈的战役，但不是导火索。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：凡尔登战役" aria-pressed="false" data-feedback="&#10060; 凡尔登战役是1916年的战役，是一战最惨烈的战役，但不是导火索。">
             <span class="opt-letter">C</span> 凡尔登战役
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="&#10060; 巴黎和会是一战结束后的1919年会议，不是导火索。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：巴黎和会" aria-pressed="false" data-feedback="&#10060; 巴黎和会是一战结束后的1919年会议，不是导火索。">
             <span class="opt-letter">D</span> 巴黎和会
           </div>
         </div>
@@ -256,19 +278,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【&#11088; 基础】凡尔登战役被称为"绞肉机"是因为？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="&#10060; 坦克首次使用是1916年索姆河战役，不是凡尔登战役的标签。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：首次使用坦克" aria-pressed="false" data-feedback="&#10060; 坦克首次使用是1916年索姆河战役，不是凡尔登战役的标签。">
             <span class="opt-letter">A</span> 首次使用坦克
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：双方伤亡惨重" aria-pressed="false">
             <span class="opt-letter">B</span> 双方伤亡惨重
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 海战激烈是日德兰海战的特点，不是凡尔登战役。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：海战激烈" aria-pressed="false" data-feedback="&#10060; 海战激烈是日德兰海战的特点，不是凡尔登战役。">
             <span class="opt-letter">C</span> 海战激烈
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'D')" data-feedback="&#10060; 毒气首次使用是1915年伊珀尔战役，不是凡尔登战役的标签。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：毒气首次使用" aria-pressed="false" data-feedback="&#10060; 毒气首次使用是1915年伊珀尔战役，不是凡尔登战役的标签。">
             <span class="opt-letter">D</span> 毒气首次使用
           </div>
         </div>
@@ -284,19 +306,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【&#11088;&#11088; 提高】第一次世界大战中，以下哪个国家先加入同盟国后加入协约国？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：意大利" aria-pressed="false">
             <span class="opt-letter">A</span> 意大利
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="&#10060; 美国在一战中始终站在协约国一方，1917年4月才对德宣战，从未加入同盟国。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：美国" aria-pressed="false" data-feedback="&#10060; 美国在一战中始终站在协约国一方，1917年4月才对德宣战，从未加入同盟国。">
             <span class="opt-letter">B</span> 美国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 俄国1917年二月革命后退出一战，始终是协约国成员，没有转投同盟国。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：俄国" aria-pressed="false" data-feedback="&#10060; 俄国1917年二月革命后退出一战，始终是协约国成员，没有转投同盟国。">
             <span class="opt-letter">C</span> 俄国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'D')" data-feedback="&#10060; 英国自始至终是协约国核心成员，从未加入过同盟国阵营。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：英国" aria-pressed="false" data-feedback="&#10060; 英国自始至终是协约国核心成员，从未加入过同盟国阵营。">
             <span class="opt-letter">D</span> 英国
           </div>
         </div>
@@ -312,19 +334,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>4. 【&#11088;&#11088;&#11088; 挑战】第一次世界大战的时间范围是？<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="&#10060; 1912年是一战爆发前的两年，不是大战开始时间。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1912-1918" aria-pressed="false" data-feedback="&#10060; 1912年是一战爆发前的两年，不是大战开始时间。">
             <span class="opt-letter">A</span> 1912-1918
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1914-1918" aria-pressed="false">
             <span class="opt-letter">B</span> 1914-1918
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="&#10060; 1920年一战早已结束，是战后重建时期。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1914-1920" aria-pressed="false" data-feedback="&#10060; 1920年一战早已结束，是战后重建时期。">
             <span class="opt-letter">C</span> 1914-1920
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'D')" data-feedback="&#10060; 1916年是凡尔登战役爆发的时间，是一战中的重要年份，但大战本身并非始于1916年。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：1916-1919" aria-pressed="false" data-feedback="&#10060; 1916年是凡尔登战役爆发的时间，是一战中的重要年份，但大战本身并非始于1916年。">
             <span class="opt-letter">D</span> 1916-1919
           </div>
         </div>
@@ -538,6 +560,9 @@
     <section class="section" id="section-end">
       <h2 class="section-title"><span class="num">&#127752;</span> 三、第一次世界大战的结束与影响</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="font-size:1rem;color:var(--primary);margin-bottom:12px;">1. 战争结束</h3>
         <div class="svg-container">
           <svg viewBox="0 0 500 200" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -607,26 +632,28 @@
           <div class="label">&#9888;&#65039; 特别提醒：战争的性质</div>
           <p><strong>一战的性质：</strong>是一场<strong>非正义的帝国主义战争</strong>，交战双方都是为了争夺殖民地和世界霸权，没有任何一方是正义的。（塞尔维亚等民族解放斗争具有一定的正义性，但不能改变整个战争的帝国主义性质）</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>5. 【&#11088;&#11088; 基础】一战期间，美国对德宣战是在哪一年？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="&#10060; 1914年一战刚刚爆发，美国起初保持中立，直到1917年才参战。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1914年" aria-pressed="false" data-feedback="&#10060; 1914年一战刚刚爆发，美国起初保持中立，直到1917年才参战。">
             <span class="opt-letter">A</span> 1914年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="&#10060; 1915年美国仍保持中立。美国参战原因是德国无限制潜艇战和齐默尔曼电报。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1915年" aria-pressed="false" data-feedback="&#10060; 1915年美国仍保持中立。美国参战原因是德国无限制潜艇战和齐默尔曼电报。">
             <span class="opt-letter">B</span> 1915年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1917年" aria-pressed="false">
             <span class="opt-letter">C</span> 1917年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'D')" data-feedback="&#10060; 1918年11月德国已经投降，美国不可能在战争结束后才对德宣战。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：1918年" aria-pressed="false" data-feedback="&#10060; 1918年11月德国已经投降，美国不可能在战争结束后才对德宣战。">
             <span class="opt-letter">D</span> 1918年
           </div>
         </div>
@@ -642,19 +669,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>6. 【&#11088;&#11088;&#11088; 提高】（2023&middot;安徽中考改编）关于第一次世界大战的说法，正确的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：是一场争夺殖民地的帝国主义战争" aria-pressed="false">
             <span class="opt-letter">A</span> 是一场争夺殖民地的帝国主义战争
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="&#10060; 一战的性质是帝国主义战争，交战双方都是为了争夺殖民地和世界霸权，没有任何一方是正义的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：是一场正义的民族解放战争" aria-pressed="false" data-feedback="&#10060; 一战的性质是帝国主义战争，交战双方都是为了争夺殖民地和世界霸权，没有任何一方是正义的。">
             <span class="opt-letter">B</span> 是一场正义的民族解放战争
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="&#10060; 一战的主要双方是同盟国和协约国，华约是1955年才成立的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：战争的主要双方是同盟国和华约" aria-pressed="false" data-feedback="&#10060; 一战的主要双方是同盟国和协约国，华约是1955年才成立的。">
             <span class="opt-letter">C</span> 战争的主要双方是同盟国和华约
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'D')" data-feedback="&#10060; 两极格局是二战后形成的。一战后形成的是凡尔赛-华盛顿体系。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：一战后形成了两极格局" aria-pressed="false" data-feedback="&#10060; 两极格局是二战后形成的。一战后形成的是凡尔赛-华盛顿体系。">
             <span class="opt-letter">D</span> 一战后形成了两极格局
           </div>
         </div>
@@ -674,23 +701,23 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>7. 【&#11088;&#11088;&#11088; 挑战&middot;材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">&#128203; 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:0.88rem;line-height:1.8;">
           <strong>【材料】</strong>"战争在这里打了10个月……法国失去了10%的领土……但双方都没有获得决定性的胜利。"
         </div>
         <p style="margin-bottom:10px;font-weight:600;font-size:0.9rem;">这段材料描述的是第一次世界大战中的哪个战役？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="&#10060; 马恩河战役发生在1914年9月，持续约一周，不是10个月。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：马恩河战役" aria-pressed="false" data-feedback="&#10060; 马恩河战役发生在1914年9月，持续约一周，不是10个月。">
             <span class="opt-letter">A</span> 马恩河战役
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：凡尔登战役" aria-pressed="false">
             <span class="opt-letter">B</span> 凡尔登战役
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="&#10060; 索姆河战役虽也惨烈（第一天英军伤亡近6万人），但材料描述的特征更符合凡尔登战役。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：索姆河战役" aria-pressed="false" data-feedback="&#10060; 索姆河战役虽也惨烈（第一天英军伤亡近6万人），但材料描述的特征更符合凡尔登战役。">
             <span class="opt-letter">C</span> 索姆河战役
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'D')" data-feedback="&#10060; 日德兰海战是海战，不是陆地战役，不涉及"失去领土"。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：日德兰海战" aria-pressed="false" data-feedback="&#10060; 日德兰海战是海战，不是陆地战役，不涉及"失去领土"。">
             <span class="opt-letter">D</span> 日德兰海战
           </div>
         </div>
@@ -712,19 +739,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>8. 【&#11088;&#11088;&#11088; 挑战】（2022&middot;江苏中考改编）一战后，确立的世界格局称为？<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'A')" data-feedback="&#10060; "凡尔赛体系"只是其中一部分！完整格局 = 凡尔赛体系（欧洲）+ 华盛顿体系（亚太）。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：凡尔赛体系" aria-pressed="false" data-feedback="&#10060; "凡尔赛体系"只是其中一部分！完整格局 = 凡尔赛体系（欧洲）+ 华盛顿体系（亚太）。">
             <span class="opt-letter">A</span> 凡尔赛体系
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：凡尔赛-华盛顿体系" aria-pressed="false">
             <span class="opt-letter">B</span> 凡尔赛-华盛顿体系
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="&#10060; "雅尔塔体系"是二战期间和二战后形成的，由罗斯福、斯大林、丘吉尔主导，与一战无关。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：雅尔塔体系" aria-pressed="false" data-feedback="&#10060; "雅尔塔体系"是二战期间和二战后形成的，由罗斯福、斯大林、丘吉尔主导，与一战无关。">
             <span class="opt-letter">C</span> 雅尔塔体系
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'D')" data-feedback="&#10060; "两极格局"是冷战时期（1947-1991年）由美苏两大阵营对抗形成的，与一战后的格局完全不同。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：两极格局" aria-pressed="false" data-feedback="&#10060; "两极格局"是冷战时期（1947-1991年）由美苏两大阵营对抗形成的，与一战后的格局完全不同。">
             <span class="opt-letter">D</span> 两极格局
           </div>
         </div>
@@ -751,6 +778,9 @@
     <section class="section" id="section-exam">
       <h2 class="section-title"><span class="num">&#127936;</span> 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -810,7 +840,9 @@
             <li>一战后国际新秩序：<strong>凡尔赛-华盛顿体系</strong></li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -874,6 +906,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

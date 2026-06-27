@@ -115,6 +115,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -124,6 +136,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/6 节 · 17%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d4fdag.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -190,6 +206,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 知道5世纪大和国的建立及早期日本的概况</li>
@@ -204,12 +226,12 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【&#11088; 基础】大化改新开始于哪一年？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="&#10060; 581年是中国隋朝建立的时间，不是日本大化改新！">A. 581年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">B. 646年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 538年是佛教传入日本的时间，不是大化改新！">C. 538年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.581年" aria-pressed="false" data-feedback="&#10060; 581年是中国隋朝建立的时间，不是日本大化改新！">A. 581年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.646年" aria-pressed="false">B. 646年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.538年" aria-pressed="false" data-feedback="&#10060; 538年是佛教传入日本的时间，不是大化改新！">C. 538年</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -228,12 +250,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【&#11088; 基础】大化改新效仿的是哪国的制度？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="&#10060; 效仿的不是朝鲜，是唐朝！">A. 朝鲜</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">B. 中国唐朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 大化改新是在唐朝影响下进行的！">C. 印度</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.朝鲜" aria-pressed="false" data-feedback="&#10060; 效仿的不是朝鲜，是唐朝！">A. 朝鲜</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.中国唐朝" aria-pressed="false">B. 中国唐朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.印度" aria-pressed="false" data-feedback="&#10060; 大化改新是在唐朝影响下进行的！">C. 印度</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -243,12 +265,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【&#11088;&#11088; 提高】日本幕府政治开始于哪个时代？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 大化改新后是律令制时代，不是幕府政治！">A. 律令制时代</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">B. 武士阶级崛起后</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 明治维新是19世纪，幕府政治结束于明治维新！">C. 明治维新时期</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.律令制时代" aria-pressed="false" data-feedback="&#10060; 大化改新后是律令制时代，不是幕府政治！">A. 律令制时代</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.武士阶级崛起后" aria-pressed="false">B. 武士阶级崛起后</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.明治维新时期" aria-pressed="false" data-feedback="&#10060; 明治维新是19世纪，幕府政治结束于明治维新！">C. 明治维新时期</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -370,6 +392,9 @@
     <section class="section" id="section-life">
       <h2 class="section-title"><span class="num">&#128750;</span> 幕府政治</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="svg-container">
           <svg viewBox="0 0 700 300" width="700" height="300" xmlns="http://www.w3.org/2000/svg">
             <text x="350" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#8b4513">日本三大幕府发展脉络</text>
@@ -413,19 +438,21 @@
           <p><strong>中国：</strong>皇帝集权，皇权不断加强，清朝达到顶峰</p>
           <p><strong>日本：</strong>天皇名义最高，实际权力在幕府将军手中，形成独特的二元政治</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【&#11088; 基础】大化改新最重要的土地制度是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')">A. 班田收授法</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="&#10060; 部民制是大化改新废除的制度！">B. 部民制</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="&#10060; 均田制是唐朝的土地制度，班田收授法是仿效均田制的日本版！">C. 均田制</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.班田收授法" aria-pressed="false">A. 班田收授法</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.部民制" aria-pressed="false" data-feedback="&#10060; 部民制是大化改新废除的制度！">B. 部民制</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.均田制" aria-pressed="false" data-feedback="&#10060; 均田制是唐朝的土地制度，班田收授法是仿效均田制的日本版！">C. 均田制</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -435,12 +462,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>2. 【&#11088;&#11088; 提高·中考真题】（2023·多地中考）关于幕府政治，正确的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="&#10060; 幕府政治是武士掌权，不是天皇掌权！">A. 天皇掌握实权</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">B. 将军是实际最高统治者</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="&#10060; 武士道精神是武士阶层的道德规范，不是幕府政治的主要内容！">C. 武士道精神是幕府的核心</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.天皇掌握实权" aria-pressed="false" data-feedback="&#10060; 幕府政治是武士掌权，不是天皇掌权！">A. 天皇掌握实权</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.将军是实际最高统治者" aria-pressed="false">B. 将军是实际最高统治者</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.武士道精神是幕府的核心" aria-pressed="false" data-feedback="&#10060; 武士道精神是武士阶层的道德规范，不是幕府政治的主要内容！">C. 武士道精神是幕府的核心</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -455,13 +482,13 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>3. 【&#11088;&#11088;&#11088; 挑战】比较分析：<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span></h3>
         <p style="font-weight:600;font-size:0.9rem;margin-bottom:10px;">大化改新和明治维新有什么共同点？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="&#10060; 明治维新是由下级武士主导的改革，不是效仿唐朝！">A. 都效仿唐朝制度</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">B. 都推动了日本社会的重大变革</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="&#10060; 大化改新是引入外来制度，不是推翻外来制度！">C. 都推翻旧制度建立新制度</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.都效仿唐朝制度" aria-pressed="false" data-feedback="&#10060; 明治维新是由下级武士主导的改革，不是效仿唐朝！">A. 都效仿唐朝制度</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.都推动了日本社会的重大变革" aria-pressed="false">B. 都推动了日本社会的重大变革</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.都推翻旧制度建立新制度" aria-pressed="false" data-feedback="&#10060; 大化改新是引入外来制度，不是推翻外来制度！">C. 都推翻旧制度建立新制度</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -569,6 +596,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

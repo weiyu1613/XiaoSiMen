@@ -213,6 +213,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 1. 品牌栏 ========== -->
   <div class="brand-bar">
@@ -225,7 +237,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 3. 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d4xsd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第四单元：伟大的历史转折</div>
@@ -311,6 +327,12 @@
     <!-- ========== 7. 学习目标 ========== -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道对外开放的开始时间和标志性事件</li>
@@ -326,6 +348,9 @@
       <h2 class="section-title"><span class="num">📚</span> 核心知识点</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 一、经济特区的设立</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li><strong>时间：</strong>1980年</li>
@@ -408,7 +433,9 @@
           <p><strong>多层次：</strong>从经济特区到沿海开放城市，再到沿海经济开放区，最后到内地，形成不同层次的开放</p>
           <p><strong>宽领域：</strong>不仅在经济领域开放，还包括科技、教育、文化等领域</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section: 前测 -->
@@ -421,16 +448,16 @@
       </p>
       
       <!-- 基础题1：经济特区设立时间 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】我国最早设立的经济特区是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1980年" aria-pressed="false">
             <span class="opt-letter">A</span> 1980年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 1984年是开放14个沿海港口城市的时间，不是设立经济特区的时间！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1984年" aria-pressed="false" data-feedback="❌ 1984年是开放14个沿海港口城市的时间，不是设立经济特区的时间！">
             <span class="opt-letter">B</span> 1984年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1988年是海南岛经济特区成立的时间，不是最早设立经济特区的时间！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1988年" aria-pressed="false" data-feedback="❌ 1988年是海南岛经济特区成立的时间，不是最早设立经济特区的时间！">
             <span class="opt-letter">C</span> 1988年
           </div>
         </div>
@@ -443,16 +470,16 @@
       </div>
 
       <!-- 基础题2：首批经济特区 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】下列城市中，不属于首批经济特区的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 深圳是首批经济特区之一！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：深圳" aria-pressed="false" data-feedback="❌ 深圳是首批经济特区之一！">
             <span class="opt-letter">A</span> 深圳
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 珠海是首批经济特区之一！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：珠海" aria-pressed="false" data-feedback="❌ 珠海是首批经济特区之一！">
             <span class="opt-letter">B</span> 珠海
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：海南" aria-pressed="false">
             <span class="opt-letter">C</span> 海南
           </div>
         </div>
@@ -465,16 +492,16 @@
       </div>
       
       <!-- 提高题3：对外开放格局 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】对外开放格局的形成顺序是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：经济特区→沿海开放城市→沿海经济开放区→内地" aria-pressed="false">
             <span class="opt-letter">A</span> 经济特区→沿海开放城市→沿海经济开放区→内地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 顺序错误！经济特区是最早设立的，不是最后！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：沿海开放城市→经济特区→沿海经济开放区→内地" aria-pressed="false" data-feedback="❌ 顺序错误！经济特区是最早设立的，不是最后！">
             <span class="opt-letter">B</span> 沿海开放城市→经济特区→沿海经济开放区→内地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 顺序错误！内地是最后才开放的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：内地→沿海经济开放区→沿海开放城市→经济特区" aria-pressed="false" data-feedback="❌ 顺序错误！内地是最后才开放的！">
             <span class="opt-letter">C</span> 内地→沿海经济开放区→沿海开放城市→经济特区
           </div>
         </div>
@@ -487,16 +514,16 @@
       </div>
 
       <!-- 挑战题4：对外开放意义 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列不属于对外开放历史意义的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 促进经济发展是对外开放的重要意义之一！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：促进了经济发展" aria-pressed="false" data-feedback="❌ 促进经济发展是对外开放的重要意义之一！">
             <span class="opt-letter">A</span> 促进了经济发展
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 推动了科技进步是对外开放的重要意义之一！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：推动了科技进步" aria-pressed="false" data-feedback="❌ 推动了科技进步是对外开放的重要意义之一！">
             <span class="opt-letter">B</span> 推动了科技进步
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：导致了经济完全依赖外国" aria-pressed="false">
             <span class="opt-letter">C</span> 导致了经济完全依赖外国
           </div>
         </div>
@@ -514,16 +541,16 @@
       <h2 class="section-title"><span class="num">🎮</span> 互动测验</h2>
       <p style="color: var(--primary); margin-bottom: 16px;">每道题都有详细的错因分析，答错了要认真学习哦！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】学习历史课程，对我们的启示是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 20, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：以史为鉴，面向未来" aria-pressed="false">
             <span class="opt-letter">A</span> 以史为鉴，面向未来
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 学习历史是为了从中吸取教训，不是无用之举！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：历史已经过去，无需学习" aria-pressed="false" data-feedback="❌ 学习历史是为了从中吸取教训，不是无用之举！">
             <span class="opt-letter">B</span> 历史已经过去，无需学习
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 学习历史需要思考和理解，不能只记事实！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只需记住事实，无需思考" aria-pressed="false" data-feedback="❌ 学习历史需要思考和理解，不能只记事实！">
             <span class="opt-letter">C</span> 只需记住事实，无需思考
           </div>
         </div>
@@ -543,16 +570,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】1980年设立的首批经济特区不包括？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 深圳是1980年设立的首批经济特区之一！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：深圳" aria-pressed="false" data-feedback="❌ 深圳是1980年设立的首批经济特区之一！">
             <span class="opt-letter">A</span> 深圳
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 珠海是1980年设立的首批经济特区之一！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：珠海" aria-pressed="false" data-feedback="❌ 珠海是1980年设立的首批经济特区之一！">
             <span class="opt-letter">B</span> 珠海
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：海南" aria-pressed="false">
             <span class="opt-letter">C</span> 海南
           </div>
         </div>
@@ -565,16 +592,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）对外开放的第一步是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：设立经济特区" aria-pressed="false">
             <span class="opt-letter">A</span> 设立经济特区
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 开放沿海港口城市是对外开放的第二步，不是第一步！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：开放沿海港口城市" aria-pressed="false" data-feedback="❌ 开放沿海港口城市是对外开放的第二步，不是第一步！">
             <span class="opt-letter">B</span> 开放沿海港口城市
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 开辟沿海经济开放区是对外开放的第三步，不是第一步！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：开辟沿海经济开放区" aria-pressed="false" data-feedback="❌ 开辟沿海经济开放区是对外开放的第三步，不是第一步！">
             <span class="opt-letter">C</span> 开辟沿海经济开放区
           </div>
         </div>
@@ -587,16 +614,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·江苏中考）关于对外开放的意义，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 对外开放是在独立自主基础上的开放，不是依赖外国！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：使中国经济完全依赖外国" aria-pressed="false" data-feedback="❌ 对外开放是在独立自主基础上的开放，不是依赖外国！">
             <span class="opt-letter">A</span> 使中国经济完全依赖外国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 对外开放是积极学习外国先进技术，不是拒绝交流！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：导致中国拒绝与外国交流" aria-pressed="false" data-feedback="❌ 对外开放是积极学习外国先进技术，不是拒绝交流！">
             <span class="opt-letter">B</span> 导致中国拒绝与外国交流
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：形成了全方位、多层次、宽领域的对外开放格局" aria-pressed="false">
             <span class="opt-letter">C</span> 形成了全方位、多层次、宽领域的对外开放格局
           </div>
         </div>
@@ -614,6 +641,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -658,7 +688,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>引进<strong>外资、技术和管理经验</strong>，推动改革开放。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -779,6 +811,8 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

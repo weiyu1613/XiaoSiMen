@@ -101,6 +101,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <div class="brand-bar">
     <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
@@ -115,6 +127,10 @@
 </div>
 
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../d9zhn.html" class="nav-btn"><i class="fas fa-list"></i> 单元</a>
@@ -195,28 +211,28 @@
         <h2><i class="fas fa-question-circle"></i> 课前思考（前测）</h2>
         <div class="quiz-question">
             <h4>1. 【基础】新中国成立前，农村土地制度的主要问题是什么？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。新中国成立前农村的问题是封建剥削，不是土地公有制。">A. 土地公有制</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！地主阶级占有绝大部分土地，残酷剥削和压迫农民，严重阻碍农村经济和社会发展。">B. 地主占有大部分土地，剥削农民</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。新中国成立前农村并不是土地平均分配。">C. 土地平均分配</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：土地公有制" aria-pressed="false" data-feedback="❌ 错误。新中国成立前农村的问题是封建剥削，不是土地公有制。">A. 土地公有制</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：地主占有大部分土地，剥削农民" aria-pressed="false" data-feedback="✅ 正确！地主阶级占有绝大部分土地，残酷剥削和压迫农民，严重阻碍农村经济和社会发展。">B. 地主占有大部分土地，剥削农民</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：土地平均分配" aria-pressed="false" data-feedback="❌ 错误。新中国成立前农村并不是土地平均分配。">C. 土地平均分配</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【提高】《中华人民共和国土地改革法》颁布于哪一年？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1949年是新中国成立之年，土地改革法是1950年颁布的。">A. 1949年</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1950年，中央人民政府颁布《中华人民共和国土地改革法》，决定进行土地改革。">B. 1950年</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1952年是土地改革基本完成的时间，不是法律颁布时间。">C. 1952年</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1949年" aria-pressed="false" data-feedback="❌ 错误。1949年是新中国成立之年，土地改革法是1950年颁布的。">A. 1949年</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：1950年" aria-pressed="false" data-feedback="✅ 正确！1950年，中央人民政府颁布《中华人民共和国土地改革法》，决定进行土地改革。">B. 1950年</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：1952年" aria-pressed="false" data-feedback="❌ 错误。1952年是土地改革基本完成的时间，不是法律颁布时间。">C. 1952年</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【挑战】土地改革后实行的土地制度是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。土地改革后实行的是农民土地所有制，不是社会主义土地公有制。">A. 社会主义土地公有制</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！土地改革废除了地主阶级封建剥削的土地制度，实行农民的土地所有制。土地属于农民私有。">B. 农民的土地所有制</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。国家土地所有制不是土地改革后的制度。">C. 国家土地所有制</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：社会主义土地公有制" aria-pressed="false" data-feedback="❌ 错误。土地改革后实行的是农民土地所有制，不是社会主义土地公有制。">A. 社会主义土地公有制</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：农民的土地所有制" aria-pressed="false" data-feedback="✅ 正确！土地改革废除了地主阶级封建剥削的土地制度，实行农民的土地所有制。土地属于农民私有。">B. 农民的土地所有制</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：国家土地所有制" aria-pressed="false" data-feedback="❌ 错误。国家土地所有制不是土地改革后的制度。">C. 国家土地所有制</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -286,28 +302,28 @@
         <h2><i class="fas fa-clipboard-check"></i> 课后检测（后测）</h2>
         <div class="quiz-question">
             <h4>1. 【⭐ 基础】土地改革基本完成的时间是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1950年是土地改革法颁布的时间。">A. 1950年</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！到1952年底，除部分少数民族地区外，全国大陆基本完成了土地改革。">B. 1952年底</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1956年是社会主义改造完成的时间。">C. 1956年</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1950年" aria-pressed="false" data-feedback="❌ 错误。1950年是土地改革法颁布的时间。">A. 1950年</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：1952年底" aria-pressed="false" data-feedback="✅ 正确！到1952年底，除部分少数民族地区外，全国大陆基本完成了土地改革。">B. 1952年底</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：1956年" aria-pressed="false" data-feedback="❌ 错误。1956年是社会主义改造完成的时间。">C. 1956年</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【⭐⭐ 提高】（2023·河南）土地改革的历史意义是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。土地改革没有建立社会主义土地公有制，仍是农民私有制。">A. 建立了社会主义土地公有制</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！土地改革彻底摧毁了我国存在2000多年的封建土地制度，解放了农村生产力。">B. 彻底摧毁封建土地制度，解放农村生产力</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。土地改革是农村改革，不是城市工商业改革。">C. 完成了城市工商业的社会主义改造</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：建立了社会主义土地公有制" aria-pressed="false" data-feedback="❌ 错误。土地改革没有建立社会主义土地公有制，仍是农民私有制。">A. 建立了社会主义土地公有制</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：彻底摧毁封建土地制度，解放农村生产力" aria-pressed="false" data-feedback="✅ 正确！土地改革彻底摧毁了我国存在2000多年的封建土地制度，解放了农村生产力。">B. 彻底摧毁封建土地制度，解放农村生产力</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：完成了城市工商业的社会主义改造" aria-pressed="false" data-feedback="❌ 错误。土地改革是农村改革，不是城市工商业改革。">C. 完成了城市工商业的社会主义改造</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【⭐⭐⭐ 挑战】下列关于土地改革的表述，不正确的是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 这个表述是正确的。土地改革确实废除了封建剥削的土地所有制。">A. 废除了地主阶级封建剥削的土地所有制</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！这个表述不正确。土地改革实行的是农民土地所有制（私有），不是社会主义土地公有制。">B. 实行了社会主义土地公有制</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 这个表述是正确的。土地改革确实解放了农村生产力。">C. 解放了农村生产力</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：废除了地主阶级封建剥削的土地所有制" aria-pressed="false" data-feedback="❌ 这个表述是正确的。土地改革确实废除了封建剥削的土地所有制。">A. 废除了地主阶级封建剥削的土地所有制</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：实行了社会主义土地公有制" aria-pressed="false" data-feedback="✅ 正确！这个表述不正确。土地改革实行的是农民土地所有制（私有），不是社会主义土地公有制。">B. 实行了社会主义土地公有制</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：解放了农村生产力" aria-pressed="false" data-feedback="❌ 这个表述是正确的。土地改革确实解放了农村生产力。">C. 解放了农村生产力</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -388,6 +404,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -118,6 +118,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-compass"></i><span>TeachAny · 初中历史</span></div>
@@ -127,6 +139,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 3/4 节 · 75%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d5zxd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -217,6 +233,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 读图分析四位航海家的主要航行路线</li>
@@ -232,16 +254,16 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【&#11088; 基础】新航路开辟前，欧洲与东方贸易的主要路线是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="&#10060; 太平洋航线是在新航路开辟之后才建立的。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：太平洋航线" aria-pressed="false" data-feedback="&#10060; 太平洋航线是在新航路开辟之后才建立的。">
             <span class="opt-letter">A</span> 太平洋航线
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：丝绸之路（陆路）和阿拉伯-地中海航线" aria-pressed="false">
             <span class="opt-letter">B</span> 丝绸之路（陆路）和阿拉伯-地中海航线
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 北海-波罗的海航线和东方贸易无关。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：北海-波罗的海航线" aria-pressed="false" data-feedback="&#10060; 北海-波罗的海航线和东方贸易无关。">
             <span class="opt-letter">C</span> 北海-波罗的海航线
           </div>
         </div>
@@ -253,16 +275,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【&#11088; 基础】下列哪位航海家最先到达了印度？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="&#10060; 迪亚士到达的是好望角（非洲最南端），没有到印度。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：迪亚士" aria-pressed="false" data-feedback="&#10060; 迪亚士到达的是好望角（非洲最南端），没有到印度。">
             <span class="opt-letter">A</span> 迪亚士
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：达·伽马" aria-pressed="false">
             <span class="opt-letter">B</span> 达·伽马
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 哥伦布到达的是美洲，他以为到了印度。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：哥伦布" aria-pressed="false" data-feedback="&#10060; 哥伦布到达的是美洲，他以为到了印度。">
             <span class="opt-letter">C</span> 哥伦布
           </div>
         </div>
@@ -274,16 +296,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【&#11088;&#11088; 提高】"他以为到达了印度，实际上到达了一块欧洲人从未知晓的新大陆。"这句话描述的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 迪亚士到达的是好望角，不是新大陆。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：迪亚士" aria-pressed="false" data-feedback="&#10060; 迪亚士到达的是好望角，不是新大陆。">
             <span class="opt-letter">A</span> 迪亚士
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：哥伦布" aria-pressed="false">
             <span class="opt-letter">B</span> 哥伦布
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 麦哲伦进行的是环球航行，不是在寻找印度的途中发现了新大陆。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：麦哲伦" aria-pressed="false" data-feedback="&#10060; 麦哲伦进行的是环球航行，不是在寻找印度的途中发现了新大陆。">
             <span class="opt-letter">C</span> 麦哲伦
           </div>
         </div>
@@ -295,16 +317,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>4. 【&#11088;&#11088;&#11088; 挑战】新航路开辟的根本原因是？<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="&#10060; 传播基督教只是推动因素之一，但不是根本原因。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：传播基督教" aria-pressed="false" data-feedback="&#10060; 传播基督教只是推动因素之一，但不是根本原因。">
             <span class="opt-letter">A</span> 传播基督教
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：欧洲商品经济的发展和资本主义萌芽" aria-pressed="false">
             <span class="opt-letter">B</span> 欧洲商品经济的发展和资本主义萌芽
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="&#10060; 对黄金的渴望是直接动力，但不是根本原因。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：欧洲人特别渴望黄金" aria-pressed="false" data-feedback="&#10060; 对黄金的渴望是直接动力，但不是根本原因。">
             <span class="opt-letter">C</span> 欧洲人特别渴望黄金
           </div>
         </div>
@@ -384,6 +406,9 @@
       <h2 class="section-title"><span class="num">&#128506;</span> 核心知识 · 四位航海家的航行</h2>
 
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:var(--primary);margin-bottom:12px;">&#128339; 大航海时间轴</h3>
         <div class="timeline">
           <div class="timeline-item">
@@ -403,7 +428,9 @@
             <p>西班牙→南美洲→太平洋→菲律宾→印度洋→好望角→西班牙。人类历史上首次环球航行（麦哲伦本人死于菲律宾）。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
 
       <div class="card">
         <h3 style="color:var(--primary);margin-bottom:12px;">&#128202; 四位航海家对比表</h3>
@@ -476,16 +503,16 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【&#11088; 基础·中考真题】迪亚士的航行开辟了欧洲哪条海上航线？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="&#10060; 哥伦布开辟的是横渡大西洋到美洲的航线。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：横渡大西洋到美洲的航线" aria-pressed="false" data-feedback="&#10060; 哥伦布开辟的是横渡大西洋到美洲的航线。">
             <span class="opt-letter">A</span> 横渡大西洋到美洲的航线
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：从欧洲绕过非洲到达东方的航线" aria-pressed="false">
             <span class="opt-letter">B</span> 从欧洲绕过非洲到达东方的航线
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="&#10060; 麦哲伦开辟的是环球航行航线。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：环球航行航线" aria-pressed="false" data-feedback="&#10060; 麦哲伦开辟的是环球航行航线。">
             <span class="opt-letter">C</span> 环球航行航线
           </div>
         </div>
@@ -497,16 +524,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>2. 【&#11088;&#11088; 提高·中考真题】"它打破了以往人类文明区域性的分割和孤立发展的局面，首次把全球人类联系起来。"材料描述的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="&#10060; 十字军东征是发生在1096-1291年的宗教战争，没有把全球联系起来。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：十字军东征" aria-pressed="false" data-feedback="&#10060; 十字军东征是发生在1096-1291年的宗教战争，没有把全球联系起来。">
             <span class="opt-letter">A</span> 十字军东征
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：新航路的开辟" aria-pressed="false">
             <span class="opt-letter">B</span> 新航路的开辟
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="&#10060; 黑奴贸易是新航路开辟的产物之一，而不是首次把全球联系起来的事件。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：黑奴贸易" aria-pressed="false" data-feedback="&#10060; 黑奴贸易是新航路开辟的产物之一，而不是首次把全球联系起来的事件。">
             <span class="opt-letter">C</span> 黑奴贸易
           </div>
         </div>
@@ -518,21 +545,21 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>3. 【&#11088;&#11088;&#11088; 挑战·材料分析】阅读材料回答<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">&#128203; 材料题</span></h3>
         <div style="background:#fafcfb;border:1px solid #e8dcc8;border-radius:8px;padding:14px;margin-bottom:12px;font-size:0.85rem;line-height:1.8;">
           <strong>【材料一】</strong>"黄金是白人刚踏上一个新发现的海岸时所要的第一件东西。"——恩格斯<br>
           <strong>【材料二】</strong>"在15世纪末，欧洲的扩张是全方位的：葡萄牙人绕过非洲进入印度洋；西班牙人跨过大西洋发现了美洲；通过这两个方向，欧洲人第一次建立了一个全球性的联系网络。"——斯塔夫里阿诺斯《全球通史》
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料一和材料二，分析促成新航路开辟的主要原因（不能摘抄原文）。</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：欧洲人对黄金的渴望和对海外市场的需求" aria-pressed="false">
             <span class="opt-letter">A</span> 欧洲人对黄金的渴望和对海外市场的需求
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'B')" data-feedback="&#10060; 材料中没有提到科技因素。要结合材料内容来回答，不能脱离材料。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：科学技术的进步" aria-pressed="false" data-feedback="&#10060; 材料中没有提到科技因素。要结合材料内容来回答，不能脱离材料。">
             <span class="opt-letter">B</span> 科学技术的进步
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="&#10060; 虽然传播基督教也是原因之一，但材料中并未体现宗教因素。回答材料题要严格依据材料。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：传播基督教的愿望" aria-pressed="false" data-feedback="&#10060; 虽然传播基督教也是原因之一，但材料中并未体现宗教因素。回答材料题要严格依据材料。">
             <span class="opt-letter">C</span> 传播基督教的愿望
           </div>
         </div>
@@ -562,6 +589,9 @@
       <h2 class="section-title"><span class="num">&#127936;</span> 必考分析与考点总结</h2>
 
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -605,7 +635,9 @@
           <p style="font-size:0.85rem;line-height:1.7;"><strong>根本原因：</strong>欧洲商品经济的发展和资本主义萌芽（经济基础决定上层建筑）</p>
           <p style="font-size:0.82rem;color:#666;margin-top:4px;">&#128161; "对黄金的渴望"是直接动力而非根本原因！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -668,6 +700,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

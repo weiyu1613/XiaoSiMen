@@ -100,6 +100,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <div class="brand-bar">
     <div class="container">
@@ -111,6 +123,10 @@
   <div class="progress-label" id="progress-label">第 2/3 节 · 67%</div>
 
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d1gdy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -178,6 +194,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul>
           <li>✅ 知道两河流域的地理位置（幼发拉底河与底格里斯河之间）</li>
@@ -191,12 +213,12 @@
 
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】古代两河流域位于今天的哪里？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">A. 伊拉克</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 伊朗高原是古代波斯的所在地！">B. 伊朗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 埃及在非洲东北部！">C. 埃及</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.伊拉克" aria-pressed="false">A. 伊拉克</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.伊朗" aria-pressed="false" data-feedback="❌ 伊朗高原是古代波斯的所在地！">B. 伊朗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.埃及" aria-pressed="false" data-feedback="❌ 埃及在非洲东北部！">C. 埃及</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -206,12 +228,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】古代两河流域的文字是什么？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 象形文字是古埃及的文字！">A. 象形文字</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">B. 楔形文字</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 梵文是古代印度的文字！">C. 梵文</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.象形文字" aria-pressed="false" data-feedback="❌ 象形文字是古埃及的文字！">A. 象形文字</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.楔形文字" aria-pressed="false">B. 楔形文字</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.梵文" aria-pressed="false" data-feedback="❌ 梵文是古代印度的文字！">C. 梵文</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -221,12 +243,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】《汉谟拉比法典》维护的是谁的利益？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">A. 古巴比伦王国的统治阶级</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 虽然法典中有保护奴隶的规定，但这不是其核心目的！">B. 全体社会成员</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 希伯来文字是两河流域北部阿拉米文字的后代，不是两河流域的主流文字！">C. 希伯来人</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.古巴比伦王国的统治阶级" aria-pressed="false">A. 古巴比伦王国的统治阶级</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.全体社会成员" aria-pressed="false" data-feedback="❌ 虽然法典中有保护奴隶的规定，但这不是其核心目的！">B. 全体社会成员</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.希伯来人" aria-pressed="false" data-feedback="❌ 希伯来文字是两河流域北部阿拉米文字的后代，不是两河流域的主流文字！">C. 希伯来人</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -236,12 +258,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】与古埃及相比，古代两河流域的地理环境有何不同？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 两河流域也定期泛滥，水患比埃及更严重！">A. 河流定期泛滥，水患更少</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">B. 两河经常改道，水患频繁</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 埃及大部分是热带沙漠，两河流域有丰富的灌溉农业基础！">C. 两河流域地势平坦，水源充足</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.河流定期泛滥，水患更少" aria-pressed="false" data-feedback="❌ 两河流域也定期泛滥，水患比埃及更严重！">A. 河流定期泛滥，水患更少</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.两河经常改道，水患频繁" aria-pressed="false">B. 两河经常改道，水患频繁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.两河流域地势平坦，水源充足" aria-pressed="false" data-feedback="❌ 埃及大部分是热带沙漠，两河流域有丰富的灌溉农业基础！">C. 两河流域地势平坦，水源充足</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -412,6 +434,9 @@
     <section class="section" id="section-hammurabi">
       <h2 class="section-title"><span class="num">⚖️</span> 《汉谟拉比法典》</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>📜 法典概况</h3>
         <p><strong>颁布时间：</strong>约BC1754年（古巴比伦国王汉谟拉比在位期间）</p>
         <p><strong>主要内容：</strong>282条法律，涉及财产、婚姻、继承、刑罚等方面</p>
@@ -470,18 +495,20 @@
           <div class="label">💡 历史评价</div>
           <p>《汉谟拉比法典》是人类法制史上的里程碑，但本质上是为<strong>奴隶主阶级服务</strong>的工具，体现了古代社会的阶级压迫。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】《汉谟拉比法典》使用的文字是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')">A. 楔形文字</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 象形文字是古埃及的文字！">B. 象形文字</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 甲骨文是中国商代的文字！">C. 甲骨文</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.楔形文字" aria-pressed="false">A. 楔形文字</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.象形文字" aria-pressed="false" data-feedback="❌ 象形文字是古埃及的文字！">B. 象形文字</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.甲骨文" aria-pressed="false" data-feedback="❌ 甲骨文是中国商代的文字！">C. 甲骨文</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -491,12 +518,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2022·课标卷）《汉谟拉比法典》维护的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">A. 奴隶主贵族的利益</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 虽然法典中有保护部分弱势群体的条款，但这不是其主要目的！">B. 全体古巴比伦人的利益</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 神庙祭司虽享有特权，但法典的王权性质决定了国王才是最大受益者！">C. 神庙祭司的利益</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.奴隶主贵族的利益" aria-pressed="false">A. 奴隶主贵族的利益</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.全体古巴比伦人的利益" aria-pressed="false" data-feedback="❌ 虽然法典中有保护部分弱势群体的条款，但这不是其主要目的！">B. 全体古巴比伦人的利益</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.神庙祭司的利益" aria-pressed="false" data-feedback="❌ 神庙祭司虽享有特权，但法典的王权性质决定了国王才是最大受益者！">C. 神庙祭司的利益</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -506,12 +533,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】楔形文字对人类文明的最大贡献是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'A')">A. 影响了腓尼基字母的创造，进而催生西方字母文字</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 楔形文字本身是象形文字的演变，不是最早的！">B. 楔形文字是世界上最早的文字</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 两河流域的数学传统很重要，但楔形文字对人类文明最大的贡献是书写系统！">C. 创造了系统的数学计数方法</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.影响了腓尼基字母的创造，进而催生西方字母文字" aria-pressed="false">A. 影响了腓尼基字母的创造，进而催生西方字母文字</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.楔形文字是世界上最早的文字" aria-pressed="false" data-feedback="❌ 楔形文字本身是象形文字的演变，不是最早的！">B. 楔形文字是世界上最早的文字</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.创造了系统的数学计数方法" aria-pressed="false" data-feedback="❌ 两河流域的数学传统很重要，但楔形文字对人类文明最大的贡献是书写系统！">C. 创造了系统的数学计数方法</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -622,6 +649,8 @@
     }
     document.addEventListener('DOMContentLoaded', function() { console.log('📚 《古代两河流域》课件加载完成（v7.14·九年级世界上册）'); });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

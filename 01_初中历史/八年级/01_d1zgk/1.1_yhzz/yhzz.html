@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -191,6 +191,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -203,7 +215,11 @@
   <div class="progress-label" id="progress-label">第 1/3 节 · 33%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d1zgk.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一单元：中国开始沦为半殖民地半封建社会</div>
@@ -290,6 +306,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解鸦片战争爆发的原因</li>
@@ -311,16 +333,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】鸦片战争爆发于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1839年是林则徐虎门销烟的时间，不是鸦片战争爆发的时间！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1839年" aria-pressed="false" data-feedback="❌ 1839年是林则徐虎门销烟的时间，不是鸦片战争爆发的时间！">
             <span class="opt-letter">A</span> 1839年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1840年" aria-pressed="false">
             <span class="opt-letter">B</span> 1840年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1842年是鸦片战争结束和《南京条约》签订的时间！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1842年" aria-pressed="false" data-feedback="❌ 1842年是鸦片战争结束和《南京条约》签订的时间！">
             <span class="opt-letter">C</span> 1842年
           </div>
         </div>
@@ -333,16 +355,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】主持虎门销烟的清朝官员是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：林则徐" aria-pressed="false">
             <span class="opt-letter">A</span> 林则徐
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 李鸿章是洋务运动的主要代表人物，不是虎门销烟的主持者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李鸿章" aria-pressed="false" data-feedback="❌ 李鸿章是洋务运动的主要代表人物，不是虎门销烟的主持者！">
             <span class="opt-letter">B</span> 李鸿章
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 曾国藩是洋务运动和湘军的代表人物，不是虎门销烟的主持者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：曾国藩" aria-pressed="false" data-feedback="❌ 曾国藩是洋务运动和湘军的代表人物，不是虎门销烟的主持者！">
             <span class="opt-letter">C</span> 曾国藩
           </div>
         </div>
@@ -355,16 +377,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】中国近代史上第一个不平等条约是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《南京条约》" aria-pressed="false">
             <span class="opt-letter">A</span> 《南京条约》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 《北京条约》是第二次鸦片战争后签订的，不是第一个不平等条约！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：《北京条约》" aria-pressed="false" data-feedback="❌ 《北京条约》是第二次鸦片战争后签订的，不是第一个不平等条约！">
             <span class="opt-letter">B</span> 《北京条约》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 《马关条约》是甲午战争后签订的，不是第一个不平等条约！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：《马关条约》" aria-pressed="false" data-feedback="❌ 《马关条约》是甲午战争后签订的，不是第一个不平等条约！">
             <span class="opt-letter">C</span> 《马关条约》
           </div>
         </div>
@@ -377,16 +399,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】鸦片战争后，中国的社会性质发生了什么变化？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 鸦片战争后中国开始沦为半殖民地半封建社会，没有完全殖民地化！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：完全沦为殖民地" aria-pressed="false" data-feedback="❌ 鸦片战争后中国开始沦为半殖民地半封建社会，没有完全殖民地化！">
             <span class="opt-letter">A</span> 完全沦为殖民地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：开始沦为半殖民地半封建社会" aria-pressed="false">
             <span class="opt-letter">B</span> 开始沦为半殖民地半封建社会
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 鸦片战争标志着中国近代史的开端，中国开始沦为半殖民地半封建社会，不是维持封建社会不变！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：仍然是独立的封建社会" aria-pressed="false" data-feedback="❌ 鸦片战争标志着中国近代史的开端，中国开始沦为半殖民地半封建社会，不是维持封建社会不变！">
             <span class="opt-letter">C</span> 仍然是独立的封建社会
           </div>
         </div>
@@ -538,19 +560,19 @@
       </p>
 
       <!-- 测验题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】鸦片战争爆发的根本原因是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'A')" data-feedback="❌ 林则徐虎门销烟是战争的直接原因，不是根本原因！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：林则徐虎门销烟" aria-pressed="false" data-feedback="❌ 林则徐虎门销烟是战争的直接原因，不是根本原因！">
             <span class="opt-letter">A</span> 林则徐虎门销烟
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 20, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：英国为打开中国市场，扩大贸易" aria-pressed="false">
             <span class="opt-letter">B</span> 英国为打开中国市场，扩大贸易
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 鸦片走私是英国打开中国市场的手段，不是根本原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：英国向中国走私鸦片" aria-pressed="false" data-feedback="❌ 鸦片走私是英国打开中国市场的手段，不是根本原因！">
             <span class="opt-letter">C</span> 英国向中国走私鸦片
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'D')" data-feedback="❌ 清政府的腐败是中国的内部问题，不是英国发动战争的根本原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：清政府腐败无能" aria-pressed="false" data-feedback="❌ 清政府的腐败是中国的内部问题，不是英国发动战争的根本原因！">
             <span class="opt-letter">D</span> 清政府腐败无能
           </div>
         </div>
@@ -564,19 +586,19 @@
       </div>
 
       <!-- 测验题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高】鸦片战争期间，英军占领的香港岛后来在哪个条约中被正式割让？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 21, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 21, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《南京条约》" aria-pressed="false">
             <span class="opt-letter">A</span> 《南京条约》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'B')" data-feedback="❌ 《北京条约》是第二次鸦片战争后签订的，割让的是九龙半岛，不是香港岛！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 21, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：《北京条约》" aria-pressed="false" data-feedback="❌ 《北京条约》是第二次鸦片战争后签订的，割让的是九龙半岛，不是香港岛！">
             <span class="opt-letter">B</span> 《北京条约》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'C')" data-feedback="❌ 《马关条约》是甲午战争后签订的，割让的是台湾岛、澎湖列岛等，不是香港岛！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 21, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：《马关条约》" aria-pressed="false" data-feedback="❌ 《马关条约》是甲午战争后签订的，割让的是台湾岛、澎湖列岛等，不是香港岛！">
             <span class="opt-letter">C</span> 《马关条约》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'D')" data-feedback="❌ 《辛丑条约》是八国联军侵华战争后签订的，主要内容是赔款，没有割地！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 21, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：《辛丑条约》" aria-pressed="false" data-feedback="❌ 《辛丑条约》是八国联军侵华战争后签订的，主要内容是赔款，没有割地！">
             <span class="opt-letter">D</span> 《辛丑条约》
           </div>
         </div>
@@ -590,19 +612,19 @@
       </div>
 
       <!-- 测验题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】下列哪一项不属于《南京条约》的主要内容？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'A')" data-feedback="❌ 割香港岛给英国是《南京条约》的内容，不符合题目要求（选择不属于的）！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 22, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：割香港岛给英国" aria-pressed="false" data-feedback="❌ 割香港岛给英国是《南京条约》的内容，不符合题目要求（选择不属于的）！">
             <span class="opt-letter">A</span> 割香港岛给英国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'B')" data-feedback="❌ 赔款2100万银元是《南京条约》的内容，不符合题目要求（选择不属于的）！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 22, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：赔款2100万银元" aria-pressed="false" data-feedback="❌ 赔款2100万银元是《南京条约》的内容，不符合题目要求（选择不属于的）！">
             <span class="opt-letter">B</span> 赔款2100万银元
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 22, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 22, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：允许外国人在通商口岸租地建房" aria-pressed="false">
             <span class="opt-letter">C</span> 允许外国人在通商口岸租地建房
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'D')" data-feedback="❌ 协定关税是《南京条约》的内容，不符合题目要求（选择不属于的）！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 22, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：协定关税" aria-pressed="false" data-feedback="❌ 协定关税是《南京条约》的内容，不符合题目要求（选择不属于的）！">
             <span class="opt-letter">D</span> 协定关税
           </div>
         </div>
@@ -616,19 +638,19 @@
       </div>
 
       <!-- 测验题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐ 提高】鸦片战争最重要的历史意义是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 23, 'A')" data-feedback="❌ 虽然鸦片战争导致大量白银外流，但这不是最重要的历史意义！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 23, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：阻止了白银大量外流" aria-pressed="false" data-feedback="❌ 虽然鸦片战争导致大量白银外流，但这不是最重要的历史意义！">
             <span class="opt-letter">A</span> 阻止了白银大量外流
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 23, 'B')" data-feedback="❌ 虽然鸦片战争导致鸦片泛滥，但这不是最重要的历史意义！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 23, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：解决了鸦片泛滥问题" aria-pressed="false" data-feedback="❌ 虽然鸦片战争导致鸦片泛滥，但这不是最重要的历史意义！">
             <span class="opt-letter">B</span> 解决了鸦片泛滥问题
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 23, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 23, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：标志着中国近代史的开端" aria-pressed="false">
             <span class="opt-letter">C</span> 标志着中国近代史的开端
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 23, 'D')" data-feedback="❌ 虽然鸦片战争促使中国开始学习西方，但这不是最重要的历史意义！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 23, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：促使中国开始学习西方" aria-pressed="false" data-feedback="❌ 虽然鸦片战争促使中国开始学习西方，但这不是最重要的历史意义！">
             <span class="opt-letter">D</span> 促使中国开始学习西方
           </div>
         </div>
@@ -648,16 +670,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】《南京条约》割让的领土是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 台湾岛是《马关条约》割让的，不是《南京条约》！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：台湾岛" aria-pressed="false" data-feedback="❌ 台湾岛是《马关条约》割让的，不是《南京条约》！">
             <span class="opt-letter">A</span> 台湾岛
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：香港岛" aria-pressed="false">
             <span class="opt-letter">B</span> 香港岛
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 辽东半岛是《马关条约》割让的，不是《南京条约》！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：辽东半岛" aria-pressed="false" data-feedback="❌ 辽东半岛是《马关条约》割让的，不是《南京条约》！">
             <span class="opt-letter">C</span> 辽东半岛
           </div>
         </div>
@@ -670,16 +692,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）鸦片战争对中国社会的影响是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 鸦片战争后中国开始沦为半殖民地半封建社会，没有完全殖民地化！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：中国完全沦为殖民地" aria-pressed="false" data-feedback="❌ 鸦片战争后中国开始沦为半殖民地半封建社会，没有完全殖民地化！">
             <span class="opt-letter">A</span> 中国完全沦为殖民地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：中国开始沦为半殖民地半封建社会" aria-pressed="false">
             <span class="opt-letter">B</span> 中国开始沦为半殖民地半封建社会
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 鸦片战争是中国近代史的开端，不是现代史的开端！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：中国进入现代史时期" aria-pressed="false" data-feedback="❌ 鸦片战争是中国近代史的开端，不是现代史的开端！">
             <span class="opt-letter">C</span> 中国进入现代史时期
           </div>
         </div>
@@ -692,16 +714,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·江苏中考）下列不属于《南京条约》内容的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 割香港岛给英国是《南京条约》的内容，不符合题目要求（选择不属于的）！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：割香港岛给英国" aria-pressed="false" data-feedback="❌ 割香港岛给英国是《南京条约》的内容，不符合题目要求（选择不属于的）！">
             <span class="opt-letter">A</span> 割香港岛给英国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 赔款2100万银元是《南京条约》的内容，不符合题目要求（选择不属于的）！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：赔款2100万银元" aria-pressed="false" data-feedback="❌ 赔款2100万银元是《南京条约》的内容，不符合题目要求（选择不属于的）！">
             <span class="opt-letter">B</span> 赔款2100万银元
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：允许在通商口岸开设工厂" aria-pressed="false">
             <span class="opt-letter">C</span> 允许在通商口岸开设工厂
           </div>
         </div>
@@ -719,6 +741,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 考点分析</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: var(--primary);">📖 核心考点解析</h3>
         
         <!-- 考点1 -->
@@ -798,7 +823,9 @@
             <p>题目问"根本原因"要答"英国为打开市场"；问"导火索"或"直接原因"要答"虎门销烟"。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     
   
@@ -812,5 +839,7 @@
   </footer>
   <script src="../../shared/scripts.js?v=8.0"></script>
   <script src="../../shared/render.js"></script>
+<script src="../../shared/adaptive-engine.js?v=8.0"></script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

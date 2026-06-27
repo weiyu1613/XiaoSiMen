@@ -128,6 +128,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <div class="brand-bar">
     <div class="container">
@@ -139,6 +151,10 @@
   <div class="progress-label" id="progress-label">第 3/3 节 · 100%</div>
 
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d1gdy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -206,6 +222,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul>
           <li>✅ 知道古代印度的地理位置（南亚次大陆）和自然环境</li>
@@ -220,13 +242,13 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】古代印度文明产生于哪条河流域？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 尼罗河在埃及！"><span class="opt-letter">A</span> 尼罗河</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 幼发拉底河和底格里斯河在两河流域！"><span class="opt-letter">B</span> 两河流域</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')"><span class="opt-letter">C</span> 印度河流域</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 长江黄河在中国！"><span class="opt-letter">D</span> 长江黄河</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：尼罗河" aria-pressed="false" data-feedback="❌ 尼罗河在埃及！"><span class="opt-letter">A</span> 尼罗河</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：两河流域" aria-pressed="false" data-feedback="❌ 幼发拉底河和底格里斯河在两河流域！"><span class="opt-letter">B</span> 两河流域</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：印度河流域" aria-pressed="false"><span class="opt-letter">C</span> 印度河流域</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：长江黄河" aria-pressed="false" data-feedback="❌ 长江黄河在中国！"><span class="opt-letter">D</span> 长江黄河</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -236,12 +258,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】佛教的创立者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 穆罕默德是伊斯兰教的创立者！"><span class="opt-letter">A</span> 穆罕默德</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 耶稣是基督教的创立者！"><span class="opt-letter">B</span> 耶稣</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')"><span class="opt-letter">C</span> 乔达摩·悉达多（释迦牟尼）</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：穆罕默德" aria-pressed="false" data-feedback="❌ 穆罕默德是伊斯兰教的创立者！"><span class="opt-letter">A</span> 穆罕默德</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：耶稣" aria-pressed="false" data-feedback="❌ 耶稣是基督教的创立者！"><span class="opt-letter">B</span> 耶稣</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：乔达摩·悉达多（释迦牟尼）" aria-pressed="false"><span class="opt-letter">C</span> 乔达摩·悉达多（释迦牟尼）</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -251,13 +273,13 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】种姓制度中，最高等级是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')"><span class="opt-letter">A</span> 婆罗门</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 刹帝利是第二等级（贵族、武士），不是最高！"><span class="opt-letter">B</span> 刹帝利</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 首陀罗是第四等级（平民），不是最高！"><span class="opt-letter">C</span> 首陀罗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'D')" data-feedback="❌ 吠舍是第三等级！"><span class="opt-letter">D</span> 吠舍</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：婆罗门" aria-pressed="false"><span class="opt-letter">A</span> 婆罗门</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：刹帝利" aria-pressed="false" data-feedback="❌ 刹帝利是第二等级（贵族、武士），不是最高！"><span class="opt-letter">B</span> 刹帝利</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：首陀罗" aria-pressed="false" data-feedback="❌ 首陀罗是第四等级（平民），不是最高！"><span class="opt-letter">C</span> 首陀罗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：吠舍" aria-pressed="false" data-feedback="❌ 吠舍是第三等级！"><span class="opt-letter">D</span> 吠舍</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -273,12 +295,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】佛教与种姓制度的关系，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')"><span class="opt-letter">A</span> 佛教反对种姓制度，提出"众生平等"</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 佛教明确反对种姓制度的不平等！"><span class="opt-letter">B</span> 佛教支持种姓制度，维护等级秩序</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 佛教与种姓制度是对立关系，不支持等级压迫！"><span class="opt-letter">C</span> 佛教完全接受种姓制度</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：佛教反对种姓制度，提出&quot;众生平等&quot;" aria-pressed="false"><span class="opt-letter">A</span> 佛教反对种姓制度，提出"众生平等"</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：佛教支持种姓制度，维护等级秩序" aria-pressed="false" data-feedback="❌ 佛教明确反对种姓制度的不平等！"><span class="opt-letter">B</span> 佛教支持种姓制度，维护等级秩序</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：佛教完全接受种姓制度" aria-pressed="false" data-feedback="❌ 佛教与种姓制度是对立关系，不支持等级压迫！"><span class="opt-letter">C</span> 佛教完全接受种姓制度</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -445,6 +467,9 @@
     <section class="section" id="section-buddhism">
       <h2 class="section-title"><span class="num">🙏</span> 佛教的创立与传播</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>🧘 佛教创始人：乔达摩·悉达多</h3>
         <div class="svg-container">
           <svg viewBox="0 0 700 200" width="700" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -538,18 +563,20 @@
           <li><strong>北传佛教</strong>（大乘佛教）：经丝绸之路传入中国，再传至日本、朝鲜</li>
           <li><strong>传播原因：</strong>① 反对种姓制度，相对平等；② 主张"忍耐顺从"，有利于统治者；③ 不强制要求使用梵文，可用当地语言传教</li>
         </ul>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】种姓制度中，不从事农业生产的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 吠舍包括农民、手工业者和商人，其中农民从事农业！"><span class="opt-letter">A</span> 吠舍</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 婆罗门</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 刹帝利是武士贵族，不直接从事农业，但也参与战争和政治！"><span class="opt-letter">C</span> 刹帝利</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：吠舍" aria-pressed="false" data-feedback="❌ 吠舍包括农民、手工业者和商人，其中农民从事农业！"><span class="opt-letter">A</span> 吠舍</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：婆罗门" aria-pressed="false"><span class="opt-letter">B</span> 婆罗门</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：刹帝利" aria-pressed="false" data-feedback="❌ 刹帝利是武士贵族，不直接从事农业，但也参与战争和政治！"><span class="opt-letter">C</span> 刹帝利</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -559,12 +586,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·课标卷）佛教在古代印度产生的背景是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 等级制度（种姓制度）森严，压迫严重</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 佛教产生的直接原因是社会不平等，不是经济发展！"><span class="opt-letter">B</span> 农业高度发展</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 佛教反对婆罗门特权，不是在维护婆罗门统治！"><span class="opt-letter">C</span> 婆罗门教统治稳固</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：等级制度（种姓制度）森严，压迫严重" aria-pressed="false"><span class="opt-letter">A</span> 等级制度（种姓制度）森严，压迫严重</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：农业高度发展" aria-pressed="false" data-feedback="❌ 佛教产生的直接原因是社会不平等，不是经济发展！"><span class="opt-letter">B</span> 农业高度发展</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：婆罗门教统治稳固" aria-pressed="false" data-feedback="❌ 佛教反对婆罗门特权，不是在维护婆罗门统治！"><span class="opt-letter">C</span> 婆罗门教统治稳固</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -574,12 +601,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:14px;">
+      <div class="quiz-box" style="margin-top:14px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】古代印度文明能延续至今的主要原因是什么？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 哈拉帕文明已中断，种姓制度和佛教才是延续至今的文明要素！"><span class="opt-letter">A</span> 哈拉帕文明从未中断</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 种姓制度是压迫性的，不是印度文明延续的主因！"><span class="opt-letter">B</span> 种姓制度维护了社会稳定</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')"><span class="opt-letter">C</span> 宗教（印度教、佛教）的延续和影响</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：哈拉帕文明从未中断" aria-pressed="false" data-feedback="❌ 哈拉帕文明已中断，种姓制度和佛教才是延续至今的文明要素！"><span class="opt-letter">A</span> 哈拉帕文明从未中断</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：种姓制度维护了社会稳定" aria-pressed="false" data-feedback="❌ 种姓制度是压迫性的，不是印度文明延续的主因！"><span class="opt-letter">B</span> 种姓制度维护了社会稳定</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：宗教（印度教、佛教）的延续和影响" aria-pressed="false"><span class="opt-letter">C</span> 宗教（印度教、佛教）的延续和影响</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -696,6 +723,8 @@
     }
     document.addEventListener('DOMContentLoaded', function() { console.log('📚 《古代印度》课件加载完成（v7.14·九年级世界上册）'); });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

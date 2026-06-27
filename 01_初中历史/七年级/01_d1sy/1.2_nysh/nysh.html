@@ -161,6 +161,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -180,7 +192,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d1sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一单元：史前时期</div>
@@ -287,6 +303,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道半坡遗址和河姆渡遗址的位置和时间</li>
@@ -309,16 +331,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】半坡遗址位于哪里？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：陕西西安半坡村" aria-pressed="false">
             <span class="opt-letter">A</span> 陕西西安半坡村
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 浙江余姚是河姆渡遗址的位置，不是半坡！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：浙江余姚河姆渡" aria-pressed="false" data-feedback="❌ 浙江余姚是河姆渡遗址的位置，不是半坡！">
             <span class="opt-letter">B</span> 浙江余姚河姆渡
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 北京周口店是北京人/山顶洞人遗址，属于旧石器时代！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：北京周口店" aria-pressed="false" data-feedback="❌ 北京周口店是北京人/山顶洞人遗址，属于旧石器时代！">
             <span class="opt-letter">C</span> 北京周口店
           </div>
         </div>
@@ -340,16 +362,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】半坡人和河姆渡人处于什么时代？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 旧石器时代使用打制石器，半坡/河姆渡人使用的是磨制石器！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：旧石器时代" aria-pressed="false" data-feedback="❌ 旧石器时代使用打制石器，半坡/河姆渡人使用的是磨制石器！">
             <span class="opt-letter">A</span> 旧石器时代
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：新石器时代" aria-pressed="false">
             <span class="opt-letter">B</span> 新石器时代
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 铁器时代是春秋战国时期才开始的，远晚于半坡/河姆渡！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：铁器时代" aria-pressed="false" data-feedback="❌ 铁器时代是春秋战国时期才开始的，远晚于半坡/河姆渡！">
             <span class="opt-letter">C</span> 铁器时代
           </div>
         </div>
@@ -362,16 +384,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于半坡人与河姆渡人的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 半坡人种植粟（小米），水稻是河姆渡人种植的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：半坡人种植水稻，河姆渡人种植粟" aria-pressed="false" data-feedback="❌ 半坡人种植粟（小米），水稻是河姆渡人种植的！">
             <span class="opt-letter">A</span> 半坡人种植水稻，河姆渡人种植粟
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 半坡人住半地穴式房屋，干栏式是河姆渡人的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：半坡人住干栏式房屋" aria-pressed="false" data-feedback="❌ 半坡人住半地穴式房屋，干栏式是河姆渡人的！">
             <span class="opt-letter">B</span> 半坡人住干栏式房屋
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：半坡人种植粟，河姆渡人种植水稻" aria-pressed="false">
             <span class="opt-letter">C</span> 半坡人种植粟，河姆渡人种植水稻
           </div>
         </div>
@@ -393,16 +415,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】新石器时代与旧石器时代的核心区别是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 会不会用火不是核心区别！旧石器时代北京人就会使用天然火了。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：是否会使用火" aria-pressed="false" data-feedback="❌ 会不会用火不是核心区别！旧石器时代北京人就会使用天然火了。">
             <span class="opt-letter">A</span> 是否会使用火
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 是否群居也不是核心区别！旧石器时代的北京人也群居。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：是否群居生活" aria-pressed="false" data-feedback="❌ 是否群居也不是核心区别！旧石器时代的北京人也群居。">
             <span class="opt-letter">B</span> 是否群居生活
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：生产工具（打制vs磨制）和获取食物方式（采集狩猎vs农耕）" aria-pressed="false">
             <span class="opt-letter">C</span> 生产工具（打制 vs 磨制）和获取食物方式（采集狩猎 vs 农耕）
           </div>
         </div>
@@ -570,16 +592,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】河姆渡人种植的主要作物是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 粟是半坡人种植的，不是河姆渡人！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：粟（小米）" aria-pressed="false" data-feedback="❌ 粟是半坡人种植的，不是河姆渡人！">
             <span class="opt-letter">A</span> 粟（小米）
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：水稻" aria-pressed="false">
             <span class="opt-letter">B</span> 水稻
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 小麦是后来才传入中国的，河姆渡人种植的是水稻！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：小麦" aria-pressed="false" data-feedback="❌ 小麦是后来才传入中国的，河姆渡人种植的是水稻！">
             <span class="opt-letter">C</span> 小麦
           </div>
         </div>
@@ -592,16 +614,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·陕西中考）下列关于半坡人的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 半坡人住半地穴式房屋，干栏式是河姆渡人的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：居住在干栏式房屋里" aria-pressed="false" data-feedback="❌ 半坡人住半地穴式房屋，干栏式是河姆渡人的！">
             <span class="opt-letter">A</span> 居住在干栏式房屋里
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 半坡人种植粟（小米），水稻是河姆渡人种植的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：主要种植水稻" aria-pressed="false" data-feedback="❌ 半坡人种植粟（小米），水稻是河姆渡人种植的！">
             <span class="opt-letter">B</span> 主要种植水稻
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：制作彩陶，有人面鱼纹彩陶盆" aria-pressed="false">
             <span class="opt-letter">C</span> 制作彩陶，有人面鱼纹彩陶盆
           </div>
         </div>
@@ -620,16 +642,16 @@
       </div>
 
       <!-- 后测挑战题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·浙江中考）干栏式房屋体现了河姆渡人对环境的适应，这种房屋适合哪种环境？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 干旱少雨是黄河流域的特点，适合半地穴式房屋，不适合干栏式！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：干旱少雨的气候" aria-pressed="false" data-feedback="❌ 干旱少雨是黄河流域的特点，适合半地穴式房屋，不适合干栏式！">
             <span class="opt-letter">A</span> 干旱少雨的气候
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：潮湿多雨的气候" aria-pressed="false">
             <span class="opt-letter">B</span> 潮湿多雨的气候
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 寒冷多风是北方草原的特点，河姆渡在长江流域，气候温暖湿润！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：寒冷多风的气候" aria-pressed="false" data-feedback="❌ 寒冷多风是北方草原的特点，河姆渡在长江流域，气候温暖湿润！">
             <span class="opt-letter">C</span> 寒冷多风的气候
           </div>
         </div>
@@ -652,20 +674,20 @@
       </div>
 
       <!-- 后测挑战题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料】</strong>"半坡人生活在黄河流域，气候干燥，他们居住在半地穴式房屋里，一半在地下，一半在地上，冬天保暖，夏天凉爽。河姆渡人生活在长江流域，气候潮湿多雨，他们居住在干栏式房屋里，房屋悬空，可以防潮、防蛇虫。" ——摘自人教版七年级历史上册
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，原始居民的房屋类型说明了什么？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料明确说房屋类型与气候环境有关，"与自然环境无关"是错的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：说明房屋类型与自然环境无关" aria-pressed="false" data-feedback="❌ 材料明确说房屋类型与气候环境有关，"与自然环境无关"是错的！">
             <span class="opt-letter">A</span> 说明房屋类型与自然环境无关
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：说明原始居民能适应自然环境，因地制宜" aria-pressed="false">
             <span class="opt-letter">B</span> 说明原始居民能适应自然环境，因地制宜
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料没有说干栏式房屋更先进，"最先进"的表述太绝对了！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：说明干栏式房屋比半地穴式更先进" aria-pressed="false" data-feedback="❌ 材料没有说干栏式房屋更先进，"最先进"的表述太绝对了！">
             <span class="opt-letter">C</span> 说明干栏式房屋比半地穴式更先进
           </div>
         </div>
@@ -698,6 +720,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -770,7 +795,9 @@
             <tr style="background:#fdf4ff;"><td>材料题</td><td>★★☆☆☆</td><td>给一段文字，分析房屋与环境的关系</td><td>学会"因地制宜"的分析法</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -918,6 +945,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

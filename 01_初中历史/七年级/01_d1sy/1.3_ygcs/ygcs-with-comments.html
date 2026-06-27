@@ -186,6 +186,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ==================== 品牌栏（必须） ==================== -->
   <!-- 所有TeachAny课件都必须包含品牌栏 -->
@@ -208,7 +220,11 @@
   
   <!-- ==================== 导航栏（必须） ==================== -->
   <!-- 提供课件间的导航功能 -->
-  <nav class="nav-bar"><div class="nav-inner"><div class="nav-left" style="gap: 28px;"><a href="../../index.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-house"></i> 首页</a></div><div class="nav-left-center" style="gap: 28px;"><a href="../d1sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a></div><div class="nav-center">第一单元：史前时期</div><div class="nav-right" style="gap: 28px;"><a href="../1.2_nysh/nysh.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-chevron-left"></i> 上一节</a><a href="../../02_d2sy/d2sy.html" class="nav-btn">下一单元 <i class="fa-solid fa-chevron-right"></i></a></div></div></nav>
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner"><div class="nav-left" style="gap: 28px;"><a href="../../index.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-house"></i> 首页</a></div><div class="nav-left-center" style="gap: 28px;"><a href="../d1sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a></div><div class="nav-center">第一单元：史前时期</div><div class="nav-right" style="gap: 28px;"><a href="../1.2_nysh/nysh.html" class="nav-btn" style="margin-right: 12px;"><i class="fa-solid fa-chevron-left"></i> 上一节</a><a href="../../02_d2sy/d2sy.html" class="nav-btn">下一单元 <i class="fa-solid fa-chevron-right"></i></a></div></div></nav>
   
   <!-- ==================== Hero区（必须） ==================== -->
   <!-- 课件的标题区域，包含课程标题、课标要求等信息 -->
@@ -315,6 +331,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <!-- 清晰列出本课学习目标 -->
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
@@ -339,21 +361,21 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】被尊为中华民族"人文初祖"的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
           <!-- onclick="checkAnswer(this, isCorrect, questionNum, optionLetter)" -->
           <!-- this: 当前点击的元素 -->
           <!-- isCorrect: 该选项是否正确 -->
           <!-- questionNum: 题目编号（用于显示对应讲解） -->
           <!-- optionLetter: 选项字母（用于记录答案） -->
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 炎帝（神农氏）教民耕种，但不是"人文初祖"！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：炎帝" aria-pressed="false" data-feedback="❌ 炎帝（神农氏）教民耕种，但不是"人文初祖"！">
             <span class="opt-letter">A</span> 炎帝
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：黄帝" aria-pressed="false">
             <span class="opt-letter">B</span> 黄帝
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 大禹是治水英雄，建立了夏朝，但不是"人文初祖"！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：大禹" aria-pressed="false" data-feedback="❌ 大禹是治水英雄，建立了夏朝，但不是"人文初祖"！">
             <span class="opt-letter">C</span> 大禹
           </div>
         </div>
@@ -378,16 +400,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】炎黄联盟在什么战役后形成？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 涿鹿之战是炎黄联盟 vs 蚩尤，不是炎黄之间的战争！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：涿鹿之战" aria-pressed="false" data-feedback="❌ 涿鹿之战是炎黄联盟 vs 蚩尤，不是炎黄之间的战争！">
             <span class="opt-letter">A</span> 涿鹿之战
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：阪泉之战" aria-pressed="false">
             <span class="opt-letter">B</span> 阪泉之战
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 牧野之战是周武王 vs 商纣王，发生在商周时期，远晚于炎黄时代！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：牧野之战" aria-pressed="false" data-feedback="❌ 牧野之战是周武王 vs 商纣王，发生在商周时期，远晚于炎黄时代！">
             <span class="opt-letter">C</span> 牧野之战
           </div>
         </div>
@@ -401,16 +423,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于禅让制的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 禅让制是"传贤不传子"，不是父子相传！父子相傳是世袭制。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：禅让制是父子相传" aria-pressed="false" data-feedback="❌ 禅让制是"传贤不传子"，不是父子相传！父子相傳是世袭制。">
             <span class="opt-letter">A</span> 禅让制是父子相传
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ "通过战争夺取"是错的！禅让制是和平推举贤能之人。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：禅让制通过战争夺取权力" aria-pressed="false" data-feedback="❌ "通过战争夺取"是错的！禅让制是和平推举贤能之人。">
             <span class="opt-letter">B</span> 禅让制通过战争夺取权力
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：禅让制是推举贤能之人担任首领" aria-pressed="false">
             <span class="opt-letter">C</span> 禅让制是推举贤能之人担任首领
           </div>
         </div>
@@ -429,16 +451,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】传说与史实的区别是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ "传说都有考古证据"是错的！传说包含虚构成分，不一定有考古证据。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：传说都有考古证据" aria-pressed="false" data-feedback="❌ "传说都有考古证据"是错的！传说包含虚构成分，不一定有考古证据。">
             <span class="opt-letter">A</span> 传说都有考古证据
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ "传说完全虚假"太绝对了！传说往往包含真实历史内核，只是被神话化了。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：传说完全虚假，没有价值" aria-pressed="false" data-feedback="❌ "传说完全虚假"太绝对了！传说往往包含真实历史内核，只是被神话化了。">
             <span class="opt-letter">B</span> 传说完全虚假，没有价值
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：传说包含真实历史内核，但被神话化" aria-pressed="false">
             <span class="opt-letter">C</span> 传说包含真实历史内核，但被神话化
           </div>
         </div>
@@ -480,16 +502,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】黄帝被尊为？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ "皇帝"是秦朝秦始皇才开始用的称号，黄帝是传说人物，不是皇帝！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：皇帝" aria-pressed="false" data-feedback="❌ "皇帝"是秦朝秦始皇才开始用的称号，黄帝是传说人物，不是皇帝！">
             <span class="opt-letter">A</span> 皇帝
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：人文初祖" aria-pressed="false">
             <span class="opt-letter">B</span> 人文初祖
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ "治水英雄"是大禹，不是黄帝！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：治水英雄" aria-pressed="false" data-feedback="❌ "治水英雄"是大禹，不是黄帝！">
             <span class="opt-letter">C</span> 治水英雄
           </div>
         </div>
@@ -502,16 +524,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖南中考）下列关于禅让制的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 禅让制是"传贤不传子"，父子相传是世袭制！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：禅让制是父子相传" aria-pressed="false" data-feedback="❌ 禅让制是"传贤不传子"，父子相传是世袭制！">
             <span class="opt-letter">A</span> 禅让制是父子相传
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：禅让制是推举贤能之人担任首领" aria-pressed="false">
             <span class="opt-letter">B</span> 禅让制是推举贤能之人担任首领
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ "通过战争夺取"是错的！禅让制是和平推举。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：禅让制通过战争夺取权力" aria-pressed="false" data-feedback="❌ "通过战争夺取"是错的！禅让制是和平推举。">
             <span class="opt-letter">C</span> 禅让制通过战争夺取权力
           </div>
         </div>
@@ -731,7 +753,9 @@
 
   <!-- ==================== TeachAny标准模块脚本（必须） ==================== -->
   <!-- 这些脚本提供AI学伴、TTS朗读、知识点提示等功能 -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>
 

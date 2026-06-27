@@ -124,6 +124,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -132,7 +144,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d7sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第七单元：明清时期</div>
@@ -194,6 +210,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道明清科技巨著及作者</li>
@@ -210,12 +232,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】被称为"药圣"的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 李时珍是'药圣'，不是医圣！"><span class="opt-letter">A</span> 张仲景</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 李时珍</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 孙思邈是'药王'，不是药圣！"><span class="opt-letter">C</span> 孙思邈</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：张仲景" aria-pressed="false" data-feedback="❌ 李时珍是'药圣'，不是医圣！"><span class="opt-letter">A</span> 张仲景</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李时珍" aria-pressed="false"><span class="opt-letter">B</span> 李时珍</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：孙思邈" aria-pressed="false" data-feedback="❌ 孙思邈是'药王'，不是药圣！"><span class="opt-letter">C</span> 孙思邈</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -223,12 +245,12 @@
           <p><strong>李时珍</strong>被称为"药圣"，著有《本草纲目》。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】中国古典小说巅峰之作是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 《红楼梦》</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 《西游记》是神魔小说，不是巅峰之作！"><span class="opt-letter">B</span> 《西游记》</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 《水浒传》是英雄传奇，不是巅峰之作！"><span class="opt-letter">C</span> 《水浒传》</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《红楼梦》" aria-pressed="false"><span class="opt-letter">A</span> 《红楼梦》</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：《西游记》" aria-pressed="false" data-feedback="❌ 《西游记》是神魔小说，不是巅峰之作！"><span class="opt-letter">B</span> 《西游记》</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：《水浒传》" aria-pressed="false" data-feedback="❌ 《水浒传》是英雄传奇，不是巅峰之作！"><span class="opt-letter">C</span> 《水浒传》</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -236,12 +258,12 @@
           <p><strong>《红楼梦》</strong>（曹雪芹）是中国古典小说的<strong>巅峰之作</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】京剧形成于哪个朝代？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 唐朝没有京剧，那是明清时期的！"><span class="opt-letter">A</span> 唐朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 清朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 宋朝没有京剧，那是明清时期的！"><span class="opt-letter">C</span> 宋朝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐朝" aria-pressed="false" data-feedback="❌ 唐朝没有京剧，那是明清时期的！"><span class="opt-letter">A</span> 唐朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：清朝" aria-pressed="false"><span class="opt-letter">B</span> 清朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：宋朝" aria-pressed="false" data-feedback="❌ 宋朝没有京剧，那是明清时期的！"><span class="opt-letter">C</span> 宋朝</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -249,12 +271,12 @@
           <p><strong>京剧</strong>形成于<strong>清朝道光年间</strong>，以徽调、汉调为基础。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】明清科技巨著的特点是什么？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 总结性不是明清科技的特点，是传统科技的总结！"><span class="opt-letter">A</span> 创新性</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')"><span class="opt-letter">B</span> 总结性</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 实验性不是明清科技的特点，那是西方近代科技！"><span class="opt-letter">C</span> 实验性</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：创新性" aria-pressed="false" data-feedback="❌ 总结性不是明清科技的特点，是传统科技的总结！"><span class="opt-letter">A</span> 创新性</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：总结性" aria-pressed="false"><span class="opt-letter">B</span> 总结性</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：实验性" aria-pressed="false" data-feedback="❌ 实验性不是明清科技的特点，那是西方近代科技！"><span class="opt-letter">C</span> 实验性</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -287,6 +309,9 @@
         </ul>
       </div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>二、四大古典小说</h3>
         <p><strong>1. 《三国演义》</strong>：</p>
         <ul>
@@ -312,7 +337,9 @@
           <li>② 内容：贾宝玉、林黛玉的爱情悲剧</li>
           <li>③ 地位：<strong>中国古典小说巅峰之作</strong></li>
         </ul>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>三、戏曲艺术</h3>
         <p><strong>1. 京剧的形成</strong>：</p>
@@ -358,12 +385,17 @@
         </ul>
       </div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>四大古典小说的文学价值</h3>
         <p><strong>1. 《三国演义》</strong>：历史小说的典范</p>
         <p><strong>2. 《水浒传》</strong>：英雄传奇的典范</p>
         <p><strong>3. 《西游记》</strong>：神魔小说的典范</p>
         <p><strong>4. 《红楼梦》</strong>：古典小说的巅峰，反映封建社会衰落</p>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">📝</span> 后测：检验学习效果</h2>
@@ -373,12 +405,12 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
         <span style="margin-left: 12px; color: var(--accent);">⚡ 含中考真题</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】《天工开物》的作者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 李时珍是《本草纲目》的作者，不是《天工开物》！"><span class="opt-letter">A</span> 李时珍</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 宋应星</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 徐光启是《农政全书》的作者，不是《天工开物》！"><span class="opt-letter">C</span> 徐光启</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：李时珍" aria-pressed="false" data-feedback="❌ 李时珍是《本草纲目》的作者，不是《天工开物》！"><span class="opt-letter">A</span> 李时珍</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：宋应星" aria-pressed="false"><span class="opt-letter">B</span> 宋应星</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：徐光启" aria-pressed="false" data-feedback="❌ 徐光启是《农政全书》的作者，不是《天工开物》！"><span class="opt-letter">C</span> 徐光启</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -386,12 +418,12 @@
           <p><strong>宋应星</strong>著有《天工开物》，被誉为"中国17世纪的工艺百科全书"。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐ 基础】京剧的四大行当是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')"><span class="opt-letter">A</span> 生、旦、净、丑</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 唱、念、做、打是四功，不是四大行当！"><span class="opt-letter">B</span> 唱、念、做、打</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 红、黑、白、蓝是脸谱颜色，不是四大行当！"><span class="opt-letter">C</span> 红、黑、白、蓝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：生、旦、净、丑" aria-pressed="false"><span class="opt-letter">A</span> 生、旦、净、丑</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：唱、念、做、打" aria-pressed="false" data-feedback="❌ 唱、念、做、打是四功，不是四大行当！"><span class="opt-letter">B</span> 唱、念、做、打</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：红、黑、白、蓝" aria-pressed="false" data-feedback="❌ 红、黑、白、蓝是脸谱颜色，不是四大行当！"><span class="opt-letter">C</span> 红、黑、白、蓝</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -399,12 +431,12 @@
           <p>京剧的四大行当是<strong>生、旦、净、丑</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】《红楼梦》的作者是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="❌ 罗贯中是《三国演义》的作者，不是《红楼梦》！"><span class="opt-letter">A</span> 罗贯中</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'B')" data-feedback="❌ 吴承恩是《西游记》的作者，不是《红楼梦》！"><span class="opt-letter">B</span> 吴承恩</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'C')"><span class="opt-letter">C</span> 曹雪芹</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：罗贯中" aria-pressed="false" data-feedback="❌ 罗贯中是《三国演义》的作者，不是《红楼梦》！"><span class="opt-letter">A</span> 罗贯中</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：吴承恩" aria-pressed="false" data-feedback="❌ 吴承恩是《西游记》的作者，不是《红楼梦》！"><span class="opt-letter">B</span> 吴承恩</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：曹雪芹" aria-pressed="false"><span class="opt-letter">C</span> 曹雪芹</div>
         </div>
         <div class="feedback" id="feedback-7"></div>
         <div class="answer-explanation" id="explanation-7">
@@ -412,17 +444,17 @@
           <p><strong>曹雪芹</strong>是《红楼梦》的作者，这是中国古典小说的巅峰之作。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】阅读材料，回答问题：<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
         <div style="background: #f9fafb; border-left: 4px solid #8b4513; padding: 16px; margin-bottom: 16px; border-radius: 0 8px 8px 0;">
           <p><strong>材料</strong>：</p>
           <p>"《本草纲目》收录药物1892种，附图1160幅，是对中国传统医药学的系统总结。"</p>
           <p><strong>问题</strong>：《本草纲目》的作者是？（　）</p>
         </div>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'A')"><span class="opt-letter">A</span> 李时珍</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'B')" data-feedback="❌ 张仲景是东汉医学家，不是《本草纲目》的作者！"><span class="opt-letter">B</span> 张仲景</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 华佗是东汉医学家，不是《本草纲目》的作者！"><span class="opt-letter">C</span> 华佗</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：李时珍" aria-pressed="false"><span class="opt-letter">A</span> 李时珍</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：张仲景" aria-pressed="false" data-feedback="❌ 张仲景是东汉医学家，不是《本草纲目》的作者！"><span class="opt-letter">B</span> 张仲景</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：华佗" aria-pressed="false" data-feedback="❌ 华佗是东汉医学家，不是《本草纲目》的作者！"><span class="opt-letter">C</span> 华佗</div>
         </div>
         <div class="feedback" id="feedback-8"></div>
         <div class="answer-explanation" id="explanation-8">
@@ -478,6 +510,9 @@
         </h2>
         
         <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
           <!-- 考点1 -->
           <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
             <div class="exam-card-header">
@@ -530,7 +565,9 @@
               <tr style="background:#ffffff;"><td>材料题</td><td>★★★☆☆</td><td>给史料，分析科技成就</td><td>理解"四大成就"的意义</td></tr>
             </table>
           </div>
-        </div>
+        
+</details>
+</div>
       </section>
 
 <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
@@ -620,6 +657,8 @@
   </script>
     <!-- 标准模块脚本（必须） -->
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

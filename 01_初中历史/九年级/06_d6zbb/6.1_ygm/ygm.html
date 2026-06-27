@@ -114,6 +114,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -123,6 +135,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/3 节 · 33%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d6zbb.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -190,6 +206,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 知道英国资产阶级革命的原因、过程和结果</li>
@@ -204,16 +226,16 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【&#11088; 基础】英国资产阶级革命开始的标志是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="&#10060; 这是革命结束的标志，不是开始！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《权利法案》的颁布" aria-pressed="false" data-feedback="&#10060; 这是革命结束的标志，不是开始！">
             <span class="opt-letter">A</span> 《权利法案》的颁布
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：议会重新召开" aria-pressed="false">
             <span class="opt-letter">B</span> 议会重新召开
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 处死国王是革命过程中的重要事件，但不是开始标志。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：查理一世被处死" aria-pressed="false" data-feedback="&#10060; 处死国王是革命过程中的重要事件，但不是开始标志。">
             <span class="opt-letter">C</span> 查理一世被处死
           </div>
         </div>
@@ -235,16 +257,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【&#11088; 基础】英国资产阶级革命结束的标志是？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="&#10060; 这是共和国建立的事件。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：处死国王，建立共和国" aria-pressed="false" data-feedback="&#10060; 这是共和国建立的事件。">
             <span class="opt-letter">A</span> 处死国王，建立共和国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：光荣革命" aria-pressed="false">
             <span class="opt-letter">B</span> 光荣革命
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 这是革命的重要成果，但不是结束标志。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：《权利法案》颁布" aria-pressed="false" data-feedback="&#10060; 这是革命的重要成果，但不是结束标志。">
             <span class="opt-letter">C</span> 《权利法案》颁布
           </div>
         </div>
@@ -256,16 +278,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【&#11088;&#11088; 提高】英国资产阶级革命的根本原因是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 这是直接原因，不是根本原因！根本原因要从经济基础分析。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：斯图亚特王朝的专制统治" aria-pressed="false" data-feedback="&#10060; 这是直接原因，不是根本原因！根本原因要从经济基础分析。">
             <span class="opt-letter">A</span> 斯图亚特王朝的专制统治
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：封建专制统治阻碍资本主义发展" aria-pressed="false">
             <span class="opt-letter">B</span> 封建专制统治阻碍资本主义发展
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 宗教矛盾是表现，不是根本原因。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：宗教改革引发的矛盾" aria-pressed="false" data-feedback="&#10060; 宗教矛盾是表现，不是根本原因。">
             <span class="opt-letter">C</span> 宗教改革引发的矛盾
           </div>
         </div>
@@ -282,16 +304,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>4. 【&#11088;&#11088;&#11088; 挑战】下列关于《权利法案》的表述，正确的是？<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="&#10060; 《权利法案》限制了国王的权力，但没有完全废除君主制！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：废除了君主制，建立了共和国" aria-pressed="false" data-feedback="&#10060; 《权利法案》限制了国王的权力，但没有完全废除君主制！">
             <span class="opt-letter">A</span> 废除了君主制，建立了共和国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="&#10060; 国王只是"统而不治"，权力转移到议会，但国王仍然存在。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：国王完全失去了所有权力" aria-pressed="false" data-feedback="&#10060; 国王只是"统而不治"，权力转移到议会，但国王仍然存在。">
             <span class="opt-letter">B</span> 国王完全失去了所有权力
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：确立了议会高于王权的原则" aria-pressed="false">
             <span class="opt-letter">C</span> 确立了议会高于王权的原则
           </div>
         </div>
@@ -442,16 +464,16 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【&#11088; 基础】英国资产阶级革命开始于哪一年？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1640年" aria-pressed="false">
             <span class="opt-letter">A</span> 1640年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="&#10060; 这是光荣革命的时间，是革命结束的标志！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1688年" aria-pressed="false" data-feedback="&#10060; 这是光荣革命的时间，是革命结束的标志！">
             <span class="opt-letter">B</span> 1688年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="&#10060; 这是《权利法案》颁布的时间。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1689年" aria-pressed="false" data-feedback="&#10060; 这是《权利法案》颁布的时间。">
             <span class="opt-letter">C</span> 1689年
           </div>
         </div>
@@ -463,16 +485,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>2. 【&#11088;&#11088; 提高&middot;中考真题】（2023&middot;全国）下列关于英国资产阶级革命的说法，正确的是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="&#10060; 英国革命保留了君主，建立了君主立宪制，不是共和国！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：建立了资产阶级共和国" aria-pressed="false" data-feedback="&#10060; 英国革命保留了君主，建立了君主立宪制，不是共和国！">
             <span class="opt-letter">A</span> 建立了资产阶级共和国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：确立了君主立宪制" aria-pressed="false">
             <span class="opt-letter">B</span> 确立了君主立宪制
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="&#10060; 革命持续了近半个世纪（1640-1688），过程曲折！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：革命过程一帆风顺" aria-pressed="false" data-feedback="&#10060; 革命持续了近半个世纪（1640-1688），过程曲折！">
             <span class="opt-letter">C</span> 革命过程一帆风顺
           </div>
         </div>
@@ -488,20 +510,20 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>3. 【&#11088;&#11088;&#11088; 挑战&middot;材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-\u6311\u6218">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">&#128203; 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:0.88rem;line-height:1.8;">
           <strong>【材料】</strong>"未经议会同意，国王无权废除法律或停止法律执行；未经议会同意，国王无权征税；未经议会同意，国王无权招募军队……" ——《权利法案》（1689年）
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，分析《权利法案》的核心作用是什么？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="&#10060; 《权利法案》没有废除君主制，只是限制了君主权力！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：彻底废除了君主制度" aria-pressed="false" data-feedback="&#10060; 《权利法案》没有废除君主制，只是限制了君主权力！">
             <span class="opt-letter">A</span> 彻底废除了君主制度
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：限制王权，确立议会主权" aria-pressed="false">
             <span class="opt-letter">B</span> 限制王权，确立议会主权
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="&#10060; 材料强调的是限制王权，不是扩大国王权力！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：扩大了国王的权力" aria-pressed="false" data-feedback="&#10060; 材料强调的是限制王权，不是扩大国王权力！">
             <span class="opt-letter">C</span> 扩大了国王的权力
           </div>
         </div>
@@ -615,6 +637,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

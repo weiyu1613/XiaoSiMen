@@ -200,6 +200,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -212,7 +224,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d2zs.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第二单元：遵守社会规则</div>
@@ -309,6 +325,12 @@
     <!-- ② 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解社会秩序的含义和基本分类</li>
@@ -330,16 +352,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】下列哪种行为破坏了交通秩序？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 红灯停绿灯行是遵守交通秩序的体现！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：红灯停绿灯行" aria-pressed="false" data-feedback="❌ 红灯停绿灯行是遵守交通秩序的体现！">
             <span class="opt-letter">A</span> 红灯停绿灯行
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 排队购票是遵守公共秩序的体现！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：排队购票" aria-pressed="false" data-feedback="❌ 排队购票是遵守公共秩序的体现！">
             <span class="opt-letter">B</span> 排队购票
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')" data-feedback="✅ 正确！闯红灯破坏了交通秩序，容易引发交通事故。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：闯红灯过马路" aria-pressed="false" data-feedback="✅ 正确！闯红灯破坏了交通秩序，容易引发交通事故。">
             <span class="opt-letter">C</span> 闯红灯过马路
           </div>
         </div>
@@ -353,16 +375,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】"没有规矩，不成方圆"这句话告诉我们？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 规矩不是用来限制自由的，而是保障自由的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：规矩限制了人的自由" aria-pressed="false" data-feedback="❌ 规矩不是用来限制自由的，而是保障自由的！">
             <span class="opt-letter">A</span> 规矩限制了人的自由
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')" data-feedback="✅ 正确！规矩（规则）让社会生活有序进行。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：社会生活需要规则来维持秩序" aria-pressed="false" data-feedback="✅ 正确！规矩（规则）让社会生活有序进行。">
             <span class="opt-letter">B</span> 社会生活需要规则来维持秩序
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 规矩是必要的，不是无用的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：规矩在实际生活中没有用处" aria-pressed="false" data-feedback="❌ 规矩是必要的，不是无用的！">
             <span class="opt-letter">C</span> 规矩在实际生活中没有用处
           </div>
         </div>
@@ -375,16 +397,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】以下哪种不属于社会秩序的范畴？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 交通秩序属于社会管理秩序，是社会秩序的重要组成！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：交通秩序" aria-pressed="false" data-feedback="❌ 交通秩序属于社会管理秩序，是社会秩序的重要组成！">
             <span class="opt-letter">A</span> 交通秩序
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 教学秩序属于工作/生产秩序，是社会秩序的组成！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：学校教学秩序" aria-pressed="false" data-feedback="❌ 教学秩序属于工作/生产秩序，是社会秩序的组成！">
             <span class="opt-letter">B</span> 学校教学秩序
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')" data-feedback="✅ 正确！"个人睡眠习惯"属于私人领域，不属于公共社会秩序的范畴。社会秩序是针对公共生活的。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：个人睡眠习惯" aria-pressed="false" data-feedback="✅ 正确！"个人睡眠习惯"属于私人领域，不属于公共社会秩序的范畴。社会秩序是针对公共生活的。">
             <span class="opt-letter">C</span> 个人睡眠习惯
           </div>
         </div>
@@ -403,16 +425,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】在排队时插队导致秩序混乱，这说明？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 插队损害了他人权益，不是"方便自己"！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：插队可以节省时间，方便自己" aria-pressed="false" data-feedback="❌ 插队损害了他人权益，不是"方便自己"！">
             <span class="opt-letter">A</span> 插队可以节省时间，方便自己
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')" data-feedback="✅ 正确！插队违反规则，破坏秩序，损害他人权益。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：插队违反规则，破坏秩序，损害他人权益" aria-pressed="false" data-feedback="✅ 正确！插队违反规则，破坏秩序，损害他人权益。">
             <span class="opt-letter">B</span> 插队违反规则，破坏秩序，损害他人权益
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 社会秩序对每个人都有约束力，"没人在意"不是违反规则的理由！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：没人注意到时插队也没关系" aria-pressed="false" data-feedback="❌ 社会秩序对每个人都有约束力，"没人在意"不是违反规则的理由！">
             <span class="opt-letter">C</span> 没人注意到时插队也没关系
           </div>
         </div>
@@ -597,6 +619,9 @@
       <h2 class="section-title"><span class="num">📋</span> 维护秩序的手段</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 16px; color: #6A1B9A;">📖 维护社会秩序的几种手段</h3>
         
         <table class="info-table">
@@ -682,7 +707,9 @@
             <line x1="510" y1="80" x2="510" y2="165" stroke="#6A1B9A" stroke-width="1.5" stroke-dasharray="4,2"/>
           </svg>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ⑦ 规则与秩序的关系 -->
@@ -690,6 +717,9 @@
       <h2 class="section-title"><span class="num">🔗</span> 规则与秩序的关系</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="case-box">
           <div class="label">📖 核心概念 · 规则与秩序的关系</div>
           <p style="margin-top: 8px;"><strong>社会规则</strong>是人们为了维护社会秩序而制定的行为准则。</p>
@@ -734,7 +764,9 @@
           <p><strong>记忆口诀：</strong>"规则定，秩序生；守规则，社会宁。"</p>
           <p style="margin-top: 6px;"><strong>答题要点：</strong>社会规则是社会秩序的<strong>保障</strong>。遵守规则才能维护秩序，破坏规则必然导致秩序混乱。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ⑧ 后测（道法案例分析型 + 中考真题） -->
@@ -745,16 +777,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】社会秩序是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 个人学习计划是私人安排，不属于社会秩序！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：个人的学习计划安排" aria-pressed="false" data-feedback="❌ 个人学习计划是私人安排，不属于社会秩序！">
             <span class="opt-letter">A</span> 个人的学习计划安排
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：社会生活的一种有序化状态" aria-pressed="false">
             <span class="opt-letter">B</span> 社会生活的一种有序化状态
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 社会秩序是公共生活的状态，不等于自然规律！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：自然界的运行规律" aria-pressed="false" data-feedback="❌ 社会秩序是公共生活的状态，不等于自然规律！">
             <span class="opt-letter">C</span> 自然界的运行规律
           </div>
         </div>
@@ -767,16 +799,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·北京中考）"没有规矩，不成方圆"说明？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#FFF3E0;color:#E65100;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 规矩让社会有序，不是为了限制自由！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：规矩限制了人的自由" aria-pressed="false" data-feedback="❌ 规矩让社会有序，不是为了限制自由！">
             <span class="opt-letter">A</span> 规矩限制了人的自由
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：社会生活需要规则来维持秩序" aria-pressed="false">
             <span class="opt-letter">B</span> 社会生活需要规则来维持秩序
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 规矩是必要的！"方圆"说明社会生活需要一定的规范！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：规矩在实际生活中用处不大" aria-pressed="false" data-feedback="❌ 规矩是必要的！"方圆"说明社会生活需要一定的规范！">
             <span class="opt-letter">C</span> 规矩在实际生活中用处不大
           </div>
         </div>
@@ -790,19 +822,19 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·江苏中考）下列维护社会秩序的手段中，最具有强制力的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#FFF3E0;color:#E65100;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 道德靠社会舆论约束，但没有国家强制力，不是最有力的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：道德" aria-pressed="false" data-feedback="❌ 道德靠社会舆论约束，但没有国家强制力，不是最有力的！">
             <span class="opt-letter">A</span> 道德
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 风俗习惯具有传承性，但没有国家强制力！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：风俗习惯" aria-pressed="false" data-feedback="❌ 风俗习惯具有传承性，但没有国家强制力！">
             <span class="opt-letter">B</span> 风俗习惯
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 纪律只适用于特定组织内部，适用范围有限！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：纪律" aria-pressed="false" data-feedback="❌ 纪律只适用于特定组织内部，适用范围有限！">
             <span class="opt-letter">C</span> 纪律
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'D')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：法律" aria-pressed="false">
             <span class="opt-letter">D</span> 法律
           </div>
         </div>
@@ -827,6 +859,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7);border:1px solid #CE93D8;">
           <div class="exam-card-header">
@@ -871,7 +906,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong><strong>社会规则</strong>是维护<strong>社会秩序</strong>的行为准则，二者<strong>相辅相成</strong>。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ⑩ AI学伴 -->
@@ -991,6 +1028,8 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

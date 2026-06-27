@@ -218,6 +218,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -231,6 +243,10 @@
 
   <!-- ========== ③ 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d11jj.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -332,17 +348,17 @@
             <div class="quiz-question">
               <span class="star">★</span>1929年经济大危机首先爆发于哪个国家？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 英国是老牌资本主义国家，但危机不是从英国开始的。1929年10月24日"黑色星期四"发生在美国纽约华尔街。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.英国" aria-pressed="false" data-feedback="❌ 英国是老牌资本主义国家，但危机不是从英国开始的。1929年10月24日"黑色星期四"发生在美国纽约华尔街。">
                 <span class="opt-letter">A</span><label>A. 英国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.美国" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 美国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 德国是战后受害国，危机是从美国蔓延到德国的。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.德国" aria-pressed="false" data-feedback="❌ 德国是战后受害国，危机是从美国蔓延到德国的。">
                 <span class="opt-letter">C</span><label>C. 德国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 日本也不是危机的起源地。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.日本" aria-pressed="false" data-feedback="❌ 日本也不是危机的起源地。">
                 <span class="opt-letter">D</span><label>D. 日本</label>
               </div>
             </div>
@@ -359,17 +375,17 @@
             <div class="quiz-question">
               <span class="star">★</span>罗斯福新政的"3R"指的是什么？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 新政的"3R"是英文字母缩写，不是中文词语。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.就职/立法/改革" aria-pressed="false" data-feedback="❌ 新政的"3R"是英文字母缩写，不是中文词语。">
                 <span class="opt-letter">A</span><label>A. 就职/立法/改革</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.救济/复兴/改革" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 救济/复兴/改革</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 这是新政涉及的领域，不是"3R"的含义。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.银行/工业/农业" aria-pressed="false" data-feedback="❌ 这是新政涉及的领域，不是"3R"的含义。">
                 <span class="opt-letter">C</span><label>C. 银行/工业/农业</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 这是行政层级，与"3R"无关。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.联邦/州/地方" aria-pressed="false" data-feedback="❌ 这是行政层级，与"3R"无关。">
                 <span class="opt-letter">D</span><label>D. 联邦/州/地方</label>
               </div>
             </div>
@@ -386,17 +402,17 @@
             <div class="quiz-question">
               <span class="star">★</span>《全国工业复兴法》的核心内容是？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 农产品提价是《农业调整法》（AAA）的内容。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.农产品提价" aria-pressed="false" data-feedback="❌ 农产品提价是《农业调整法》（AAA）的内容。">
                 <span class="opt-letter">A</span><label>A. 农产品提价</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.确定最低工资和最高工时" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 确定最低工资和最高工时</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'C')" data-feedback="❌ 出口补贴不是该法案的核心内容。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.出口补贴" aria-pressed="false" data-feedback="❌ 出口补贴不是该法案的核心内容。">
                 <span class="opt-letter">C</span><label>C. 出口补贴</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 减税不是《全国工业复兴法》的主要措施。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.减税" aria-pressed="false" data-feedback="❌ 减税不是《全国工业复兴法》的主要措施。">
                 <span class="opt-letter">D</span><label>D. 减税</label>
               </div>
             </div>
@@ -413,17 +429,17 @@
             <div class="quiz-question">
               <span class="star">★</span>罗斯福新政的实质是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 新政维护资本主义私有制，不是消灭它。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.消灭资本主义私有制" aria-pressed="false" data-feedback="❌ 新政维护资本主义私有制，不是消灭它。">
                 <span class="opt-letter">A</span><label>A. 消灭资本主义私有制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.在维护资本主义制度前提下调整生产关系" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 在维护资本主义制度前提下调整生产关系</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 新政不是计划经济，而是国家干预市场经济。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.全面实行计划经济" aria-pressed="false" data-feedback="❌ 新政不是计划经济，而是国家干预市场经济。">
                 <span class="opt-letter">C</span><label>C. 全面实行计划经济</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'D')" data-feedback="❌ 新政没有实行大规模国有化。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.实行国有化" aria-pressed="false" data-feedback="❌ 新政没有实行大规模国有化。">
                 <span class="opt-letter">D</span><label>D. 实行国有化</label>
               </div>
             </div>
@@ -579,17 +595,17 @@
             <div class="quiz-question">
               <span class="star">★</span>以工代赈的主要目的是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 以工代赈不是扩大政府权力的手段，而是救济措施。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.扩大政府权力" aria-pressed="false" data-feedback="❌ 以工代赈不是扩大政府权力的手段，而是救济措施。">
                 <span class="opt-letter">A</span><label>A. 扩大政府权力</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.救济失业和刺激经济" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 救济失业和刺激经济</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 修路盖房是以工代赈的形式，不是目的。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.修路盖房" aria-pressed="false" data-feedback="❌ 修路盖房是以工代赈的形式，不是目的。">
                 <span class="opt-letter">C</span><label>C. 修路盖房</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 储备物资不是以工代赈的主要目的。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.储备物资" aria-pressed="false" data-feedback="❌ 储备物资不是以工代赈的主要目的。">
                 <span class="opt-letter">D</span><label>D. 储备物资</label>
               </div>
             </div>
@@ -606,17 +622,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2018·山东中考）罗斯福新政的重要影响是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 新政确实改善了人民生活，但这不是最重要的历史影响。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.人民生活显著改善" aria-pressed="false" data-feedback="❌ 新政确实改善了人民生活，但这不是最重要的历史影响。">
                 <span class="opt-letter">A</span><label>A. 人民生活显著改善</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.资本主义制度得到调整、巩固与发展" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 资本主义制度得到调整、巩固与发展</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'C')" data-feedback="❌ 新政没有消除经济危机，只是缓解了危机。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.消除了经济危机" aria-pressed="false" data-feedback="❌ 新政没有消除经济危机，只是缓解了危机。">
                 <span class="opt-letter">C</span><label>C. 消除了经济危机</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 福利国家是二战后欧洲建立的，不是新政的结果。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.建立了福利国家" aria-pressed="false" data-feedback="❌ 福利国家是二战后欧洲建立的，不是新政的结果。">
                 <span class="opt-letter">D</span><label>D. 建立了福利国家</label>
               </div>
             </div>
@@ -633,17 +649,17 @@
             <div class="quiz-question">
               <span class="star">★</span>经济大危机爆发的根本原因是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 股票投机是危机的导火索，不是根本原因。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.股票投机" aria-pressed="false" data-feedback="❌ 股票投机是危机的导火索，不是根本原因。">
                 <span class="opt-letter">A</span><label>A. 股票投机</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.生产社会化与生产资料私有制的矛盾" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 生产社会化与生产资料私有制的矛盾</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'C')" data-feedback="❌ 银行倒闭是危机的表现，不是原因。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.银行倒闭" aria-pressed="false" data-feedback="❌ 银行倒闭是危机的表现，不是原因。">
                 <span class="opt-letter">C</span><label>C. 银行倒闭</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 世界市场缩小是危机恶化的结果。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.世界市场缩小" aria-pressed="false" data-feedback="❌ 世界市场缩小是危机恶化的结果。">
                 <span class="opt-letter">D</span><label>D. 世界市场缩小</label>
               </div>
             </div>
@@ -660,17 +676,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2019·河南中考）罗斯福新政的最大特点是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.政府干预经济" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 政府干预经济</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 自由放任是胡佛总统的政策，正好与新政相反。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.自由放任" aria-pressed="false" data-feedback="❌ 自由放任是胡佛总统的政策，正好与新政相反。">
                 <span class="opt-letter">B</span><label>B. 自由放任</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 新政不是计划经济，而是国家干预市场经济。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.计划经济" aria-pressed="false" data-feedback="❌ 新政不是计划经济，而是国家干预市场经济。">
                 <span class="opt-letter">C</span><label>C. 计划经济</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'D')" data-feedback="❌ 贸易保护不是新政的最大特点。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.贸易保护" aria-pressed="false" data-feedback="❌ 贸易保护不是新政的最大特点。">
                 <span class="opt-letter">D</span><label>D. 贸易保护</label>
               </div>
             </div>
@@ -690,6 +706,9 @@
     <!-- ========== ⑩ 必考分析与考点总结 ========== -->
     <section class="section">
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
           <div class="exam-cards">
@@ -719,7 +738,9 @@
             </div>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ========== AI学伴 ========== -->
@@ -817,6 +838,8 @@
       console.log('📚 《罗斯福新政》课件加载完成（v7.14.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -181,6 +181,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -194,6 +206,10 @@
 
   <!-- ③ 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../zwwdsh.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -283,6 +299,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 说出光合作用的概念（原料、条件、产物、场所）</li>
@@ -300,12 +322,12 @@
       <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
 
       <!-- 基础题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 光合作用的原料是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 有机物和氧气</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">B</span> 二氧化碳和水</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 淀粉和氧气</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 二氧化碳和氧气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：有机物和氧气" aria-pressed="false"><span class="opt-letter">A</span> 有机物和氧气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：二氧化碳和水" aria-pressed="false"><span class="opt-letter">B</span> 二氧化碳和水</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：淀粉和氧气" aria-pressed="false"><span class="opt-letter">C</span> 淀粉和氧气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：二氧化碳和氧气" aria-pressed="false"><span class="opt-letter">D</span> 二氧化碳和氧气</div>
         <div class="feedback" id="fb-1"></div>
         <div class="answer-explanation" id="exp-1">
           <strong>解析：</strong>光合作用的原料是<strong>二氧化碳和水</strong>，产物是<strong>有机物（如淀粉）和氧气</strong>。
@@ -313,12 +335,12 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 光合作用进行的场所是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 线粒体</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">B</span> 叶绿体</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 细胞核</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 液泡</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：线粒体" aria-pressed="false"><span class="opt-letter">A</span> 线粒体</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：叶绿体" aria-pressed="false"><span class="opt-letter">B</span> 叶绿体</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞核" aria-pressed="false"><span class="opt-letter">C</span> 细胞核</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：液泡" aria-pressed="false"><span class="opt-letter">D</span> 液泡</div>
         <div class="feedback" id="fb-2"></div>
         <div class="answer-explanation" id="exp-2">
           <strong>解析：</strong>光合作用在<strong>叶绿体</strong>中进行（叶绿体含有叶绿素，能捕获光能）。线粒体是呼吸作用的主要场所。
@@ -326,12 +348,12 @@
       </div>
 
       <!-- 挑战题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）"绿叶在光下制造淀粉"实验中，把绿叶放入酒精隔水加热的目的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 使叶片脱色</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 去除叶片中的淀粉</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 溶解叶绿素，使叶片脱色</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 给叶片消毒</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：使叶片脱色" aria-pressed="false"><span class="opt-letter">A</span> 使叶片脱色</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：去除叶片中的淀粉" aria-pressed="false"><span class="opt-letter">B</span> 去除叶片中的淀粉</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：溶解叶绿素，使叶片脱色" aria-pressed="false"><span class="opt-letter">C</span> 溶解叶绿素，使叶片脱色</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：给叶片消毒" aria-pressed="false"><span class="opt-letter">D</span> 给叶片消毒</div>
         <div class="feedback" id="fb-3"></div>
         <div class="answer-explanation" id="exp-3">
           <strong>解析：</strong>把叶片放入酒精隔水加热，目的是<strong>溶解叶绿素</strong>，使叶片变成黄白色，便于后续滴加碘液后观察颜色变化（淀粉遇碘变蓝）。
@@ -454,24 +476,24 @@
       <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
       <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">1. 光合作用的实质是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 合成有机物，释放能量</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">B</span> 合成有机物，储存能量</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 分解有机物，储存能量</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 分解有机物，释放能量</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：合成有机物，释放能量" aria-pressed="false"><span class="opt-letter">A</span> 合成有机物，释放能量</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：合成有机物，储存能量" aria-pressed="false"><span class="opt-letter">B</span> 合成有机物，储存能量</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：分解有机物，储存能量" aria-pressed="false"><span class="opt-letter">C</span> 分解有机物，储存能量</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：分解有机物，释放能量" aria-pressed="false"><span class="opt-letter">D</span> 分解有机物，释放能量</div>
         <div class="feedback" id="fb-4"></div>
         <div class="answer-explanation" id="exp-4">
           <strong>解析：</strong>光合作用的实质是<strong>合成有机物，储存能量</strong>（光能→化学能，储存在有机物中）。分解有机物、释放能量是呼吸作用。
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】下列措施中，不能提高光合作用效率的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 合理密植</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">B</span> 温室中增施二氧化碳</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">C</span> 中耕松土</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 延长光照时间</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：合理密植" aria-pressed="false"><span class="opt-letter">A</span> 合理密植</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：温室中增施二氧化碳" aria-pressed="false"><span class="opt-letter">B</span> 温室中增施二氧化碳</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：中耕松土" aria-pressed="false"><span class="opt-letter">C</span> 中耕松土</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：延长光照时间" aria-pressed="false"><span class="opt-letter">D</span> 延长光照时间</div>
         <div class="feedback" id="fb-5"></div>
         <div class="answer-explanation" id="exp-5">
           <strong>解析：</strong>C"中耕松土"是为了增加土壤中的氧气，促进<strong>呼吸作用</strong>（根的呼吸），不是提高光合作用效率。ABD都能提高光合作用效率。
@@ -683,6 +705,8 @@
       </div>
     </div>
   </div>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -213,6 +213,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- 1. 品牌栏 -->
   <div class="brand-bar">
@@ -226,6 +238,10 @@
 
   <!-- 3. 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../xjhzrlr.html" class="nav-btn"><i class="fa-solid fa-book"></i> 章目录</a>
@@ -324,24 +340,24 @@
     </p>
 
     <!-- 前测题1（基础） -->
-    <div class="quiz-box" id="pre-test-1">
+    <div class="quiz-box" id="pre-test-1" data-difficulty="intermediate">
       <p style="font-weight:600;margin-bottom:12px;">
         1. 下列食品制作中，利用酵母菌发酵的是（  ）
         <span class="difficulty-badge difficulty-基础">基础</span>
       </p>
-      <div class="quiz-option" data-correct="false" data-feedback="酸奶是利用乳酸菌发酵制作的，不是酵母菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：酸奶" aria-pressed="false" data-correct="false" data-feedback="酸奶是利用乳酸菌发酵制作的，不是酵母菌。">
         <span class="opt-letter">A</span>
         <span>酸奶</span>
       </div>
-      <div class="quiz-option" data-correct="true" data-feedback="正确！酵母菌发酵产生二氧化碳，使馒头、面包松软多孔。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：馒头" aria-pressed="false" data-correct="true" data-feedback="正确！酵母菌发酵产生二氧化碳，使馒头、面包松软多孔。">
         <span class="opt-letter">B</span>
         <span>馒头</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="泡菜是利用乳酸菌发酵制作的，不是酵母菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：泡菜" aria-pressed="false" data-correct="false" data-feedback="泡菜是利用乳酸菌发酵制作的，不是酵母菌。">
         <span class="opt-letter">C</span>
         <span>泡菜</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="醋是利用醋酸菌发酵制作的，不是酵母菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：醋" aria-pressed="false" data-correct="false" data-feedback="醋是利用醋酸菌发酵制作的，不是酵母菌。">
         <span class="opt-letter">D</span>
         <span>醋</span>
       </div>
@@ -353,24 +369,24 @@
     </div>
 
     <!-- 前测题2（基础） -->
-    <div class="quiz-box" id="pre-test-2">
+    <div class="quiz-box" id="pre-test-2" data-difficulty="intermediate">
       <p style="font-weight:600;margin-bottom:12px;">
         2. 制作酸奶和泡菜主要利用的微生物是（  ）
         <span class="difficulty-badge difficulty-基础">基础</span>
       </p>
-      <div class="quiz-option" data-correct="false" data-feedback="酵母菌用于制作馒头、面包，不用于酸奶和泡菜。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：酵母菌" aria-pressed="false" data-correct="false" data-feedback="酵母菌用于制作馒头、面包，不用于酸奶和泡菜。">
         <span class="opt-letter">A</span>
         <span>酵母菌</span>
       </div>
-      <div class="quiz-option" data-correct="true" data-feedback="正确！乳酸菌发酵产生乳酸，使奶制品和蔬菜变酸并形成特殊风味。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：乳酸菌" aria-pressed="false" data-correct="true" data-feedback="正确！乳酸菌发酵产生乳酸，使奶制品和蔬菜变酸并形成特殊风味。">
         <span class="opt-letter">B</span>
         <span>乳酸菌</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="醋酸菌用于制醋，不用于酸奶和泡菜。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：醋酸菌" aria-pressed="false" data-correct="false" data-feedback="醋酸菌用于制醋，不用于酸奶和泡菜。">
         <span class="opt-letter">C</span>
         <span>醋酸菌</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="青霉菌用于生产青霉素，不用于制作酸奶和泡菜。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：青霉菌" aria-pressed="false" data-correct="false" data-feedback="青霉菌用于生产青霉素，不用于制作酸奶和泡菜。">
         <span class="opt-letter">D</span>
         <span>青霉菌</span>
       </div>
@@ -382,24 +398,24 @@
     </div>
 
     <!-- 前测题3（提高） -->
-    <div class="quiz-box" id="pre-test-3">
+    <div class="quiz-box" id="pre-test-3" data-difficulty="intermediate">
       <p style="font-weight:600;margin-bottom:12px;">
         3. 下列微生物中，属于真菌的是（  ）
         <span class="difficulty-badge difficulty-提高">提高</span>
       </p>
-      <div class="quiz-option" data-correct="false" data-feedback="结核杆菌是细菌，不是真菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：结核杆菌" aria-pressed="false" data-correct="false" data-feedback="结核杆菌是细菌，不是真菌。">
         <span class="opt-letter">A</span>
         <span>结核杆菌</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="乳酸菌是细菌，不是真菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：乳酸菌" aria-pressed="false" data-correct="false" data-feedback="乳酸菌是细菌，不是真菌。">
         <span class="opt-letter">B</span>
         <span>乳酸菌</span>
       </div>
-      <div class="quiz-option" data-correct="true" data-feedback="正确！酵母菌是单细胞真菌，具有真正的细胞核。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：酵母菌" aria-pressed="false" data-correct="true" data-feedback="正确！酵母菌是单细胞真菌，具有真正的细胞核。">
         <span class="opt-letter">C</span>
         <span>酵母菌</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="醋酸菌是细菌，不是真菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：醋酸菌" aria-pressed="false" data-correct="false" data-feedback="醋酸菌是细菌，不是真菌。">
         <span class="opt-letter">D</span>
         <span>醋酸菌</span>
       </div>
@@ -411,24 +427,24 @@
     </div>
 
     <!-- 前测题4（挑战） -->
-    <div class="quiz-box" id="pre-test-4">
+    <div class="quiz-box" id="pre-test-4" data-difficulty="intermediate">
       <p style="font-weight:600;margin-bottom:12px;">
         4. 青霉素是一种抗生素，它是由哪种微生物产生的？（  ）
         <span class="difficulty-badge difficulty-挑战">挑战</span>
       </p>
-      <div class="quiz-option" data-correct="false" data-feedback="酵母菌用于食品发酵，不产生青霉素。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：酵母菌" aria-pressed="false" data-correct="false" data-feedback="酵母菌用于食品发酵，不产生青霉素。">
         <span class="opt-letter">A</span>
         <span>酵母菌</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="乳酸菌用于食品发酵，不产生青霉素。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：乳酸菌" aria-pressed="false" data-correct="false" data-feedback="乳酸菌用于食品发酵，不产生青霉素。">
         <span class="opt-letter">B</span>
         <span>乳酸菌</span>
       </div>
-      <div class="quiz-option" data-correct="true" data-feedback="正确！青霉菌是一种真菌，其代谢产物青霉素能抑制细菌细胞壁的合成。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：青霉菌" aria-pressed="false" data-correct="true" data-feedback="正确！青霉菌是一种真菌，其代谢产物青霉素能抑制细菌细胞壁的合成。">
         <span class="opt-letter">C</span>
         <span>青霉菌</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="醋酸菌是细菌，不是真菌，不产生青霉素。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：醋酸菌" aria-pressed="false" data-correct="false" data-feedback="醋酸菌是细菌，不是真菌，不产生青霉素。">
         <span class="opt-letter">D</span>
         <span>醋酸菌</span>
       </div>
@@ -470,6 +486,9 @@
 
       <!-- 食品制作应用 -->
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h4><i class="fas fa-utensils"></i> 食品制作中的应用</h4>
         <div class="example-grid">
           <div class="example-card">
@@ -489,10 +508,15 @@
             <p>分解蛋白质，产生鲜味物质，形成特殊口感与风味。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
 
       <!-- 医药应用 -->
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h4><i class="fas fa-prescription-bottle-medical"></i> 医药应用</h4>
         <div class="example-grid">
           <div class="example-card">
@@ -512,7 +536,9 @@
             <p>利用微生物发酵技术生产乙肝疫苗、流感疫苗等。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </div>
 
     <div id="sec2">
@@ -522,6 +548,9 @@
       </div>
 
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h4><i class="fas fa-virus"></i> 引起人类和动植物疾病</h4>
         <div class="example-grid">
           <div class="example-card">
@@ -545,7 +574,9 @@
           <div class="label">⚠️ 易错警示</div>
           <p>真菌和细菌是两类不同的微生物：真菌有真正的细胞核（真核），细菌没有成形的细胞核（原核）。治疗用药也不同：抗菌用抗生素，杀真菌用抗真菌药。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </div>
 
     <div id="sec3">
@@ -560,6 +591,9 @@
       </div>
 
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h4><i class="fas fa-utensils"></i> 食品保存方法</h4>
         <div class="example-grid">
           <div class="example-card">
@@ -587,7 +621,9 @@
             <p>高浓度糖溶液形成渗透压抑制微生物，如果酱、蜜饯。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </div>
 
     <div id="sec4">
@@ -597,6 +633,9 @@
       </div>
 
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h4><i class="fas fa-shield-virus"></i> 预防措施</h4>
         <div class="example-grid">
           <div class="example-card">
@@ -624,7 +663,9 @@
             <p>呼吸道传染病流行期佩戴口罩，阻断飞沫传播途径。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </div>
 
     <!-- 9. 后测 · 4题 -->
@@ -633,25 +674,25 @@
       后测 · 能力提升
     </div>
 
-    <div class="quiz-box" id="post-test-1">
+    <div class="quiz-box" id="post-test-1" data-difficulty="intermediate">
       <p style="font-weight:600;margin-bottom:12px;">
         1. 下列疾病中，由真菌感染引起的是（  ）
         <span class="difficulty-badge difficulty-提高">提高</span>
         <span class="exam-tag" style="background:#ef4444;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:white;margin-left:8px;">中考真题</span>
       </p>
-      <div class="quiz-option" data-correct="false" data-feedback="肺结核是由结核杆菌（细菌）引起的，不是真菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：肺结核" aria-pressed="false" data-correct="false" data-feedback="肺结核是由结核杆菌（细菌）引起的，不是真菌。">
         <span class="opt-letter">A</span>
         <span>肺结核</span>
       </div>
-      <div class="quiz-option" data-correct="true" data-feedback="正确！足癣是由红色毛癣菌等真菌侵犯皮肤引起的。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：足癣" aria-pressed="false" data-correct="true" data-feedback="正确！足癣是由红色毛癣菌等真菌侵犯皮肤引起的。">
         <span class="opt-letter">B</span>
         <span>足癣</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="细菌性痢疾是由痢疾杆菌（细菌）引起的，不是真菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细菌性痢疾" aria-pressed="false" data-correct="false" data-feedback="细菌性痢疾是由痢疾杆菌（细菌）引起的，不是真菌。">
         <span class="opt-letter">C</span>
         <span>细菌性痢疾</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="流感是由流感病毒引起的，不是真菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：流感" aria-pressed="false" data-correct="false" data-feedback="流感是由流感病毒引起的，不是真菌。">
         <span class="opt-letter">D</span>
         <span>流感</span>
       </div>
@@ -662,24 +703,24 @@
       </div>
     </div>
 
-    <div class="quiz-box" id="post-test-2">
+    <div class="quiz-box" id="post-test-2" data-difficulty="intermediate">
       <p style="font-weight:600;margin-bottom:12px;">
         2. 下列微生物应用对应关系错误的是（  ）
         <span class="difficulty-badge difficulty-挑战">挑战</span>
       </p>
-      <div class="quiz-option" data-correct="false" data-feedback="对应关系正确，酵母菌确实用于制作馒头、面包。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：酵母菌—制作馒头、面包" aria-pressed="false" data-correct="false" data-feedback="对应关系正确，酵母菌确实用于制作馒头、面包。">
         <span class="opt-letter">A</span>
         <span>酵母菌 — 制作馒头、面包</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="对应关系正确，乳酸菌确实用于制作酸奶、泡菜。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：乳酸菌—制作酸奶、泡菜" aria-pressed="false" data-correct="false" data-feedback="对应关系正确，乳酸菌确实用于制作酸奶、泡菜。">
         <span class="opt-letter">B</span>
         <span>乳酸菌 — 制作酸奶、泡菜</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="对应关系正确，青霉菌确实能产生青霉素。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：青霉菌—产生青霉素" aria-pressed="false" data-correct="false" data-feedback="对应关系正确，青霉菌确实能产生青霉素。">
         <span class="opt-letter">C</span>
         <span>青霉菌 — 产生青霉素</span>
       </div>
-      <div class="quiz-option" data-correct="true" data-feedback="正确！酵母菌是真菌，不是细菌，所以归类错误。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：酵母菌—属于细菌，可用于酿酒" aria-pressed="false" data-correct="true" data-feedback="正确！酵母菌是真菌，不是细菌，所以归类错误。">
         <span class="opt-letter">D</span>
         <span>酵母菌 — 属于细菌，可用于酿酒</span>
       </div>
@@ -690,24 +731,24 @@
       </div>
     </div>
 
-    <div class="quiz-box" id="post-test-3">
+    <div class="quiz-box" id="post-test-3" data-difficulty="intermediate">
       <p style="font-weight:600;margin-bottom:12px;">
         3. 防止食品腐败的主要原理是（  ）
         <span class="difficulty-badge difficulty-基础">基础</span>
       </p>
-      <div class="quiz-option" data-correct="false" data-feedback="杀死微生物只是其中一个原理，不够全面。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：仅仅杀死食品中的微生物" aria-pressed="false" data-correct="false" data-feedback="杀死微生物只是其中一个原理，不够全面。">
         <span class="opt-letter">A</span>
         <span>仅仅杀死食品中的微生物</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="增加营养与防止腐败无关。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：增加食品的营养成分" aria-pressed="false" data-correct="false" data-feedback="增加营养与防止腐败无关。">
         <span class="opt-letter">B</span>
         <span>增加食品的营养成分</span>
       </div>
-      <div class="quiz-option" data-correct="true" data-feedback="正确！防止腐败有两大原理：杀死微生物，或抑制其生长和繁殖。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：杀死或抑制微生物的生长和繁殖" aria-pressed="false" data-correct="true" data-feedback="正确！防止腐败有两大原理：杀死微生物，或抑制其生长和繁殖。">
         <span class="opt-letter">C</span>
         <span>杀死或抑制微生物的生长和繁殖</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="低温保存只是抑制，高温灭菌才是杀死，两者原理不同。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：仅仅降低食品的温度" aria-pressed="false" data-correct="false" data-feedback="低温保存只是抑制，高温灭菌才是杀死，两者原理不同。">
         <span class="opt-letter">D</span>
         <span>仅仅降低食品的温度</span>
       </div>
@@ -718,24 +759,24 @@
       </div>
     </div>
 
-    <div class="quiz-box" id="post-test-4">
+    <div class="quiz-box" id="post-test-4" data-difficulty="intermediate">
       <p style="font-weight:600;margin-bottom:12px;">
         4. 下列生物中，不属于细菌的是（  ）
         <span class="difficulty-badge difficulty-提高">提高</span>
       </p>
-      <div class="quiz-option" data-correct="false" data-feedback="结核杆菌是细菌，归属于细菌界。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：结核杆菌" aria-pressed="false" data-correct="false" data-feedback="结核杆菌是细菌，归属于细菌界。">
         <span class="opt-letter">A</span>
         <span>结核杆菌</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="乳酸菌是细菌，归属于细菌界。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：乳酸菌" aria-pressed="false" data-correct="false" data-feedback="乳酸菌是细菌，归属于细菌界。">
         <span class="opt-letter">B</span>
         <span>乳酸菌</span>
       </div>
-      <div class="quiz-option" data-correct="true" data-feedback="正确！蘑菇是真菌，具有真正的细胞核，不属于细菌。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蘑菇" aria-pressed="false" data-correct="true" data-feedback="正确！蘑菇是真菌，具有真正的细胞核，不属于细菌。">
         <span class="opt-letter">C</span>
         <span>蘑菇</span>
       </div>
-      <div class="quiz-option" data-correct="false" data-feedback="醋酸菌是细菌，归属于细菌界。">
+      <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：醋酸菌" aria-pressed="false" data-correct="false" data-feedback="醋酸菌是细菌，归属于细菌界。">
         <span class="opt-letter">D</span>
         <span>醋酸菌</span>
       </div>
@@ -926,6 +967,8 @@
       });
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

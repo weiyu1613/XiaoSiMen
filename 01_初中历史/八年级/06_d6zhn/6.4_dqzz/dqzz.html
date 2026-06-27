@@ -587,6 +587,18 @@
   <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
     <!-- 滚动进度条 -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -724,6 +736,12 @@
     <!-- 7. 学习目标 -->
     <div class="objectives-section">
         <h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
         <div class="objectives-grid">
             <div class="objective-card">
                 <h3>📖 知识与理解</h3>
@@ -743,14 +761,14 @@
     <!-- 8. 前测 -->
     <div class="pretest-section">
         <h2 class="section-title">✏️ 课前检测</h2>
-        <div class="quiz-container">
+        <div class="quiz-container" data-difficulty="intermediate">
             <div class="quiz-question" data-correct="B">
                 <h3>1. 【基础题】抗日战争全面爆发后，八路军、新四军深入敌后开展的是什么战争？</h3>
-                <div class="quiz-options">
-                    <div class="quiz-option" data-option="A">A. 阵地战</div>
-                    <div class="quiz-option" data-option="B">B. 游击战</div>
-                    <div class="quiz-option" data-option="C">C. 攻坚战</div>
-                    <div class="quiz-option" data-option="D">D. 防御战</div>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.阵地战" aria-pressed="false" data-option="A">A. 阵地战</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.游击战" aria-pressed="false" data-option="B">B. 游击战</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.攻坚战" aria-pressed="false" data-option="C">C. 攻坚战</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.防御战" aria-pressed="false" data-option="D">D. 防御战</div>
                 </div>
                 <div class="feedback correct">
                     <strong>✅ 答对了！</strong><br>
@@ -766,11 +784,11 @@
 
             <div class="quiz-question" data-correct="C">
                 <h3>2. 【提高题】平型关大捷发生在哪一年？由谁指挥？</h3>
-                <div class="quiz-options">
-                    <div class="quiz-option" data-option="A">A. 1936年，彭德怀指挥</div>
-                    <div class="quiz-option" data-option="B">B. 1938年，刘伯承指挥</div>
-                    <div class="quiz-option" data-option="C">C. 1937年，林彪指挥</div>
-                    <div class="quiz-option" data-option="D">D. 1937年，彭德怀指挥</div>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.1936年，彭德怀指挥" aria-pressed="false" data-option="A">A. 1936年，彭德怀指挥</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.1938年，刘伯承指挥" aria-pressed="false" data-option="B">B. 1938年，刘伯承指挥</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.1937年，林彪指挥" aria-pressed="false" data-option="C">C. 1937年，林彪指挥</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.1937年，彭德怀指挥" aria-pressed="false" data-option="D">D. 1937年，彭德怀指挥</div>
                 </div>
                 <div class="feedback correct">
                     <strong>✅ 答对了！</strong><br>
@@ -786,11 +804,11 @@
 
             <div class="quiz-question" data-correct="B">
                 <h3>3. 【挑战题】抗日根据地实行的"三三制"原则是指什么？</h3>
-                <div class="quiz-options">
-                    <div class="quiz-option" data-option="A">A. 三个根据地各占三分之一</div>
-                    <div class="quiz-option" data-option="B">B. 抗日民主政权中，共产党员、左派进步分子、中间分子各占三分之一</div>
-                    <div class="quiz-option" data-option="C">C. 三三制是一种土地政策</div>
-                    <div class="quiz-option" data-option="D">D. 三三制是指三年准备、三年建设、三年巩固</div>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.三个根据地各占三分之一" aria-pressed="false" data-option="A">A. 三个根据地各占三分之一</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.抗日民主政权中，共产党员、左派进步分子、中间分子各占三分之一" aria-pressed="false" data-option="B">B. 抗日民主政权中，共产党员、左派进步分子、中间分子各占三分之一</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.三三制是一种土地政策" aria-pressed="false" data-option="C">C. 三三制是一种土地政策</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.三三制是指三年准备、三年建设、三年巩固" aria-pressed="false" data-option="D">D. 三三制是指三年准备、三年建设、三年巩固</div>
                 </div>
                 <div class="feedback correct">
                     <strong>✅ 答对了！</strong><br>
@@ -919,14 +937,14 @@
     <!-- 10. 后测 -->
     <div class="posttest-section">
         <h2 class="section-title">📝 课后检测</h2>
-        <div class="quiz-container">
+        <div class="quiz-container" data-difficulty="intermediate">
             <div class="quiz-question" data-correct="C">
                 <h3>1. 【基础题】百团大战的指挥者是？</h3>
-                <div class="quiz-options">
-                    <div class="quiz-option" data-option="A">A. 林彪</div>
-                    <div class="quiz-option" data-option="B">B. 刘伯承</div>
-                    <div class="quiz-option" data-option="C">C. 彭德怀</div>
-                    <div class="quiz-option" data-option="D">D. 贺龙</div>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.林彪" aria-pressed="false" data-option="A">A. 林彪</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.刘伯承" aria-pressed="false" data-option="B">B. 刘伯承</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.彭德怀" aria-pressed="false" data-option="C">C. 彭德怀</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.贺龙" aria-pressed="false" data-option="D">D. 贺龙</div>
                 </div>
                 <div class="feedback correct">
                     <strong>✅ 答对了！</strong><br>
@@ -942,11 +960,11 @@
 
             <div class="quiz-question" data-correct="B">
                 <h3>2. 【提高题】下列关于平型关大捷的叙述，正确的是？</h3>
-                <div class="quiz-options">
-                    <div class="quiz-option" data-option="A">A. 是抗战以来中国军队取得的第一次胜利</div>
-                    <div class="quiz-option" data-option="B">B. 是抗战以来中国军队主动出击日军的第一次重大胜利</div>
-                    <div class="quiz-option" data-option="C">C. 是敌后战场最大规模的进攻战役</div>
-                    <div class="quiz-option" data-option="D">D. 打破了"国民党不可战胜"的神话</div>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.是抗战以来中国军队取得的第一次胜利" aria-pressed="false" data-option="A">A. 是抗战以来中国军队取得的第一次胜利</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.是抗战以来中国军队主动出击日军的第一次重大胜利" aria-pressed="false" data-option="B">B. 是抗战以来中国军队主动出击日军的第一次重大胜利</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.是敌后战场最大规模的进攻战役" aria-pressed="false" data-option="C">C. 是敌后战场最大规模的进攻战役</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.打破了&quot;国民党不可战胜&quot;的神话" aria-pressed="false" data-option="D">D. 打破了"国民党不可战胜"的神话</div>
                 </div>
                 <div class="feedback correct">
                     <strong>✅ 答对了！</strong><br>
@@ -962,11 +980,11 @@
 
             <div class="quiz-question" data-correct="A">
                 <h3>3. 【中考真题】抗日战争时期，中国共产党在抗日根据地实行的土地政策是？</h3>
-                <div class="quiz-options">
-                    <div class="quiz-option" data-option="A">A. 减租减息</div>
-                    <div class="quiz-option" data-option="B">B. 耕者有其田</div>
-                    <div class="quiz-option" data-option="C">C. 打土豪分田地</div>
-                    <div class="quiz-option" data-option="D">D. 土地国有化</div>
+                <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.减租减息" aria-pressed="false" data-option="A">A. 减租减息</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.耕者有其田" aria-pressed="false" data-option="B">B. 耕者有其田</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.打土豪分田地" aria-pressed="false" data-option="C">C. 打土豪分田地</div>
+                    <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.土地国有化" aria-pressed="false" data-option="D">D. 土地国有化</div>
                 </div>
                 <div class="feedback correct">
                     <strong>✅ 答对了！</strong><br>
@@ -1117,5 +1135,6 @@
             updateScrollProgress();
         });
     </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

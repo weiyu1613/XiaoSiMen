@@ -204,6 +204,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -216,7 +228,11 @@
   <div class="progress-label" id="progress-label">第 2/15 节 · 13%</div>
   
   <!-- ========== ③ 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dwzyldq.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第2章：动物的主要类群</div>
@@ -307,6 +323,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解扁形动物的主要特征</li>
@@ -327,16 +349,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】扁形动物的主要特征是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 辐射对称是腔肠动物的特征，扁形动物是两侧对称。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：辐射对称" aria-pressed="false" data-feedback="❌ 辐射对称是腔肠动物的特征，扁形动物是两侧对称。">
             <span class="opt-letter">A</span> 辐射对称
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：两侧对称" aria-pressed="false">
             <span class="opt-letter">B</span> 两侧对称
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 身体圆筒形是线形动物的特征。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：身体圆筒形" aria-pressed="false" data-feedback="❌ 身体圆筒形是线形动物的特征。">
             <span class="opt-letter">C</span> 身体圆筒形
           </div>
         </div>
@@ -349,16 +371,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】下列哪种动物属于扁形动物？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 水螅是腔肠动物。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：水螅" aria-pressed="false" data-feedback="❌ 水螅是腔肠动物。">
             <span class="opt-letter">A</span> 水螅
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：涡虫" aria-pressed="false">
             <span class="opt-letter">B</span> 涡虫
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 蚯蚓是环节动物。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蚯蚓" aria-pressed="false" data-feedback="❌ 蚯蚓是环节动物。">
             <span class="opt-letter">C</span> 蚯蚓
           </div>
         </div>
@@ -371,16 +393,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】两侧对称对动物进化的意义是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 两侧对称的主要意义不是便于游泳。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：便于水中游泳" aria-pressed="false" data-feedback="❌ 两侧对称的主要意义不是便于游泳。">
             <span class="opt-letter">A</span> 便于水中游泳
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：能够定向运动" aria-pressed="false">
             <span class="opt-letter">B</span> 能够定向运动
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 两侧对称的主要意义是能够定向运动。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：便于捕食" aria-pressed="false" data-feedback="❌ 两侧对称的主要意义是能够定向运动。">
             <span class="opt-letter">C</span> 便于捕食
           </div>
         </div>
@@ -393,16 +415,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】血吸虫的中间宿主是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 血吸虫的中间宿主是钉螺，不是田螺。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：田螺" aria-pressed="false" data-feedback="❌ 血吸虫的中间宿主是钉螺，不是田螺。">
             <span class="opt-letter">A</span> 田螺
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：钉螺" aria-pressed="false">
             <span class="opt-letter">B</span> 钉螺
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 血吸虫的中间宿主是钉螺，不是蜗牛。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蜗牛" aria-pressed="false" data-feedback="❌ 血吸虫的中间宿主是钉螺，不是蜗牛。">
             <span class="opt-letter">C</span> 蜗牛
           </div>
         </div>
@@ -494,16 +516,16 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✍️</span> 后测：巩固提升</h2>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【中考真题】扁形动物比腔肠动物高等的主要特征是？<span class="difficulty-badge difficulty-提高">中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 有口无肛门是两者共有的特征。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：有口无肛门" aria-pressed="false" data-feedback="❌ 有口无肛门是两者共有的特征。">
             <span class="opt-letter">A</span> 有口无肛门
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：身体呈两侧对称" aria-pressed="false">
             <span class="opt-letter">B</span> 身体呈两侧对称
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 背腹扁平只是形态特征，不是进化的关键。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：身体背腹扁平" aria-pressed="false" data-feedback="❌ 背腹扁平只是形态特征，不是进化的关键。">
             <span class="opt-letter">C</span> 身体背腹扁平
           </div>
         </div>
@@ -515,16 +537,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【中考真题】下列关于扁形动物的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 扁形动物有口无肛门。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：有口有肛门" aria-pressed="false" data-feedback="❌ 扁形动物有口无肛门。">
             <span class="opt-letter">A</span> 有口有肛门
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ 涡虫自由生活，血吸虫、绦虫寄生。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：都是寄生生活" aria-pressed="false" data-feedback="❌ 涡虫自由生活，血吸虫、绦虫寄生。">
             <span class="opt-letter">B</span> 都是寄生生活
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：身体呈两侧对称" aria-pressed="false">
             <span class="opt-letter">C</span> 身体呈两侧对称
           </div>
         </div>
@@ -668,6 +690,8 @@
     }
   </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -105,9 +105,10 @@ function checkPreQuiz(element, isCorrect) {
     element.style.animation = 'correctBounce 0.4s ease';
     spawnParticles(element, 12);
     playSound('correct');
-    addXP(10);
+    var _qz = element.closest('.quiz-box, .quiz-container') || element;
+    var _gain = awardXP(_qz, 10);
     updateStreak(true);
-    showFloatingXP(element, '+10 XP');
+    showFloatingXP(element, '+' + _gain + ' XP');
     if (window.mascotEngine) window.mascotEngine.setState('happy');
     if (feedback) {
       feedback.innerHTML = '<strong>✅ 答对了！</strong> ' +
@@ -157,9 +158,10 @@ function checkPostQuiz(element, isCorrect) {
     element.style.animation = 'correctBounce 0.4s ease';
     spawnParticles(element, 12);
     playSound('correct');
-    addXP(10);
+    var _qz = element.closest('.quiz-box, .quiz-container') || element;
+    var _gain = awardXP(_qz, 10);
     updateStreak(true);
-    showFloatingXP(element, '+10 XP');
+    showFloatingXP(element, '+' + _gain + ' XP');
     if (window.mascotEngine) window.mascotEngine.setState('happy');
     if (feedback) {
       feedback.innerHTML = '<strong>✅ 正确！</strong> ' +
@@ -209,9 +211,10 @@ function checkAnswer(element, isCorrect) {
     element.style.animation = 'correctBounce 0.4s ease';
     spawnParticles(element, 12);
     playSound('correct');
-    addXP(10);
+    var _qz = element.closest('.quiz-box, .quiz-container') || element;
+    var _gain = awardXP(_qz, 10);
     updateStreak(true);
-    showFloatingXP(element, '+10 XP');
+    showFloatingXP(element, '+' + _gain + ' XP');
     if (window.mascotEngine) window.mascotEngine.setState('happy');
     if (feedback) {
       feedback.innerHTML = '<strong>✅ 正确！</strong>';
@@ -647,6 +650,20 @@ function saveGameState(state) {
   }
 }
 
+/* ========== XP 难度加权（P1-3） ========== */
+const DIFFICULTY_MULTIPLIERS = { basic: 1, intermediate: 1.5, advanced: 2 };
+function getDifficultyMultiplier(quizElement) {
+  const diff = quizElement?.dataset?.difficulty || 'basic';
+  return DIFFICULTY_MULTIPLIERS[diff] || 1;
+}
+/* 按题目难度加权发放 XP，返回实际获得值 */
+function awardXP(quizElement, baseAmount) {
+  if (typeof baseAmount !== 'number') { baseAmount = 10; }
+  const gained = Math.max(1, Math.round(baseAmount * getDifficultyMultiplier(quizElement)));
+  addXP(gained);
+  return gained;
+}
+
 /* 增加经验值并检查升级 */
 function addXP(amount) {
   const state = loadGameState();
@@ -658,6 +675,7 @@ function addXP(amount) {
   }
   saveGameState(state);
   updateXPDisplay();
+  return amount;
 }
 
 /* 根据 XP 值计算当前等级 */

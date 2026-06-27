@@ -19,6 +19,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <header><h1>🧬 第 1 课 生物的遗传</h1></header>
   
   <!-- 预测试区 -->
@@ -52,6 +64,9 @@
   <main>
     <!-- Card 1: 遗传的概念 -->
     <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
       <h2>一、遗传的概念</h2>
       <p><strong>🔹 什么是遗传？</strong></p>
       <p>遗传是指亲子代之间在性状上表现出相似性的现象。就像我们常说的"龙生龙，凤生凤，老鼠生来会打洞"，这就是遗传的典型例子。</p>
@@ -72,10 +87,15 @@
         <li>遗传保证了物种的稳定性和连续性</li>
         <li>生物的性状（如身高、体重、肤色等）都是可遗传的</li>
       </ul>
-    </div>
+    
+</details>
+</div>
 
     <!-- Card 2: 遗传的物质基础 -->
     <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
       <h2>二、遗传的物质基础</h2>
       
       <p><strong>🧬 DNA - 生命的蓝图</strong></p>
@@ -113,10 +133,15 @@
         <li>基因是控制生物性状的基本单位</li>
         <li>DNA 是主要的遗传物质</li>
       </ul>
-    </div>
+    
+</details>
+</div>
 
     <!-- Card 3: 遗传的意义 -->
     <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
       <h2>三、遗传的意义</h2>
       
       <p><strong>🌍 为什么遗传如此重要？</strong></p>
@@ -151,7 +176,9 @@
           <li>人类的生存和社会结构将受到严重影响</li>
         </ul>
       </div>
-    </div>
+    
+</details>
+</div>
   </main>
 
   <!-- 课后测验区 -->
@@ -234,5 +261,6 @@
     </div>
   </section>
 
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

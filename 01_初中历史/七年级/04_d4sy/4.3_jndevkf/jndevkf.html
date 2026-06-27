@@ -231,6 +231,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -250,7 +262,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d4sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第四单元：政权分立与民族交融</div>
@@ -359,6 +375,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道江南地区开发的主要原因</li>
@@ -381,16 +403,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】江南地区开发的最主要的原因是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 南方自然条件优越是客观条件，但不是最主要原因。最主要原因是人的因素（北人南迁）。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：南方自然条件优越" aria-pressed="false" data-feedback="❌ 南方自然条件优越是客观条件，但不是最主要原因。最主要原因是人的因素（北人南迁）。">
             <span class="opt-letter">A</span> 南方自然条件优越
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北人南迁带来劳动力和先进技术" aria-pressed="false">
             <span class="opt-letter">B</span> 北人南迁带来劳动力和先进技术
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 南方战乱少是原因之一，但不是最主要原因。最主要原因是北人南迁。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：南方战乱少" aria-pressed="false" data-feedback="❌ 南方战乱少是原因之一，但不是最主要原因。最主要原因是北人南迁。">
             <span class="opt-letter">C</span> 南方战乱少
           </div>
         </div>
@@ -414,16 +436,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】江南地区开发主要是在哪个时期？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 春秋战国时期，江南地区还未得到大规模开发！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：春秋战国时期" aria-pressed="false" data-feedback="❌ 春秋战国时期，江南地区还未得到大规模开发！">
             <span class="opt-letter">A</span> 春秋战国时期
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 秦汉时期，江南地区开发程度仍然有限。大规模开发是在魏晋南北朝时期。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：秦汉时期" aria-pressed="false" data-feedback="❌ 秦汉时期，江南地区开发程度仍然有限。大规模开发是在魏晋南北朝时期。">
             <span class="opt-letter">B</span> 秦汉时期
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：魏晋南北朝时期" aria-pressed="false">
             <span class="opt-letter">C</span> 魏晋南北朝时期
           </div>
         </div>
@@ -436,16 +458,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于江南地区开发的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ "江南地区在秦汉时期已经得到充分开发"是错的！秦汉时期江南开发程度有限，大规模开发是在魏晋南北朝。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦汉时期已经充分开发" aria-pressed="false" data-feedback="❌ "江南地区在秦汉时期已经得到充分开发"是错的！秦汉时期江南开发程度有限，大规模开发是在魏晋南北朝。">
             <span class="opt-letter">A</span> 秦汉时期已经充分开发
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北人南迁带来了先进的生产技术" aria-pressed="false">
             <span class="opt-letter">B</span> 北人南迁带来了先进的生产技术
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ "江南地区的开发与北方战乱无关"是错的！北方战乱导致北人南迁，这是江南开发的直接原因。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：开发与北方战乱无关" aria-pressed="false" data-feedback="❌ "江南地区的开发与北方战乱无关"是错的！北方战乱导致北人南迁，这是江南开发的直接原因。">
             <span class="opt-letter">C</span> 开发与北方战乱无关
           </div>
         </div>
@@ -463,16 +485,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列关于江南地区开发的表述，全部正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ "开发主要在秦汉时期"是错的！开发主要在魏晋南北朝时期。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：开发主要在秦汉时期+与北人南迁无关" aria-pressed="false" data-feedback="❌ "开发主要在秦汉时期"是错的！开发主要在魏晋南北朝时期。">
             <span class="opt-letter">A</span> 开发主要在秦汉时期 + 与北人南迁无关
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ "开发没有改变经济格局"是错的！江南开发为经济重心南移奠定了基础。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北人南迁带技术+开发没有改变经济格局" aria-pressed="false" data-feedback="❌ "开发没有改变经济格局"是错的！江南开发为经济重心南移奠定了基础。">
             <span class="opt-letter">B</span> 北人南迁带技术 + 开发没有改变经济格局
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：北人南迁带技术+为经济重心南移奠基" aria-pressed="false">
             <span class="opt-letter">C</span> 北人南迁带技术 + 为经济重心南移奠基
           </div>
         </div>
@@ -570,6 +592,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG:江南开发表现示意图 -->
         <div class="svg-container">
           <svg viewBox="0 0 900 300" width="900" height="300" xmlns="http://www.w3.org/2000/svg">
@@ -618,7 +643,9 @@
           <p>考试中常出现"<strong>江南地区在秦汉时期已经充分开发</strong>"这样的错误表述，一定要判断为<strong>错误</strong>！</p>
           <p style="margin-top: 8px;">正确的表述是："江南地区在<strong>魏晋南北朝时期</strong>得到大规模开发"。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: 核心内容 - 开发意义 -->
@@ -692,16 +719,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】江南地区开发的最主要的原因是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 南方自然条件优越是客观条件，但不是最主要原因。最主要原因是人的因素（北人南迁）。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：南方自然条件优越" aria-pressed="false" data-feedback="❌ 南方自然条件优越是客观条件，但不是最主要原因。最主要原因是人的因素（北人南迁）。">
             <span class="opt-letter">A</span> 南方自然条件优越
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北人南迁带来劳动力和先进技术" aria-pressed="false">
             <span class="opt-letter">B</span> 北人南迁带来劳动力和先进技术
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 南方战乱少是原因之一，但不是最主要原因。最主要原因是北人南迁。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：南方战乱少" aria-pressed="false" data-feedback="❌ 南方战乱少是原因之一，但不是最主要原因。最主要原因是北人南迁。">
             <span class="opt-letter">C</span> 南方战乱少
           </div>
         </div>
@@ -714,16 +741,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）下列关于江南地区开发的叙述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ "江南地区在秦汉时期已经充分开发"是错的！大规模开发是在魏晋南北朝时期。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦汉时期已经充分开发" aria-pressed="false" data-feedback="❌ "江南地区在秦汉时期已经充分开发"是错的！大规模开发是在魏晋南北朝时期。">
             <span class="opt-letter">A</span> 秦汉时期已经充分开发
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北人南迁带来了先进的生产技术" aria-pressed="false">
             <span class="opt-letter">B</span> 北人南迁带来了先进的生产技术
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ "江南地区的开发与经济重心南移无关"是错的！江南开发为经济重心南移奠定了基础。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：开发与经济重心南移无关" aria-pressed="false" data-feedback="❌ "江南地区的开发与经济重心南移无关"是错的！江南开发为经济重心南移奠定了基础。">
             <span class="opt-letter">C</span> 开发与经济重心南移无关
           </div>
         </div>
@@ -742,16 +769,16 @@
       </div>
 
       <!-- 后测挑战题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·浙江中考）江南地区开发的历史意义是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ "没有改变经济格局"是错的！江南开发为经济重心南移奠定了基础，改变了经济格局。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：没有改变经济格局" aria-pressed="false" data-feedback="❌ "没有改变经济格局"是错的！江南开发为经济重心南移奠定了基础，改变了经济格局。">
             <span class="opt-letter">A</span> 没有改变经济格局
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：为经济重心南移奠定了基础" aria-pressed="false">
             <span class="opt-letter">B</span> 为经济重心南移奠定了基础
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ "导致北方经济衰退"是错的！江南开发促进了南方经济发展，但北方经济仍然重要。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：导致北方经济衰退" aria-pressed="false" data-feedback="❌ "导致北方经济衰退"是错的！江南开发促进了南方经济发展，但北方经济仍然重要。">
             <span class="opt-letter">C</span> 导致北方经济衰退
           </div>
         </div>
@@ -769,20 +796,20 @@
       </div>
 
       <!-- 后测挑战题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料】</strong>"魏晋南北朝时期，北方战乱频繁，大量人口南迁，带来了劳动力和先进的生产技术。江南地区得到了大规模开发，为后世经济重心南移奠定了基础。" ——摘自人教版七年级历史上册
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，江南地区开发的主要原因是什么？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料没有提到"南方自然条件优越"是主要原因，只是客观条件。材料强调的是"北方人口大量南迁"。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：南方自然条件优越" aria-pressed="false" data-feedback="❌ 材料没有提到"南方自然条件优越"是主要原因，只是客观条件。材料强调的是"北方人口大量南迁"。">
             <span class="opt-letter">A</span> 南方自然条件优越
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北方人口大量南迁，带来劳动力和先进技术" aria-pressed="false">
             <span class="opt-letter">B</span> 北方人口大量南迁，带来劳动力和先进技术
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料明确说"魏晋南北朝时期"江南才得到大规模开发，所以"秦汉时期已经完成开发"是错的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：秦汉时期江南已经开发完成" aria-pressed="false" data-feedback="❌ 材料明确说"魏晋南北朝时期"江南才得到大规模开发，所以"秦汉时期已经完成开发"是错的！">
             <span class="opt-letter">C</span> 秦汉时期江南已经开发完成
           </div>
         </div>
@@ -810,6 +837,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -869,7 +899,9 @@
             <tr style="background:#fdf4ff;"><td>填空题</td><td>★★★☆☆</td><td>填时间/原因/意义</td><td>记住关键词</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -1025,6 +1057,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -228,6 +228,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -240,7 +252,11 @@
   <div class="progress-label" id="progress-label">第 2/2 节 · 100%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d8jd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第八单元：近代经济、社会生活与教育文化事业的发展</div>
@@ -327,6 +343,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解新式教育的发端过程</li>
@@ -347,16 +369,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】中国近代第一所新式学堂是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：京师同文馆" aria-pressed="false">
             <span class="opt-letter">A</span> 京师同文馆
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是第一所新式学堂！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：京师大学堂" aria-pressed="false" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是第一所新式学堂！">
             <span class="opt-letter">B</span> 京师大学堂
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 北洋大学堂是天津大学的前身，不是第一所新式学堂！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：北洋大学堂" aria-pressed="false" data-feedback="❌ 北洋大学堂是天津大学的前身，不是第一所新式学堂！">
             <span class="opt-letter">C</span> 北洋大学堂
           </div>
         </div>
@@ -369,16 +391,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】科举制度废除于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 1898年是戊戌变法时期，京师大学堂创办，但科举制还没有废除！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1898年" aria-pressed="false" data-feedback="❌ 1898年是戊戌变法时期，京师大学堂创办，但科举制还没有废除！">
             <span class="opt-letter">A</span> 1898年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1905年" aria-pressed="false">
             <span class="opt-letter">B</span> 1905年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 1912年是中华民国成立，科举制早已废除！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1912年" aria-pressed="false" data-feedback="❌ 1912年是中华民国成立，科举制早已废除！">
             <span class="opt-letter">C</span> 1912年
           </div>
         </div>
@@ -391,16 +413,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于京师大学堂的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 京师同文馆是1862年创办的，京师大学堂是1898年创办的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：创办于1862年" aria-pressed="false" data-feedback="❌ 京师同文馆是1862年创办的，京师大学堂是1898年创办的！">
             <span class="opt-letter">A</span> 创办于1862年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：是北京大学的前身" aria-pressed="false">
             <span class="opt-letter">B</span> 是北京大学的前身
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是洋务运动时期！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：洋务派创办的" aria-pressed="false" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是洋务运动时期！">
             <span class="opt-letter">C</span> 洋务派创办的
           </div>
         </div>
@@ -418,6 +440,9 @@
       <h2 class="section-title"><span class="num">📚</span> 新式教育的发端</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: var(--primary);">📖 新式教育的发展历程</h3>
         
         <!-- 时间轴 -->
@@ -451,7 +476,9 @@
           <p><strong>记忆口诀：</strong>"1862同文馆，1898大学堂；1905废科举，新式教育开新篇"</p>
           <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"京师同文馆是北京大学的前身"→ 错误！京师大学堂才是北京大学的前身！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: 核心内容 - 新闻出版业 -->
@@ -593,16 +620,16 @@
       </p>
 
       <!-- 测验题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】中国近代第一份商业性报纸是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 20, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《申报》" aria-pressed="false">
             <span class="opt-letter">A</span> 《申报》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 《万国公报》是传教士创办的报刊，不是第一份商业性报纸！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：《万国公报》" aria-pressed="false" data-feedback="❌ 《万国公报》是传教士创办的报刊，不是第一份商业性报纸！">
             <span class="opt-letter">B</span> 《万国公报》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'C')" data-feedback="❌ 《时务报》是维新派创办的报刊，不是第一份商业性报纸！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：《时务报》" aria-pressed="false" data-feedback="❌ 《时务报》是维新派创办的报刊，不是第一份商业性报纸！">
             <span class="opt-letter">C</span> 《时务报》
           </div>
         </div>
@@ -615,16 +642,16 @@
       </div>
 
       <!-- 测验题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】京张铁路的设计者是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 21, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 21, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：詹天佑" aria-pressed="false">
             <span class="opt-letter">A</span> 詹天佑
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'B')" data-feedback="❌ 侯德榜是化学家，发明了'侯氏制碱法'，不是铁路工程师！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 21, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：侯德榜" aria-pressed="false" data-feedback="❌ 侯德榜是化学家，发明了'侯氏制碱法'，不是铁路工程师！">
             <span class="opt-letter">B</span> 侯德榜
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'C')" data-feedback="❌ 魏源是思想家，写了《海国图志》，不是铁路工程师！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 21, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：魏源" aria-pressed="false" data-feedback="❌ 魏源是思想家，写了《海国图志》，不是铁路工程师！">
             <span class="opt-letter">C</span> 魏源
           </div>
         </div>
@@ -637,16 +664,16 @@
       </div>
 
       <!-- 测验题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 挑战】鲁迅的《狂人日记》发表于哪一年？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'A')" data-feedback="❌ 1915年是新文化运动开始的时间，不是《狂人日记》发表的时间！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 22, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1915年" aria-pressed="false" data-feedback="❌ 1915年是新文化运动开始的时间，不是《狂人日记》发表的时间！">
             <span class="opt-letter">A</span> 1915年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'B')" data-feedback="❌ 1919年是五四运动的时间，不是《狂人日记》发表的时间！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 22, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1919年" aria-pressed="false" data-feedback="❌ 1919年是五四运动的时间，不是《狂人日记》发表的时间！">
             <span class="opt-letter">B</span> 1919年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 22, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 22, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1918年" aria-pressed="false">
             <span class="opt-letter">C</span> 1918年
           </div>
         </div>
@@ -667,16 +694,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】科举制度废除于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 1898年是戊戌变法时期，京师大学堂创办，但科举制还没有废除！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1898年" aria-pressed="false" data-feedback="❌ 1898年是戊戌变法时期，京师大学堂创办，但科举制还没有废除！">
             <span class="opt-letter">A</span> 1898年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1905年" aria-pressed="false">
             <span class="opt-letter">B</span> 1905年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 1912年是中华民国成立，科举制早已废除！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1912年" aria-pressed="false" data-feedback="❌ 1912年是中华民国成立，科举制早已废除！">
             <span class="opt-letter">C</span> 1912年
           </div>
         </div>
@@ -689,16 +716,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）下列关于京师大学堂的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 京师同文馆是1862年创办的，京师大学堂是1898年创办的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：创办于1862年" aria-pressed="false" data-feedback="❌ 京师同文馆是1862年创办的，京师大学堂是1898年创办的！">
             <span class="opt-letter">A</span> 创办于1862年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：是北京大学的前身" aria-pressed="false">
             <span class="opt-letter">B</span> 是北京大学的前身
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是洋务运动时期！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：洋务派创办的" aria-pressed="false" data-feedback="❌ 京师大学堂是戊戌变法时期创办的，不是洋务运动时期！">
             <span class="opt-letter">C</span> 洋务派创办的
           </div>
         </div>
@@ -711,16 +738,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南中考）下列不属于鲁迅作品的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 《狂人日记》是鲁迅的作品，不符合题目要求（选择不属于的）！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《狂人日记》" aria-pressed="false" data-feedback="❌ 《狂人日记》是鲁迅的作品，不符合题目要求（选择不属于的）！">
             <span class="opt-letter">A</span> 《狂人日记》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 《阿Q正传》是鲁迅的作品，不符合题目要求（选择不属于的）！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：《阿Q正传》" aria-pressed="false" data-feedback="❌ 《阿Q正传》是鲁迅的作品，不符合题目要求（选择不属于的）！">
             <span class="opt-letter">B</span> 《阿Q正传》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：《海国图志》" aria-pressed="false">
             <span class="opt-letter">C</span> 《海国图志》
           </div>
         </div>
@@ -739,6 +766,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 考点分析</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: var(--primary);">📖 核心考点解析</h3>
         
         <!-- 考点1 -->
@@ -801,7 +831,9 @@
             <p><strong>"鲁迅狂人日记，徐悲鸿愚公移山，聂耳义勇军"</strong> - 用这个口诀记忆文学艺术成就。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     
   
@@ -910,5 +942,6 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

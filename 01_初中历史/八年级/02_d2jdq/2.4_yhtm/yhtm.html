@@ -582,6 +582,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- 1. Brand Bar -->
 <div class="brand-bar">
@@ -602,6 +614,10 @@
 
 <!-- 3. Nav Bar -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
   <div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
     <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
@@ -772,17 +788,17 @@
       
       <div class="quiz-question">
         <h4>1. 甲午中日战争后，清政府签订了什么条约？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 错误。《南京条约》是1842年第一次鸦片战争后签订的。戊戌变法的直接导火索是甲午战争后的《马关条约》。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" aria-label="选项A：《南京条约》" aria-pressed="false" data-feedback="❌ 错误。《南京条约》是1842年第一次鸦片战争后签订的。戊戌变法的直接导火索是甲午战争后的《马关条约》。">
             <span class="opt-letter">A</span> 《南京条约》
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <button class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')" aria-label="选项B：《马关条约》" aria-pressed="false">
             <span class="opt-letter">B</span> 《马关条约》
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 错误。《北京条约》是1860年第二次鸦片战争后签订的。戊戌变法发生在甲午战争后的1898年。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" aria-label="选项C：《北京条约》" aria-pressed="false" data-feedback="❌ 错误。《北京条约》是1860年第二次鸦片战争后签订的。戊戌变法发生在甲午战争后的1898年。">
             <span class="opt-letter">C</span> 《北京条约》
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" data-feedback="❌ 错误。《辛丑条约》是1901年八国联军侵华后签订的，在戊戌变法失败之后。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 1, 'D')" aria-label="选项D：《辛丑条约》" aria-pressed="false" data-feedback="❌ 错误。《辛丑条约》是1901年八国联军侵华后签订的，在戊戌变法失败之后。">
             <span class="opt-letter">D</span> 《辛丑条约》
           </button>
         </div>
@@ -808,17 +824,17 @@
 
       <div class="quiz-question">
         <h4>2. 在中国近代史上，最早提出学习西方政治制度的是哪一派别？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, false, 2, &quot;A&quot;)" data-feedback="❌ 错误。洋务派主张"中学为体，西学为用"，主要学习西方的军事技术和工业，不涉及政治制度改革。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 2, &quot;A&quot;)" aria-label="选项A：洋务派" aria-pressed="false" data-feedback="❌ 错误。洋务派主张"中学为体，西学为用"，主要学习西方的军事技术和工业，不涉及政治制度改革。">
             <span class="opt-letter">A</span> 洋务派
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, true, 2, &quot;B&quot;)">
+          <button class="quiz-option" onclick="checkAnswer(this, true, 2, &quot;B&quot;)" aria-label="选项B：维新派" aria-pressed="false">
             <span class="opt-letter">B</span> 维新派
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 2, &quot;C&quot;)" data-feedback="❌ 错误。顽固派坚决反对任何形式的改革，主张维护封建传统。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 2, &quot;C&quot;)" aria-label="选项C：顽固派" aria-pressed="false" data-feedback="❌ 错误。顽固派坚决反对任何形式的改革，主张维护封建传统。">
             <span class="opt-letter">C</span> 顽固派
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 2, &quot;D&quot;)" data-feedback="❌ 错误。义和团是反帝爱国运动，提出"扶清灭洋"口号，没有提出学习西方政治制度。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 2, &quot;D&quot;)" aria-label="选项D：义和团" aria-pressed="false" data-feedback="❌ 错误。义和团是反帝爱国运动，提出"扶清灭洋"口号，没有提出学习西方政治制度。">
             <span class="opt-letter">D</span> 义和团
           </button>
         </div>
@@ -844,17 +860,17 @@
 
       <div class="quiz-question">
         <h4>3. 你知道"戊戌"是什么意思吗？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, true, 3, &quot;A&quot;)">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, true, 3, &quot;A&quot;)" aria-label="选项A：农历年份的称呼（干支纪年）" aria-pressed="false">
             <span class="opt-letter">A</span> 农历年份的称呼（干支纪年）
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 3, &quot;B&quot;)" data-feedback="❌ 错误。戊戌不是人名，而是中国传统干支纪年法中的年份称呼。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 3, &quot;B&quot;)" aria-label="选项B：变法领袖的名字" aria-pressed="false" data-feedback="❌ 错误。戊戌不是人名，而是中国传统干支纪年法中的年份称呼。">
             <span class="opt-letter">B</span> 变法领袖的名字
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 3, &quot;C&quot;)" data-feedback="❌ 错误。戊戌不是地名，而是中国传统干支纪年法中的年份称呼。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 3, &quot;C&quot;)" aria-label="选项C：变法发生的地点" aria-pressed="false" data-feedback="❌ 错误。戊戌不是地名，而是中国传统干支纪年法中的年份称呼。">
             <span class="opt-letter">C</span> 变法发生的地点
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 3, &quot;D&quot;)" data-feedback="❌ 错误。戊戌不是政治口号，而是中国传统干支纪年法中的年份称呼。1898年是农历戊戌年。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 3, &quot;D&quot;)" aria-label="选项D：变法的政治口号" aria-pressed="false" data-feedback="❌ 错误。戊戌不是政治口号，而是中国传统干支纪年法中的年份称呼。1898年是农历戊戌年。">
             <span class="opt-letter">D</span> 变法的政治口号
           </button>
         </div>
@@ -1241,17 +1257,17 @@
     <div class="quiz-section">
       <div class="quiz-question">
         <h4>1. 戊戌变法发生在哪一年？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, false, 4, &quot;A&quot;)" data-feedback="❌ 错误。1894年是甲午战争爆发的年份，不是戊戌变法。戊戌变法发生在1898年（农历戊戌年）。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 4, &quot;A&quot;)" aria-label="选项A：1894年" aria-pressed="false" data-feedback="❌ 错误。1894年是甲午战争爆发的年份，不是戊戌变法。戊戌变法发生在1898年（农历戊戌年）。">
             <span class="opt-letter">A</span> 1894年
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 4, &quot;B&quot;)" data-feedback="❌ 错误。1895年是《马关条约》签订、公车上书发生的年份，但戊戌变法是在三年后的1898年。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 4, &quot;B&quot;)" aria-label="选项B：1895年" aria-pressed="false" data-feedback="❌ 错误。1895年是《马关条约》签订、公车上书发生的年份，但戊戌变法是在三年后的1898年。">
             <span class="opt-letter">B</span> 1895年
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, true, 4, &quot;C&quot;)">
+          <button class="quiz-option" onclick="checkAnswer(this, true, 4, &quot;C&quot;)" aria-label="选项C：1898年" aria-pressed="false">
             <span class="opt-letter">C</span> 1898年
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 4, &quot;D&quot;)" data-feedback="❌ 错误。1911年是辛亥革命爆发的年份，推翻了清朝统治，在戊戌变法失败13年后。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 4, &quot;D&quot;)" aria-label="选项D：1911年" aria-pressed="false" data-feedback="❌ 错误。1911年是辛亥革命爆发的年份，推翻了清朝统治，在戊戌变法失败13年后。">
             <span class="opt-letter">D</span> 1911年
           </button>
         </div>
@@ -1272,17 +1288,17 @@
 
       <div class="quiz-question">
         <h4>2. "公车上书"的直接原因是什么？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, false, 5, &quot;A&quot;)" data-feedback="❌ 错误。《南京条约》签订于1842年，是第一次鸦片战争的结果。公车上书是1895年因《马关条约》签订而起。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 5, &quot;A&quot;)" aria-label="选项A：《南京条约》的签订" aria-pressed="false" data-feedback="❌ 错误。《南京条约》签订于1842年，是第一次鸦片战争的结果。公车上书是1895年因《马关条约》签订而起。">
             <span class="opt-letter">A</span> 《南京条约》的签订
           </button>
           <button class="quiz-option" onclick="checkAnswer(this, true, 5, &quot;B&quot;)"公车上书"。">
             <span class="opt-letter">B</span> 《马关条约》的签订
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 5, &quot;C&quot;)" data-feedback="❌ 错误。《辛丑条约》签订于1901年，在戊戌变法失败之后，是八国联军侵华的结果。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 5, &quot;C&quot;)" aria-label="选项C：《辛丑条约》的签订" aria-pressed="false" data-feedback="❌ 错误。《辛丑条约》签订于1901年，在戊戌变法失败之后，是八国联军侵华的结果。">
             <span class="opt-letter">C</span> 《辛丑条约》的签订
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 5, &quot;D&quot;)" data-feedback="❌ 错误。八国联军侵华发生在1900年，在戊戌变法失败两年后，与公车上书无关。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 5, &quot;D&quot;)" aria-label="选项D：八国联军侵华" aria-pressed="false" data-feedback="❌ 错误。八国联军侵华发生在1900年，在戊戌变法失败两年后，与公车上书无关。">
             <span class="opt-letter">D</span> 八国联军侵华
           </button>
         </div>
@@ -1303,17 +1319,17 @@
 
       <div class="quiz-question">
         <h4>3. 戊戌变法失败的根本原因是？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, false, 6, &quot;A&quot;)" data-feedback="❌ 错误。虽然变法措施较多较急，但这只是失败的原因之一，不是根本原因。根本原因是双方力量对比悬殊。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 6, &quot;A&quot;)" aria-label="选项A：变法措施太多太急" aria-pressed="false" data-feedback="❌ 错误。虽然变法措施较多较急，但这只是失败的原因之一，不是根本原因。根本原因是双方力量对比悬殊。">
             <span class="opt-letter">A</span> 变法措施太多太急
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 6, &quot;B&quot;)" data-feedback="❌ 错误。光绪帝是支持变法的，他颁布了"明定国是"诏，宣布变法。问题在于他没有实权。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 6, &quot;B&quot;)" aria-label="选项B：光绪帝反对变法" aria-pressed="false" data-feedback="❌ 错误。光绪帝是支持变法的，他颁布了"明定国是"诏，宣布变法。问题在于他没有实权。">
             <span class="opt-letter">B</span> 光绪帝反对变法
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, true, 6, &quot;C&quot;)">
+          <button class="quiz-option" onclick="checkAnswer(this, true, 6, &quot;C&quot;)" aria-label="选项C：维新派力量弱小，顽固派势力强大" aria-pressed="false">
             <span class="opt-letter">C</span> 维新派力量弱小，顽固派势力强大
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 6, &quot;D&quot;)" data-feedback="❌ 错误。帝国主义虽然反对中国变法图强，但不是变法失败的根本原因。失败的根本原因在国内的阶级力量对比。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 6, &quot;D&quot;)" aria-label="选项D：帝国主义的干涉" aria-pressed="false" data-feedback="❌ 错误。帝国主义虽然反对中国变法图强，但不是变法失败的根本原因。失败的根本原因在国内的阶级力量对比。">
             <span class="opt-letter">D</span> 帝国主义的干涉
           </button>
         </div>
@@ -1334,17 +1350,17 @@
 
       <div class="quiz-question">
         <h4>4. 戊戌六君子中，留下"有心杀贼，无力回天"名言的是？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, false, 7, &quot;A&quot;)" data-feedback="❌ 错误。康有为是维新派领袖，但在政变前已逃往国外，没有被杀害。六君子是谭嗣同、康广仁、林旭、杨深秀、杨锐、刘光第。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 7, &quot;A&quot;)" aria-label="选项A：康有为" aria-pressed="false" data-feedback="❌ 错误。康有为是维新派领袖，但在政变前已逃往国外，没有被杀害。六君子是谭嗣同、康广仁、林旭、杨深秀、杨锐、刘光第。">
             <span class="opt-letter">A</span> 康有为
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 7, &quot;B&quot;)" data-feedback="❌ 错误。梁启超也是维新派重要人物，政变后逃往日本，没有被杀害。留下这句名言的是谭嗣同。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 7, &quot;B&quot;)" aria-label="选项B：梁启超" aria-pressed="false" data-feedback="❌ 错误。梁启超也是维新派重要人物，政变后逃往日本，没有被杀害。留下这句名言的是谭嗣同。">
             <span class="opt-letter">B</span> 梁启超
           </button>
           <button class="quiz-option" onclick="checkAnswer(this, true, 7, &quot;C&quot;)"有心杀贼，无力回天，死得其所，快哉快哉！"的绝命诗，展现了视死如归的精神。">
             <span class="opt-letter">C</span> 谭嗣同
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 7, &quot;D&quot;)" data-feedback="❌ 错误。严复是维新思想家，翻译《天演论》，但不是戊戌六君子之一。六君子中留下这句名言的是谭嗣同。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 7, &quot;D&quot;)" aria-label="选项D：严复" aria-pressed="false" data-feedback="❌ 错误。严复是维新思想家，翻译《天演论》，但不是戊戌六君子之一。六君子中留下这句名言的是谭嗣同。">
             <span class="opt-letter">D</span> 严复
           </button>
         </div>
@@ -1365,17 +1381,17 @@
 
       <div class="quiz-question">
         <h4>5. 戊戌变法最重要的历史意义是什么？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, false, 8, &quot;A&quot;)" data-feedback="❌ 错误。戊戌变法最终失败了，没有实现君主立宪。建立君主立宪的尝试因戊戌政变而中断。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 8, &quot;A&quot;)" aria-label="选项A：建立了君主立宪制度" aria-pressed="false" data-feedback="❌ 错误。戊戌变法最终失败了，没有实现君主立宪。建立君主立宪的尝试因戊戌政变而中断。">
             <span class="opt-letter">A</span> 建立了君主立宪制度
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 8, &quot;B&quot;)" data-feedback="❌ 错误。戊戌变法没有推翻清朝统治，推翻清朝的是1911年的辛亥革命。变法是改良运动，不是革命。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 8, &quot;B&quot;)" aria-label="选项B：推翻了清朝统治" aria-pressed="false" data-feedback="❌ 错误。戊戌变法没有推翻清朝统治，推翻清朝的是1911年的辛亥革命。变法是改良运动，不是革命。">
             <span class="opt-letter">B</span> 推翻了清朝统治
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, true, 8, &quot;C&quot;)">
+          <button class="quiz-option" onclick="checkAnswer(this, true, 8, &quot;C&quot;)" aria-label="选项C：起到了思想启蒙的作用" aria-pressed="false">
             <span class="opt-letter">C</span> 起到了思想启蒙的作用
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 8, &quot;D&quot;)" data-feedback="❌ 错误。戊戌变法没有完成反帝反封建任务，这一任务是由后来的新民主主义革命完成的。变法的最大意义是思想启蒙。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 8, &quot;D&quot;)" aria-label="选项D：完成了反帝反封建任务" aria-pressed="false" data-feedback="❌ 错误。戊戌变法没有完成反帝反封建任务，这一任务是由后来的新民主主义革命完成的。变法的最大意义是思想启蒙。">
             <span class="opt-letter">D</span> 完成了反帝反封建任务
           </button>
         </div>
@@ -1396,17 +1412,17 @@
 
       <div class="quiz-question">
         <h4>6. 下列哪项是戊戌变法仅存的成果？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" onclick="checkAnswer(this, false, 9, &quot;A&quot;)" data-feedback="❌ 错误。京师同文馆是洋务运动时期创办的，不是戊戌变法的成果。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 9, &quot;A&quot;)" aria-label="选项A：京师同文馆" aria-pressed="false" data-feedback="❌ 错误。京师同文馆是洋务运动时期创办的，不是戊戌变法的成果。">
             <span class="opt-letter">A</span> 京师同文馆
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, true, 9, &quot;B&quot;)">
+          <button class="quiz-option" onclick="checkAnswer(this, true, 9, &quot;B&quot;)" aria-label="选项B：京师大学堂" aria-pressed="false">
             <span class="opt-letter">B</span> 京师大学堂
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 9, &quot;C&quot;)" data-feedback="❌ 错误。八股文虽然在变法期间被废除，但戊戌政变后慈禧太后又恢复了八股取士。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 9, &quot;C&quot;)" aria-label="选项C：废除八股取士" aria-pressed="false" data-feedback="❌ 错误。八股文虽然在变法期间被废除，但戊戌政变后慈禧太后又恢复了八股取士。">
             <span class="opt-letter">C</span> 废除八股取士
           </button>
-          <button class="quiz-option" onclick="checkAnswer(this, false, 9, &quot;D&quot;)" data-feedback="❌ 错误。君主立宪制度没有建立成功，戊戌政变后一切恢复旧制。仅存的是京师大学堂。">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 9, &quot;D&quot;)" aria-label="选项D：建立君主立宪" aria-pressed="false" data-feedback="❌ 错误。君主立宪制度没有建立成功，戊戌政变后一切恢复旧制。仅存的是京师大学堂。">
             <span class="opt-letter">D</span> 建立君主立宪
           </button>
         </div>
@@ -1583,6 +1599,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

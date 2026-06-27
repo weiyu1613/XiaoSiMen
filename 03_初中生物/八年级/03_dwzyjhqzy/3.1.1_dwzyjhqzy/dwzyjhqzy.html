@@ -130,6 +130,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -143,6 +155,10 @@
 
   <!-- ========== 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../dwzyjhqzy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -239,6 +255,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 说出动物在维持生态平衡中的作用</li>
@@ -259,16 +281,16 @@
       </p>
 
       <!-- 前测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】关于生态系统的组成，以下正确的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 生产者包括绿色植物和光合细菌，动物属于消费者，不在此范围内！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：生产者、消费者、分解者" aria-pressed="false" data-feedback="❌ 生产者包括绿色植物和光合细菌，动物属于消费者，不在此范围内！">
             <span class="opt-letter">A</span> 生产者、消费者、分解者
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：生产者、消费者、分解者、非生物部分" aria-pressed="false">
             <span class="opt-letter">B</span> 生产者、消费者、分解者、非生物部分
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 动物是消费者，不能直接分解有机物！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：绿色植物、动物、病毒" aria-pressed="false" data-feedback="❌ 动物是消费者，不能直接分解有机物！">
             <span class="opt-letter">C</span> 绿色植物、动物、病毒
           </div>
         </div>
@@ -281,16 +303,16 @@
       </div>
 
       <!-- 前测题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】"大鱼吃小鱼，小鱼吃虾米"这句话描述的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 捕食关系描述的是食物链中的吃与被吃关系，不是合作关系！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：种内互助" aria-pressed="false" data-feedback="❌ 捕食关系描述的是食物链中的吃与被吃关系，不是合作关系！">
             <span class="opt-letter">A</span> 种内互助
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：食物链中的捕食关系" aria-pressed="false">
             <span class="opt-letter">B</span> 食物链中的捕食关系
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 竞争关系是同种或不同种生物争夺同一资源，这里描述的是吃与被吃！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：生物之间的竞争" aria-pressed="false" data-feedback="❌ 竞争关系是同种或不同种生物争夺同一资源，这里描述的是吃与被吃！">
             <span class="opt-letter">C</span> 生物之间的竞争
           </div>
         </div>
@@ -303,16 +325,16 @@
       </div>
 
       <!-- 前测题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】如果某地区大量捕杀蛇，可能导致？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 蛇减少会导致鼠类天敌减少，鼠的数量会增加！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：鼠类数量减少" aria-pressed="false" data-feedback="❌ 蛇减少会导致鼠类天敌减少，鼠的数量会增加！">
             <span class="opt-letter">A</span> 鼠类数量减少
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：鼠类数量增加，破坏农作物" aria-pressed="false">
             <span class="opt-letter">B</span> 鼠类数量增加，破坏农作物
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 蛇被大量捕杀，蛇的数量应该是减少，不是增加！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蛇的数量反而增加" aria-pressed="false" data-feedback="❌ 蛇被大量捕杀，蛇的数量应该是减少，不是增加！">
             <span class="opt-letter">C</span> 蛇的数量反而增加
           </div>
         </div>
@@ -555,16 +577,16 @@
       <p style="color: var(--primary); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】动物在生态系统中的作用主要是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 分解有机物是细菌和真菌（分解者）的作用，不是动物的主要功能！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：分解有机物" aria-pressed="false" data-feedback="❌ 分解有机物是细菌和真菌（分解者）的作用，不是动物的主要功能！">
             <span class="opt-letter">A</span> 分解有机物
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 动物是消费者，不能自己制造有机物！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：制造有机物" aria-pressed="false" data-feedback="❌ 动物是消费者，不能自己制造有机物！">
             <span class="opt-letter">B</span> 制造有机物
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：维持生态平衡" aria-pressed="false">
             <span class="opt-letter">C</span> 维持生态平衡
           </div>
         </div>
@@ -577,16 +599,16 @@
       </div>
 
       <!-- 后测题2（中考真题） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东）关于动物与植物的关系，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：动物帮助植物传粉和传播种子" aria-pressed="false">
             <span class="opt-letter">A</span> 动物帮助植物传粉和传播种子
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 大多数动物和植物是互利关系，动物并非总是对植物有害！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：动物对植物只有害处" aria-pressed="false" data-feedback="❌ 大多数动物和植物是互利关系，动物并非总是对植物有害！">
             <span class="opt-letter">B</span> 动物对植物只有害处
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 动物和植物之间存在多种关系，包括互利共生、捕食关系等！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：动物和植物之间没有直接关系" aria-pressed="false" data-feedback="❌ 动物和植物之间存在多种关系，包括互利共生、捕食关系等！">
             <span class="opt-letter">C</span> 动物和植物之间没有直接关系
           </div>
         </div>
@@ -599,16 +621,16 @@
       </div>
 
       <!-- 后测题3（中考真题） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南）如果大量捕杀青蛙，会导致？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 青蛙被大量捕杀后，蚊子的天敌减少，蚊子数量应该增加！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蚊子数量减少" aria-pressed="false" data-feedback="❌ 青蛙被大量捕杀后，蚊子的天敌减少，蚊子数量应该增加！">
             <span class="opt-letter">A</span> 蚊子数量减少
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：蚊子数量增加" aria-pressed="false">
             <span class="opt-letter">B</span> 蚊子数量增加
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 青蛙是蚊子的天敌，青蛙减少会导致蚊子增加！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蚊子数量不变" aria-pressed="false" data-feedback="❌ 青蛙是蚊子的天敌，青蛙减少会导致蚊子增加！">
             <span class="opt-letter">C</span> 蚊子数量不变
           </div>
         </div>
@@ -626,6 +648,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
 
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#16a34a;">1</span>
@@ -666,7 +691,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>生物多样性包括<strong>基因、物种、生态系统</strong>三个层次。保护措施：建立自然保护区、制定保护法、人工养殖濒危物种、加强科普教育。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -788,6 +815,8 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -18,6 +18,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- 品牌栏 -->
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
@@ -30,6 +42,10 @@
 
   <!-- 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../rttljkjy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -117,6 +133,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 描述动脉、静脉和毛细血管的结构特点</li>
@@ -133,12 +155,12 @@
       <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
 
       <!-- 基础题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 下列血管中，血流速度最快的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 毛细血管</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">B</span> 动脉</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 静脉</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 无法判断</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：毛细血管" aria-pressed="false"><span class="opt-letter">A</span> 毛细血管</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：动脉" aria-pressed="false"><span class="opt-letter">B</span> 动脉</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：静脉" aria-pressed="false"><span class="opt-letter">C</span> 静脉</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：无法判断" aria-pressed="false"><span class="opt-letter">D</span> 无法判断</div>
         <div class="feedback" id="fb-1"></div>
         <div class="answer-explanation" id="exp-1">
           <strong>解析：</strong>动脉的管壁厚、弹性大，血流速度<strong>最快</strong>；静脉管壁薄、弹性小，血流速度较慢；毛细血管管径最小，血流速度<strong>最慢</strong>。
@@ -146,12 +168,12 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 毛细血管适于物质交换的特点不包括（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 数量多，分布广</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">B</span> 管径小，只允许红细胞单行通过</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">C</span> 管壁厚，由多层上皮细胞构成</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 血流速度最慢</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：数量多，分布广" aria-pressed="false"><span class="opt-letter">A</span> 数量多，分布广</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：管径小，只允许红细胞单行通过" aria-pressed="false"><span class="opt-letter">B</span> 管径小，只允许红细胞单行通过</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：管壁厚，由多层上皮细胞构成" aria-pressed="false"><span class="opt-letter">C</span> 管壁厚，由多层上皮细胞构成</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：血流速度最慢" aria-pressed="false"><span class="opt-letter">D</span> 血流速度最慢</div>
         <div class="feedback" id="fb-2"></div>
         <div class="answer-explanation" id="exp-2">
           <strong>解析：</strong>毛细血管适于物质交换的特点是：数量多、分布广；管径小，只允许红细胞单行通过；管壁<strong>薄</strong>，只由<strong>一层上皮细胞</strong>构成；血流速度最慢。C选项“管壁厚，由多层上皮细胞构成”是错误的。
@@ -165,6 +187,9 @@
 
       <!-- 知识点1：血管的分类 -->
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:var(--primary);margin-bottom:12px;">一、血管的分类</h3>
         <p>血管分为三类：<strong>动脉、静脉、毛细血管</strong>。</p>
         <div class="vessel-diagram">
@@ -184,7 +209,9 @@
             <p>将血液从身体各部分送回心脏</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
 
       <!-- 知识点2：三种血管的结构与功能特点 -->
       <div class="card">
@@ -227,24 +254,24 @@
       <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
       <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">1. 中医切脉的“脉”指的是哪种血管？（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">A</span> 动脉</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 静脉</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">C</span> 毛细血管</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 无法判断</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：动脉" aria-pressed="false"><span class="opt-letter">A</span> 动脉</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：静脉" aria-pressed="false"><span class="opt-letter">B</span> 静脉</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：毛细血管" aria-pressed="false"><span class="opt-letter">C</span> 毛细血管</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：无法判断" aria-pressed="false"><span class="opt-letter">D</span> 无法判断</div>
         <div class="feedback" id="fb-3"></div></div>
         <div class="answer-explanation" id="exp-3">
           <strong>解析：</strong>中医切脉的“脉”指的是<strong>动脉</strong>（桡动脉），因为动脉的搏动比较明显，可以在手腕处摸到。
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】下列有关毛细血管的叙述，正确的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">A</span> 毛细血管管壁由一层上皮细胞构成，适于物质交换</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 毛细血管的血流速度最快</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 毛细血管的功能是运输氧气</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 毛细血管的管径最大</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：毛细血管管壁由一层上皮细胞构成，适于物质交换" aria-pressed="false"><span class="opt-letter">A</span> 毛细血管管壁由一层上皮细胞构成，适于物质交换</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：毛细血管的血流速度最快" aria-pressed="false"><span class="opt-letter">B</span> 毛细血管的血流速度最快</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：毛细血管的功能是运输氧气" aria-pressed="false"><span class="opt-letter">C</span> 毛细血管的功能是运输氧气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：毛细血管的管径最大" aria-pressed="false"><span class="opt-letter">D</span> 毛细血管的管径最大</div>
         <div class="feedback" id="fb-4"></div></div>
         <div class="answer-explanation" id="exp-4">
           <strong>解析：</strong>A是正确的。B错误，毛细血管的血流速度<strong>最慢</strong>；C错误，运输氧气是红细胞的功能；D错误，毛细血管的管径<strong>最小</strong>。
@@ -317,6 +344,8 @@
     registerAnchorContent('q2', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔬 毛细血管适于物质交换的特点有哪些？</h4><p>数量多、分布广；管径小，只允许红细胞单行通过；管壁薄，只由一层上皮细胞构成；血流速度最慢。</p></div>');
     registerAnchorContent('q3', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🤔 怎样区分动脉、静脉和毛细血管？</h4><p>可以从<strong>血流方向、血管粗细、管壁厚薄、弹性大小、血流速度</strong>等方面区分。</p></div>');
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

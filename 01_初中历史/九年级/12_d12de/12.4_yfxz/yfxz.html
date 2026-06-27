@@ -218,6 +218,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -231,6 +243,10 @@
 
   <!-- ========== ③ 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d12de.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -332,14 +348,14 @@
             <div class="quiz-question">
               <span class="star">★</span>不结盟运动成立于哪一年？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'A')" data-feedback="❌ 1945年是联合国成立的时间，不是不结盟运动！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1945年" aria-pressed="false" data-feedback="❌ 1945年是联合国成立的时间，不是不结盟运动！">
                 <span class="opt-letter">A</span><label>A. 1945年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1961年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 1961年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 1990年是纳米比亚独立的时间，不是不结盟运动成立时间！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1990年" aria-pressed="false" data-feedback="❌ 1990年是纳米比亚独立的时间，不是不结盟运动成立时间！">
                 <span class="opt-letter">C</span><label>C. 1990年</label>
               </div>
             </div>
@@ -356,14 +372,14 @@
             <div class="quiz-question">
               <span class="star">★</span>纳米比亚独立于哪一年，标志殖民时代终结？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 1960年是非洲独立年，有17个国家独立，但不是纳米比亚！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1960年" aria-pressed="false" data-feedback="❌ 1960年是非洲独立年，有17个国家独立，但不是纳米比亚！">
                 <span class="opt-letter">A</span><label>A. 1960年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'B')" data-feedback="❌ 1947年是印度独立的年份，不是纳米比亚！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1947年" aria-pressed="false" data-feedback="❌ 1947年是印度独立的年份，不是纳米比亚！">
                 <span class="opt-letter">B</span><label>B. 1947年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1990年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 1990年</label>
               </div>
             </div>
@@ -380,14 +396,14 @@
             <div class="quiz-question">
               <span class="star">★</span>不结盟运动的发起人包括？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 毛泽东是中国领导人，不是不结盟运动的发起人。中国是不结盟运动的观察员国。">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.铁托、纳赛尔、毛泽东" aria-pressed="false" data-feedback="❌ 毛泽东是中国领导人，不是不结盟运动的发起人。中国是不结盟运动的观察员国。">
                 <span class="opt-letter">A</span><label>A. 铁托、纳赛尔、毛泽东</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.铁托、纳赛尔、尼赫鲁" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 铁托、纳赛尔、尼赫鲁</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'C')" data-feedback="❌ 甘地是印度独立运动领袖，但他1952年已去世，不结盟运动1961年才成立！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.铁托、甘地、尼赫鲁" aria-pressed="false" data-feedback="❌ 甘地是印度独立运动领袖，但他1952年已去世，不结盟运动1961年才成立！">
                 <span class="opt-letter">C</span><label>C. 铁托、甘地、尼赫鲁</label>
               </div>
             </div>
@@ -409,14 +425,14 @@
             <div class="quiz-question">
               <span class="star">★</span>"亚洲四小龙"经济崛起的共同特点是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.出口导向型经济+政府主导" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 出口导向型经济 + 政府主导</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 进口替代是拉丁美洲一些国家的策略，亚洲四小龙主要是出口导向型！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.进口替代工业化" aria-pressed="false" data-feedback="❌ 进口替代是拉丁美洲一些国家的策略，亚洲四小龙主要是出口导向型！">
                 <span class="opt-letter">B</span><label>B. 进口替代工业化</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 完全自由放任不符合事实，亚洲四小龙都有较强的政府引导和规划！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.完全自由放任的市场经济" aria-pressed="false" data-feedback="❌ 完全自由放任不符合事实，亚洲四小龙都有较强的政府引导和规划！">
                 <span class="opt-letter">C</span><label>C. 完全自由放任的市场经济</label>
               </div>
             </div>
@@ -560,14 +576,14 @@
             <div class="quiz-question">
               <span class="star">★</span>中国在哪一年开始改革开放？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 1949年是中华人民共和国成立的时间，不是改革开放！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1949年" aria-pressed="false" data-feedback="❌ 1949年是中华人民共和国成立的时间，不是改革开放！">
                 <span class="opt-letter">A</span><label>A. 1949年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1978年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 1978年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 1992年是邓小平南方谈话的时间，不是改革开放的起点！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1992年" aria-pressed="false" data-feedback="❌ 1992年是邓小平南方谈话的时间，不是改革开放的起点！">
                 <span class="opt-letter">C</span><label>C. 1992年</label>
               </div>
             </div>
@@ -584,14 +600,14 @@
             <div class="quiz-question">
               <span class="star">★</span>（2023·广东中考）关于发展中国家的表述，正确的是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.不结盟运动推动国际关系民主化" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 不结盟运动推动国际关系民主化</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ 发展中国家经济实力总体较弱，说"超过发达国家"是错误的！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.发展中国家经济实力超过发达国家" aria-pressed="false" data-feedback="❌ 发展中国家经济实力总体较弱，说"超过发达国家"是错误的！">
                 <span class="opt-letter">B</span><label>B. 发展中国家经济实力超过发达国家</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'C')" data-feedback="❌ 发展中国家内部差异很大，"都已实现工业化"是错误的！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.所有发展中国家都已实现工业化" aria-pressed="false" data-feedback="❌ 发展中国家内部差异很大，"都已实现工业化"是错误的！">
                 <span class="opt-letter">C</span><label>C. 所有发展中国家都已实现工业化</label>
               </div>
             </div>
@@ -608,14 +624,14 @@
             <div class="quiz-question">
               <span class="star">★</span>【材料分析】"不依附于任何大国集团"体现了哪一运动的原则？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 联合国主张大国协调，与"不依附于任何大国集团"矛盾！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.联合国大国一致原则" aria-pressed="false" data-feedback="❌ 联合国主张大国协调，与"不依附于任何大国集团"矛盾！">
                 <span class="opt-letter">A</span><label>A. 联合国 大国一致原则</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'B')" data-feedback="❌ 北约是军事同盟组织，成员国依附于美国主导的集团！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.北约集体防御原则" aria-pressed="false" data-feedback="❌ 北约是军事同盟组织，成员国依附于美国主导的集团！">
                 <span class="opt-letter">B</span><label>B. 北约 集体防御原则</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.不结盟运动独立自主原则" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 不结盟运动 独立自主原则</label>
               </div>
             </div>
@@ -632,14 +648,14 @@
             <div class="quiz-question">
               <span class="star">★</span>亚非拉国家新发展的根本原因是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.民族独立+经济自主发展+国际合作" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 民族独立 + 经济自主发展 + 国际合作</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 外部援助只是辅助因素，不是根本原因。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.发达国家的援助" aria-pressed="false" data-feedback="❌ 外部援助只是辅助因素，不是根本原因。">
                 <span class="opt-letter">B</span><label>B. 发达国家的援助</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 冷战结束只是提供了有利环境，不是根本原因。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.冷战结束" aria-pressed="false" data-feedback="❌ 冷战结束只是提供了有利环境，不是根本原因。">
                 <span class="opt-letter">C</span><label>C. 冷战结束</label>
               </div>
             </div>
@@ -664,6 +680,9 @@
     <!-- ========== ⑩ 必考分析与考点总结 ========== -->
     <section class="section">
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
           <div class="exam-cards">
@@ -693,7 +712,9 @@
             </div>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ========== AI学伴 ========== -->
@@ -794,6 +815,8 @@
       console.log('📚 《亚非拉国家的新发展》课件加载完成（v7.14.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

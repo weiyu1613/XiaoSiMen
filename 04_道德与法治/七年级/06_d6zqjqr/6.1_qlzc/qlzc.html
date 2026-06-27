@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-heart"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill"></div></div>
   <div class="progress-label">第 20/31 节 · 64.5%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d6zqjqr.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第六单元：做情绪情感的主人</div>
@@ -134,6 +150,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 了解情绪的基本类型和复杂情绪 <span class="tag tag-theory">关联：情绪分类理论</span></li>
         <li>✅ 知道情绪的影响因素 <span class="tag tag-theory">关联：情绪认知理论</span></li>
@@ -147,12 +169,12 @@
       <p style="color:#ff9800;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】情绪的基本类型包括？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：基本情绪包括喜、怒、哀、惧</span>"><span class="opt-letter">A</span> 喜、怒、哀、惧</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 酸、甜、苦、辣是味觉，不是情绪类型。<br><span class='tag tag-mistake'>归因：混淆了生理感觉和情绪分类</span>"><span class="opt-letter">B</span> 酸、甜、苦、辣</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 红、黄、蓝、绿是颜色，不是情绪类型。<br><span class='tag tag-mistake'>归因：混淆了视觉感知和情绪分类</span>"><span class="opt-letter">C</span> 红、黄、蓝、绿</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：喜、怒、哀、惧" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：基本情绪包括喜、怒、哀、惧</span>"><span class="opt-letter">A</span> 喜、怒、哀、惧</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：酸、甜、苦、辣" aria-pressed="false" data-fb="❌ 酸、甜、苦、辣是味觉，不是情绪类型。<br><span class='tag tag-mistake'>归因：混淆了生理感觉和情绪分类</span>"><span class="opt-letter">B</span> 酸、甜、苦、辣</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：红、黄、蓝、绿" aria-pressed="false" data-fb="❌ 红、黄、蓝、绿是颜色，不是情绪类型。<br><span class='tag tag-mistake'>归因：混淆了视觉感知和情绪分类</span>"><span class="opt-letter">C</span> 红、黄、蓝、绿</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -164,12 +186,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】下列不属于青春期情绪特点的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 反应强烈属于青春期情绪特点，不符合题意。<br><span class='tag tag-mistake'>归因：对青春期情绪特点理解不全面</span>"><span class="opt-letter">A</span> 反应强烈</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 波动与固执属于青春期情绪特点，不符合题意。<br><span class='tag tag-mistake'>归因：对青春期情绪特点理解不全面</span>"><span class="opt-letter">B</span> 波动与固执</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：情绪稳定是成年人的特点，不是青春期情绪特点</span>"><span class="opt-letter">C</span> 情绪稳定</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：反应强烈" aria-pressed="false" data-fb="❌ 反应强烈属于青春期情绪特点，不符合题意。<br><span class='tag tag-mistake'>归因：对青春期情绪特点理解不全面</span>"><span class="opt-letter">A</span> 反应强烈</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：波动与固执" aria-pressed="false" data-fb="❌ 波动与固执属于青春期情绪特点，不符合题意。<br><span class='tag tag-mistake'>归因：对青春期情绪特点理解不全面</span>"><span class="opt-letter">B</span> 波动与固执</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：情绪稳定" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：情绪稳定是成年人的特点，不是青春期情绪特点</span>"><span class="opt-letter">C</span> 情绪稳定</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -181,12 +203,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】下列关于情绪的作用，说法正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 情绪的作用具有两面性，不一定都激励我们。<br><span class='tag tag-mistake'>归因：片面理解了情绪的作用，忽略了消极情绪的影响</span>"><span class="opt-letter">A</span> 情绪只会激励我们克服困难</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：情绪的作用具有两面性，可能激励也可能阻碍</span>"><span class="opt-letter">B</span> 情绪可能激励我们，也可能阻碍我们</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 情绪会影响我们的观念和行动，不是毫无作用。<br><span class='tag tag-mistake'>归因：低估了情绪的作用，对情绪的功能理解错误</span>"><span class="opt-letter">C</span> 情绪对我们的行动毫无作用</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：情绪只会激励我们克服困难" aria-pressed="false" data-fb="❌ 情绪的作用具有两面性，不一定都激励我们。<br><span class='tag tag-mistake'>归因：片面理解了情绪的作用，忽略了消极情绪的影响</span>"><span class="opt-letter">A</span> 情绪只会激励我们克服困难</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：情绪可能激励我们，也可能阻碍我们" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：情绪的作用具有两面性，可能激励也可能阻碍</span>"><span class="opt-letter">B</span> 情绪可能激励我们，也可能阻碍我们</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：情绪对我们的行动毫无作用" aria-pressed="false" data-fb="❌ 情绪会影响我们的观念和行动，不是毫无作用。<br><span class='tag tag-mistake'>归因：低估了情绪的作用，对情绪的功能理解错误</span>"><span class="opt-letter">C</span> 情绪对我们的行动毫无作用</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -227,6 +249,9 @@
 
     <section><h2 class="section-title">💡 情绪的作用</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box"><div class="label">✨ 情绪的作用 <span class="tag tag-theory">关联：情绪功能理论</span></div>
           <p>① <strong>影响我们的观念和行动</strong>：积极情绪让我们乐观向上，消极情绪让我们悲观退缩。</p>
           <p>② <strong>可能激励我们克服困难</strong>：比如感动的情绪会让我们更愿意帮助他人。</p>
@@ -235,7 +260,9 @@
         <div class="warn-box" style="margin-top:16px;"><div class="label">⚠️ 易错警示</div>
           <p>情绪的作用具有<strong>两面性</strong>，不能片面认为情绪只有积极作用或只有消极作用。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">🌟 青春期情绪特点</h2>
@@ -254,12 +281,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列哪些属于复杂情绪？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 喜是基本情绪，不是复杂情绪。<br><span class='tag tag-mistake'>归因：混淆了基本情绪和复杂情绪</span>"><span class="opt-letter">A</span> 喜</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：害羞属于复杂情绪</span>"><span class="opt-letter">B</span> 害羞</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 惧是基本情绪，不是复杂情绪。<br><span class='tag tag-mistake'>归因：混淆了基本情绪和复杂情绪</span>"><span class="opt-letter">C</span> 惧</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：喜" aria-pressed="false" data-fb="❌ 喜是基本情绪，不是复杂情绪。<br><span class='tag tag-mistake'>归因：混淆了基本情绪和复杂情绪</span>"><span class="opt-letter">A</span> 喜</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：害羞" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：害羞属于复杂情绪</span>"><span class="opt-letter">B</span> 害羞</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：惧" aria-pressed="false" data-fb="❌ 惧是基本情绪，不是复杂情绪。<br><span class='tag tag-mistake'>归因：混淆了基本情绪和复杂情绪</span>"><span class="opt-letter">C</span> 惧</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -267,12 +294,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】青春期情绪的闭锁性是指？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 善于表达情绪是情绪开放的表现，不是闭锁性。<br><span class='tag tag-mistake'>归因：对闭锁性的概念理解错误</span>"><span class="opt-letter">A</span> 善于向他人表达情绪</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：闭锁性是不愿意表露情绪</span>"><span class="opt-letter">B</span> 不愿意向他人表露情绪</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 情绪波动大是波动性的表现，不是闭锁性。<br><span class='tag tag-mistake'>归因：混淆了闭锁性和波动性</span>"><span class="opt-letter">C</span> 情绪波动非常大</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：善于向他人表达情绪" aria-pressed="false" data-fb="❌ 善于表达情绪是情绪开放的表现，不是闭锁性。<br><span class='tag tag-mistake'>归因：对闭锁性的概念理解错误</span>"><span class="opt-letter">A</span> 善于向他人表达情绪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：不愿意向他人表露情绪" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：闭锁性是不愿意表露情绪</span>"><span class="opt-letter">B</span> 不愿意向他人表露情绪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：情绪波动非常大" aria-pressed="false" data-fb="❌ 情绪波动大是波动性的表现，不是闭锁性。<br><span class='tag tag-mistake'>归因：混淆了闭锁性和波动性</span>"><span class="opt-letter">C</span> 情绪波动非常大</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -280,12 +307,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】（中考真题）下列关于青春期情绪的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！青春期情绪波动大是正常的。<br><span class='tag tag-kp'>知识点：青春期情绪特点</span>"><span class="opt-letter">A</span> 青春期情绪波动大是正常现象</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 青春期情绪不是毫无规律，而是有特点的。<br><span class='tag tag-mistake'>归因：对青春期情绪的特点理解错误</span>"><span class="opt-letter">B</span> 青春期情绪毫无规律</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 青春期情绪需要调节，不是不用管理。<br><span class='tag tag-mistake'>归因：对情绪管理的必要性理解错误</span>"><span class="opt-letter">C</span> 青春期情绪不用管理</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：青春期情绪波动大是正常现象" aria-pressed="false" data-fb="✅ 正确！青春期情绪波动大是正常的。<br><span class='tag tag-kp'>知识点：青春期情绪特点</span>"><span class="opt-letter">A</span> 青春期情绪波动大是正常现象</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：青春期情绪毫无规律" aria-pressed="false" data-fb="❌ 青春期情绪不是毫无规律，而是有特点的。<br><span class='tag tag-mistake'>归因：对青春期情绪的特点理解错误</span>"><span class="opt-letter">B</span> 青春期情绪毫无规律</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：青春期情绪不用管理" aria-pressed="false" data-fb="❌ 青春期情绪需要调节，不是不用管理。<br><span class='tag tag-mistake'>归因：对情绪管理的必要性理解错误</span>"><span class="opt-letter">C</span> 青春期情绪不用管理</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -298,6 +325,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -340,7 +370,9 @@
           </ul>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -370,6 +402,8 @@
       document.getElementById('pl')?.textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

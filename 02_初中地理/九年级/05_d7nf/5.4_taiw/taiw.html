@@ -74,10 +74,26 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 4/4 节 · 100%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第二单元：南方地区</div>
@@ -103,6 +119,12 @@
 </section>
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;"><li>✅ 了解台湾省的范围和位置</li>
 <li>✅ 掌握台湾的自然和人文特征</li>
 <li>✅ 理解台湾出口导向型经济</li>
@@ -110,11 +132,11 @@
 </section>
 <section class="section" id="section-prequiz">
 <h2 class="section-title"><span class="num">📝</span> 前测</h2>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>1. 【基础】我国面积最大的岛屿是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options"><div class="quiz-option" onclick="checkAnswer(this,true,1,'A')" ><span class="opt-letter">A</span> 台湾岛</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')"  data-feedback="海南是第二大岛！"><span class="opt-letter">A</span> 海南岛</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')"  data-feedback="崇明是第三大岛！"><span class="opt-letter">A</span> 崇明岛</div></div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题"><div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：台湾岛" aria-pressed="false"><span class="opt-letter">A</span> 台湾岛</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：海南岛" aria-pressed="false" data-feedback="海南是第二大岛！"><span class="opt-letter">A</span> 海南岛</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：崇明岛" aria-pressed="false" data-feedback="崇明是第三大岛！"><span class="opt-letter">A</span> 崇明岛</div></div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>台湾岛</strong></p></div>
 </div>
@@ -131,18 +153,18 @@
 </section>
 <section class="section" id="section-postquiz">
 <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>10. 【基础】台湾的经济类型是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options"><div class="quiz-option" onclick="checkAnswer(this,true,10,'A')" ><span class="opt-letter">A</span> 出口导向型</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')"  data-feedback="台湾资源不多！"><span class="opt-letter">A</span> 资源型</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')"  data-feedback="台湾外贸依赖高！"><span class="opt-letter">A</span> 内向型</div></div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题"><div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：出口导向型" aria-pressed="false"><span class="opt-letter">A</span> 出口导向型</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：资源型" aria-pressed="false" data-feedback="台湾资源不多！"><span class="opt-letter">A</span> 资源型</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：内向型" aria-pressed="false" data-feedback="台湾外贸依赖高！"><span class="opt-letter">A</span> 内向型</div></div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>出口导向型</strong></p></div>
-</div><div class="quiz-box" style="margin-top:20px;">
+</div><div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>11. 【提高】台湾隔什么海峡与福建相望？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options"><div class="quiz-option" onclick="checkAnswer(this,true,11,'B')" ><span class="opt-letter">B</span> 台湾海峡</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')"  data-feedback="那是海南！"><span class="opt-letter">B</span> 琼州海峡</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')"  data-feedback="那是山东和辽宁之间！"><span class="opt-letter">B</span> 渤海海峡</div></div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题"><div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：台湾海峡" aria-pressed="false"><span class="opt-letter">B</span> 台湾海峡</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：琼州海峡" aria-pressed="false" data-feedback="那是海南！"><span class="opt-letter">B</span> 琼州海峡</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：渤海海峡" aria-pressed="false" data-feedback="那是山东和辽宁之间！"><span class="opt-letter">B</span> 渤海海峡</div></div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>台湾海峡</strong></p></div>
 </div>
@@ -172,5 +194,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 课件加载完成')})
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

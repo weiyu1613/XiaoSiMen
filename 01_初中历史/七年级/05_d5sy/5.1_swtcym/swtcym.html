@@ -135,10 +135,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">互动课件 v7.14</div></div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d5sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
@@ -194,6 +210,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道<strong>隋朝统一</strong>的史实</li>
@@ -206,42 +228,42 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">难度递进：<span class="difficulty-badge difficulty-基础">⭐ 基础</span> → <span class="difficulty-badge difficulty-提高">⭐⭐ 提高</span> → <span class="difficulty-badge difficulty-挑战">⭐⭐⭐ 挑战</span></p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】隋朝是谁建立的？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 隋朝是杨坚建立的，不是杨广！"><span class="opt-letter">A</span> 杨广</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 杨坚</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 隋朝是杨坚建立的，不是李渊！"><span class="opt-letter">C</span> 李渊</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：杨广" aria-pressed="false" data-feedback="❌ 隋朝是杨坚建立的，不是杨广！"><span class="opt-letter">A</span> 杨广</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：杨坚" aria-pressed="false"><span class="opt-letter">B</span> 杨坚</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李渊" aria-pressed="false" data-feedback="❌ 隋朝是杨坚建立的，不是李渊！"><span class="opt-letter">C</span> 李渊</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 杨坚</strong></p><p style="margin-top: 8px;"><strong>隋朝</strong>是<strong>杨坚</strong>（隋文帝）建立的。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】隋朝统一全国的时间是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 581年是隋朝建立，不是统一全国！"><span class="opt-letter">A</span> 581年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 589年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 618年是隋朝灭亡，不是统一全国！"><span class="opt-letter">C</span> 618年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：581年" aria-pressed="false" data-feedback="❌ 581年是隋朝建立，不是统一全国！"><span class="opt-letter">A</span> 581年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：589年" aria-pressed="false"><span class="opt-letter">B</span> 589年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：618年" aria-pressed="false" data-feedback="❌ 618年是隋朝灭亡，不是统一全国！"><span class="opt-letter">C</span> 618年</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 589年</strong></p><p style="margin-top: 8px;"><strong>589年</strong>，隋文帝派杨广灭<strong>陈朝</strong>，统一全国。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】隋朝大运河的中心是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 隋朝大运河的中心是洛阳，不是长安！"><span class="opt-letter">A</span> 长安</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 洛阳</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 隋朝大运河的中心是洛阳，不是余杭！"><span class="opt-letter">C</span> 余杭</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：长安" aria-pressed="false" data-feedback="❌ 隋朝大运河的中心是洛阳，不是长安！"><span class="opt-letter">A</span> 长安</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：洛阳" aria-pressed="false"><span class="opt-letter">B</span> 洛阳</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：余杭" aria-pressed="false" data-feedback="❌ 隋朝大运河的中心是洛阳，不是余杭！"><span class="opt-letter">C</span> 余杭</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 洛阳</strong></p><p style="margin-top: 8px;"><strong>隋朝大运河</strong>以<strong>洛阳</strong>为中心，北达涿郡，南至余杭。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列哪一项不是隋朝灭亡的原因？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ '暴政'是隋朝灭亡的原因，不符合题意！"><span class="opt-letter">A</span> 暴政</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ '大兴土木'是隋朝灭亡的原因，不符合题意！"><span class="opt-letter">B</span> 大兴土木</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 重视教育</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：暴政" aria-pressed="false" data-feedback="❌ '暴政'是隋朝灭亡的原因，不符合题意！"><span class="opt-letter">A</span> 暴政</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：大兴土木" aria-pressed="false" data-feedback="❌ '大兴土木'是隋朝灭亡的原因，不符合题意！"><span class="opt-letter">B</span> 大兴土木</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：重视教育" aria-pressed="false"><span class="opt-letter">C</span> 重视教育</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 重视教育</strong></p><p style="margin-top: 8px;"><strong>重视教育</strong>是<strong>科举制</strong>的影响，<strong>不是</strong>隋朝灭亡的原因。</p></div>
@@ -250,6 +272,9 @@
     <section class="section" id="section-unification">
       <h2 class="section-title"><span class="num">📍</span> 隋朝的统一</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 隋朝建立</h3>
         <p><strong>581年</strong>，<strong>杨坚</strong>（隋文帝）建立隋朝，定都<strong>长安</strong>。</p>
         <h3 style="margin-top: 20px; color: #8b4513;">📖 统一全国</h3>
@@ -262,11 +287,16 @@
           </div>
         </div>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 隋朝统一</div><p>✅ <strong>建立：</strong>581年，杨坚（隋文帝），长安</p><p style="margin-top: 6px;">✅ <strong>统一：</strong>589年，灭陈朝，统一全国</p><p style="margin-top: 6px;">✅ <strong>意义：</strong>结束魏晋南北朝分裂局面</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-grandcanal">
       <h2 class="section-title"><span class="num">🚢</span> 隋朝大运河</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 开凿背景</h3>
         <p>隋朝统一后，为加强<strong>南北交通</strong>，巩固<strong>统治</strong>，隋炀帝下令开凿大运河。</p>
         <h3 style="margin-top: 20px; color: #8b4513;">📖 大运河概况</h3>
@@ -300,11 +330,16 @@
           </svg>
           <p class="svg-caption">图5-2 从隋朝建立到大运河开凿</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-keju">
       <h2 class="section-title"><span class="num">📚</span> 科举制的创立</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 创立背景</h3>
         <p>魏晋以来，选官主要看<strong>门第</strong>，不看重<strong>才能</strong>。隋朝为<strong>选拔人才</strong>，创立了<strong>科举制</strong>。</p>
         <h3 style="margin-top: 20px; color: #8b4513;">📖 科举制内容</h3>
@@ -324,11 +359,16 @@
           <li>④ 对后世<strong>选官制度</strong>产生了深远影响</li>
         </ul>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 科举制</div><p>✅ <strong>开始：</strong>隋文帝，分科考试</p><p style="margin-top: 6px;">✅ <strong>正式确立：</strong>隋炀帝，设置进士科</p><p style="margin-top: 6px;">✅ <strong>意义：</strong>打破门第限制，扩大选官范围</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-collapse">
       <h2 class="section-title"><span class="num">💀</span> 隋朝的灭亡</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 灭亡原因</h3>
         <div class="event-box">
           <div class="event-title">💀 隋朝灭亡的原因</div>
@@ -354,49 +394,51 @@
             <li>③ <strong>科举制</strong>是选官制度的<strong>重大改革</strong></li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】隋朝是谁建立的？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 隋朝是杨坚建立的，不是杨广！"><span class="opt-letter">A</span> 杨广</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 杨坚</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 隋朝是杨坚建立的，不是李渊！"><span class="opt-letter">C</span> 李渊</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：杨广" aria-pressed="false" data-feedback="❌ 隋朝是杨坚建立的，不是杨广！"><span class="opt-letter">A</span> 杨广</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：杨坚" aria-pressed="false"><span class="opt-letter">B</span> 杨坚</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李渊" aria-pressed="false" data-feedback="❌ 隋朝是杨坚建立的，不是李渊！"><span class="opt-letter">C</span> 李渊</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 杨坚</strong></p><p style="margin-top: 8px;"><strong>隋朝</strong>是<strong>杨坚</strong>（隋文帝）建立的。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）隋朝统一全国的时间是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 581年是隋朝建立，不是统一全国！"><span class="opt-letter">A</span> 581年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')"><span class="opt-letter">B</span> 589年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 618年是隋朝灭亡，不是统一全国！"><span class="opt-letter">C</span> 618年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：581年" aria-pressed="false" data-feedback="❌ 581年是隋朝建立，不是统一全国！"><span class="opt-letter">A</span> 581年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：589年" aria-pressed="false"><span class="opt-letter">B</span> 589年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：618年" aria-pressed="false" data-feedback="❌ 618年是隋朝灭亡，不是统一全国！"><span class="opt-letter">C</span> 618年</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 589年</strong></p><p style="margin-top: 8px;"><strong>589年</strong>，隋文帝派杨广灭<strong>陈朝</strong>，统一全国。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）隋朝大运河的中心是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 隋朝大运河的中心是洛阳，不是长安！"><span class="opt-letter">A</span> 长安</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')"><span class="opt-letter">B</span> 洛阳</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 隋朝大运河的中心是洛阳，不是余杭！"><span class="opt-letter">C</span> 余杭</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：长安" aria-pressed="false" data-feedback="❌ 隋朝大运河的中心是洛阳，不是长安！"><span class="opt-letter">A</span> 长安</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：洛阳" aria-pressed="false"><span class="opt-letter">B</span> 洛阳</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：余杭" aria-pressed="false" data-feedback="❌ 隋朝大运河的中心是洛阳，不是余杭！"><span class="opt-letter">C</span> 余杭</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 洛阳</strong></p><p style="margin-top: 8px;"><strong>隋朝大运河</strong>以<strong>洛阳</strong>为中心，北达涿郡，南至余杭。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"尽道隋亡为此河，至今千里赖通波。"——摘自唐诗</div>
         <p style="margin-bottom:10px;font-weight:600;">材料中的"河"指的是什么？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料说'隋亡为此河'，不是长城！"><span class="opt-letter">A</span> 长城</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')"><span class="opt-letter">B</span> 隋朝大运河</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料说'隋亡为此河'，不是都江堰！"><span class="opt-letter">C</span> 都江堰</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：长城" aria-pressed="false" data-feedback="❌ 材料说'隋亡为此河'，不是长城！"><span class="opt-letter">A</span> 长城</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：隋朝大运河" aria-pressed="false"><span class="opt-letter">B</span> 隋朝大运河</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：都江堰" aria-pressed="false" data-feedback="❌ 材料说'隋亡为此河'，不是都江堰！"><span class="opt-letter">C</span> 都江堰</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 隋朝大运河</strong></p><p style="margin-top: 8px;">材料中的"河"指的是<strong>隋朝大运河</strong>。</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 材料分析题方法</div><ol style="padding-left: 20px; line-height: 1.8;"><li><strong>先读材料：</strong>圈出关键词（"隋亡"、"此河"）</li><li><strong>再联系课本：</strong>回忆隋朝大运河</li><li><strong>排除无中生有：</strong>材料没提到的选项不选</li></ol></div></div>
@@ -473,6 +515,8 @@
       console.log('📚 《隋朝的统一与灭亡》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

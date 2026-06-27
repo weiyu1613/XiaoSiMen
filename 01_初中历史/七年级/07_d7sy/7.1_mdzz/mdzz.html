@@ -124,6 +124,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -132,7 +144,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d7sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
@@ -195,6 +211,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道元朝灭亡和明朝建立的时间</li>
@@ -211,12 +233,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】明朝的建立者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 朱元璋</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 朱棣是明成祖，不是建立者！"><span class="opt-letter">B</span> 朱棣</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 忽必烈是元朝建立者，不是明朝！"><span class="opt-letter">C</span> 忽必烈</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：朱元璋" aria-pressed="false"><span class="opt-letter">A</span> 朱元璋</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：朱棣" aria-pressed="false" data-feedback="❌ 朱棣是明成祖，不是建立者！"><span class="opt-letter">B</span> 朱棣</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：忽必烈" aria-pressed="false" data-feedback="❌ 忽必烈是元朝建立者，不是明朝！"><span class="opt-letter">C</span> 忽必烈</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -224,12 +246,12 @@
           <p><strong>朱元璋</strong>（明太祖）于<strong>1368年</strong>建立明朝，定都<strong>南京</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】元朝灭亡于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 1279年是元朝统一全国的时间，不是灭亡！"><span class="opt-letter">A</span> 1279年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 1368年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 1644年是明朝灭亡时间，不是元朝！"><span class="opt-letter">C</span> 1644年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1279年" aria-pressed="false" data-feedback="❌ 1279年是元朝统一全国的时间，不是灭亡！"><span class="opt-letter">A</span> 1279年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1368年" aria-pressed="false"><span class="opt-letter">B</span> 1368年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1644年" aria-pressed="false" data-feedback="❌ 1644年是明朝灭亡时间，不是元朝！"><span class="opt-letter">C</span> 1644年</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -237,12 +259,12 @@
           <p><strong>1368年</strong>，朱元璋军攻占大都，<strong>元朝灭亡</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】明朝初期定都于？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')"><span class="opt-letter">A</span> 南京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 北京是明成祖迁都后的都城，不是初期！"><span class="opt-letter">B</span> 北京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 长安是唐朝都城，不是明朝！"><span class="opt-letter">C</span> 长安</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：南京" aria-pressed="false"><span class="opt-letter">A</span> 南京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北京" aria-pressed="false" data-feedback="❌ 北京是明成祖迁都后的都城，不是初期！"><span class="opt-letter">B</span> 北京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：长安" aria-pressed="false" data-feedback="❌ 长安是唐朝都城，不是明朝！"><span class="opt-letter">C</span> 长安</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -250,12 +272,12 @@
           <p>明朝初期定都<strong>南京</strong>。<strong>明成祖朱棣</strong>时迁都<strong>北京</strong>（1421年）。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】朱元璋的称号是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')"><span class="opt-letter">A</span> 明太祖</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 明成祖是朱棣的称号，不是朱元璋！"><span class="opt-letter">B</span> 明成祖</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 洪武帝是朱元璋的年号，不是称号！"><span class="opt-letter">C</span> 洪武帝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：明太祖" aria-pressed="false"><span class="opt-letter">A</span> 明太祖</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：明成祖" aria-pressed="false" data-feedback="❌ 明成祖是朱棣的称号，不是朱元璋！"><span class="opt-letter">B</span> 明成祖</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：洪武帝" aria-pressed="false" data-feedback="❌ 洪武帝是朱元璋的年号，不是称号！"><span class="opt-letter">C</span> 洪武帝</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -278,12 +300,17 @@
         <p><strong>灭亡</strong>：<strong>1368年</strong>，朱元璋军攻占大都，元朝灭亡。</p>
       </div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>二、明朝建立</h3>
         <p><strong>时间</strong>：<strong>1368年</strong></p>
         <p><strong>建立者</strong>：<strong>朱元璋</strong>（明太祖）</p>
         <p><strong>都城</strong>：最初定都<strong>南京</strong>（应天府）</p>
         <p><strong>年号</strong>：洪武（1368-1398年）</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>三、明朝加强君主专制的措施</h3>
         <p><strong>1. 废除丞相制度</strong>：</p>
@@ -308,12 +335,17 @@
     <section class="section" id="deep-content">
       <h2 class="section-title"><span class="num">🔍</span> 深入内容</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>明朝建立的历史意义</h3>
         <p><strong>1. 结束元朝统治</strong>：恢复汉族政权，推翻民族歧视政策</p>
         <p><strong>2. 加强中央集权</strong>：废除丞相，皇帝独揽大权</p>
         <p><strong>3. 奠定明清格局</strong>：君主专制达到新高度</p>
         <p><strong>4. 影响后世</strong>：清朝沿用明朝制度，君主专制继续强化</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>八股取士的评价</h3>
         <p><strong>积极</strong>：</p>
@@ -337,12 +369,12 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
         <span style="margin-left: 12px; color: var(--accent);">⚡ 含中考真题</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】明朝初期定都于？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'A')"><span class="opt-letter">A</span> 南京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 北京是明成祖迁都后的都城，不是初期！"><span class="opt-letter">B</span> 北京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 大都 是元朝都城，不是明朝！"><span class="opt-letter">C</span> 大都</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：南京" aria-pressed="false"><span class="opt-letter">A</span> 南京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：北京" aria-pressed="false" data-feedback="❌ 北京是明成祖迁都后的都城，不是初期！"><span class="opt-letter">B</span> 北京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：大都" aria-pressed="false" data-feedback="❌ 大都 是元朝都城，不是明朝！"><span class="opt-letter">C</span> 大都</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -350,12 +382,12 @@
           <p>明朝初期定都<strong>南京</strong>。<strong>明成祖</strong>时迁都<strong>北京</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐ 基础】明朝废除的制度是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 科举制度没有被废除，只是改革！"><span class="opt-letter">A</span> 科举制度</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')"><span class="opt-letter">B</span> 丞相制度</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 行省制度没有被废除，明朝继续沿用！"><span class="opt-letter">C</span> 行省制度</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：科举制度" aria-pressed="false" data-feedback="❌ 科举制度没有被废除，只是改革！"><span class="opt-letter">A</span> 科举制度</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：丞相制度" aria-pressed="false"><span class="opt-letter">B</span> 丞相制度</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：行省制度" aria-pressed="false" data-feedback="❌ 行省制度没有被废除，明朝继续沿用！"><span class="opt-letter">C</span> 行省制度</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -363,12 +395,12 @@
           <p>朱元璋<strong>废除丞相制度</strong>，权分六部，加强皇权。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】"八股取士"开始于？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="❌ 唐朝是科举制度创立时期，不是八股取士！"><span class="opt-letter">A</span> 唐朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'B')"><span class="opt-letter">B</span> 明朝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="❌ 清朝沿用八股取士，但不是开始！"><span class="opt-letter">C</span> 清朝</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐朝" aria-pressed="false" data-feedback="❌ 唐朝是科举制度创立时期，不是八股取士！"><span class="opt-letter">A</span> 唐朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：明朝" aria-pressed="false"><span class="opt-letter">B</span> 明朝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：清朝" aria-pressed="false" data-feedback="❌ 清朝沿用八股取士，但不是开始！"><span class="opt-letter">C</span> 清朝</div>
         </div>
         <div class="feedback" id="feedback-7"></div>
         <div class="answer-explanation" id="explanation-7">
@@ -376,12 +408,12 @@
           <p><strong>明朝</strong>开始实行<strong>八股取士</strong>，科举考试文体必须用八股文。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】朱元璋废除丞相制度的根本目的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'A')" data-feedback="❌ 提高行政效率不是根本目的！"><span class="opt-letter">A</span> 提高行政效率</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'B')"><span class="opt-letter">B</span> 加强君主专制</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 减轻财政负担不是根本目的！"><span class="opt-letter">C</span> 减轻财政负担</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：提高行政效率" aria-pressed="false" data-feedback="❌ 提高行政效率不是根本目的！"><span class="opt-letter">A</span> 提高行政效率</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：加强君主专制" aria-pressed="false"><span class="opt-letter">B</span> 加强君主专制</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：减轻财政负担" aria-pressed="false" data-feedback="❌ 减轻财政负担不是根本目的！"><span class="opt-letter">C</span> 减轻财政负担</div>
         </div>
         <div class="feedback" id="feedback-8"></div>
         <div class="answer-explanation" id="explanation-8">
@@ -437,6 +469,9 @@
         </h2>
         
         <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
           <!-- 考点1 -->
           <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
             <div class="exam-card-header">
@@ -489,7 +524,9 @@
               <tr style="background:#ffffff;"><td>材料题</td><td>★★★☆☆</td><td>给史料，分析加强中央集权措施</td><td>理解废除丞相的意义</td></tr>
             </table>
           </div>
-        </div>
+        
+</details>
+</div>
       </section>
 
 <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴 - 先诊断卡点，再给最小提示">
@@ -579,6 +616,8 @@
   </script>
     <!-- 标准模块脚本（必须） -->
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

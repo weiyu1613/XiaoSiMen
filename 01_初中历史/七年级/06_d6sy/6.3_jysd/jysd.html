@@ -130,6 +130,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -138,7 +150,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d6sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六单元：辽宋夏金元时期</div>
@@ -201,6 +217,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道金的建立和壮大</li>
@@ -217,12 +239,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】金的建立者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 完颜阿骨打</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 耶律阿保机是辽的建立者，不是金！"><span class="opt-letter">B</span> 耶律阿保机</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 元昊是西夏的建立者，不是金！"><span class="opt-letter">C</span> 元昊</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：完颜阿骨打" aria-pressed="false"><span class="opt-letter">A</span> 完颜阿骨打</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：耶律阿保机" aria-pressed="false" data-feedback="❌ 耶律阿保机是辽的建立者，不是金！"><span class="opt-letter">B</span> 耶律阿保机</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：元昊" aria-pressed="false" data-feedback="❌ 元昊是西夏的建立者，不是金！"><span class="opt-letter">C</span> 元昊</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -230,12 +252,12 @@
           <p><strong>1115年</strong>，<strong>完颜阿骨打</strong>（金太祖）建立金国，定都会宁（今黑龙江阿城）。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】"靖康之变"发生在哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 1125年是金灭辽，不是靖康之变！"><span class="opt-letter">A</span> 1125年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 1127年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 1141年是宋金和议，不是靖康之变！"><span class="opt-letter">C</span> 1141年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1125年" aria-pressed="false" data-feedback="❌ 1125年是金灭辽，不是靖康之变！"><span class="opt-letter">A</span> 1125年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1127年" aria-pressed="false"><span class="opt-letter">B</span> 1127年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1141年" aria-pressed="false" data-feedback="❌ 1141年是宋金和议，不是靖康之变！"><span class="opt-letter">C</span> 1141年</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -243,12 +265,12 @@
           <p><strong>1127年</strong>，金军攻破东京（开封），俘虏宋徽宗、宋钦宗，<strong>北宋灭亡</strong>，史称"靖康之变"。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】南宋的建立者是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 赵匡胤是北宋建立者，不是南宋！"><span class="opt-letter">A</span> 赵匡胤</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 赵构</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 赵光义是宋太宗，不是南宋建立者！"><span class="opt-letter">C</span> 赵光义</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：赵匡胤" aria-pressed="false" data-feedback="❌ 赵匡胤是北宋建立者，不是南宋！"><span class="opt-letter">A</span> 赵匡胤</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：赵构" aria-pressed="false"><span class="opt-letter">B</span> 赵构</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：赵光义" aria-pressed="false" data-feedback="❌ 赵光义是宋太宗，不是南宋建立者！"><span class="opt-letter">C</span> 赵光义</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -256,12 +278,12 @@
           <p><strong>1127年</strong>，<strong>赵构</strong>（宋高宗）在应天府（今河南商丘）即位，后定都临安（今杭州），史称<strong>南宋</strong>。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】岳飞被杀害的根本原因是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 秦桧诬陷是表面原因，不是根本原因！"><span class="opt-letter">A</span> 秦桧诬陷</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')"><span class="opt-letter">B</span> 宋高宗怕迎回二帝</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 作战失败是借口，不是根本原因！"><span class="opt-letter">C</span> 作战失败</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦桧诬陷" aria-pressed="false" data-feedback="❌ 秦桧诬陷是表面原因，不是根本原因！"><span class="opt-letter">A</span> 秦桧诬陷</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：宋高宗怕迎回二帝" aria-pressed="false"><span class="opt-letter">B</span> 宋高宗怕迎回二帝</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：作战失败" aria-pressed="false" data-feedback="❌ 作战失败是借口，不是根本原因！"><span class="opt-letter">C</span> 作战失败</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -273,13 +295,18 @@
     <section class="section" id="core-content">
       <h2 class="section-title"><span class="num">📚</span> 核心内容</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>一、金的建立</h3>
         <p><strong>时间</strong>：1115年</p>
         <p><strong>建立者</strong>：完颜阿骨打（金太祖）</p>
         <p><strong>民族</strong>：女真族</p>
         <p><strong>都城</strong>：会宁（今黑龙江阿城）</p>
         <p><strong>发展</strong>：金国迅速壮大，先后灭辽（1125年）、灭北宋（1127年）</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>二、靖康之变（1127年）</h3>
         <p><strong>过程</strong>：</p>
@@ -292,20 +319,30 @@
         <p><strong>影响</strong>：北宋灭亡，中原沦陷，宋室南迁</p>
       </div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>三、南宋的建立</h3>
         <p><strong>时间</strong>：1127年</p>
         <p><strong>建立者</strong>：赵构（宋高宗）</p>
         <p><strong>都城</strong>：临安（今浙江杭州）</p>
         <p><strong>局面</strong>：南宋与金长期对峙，形成南北分裂局面</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>四、岳飞抗金</h3>
         <p><strong>背景</strong>：金军不断南侵，南宋军民奋起抵抗</p>
         <p><strong>岳飞</strong>：南宋抗金名将，率领"岳家军"屡败金军</p>
         <p><strong>郾城大捷</strong>：1140年，岳飞在郾城大败金军主力</p>
         <p><strong>被害</strong>：1142年，宋高宗、秦桧以"莫须有"罪名杀害岳飞</p>
         <p><strong>原因</strong>：宋高宗怕迎回二帝，失去皇位；主和派得势</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>五、宋金和议（1141年）</h3>
         <p><strong>内容</strong>：</p>
@@ -321,19 +358,29 @@
     <section class="section" id="deep-content">
       <h2 class="section-title"><span class="num">🔍</span> 深入内容</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>岳飞之死的历史教训</h3>
         <p><strong>1. 皇权与军权的矛盾</strong>：岳飞功高震主，威胁皇权</p>
         <p><strong>2. 主战与主和的斗争</strong>：主战派（岳飞）vs 主和派（秦桧）</p>
         <p><strong>3. 民族英雄的悲剧</strong>：岳飞精忠报国，却死于"莫须有"</p>
         <p><strong>4. 历史评价</strong>：岳飞被后世尊为民族英雄，秦桧被铸跪像永世唾骂</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>宋金对峙的历史影响</h3>
         <p><strong>政治</strong>：南北分裂，中国再次陷入分裂局面</p>
         <p><strong>经济</strong>：经济重心南移完成，江南成为全国经济中心</p>
         <p><strong>文化</strong>：南北文化异彩纷呈，宋词达到鼎盛</p>
         <p><strong>民族</strong>：民族矛盾尖锐，但民族融合也在进行</p>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">📝</span> 后测：检验学习效果</h2>
@@ -343,12 +390,12 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
         <span style="margin-left: 12px; color: var(--accent);">⚡ 含中考真题</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】南宋的都城是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 东京是北宋都城，南宋已南迁！"><span class="opt-letter">A</span> 东京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 临安</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 应天府是南宋初即位地，不是正式都城！"><span class="opt-letter">C</span> 应天府</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：东京" aria-pressed="false" data-feedback="❌ 东京是北宋都城，南宋已南迁！"><span class="opt-letter">A</span> 东京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：临安" aria-pressed="false"><span class="opt-letter">B</span> 临安</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：应天府" aria-pressed="false" data-feedback="❌ 应天府是南宋初即位地，不是正式都城！"><span class="opt-letter">C</span> 应天府</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -356,12 +403,12 @@
           <p>南宋定都<strong>临安</strong>（今浙江杭州）。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐ 基础】"莫须有"是哪个历史人物的罪名？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 韩世忠没有被杀，只是被罢兵权！"><span class="opt-letter">A</span> 韩世忠</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')"><span class="opt-letter">B</span> 岳飞</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 文天祥是南宋末年人物，不是岳飞同时代！"><span class="opt-letter">C</span> 文天祥</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：韩世忠" aria-pressed="false" data-feedback="❌ 韩世忠没有被杀，只是被罢兵权！"><span class="opt-letter">A</span> 韩世忠</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：岳飞" aria-pressed="false"><span class="opt-letter">B</span> 岳飞</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：文天祥" aria-pressed="false" data-feedback="❌ 文天祥是南宋末年人物，不是岳飞同时代！"><span class="opt-letter">C</span> 文天祥</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -369,12 +416,12 @@
           <p>秦桧以"<strong>莫须有</strong>"（也许有）的罪名杀害岳飞。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】宋金和议后，双方边界是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="❌ 长城是农牧分界线，不是宋金边界！"><span class="opt-letter">A</span> 长城一线</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'B')"><span class="opt-letter">B</span> 淮水—大散关</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="❌ 长江是天险，但不是宋金正式边界！"><span class="opt-letter">C</span> 长江一线</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：长城一线" aria-pressed="false" data-feedback="❌ 长城是农牧分界线，不是宋金边界！"><span class="opt-letter">A</span> 长城一线</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：淮水—大散关" aria-pressed="false"><span class="opt-letter">B</span> 淮水—大散关</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：长江一线" aria-pressed="false" data-feedback="❌ 长江是天险，但不是宋金正式边界！"><span class="opt-letter">C</span> 长江一线</div>
         </div>
         <div class="feedback" id="feedback-7"></div>
         <div class="answer-explanation" id="explanation-7">
@@ -382,7 +429,7 @@
           <p>宋金和议划定边界：<strong>淮水—大散关</strong>一线为界。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】阅读材料，回答问题：<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
         <div style="background: #f9fafb; border-left: 4px solid #8b4513; padding: 16px; margin-bottom: 16px; border-radius: 0 8px 8px 0;">
           <p><strong>材料</strong>：</p>
@@ -390,10 +437,10 @@
           <p>——杭州岳王庙对联</p>
           <p><strong>问题</strong>："忠骨"指谁？"佞臣"指谁？（　）</p>
         </div>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'A')"><span class="opt-letter">A</span> 忠骨：岳飞；佞臣：秦桧</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'B')" data-feedback="❌ 文天祥是南宋末年抗元英雄，不是岳飞时期！"><span class="opt-letter">B</span> 忠骨：文天祥；佞臣：贾似道</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 陆秀夫是南宋末年大臣，不是岳飞时期！"><span class="opt-letter">C</span> 忠骨：陆秀夫；佞臣：秦桧</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：忠骨：岳飞；佞臣：秦桧" aria-pressed="false"><span class="opt-letter">A</span> 忠骨：岳飞；佞臣：秦桧</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：忠骨：文天祥；佞臣：贾似道" aria-pressed="false" data-feedback="❌ 文天祥是南宋末年抗元英雄，不是岳飞时期！"><span class="opt-letter">B</span> 忠骨：文天祥；佞臣：贾似道</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：忠骨：陆秀夫；佞臣：秦桧" aria-pressed="false" data-feedback="❌ 陆秀夫是南宋末年大臣，不是岳飞时期！"><span class="opt-letter">C</span> 忠骨：陆秀夫；佞臣：秦桧</div>
         </div>
         <div class="feedback" id="feedback-8"></div>
         <div class="answer-explanation" id="explanation-8">
@@ -571,6 +618,8 @@
   </script>
     <!-- 标准模块脚本（必须） -->
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

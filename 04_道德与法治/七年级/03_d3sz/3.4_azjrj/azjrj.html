@@ -74,10 +74,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-heart"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 12/31 节 · 38.7%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d3sz.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第三单元：师长情谊</div>
@@ -126,6 +142,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 体会亲情之爱的不同表现 <span class="tag tag-theory">关联：情感表达理论</span></li>
         <li>✅ 理解亲子冲突的原因 <span class="tag tag-theory">关联：代际差异理论</span></li>
@@ -139,12 +161,12 @@
       <p style="color:#f39c12;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】每个家庭的亲情之爱？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 每个家庭的亲情表现<strong>并不相同</strong>。<br><span class='tag tag-mistake'>归因：未观察到家庭差异</span>"><span class="opt-letter">A</span> 完全相同</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：每个家庭的亲情表现不同</span>"><span class="opt-letter">B</span> 表现不同，有的温馨和睦、有的磕磕绊绊</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 没有亲情<strong>也可以</strong>有家，但这样的家不完整。<br><span class='tag tag-mistake'>归因：低估亲情的必要性</span>"><span class="opt-letter">C</span> 没有亲情也可以</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：完全相同" aria-pressed="false" data-fb="❌ 每个家庭的亲情表现<strong>并不相同</strong>。<br><span class='tag tag-mistake'>归因：未观察到家庭差异</span>"><span class="opt-letter">A</span> 完全相同</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：表现不同，有的温馨和睦、有的磕磕绊绊" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：每个家庭的亲情表现不同</span>"><span class="opt-letter">B</span> 表现不同，有的温馨和睦、有的磕磕绊绊</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：没有亲情也可以" aria-pressed="false" data-fb="❌ 没有亲情<strong>也可以</strong>有家，但这样的家不完整。<br><span class='tag tag-mistake'>归因：低估亲情的必要性</span>"><span class="opt-letter">C</span> 没有亲情也可以</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -156,12 +178,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】亲子冲突的主要原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 父母不爱我们<strong>不是</strong>主要原因，他们只是表达方式不同。<br><span class='tag tag-mistake'>归因：误解父母的动机</span>"><span class="opt-letter">A</span> 父母不爱我们</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：独立意识增强、代际差异大</span>"><span class="opt-letter">B</span> 独立意识增强、代际差异较大</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 我们<strong>不需要</strong>完全听话，要有独立意识。<br><span class='tag tag-mistake'>归因：缺乏独立意识，未理解成长需求</span>"><span class="opt-letter">C</span> 我们太不听话</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：父母不爱我们" aria-pressed="false" data-fb="❌ 父母不爱我们<strong>不是</strong>主要原因，他们只是表达方式不同。<br><span class='tag tag-mistake'>归因：误解父母的动机</span>"><span class="opt-letter">A</span> 父母不爱我们</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：独立意识增强、代际差异较大" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：独立意识增强、代际差异大</span>"><span class="opt-letter">B</span> 独立意识增强、代际差异较大</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：我们太不听话" aria-pressed="false" data-fb="❌ 我们<strong>不需要</strong>完全听话，要有独立意识。<br><span class='tag tag-mistake'>归因：缺乏独立意识，未理解成长需求</span>"><span class="opt-letter">C</span> 我们太不听话</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -173,12 +195,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于与父母沟通，以下理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 与父母对抗会<strong>破坏</strong>亲子关系。<br><span class='tag tag-mistake'>归因：未理解沟通的双向性</span>"><span class="opt-letter">A</span> 与父母对抗</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：关注事实、把握时机、留意态度、选择方式、考虑环境</span>"><span class="opt-letter">B</span> 关注事实、把握时机、留意态度</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 不理父母会<strong>伤害</strong>亲子感情。<br><span class='tag tag-mistake'>归因：回避沟通，未理解情感维系的重要性</span>"><span class="opt-letter">C</span> 不理父母</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：与父母对抗" aria-pressed="false" data-fb="❌ 与父母对抗会<strong>破坏</strong>亲子关系。<br><span class='tag tag-mistake'>归因：未理解沟通的双向性</span>"><span class="opt-letter">A</span> 与父母对抗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：关注事实、把握时机、留意态度" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：关注事实、把握时机、留意态度、选择方式、考虑环境</span>"><span class="opt-letter">B</span> 关注事实、把握时机、留意态度</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：不理父母" aria-pressed="false" data-fb="❌ 不理父母会<strong>伤害</strong>亲子感情。<br><span class='tag tag-mistake'>归因：回避沟通，未理解情感维系的重要性</span>"><span class="opt-letter">C</span> 不理父母</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -223,6 +245,9 @@
 
     <section><h2 class="section-title">🗣️ 与父母沟通的技巧</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box"><div class="label">✨ 沟通五技巧 <span class="tag tag-theory">关联：沟通技巧理论</span></div>
           <p>① <strong>关注事实</strong>：不被情绪左右，关注事实本身 <span class="tag tag-theory">事实导向</span></p>
           <p>② <strong>把握时机</strong>：选择父母心情好、不忙的时候沟通 <span class="tag tag-theory">时机理论</span></p>
@@ -234,7 +259,9 @@
           <p><strong>记忆口诀：</strong>"<strong>关注、把握、留意、选择、考虑</strong>"</p>
           <p style="margin-top:6px;"><strong>考试陷阱：</strong>"与父母对抗""不理父母"等<strong>破坏性沟通方式</strong>均为错误选项！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">💌 爱在沟通中传递</h2>
@@ -256,12 +283,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】与父母沟通时，不应该？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 关注事实是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">A</span> 关注事实</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！不关注事实会导致沟通失败。<br><span class='tag tag-kp'>知识点：关注事实是沟通技巧之一</span>"><span class="opt-letter">B</span> 不关注事实</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 把握时机是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">C</span> 把握时机</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：关注事实" aria-pressed="false" data-fb="❌ 关注事实是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">A</span> 关注事实</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：不关注事实" aria-pressed="false" data-fb="✅ 正确！不关注事实会导致沟通失败。<br><span class='tag tag-kp'>知识点：关注事实是沟通技巧之一</span>"><span class="opt-letter">B</span> 不关注事实</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：把握时机" aria-pressed="false" data-fb="❌ 把握时机是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">C</span> 把握时机</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -269,12 +296,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】亲子冲突的原因不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 独立意识增强是原因之一！<br><span class='tag tag-mistake'>归因：未掌握亲子冲突的原因</span>"><span class="opt-letter">A</span> 独立意识增强</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 代际差异较大是原因之一！<br><span class='tag tag-mistake'>归因：未掌握亲子冲突的原因</span>"><span class="opt-letter">B</span> 代际差异较大</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！父母不爱我们不是原因。<br><span class='tag tag-kp'>知识点：父母是爱我们的，只是表达方式不同</span>"><span class="opt-letter">C</span> 父母不爱我们</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：独立意识增强" aria-pressed="false" data-fb="❌ 独立意识增强是原因之一！<br><span class='tag tag-mistake'>归因：未掌握亲子冲突的原因</span>"><span class="opt-letter">A</span> 独立意识增强</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：代际差异较大" aria-pressed="false" data-fb="❌ 代际差异较大是原因之一！<br><span class='tag tag-mistake'>归因：未掌握亲子冲突的原因</span>"><span class="opt-letter">B</span> 代际差异较大</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：父母不爱我们" aria-pressed="false" data-fb="✅ 正确！父母不爱我们不是原因。<br><span class='tag tag-kp'>知识点：父母是爱我们的，只是表达方式不同</span>"><span class="opt-letter">C</span> 父母不爱我们</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -282,12 +309,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】以下关于亲子沟通的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！爱要在沟通中传递。<br><span class='tag tag-kp'>知识点：爱在沟通中传递</span>"><span class="opt-letter">A</span> 爱要在沟通中传递</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 与父母对抗会<strong>破坏</strong>亲子关系。<br><span class='tag tag-mistake'>归因：未理解沟通的双向性</span>"><span class="opt-letter">B</span> 与父母对抗没问题</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 不表达爱会导致<strong>情感隔阂</strong>。<br><span class='tag tag-mistake'>归因：回避情感表达，未理解情感维系的重要性</span>"><span class="opt-letter">C</span> 不需要表达爱</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：爱要在沟通中传递" aria-pressed="false" data-fb="✅ 正确！爱要在沟通中传递。<br><span class='tag tag-kp'>知识点：爱在沟通中传递</span>"><span class="opt-letter">A</span> 爱要在沟通中传递</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：与父母对抗没问题" aria-pressed="false" data-fb="❌ 与父母对抗会<strong>破坏</strong>亲子关系。<br><span class='tag tag-mistake'>归因：未理解沟通的双向性</span>"><span class="opt-letter">B</span> 与父母对抗没问题</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：不需要表达爱" aria-pressed="false" data-fb="❌ 不表达爱会导致<strong>情感隔阂</strong>。<br><span class='tag tag-mistake'>归因：回避情感表达，未理解情感维系的重要性</span>"><span class="opt-letter">C</span> 不需要表达爱</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -300,6 +327,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -346,7 +376,9 @@
           <p style="margin-top:10px;font-size:13px;color:#92400e;"><span class="tag tag-mistake">常见陷阱</span> "与父母对抗""不理父母"等<strong>破坏性沟通方式</strong>均为错误选项。</p>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -376,6 +408,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

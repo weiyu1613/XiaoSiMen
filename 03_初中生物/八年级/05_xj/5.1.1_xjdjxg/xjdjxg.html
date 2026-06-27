@@ -82,6 +82,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-biohazard"></i> TeachAny · 初中生物</div>
@@ -91,7 +103,11 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/2 节 · 50%</div>
   <!-- ③ 导航栏 -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../xj.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第5章：细菌</div>
@@ -168,6 +184,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 了解细菌的发现历程（列文虎克、巴斯德）</li>
@@ -181,12 +203,12 @@
     <!-- ⑦ 前测 -->
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】微生物中最早被人们发现的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,true,1,'A')"><span class="opt-letter">A</span> 细菌</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'B')" data-feedback="❌ 病毒比细菌小得多，在电子显微镜发明后才被发现。"><span class="opt-letter">B</span> 病毒</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 真菌虽然也属于微生物，但细菌的发现比真菌的科学研究更早。"><span class="opt-letter">C</span> 真菌</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌" aria-pressed="false"><span class="opt-letter">A</span> 细菌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：病毒" aria-pressed="false" data-feedback="❌ 病毒比细菌小得多，在电子显微镜发明后才被发现。"><span class="opt-letter">B</span> 病毒</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：真菌" aria-pressed="false" data-feedback="❌ 真菌虽然也属于微生物，但细菌的发现比真菌的科学研究更早。"><span class="opt-letter">C</span> 真菌</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -196,12 +218,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】以下哪种不是细菌的形态？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 球菌确实是常见的细菌形态之一，如链球菌。"><span class="opt-letter">A</span> 球菌</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 杆状病毒</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 螺旋菌确实是细菌的一种形态，如幽门螺杆菌就是螺旋状的。"><span class="opt-letter">C</span> 螺旋菌</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：球菌" aria-pressed="false" data-feedback="❌ 球菌确实是常见的细菌形态之一，如链球菌。"><span class="opt-letter">A</span> 球菌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：杆状病毒" aria-pressed="false"><span class="opt-letter">B</span> 杆状病毒</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：螺旋菌" aria-pressed="false" data-feedback="❌ 螺旋菌确实是细菌的一种形态，如幽门螺杆菌就是螺旋状的。"><span class="opt-letter">C</span> 螺旋菌</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -211,12 +233,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】巴斯德的鹅颈瓶实验证明了什么？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 鹅颈瓶实验中肉汤并没有与空气完全隔绝，而是通过弯曲的瓶颈让空气流通但尘埃无法进入。"><span class="opt-letter">A</span> 细菌需要空气才能生存</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 细菌不是自然发生的，而是由原来已存在的细菌产生的</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 巴斯德的实验推翻的正是"自然发生说"，证明了细菌的产生需要已有细菌作为"种子"。"><span class="opt-letter">C</span> 细菌是自然发生的</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌需要空气才能生存" aria-pressed="false" data-feedback="❌ 鹅颈瓶实验中肉汤并没有与空气完全隔绝，而是通过弯曲的瓶颈让空气流通但尘埃无法进入。"><span class="opt-letter">A</span> 细菌需要空气才能生存</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细菌不是自然发生的，而是由原来已存在的细菌产生的" aria-pressed="false"><span class="opt-letter">B</span> 细菌不是自然发生的，而是由原来已存在的细菌产生的</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细菌是自然发生的" aria-pressed="false" data-feedback="❌ 巴斯德的实验推翻的正是"自然发生说"，证明了细菌的产生需要已有细菌作为"种子"。"><span class="opt-letter">C</span> 细菌是自然发生的</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -293,6 +315,9 @@
 
       <!-- 知识点2：细菌的形态 -->
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:var(--primary);margin-bottom:12px;">🦠 二、细菌的基本形态</h3>
         <p style="margin-bottom:16px;">细菌是<strong>单细胞</strong>生物，个体十分微小，通常以<strong>μm</strong>（微米）为测量单位。根据外部形态，可分为三大类：</p>
 
@@ -333,7 +358,9 @@
           <p><strong>常见错误：</strong>"所有细菌都是单细胞生物"——这句话是正确的！细菌的结构虽然简单，但每个细菌都是一个独立的生命体。</p>
           <p style="margin-top:6px;"><strong>注意：</strong>细菌个体<strong>十分微小</strong>，需要显微镜才能观察到。1000个普通细菌排成一排也只有约1mm长。</p>
         </div>
-      </div>
+      
+</details>
+</div>
 
       <!-- 知识点3：细菌的大小 -->
       <div class="card">
@@ -355,12 +382,12 @@
     <!-- ⑨ 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】第一个发现细菌的人是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,true,10,'A')"><span class="opt-letter">A</span> 列文虎克</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,10,'B')" data-feedback="❌ 巴斯德是19世纪的科学家，比列文虎克晚了近200年。"><span class="opt-letter">B</span> 巴斯德</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 弗莱明发现了青霉素，不是第一个发现细菌的人。"><span class="opt-letter">C</span> 弗莱明</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：列文虎克" aria-pressed="false"><span class="opt-letter">A</span> 列文虎克</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：巴斯德" aria-pressed="false" data-feedback="❌ 巴斯德是19世纪的科学家，比列文虎克晚了近200年。"><span class="opt-letter">B</span> 巴斯德</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：弗莱明" aria-pressed="false" data-feedback="❌ 弗莱明发现了青霉素，不是第一个发现细菌的人。"><span class="opt-letter">C</span> 弗莱明</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -370,12 +397,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）巴斯德鹅颈瓶实验的结论是？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;margin-left:8px;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,11,'A')" data-feedback="❌ 巴斯德鹅颈瓶并不完全隔绝空气，空气可以通过弯曲瓶颈进入。"><span class="opt-letter">A</span> 肉汤腐败需要空气</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,11,'B')"><span class="opt-letter">B</span> 细菌不是自然发生的，是由原来已存在的细菌产生的</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 巴斯德的结论恰好推翻了自然发生说！"><span class="opt-letter">C</span> 细菌是自然发生的</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：肉汤腐败需要空气" aria-pressed="false" data-feedback="❌ 巴斯德鹅颈瓶并不完全隔绝空气，空气可以通过弯曲瓶颈进入。"><span class="opt-letter">A</span> 肉汤腐败需要空气</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细菌不是自然发生的，是由原来已存在的细菌产生的" aria-pressed="false"><span class="opt-letter">B</span> 细菌不是自然发生的，是由原来已存在的细菌产生的</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细菌是自然发生的" aria-pressed="false" data-feedback="❌ 巴斯德的结论恰好推翻了自然发生说！"><span class="opt-letter">C</span> 细菌是自然发生的</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -385,12 +412,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】以下属于螺旋菌的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 链球菌属于球菌，是球状细菌。"><span class="opt-letter">A</span> 链球菌</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,12,'B')" data-feedback="❌ 大肠杆菌属于杆菌，是杆状的。"><span class="opt-letter">B</span> 大肠杆菌</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,12,'C')"><span class="opt-letter">C</span> 幽门螺杆菌</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：链球菌" aria-pressed="false" data-feedback="❌ 链球菌属于球菌，是球状细菌。"><span class="opt-letter">A</span> 链球菌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：大肠杆菌" aria-pressed="false" data-feedback="❌ 大肠杆菌属于杆菌，是杆状的。"><span class="opt-letter">B</span> 大肠杆菌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：幽门螺杆菌" aria-pressed="false"><span class="opt-letter">C</span> 幽门螺杆菌</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -400,12 +427,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·中考真题】（2022·湖南中考）关于细菌形态的描述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;margin-left:8px;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,13,'A')" data-feedback="❌ 细菌形态有三种，但个体差异主要由种类决定，受环境影响不改变基本形态。"><span class="opt-letter">A</span> 所有细菌形态都一样</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,13,'B')"><span class="opt-letter">B</span> 细菌有球菌、杆菌、螺旋菌三种基本形态</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,13,'C')" data-feedback="❌ 细菌是单细胞生物，每个细菌就是一个细胞。"><span class="opt-letter">C</span> 细菌是多细胞生物</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,13,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：所有细菌形态都一样" aria-pressed="false" data-feedback="❌ 细菌形态有三种，但个体差异主要由种类决定，受环境影响不改变基本形态。"><span class="opt-letter">A</span> 所有细菌形态都一样</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,13,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细菌有球菌、杆菌、螺旋菌三种基本形态" aria-pressed="false"><span class="opt-letter">B</span> 细菌有球菌、杆菌、螺旋菌三种基本形态</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,13,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细菌是多细胞生物" aria-pressed="false" data-feedback="❌ 细菌是单细胞生物，每个细菌就是一个细胞。"><span class="opt-letter">C</span> 细菌是多细胞生物</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13">
@@ -420,6 +447,9 @@
     <section class="section" id="section-exam">
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -452,7 +482,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;"><strong>必背：</strong>列文虎克——<strong>第一个发现细菌</strong>的人，被称为"<strong>微生物学之父</strong>"。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -551,6 +583,8 @@
       if (pLabel) pLabel.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(pct) + '%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

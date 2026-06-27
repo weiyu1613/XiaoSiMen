@@ -179,6 +179,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -192,6 +204,10 @@
 
   <!-- ③ 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../zwwdsh.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -272,6 +288,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 描述种子萌发的环境条件（适宜温度、一定水分、充足空气）</li>
@@ -288,12 +310,12 @@
       <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
 
       <!-- 基础题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 下列哪项不是种子萌发所需的环境条件？</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 适宜的温度</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 一定的水分</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">C</span> 充足的阳光</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 充足的空气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：适宜的温度" aria-pressed="false"><span class="opt-letter">A</span> 适宜的温度</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：一定的水分" aria-pressed="false"><span class="opt-letter">B</span> 一定的水分</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：充足的阳光" aria-pressed="false"><span class="opt-letter">C</span> 充足的阳光</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：充足的空气" aria-pressed="false"><span class="opt-letter">D</span> 充足的空气</div>
         <div class="feedback" id="fb-1"></div>
         <div class="answer-explanation" id="exp-1">
           <strong>解析：</strong>种子萌发的环境条件是适宜温度、一定水分、充足空气。阳光不是种子萌发必需的环境条件（有些种子在黑暗中也能萌发），但阳光会影响幼苗的生长。
@@ -301,12 +323,12 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 在探究"种子萌发需要的外界条件"实验中，对照组应设置为（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 常温、干燥、空气充足</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">B</span> 低温、湿润、空气充足</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">C</span> 常温、湿润、空气充足</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 常温、湿润、缺乏空气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：常温、干燥、空气充足" aria-pressed="false"><span class="opt-letter">A</span> 常温、干燥、空气充足</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：低温、湿润、空气充足" aria-pressed="false"><span class="opt-letter">B</span> 低温、湿润、空气充足</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：常温、湿润、空气充足" aria-pressed="false"><span class="opt-letter">C</span> 常温、湿润、空气充足</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：常温、湿润、缺乏空气" aria-pressed="false"><span class="opt-letter">D</span> 常温、湿润、缺乏空气</div>
         <div class="feedback" id="fb-2"></div>
         <div class="answer-explanation" id="exp-2">
           <strong>解析：</strong>对照实验需要满足种子萌发的全部环境条件（适宜温度、一定水分、充足空气），作为对照组。其他组分别与对照组进行单一变量比较。
@@ -314,12 +336,12 @@
       </div>
 
       <!-- 挑战题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关种子萌发的叙述，正确的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 种子萌发时，先突破种皮的是胚芽</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">B</span> 种子萌发需要自身条件具备且不在休眠期</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">C</span> 土壤为种子萌发提供有机物</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 播种后要覆盖地膜，主要是为了减少水分蒸发</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：种子萌发时，先突破种皮的是胚芽" aria-pressed="false"><span class="opt-letter">A</span> 种子萌发时，先突破种皮的是胚芽</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：种子萌发需要自身条件具备且不在休眠期" aria-pressed="false"><span class="opt-letter">B</span> 种子萌发需要自身条件具备且不在休眠期</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：土壤为种子萌发提供有机物" aria-pressed="false"><span class="opt-letter">C</span> 土壤为种子萌发提供有机物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：播种后要覆盖地膜，主要是为了减少水分蒸发" aria-pressed="false"><span class="opt-letter">D</span> 播种后要覆盖地膜，主要是为了减少水分蒸发</div>
         <div class="feedback" id="fb-3"></div>
         <div class="answer-explanation" id="exp-3">
           <strong>解析：</strong>A错误——种子萌发时，胚根先突破种皮发育成根；B正确——种子萌发需要完整的、活的胚，且度过休眠期；C错误——土壤不提供有机物，种子萌发初期靠子叶或胚乳提供营养；D不完全——覆膜主要目的是保温保湿，不仅是减少水分蒸发。
@@ -429,24 +451,24 @@
       <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
       <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">1. 种子萌发时，最先突破种皮的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">A</span> 胚根</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 胚芽</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 子叶</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 胚轴</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：胚根" aria-pressed="false"><span class="opt-letter">A</span> 胚根</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：胚芽" aria-pressed="false"><span class="opt-letter">B</span> 胚芽</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：子叶" aria-pressed="false"><span class="opt-letter">C</span> 子叶</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：胚轴" aria-pressed="false"><span class="opt-letter">D</span> 胚轴</div>
         <div class="feedback" id="fb-4"></div>
         <div class="answer-explanation" id="exp-4">
           <strong>解析：</strong>种子萌发过程中，胚根最先突破种皮，向下生长形成根；随后胚轴伸长，胚芽发育成茎和叶。
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】下列有关种子萌发和植株生长的叙述，<strong>错误</strong>的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 种子萌发需要适宜的温度、一定的水分和充足的空气</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">B</span> 幼根的生长主要靠分生区细胞分裂和伸长区细胞伸长</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">C</span> 植株生长只需要含氮、磷、钾的无机盐</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 一朵花中最重要的结构是雄蕊和雌蕊</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：种子萌发需要适宜的温度、一定的水分和充足的空气" aria-pressed="false"><span class="opt-letter">A</span> 种子萌发需要适宜的温度、一定的水分和充足的空气</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：幼根的生长主要靠分生区细胞分裂和伸长区细胞伸长" aria-pressed="false"><span class="opt-letter">B</span> 幼根的生长主要靠分生区细胞分裂和伸长区细胞伸长</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：植株生长只需要含氮、磷、钾的无机盐" aria-pressed="false"><span class="opt-letter">C</span> 植株生长只需要含氮、磷、钾的无机盐</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：一朵花中最重要的结构是雄蕊和雌蕊" aria-pressed="false"><span class="opt-letter">D</span> 一朵花中最重要的结构是雄蕊和雌蕊</div>
         <div class="feedback" id="fb-5"></div>
         <div class="answer-explanation" id="exp-5">
           <strong>解析：</strong>C是错误的。植株生长需要多种无机盐，其中需要量最多的是含氮、磷、钾的无机盐，但不是"只需要"这三种。植物还需要钙、镁、硫等微量元素。
@@ -655,6 +677,8 @@
       </div>
     </div>
   </div>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

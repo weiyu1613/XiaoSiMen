@@ -98,6 +98,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny \u00b7 初中历史</span></div>
@@ -107,6 +119,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
   <div class="progress-label" id="progress-label">第 1/6 节 \u00b7 16%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d3fds.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -170,6 +186,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 知道欧洲中世纪城市兴起的时间、原因及著名城市</li>
@@ -182,12 +204,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【&#11088; 基础】欧洲中世纪城市的兴起时间约为？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="&#10060; 10世纪前城市规模很小！">A. 8~9世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">B. 10~11世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 14世纪城市已经相当繁荣了！">C. 12~13世纪</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.8~9世纪" aria-pressed="false" data-feedback="&#10060; 10世纪前城市规模很小！">A. 8~9世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.10~11世纪" aria-pressed="false">B. 10~11世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.12~13世纪" aria-pressed="false" data-feedback="&#10060; 14世纪城市已经相当繁荣了！">C. 12~13世纪</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -196,12 +218,12 @@
           <p style="margin-top:6px;">10~11世纪，随着西欧封建制度的确立和社会稳定，手工业和商业快速发展，大量人口涌入交通便利的地点（如城堡、修道院附近、渡口），形成城市。意大利的威尼斯、热那亚等城市率先兴起。</p>
         </div>
       </div>
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="intermediate">
         <h3>2. 【&#11088; 基础】城市居民主要分为哪两个阶层？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="&#10060; "市民和农民"不是标准的历史分类！">A. 市民和农民</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="&#10060; "贵族和平民"是社会阶层的笼统划分，不是城市居民的主要分层！">B. 贵族和平民</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')">C. 富裕市民（资产阶级雏形）和普通手工业者、商人</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.市民和农民" aria-pressed="false" data-feedback="&#10060; "市民和农民"不是标准的历史分类！">A. 市民和农民</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.贵族和平民" aria-pressed="false" data-feedback="&#10060; "贵族和平民"是社会阶层的笼统划分，不是城市居民的主要分层！">B. 贵族和平民</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.富裕市民（资产阶级雏形）和普通手工业者、商人" aria-pressed="false">C. 富裕市民（资产阶级雏形）和普通手工业者、商人</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -210,12 +232,12 @@
           <p style="margin-top:6px;">城市居民主要分为<strong>富裕市民</strong>（包括大商人、高利贷者、作坊主）和<strong>普通手工业者、商人</strong>（帮工、学徒等）。前者是<strong>早期资产阶级的雏形</strong>，后者处于城市下层。</p>
         </div>
       </div>
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="intermediate">
         <h3>3. 【&#11088;&#11088; 提高】城市兴起的主要意义是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 城市兴起是封建经济的补充，但主要意义不在于此！">A. 增加了封建国家的税收</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">B. 打破了封建庄园经济的封闭状态，促进了商品经济发展，孕育了资本主义萌芽</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="&#10060; 城市兴起并未推翻封建制度！">C. 直接推翻了封建制度</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.增加了封建国家的税收" aria-pressed="false" data-feedback="&#10060; 城市兴起是封建经济的补充，但主要意义不在于此！">A. 增加了封建国家的税收</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.打破了封建庄园经济的封闭状态，促进了商品经济发展，孕育了资本主义萌芽" aria-pressed="false">B. 打破了封建庄园经济的封闭状态，促进了商品经济发展，孕育了资本主义萌芽</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.直接推翻了封建制度" aria-pressed="false" data-feedback="&#10060; 城市兴起并未推翻封建制度！">C. 直接推翻了封建制度</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -369,12 +391,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【&#11088; 基础】琅城起义发生在？<span class="difficulty-badge difficulty-\u57fa\u7840">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="&#10060; 琅城起义发生在12世纪！">A. 10世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="&#10060; 琅城起义发生在法国琅城！">B. 13世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">C. 12世纪（法国琅城）</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.10世纪" aria-pressed="false" data-feedback="&#10060; 琅城起义发生在12世纪！">A. 10世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.13世纪" aria-pressed="false" data-feedback="&#10060; 琅城起义发生在法国琅城！">B. 13世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.12世纪（法国琅城）" aria-pressed="false">C. 12世纪（法国琅城）</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -383,12 +405,12 @@
           <p style="margin-top:6px;"><strong>琅城</strong>是法国北部的一个城市，1128年琅城市民起义，要求获得城市自治权。琅城最终通过斗争获得了《琅城宪章》，是城市自治斗争的典型案例。</p>
         </div>
       </div>
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="intermediate">
         <h3>2. 【&#11088;&#11088; 提高·中考真题】（2022·多地中考）欧洲中世纪城市的兴起，对封建社会的影响是？<span class="difficulty-badge difficulty-\u63d0\u9ad8">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="&#10060; 城市并未推翻封建制度！">A. 直接导致了封建制度的崩溃</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">B. 打破了庄园经济的封闭状态，孕育了资本主义萌芽</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="&#10060; 城市加强了封建统治！">C. 加强了封建领主的统治</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.直接导致了封建制度的崩溃" aria-pressed="false" data-feedback="&#10060; 城市并未推翻封建制度！">A. 直接导致了封建制度的崩溃</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.打破了庄园经济的封闭状态，孕育了资本主义萌芽" aria-pressed="false">B. 打破了庄园经济的封闭状态，孕育了资本主义萌芽</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.加强了封建领主的统治" aria-pressed="false" data-feedback="&#10060; 城市加强了封建统治！">C. 加强了封建领主的统治</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -484,6 +506,8 @@
       }
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

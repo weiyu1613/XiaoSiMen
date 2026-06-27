@@ -210,6 +210,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -229,7 +241,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d2gdo.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <a href="#" class="nav-btn" style="opacity:0.45;pointer-events:none"><i class="fa-solid fa-chevron-left"></i> 上一节</a>
@@ -343,6 +359,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道希腊城邦的地理环境和主要特点</li>
@@ -365,16 +387,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】希腊城邦最主要的地理特征是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 希腊内陆多山，平原狭小，不适合大规模农业生产！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：广阔的平原" aria-pressed="false" data-feedback="❌ 希腊内陆多山，平原狭小，不适合大规模农业生产！">
             <span class="opt-letter">A</span> 广阔的平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 希腊临近海洋，是典型的海洋文明！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：远离海洋" aria-pressed="false" data-feedback="❌ 希腊临近海洋，是典型的海洋文明！">
             <span class="opt-letter">B</span> 远离海洋
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：多山、海岸线曲折" aria-pressed="false">
             <span class="opt-letter">C</span> 多山、海岸线曲折
           </div>
         </div>
@@ -395,16 +417,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】希腊城邦的突出特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：小国寡民" aria-pressed="false">
             <span class="opt-letter">A</span> 小国寡民
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 希腊城邦不是统一帝国，而是各自独立的小国！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：疆域辽阔" aria-pressed="false" data-feedback="❌ 希腊城邦不是统一帝国，而是各自独立的小国！">
             <span class="opt-letter">B</span> 疆域辽阔
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 希腊城邦的政治制度多样，并非都是民主制！斯巴达就是寡头政治。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：统一的国家" aria-pressed="false" data-feedback="❌ 希腊城邦的政治制度多样，并非都是民主制！斯巴达就是寡头政治。">
             <span class="opt-letter">C</span> 统一的国家
           </div>
         </div>
@@ -418,16 +440,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】雅典民主政治发展到顶峰是在谁执政时期？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 梭伦改革是民主政治的奠基，还不是顶峰！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：梭伦" aria-pressed="false" data-feedback="❌ 梭伦改革是民主政治的奠基，还不是顶峰！">
             <span class="opt-letter">A</span> 梭伦
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 克利斯提尼改革确立了民主制度，但还不是最高峰！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：克利斯提尼" aria-pressed="false" data-feedback="❌ 克利斯提尼改革确立了民主制度，但还不是最高峰！">
             <span class="opt-letter">B</span> 克利斯提尼
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：伯里克利" aria-pressed="false">
             <span class="opt-letter">C</span> 伯里克利
           </div>
         </div>
@@ -445,16 +467,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列关于亚历山大东征的评价，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 东征具有破坏性，但也带来了文化交流，不能简单说"利大于弊"或"弊大于利"！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：完全是一场侵略战争，弊大于利" aria-pressed="false" data-feedback="❌ 东征具有破坏性，但也带来了文化交流，不能简单说"利大于弊"或"弊大于利"！">
             <span class="opt-letter">A</span> 完全是一场侵略战争，弊大于利
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：具有侵略性质，但也促进了东西方文化交流" aria-pressed="false">
             <span class="opt-letter">B</span> 具有侵略性质，但也促进了东西方文化交流
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ "促进了东西方文化融合"是正确的，但亚历山大帝国存在时间较短，并未让希腊文化"成为东方主流"！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：促进了希腊文化与东方文化的融合，使希腊文化成为东方主流" aria-pressed="false" data-feedback="❌ "促进了东西方文化融合"是正确的，但亚历山大帝国存在时间较短，并未让希腊文化"成为东方主流"！">
             <span class="opt-letter">C</span> 促进了希腊文化与东方文化的融合，使希腊文化成为东方主流
           </div>
         </div>
@@ -678,6 +700,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG:亚历山大东征路线图 -->
         <div class="svg-container">
           <svg viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
@@ -774,7 +799,9 @@
           <p>亚历山大东征后，希腊文化在东方广泛传播，并与东方文化相互融合，这一时期被称为<strong>"希腊化时代"</strong>（Hellenistic Age）。</p>
           <p style="margin-top: 8px;"><strong>意义：</strong>开启了东西方文化交流的新时代，对后世产生深远影响。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 7: 后测 -->
@@ -787,16 +814,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】雅典民主政治的局限性的根本原因在于？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 民主范围狭小是现象，不是根本原因！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：民主范围狭小" aria-pressed="false" data-feedback="❌ 民主范围狭小是现象，不是根本原因！">
             <span class="opt-letter">A</span> 民主范围狭小
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：奴隶制度的存在" aria-pressed="false">
             <span class="opt-letter">B</span> 奴隶制度的存在
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 地理环境不是民主局限性的原因！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：地理环境的影响" aria-pressed="false" data-feedback="❌ 地理环境不是民主局限性的原因！">
             <span class="opt-letter">C</span> 地理环境的影响
           </div>
         </div>
@@ -810,16 +837,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖北中考）伯里克利说："我们的制度之所以被称为民主政治，因为政权是在全体公民手中。"这里的"全体公民"不包括？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 外邦人是成年人，但确实不是公民！题目问的是不包括哪些人——答案应该更全面。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：外邦人" aria-pressed="false" data-feedback="❌ 外邦人是成年人，但确实不是公民！题目问的是不包括哪些人——答案应该更全面。">
             <span class="opt-letter">A</span> 外邦人
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 妇女确实不是公民，但这只是答案的一部分。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：妇女" aria-pressed="false" data-feedback="❌ 妇女确实不是公民，但这只是答案的一部分。">
             <span class="opt-letter">B</span> 妇女
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：妇女、外邦人和奴隶" aria-pressed="false">
             <span class="opt-letter">C</span> 妇女、外邦人和奴隶
           </div>
         </div>
@@ -842,16 +869,16 @@
       </div>
 
       <!-- 后测挑战题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·河南中考）亚历山大东征最重要的历史影响是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 建立帝国是结果，但不是"最重要"的历史影响！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：建立了地跨三洲的大帝国" aria-pressed="false" data-feedback="❌ 建立帝国是结果，但不是"最重要"的历史影响！">
             <span class="opt-letter">A</span> 建立了地跨三洲的大帝国
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：促进了东西方文化交流" aria-pressed="false">
             <span class="opt-letter">B</span> 促进了东西方文化交流
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 文化交流是客观结果，不是主观目的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：推动希腊文化成为东方主流" aria-pressed="false" data-feedback="❌ 文化交流是客观结果，不是主观目的！">
             <span class="opt-letter">C</span> 推动希腊文化成为东方主流
           </div>
         </div>
@@ -869,20 +896,20 @@
       </div>
 
       <!-- 后测材料分析题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料】</strong>"亚历山大在远征过程中，沿途建立了许多城市，这些城市成为希腊文化的传播中心。他在埃及建立的亚历山大城，后来成为地中海东部的学术中心，图书馆藏书达70万卷。" ——摘自人教版九年级历史上册
         </div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，分析亚历山大东征对文化交流的作用。</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料强调的是文化建设的积极作用，"破坏"不是材料的主要信息！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：破坏了东方文化" aria-pressed="false" data-feedback="❌ 材料强调的是文化建设的积极作用，"破坏"不是材料的主要信息！">
             <span class="opt-letter">A</span> 破坏了东方文化
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：建立城市，传播希腊文化，促进学术发展" aria-pressed="false">
             <span class="opt-letter">B</span> 建立城市，传播希腊文化，促进学术发展
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料说的是"建立城市成为传播中心"，不是"军事征服"！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：通过军事征服建立统一帝国" aria-pressed="false" data-feedback="❌ 材料说的是"建立城市成为传播中心"，不是"军事征服"！">
             <span class="opt-letter">C</span> 通过军事征服建立统一帝国
           </div>
         </div>
@@ -915,6 +942,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -983,7 +1013,9 @@
             <tr style="background:#fdf4ff;"><td>判断题</td><td>★★☆☆☆</td><td>判断正误（如"全体居民享有民主"）</td><td>抓住关键词陷阱</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -1131,6 +1163,8 @@
   </script>
 
   <!-- 标准模块脚本 -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 18/31 节 · 58.1%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d5qcsg.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第五单元：青春时光</div>
@@ -136,6 +152,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 了解青春期的心理萌动 <span class="tag tag-theory">关联：青春期心理发展理论</span></li>
         <li>✅ 理解与异性交往的意义 <span class="tag tag-theory">关联：社会交往理论</span></li>
@@ -149,12 +171,12 @@
       <p style="color:#e91e63;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】青春期心理萌动的表现是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 害怕与异性说话不是<strong>心理萌动</strong>，可能是害羞或社交焦虑。<br><span class='tag tag-mistake'>归因：混淆了心理萌动和社交焦虑</span>"><span class="opt-letter">A</span> 害怕与异性说话</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：在异性面前有自我表现欲望、在意形象、渴望被肯定</span>"><span class="opt-letter">B</span> 在异性面前有自我表现的欲望</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ <strong>拒绝</strong>与异性交往不是心理萌动的表现。<br><span class='tag tag-mistake'>归因：对心理萌动的表现理解错误</span>"><span class="opt-letter">C</span> 拒绝与异性交往</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：害怕与异性说话" aria-pressed="false" data-fb="❌ 害怕与异性说话不是<strong>心理萌动</strong>，可能是害羞或社交焦虑。<br><span class='tag tag-mistake'>归因：混淆了心理萌动和社交焦虑</span>"><span class="opt-letter">A</span> 害怕与异性说话</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：在异性面前有自我表现的欲望" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：在异性面前有自我表现欲望、在意形象、渴望被肯定</span>"><span class="opt-letter">B</span> 在异性面前有自我表现的欲望</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：拒绝与异性交往" aria-pressed="false" data-fb="❌ <strong>拒绝</strong>与异性交往不是心理萌动的表现。<br><span class='tag tag-mistake'>归因：对心理萌动的表现理解错误</span>"><span class="opt-letter">C</span> 拒绝与异性交往</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -166,12 +188,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】与异性交往的意义是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ <strong>影响学习</strong>是对异性交往的<strong>片面认识</strong>，适度交往不会影响学习。<br><span class='tag tag-mistake'>归因：对异性交往的意义认识不足</span>"><span class="opt-letter">A</span> 会影响学习</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：了解异性思维/情感特征、学习优秀品质</span>"><span class="opt-letter">B</span> 有助于了解异性的思维方式、情感特征</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ <strong>浪费时间</strong>是对异性交往的<strong>错误认识</strong>，适度交往有益于心理发展。<br><span class='tag tag-mistake'>归因：缺乏正确的交往观念</span>"><span class="opt-letter">C</span> 纯粹浪费时间</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：会影响学习" aria-pressed="false" data-fb="❌ <strong>影响学习</strong>是对异性交往的<strong>片面认识</strong>，适度交往不会影响学习。<br><span class='tag tag-mistake'>归因：对异性交往的意义认识不足</span>"><span class="opt-letter">A</span> 会影响学习</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：有助于了解异性的思维方式、情感特征" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：了解异性思维/情感特征、学习优秀品质</span>"><span class="opt-letter">B</span> 有助于了解异性的思维方式、情感特征</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：纯粹浪费时间" aria-pressed="false" data-fb="❌ <strong>浪费时间</strong>是对异性交往的<strong>错误认识</strong>，适度交往有益于心理发展。<br><span class='tag tag-mistake'>归因：缺乏正确的交往观念</span>"><span class="opt-letter">C</span> 纯粹浪费时间</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -182,12 +204,12 @@
         </div>
       </div>
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】与异性交往的原则是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ <strong>亲密无间</strong>违背了异性交往的<strong>适度原则</strong>。<br><span class='tag tag-mistake'>归因：对交往原则认识错误</span>"><span class="opt-letter">A</span> 亲密无间，不分彼此</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：内心坦荡、言谈得当、举止得体</span>"><span class="opt-letter">B</span> 内心坦荡、言谈得当、举止得体</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ <strong>拒绝交往</strong>会阻碍正常的<strong>社会性发展</strong>。<br><span class='tag tag-mistake'>归因：缺乏正确的交往观念</span>"><span class="opt-letter">C</span> 拒绝与异性交往</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：亲密无间，不分彼此" aria-pressed="false" data-fb="❌ <strong>亲密无间</strong>违背了异性交往的<strong>适度原则</strong>。<br><span class='tag tag-mistake'>归因：对交往原则认识错误</span>"><span class="opt-letter">A</span> 亲密无间，不分彼此</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：内心坦荡、言谈得当、举止得体" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：内心坦荡、言谈得当、举止得体</span>"><span class="opt-letter">B</span> 内心坦荡、言谈得当、举止得体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：拒绝与异性交往" aria-pressed="false" data-fb="❌ <strong>拒绝交往</strong>会阻碍正常的<strong>社会性发展</strong>。<br><span class='tag tag-mistake'>归因：缺乏正确的交往观念</span>"><span class="opt-letter">C</span> 拒绝与异性交往</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -241,12 +263,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】与异性交往的原则是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ <strong>亲密无间</strong>违背了适度原则！<br><span class='tag tag-mistake'>归因：对交往原则认识错误</span>"><span class="opt-letter">A</span> 亲密无间</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：内心坦荡、言谈得当、举止得体</span>"><span class="opt-letter">B</span> 内心坦荡、言谈得当、举止得体</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ <strong>拒绝交往</strong>不利于社会性发展！<br><span class='tag tag-mistake'>归因：缺乏正确的交往观念</span>"><span class="opt-letter">C</span> 拒绝与异性交往</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：亲密无间" aria-pressed="false" data-fb="❌ <strong>亲密无间</strong>违背了适度原则！<br><span class='tag tag-mistake'>归因：对交往原则认识错误</span>"><span class="opt-letter">A</span> 亲密无间</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：内心坦荡、言谈得当、举止得体" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：内心坦荡、言谈得当、举止得体</span>"><span class="opt-letter">B</span> 内心坦荡、言谈得当、举止得体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：拒绝与异性交往" aria-pressed="false" data-fb="❌ <strong>拒绝交往</strong>不利于社会性发展！<br><span class='tag tag-mistake'>归因：缺乏正确的交往观念</span>"><span class="opt-letter">C</span> 拒绝与异性交往</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -254,12 +276,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】对待青春期对异性的情感，正确做法是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ <strong>盲目追求</strong>是冲动的表现，不是正确做法。<br><span class='tag tag-mistake'>归因：缺乏理性判断</span>"><span class="opt-letter">A</span> 盲目追求</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：慎重对待、理智处理</span>"><span class="opt-letter">B</span> 慎重对待、理智处理</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ <strong>完全忽视</strong>不利于情感健康发展。<br><span class='tag tag-mistake'>归因：逃避型应对方式</span>"><span class="opt-letter">C</span> 完全忽视，不当回事</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：盲目追求" aria-pressed="false" data-fb="❌ <strong>盲目追求</strong>是冲动的表现，不是正确做法。<br><span class='tag tag-mistake'>归因：缺乏理性判断</span>"><span class="opt-letter">A</span> 盲目追求</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：慎重对待、理智处理" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：慎重对待、理智处理</span>"><span class="opt-letter">B</span> 慎重对待、理智处理</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：完全忽视，不当回事" aria-pressed="false" data-fb="❌ <strong>完全忽视</strong>不利于情感健康发展。<br><span class='tag tag-mistake'>归因：逃避型应对方式</span>"><span class="opt-letter">C</span> 完全忽视，不当回事</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -267,12 +289,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于爱情，说法正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 青春期对异性的好感<strong>不是真正的爱情</strong>。<br><span class='tag tag-mistake'>归因：混淆了好感和爱情</span>"><span class="opt-letter">A</span> 青春期对异性的好感就是爱情</div>
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：爱情需要具有爱他人的能力</span>"><span class="opt-letter">B</span> 爱情需要具有爱他人的能力</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 爱情<strong>不仅是感觉</strong>，更需要责任和能力的支撑。<br><span class='tag tag-mistake'>归因：对爱情的理解片面</span>"><span class="opt-letter">C</span> 爱情只需要感觉，不需要责任</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：青春期对异性的好感就是爱情" aria-pressed="false" data-fb="❌ 青春期对异性的好感<strong>不是真正的爱情</strong>。<br><span class='tag tag-mistake'>归因：混淆了好感和爱情</span>"><span class="opt-letter">A</span> 青春期对异性的好感就是爱情</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：爱情需要具有爱他人的能力" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：爱情需要具有爱他人的能力</span>"><span class="opt-letter">B</span> 爱情需要具有爱他人的能力</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：爱情只需要感觉，不需要责任" aria-pressed="false" data-fb="❌ 爱情<strong>不仅是感觉</strong>，更需要责任和能力的支撑。<br><span class='tag tag-mistake'>归因：对爱情的理解片面</span>"><span class="opt-letter">C</span> 爱情只需要感觉，不需要责任</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -285,6 +307,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);border:1px solid #f48fb1;">
           <div class="exam-card-header">
@@ -313,7 +338,9 @@
           <p style="margin-top:10px;font-size:13px;color:#4a148c;"><span class="tag tag-mistake">常见陷阱</span> "盲目追求""完全忽视"等<strong>极端做法</strong>均为错误选项。</p>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -343,6 +370,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

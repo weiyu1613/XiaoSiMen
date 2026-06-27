@@ -101,6 +101,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <div class="brand-bar">
     <div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div>
@@ -115,6 +127,10 @@
 </div>
 
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../d9zhn.html" class="nav-btn"><i class="fas fa-list"></i> 单元</a>
@@ -195,28 +211,28 @@
         <h2><i class="fas fa-question-circle"></i> 课前思考（前测）</h2>
         <div class="quiz-question">
             <h4>1. 【基础】抗美援朝战争中，中国人民志愿军的司令员是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。朱德是解放军总司令，不是志愿军司令员。">A. 朱德</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！彭德怀担任中国人民志愿军司令员兼政治委员，率军入朝作战。">B. 彭德怀</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。刘伯承不是志愿军司令员。">C. 刘伯承</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：朱德" aria-pressed="false" data-feedback="❌ 错误。朱德是解放军总司令，不是志愿军司令员。">A. 朱德</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：彭德怀" aria-pressed="false" data-feedback="✅ 正确！彭德怀担任中国人民志愿军司令员兼政治委员，率军入朝作战。">B. 彭德怀</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：刘伯承" aria-pressed="false" data-feedback="❌ 错误。刘伯承不是志愿军司令员。">C. 刘伯承</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【提高】中国出兵朝鲜的根本原因是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。中国出兵不是为了扩张领土。">A. 扩张领土</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！美国侵略朝鲜，把战火烧到中国边境，严重威胁中国安全。抗美援朝就是保家卫国。">B. 保家卫国</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。中国出兵不是为了支援朝鲜统一。">C. 支援朝鲜统一</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：扩张领土" aria-pressed="false" data-feedback="❌ 错误。中国出兵不是为了扩张领土。">A. 扩张领土</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：保家卫国" aria-pressed="false" data-feedback="✅ 正确！美国侵略朝鲜，把战火烧到中国边境，严重威胁中国安全。抗美援朝就是保家卫国。">B. 保家卫国</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：支援朝鲜统一" aria-pressed="false" data-feedback="❌ 错误。中国出兵不是为了支援朝鲜统一。">C. 支援朝鲜统一</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【挑战】上甘岭战役中用胸膛堵住敌人枪眼的英雄是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！黄继光在上甘岭战役中，用胸膛堵住敌人的枪眼，为战友开辟了前进道路。">A. 黄继光</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。邱少云是为了不暴露部队位置，忍受烈火灼烧直至牺牲。">B. 邱少云</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。罗盛教是抢救朝鲜落水儿童而牺牲的国际主义战士。">C. 罗盛教</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项A：黄继光" aria-pressed="false" data-feedback="✅ 正确！黄继光在上甘岭战役中，用胸膛堵住敌人的枪眼，为战友开辟了前进道路。">A. 黄继光</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：邱少云" aria-pressed="false" data-feedback="❌ 错误。邱少云是为了不暴露部队位置，忍受烈火灼烧直至牺牲。">B. 邱少云</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：罗盛教" aria-pressed="false" data-feedback="❌ 错误。罗盛教是抢救朝鲜落水儿童而牺牲的国际主义战士。">C. 罗盛教</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -296,28 +312,28 @@
         <h2><i class="fas fa-clipboard-check"></i> 课后检测（后测）</h2>
         <div class="quiz-question">
             <h4>1. 【⭐ 基础】抗美援朝战争结束的标志是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。上甘岭战役是1952年的战役，不是战争结束的标志。">A. 上甘岭战役胜利</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1953年7月，美国被迫在停战协定上签字，标志着抗美援朝战争胜利结束。">B. 停战协定签订</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。志愿军入朝是战争开始的标志，不是结束。">C. 志愿军入朝</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：上甘岭战役胜利" aria-pressed="false" data-feedback="❌ 错误。上甘岭战役是1952年的战役，不是战争结束的标志。">A. 上甘岭战役胜利</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：停战协定签订" aria-pressed="false" data-feedback="✅ 正确！1953年7月，美国被迫在停战协定上签字，标志着抗美援朝战争胜利结束。">B. 停战协定签订</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：志愿军入朝" aria-pressed="false" data-feedback="❌ 错误。志愿军入朝是战争开始的标志，不是结束。">C. 志愿军入朝</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>2. 【⭐⭐ 提高】（2023·北京）抗美援朝战争胜利的历史意义是？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。抗美援朝胜利不是中国开始崛起的标志，而是巩固了新中国政权。">A. 标志着中国开始崛起</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！抗美援朝战争打破了美军不可战胜的神话，大大提高了中国的国际地位。">B. 打破美军不可战胜的神话，提高国际地位</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。实现统一是另一个话题，与抗美援朝无关。">C. 实现了祖国统一</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：标志着中国开始崛起" aria-pressed="false" data-feedback="❌ 错误。抗美援朝胜利不是中国开始崛起的标志，而是巩固了新中国政权。">A. 标志着中国开始崛起</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：打破美军不可战胜的神话，提高国际地位" aria-pressed="false" data-feedback="✅ 正确！抗美援朝战争打破了美军不可战胜的神话，大大提高了中国的国际地位。">B. 打破美军不可战胜的神话，提高国际地位</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：实现了祖国统一" aria-pressed="false" data-feedback="❌ 错误。实现统一是另一个话题，与抗美援朝无关。">C. 实现了祖国统一</button>
             </div>
             <div class="feedback"></div>
         </div>
         <div class="quiz-question">
             <h4>3. 【⭐⭐⭐ 挑战】"最可爱的人"这一称呼用来形容？</h4>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。解放军不是特指抗美援朝战争中的称呼。">A. 中国人民解放军</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！志愿军战士发扬了高度的爱国主义、革命英雄主义和国际主义精神，被誉为'最可爱的人'。">B. 中国人民志愿军</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。抗日联军是抗日战争时期的，不是抗美援朝的。">C. 东北抗日联军</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：中国人民解放军" aria-pressed="false" data-feedback="❌ 错误。解放军不是特指抗美援朝战争中的称呼。">A. 中国人民解放军</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：中国人民志愿军" aria-pressed="false" data-feedback="✅ 正确！志愿军战士发扬了高度的爱国主义、革命英雄主义和国际主义精神，被誉为'最可爱的人'。">B. 中国人民志愿军</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：东北抗日联军" aria-pressed="false" data-feedback="❌ 错误。抗日联军是抗日战争时期的，不是抗美援朝的。">C. 东北抗日联军</button>
             </div>
             <div class="feedback"></div>
         </div>
@@ -399,6 +415,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -218,6 +218,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -231,6 +243,10 @@
 
   <!-- ========== ③ 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -333,17 +349,17 @@
             <div class="quiz-question">
               <span class="star">★</span>美国内战爆发于？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1861年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 1861年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'B')" data-feedback="❌ 1860年是林肯当选总统的年份，不是战争爆发年份！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1860年" aria-pressed="false" data-feedback="❌ 1860年是林肯当选总统的年份，不是战争爆发年份！">
                 <span class="opt-letter">B</span><label>B. 1860年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 1865年是战争结束的年份！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1865年" aria-pressed="false" data-feedback="❌ 1865年是战争结束的年份！">
                 <span class="opt-letter">C</span><label>C. 1865年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 1850年离内战爆发还有10年！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.1850年" aria-pressed="false" data-feedback="❌ 1850年离内战爆发还有10年！">
                 <span class="opt-letter">D</span><label>D. 1850年</label>
               </div>
             </div>
@@ -364,17 +380,17 @@
             <div class="quiz-question">
               <span class="star">★</span>《解放黑人奴隶宣言》颁布于？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 1860年林肯还未就任总统！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1860年" aria-pressed="false" data-feedback="❌ 1860年林肯还未就任总统！">
                 <span class="opt-letter">A</span><label>A. 1860年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1862年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 1862年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 1863年是宣言正式生效的日期！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1863年" aria-pressed="false" data-feedback="❌ 1863年是宣言正式生效的日期！">
                 <span class="opt-letter">C</span><label>C. 1863年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 1865年是战争结束的年份！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.1865年" aria-pressed="false" data-feedback="❌ 1865年是战争结束的年份！">
                 <span class="opt-letter">D</span><label>D. 1865年</label>
               </div>
             </div>
@@ -395,17 +411,17 @@
             <div class="quiz-question">
               <span class="star">★</span>美国内战爆发的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 林肯当选是直接原因/导火索，不是根本原因！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.林肯当选总统" aria-pressed="false" data-feedback="❌ 林肯当选是直接原因/导火索，不是根本原因！">
                 <span class="opt-letter">A</span><label>A. 林肯当选总统</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'B')" data-feedback="❌ 南方脱离是战争爆发的过程，不是根本原因！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.南方蓄奴州脱离联邦" aria-pressed="false" data-feedback="❌ 南方脱离是战争爆发的过程，不是根本原因！">
                 <span class="opt-letter">B</span><label>B. 南方蓄奴州脱离联邦</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.南方奴隶制与北方资本主义制度的矛盾" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 南方奴隶制与北方资本主义制度的矛盾</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 英国干涉不是内战爆发的根本原因！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.英国对美国的干涉" aria-pressed="false" data-feedback="❌ 英国干涉不是内战爆发的根本原因！">
                 <span class="opt-letter">D</span><label>D. 英国对美国的干涉</label>
               </div>
             </div>
@@ -426,17 +442,17 @@
             <div class="quiz-question">
               <span class="star">★</span>关于《解放黑人奴隶宣言》的表述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 宣言仅适用于叛乱诸州，不是全国范围立即废除！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.宣布在全国范围内废除奴隶制" aria-pressed="false" data-feedback="❌ 宣言仅适用于叛乱诸州，不是全国范围立即废除！">
                 <span class="opt-letter">A</span><label>A. 宣布在全国范围内废除奴隶制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 宣言由北方联邦政府发布，不是南方发布！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.由南方叛乱诸州发布" aria-pressed="false" data-feedback="❌ 宣言由北方联邦政府发布，不是南方发布！">
                 <span class="opt-letter">B</span><label>B. 由南方叛乱诸州发布</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 宣言是战争爆发一年多后才颁布，不是立即发布！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.于内战爆发后立即发布" aria-pressed="false" data-feedback="❌ 宣言是战争爆发一年多后才颁布，不是立即发布！">
                 <span class="opt-letter">C</span><label>C. 于内战爆发后立即发布</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'D')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.从法律上限制了南方奴隶制的发展" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">D</span><label>D. 从法律上限制了南方奴隶制的发展</label>
               </div>
             </div>
@@ -680,17 +696,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2021·山东中考）美国内战爆发的根本原因是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 林肯当选是直接原因，不是根本原因！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.林肯当选总统" aria-pressed="false" data-feedback="❌ 林肯当选是直接原因，不是根本原因！">
                 <span class="opt-letter">A</span><label>A. 林肯当选总统</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.北方资本主义与南方奴隶制矛盾的激化" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 北方资本主义与南方奴隶制矛盾的激化</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 英国干涉不是内战爆发的根本原因！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.英国对美国的干涉" aria-pressed="false" data-feedback="❌ 英国干涉不是内战爆发的根本原因！">
                 <span class="opt-letter">C</span><label>C. 英国对美国的干涉</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 黑人要求解放是内战的结果，不是原因！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.黑人要求解放" aria-pressed="false" data-feedback="❌ 黑人要求解放是内战的结果，不是原因！">
                 <span class="opt-letter">D</span><label>D. 黑人要求解放</label>
               </div>
             </div>
@@ -712,17 +728,17 @@
             <div class="quiz-question">
               <span class="star">★</span>《解放黑人奴隶宣言》是由谁颁布的？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.林肯" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 林肯</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ 华盛顿是独立战争时期的领导人！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.华盛顿" aria-pressed="false" data-feedback="❌ 华盛顿是独立战争时期的领导人！">
                 <span class="opt-letter">B</span><label>B. 华盛顿</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'C')" data-feedback="❌ 罗斯福是20世纪30年代的总统！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.罗斯福" aria-pressed="false" data-feedback="❌ 罗斯福是20世纪30年代的总统！">
                 <span class="opt-letter">C</span><label>C. 罗斯福</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 杰斐逊是独立宣言的起草者，不是内战时期的！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.杰斐逊" aria-pressed="false" data-feedback="❌ 杰斐逊是独立宣言的起草者，不是内战时期的！">
                 <span class="opt-letter">D</span><label>D. 杰斐逊</label>
               </div>
             </div>
@@ -739,17 +755,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2018·山东中考）美国内战的历史意义是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 独立战争已推翻英国殖民统治，内战没有涉及此内容！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.摧毁了英国在美国的殖民统治" aria-pressed="false" data-feedback="❌ 独立战争已推翻英国殖民统治，内战没有涉及此内容！">
                 <span class="opt-letter">A</span><label>A. 摧毁了英国在美国的殖民统治</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'B')" data-feedback="❌ 美国建立的是联邦共和制，不是君主立宪制！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.确立了君主立宪制" aria-pressed="false" data-feedback="❌ 美国建立的是联邦共和制，不是君主立宪制！">
                 <span class="opt-letter">B</span><label>B. 确立了君主立宪制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.维护了国家统一，废除了奴隶制" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 维护了国家统一，废除了奴隶制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 社会主义国家是1917年俄国十月革命后建立的！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.建立了世界上第一个社会主义国家" aria-pressed="false" data-feedback="❌ 社会主义国家是1917年俄国十月革命后建立的！">
                 <span class="opt-letter">D</span><label>D. 建立了世界上第一个社会主义国家</label>
               </div>
             </div>
@@ -770,17 +786,17 @@
             <div class="quiz-question">
               <span class="star">★</span>之所以说美国内战是美国历史上第二次资产阶级革命，主要因为它？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 推翻英国殖民统治是独立战争的内容！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.推翻了英国的殖民统治" aria-pressed="false" data-feedback="❌ 推翻英国殖民统治是独立战争的内容！">
                 <span class="opt-letter">A</span><label>A. 推翻了英国的殖民统治</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 美国始终是联邦共和制，没有建立君主立宪制！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.建立了君主立宪制" aria-pressed="false" data-feedback="❌ 美国始终是联邦共和制，没有建立君主立宪制！">
                 <span class="opt-letter">B</span><label>B. 建立了君主立宪制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 《独立宣言》是独立战争时期颁布的！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.颁布了《独立宣言》" aria-pressed="false" data-feedback="❌ 《独立宣言》是独立战争时期颁布的！">
                 <span class="opt-letter">C</span><label>C. 颁布了《独立宣言》</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'D')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.废除了奴隶制，进一步完善了资本主义制度" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">D</span><label>D. 废除了奴隶制，进一步完善了资本主义制度</label>
               </div>
             </div>
@@ -804,6 +820,9 @@
     <!-- ========== ⑩ 必考分析与考点总结 ========== -->
     <section class="section">
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
           <div class="exam-cards">
@@ -842,7 +861,9 @@
             <p style="margin-top: 6px;"><strong>易错5：</strong>内战性质：<strong>第二次资产阶级革命</strong>，不是民族革命！</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ========== AI学伴 ========== -->
@@ -951,6 +972,8 @@
       console.log('📚 《美国内战》课件加载完成（v7.14.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

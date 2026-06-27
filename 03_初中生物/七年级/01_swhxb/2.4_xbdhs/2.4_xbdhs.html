@@ -201,6 +201,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -213,7 +225,11 @@
   <div class="progress-label" id="progress-label">第 6/6 节 · 100%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../swhxb.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一单元：生物和细胞</div>
@@ -304,6 +320,12 @@
     <!-- Section2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 说出细胞的物质组成</li>
@@ -324,16 +346,16 @@
       </p>
       
       <!-- 基础题1：物质组成 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】下列哪种物质属于有机物？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 水是无机物！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：水" aria-pressed="false" data-feedback="❌ 水是无机物！">
             <span class="opt-letter">A</span> 水
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 无机盐是无机物！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：无机盐" aria-pressed="false" data-feedback="❌ 无机盐是无机物！">
             <span class="opt-letter">B</span> 无机盐
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：糖类" aria-pressed="false">
             <span class="opt-letter">C</span> 糖类
           </div>
         </div>
@@ -351,16 +373,16 @@
       </div>
 
       <!-- 基础题2：能量转换器 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】细胞的能量转换器是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 液泡不是能量转换器！液泡内含细胞液。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：液泡" aria-pressed="false" data-feedback="❌ 液泡不是能量转换器！液泡内含细胞液。">
             <span class="opt-letter">A</span> 液泡
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：叶绿体和线粒体" aria-pressed="false">
             <span class="opt-letter">B</span> 叶绿体和线粒体
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 细胞核不是能量转换器！细胞核控制遗传和代谢。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞核" aria-pressed="false" data-feedback="❌ 细胞核不是能量转换器！细胞核控制遗传和代谢。">
             <span class="opt-letter">C</span> 细胞核
           </div>
         </div>
@@ -512,16 +534,16 @@
       <h2 class="section-title"><span class="num">📝</span> 后测：巩固与应用</h2>
       
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【中考真题】克隆羊多莉的遗传特性与哪只羊相似？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 101, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 101, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：供核母羊" aria-pressed="false">
             <span class="opt-letter">A</span> 供核母羊
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'B')" data-feedback="❌ 供质母羊只提供细胞质，不控制遗传！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：供质母羊" aria-pressed="false" data-feedback="❌ 供质母羊只提供细胞质，不控制遗传！">
             <span class="opt-letter">B</span> 供质母羊
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'C')" data-feedback="❌ 代孕母羊只提供胚胎发育场所，不提供遗传物质！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：代孕母羊" aria-pressed="false" data-feedback="❌ 代孕母羊只提供胚胎发育场所，不提供遗传物质！">
             <span class="opt-letter">C</span> 代孕母羊
           </div>
         </div>
@@ -540,16 +562,16 @@
       </div>
 
       <!-- 后测题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【应用题】植物细胞和动物细胞都有的能量转换器是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'A')" data-feedback="❌ 叶绿体是植物细胞特有的，动物细胞没有！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：叶绿体" aria-pressed="false" data-feedback="❌ 叶绿体是植物细胞特有的，动物细胞没有！">
             <span class="opt-letter">A</span> 叶绿体
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 102, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 102, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：线粒体" aria-pressed="false">
             <span class="opt-letter">B</span> 线粒体
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'C')" data-feedback="❌ 核糖体不是能量转换器！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：核糖体" aria-pressed="false" data-feedback="❌ 核糖体不是能量转换器！">
             <span class="opt-letter">C</span> 核糖体
           </div>
         </div>
@@ -572,6 +594,9 @@
       <h2 class="section-title"><span class="num">📊</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color: #2e7d32; margin-bottom: 16px;">📈 中考考频统计</h3>
         
         <div class="exam-card" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
@@ -620,7 +645,9 @@
             <li><strong>有机物 vs 无机物</strong>：有机物含碳（糖类、脂质、蛋白质、核酸）；无机物不含碳（水、无机盐）</li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -872,6 +899,8 @@
     </div>
   </div>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

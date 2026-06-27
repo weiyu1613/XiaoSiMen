@@ -66,7 +66,7 @@ const MASCOT_CONFIG = {
     morality: {
       name: '法小正',
       title: '正义守护者',
-      color: '#2E7D32',
+      color: '#7B1FA2',
       accentColor: '#FF8F00',
       icon: '⚖️',
       personality: '公正严明，温暖有力',

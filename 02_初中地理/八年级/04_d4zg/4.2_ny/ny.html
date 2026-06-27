@@ -196,6 +196,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
     <div class="brand-tag">互动课件 v8.1</div>
@@ -204,7 +216,11 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 2/3 节 · 67%</div>
 
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d4zg.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第四单元：中国的经济发展</div>
@@ -278,6 +294,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解农业的概念和五大部门</li>
@@ -292,16 +314,16 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】农业包括哪些生产部门？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 工业不属于农业！农业是利用动植物生产产品的部门。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：种植业、林业、牧业、渔业、工业" aria-pressed="false" data-feedback="❌ 工业不属于农业！农业是利用动植物生产产品的部门。">
             <span class="opt-letter">A</span> 种植业、林业、牧业、渔业、工业
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：种植业、林业、牧业、渔业" aria-pressed="false">
             <span class="opt-letter">B</span> 种植业、林业、牧业、渔业
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 农业的四大部门是种植业、林业、牧业、渔业，不包括建筑业！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：种植业、林业、建筑业、渔业" aria-pressed="false" data-feedback="❌ 农业的四大部门是种植业、林业、牧业、渔业，不包括建筑业！">
             <span class="opt-letter">C</span> 种植业、林业、建筑业、渔业
           </div>
         </div>
@@ -313,16 +335,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】下列地区以种植业为主的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：长江中下游平原" aria-pressed="false">
             <span class="opt-letter">A</span> 长江中下游平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 内蒙古高原以草原畜牧业为主，不是种植业！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：内蒙古高原" aria-pressed="false" data-feedback="❌ 内蒙古高原以草原畜牧业为主，不是种植业！">
             <span class="opt-letter">B</span> 内蒙古高原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 青藏高原以畜牧业为主，气候寒冷不利于种植业！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：青藏高原" aria-pressed="false" data-feedback="❌ 青藏高原以畜牧业为主，气候寒冷不利于种植业！">
             <span class="opt-letter">C</span> 青藏高原
           </div>
         </div>
@@ -334,16 +356,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】划分我国东西部农业差异的重要分界线是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 秦岭-淮河一线是南北方的分界线，不是东西部的分界线！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦岭—淮河一线" aria-pressed="false" data-feedback="❌ 秦岭-淮河一线是南北方的分界线，不是东西部的分界线！">
             <span class="opt-letter">A</span> 秦岭—淮河一线
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：400毫米等降水量线" aria-pressed="false">
             <span class="opt-letter">B</span> 400毫米等降水量线
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 大兴安岭—太行山—巫山—雪峰山是第二、三级阶梯的分界线！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：大兴安岭—太行山—巫山—雪峰山" aria-pressed="false" data-feedback="❌ 大兴安岭—太行山—巫山—雪峰山是第二、三级阶梯的分界线！">
             <span class="opt-letter">C</span> 大兴安岭—太行山—巫山—雪峰山
           </div>
         </div>
@@ -441,6 +463,9 @@
     <section class="section" id="section-grain">
       <h2 class="section-title"><span class="num">🏞️</span> 主要商品粮基地</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box">
           <div class="label">核心概念 · 商品粮基地</div>
           <p>商品粮基地是指<strong>粮食商品率高</strong>、能够稳定地向外提供大量商品粮的农业生产基地。</p>
@@ -494,12 +519,17 @@
           <p><strong>九大商品粮基地：</strong>太洞鄱成珠，江汉江淮松嫩三</p>
           <p style="margin-top:6px;"><strong>对应：</strong>太湖平原·洞庭湖平原·鄱阳湖平原·成都平原·珠江三角洲·江汉平原·江淮地区·松嫩平原·三江平原</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section class="section" id="section-factors">
       <h2 class="section-title"><span class="num">⚙️</span> 影响农业分布的因素</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box">
           <div class="label">核心概念 · 农业区位因素</div>
           <p>影响农业分布的因素分为<strong>自然条件</strong>和<strong>社会经济条件</strong>两大类。</p>
@@ -525,7 +555,9 @@
             <li><strong>社会经济：</strong>市场（城市需求）→ 交通（运输条件）→ 技术（生产水平）→ 政策（政府支持）</li>
           </ol>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section class="section" id="section-match">
@@ -609,16 +641,16 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】我国南方主要的粮食作物是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 小麦是北方的主要作物！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：小麦" aria-pressed="false" data-feedback="❌ 小麦是北方的主要作物！">
             <span class="opt-letter">A</span> 小麦
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：水稻" aria-pressed="false">
             <span class="opt-letter">B</span> 水稻
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 玉米是北方的重要作物，南方水稻更占优势！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：玉米" aria-pressed="false" data-feedback="❌ 玉米是北方的重要作物，南方水稻更占优势！">
             <span class="opt-letter">C</span> 玉米
           </div>
         </div>
@@ -630,16 +662,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】下列不属于商品粮基地的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 松嫩平原是九大商品粮基地之一！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：松嫩平原" aria-pressed="false" data-feedback="❌ 松嫩平原是九大商品粮基地之一！">
             <span class="opt-letter">A</span> 松嫩平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 成都平原是天府之国，九大商品粮基地之一！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：成都平原" aria-pressed="false" data-feedback="❌ 成都平原是天府之国，九大商品粮基地之一！">
             <span class="opt-letter">B</span> 成都平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：黄土高原" aria-pressed="false">
             <span class="opt-letter">C</span> 黄土高原
           </div>
         </div>
@@ -651,16 +683,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px;">
+      <div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】影响农业分布最重要的自然因素是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 土壤是重要因素，但不是最根本的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：土壤" aria-pressed="false" data-feedback="❌ 土壤是重要因素，但不是最根本的！">
             <span class="opt-letter">A</span> 土壤
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：气候（热量和降水）" aria-pressed="false">
             <span class="opt-letter">B</span> 气候（热量和降水）
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 水源是重要因素，但不是最根本的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：水源" aria-pressed="false" data-feedback="❌ 水源是重要因素，但不是最根本的！">
             <span class="opt-letter">C</span> 水源
           </div>
         </div>
@@ -676,6 +708,9 @@
     <section class="section" id="section-exam">
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
             <span class="exam-card-num" style="background:#dc2626;">1</span>
@@ -708,7 +743,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>自然条件（地形、气候、水源、土壤）+ 社会经济条件（市场、交通、技术、政策）。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section class="section" id="teachany-ai-tutor-card" data-tts="ai-tutor" data-tsh="AI 学伴">
@@ -823,6 +860,8 @@
       if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(progress) + '%';
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

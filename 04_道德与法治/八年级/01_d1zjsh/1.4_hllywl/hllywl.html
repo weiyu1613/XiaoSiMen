@@ -76,10 +76,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 4/31 节 · 12.9%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d1zjsh.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第一单元：走进社会生活</div>
@@ -128,6 +144,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解媒介素养的含义 <span class="tag tag-theory">关联：信息素养理论</span></li>
         <li>✅ 学会遵守网络道德 <span class="tag tag-theory">关联：网络伦理学</span></li>
@@ -139,12 +161,12 @@
     <!-- ===== 前测 ===== -->
     <section><h2 class="section-title">📝 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】媒介素养的核心是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：媒介素养定义</span>"><span class="opt-letter">A</span> 正确使用媒介的能力</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 媒介素养是能力，不是设备。<br><span class='tag tag-mistake'>归因：混淆素养与设备</span>"><span class="opt-letter">B</span> 购买电子设备</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 媒介素养是能力，不是时间。<br><span class='tag tag-mistake'>归因：混淆素养与使用时间</span>"><span class="opt-letter">C</span> 上网时间长</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：正确使用媒介的能力" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：媒介素养定义</span>"><span class="opt-letter">A</span> 正确使用媒介的能力</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：购买电子设备" aria-pressed="false" data-fb="❌ 媒介素养是能力，不是设备。<br><span class='tag tag-mistake'>归因：混淆素养与设备</span>"><span class="opt-letter">B</span> 购买电子设备</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：上网时间长" aria-pressed="false" data-fb="❌ 媒介素养是能力，不是时间。<br><span class='tag tag-mistake'>归因：混淆素养与使用时间</span>"><span class="opt-letter">C</span> 上网时间长</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析</div>
@@ -152,12 +174,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐ 基础】网络道德要求我们？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 可以传播谣言违反网络道德。<br><span class='tag tag-mistake'>归因：误解网络道德要求</span>"><span class="opt-letter">A</span> 可以传播谣言</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：网络道德</span>"><span class="opt-letter">B</span> 不传播不良信息</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 可以随意发言违反网络道德。<br><span class='tag tag-mistake'>归因：误解网络道德要求</span>"><span class="opt-letter">C</span> 随意发表言论</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：可以传播谣言" aria-pressed="false" data-fb="❌ 可以传播谣言违反网络道德。<br><span class='tag tag-mistake'>归因：误解网络道德要求</span>"><span class="opt-letter">A</span> 可以传播谣言</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：不传播不良信息" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：网络道德</span>"><span class="opt-letter">B</span> 不传播不良信息</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：随意发表言论" aria-pressed="false" data-fb="❌ 可以随意发言违反网络道德。<br><span class='tag tag-mistake'>归因：误解网络道德要求</span>"><span class="opt-letter">C</span> 随意发表言论</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析</div>
@@ -165,12 +187,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐ 提高】传播正能量应该？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：传播正能量</span>"><span class="opt-letter">A</span> 转发积极向上的内容</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 传播负面信息违背正能量原则。<br><span class='tag tag-mistake'>归因：误解正能量含义</span>"><span class="opt-letter">B</span> 传播负面信息</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 漠视网络环境不可取。<br><span class='tag tag-mistake'>归因：消极应对策略</span>"><span class="opt-letter">C</span> 对网络环境漠视</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：转发积极向上的内容" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：传播正能量</span>"><span class="opt-letter">A</span> 转发积极向上的内容</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：传播负面信息" aria-pressed="false" data-fb="❌ 传播负面信息违背正能量原则。<br><span class='tag tag-mistake'>归因：误解正能量含义</span>"><span class="opt-letter">B</span> 传播负面信息</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：对网络环境漠视" aria-pressed="false" data-fb="❌ 漠视网络环境不可取。<br><span class='tag tag-mistake'>归因：消极应对策略</span>"><span class="opt-letter">C</span> 对网络环境漠视</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析</div>
@@ -178,12 +200,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>4. 【⭐⭐⭐ 中考】做负责任的网民应该？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,4)" data-fb="❌ 随意发言是不负责任的。<br><span class='tag tag-mistake'>归因：缺乏责任意识</span>"><span class="opt-letter">A</span> 随意发表言论</div>
-          <div class="quiz-option" onclick="chk(this,true,4)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：负责任网民</span>"><span class="opt-letter">B</span> 文明上网、遵守规则</div>
-          <div class="quiz-option" onclick="chk(this,false,4)" data-fb="❌ 泄露隐私是不负责任的。<br><span class='tag tag-mistake'>归因：侵犯他人权益</span>"><span class="opt-letter">C</span> 泄露他人隐私</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：随意发表言论" aria-pressed="false" data-fb="❌ 随意发言是不负责任的。<br><span class='tag tag-mistake'>归因：缺乏责任意识</span>"><span class="opt-letter">A</span> 随意发表言论</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：文明上网、遵守规则" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：负责任网民</span>"><span class="opt-letter">B</span> 文明上网、遵守规则</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：泄露他人隐私" aria-pressed="false" data-fb="❌ 泄露隐私是不负责任的。<br><span class='tag tag-mistake'>归因：侵犯他人权益</span>"><span class="opt-letter">C</span> 泄露他人隐私</div>
         </div>
         <div class="feedback" id="fb4"></div>
         <div class="answer-explanation" id="exp4"><div class="explain-title">📖 详细解析 + 中考提示</div>
@@ -237,12 +259,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】【2023·河南中考改编】媒介素养要求我们？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：媒介素养</span>"><span class="opt-letter">A</span> 辨别信息真伪</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 相信所有信息不是媒介素养。<br><span class='tag tag-mistake'>归因：缺乏批判性思维</span>"><span class="opt-letter">B</span> 相信所有信息</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 随意传播不是媒介素养。<br><span class='tag tag-mistake'>归因：缺乏信息鉴别意识</span>"><span class="opt-letter">C</span> 随意传播信息</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：辨别信息真伪" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：媒介素养</span>"><span class="opt-letter">A</span> 辨别信息真伪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：相信所有信息" aria-pressed="false" data-fb="❌ 相信所有信息不是媒介素养。<br><span class='tag tag-mistake'>归因：缺乏批判性思维</span>"><span class="opt-letter">B</span> 相信所有信息</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：随意传播信息" aria-pressed="false" data-fb="❌ 随意传播不是媒介素养。<br><span class='tag tag-mistake'>归因：缺乏信息鉴别意识</span>"><span class="opt-letter">C</span> 随意传播信息</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析（中考真题改编）</div>
@@ -250,12 +272,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】【2022·江苏中考改编】遵守网络道德应该？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 传播谣言违反网络道德。<br><span class='tag tag-mistake'>归因：误解网络道德要求</span>"><span class="opt-letter">A</span> 可以传播谣言</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：网络道德</span>"><span class="opt-letter">B</span> 不传播不良信息</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 泄露隐私违反网络道德。<br><span class='tag tag-mistake'>归因：侵犯他人权益</span>"><span class="opt-letter">C</span> 可以泄露隐私</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：可以传播谣言" aria-pressed="false" data-fb="❌ 传播谣言违反网络道德。<br><span class='tag tag-mistake'>归因：误解网络道德要求</span>"><span class="opt-letter">A</span> 可以传播谣言</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：不传播不良信息" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：网络道德</span>"><span class="opt-letter">B</span> 不传播不良信息</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：可以泄露隐私" aria-pressed="false" data-fb="❌ 泄露隐私违反网络道德。<br><span class='tag tag-mistake'>归因：侵犯他人权益</span>"><span class="opt-letter">C</span> 可以泄露隐私</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析（中考真题改编）</div>
@@ -263,12 +285,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 挑战】做负责任的网民应该？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：负责任网民</span>"><span class="opt-letter">A</span> 文明上网、遵守规则</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 随意发言是不负责任的。<br><span class='tag tag-mistake'>归因：缺乏责任意识</span>"><span class="opt-letter">B</span> 随意发表言论</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 泄露隐私是不负责任的。<br><span class='tag tag-mistake'>归因：侵犯他人权益</span>"><span class="opt-letter">C</span> 泄露他人隐私</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：文明上网、遵守规则" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：负责任网民</span>"><span class="opt-letter">A</span> 文明上网、遵守规则</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：随意发表言论" aria-pressed="false" data-fb="❌ 随意发言是不负责任的。<br><span class='tag tag-mistake'>归因：缺乏责任意识</span>"><span class="opt-letter">B</span> 随意发表言论</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：泄露他人隐私" aria-pressed="false" data-fb="❌ 泄露隐私是不负责任的。<br><span class='tag tag-mistake'>归因：侵犯他人权益</span>"><span class="opt-letter">C</span> 泄露他人隐私</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析</div>
@@ -338,6 +360,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

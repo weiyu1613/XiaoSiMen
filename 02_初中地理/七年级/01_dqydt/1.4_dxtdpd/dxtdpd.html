@@ -101,6 +101,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-mountain"></i> TeachAny · 初中地理</div>
     <div class="brand-tag">互动课件 v7.14</div>
@@ -109,7 +121,11 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 4/8 节 · 50%</div>
   
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dqydt.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一章：地球和地图</div>
@@ -184,6 +200,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 理解等高线的概念和特点</li>
@@ -202,16 +224,16 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
       
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】等高线指的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 等高线不是海水深度相同的线，那是等深线！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：海水深度相同的点连成的线" aria-pressed="false" data-feedback="❌ 等高线不是海水深度相同的线，那是等深线！">
             <span class="opt-letter">A</span> 海水深度相同的点连成的线
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：海拔相同的点连成的线" aria-pressed="false">
             <span class="opt-letter">B</span> 海拔相同的点连成的线
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 等高线不是经线！经线是连接南北两极的线！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：经线" aria-pressed="false" data-feedback="❌ 等高线不是经线！经线是连接南北两极的线！">
             <span class="opt-letter">C</span> 经线
           </div>
         </div>
@@ -223,16 +245,16 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】等高线越密集，表示坡度？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：越陡" aria-pressed="false">
             <span class="opt-letter">A</span> 越陡
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 等高线密集表示坡度陡，稀疏才表示坡度缓！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：越缓" aria-pressed="false" data-feedback="❌ 等高线密集表示坡度陡，稀疏才表示坡度缓！">
             <span class="opt-letter">B</span> 越缓
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 等高线密集与海拔高低无直接关系！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：海拔越高" aria-pressed="false" data-feedback="❌ 等高线密集与海拔高低无直接关系！">
             <span class="opt-letter">C</span> 海拔越高
           </div>
         </div>
@@ -244,19 +266,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】海拔500米以上，坡度陡峻、沟谷幽深的地形是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 平原海拔在200米以下，地势平坦！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：平原" aria-pressed="false" data-feedback="❌ 平原海拔在200米以下，地势平坦！">
             <span class="opt-letter">A</span> 平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 高原海拔500米以上，但地面坦荡或起伏不大！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：高原" aria-pressed="false" data-feedback="❌ 高原海拔500米以上，但地面坦荡或起伏不大！">
             <span class="opt-letter">B</span> 高原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：山地" aria-pressed="false">
             <span class="opt-letter">C</span> 山地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'D')" data-feedback="❌ 丘陵海拔在500米以下，起伏和缓！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：丘陵" aria-pressed="false" data-feedback="❌ 丘陵海拔在500米以下，起伏和缓！">
             <span class="opt-letter">D</span> 丘陵
           </div>
         </div>
@@ -268,19 +290,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】等高线重合在一起的地形部位是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 山脊是等高线向低处凸出，不是重合！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：山脊" aria-pressed="false" data-feedback="❌ 山脊是等高线向低处凸出，不是重合！">
             <span class="opt-letter">A</span> 山脊
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：陡崖" aria-pressed="false">
             <span class="opt-letter">B</span> 陡崖
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 山谷是等高线向高处凸出，不是重合！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：山谷" aria-pressed="false" data-feedback="❌ 山谷是等高线向高处凸出，不是重合！">
             <span class="opt-letter">C</span> 山谷
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'D')" data-feedback="❌ 鞍部是两山顶之间，不是等高线重合！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：鞍部" aria-pressed="false" data-feedback="❌ 鞍部是两山顶之间，不是等高线重合！">
             <span class="opt-letter">D</span> 鞍部
           </div>
         </div>
@@ -407,6 +429,9 @@
     <section class="section" id="section-terrain">
       <h2 class="section-title"><span class="num">🌄</span> 五种主要地形类型</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #0369a1;">📖 地形类型及特点</h3>
         <table class="contour-table">
           <tr><th>地形类型</th><th>海拔</th><th>地面起伏</th></tr>
@@ -476,26 +501,28 @@
           <p style="margin-top: 6px;"><strong>考试陷阱1：</strong>"丘陵海拔在500米以上"→ 错误！丘陵海拔在<strong>500米以下</strong>！</p>
           <p style="margin-top: 6px;"><strong>考试陷阱2：</strong>"高原海拔都在500米以上，坡度都很陡"→ 错误！高原<strong>地面坦荡</strong>，起伏不大！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: #0369a1; margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】海拔在500米以下，起伏和缓的地形是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 平原海拔在200米以下，不是500米以下！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：平原" aria-pressed="false" data-feedback="❌ 平原海拔在200米以下，不是500米以下！">
             <span class="opt-letter">A</span> 平原
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：丘陵" aria-pressed="false">
             <span class="opt-letter">B</span> 丘陵
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 山地海拔在500米以上，起伏陡峻！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：山地" aria-pressed="false" data-feedback="❌ 山地海拔在500米以上，起伏陡峻！">
             <span class="opt-letter">C</span> 山地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'D')" data-feedback="❌ 盆地没有固定海拔范围！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：盆地" aria-pressed="false" data-feedback="❌ 盆地没有固定海拔范围！">
             <span class="opt-letter">D</span> 盆地
           </div>
         </div>
@@ -507,19 +534,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2024·广东中考）等高线重合在一起，表示？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 山脊是等高线向低处凸出，不是重合！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：山脊" aria-pressed="false" data-feedback="❌ 山脊是等高线向低处凸出，不是重合！">
             <span class="opt-letter">A</span> 山脊
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：陡崖" aria-pressed="false">
             <span class="opt-letter">B</span> 陡崖
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 山谷是等高线向高处凸出，不是重合！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：山谷" aria-pressed="false" data-feedback="❌ 山谷是等高线向高处凸出，不是重合！">
             <span class="opt-letter">C</span> 山谷
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'D')" data-feedback="❌ 鞍部是两山顶之间，不是等高线重合！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：鞍部" aria-pressed="false" data-feedback="❌ 鞍部是两山顶之间，不是等高线重合！">
             <span class="opt-letter">D</span> 鞍部
           </div>
         </div>
@@ -531,19 +558,19 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2023·北京中考）若A点在海拔200m等高线上，B点在海拔300m等高线上，两点间等高线稀疏，则A、B两地的实地距离？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 200m距离太短，海拔差是100m，不可能只相距几十米！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：约50米" aria-pressed="false" data-feedback="❌ 200m距离太短，海拔差是100m，不可能只相距几十米！">
             <span class="opt-letter">A</span> 约50米
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 等高线稀疏意味着坡度缓，同样的高差需要更长的水平距离！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：约100米" aria-pressed="false" data-feedback="❌ 等高线稀疏意味着坡度缓，同样的高差需要更长的水平距离！">
             <span class="opt-letter">B</span> 约100米
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 如果等高线密集才是几百米，等高线稀疏意味着坡度缓，水平距离会更长！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：约500米" aria-pressed="false" data-feedback="❌ 如果等高线密集才是几百米，等高线稀疏意味着坡度缓，水平距离会更长！">
             <span class="opt-letter">C</span> 约500米
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'D')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：约1000米以上" aria-pressed="false">
             <span class="opt-letter">D</span> 约1000米以上
           </div>
         </div>
@@ -673,6 +700,8 @@
       console.log('📚 《地形图的判读》课件加载完成（v1.1）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

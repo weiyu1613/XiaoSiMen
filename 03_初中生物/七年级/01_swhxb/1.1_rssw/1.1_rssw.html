@@ -201,6 +201,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -213,7 +225,11 @@
   <div class="progress-label" id="progress-label">第 1/6 节 · 16.7%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../swhxb.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一单元：生物和细胞</div>
@@ -304,6 +320,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道观察生物的基本方法</li>
@@ -324,16 +346,16 @@
       </p>
       
       <!-- 基础题1：什么是生物 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】下列属于生物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 石头没有生命，不属于生物！生物具有生长、繁殖、呼吸等生命特征。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：石头" aria-pressed="false" data-feedback="❌ 石头没有生命，不属于生物！生物具有生长、繁殖、呼吸等生命特征。">
             <span class="opt-letter">A</span> 石头
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：向日葵" aria-pressed="false">
             <span class="opt-letter">B</span> 向日葵
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 流水没有生命，不属于生物！虽然流水会流动，但它不具备生命特征。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：流水" aria-pressed="false" data-feedback="❌ 流水没有生命，不属于生物！虽然流水会流动，但它不具备生命特征。">
             <span class="opt-letter">C</span> 流水
           </div>
         </div>
@@ -347,16 +369,16 @@
       </div>
 
       <!-- 基础题2：观察工具 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】观察细小的生物，最适合的工具是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 肉眼难以看清细小的生物结构！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：肉眼" aria-pressed="false" data-feedback="❌ 肉眼难以看清细小的生物结构！">
             <span class="opt-letter">A</span> 肉眼
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：放大镜或显微镜" aria-pressed="false">
             <span class="opt-letter">B</span> 放大镜或显微镜
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 望远镜用于观察远处的物体，不适合观察细小生物！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：望远镜" aria-pressed="false" data-feedback="❌ 望远镜用于观察远处的物体，不适合观察细小生物！">
             <span class="opt-letter">C</span> 望远镜
           </div>
         </div>
@@ -374,16 +396,16 @@
       </div>
       
       <!-- 提高题3：观察记录 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】观察生物时，错误的记录方式是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只用眼睛看，不记录任何信息" aria-pressed="false">
             <span class="opt-letter">A</span> 只用眼睛看，不记录任何信息
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 绘图记录是观察生物的重要方式，能够直观展示生物的特征！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：绘制观察对象的简图" aria-pressed="false" data-feedback="❌ 绘图记录是观察生物的重要方式，能够直观展示生物的特征！">
             <span class="opt-letter">B</span> 绘制观察对象的简图
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 用表格记录数据是科学观察的标准方法！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：用表格记录观察到的数据" aria-pressed="false" data-feedback="❌ 用表格记录数据是科学观察的标准方法！">
             <span class="opt-letter">C</span> 用表格记录观察到的数据
           </div>
         </div>
@@ -479,6 +501,9 @@
       <h2 class="section-title"><span class="num">🌱</span> 观察身边的生物</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #2e7d32;">📖 生活中的生物</h3>
         
         <table class="observation-table">
@@ -507,7 +532,9 @@
           <p style="margin-top: 6px;">流水会动，但不是生物；植物不会移动，但它们是生物。</p>
           <p style="margin-top: 6px;">判断是否为生物，要看是否具有<strong>生命特征</strong>，而不是看是否会动。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: 后测 -->
@@ -515,16 +542,16 @@
       <h2 class="section-title"><span class="num">📝</span> 后测：巩固与应用</h2>
       
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【中考真题】下列说法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'A')" data-feedback="❌ 病毒虽然没有细胞结构，但它能繁殖后代、进行生命活动，属于生物！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：病毒没有细胞结构，所以不是生物" aria-pressed="false" data-feedback="❌ 病毒虽然没有细胞结构，但它能繁殖后代、进行生命活动，属于生物！">
             <span class="opt-letter">A</span> 病毒没有细胞结构，所以不是生物
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 101, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 101, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：植物能进行光合作用，制造有机物" aria-pressed="false">
             <span class="opt-letter">B</span> 植物能进行光合作用，制造有机物
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'C')" data-feedback="❌ 动物和植物都能进行呼吸，吸入氧气，呼出二氧化碳！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：动物能呼吸，植物不能呼吸" aria-pressed="false" data-feedback="❌ 动物和植物都能进行呼吸，吸入氧气，呼出二氧化碳！">
             <span class="opt-letter">C</span> 动物能呼吸，植物不能呼吸
           </div>
         </div>
@@ -542,16 +569,16 @@
       </div>
 
       <!-- 后测题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【应用题】小明在公园观察生物，他应该？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'A')" data-feedback="❌ 只观察自己喜欢的生物，会错过很多有价值的信息！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只观察自己喜欢的生物" aria-pressed="false" data-feedback="❌ 只观察自己喜欢的生物，会错过很多有价值的信息！">
             <span class="opt-letter">A</span> 只观察自己喜欢的生物
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'B')" data-feedback="❌ 观察结束后再记录，容易遗忘重要细节！应及时记录。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：观察结束后再记录" aria-pressed="false" data-feedback="❌ 观察结束后再记录，容易遗忘重要细节！应及时记录。">
             <span class="opt-letter">B</span> 观察结束后再记录
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 102, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 102, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：全面观察，及时记录" aria-pressed="false">
             <span class="opt-letter">C</span> 全面观察，及时记录
           </div>
         </div>
@@ -575,6 +602,9 @@
       <h2 class="section-title"><span class="num">📊</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color: #2e7d32; margin-bottom: 16px;">📈 中考考频统计</h3>
         
         <div class="exam-card" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
@@ -624,7 +654,9 @@
             <li><strong>蘑菇</strong>不是植物，是真菌（无叶绿素，不能进行光合作用）</li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -899,6 +931,8 @@
     updateProgress();
   </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -79,10 +79,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 31/31 节 · 100%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d8zjfztd.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第八单元：走进法治天地（最后一节）</div>
@@ -145,6 +161,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解树立法治意识的重要性 <span class="tag tag-theory">关联：法治意识理论</span></li>
         <li>✅ 掌握依法办事的基本要求 <span class="tag tag-theory">关联：依法办事理论</span></li>
@@ -158,12 +180,12 @@
       <p style="color:#2196f3;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】树立法治意识是指对法律？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 树立法治意识不仅仅是<strong>了解法律条文</strong>，更重要的是内心的认可和崇尚。<br><span class='tag tag-mistake'>归因：片面理解了法治意识的内涵</span>"><span class="opt-letter">A</span> 了解法律条文</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：法治意识的内涵</span>"><span class="opt-letter">B</span> 发自内心的认可、崇尚、遵守和服从</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 树立法治意识不仅仅是<strong>害怕法律制裁</strong>，更重要的是内心的认可。<br><span class='tag tag-mistake'>归因：误解了法治意识的本质</span>"><span class="opt-letter">C</span> 害怕法律制裁</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：了解法律条文" aria-pressed="false" data-fb="❌ 树立法治意识不仅仅是<strong>了解法律条文</strong>，更重要的是内心的认可和崇尚。<br><span class='tag tag-mistake'>归因：片面理解了法治意识的内涵</span>"><span class="opt-letter">A</span> 了解法律条文</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：发自内心的认可、崇尚、遵守和服从" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：法治意识的内涵</span>"><span class="opt-letter">B</span> 发自内心的认可、崇尚、遵守和服从</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：害怕法律制裁" aria-pressed="false" data-fb="❌ 树立法治意识不仅仅是<strong>害怕法律制裁</strong>，更重要的是内心的认可。<br><span class='tag tag-mistake'>归因：误解了法治意识的本质</span>"><span class="opt-letter">C</span> 害怕法律制裁</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -175,12 +197,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】学会依法办事应该？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 依法办事要求<strong>遵守各种法律法规</strong>，不能只遵守喜欢的法律。<br><span class='tag tag-mistake'>归因：误解了依法办事的要求</span>"><span class="opt-letter">A</span> 只遵守自己喜欢的法律</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：依法办事的要求</span>"><span class="opt-letter">B</span> 遵守各种法律法规，通过法治方式表达诉求</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 依法办事要求<strong>通过法治方式</strong>表达诉求，不能采取违法方式。<br><span class='tag tag-mistake'>归因：误解了表达诉求的方式</span>"><span class="opt-letter">C</span> 采取任何方式表达诉求都可以</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只遵守自己喜欢的法律" aria-pressed="false" data-fb="❌ 依法办事要求<strong>遵守各种法律法规</strong>，不能只遵守喜欢的法律。<br><span class='tag tag-mistake'>归因：误解了依法办事的要求</span>"><span class="opt-letter">A</span> 只遵守自己喜欢的法律</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：遵守各种法律法规，通过法治方式表达诉求" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：依法办事的要求</span>"><span class="opt-letter">B</span> 遵守各种法律法规，通过法治方式表达诉求</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：采取任何方式表达诉求都可以" aria-pressed="false" data-fb="❌ 依法办事要求<strong>通过法治方式</strong>表达诉求，不能采取违法方式。<br><span class='tag tag-mistake'>归因：误解了表达诉求的方式</span>"><span class="opt-letter">C</span> 采取任何方式表达诉求都可以</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -192,12 +214,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】青少年与法治中国建设的关系是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 青少年<strong>不仅是受益者</strong>，更应该成为<strong>参与者和推动者</strong>。<br><span class='tag tag-mistake'>归因：片面理解了青少年的角色</span>"><span class="opt-letter">A</span> 青少年只是法治中国建设的受益者</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 青少年<strong>应该参与</strong>法治中国建设，不能置身事外。<br><span class='tag tag-mistake'>归因：缺乏社会责任感</span>"><span class="opt-letter">B</span> 青少年不需要参与法治中国建设</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：青少年在法治建设中的角色</span>"><span class="opt-letter">C</span> 青少年不仅是受益者，更应该成为参与者和推动者</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：青少年只是法治中国建设的受益者" aria-pressed="false" data-fb="❌ 青少年<strong>不仅是受益者</strong>，更应该成为<strong>参与者和推动者</strong>。<br><span class='tag tag-mistake'>归因：片面理解了青少年的角色</span>"><span class="opt-letter">A</span> 青少年只是法治中国建设的受益者</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：青少年不需要参与法治中国建设" aria-pressed="false" data-fb="❌ 青少年<strong>应该参与</strong>法治中国建设，不能置身事外。<br><span class='tag tag-mistake'>归因：缺乏社会责任感</span>"><span class="opt-letter">B</span> 青少年不需要参与法治中国建设</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：青少年不仅是受益者，更应该成为参与者和推动者" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：青少年在法治建设中的角色</span>"><span class="opt-letter">C</span> 青少年不仅是受益者，更应该成为参与者和推动者</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -240,6 +262,9 @@
 
     <section><h2 class="section-title">📜 学会依法办事</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#2196f3;">📖 依法办事的基本要求</h3>
         
         <div class="concept-box"><div class="label">要求一：遵守各种法律法规 <span class="tag tag-theory">关联：法律遵守</span></div>
@@ -266,7 +291,9 @@
           <li>✅ 有利于<strong>维护社会秩序</strong></li>
           <li>✅ 有利于<strong>保护合法权益</strong></li>
         </ul>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">🎓 养成学法尊法守法用法的习惯</h2>
@@ -355,12 +382,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】树立法治意识是指对法律？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：法治意识的内涵</span>"><span class="opt-letter">A</span> 发自内心的认可、崇尚、遵守和服从</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 树立法治意识<strong>不是害怕制裁</strong>，而是内心认同。<br><span class='tag tag-mistake'>归因：误解了法治意识的本质</span>"><span class="opt-letter">B</span> 害怕法律制裁</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 树立法治意识<strong>不仅仅是了解条文</strong>，更重要的是内心认可。<br><span class='tag tag-mistake'>归因：片面理解了法治意识的内涵</span>"><span class="opt-letter">C</span> 只需要了解法律条文</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：发自内心的认可、崇尚、遵守和服从" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：法治意识的内涵</span>"><span class="opt-letter">A</span> 发自内心的认可、崇尚、遵守和服从</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：害怕法律制裁" aria-pressed="false" data-fb="❌ 树立法治意识<strong>不是害怕制裁</strong>，而是内心认同。<br><span class='tag tag-mistake'>归因：误解了法治意识的本质</span>"><span class="opt-letter">B</span> 害怕法律制裁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只需要了解法律条文" aria-pressed="false" data-fb="❌ 树立法治意识<strong>不仅仅是了解条文</strong>，更重要的是内心认可。<br><span class='tag tag-mistake'>归因：片面理解了法治意识的内涵</span>"><span class="opt-letter">C</span> 只需要了解法律条文</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -368,12 +395,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】依法办事要求包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：依法办事的要求</span>"><span class="opt-letter">A</span> 遵守法律法规，通过法治方式表达诉求</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 依法办事<strong>不能采取违法方式</strong>，必须通过法治方式。<br><span class='tag tag-mistake'>归因：误解了表达诉求的方式</span>"><span class="opt-letter">B</span> 可以采取任何方式表达诉求</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 依法办事要求<strong>遵守所有法律法规</strong>，不能只遵守喜欢的。<br><span class='tag tag-mistake'>归因：误解了依法办事的要求</span>"><span class="opt-letter">C</span> 只遵守自己喜欢的法律</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：遵守法律法规，通过法治方式表达诉求" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：依法办事的要求</span>"><span class="opt-letter">A</span> 遵守法律法规，通过法治方式表达诉求</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：可以采取任何方式表达诉求" aria-pressed="false" data-fb="❌ 依法办事<strong>不能采取违法方式</strong>，必须通过法治方式。<br><span class='tag tag-mistake'>归因：误解了表达诉求的方式</span>"><span class="opt-letter">B</span> 可以采取任何方式表达诉求</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只遵守自己喜欢的法律" aria-pressed="false" data-fb="❌ 依法办事要求<strong>遵守所有法律法规</strong>，不能只遵守喜欢的。<br><span class='tag tag-mistake'>归因：误解了依法办事的要求</span>"><span class="opt-letter">C</span> 只遵守自己喜欢的法律</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -381,12 +408,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】下列关于青少年与法治建设关系的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：青少年的角色</span>"><span class="opt-letter">A</span> 青少年不仅是受益者，更应该成为参与者和推动者</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 青少年<strong>应该参与</strong>法治中国建设，不能置身事外。<br><span class='tag tag-mistake'>归因：缺乏社会责任感</span>"><span class="opt-letter">B</span> 青少年不需要参与法治建设</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 青少年<strong>不仅是受益者</strong>，更应该成为参与者和推动者。<br><span class='tag tag-mistake'>归因：片面理解了青少年的角色</span>"><span class="opt-letter">C</span> 青少年只是法治建设的受益者</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：青少年不仅是受益者，更应该成为参与者和推动者" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：青少年的角色</span>"><span class="opt-letter">A</span> 青少年不仅是受益者，更应该成为参与者和推动者</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：青少年不需要参与法治建设" aria-pressed="false" data-fb="❌ 青少年<strong>应该参与</strong>法治中国建设，不能置身事外。<br><span class='tag tag-mistake'>归因：缺乏社会责任感</span>"><span class="opt-letter">B</span> 青少年不需要参与法治建设</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：青少年只是法治建设的受益者" aria-pressed="false" data-fb="❌ 青少年<strong>不仅是受益者</strong>，更应该成为参与者和推动者。<br><span class='tag tag-mistake'>归因：片面理解了青少年的角色</span>"><span class="opt-letter">C</span> 青少年只是法治建设的受益者</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -399,6 +426,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -470,12 +500,17 @@
           <p style="margin-top:10px;font-size:13px;color:#9d174d;"><span class="tag tag-mistake">常见陷阱</span> "青少年只是受益者""青少年不需要参与法治建设"等<strong>片面或错误表述</strong>均为干扰项。</p>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ===== 单元总结 ===== -->
     <section><h2 class="section-title">📚 第八单元 走进法治天地 · 单元总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#2196f3;">📖 本单元知识结构</h3>
         <ul style="padding-left:20px;line-height:2;margin-top:10px;">
           <li><strong>8.1 生活需要法律</strong>：法律与生活息息相关，法治的内涵和意义</li>
@@ -496,7 +531,9 @@
           <h3 style="margin:0 0 10px 0;">🎯 走进法治天地，与法律同行！</h3>
           <p style="margin:0;font-size:15px;">树立法治意识 · 学会依法办事 · 养成法治习惯 · 建设法治中国</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -526,6 +563,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

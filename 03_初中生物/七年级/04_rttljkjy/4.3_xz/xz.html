@@ -19,6 +19,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- 品牌栏 -->
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
@@ -31,6 +43,10 @@
 
   <!-- 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../rttljkjy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -118,6 +134,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 描述心脏的四个腔及其连接的血管</li>
@@ -134,12 +156,12 @@
       <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
 
       <!-- 基础题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 心脏的四个腔分别是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 左心房、右心房、左心室、右心室</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">B</span> 左心房、右心房、左心室、右心室</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 左心房、右心房、左心室、右心室</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 左心房、右心房、左心室、右心室</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：左心房、右心房、左心室、右心室" aria-pressed="false"><span class="opt-letter">A</span> 左心房、右心房、左心室、右心室</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：左心房、右心房、左心室、右心室" aria-pressed="false"><span class="opt-letter">B</span> 左心房、右心房、左心室、右心室</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：左心房、右心房、左心室、右心室" aria-pressed="false"><span class="opt-letter">C</span> 左心房、右心房、左心室、右心室</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：左心房、右心房、左心室、右心室" aria-pressed="false"><span class="opt-letter">D</span> 左心房、右心房、左心室、右心室</div>
         <div class="feedback" id="fb-1"></div>
         <div class="answer-explanation" id="exp-1">
           <strong>解析：</strong>心脏的四个腔是<strong>左心房、右心房、左心室、右心室</strong>。
@@ -147,12 +169,12 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 下列关于心脏瓣膜的叙述，正确的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">A</span> 防止血液倒流</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">B</span> 促进血液倒流</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 增强心肌收缩力</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 加快血液循环速度</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：防止血液倒流" aria-pressed="false"><span class="opt-letter">A</span> 防止血液倒流</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：促进血液倒流" aria-pressed="false"><span class="opt-letter">B</span> 促进血液倒流</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：增强心肌收缩力" aria-pressed="false"><span class="opt-letter">C</span> 增强心肌收缩力</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：加快血液循环速度" aria-pressed="false"><span class="opt-letter">D</span> 加快血液循环速度</div>
         <div class="feedback" id="fb-2"></div>
         <div class="answer-explanation" id="exp-2">
           <strong>解析：</strong>心脏瓣膜（房室瓣、动脉瓣）的作用是<strong>防止血液倒流</strong>，保证血液只能沿一定方向流动。
@@ -221,24 +243,24 @@
       <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
       <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">1. 体循环的起点和终点分别是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">A</span> 左心室、右心房</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 右心室、左心房</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">C</span> 左心房、右心室</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 右心房、左心室</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：左心室、右心房" aria-pressed="false"><span class="opt-letter">A</span> 左心室、右心房</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：右心室、左心房" aria-pressed="false"><span class="opt-letter">B</span> 右心室、左心房</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：左心房、右心室" aria-pressed="false"><span class="opt-letter">C</span> 左心房、右心室</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：右心房、左心室" aria-pressed="false"><span class="opt-letter">D</span> 右心房、左心室</div>
         <div class="feedback" id="fb-3"></div></div>
         <div class="answer-explanation" id="exp-3">
           <strong>解析：</strong>体循环的起点是<strong>左心室</strong>，终点是<strong>右心房</strong>；肺循环的起点是右心室，终点是左心房。
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】下列有关血液循环的叙述，正确的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">A</span> 体循环和肺循环是同时进行的</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 体循环结束后，血液直接进入肺循环</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 肺循环的起点是左心室</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 动脉血只在动脉中流动</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：体循环和肺循环是同时进行的" aria-pressed="false"><span class="opt-letter">A</span> 体循环和肺循环是同时进行的</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：体循环结束后，血液直接进入肺循环" aria-pressed="false"><span class="opt-letter">B</span> 体循环结束后，血液直接进入肺循环</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：肺循环的起点是左心室" aria-pressed="false"><span class="opt-letter">C</span> 肺循环的起点是左心室</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：动脉血只在动脉中流动" aria-pressed="false"><span class="opt-letter">D</span> 动脉血只在动脉中流动</div>
         <div class="feedback" id="fb-4"></div></div>
         <div class="answer-explanation" id="exp-4">
           <strong>解析：</strong>A是正确的。B错误，体循环结束后，血液进入右心房，再通过肺循环回到左心房；C错误，肺循环的起点是<strong>右心室</strong>；D错误，动脉血也在<strong>肺静脉</strong>中流动。
@@ -312,6 +334,8 @@
     registerAnchorContent('q2', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">🔄 体循环和肺循环的途径是怎样的？</h4><p>体循环：左心室→主动脉→全身组织→上下腔静脉→右心房；<br>肺循环：右心室→肺动脉→肺部毛细血管→肺静脉→左心房。</p></div>');
     registerAnchorContent('q3', '<div style="padding:14px;background:#f1f8e9;border-radius:12px;"><h4 style="color:#2e7d32;margin-bottom:8px;">⚠️ 怎样保护心脏健康？</h4><p>保护心脏健康的方法：均衡饮食、适量运动、戒烟限酒、保持心情愉快、定期体检。</p></div>');
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

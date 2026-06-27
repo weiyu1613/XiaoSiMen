@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 27/31 节 · 87.1%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d7zjtzc.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第七单元：在集体中成长</div>
@@ -128,6 +144,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解个人节奏与集体旋律的关系 <span class="tag tag-theory">关联：角色理论</span></li>
         <li>✅ 学会处理角色冲突 <span class="tag tag-theory">关联：压力管理理论</span></li>
@@ -141,12 +163,12 @@
       <p style="color:#4caf50;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】每个人都有自己的生活节奏，当个人节奏与集体旋律和谐时？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 个人节奏与集体旋律<strong>不是对立</strong>的，和谐时可以顺利融入。<br><span class='tag tag-mistake'>归因：对立思维，误解了个人与集体的关系</span>"><span class="opt-letter">A</span> 无法融入集体</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：和谐时可以顺利融入集体</span>"><span class="opt-letter">B</span> 可以顺利融入集体</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 和谐时<strong>不需要</strong>调整自己，只有不和谐时才需要调整。<br><span class='tag tag-mistake'>归因：理解错误，和谐时无需调整</span>"><span class="opt-letter">C</span> 需要调整自己的节奏</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：无法融入集体" aria-pressed="false" data-fb="❌ 个人节奏与集体旋律<strong>不是对立</strong>的，和谐时可以顺利融入。<br><span class='tag tag-mistake'>归因：对立思维，误解了个人与集体的关系</span>"><span class="opt-letter">A</span> 无法融入集体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：可以顺利融入集体" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：和谐时可以顺利融入集体</span>"><span class="opt-letter">B</span> 可以顺利融入集体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：需要调整自己的节奏" aria-pressed="false" data-fb="❌ 和谐时<strong>不需要</strong>调整自己，只有不和谐时才需要调整。<br><span class='tag tag-mistake'>归因：理解错误，和谐时无需调整</span>"><span class="opt-letter">C</span> 需要调整自己的节奏</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -158,12 +180,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】在不同集体中扮演不同角色产生角色冲突时，下列做法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 只关注自己喜欢的角色是<strong>选择性承担</strong>，不是正确处理冲突。<br><span class='tag tag-mistake'>归因：逃避责任，缺乏全局观</span>"><span class="opt-letter">A</span> 只关注自己喜欢的角色</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：考虑更关心哪个集体、责任的重要性等</span>"><span class="opt-letter">B</span> 考虑更关心哪个集体、责任的重要性等因素</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 完全放弃所有角色是<strong>逃避</strong>，不是解决问题。<br><span class='tag tag-mistake'>归因：消极逃避，缺乏责任感</span>"><span class="opt-letter">C</span> 完全放弃所有角色</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只关注自己喜欢的角色" aria-pressed="false" data-fb="❌ 只关注自己喜欢的角色是<strong>选择性承担</strong>，不是正确处理冲突。<br><span class='tag tag-mistake'>归因：逃避责任，缺乏全局观</span>"><span class="opt-letter">A</span> 只关注自己喜欢的角色</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：考虑更关心哪个集体、责任的重要性等因素" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：考虑更关心哪个集体、责任的重要性等</span>"><span class="opt-letter">B</span> 考虑更关心哪个集体、责任的重要性等因素</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：完全放弃所有角色" aria-pressed="false" data-fb="❌ 完全放弃所有角色是<strong>逃避</strong>，不是解决问题。<br><span class='tag tag-mistake'>归因：消极逃避，缺乏责任感</span>"><span class="opt-letter">C</span> 完全放弃所有角色</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -175,12 +197,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于小群体与小团体主义，下列理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 小群体<strong>不是</strong>都是小团体主义，小群体也有<strong>积极作用</strong>。<br><span class='tag tag-mistake'>归因：将小群体与小团体主义等同</span>"><span class="opt-letter">A</span> 小群体就是小团体主义</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 小群体<strong>不是</strong>不利于集体发展，健康的<strong>小群体有积极作用</strong>。<br><span class='tag tag-mistake'>归因：否定小群体的价值</span>"><span class="opt-letter">B</span> 小群体不利于集体发展</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：小团体主义的危害</span>"><span class="opt-letter">C</span> 小团体主义将自身利益置于集体利益之上</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：小群体就是小团体主义" aria-pressed="false" data-fb="❌ 小群体<strong>不是</strong>都是小团体主义，小群体也有<strong>积极作用</strong>。<br><span class='tag tag-mistake'>归因：将小群体与小团体主义等同</span>"><span class="opt-letter">A</span> 小群体就是小团体主义</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：小群体不利于集体发展" aria-pressed="false" data-fb="❌ 小群体<strong>不是</strong>不利于集体发展，健康的<strong>小群体有积极作用</strong>。<br><span class='tag tag-mistake'>归因：否定小群体的价值</span>"><span class="opt-letter">B</span> 小群体不利于集体发展</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：小团体主义将自身利益置于集体利益之上" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：小团体主义的危害</span>"><span class="opt-letter">C</span> 小团体主义将自身利益置于集体利益之上</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -195,6 +217,9 @@
     <!-- ===== 正文知识 ===== -->
     <section><h2 class="section-title">📚 一、个人节奏与集体旋律</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#4caf50;">📖 个人节奏与集体旋律的关系</h3>
         <div class="concept-box"><div class="label">💡 核心理解 <span class="tag tag-theory">关联：角色理论</span></div>
           <p>① <strong>每个人都有自己的生活节奏</strong></p>
@@ -208,7 +233,9 @@
           <p>③ <strong>和谐</strong>：个人节奏与集体旋律一致 → 顺利融入</p>
           <p>④ <strong>不和谐</strong>：个人节奏与集体旋律冲突 → 需要调整</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">📚 二、角色冲突</h2>
@@ -288,12 +315,12 @@
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
       <p style="color:#4caf50;margin-bottom:16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】当个人节奏与集体旋律和谐时？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 和谐时<strong>可以</strong>顺利融入。<br><span class='tag tag-mistake'>归因：对立思维</span>"><span class="opt-letter">A</span> 无法融入集体</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：和谐时可以顺利融入</span>"><span class="opt-letter">B</span> 可以顺利融入集体</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 和谐时<strong>不需要</strong>调整自己。<br><span class='tag tag-mistake'>归因：理解错误</span>"><span class="opt-letter">C</span> 需要调整自己的节奏</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：无法融入集体" aria-pressed="false" data-fb="❌ 和谐时<strong>可以</strong>顺利融入。<br><span class='tag tag-mistake'>归因：对立思维</span>"><span class="opt-letter">A</span> 无法融入集体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：可以顺利融入集体" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：和谐时可以顺利融入</span>"><span class="opt-letter">B</span> 可以顺利融入集体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：需要调整自己的节奏" aria-pressed="false" data-fb="❌ 和谐时<strong>不需要</strong>调整自己。<br><span class='tag tag-mistake'>归因：理解错误</span>"><span class="opt-letter">C</span> 需要调整自己的节奏</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -301,12 +328,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】排解角色冲突时，需要考虑的因素不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ <strong>更关心哪个集体</strong>是需要考虑的。<br><span class='tag tag-mistake'>归因：未理解排解冲突的方法</span>"><span class="opt-letter">A</span> 更关心哪个集体</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ <strong>责任的重要性</strong>是需要考虑的。<br><span class='tag tag-mistake'>归因：未理解排解冲突的方法</span>"><span class="opt-letter">B</span> 责任的重要性</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：朋友多少不是考虑因素</span>"><span class="opt-letter">C</span> 朋友多少</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：更关心哪个集体" aria-pressed="false" data-fb="❌ <strong>更关心哪个集体</strong>是需要考虑的。<br><span class='tag tag-mistake'>归因：未理解排解冲突的方法</span>"><span class="opt-letter">A</span> 更关心哪个集体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：责任的重要性" aria-pressed="false" data-fb="❌ <strong>责任的重要性</strong>是需要考虑的。<br><span class='tag tag-mistake'>归因：未理解排解冲突的方法</span>"><span class="opt-letter">B</span> 责任的重要性</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：朋友多少" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：朋友多少不是考虑因素</span>"><span class="opt-letter">C</span> 朋友多少</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -314,12 +341,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考真题】关于小群体与小团体主义，下列观点正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 小群体<strong>不是</strong>都是小团体主义。<br><span class='tag tag-mistake'>归因：将小群体与小团体主义等同</span>"><span class="opt-letter">A</span> 小群体就是小团体主义</div>
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：小团体主义的危害</span>"><span class="opt-letter">B</span> 小团体主义将自身利益置于集体利益之上</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 小群体<strong>有积极作用</strong>，不是都不好。<br><span class='tag tag-mistake'>归因：一概而论</span>"><span class="opt-letter">C</span> 小群体都不好</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：小群体就是小团体主义" aria-pressed="false" data-fb="❌ 小群体<strong>不是</strong>都是小团体主义。<br><span class='tag tag-mistake'>归因：将小群体与小团体主义等同</span>"><span class="opt-letter">A</span> 小群体就是小团体主义</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：小团体主义将自身利益置于集体利益之上" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：小团体主义的危害</span>"><span class="opt-letter">B</span> 小团体主义将自身利益置于集体利益之上</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：小群体都不好" aria-pressed="false" data-fb="❌ 小群体<strong>有积极作用</strong>，不是都不好。<br><span class='tag tag-mistake'>归因：一概而论</span>"><span class="opt-letter">C</span> 小群体都不好</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -332,6 +359,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -377,7 +407,9 @@
           <p style="margin-top:10px;font-size:13px;color:#065f46;"><span class="tag tag-mistake">常见陷阱</span> 将<strong>小群体与小团体主义等同</strong>起来。</p>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -407,6 +439,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

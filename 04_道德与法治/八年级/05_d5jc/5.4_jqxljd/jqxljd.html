@@ -80,13 +80,29 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div>
     <div class="brand-tag">互动课件 v1.0</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d5jc.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第二单元：理解权利义务</div>
@@ -148,6 +164,12 @@
 
     <section class="section" id="objectives">
       <h2 class="section-title"><span>🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2">
           <li>✅ 了解公民的基本义务内容</li>
@@ -161,15 +183,15 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span>📝</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】下列哪项是公民的基本义务？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 受教育是公民的基本权利，同时也是义务！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：受教育" aria-pressed="false" data-feedback="❌ 受教育是公民的基本权利，同时也是义务！">
           <span class="opt-letter">A</span> 受教育
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1,'B')">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：依法服兵役" aria-pressed="false">
           <span class="opt-letter">B</span> 依法服兵役
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 选 C 是公民的基本权利，不是义务！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：人格尊严不受侵犯" aria-pressed="false" data-feedback="❌ 选 C 是公民的基本权利，不是义务！">
           <span class="opt-letter">C</span> 人格尊严不受侵犯
         </div>
         <div class="feedback" id="feedback-1"></div>
@@ -180,15 +202,15 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px">
+      <div class="quiz-box" style="margin-top:20px" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】关于权利与义务的关系，下列说法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 权利和义务是对等的，不存在只享权利不尽义务的情况！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：公民可以只享受权利不履行义务" aria-pressed="false" data-feedback="❌ 权利和义务是对等的，不存在只享权利不尽义务的情况！">
           <span class="opt-letter">A</span> 公民可以只享受权利不履行义务
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2,'B')">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：公民的权利和义务是统一的" aria-pressed="false">
           <span class="opt-letter">B</span> 公民的权利和义务是统一的
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 权利和义务相互依存，不能分割！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：公民应先享受权利再履行义务" aria-pressed="false" data-feedback="❌ 权利和义务相互依存，不能分割！">
           <span class="opt-letter">C</span> 公民应先享受权利再履行义务
         </div>
         <div class="feedback" id="feedback-2"></div>
@@ -257,15 +279,15 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span>✅</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】下列属于公民基本义务的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 监督权是公民的权利，不是义务！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：批评建议权" aria-pressed="false" data-feedback="❌ 监督权是公民的权利，不是义务！">
           <span class="opt-letter">A</span> 批评建议权
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,10,'B')" data-feedback="❌ 财产权是公民的权利！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：合法私有财产不受侵犯" aria-pressed="false" data-feedback="❌ 财产权是公民的权利！">
           <span class="opt-letter">B</span> 合法私有财产不受侵犯
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,10,'C')">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：依法纳税" aria-pressed="false">
           <span class="opt-letter">C</span> 依法纳税
         </div>
         <div class="feedback" id="feedback-10"></div>
@@ -276,15 +298,15 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:20px">
+      <div class="quiz-box" style="margin-top:20px" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高】"没有无义务的权利，也没有无权利的义务。"这句话说明？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fff3e0;color:#e65100">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this,true,11,'A')">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：权利与义务是统一的" aria-pressed="false">
           <span class="opt-letter">A</span> 权利与义务是统一的
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 权利和义务是不同的法律概念！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：权利和义务是相同的" aria-pressed="false" data-feedback="❌ 权利和义务是不同的法律概念！">
           <span class="opt-letter">B</span> 权利和义务是相同的
         </div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 权利和义务不可分割！">
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：可以只享有权利不履行义务" aria-pressed="false" data-feedback="❌ 权利和义务不可分割！">
           <span class="opt-letter">C</span> 可以只享有权利不履行义务
         </div>
         <div class="feedback" id="feedback-11"></div>
@@ -384,6 +406,8 @@
       console.log('📚 《公民的基本义务》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

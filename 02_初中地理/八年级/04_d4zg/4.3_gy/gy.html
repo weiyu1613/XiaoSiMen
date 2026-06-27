@@ -218,6 +218,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -230,7 +242,11 @@
   <div class="progress-label" id="progress-label">第 3/3 节 · 100%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d4zg.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第四单元：中国的经济发展</div>
@@ -329,6 +345,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解工业的概念和重要性</li>
@@ -349,16 +371,16 @@
       </p>
       
       <!-- 基础题1：工业概念 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】工业是指什么？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 工业是对原材料进行加工和再加工，不是直接开采！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：对原材料进行开采" aria-pressed="false" data-feedback="❌ 工业是对原材料进行加工和再加工，不是直接开采！">
             <span class="opt-letter">A</span> 对原材料进行开采
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：对原材料进行加工和再加工" aria-pressed="false">
             <span class="opt-letter">B</span> 对原材料进行加工和再加工
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 工业是生产活动，不是服务业！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：提供服务的行业" aria-pressed="false" data-feedback="❌ 工业是生产活动，不是服务业！">
             <span class="opt-letter">C</span> 提供服务的行业
           </div>
         </div>
@@ -371,16 +393,16 @@
       </div>
 
       <!-- 基础题2：工业分类 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】下列属于重工业的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 食品加工属于轻工业！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：食品加工" aria-pressed="false" data-feedback="❌ 食品加工属于轻工业！">
             <span class="opt-letter">A</span> 食品加工
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：钢铁制造" aria-pressed="false">
             <span class="opt-letter">B</span> 钢铁制造
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 纺织属于轻工业！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：纺织服装" aria-pressed="false" data-feedback="❌ 纺织属于轻工业！">
             <span class="opt-letter">C</span> 纺织服装
           </div>
         </div>
@@ -393,16 +415,16 @@
       </div>
       
       <!-- 提高题3：工业分布 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】我国工业分布的特点是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 工业主要分布在东部沿海地区，不是均衡分布！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：均衡分布" aria-pressed="false" data-feedback="❌ 工业主要分布在东部沿海地区，不是均衡分布！">
             <span class="opt-letter">A</span> 均衡分布
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：集中在东部沿海地区" aria-pressed="false">
             <span class="opt-letter">B</span> 集中在东部沿海地区
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 工业主要分布在交通便利的地区，不是集中在内陆！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：集中在内陆地区" aria-pressed="false" data-feedback="❌ 工业主要分布在交通便利的地区，不是集中在内陆！">
             <span class="opt-letter">C</span> 集中在内陆地区
           </div>
         </div>
@@ -415,16 +437,16 @@
       </div>
 
       <!-- 挑战题4：高新技术产业 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】关于高新技术产业的叙述，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 高新技术产业依附于大城市，不是均匀分布！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：均匀分布在全国各地" aria-pressed="false" data-feedback="❌ 高新技术产业依附于大城市，不是均匀分布！">
             <span class="opt-letter">A</span> 均匀分布在全国各地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 高新技术产业增长速度很快，不是缓慢！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：增长速度缓慢" aria-pressed="false" data-feedback="❌ 高新技术产业增长速度很快，不是缓慢！">
             <span class="opt-letter">B</span> 增长速度缓慢
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：依附于大城市，呈现&quot;大分散、小集中&quot;特点" aria-pressed="false">
             <span class="opt-letter">C</span> 依附于大城市，呈现"大分散、小集中"特点
           </div>
         </div>
@@ -442,6 +464,9 @@
       <h2 class="section-title"><span class="num">🏭</span> 工业的概念和分类</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #0369a1;">📖 工业的概念</h3>
         <div class="concept-box">
           <div class="label">核心概念 · 工业</div>
@@ -476,7 +501,9 @@
             </ul>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: 核心内容 - 我国工业分布 -->
@@ -484,6 +511,9 @@
       <h2 class="section-title"><span class="num">📍</span> 我国工业分布</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #0369a1;">📖 我国工业分布特点</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li>工业分布<strong>不均衡</strong></li>
@@ -581,7 +611,9 @@
           <p style="margin-top: 6px;"><strong>沿江分布：</strong>长江、黄河沿岸</p>
           <p style="margin-top: 6px;"><strong>沿海分布：</strong>东部沿海地区，形成沿海工业带</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: 核心内容 - 高新技术产业 -->
@@ -589,6 +621,9 @@
       <h2 class="section-title"><span class="num">🚀</span> 高新技术产业</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #0369a1;">📖 高新技术产业的特点</h3>
         
         <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0;">
@@ -681,7 +716,9 @@
             <p style="font-size: 12px; margin-top: 8px; color: #be185d;">主导产业：光电子信息、生物医药、新能源</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 7: 核心内容 - 影响工业布局的因素 -->
@@ -689,6 +726,9 @@
       <h2 class="section-title"><span class="num">⚙️</span> 影响工业布局的因素</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #0369a1;">📖 影响工业布局的主要因素</h3>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px;">
@@ -737,7 +777,9 @@
             <li><strong>看变化：</strong>注意随着技术进步，布局因素也在变化</li>
           </ol>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 8: 工业类型判断互动 -->
@@ -745,16 +787,19 @@
       <h2 class="section-title"><span class="num">🎮</span> 互动练习：工业类型判断</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <p style="color: #0369a1; margin-bottom: 16px;">判断下列工业部门属于重工业还是轻工业：</p>
         
         <!-- 互动题1 -->
-        <div class="quiz-box">
+        <div class="quiz-box" data-difficulty="intermediate">
           <h3>1. 石油化工属于哪种工业类型？</h3>
-          <div class="quiz-options">
-            <div class="quiz-option" onclick="checkAnswer(this, true, 20, 'A')">
+          <div class="quiz-options" role="radiogroup" aria-label="选择题">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 20, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：重工业" aria-pressed="false">
               <span class="opt-letter">A</span> 重工业
             </div>
-            <div class="quiz-option" onclick="checkAnswer(this, false, 20, 'B')" data-feedback="❌ 石油化工生产的是生产资料（塑料、化纤等），属于重工业！">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 20, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：轻工业" aria-pressed="false" data-feedback="❌ 石油化工生产的是生产资料（塑料、化纤等），属于重工业！">
               <span class="opt-letter">B</span> 轻工业
             </div>
           </div>
@@ -767,13 +812,13 @@
         </div>
 
         <!-- 互动题2 -->
-        <div class="quiz-box">
+        <div class="quiz-box" data-difficulty="intermediate">
           <h3>2. 家具制造属于哪种工业类型？</h3>
-          <div class="quiz-options">
-            <div class="quiz-option" onclick="checkAnswer(this, false, 21, 'A')" data-feedback="❌ 家具是生活用品，但制造用的是木材加工，属于轻工业！">
+          <div class="quiz-options" role="radiogroup" aria-label="选择题">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 21, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：重工业" aria-pressed="false" data-feedback="❌ 家具是生活用品，但制造用的是木材加工，属于轻工业！">
               <span class="opt-letter">A</span> 重工业
             </div>
-            <div class="quiz-option" onclick="checkAnswer(this, true, 21, 'B')">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 21, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：轻工业" aria-pressed="false">
               <span class="opt-letter">B</span> 轻工业
             </div>
           </div>
@@ -786,16 +831,16 @@
         </div>
 
         <!-- 互动题3 -->
-        <div class="quiz-box">
+        <div class="quiz-box" data-difficulty="intermediate">
           <h3>3. 下列哪个不是我国四大工业基地？</h3>
-          <div class="quiz-options">
-            <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'A')" data-feedback="❌ 辽中南是四大工业基地之一！">
+          <div class="quiz-options" role="radiogroup" aria-label="选择题">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 22, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：辽中南工业基地" aria-pressed="false" data-feedback="❌ 辽中南是四大工业基地之一！">
               <span class="opt-letter">A</span> 辽中南工业基地
             </div>
-            <div class="quiz-option" onclick="checkAnswer(this, false, 22, 'B')" data-feedback="❌ 长江三角洲是四大工业基地之一！">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 22, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：长江三角洲工业基地" aria-pressed="false" data-feedback="❌ 长江三角洲是四大工业基地之一！">
               <span class="opt-letter">B</span> 长江三角洲工业基地
             </div>
-            <div class="quiz-option" onclick="checkAnswer(this, true, 22, 'C')">
+            <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 22, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：东北重工业基地" aria-pressed="false">
               <span class="opt-letter">C</span> 东北重工业基地
             </div>
           </div>
@@ -806,7 +851,9 @@
             <p style="margin-top: 8px;">我国四大工业基地是：<strong>辽中南、京津唐、长江三角洲、珠江三角洲</strong>。"东北重工业基地"不是正式名称。</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 9: 后测 -->
@@ -817,16 +864,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】工业生产活动不包括？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 纺织是典型的轻工业！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：纺织" aria-pressed="false" data-feedback="❌ 纺织是典型的轻工业！">
             <span class="opt-letter">A</span> 纺织
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 钢铁冶炼是典型的重工业！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：钢铁冶炼" aria-pressed="false" data-feedback="❌ 钢铁冶炼是典型的重工业！">
             <span class="opt-letter">B</span> 钢铁冶炼
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：餐饮服务" aria-pressed="false">
             <span class="opt-letter">C</span> 餐饮服务
           </div>
         </div>
@@ -839,16 +886,16 @@
       </div>
 
       <!-- 后测题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）我国最大的综合性工业基地是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 辽中南是重工业基地！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：辽中南工业基地" aria-pressed="false" data-feedback="❌ 辽中南是重工业基地！">
             <span class="opt-letter">A</span> 辽中南工业基地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 珠江三角洲是外向型工业基地！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：珠江三角洲工业基地" aria-pressed="false" data-feedback="❌ 珠江三角洲是外向型工业基地！">
             <span class="opt-letter">B</span> 珠江三角洲工业基地
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：长江三角洲工业基地" aria-pressed="false">
             <span class="opt-letter">C</span> 长江三角洲工业基地
           </div>
         </div>
@@ -861,16 +908,16 @@
       </div>
 
       <!-- 后测题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】高新技术产业的特点不包括？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 科技人员比例高是高新技术产业的特点！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：科技人员比例高" aria-pressed="false" data-feedback="❌ 科技人员比例高是高新技术产业的特点！">
             <span class="opt-letter">A</span> 科技人员比例高
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 增长速度快是高新技术产业的特点！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：增长速度快" aria-pressed="false" data-feedback="❌ 增长速度快是高新技术产业的特点！">
             <span class="opt-letter">B</span> 增长速度快
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：主要分布在中小城市" aria-pressed="false">
             <span class="opt-letter">C</span> 主要分布在中小城市
           </div>
         </div>
@@ -888,6 +935,9 @@
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -931,7 +981,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;margin:0;"><strong>必背：</strong>沿<strong>铁路线</strong>、<strong>沿江</strong>、<strong>沿海</strong>分布，集中于<strong>东部沿海</strong></p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -1048,6 +1100,8 @@
       if (progressLabel) progressLabel.textContent = `第 ${COURSE_INFO.currentSection}/${COURSE_INFO.totalSections} 节 · ${Math.round(progress)}%`;
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -218,6 +218,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -231,6 +243,10 @@
 
   <!-- ========== ③ 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d8zhm.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -345,14 +361,14 @@
             <div class="quiz-question">
               <span class="star">★</span>拉丁美洲长达300多年的殖民统治是由哪两个国家主导的？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.西班牙和葡萄牙" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 西班牙和葡萄牙</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'B')" data-feedback="❌ 英国主要殖民地在北美（美国、加拿大），不是拉丁美洲！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.英国和法国" aria-pressed="false" data-feedback="❌ 英国主要殖民地在北美（美国、加拿大），不是拉丁美洲！">
                 <span class="opt-letter">B</span><label>B. 英国和法国</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 法国主要在海地等加勒比海地区有殖民，但拉丁美洲主体是西班牙和葡萄牙！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.法国和葡萄牙" aria-pressed="false" data-feedback="❌ 法国主要在海地等加勒比海地区有殖民，但拉丁美洲主体是西班牙和葡萄牙！">
                 <span class="opt-letter">C</span><label>C. 法国和葡萄牙</label>
               </div>
             </div>
@@ -373,14 +389,14 @@
             <div class="quiz-question">
               <span class="star">★</span>被后人称为"南美的解放者"的是谁？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 圣马丁也是重要领袖，但他主要解放智利和秘鲁，"南美的解放者"通常指玻利瓦尔！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.圣马丁" aria-pressed="false" data-feedback="❌ 圣马丁也是重要领袖，但他主要解放智利和秘鲁，"南美的解放者"通常指玻利瓦尔！">
                 <span class="opt-letter">A</span><label>A. 圣马丁</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.玻利瓦尔" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 玻利瓦尔</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 章西女王是印度1857年民族大起义的领袖，和拉丁美洲独立运动无关！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.章西女王" aria-pressed="false" data-feedback="❌ 章西女王是印度1857年民族大起义的领袖，和拉丁美洲独立运动无关！">
                 <span class="opt-letter">C</span><label>C. 章西女王</label>
               </div>
             </div>
@@ -401,14 +417,14 @@
             <div class="quiz-question">
               <span class="star">★</span>玻利瓦尔和圣马丁的反抗斗争有什么共同点？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 两人都主要在西班牙语区活动，不是法语区！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.都主要在法语区开展斗争" aria-pressed="false" data-feedback="❌ 两人都主要在西班牙语区活动，不是法语区！">
                 <span class="opt-letter">A</span><label>A. 都主要在法语区开展斗争</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.都反抗西班牙殖民统治，最终在厄瓜多尔会师" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 都反抗西班牙殖民统治，最终在厄瓜多尔会师</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'C')" data-feedback="❌ 两人都反抗西班牙殖民统治，"共同服从英国"完全错误！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.都服从英国指挥" aria-pressed="false" data-feedback="❌ 两人都反抗西班牙殖民统治，"共同服从英国"完全错误！">
                 <span class="opt-letter">C</span><label>C. 都服从英国指挥</label>
               </div>
             </div>
@@ -434,14 +450,14 @@
             <div class="quiz-question">
               <span class="star">★</span>拉丁美洲独立运动兴起的根本原因是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 启蒙思想是思想条件，不是根本原因！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.启蒙思想的传播" aria-pressed="false" data-feedback="❌ 启蒙思想是思想条件，不是根本原因！">
                 <span class="opt-letter">A</span><label>A. 启蒙思想的传播</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.西班牙/葡萄牙殖民者对殖民地的经济掠夺和政治压迫" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 西班牙/葡萄牙殖民者对殖民地的经济掠夺和政治压迫</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'C')" data-feedback="❌ 独立运动主要是土生白人（克列奥人）领导，但土生白人地位受歧视只是导火索，根本原因是殖民压迫！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.土生白人在政治上受歧视" aria-pressed="false" data-feedback="❌ 独立运动主要是土生白人（克列奥人）领导，但土生白人地位受歧视只是导火索，根本原因是殖民压迫！">
                 <span class="opt-letter">C</span><label>C. 土生白人在政治上受歧视</label>
               </div>
             </div>
@@ -754,14 +770,14 @@
             <div class="quiz-question">
               <span class="star">★</span>被称为"南美的解放者"的是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 圣马丁虽然也是重要领袖，但'南美的解放者'通常指玻利瓦尔！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.圣马丁" aria-pressed="false" data-feedback="❌ 圣马丁虽然也是重要领袖，但'南美的解放者'通常指玻利瓦尔！">
                 <span class="opt-letter">A</span><label>A. 圣马丁</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.玻利瓦尔" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 玻利瓦尔</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'C')" data-feedback="❌ 章西女王是印度民族起义领袖，不是拉丁美洲！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.章西女王" aria-pressed="false" data-feedback="❌ 章西女王是印度民族起义领袖，不是拉丁美洲！">
                 <span class="opt-letter">C</span><label>C. 章西女王</label>
               </div>
             </div>
@@ -778,14 +794,14 @@
             <div class="quiz-question">
               <span class="star">★</span>（2023·广东中考改编）玻利瓦尔和圣马丁的共同点是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 玻利瓦尔从委内瑞拉起兵，圣马丁从阿根廷起兵，不是同一个地方！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.都从委内瑞拉起兵" aria-pressed="false" data-feedback="❌ 玻利瓦尔从委内瑞拉起兵，圣马丁从阿根廷起兵，不是同一个地方！">
                 <span class="opt-letter">A</span><label>A. 都从委内瑞拉起兵</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.都反抗西班牙殖民统治，最终在厄瓜多尔会师" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 都反抗西班牙殖民统治，最终在厄瓜多尔会师</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'C')" data-feedback="❌ 玻利瓦尔从委内瑞拉起兵后北上，圣马丁从阿根廷起兵后北上，方向一致但起兵地不同！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.都从阿根廷起兵向北进军" aria-pressed="false" data-feedback="❌ 玻利瓦尔从委内瑞拉起兵后北上，圣马丁从阿根廷起兵后北上，方向一致但起兵地不同！">
                 <span class="opt-letter">C</span><label>C. 都从阿根廷起兵向北进军</label>
               </div>
             </div>
@@ -813,14 +829,14 @@
             <div class="quiz-question">
               <span class="star">★</span>（2022·全国中考改编）拉丁美洲独立运动兴起的主要原因是？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 启蒙思想是思想条件，不是主要原因！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.受启蒙思想的影响" aria-pressed="false" data-feedback="❌ 启蒙思想是思想条件，不是主要原因！">
                 <span class="opt-letter">A</span><label>A. 受启蒙思想的影响</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.西班牙殖民者对殖民地的经济掠夺和政治压迫" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 西班牙殖民者对殖民地的经济掠夺和政治压迫</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'C')" data-feedback="❌ 英国对拉美独立运动有影响，但不是主要原因！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.英国殖民者的入侵" aria-pressed="false" data-feedback="❌ 英国对拉美独立运动有影响，但不是主要原因！">
                 <span class="opt-letter">C</span><label>C. 英国殖民者的入侵</label>
               </div>
             </div>
@@ -842,14 +858,14 @@
             <div class="quiz-question">
               <span class="star">★</span>关于拉丁美洲独立运动历史意义的说法，正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'A')" data-feedback="❌ 独立运动推翻了殖民统治，但'彻底消除贫困'太绝对了，独立后很多国家仍面临贫困问题！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.独立运动彻底消除了拉丁美洲的贫困问题" aria-pressed="false" data-feedback="❌ 独立运动推翻了殖民统治，但'彻底消除贫困'太绝对了，独立后很多国家仍面临贫困问题！">
                 <span class="opt-letter">A</span><label>A. 独立运动彻底消除了拉丁美洲的贫困问题</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 独立运动发生在1810-1820s，美国独立战争发生在1775-1783，美国独立在前！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.拉丁美洲独立运动早于美国独立战争" aria-pressed="false" data-feedback="❌ 独立运动发生在1810-1820s，美国独立战争发生在1775-1783，美国独立在前！">
                 <span class="opt-letter">B</span><label>B. 拉丁美洲独立运动早于美国独立战争</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.独立运动推翻了殖民统治，实现了民族解放，但独立后各国发展不充分" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 独立运动推翻了殖民统治，实现了民族解放，但独立后各国发展不充分</label>
               </div>
             </div>
@@ -877,6 +893,9 @@
     <!-- ========== ⑩ 必考分析与考点总结 ========== -->
     <section class="section">
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
           <div class="exam-cards">
@@ -914,7 +933,9 @@
             <p style="margin-top: 6px;"><strong>易错4：</strong>独立运动的积极意义要说，<strong>局限性</strong>也要说，答题要辩证！</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ========== AI学伴 ========== -->
@@ -1033,6 +1054,8 @@
       console.log('📚 《殖民地人民的反抗斗争》课件加载完成（v7.14.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

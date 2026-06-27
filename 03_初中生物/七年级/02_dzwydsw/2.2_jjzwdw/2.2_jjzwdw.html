@@ -69,10 +69,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-dove"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 4/10 节 · 40%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
     <div class="nav-center">第二单元：多种多样的生物</div>
@@ -144,6 +160,12 @@
 
     <section class="section">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 识别鱼类、两栖类、爬行类、鸟类和哺乳类</li>
@@ -157,19 +179,19 @@
     <!-- 前测 -->
     <section class="section">
       <h2 class="section-title"><span class="num">📝</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列动物中，属于哺乳动物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 蝙蝠</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 企鹅是鸟类！"><span class="opt-letter">B</span> 企鹅</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 扬子鳄是爬行动物！"><span class="opt-letter">C</span> 扬子鳄</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蝙蝠" aria-pressed="false"><span class="opt-letter">A</span> 蝙蝠</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：企鹅" aria-pressed="false" data-feedback="❌ 企鹅是鸟类！"><span class="opt-letter">B</span> 企鹅</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：扬子鳄" aria-pressed="false" data-feedback="❌ 扬子鳄是爬行动物！"><span class="opt-letter">C</span> 扬子鳄</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 蝙蝠</strong></p><p style="margin-top:8px;">蝙蝠虽然能飞行，但它是<strong>哺乳动物</strong>，因为它<strong>胎生、哺乳</strong>。哺乳动物的主要特征：胎生、哺乳、体温恒定、大脑发达。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】青蛙的发育过程属于哪种发育类型？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 胎生是哺乳动物的繁殖方式！"><span class="opt-letter">A</span> 胎生</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 变态发育</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 完全变态是昆虫的发育方式！"><span class="opt-letter">C</span> 完全变态</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：胎生" aria-pressed="false" data-feedback="❌ 胎生是哺乳动物的繁殖方式！"><span class="opt-letter">A</span> 胎生</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：变态发育" aria-pressed="false"><span class="opt-letter">B</span> 变态发育</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：完全变态" aria-pressed="false" data-feedback="❌ 完全变态是昆虫的发育方式！"><span class="opt-letter">C</span> 完全变态</div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 变态发育</strong></p><p style="margin-top:8px;">青蛙的发育过程：<strong>受精卵→蝌蚪→幼蛙→成蛙</strong>。蝌蚪和成蛙在<strong>形态结构和生活习性</strong>上有显著差异，属于<strong>变态发育</strong>。</p></div>
       </div>
@@ -179,6 +201,9 @@
     <section class="section">
       <h2 class="section-title"><span class="num">🐟</span> 脊椎动物五大类群</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <table class="bio-table">
           <tr><th>类群</th><th>生活环境</th><th>呼吸方式</th><th>体温</th><th>繁殖方式</th><th>代表动物</th></tr>
           <tr><td><strong>鱼类</strong></td><td>终生水生</td><td>鳃呼吸</td><td>变温</td><td>卵生</td><td>鲫鱼、带鱼</td></tr>
@@ -207,25 +232,27 @@
           <p><strong>误区1：</strong>鲸是鱼<br><strong>纠正：</strong>鲸是<strong>哺乳动物</strong>，用肺呼吸，胎生哺乳。鱼用鳃呼吸，卵生。</p>
           <p style="margin-top:8px;"><strong>误区2：</strong>蝙蝠是鸟<br><strong>纠正：</strong>蝙蝠是<strong>哺乳动物</strong>，胎生哺乳，虽然能飞行，但没有羽毛和羽毛。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- 后测 -->
     <section class="section">
       <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列动物中，属于爬行动物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 青蛙是两栖动物！"><span class="opt-letter">A</span> 青蛙</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 鸭嘴兽是哺乳动物！"><span class="opt-letter">B</span> 鸭嘴兽</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')"><span class="opt-letter">C</span> 壁虎</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：青蛙" aria-pressed="false" data-feedback="❌ 青蛙是两栖动物！"><span class="opt-letter">A</span> 青蛙</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：鸭嘴兽" aria-pressed="false" data-feedback="❌ 鸭嘴兽是哺乳动物！"><span class="opt-letter">B</span> 鸭嘴兽</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：壁虎" aria-pressed="false"><span class="opt-letter">C</span> 壁虎</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 壁虎</strong></p><p style="margin-top:8px;">壁虎属于<strong>爬行动物</strong>，体表有角质鳞片，肺呼吸，陆地繁殖。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）鲸不属于鱼类，是因为？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 鲸用肺呼吸，不是鳃！"><span class="opt-letter">A</span> 鲸生活在海里</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 鱼类也是卵生！"><span class="opt-letter">B</span> 鲸不产卵</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'C')"><span class="opt-letter">C</span> 鲸胎生哺乳</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：鲸生活在海里" aria-pressed="false" data-feedback="❌ 鲸用肺呼吸，不是鳃！"><span class="opt-letter">A</span> 鲸生活在海里</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：鲸不产卵" aria-pressed="false" data-feedback="❌ 鱼类也是卵生！"><span class="opt-letter">B</span> 鲸不产卵</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：鲸胎生哺乳" aria-pressed="false"><span class="opt-letter">C</span> 鲸胎生哺乳</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 鲸胎生哺乳</strong></p><p style="margin-top:8px;">鲸是<strong>哺乳动物</strong>，用<strong>肺</strong>呼吸，<strong>胎生</strong>，<strong>哺乳</strong>。这些是哺乳动物独有的特征，与鱼类完全不同。</p></div>
       </div>
@@ -286,7 +313,9 @@
       if (pl) pl.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(p) + '%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 [/gc]<!DOCTYPE html>
 <html lang="zh-CN">
@@ -439,19 +468,19 @@
     <!-- 前测 -->
     <section class="section">
       <h2 class="section-title"><span class="num">📝</span> 前测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】下列生物中，属于原核生物的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 细菌</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 酵母菌是真核生物！"><span class="opt-letter">B</span> 酵母菌</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 霉菌是真核生物！"><span class="opt-letter">C</span> 霉菌</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌" aria-pressed="false"><span class="opt-letter">A</span> 细菌</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：酵母菌" aria-pressed="false" data-feedback="❌ 酵母菌是真核生物！"><span class="opt-letter">B</span> 酵母菌</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：霉菌" aria-pressed="false" data-feedback="❌ 霉菌是真核生物！"><span class="opt-letter">C</span> 霉菌</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 细菌</strong></p><p style="margin-top:8px;">细菌属于<strong>原核生物</strong>，没有成形的细胞核。真菌（酵母菌、霉菌）是<strong>真核生物</strong>，有成形的细胞核。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐ 基础】病毒的生活方式是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 病毒不能独立生活！"><span class="opt-letter">A</span> 独立生活</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 病毒不进行光合作用！"><span class="opt-letter">B</span> 光合自养</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'C')"><span class="opt-letter">C</span> 寄生生活</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：独立生活" aria-pressed="false" data-feedback="❌ 病毒不能独立生活！"><span class="opt-letter">A</span> 独立生活</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：光合自养" aria-pressed="false" data-feedback="❌ 病毒不进行光合作用！"><span class="opt-letter">B</span> 光合自养</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：寄生生活" aria-pressed="false"><span class="opt-letter">C</span> 寄生生活</div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 寄生生活</strong></p><p style="margin-top:8px;">病毒没有<strong>细胞结构</strong>，不能独立生活，必须<strong>寄生</strong>在活细胞内，利用宿主细胞的物质和能量进行复制增殖。</p></div>
       </div>
@@ -517,19 +546,19 @@
     <!-- 后测 -->
     <section class="section">
       <h2 class="section-title"><span class="num">✅</span> 后测</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】细菌和真菌的主要区别是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 两者都没有叶绿体！"><span class="opt-letter">A</span> 细菌有细胞核，真菌没有</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 真菌有成形的细胞核，细菌没有</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 真菌靠孢子繁殖！"><span class="opt-letter">C</span> 真菌靠分裂生殖</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌有细胞核，真菌没有" aria-pressed="false" data-feedback="❌ 两者都没有叶绿体！"><span class="opt-letter">A</span> 细菌有细胞核，真菌没有</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：真菌有成形的细胞核，细菌没有" aria-pressed="false"><span class="opt-letter">B</span> 真菌有成形的细胞核，细菌没有</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：真菌靠分裂生殖" aria-pressed="false" data-feedback="❌ 真菌靠孢子繁殖！"><span class="opt-letter">C</span> 真菌靠分裂生殖</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 真菌有成形的细胞核，细菌没有</strong></p><p style="margin-top:8px;">真菌是<strong>真核生物</strong>，有成形的细胞核；细菌是<strong>原核生物</strong>，DNA集中在核区，没有核膜包被的成形细胞核。这是两者的本质区别。</p></div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高·中考真题】（2022·浙江中考）病毒必须寄生在活细胞内才能生存，这说明？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 病毒没有细胞结构，不能独立生活</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 病毒有生命！"><span class="opt-letter">B</span> 病毒不是生物</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 病毒需要宿主细胞！"><span class="opt-letter">C</span> 病毒可以独立生存</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：病毒没有细胞结构，不能独立生活" aria-pressed="false"><span class="opt-letter">A</span> 病毒没有细胞结构，不能独立生活</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：病毒不是生物" aria-pressed="false" data-feedback="❌ 病毒有生命！"><span class="opt-letter">B</span> 病毒不是生物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：病毒可以独立生存" aria-pressed="false" data-feedback="❌ 病毒需要宿主细胞！"><span class="opt-letter">C</span> 病毒可以独立生存</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 病毒没有细胞结构，不能独立生活</strong></p><p style="margin-top:8px;">病毒没有细胞结构，不能独立完成生命活动，必须<strong>寄生</strong>在活细胞内才能存活和繁殖。</p></div>
       </div>

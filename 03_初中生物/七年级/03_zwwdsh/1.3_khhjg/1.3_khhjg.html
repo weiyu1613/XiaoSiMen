@@ -180,6 +180,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -193,6 +205,10 @@
 
   <!-- ③ 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../zwwdsh.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -281,6 +297,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 说出花的基本结构（雄蕊、雌蕊、花瓣、萼片）</li>
@@ -297,12 +319,12 @@
       <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
 
       <!-- 基础题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 花中最重要的结构是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">A</span> 花瓣</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 萼片</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">C</span> 雄蕊和雌蕊</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 花托</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：花瓣" aria-pressed="false"><span class="opt-letter">A</span> 花瓣</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：萼片" aria-pressed="false"><span class="opt-letter">B</span> 萼片</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：雄蕊和雌蕊" aria-pressed="false"><span class="opt-letter">C</span> 雄蕊和雌蕊</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：花托" aria-pressed="false"><span class="opt-letter">D</span> 花托</div>
         <div class="feedback" id="fb-1"></div>
         <div class="answer-explanation" id="exp-1">
           <strong>解析：</strong>雄蕊（产生花粉）和雌蕊（接受花粉，发育成果实）是花中最重要的结构，因为它们与生殖直接相关。花瓣和萼片主要起保护和支持作用。
@@ -310,12 +332,12 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 异花传粉需要依靠外力，如（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 仅依靠昆虫</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">B</span> 仅依靠风力</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">C</span> 依靠昆虫或风力</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 依靠人工辅助</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：仅依靠昆虫" aria-pressed="false"><span class="opt-letter">A</span> 仅依靠昆虫</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：仅依靠风力" aria-pressed="false"><span class="opt-letter">B</span> 仅依靠风力</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：依靠昆虫或风力" aria-pressed="false"><span class="opt-letter">C</span> 依靠昆虫或风力</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：依靠人工辅助" aria-pressed="false"><span class="opt-letter">D</span> 依靠人工辅助</div>
         <div class="feedback" id="fb-2"></div>
         <div class="answer-explanation" id="exp-2">
           <strong>解析：</strong>异花传粉可以依靠昆虫（虫媒花，如桃花）或风力（风媒花，如玉米、水稻）。有些植物还需要人工辅助传粉（如猕猴桃）。
@@ -323,12 +345,12 @@
       </div>
 
       <!-- 挑战题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关开花和结果的叙述，<strong>错误</strong>的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 雄蕊由花药和花丝组成</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 受精完成后，子房发育成果实</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 所有的花都有雄蕊和雌蕊</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 胚珠发育成种子</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：雄蕊由花药和花丝组成" aria-pressed="false"><span class="opt-letter">A</span> 雄蕊由花药和花丝组成</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：受精完成后，子房发育成果实" aria-pressed="false"><span class="opt-letter">B</span> 受精完成后，子房发育成果实</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：所有的花都有雄蕊和雌蕊" aria-pressed="false"><span class="opt-letter">C</span> 所有的花都有雄蕊和雌蕊</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：胚珠发育成种子" aria-pressed="false"><span class="opt-letter">D</span> 胚珠发育成种子</div>
         <div class="feedback" id="fb-3"></div>
         <div class="answer-explanation" id="exp-3">
           <strong>解析：</strong>C是错误的。有些花只有雄蕊（雄花）或只有雌蕊（雌花），称为"单性花"（如黄瓜、玉米）。两性花才同时具有雄蕊和雌蕊。
@@ -521,24 +543,24 @@
       <h2 class="section-title"><span class="num">✅</span> 课后检测</h2>
       <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">1. 受精完成后，发育成果实的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 花瓣</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 雄蕊</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">C</span> 子房</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 胚珠</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：花瓣" aria-pressed="false"><span class="opt-letter">A</span> 花瓣</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：雄蕊" aria-pressed="false"><span class="opt-letter">B</span> 雄蕊</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：子房" aria-pressed="false"><span class="opt-letter">C</span> 子房</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：胚珠" aria-pressed="false"><span class="opt-letter">D</span> 胚珠</div>
         <div class="feedback" id="fb-4"></div>
         <div class="answer-explanation" id="exp-4">
           <strong>解析：</strong>受精完成后，花瓣、雄蕊、柱头、花柱都凋落，只有<strong>子房</strong>继续发育成果实。子房壁发育成果皮，胚珠发育成种子。
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】桃花的雌蕊由下列哪几部分组成？（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 花药和花丝</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">B</span> 柱头、花柱和子房</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 花萼和花冠</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 花托和花柄</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：花药和花丝" aria-pressed="false"><span class="opt-letter">A</span> 花药和花丝</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：柱头、花柱和子房" aria-pressed="false"><span class="opt-letter">B</span> 柱头、花柱和子房</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：花萼和花冠" aria-pressed="false"><span class="opt-letter">C</span> 花萼和花冠</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：花托和花柄" aria-pressed="false"><span class="opt-letter">D</span> 花托和花柄</div>
         <div class="feedback" id="fb-5"></div>
         <div class="answer-explanation" id="exp-5">
           <strong>解析：</strong>雌蕊由<strong>柱头</strong>（接受花粉）、<strong>花柱</strong>（花粉管生长的通道）、<strong>子房</strong>（发育成果实）三部分组成。花药和花丝是雄蕊的组成部分。
@@ -749,6 +771,8 @@
       </div>
     </div>
   </div>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

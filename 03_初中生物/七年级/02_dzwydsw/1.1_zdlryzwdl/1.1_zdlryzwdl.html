@@ -126,6 +126,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- Brand Bar -->
   <div class="brand-bar">
@@ -138,7 +150,11 @@
   <div class="progress-label" id="progress-label">第 1/10 节 · 10%</div>
 
   <!-- Navigation -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../dzwydsw.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节</a>
     <div class="nav-center">第二单元：多种多样的生物</div>
@@ -219,6 +235,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>✅ 识别生活中常见的藻类、苔藓和蕨类植物</li>
@@ -233,11 +255,11 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】下列哪类植物没有根、茎、叶的分化？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 藻类植物</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 苔藓植物有茎和叶的分化哦！"><span class="opt-letter">B</span> 苔藓植物</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 蕨类植物有根、茎、叶的分化！"><span class="opt-letter">C</span> 蕨类植物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：藻类植物" aria-pressed="false"><span class="opt-letter">A</span> 藻类植物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：苔藓植物" aria-pressed="false" data-feedback="❌ 苔藓植物有茎和叶的分化哦！"><span class="opt-letter">B</span> 苔藓植物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蕨类植物" aria-pressed="false" data-feedback="❌ 蕨类植物有根、茎、叶的分化！"><span class="opt-letter">C</span> 蕨类植物</div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
           <div class="explain-title">📖 详细解析</div>
@@ -246,11 +268,11 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】苔藓植物的繁殖方式是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 种子繁殖是种子植物的方式，不是苔藓！"><span class="opt-letter">A</span> 种子繁殖</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 孢子繁殖</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 分裂生殖是细菌的方式！"><span class="opt-letter">C</span> 分裂生殖</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：种子繁殖" aria-pressed="false" data-feedback="❌ 种子繁殖是种子植物的方式，不是苔藓！"><span class="opt-letter">A</span> 种子繁殖</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：孢子繁殖" aria-pressed="false"><span class="opt-letter">B</span> 孢子繁殖</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：分裂生殖" aria-pressed="false" data-feedback="❌ 分裂生殖是细菌的方式！"><span class="opt-letter">C</span> 分裂生殖</div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
           <div class="explain-title">📖 详细解析</div>
@@ -259,11 +281,11 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列植物中，可作为监测空气污染指示植物的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 藻类生活在水中，不能监测空气污染！"><span class="opt-letter">A</span> 藻类</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 苔藓</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 蕨类植物的指示作用不如苔藓明显！"><span class="opt-letter">C</span> 蕨类</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：藻类" aria-pressed="false" data-feedback="❌ 藻类生活在水中，不能监测空气污染！"><span class="opt-letter">A</span> 藻类</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：苔藓" aria-pressed="false"><span class="opt-letter">B</span> 苔藓</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蕨类" aria-pressed="false" data-feedback="❌ 蕨类植物的指示作用不如苔藓明显！"><span class="opt-letter">C</span> 蕨类</div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
           <div class="explain-title">📖 详细解析</div>
@@ -331,6 +353,9 @@
     <section class="section" id="section-bryophyte">
       <h2 class="section-title"><span class="num">🌱</span> 苔藓植物</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <p style="line-height:1.8;margin-bottom:16px;">苔藓植物是陆生植物中最简单的类群，有了<strong>茎和叶的分化</strong>，但仍没有真正的根。</p>
 
         <div class="svg-container">
@@ -382,7 +407,9 @@
           <div class="label">🔬 知识拓展 · 苔藓作为环境指示植物</div>
           <p>苔藓植物的叶片只有<strong>一层细胞</strong>，对二氧化硫、氟化氢等有害气体非常敏感。在污染严重的城市，苔藓几乎无法生存。因此，苔藓的分布可以作为<strong>空气污染程度的指示植物</strong>。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- 核心知识：蕨类植物 -->
@@ -468,11 +495,11 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】下列关于藻类植物的叙述，正确的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 藻类植物大多生活在水中，不是陆地！"><span class="opt-letter">A</span> 藻类植物生活在陆地上</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 藻类植物没有根茎叶的分化！"><span class="opt-letter">B</span> 藻类植物有根茎叶分化</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'C')"><span class="opt-letter">C</span> 藻类植物没有根茎叶的分化</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：藻类植物生活在陆地上" aria-pressed="false" data-feedback="❌ 藻类植物大多生活在水中，不是陆地！"><span class="opt-letter">A</span> 藻类植物生活在陆地上</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：藻类植物有根茎叶分化" aria-pressed="false" data-feedback="❌ 藻类植物没有根茎叶的分化！"><span class="opt-letter">B</span> 藻类植物有根茎叶分化</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：藻类植物没有根茎叶的分化" aria-pressed="false"><span class="opt-letter">C</span> 藻类植物没有根茎叶的分化</div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
           <div class="explain-title">📖 详细解析</div>
@@ -481,11 +508,11 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·山东中考）苔藓植物可以作为监测空气污染的指示植物，原因是？<span class="difficulty-badge difficulty-提高">提高</span> <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;">📝 中考真题</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 叶片只有一层细胞，对有害气体敏感</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ 苔藓生活在阴湿环境，不是干旱环境！"><span class="opt-letter">B</span> 苔藓喜欢干旱环境</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 苔藓没有真正的根，无法从土壤吸收污染物！"><span class="opt-letter">C</span> 苔藓根系发达，能吸收污染物</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：叶片只有一层细胞，对有害气体敏感" aria-pressed="false"><span class="opt-letter">A</span> 叶片只有一层细胞，对有害气体敏感</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：苔藓喜欢干旱环境" aria-pressed="false" data-feedback="❌ 苔藓生活在阴湿环境，不是干旱环境！"><span class="opt-letter">B</span> 苔藓喜欢干旱环境</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：苔藓根系发达，能吸收污染物" aria-pressed="false" data-feedback="❌ 苔藓没有真正的根，无法从土壤吸收污染物！"><span class="opt-letter">C</span> 苔藓根系发达，能吸收污染物</div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
           <div class="explain-title">📖 详细解析</div>
@@ -494,11 +521,11 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】蕨类植物比苔藓植物高等，主要体现在？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 两者都是孢子繁殖，不是高等的原因！"><span class="opt-letter">A</span> 蕨类植物用孢子繁殖</div>
-        <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 两者都生活在阴湿环境！"><span class="opt-letter">B</span> 蕨类植物生活在水中</div>
-        <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')"><span class="opt-letter">C</span> 蕨类植物有真正的根、茎、叶分化</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：蕨类植物用孢子繁殖" aria-pressed="false" data-feedback="❌ 两者都是孢子繁殖，不是高等的原因！"><span class="opt-letter">A</span> 蕨类植物用孢子繁殖</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：蕨类植物生活在水中" aria-pressed="false" data-feedback="❌ 两者都生活在阴湿环境！"><span class="opt-letter">B</span> 蕨类植物生活在水中</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蕨类植物有真正的根、茎、叶分化" aria-pressed="false"><span class="opt-letter">C</span> 蕨类植物有真正的根、茎、叶分化</div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
           <div class="explain-title">📖 详细解析</div>
@@ -512,6 +539,9 @@
     <section class="section" id="section-exam">
       <h2 class="section-title"><span class="num">🎯</span> 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
@@ -553,7 +583,9 @@
           </div>
           <p style="font-size:14px;line-height:1.7;"><strong>必背：</strong>藻类、苔藓、蕨类都属于<strong>孢子植物</strong>，通过产生孢子繁殖后代，孢子是一种无性生殖细胞。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -633,6 +665,8 @@
       if (progressLabel) progressLabel.textContent = '第 ' + COURSE_INFO.currentSection + '/' + COURSE_INFO.totalSections + ' 节 · ' + Math.round(progress) + '%';
     }
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

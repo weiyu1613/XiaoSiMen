@@ -130,6 +130,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -138,7 +150,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d6sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六单元：辽宋夏金元时期</div>
@@ -201,6 +217,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道辽、西夏的建立者和民族</li>
@@ -217,12 +239,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】辽的建立者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')"><span class="opt-letter">A</span> 耶律阿保机</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 元昊是西夏的建立者，不是辽！"><span class="opt-letter">B</span> 元昊</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 赵匡胤是北宋的建立者，不是辽！"><span class="opt-letter">C</span> 赵匡胤</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：耶律阿保机" aria-pressed="false"><span class="opt-letter">A</span> 耶律阿保机</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：元昊" aria-pressed="false" data-feedback="❌ 元昊是西夏的建立者，不是辽！"><span class="opt-letter">B</span> 元昊</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：赵匡胤" aria-pressed="false" data-feedback="❌ 赵匡胤是北宋的建立者，不是辽！"><span class="opt-letter">C</span> 赵匡胤</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -230,12 +252,12 @@
           <p><strong>耶律阿保机</strong>（辽太祖）于916年建立契丹国（后改称辽），定都上京。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】"澶渊之盟"发生在哪两个政权之间？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 宋金之间是后来的关系，澶渊之盟是宋辽！"><span class="opt-letter">A</span> 宋与金</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 宋与辽</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 宋夏之间也有和议，但澶渊之盟是宋辽！"><span class="opt-letter">C</span> 宋与夏</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：宋与金" aria-pressed="false" data-feedback="❌ 宋金之间是后来的关系，澶渊之盟是宋辽！"><span class="opt-letter">A</span> 宋与金</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：宋与辽" aria-pressed="false"><span class="opt-letter">B</span> 宋与辽</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：宋与夏" aria-pressed="false" data-feedback="❌ 宋夏之间也有和议，但澶渊之盟是宋辽！"><span class="opt-letter">C</span> 宋与夏</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -243,12 +265,12 @@
           <p><strong>1005年</strong>，北宋与辽签订<strong>澶渊之盟</strong>，约定宋辽为兄弟之国，宋每年向辽纳"岁币"。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】西夏的建立者是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 耶律德光是辽朝皇帝，不是西夏建立者！"><span class="opt-letter">A</span> 耶律德光</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 元昊</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 完颜阿骨打是金朝建立者，不是西夏！"><span class="opt-letter">C</span> 完颜阿骨打</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：耶律德光" aria-pressed="false" data-feedback="❌ 耶律德光是辽朝皇帝，不是西夏建立者！"><span class="opt-letter">A</span> 耶律德光</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：元昊" aria-pressed="false"><span class="opt-letter">B</span> 元昊</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：完颜阿骨打" aria-pressed="false" data-feedback="❌ 完颜阿骨打是金朝建立者，不是西夏！"><span class="opt-letter">C</span> 完颜阿骨打</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -256,12 +278,12 @@
           <p><strong>1038年</strong>，<strong>元昊</strong>建立大夏国（史称西夏），定都兴庆府（今银川）。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】澶渊之盟对北宋的影响是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 澶渊之盟后宋辽维持了长期和平，北宋没有灭亡！"><span class="opt-letter">A</span> 北宋灭亡</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 北宋被迫纳岁币，是屈辱求和，不是赢得战争！"><span class="opt-letter">B</span> 赢得战争</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 换取和平，但负担沉重</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：北宋灭亡" aria-pressed="false" data-feedback="❌ 澶渊之盟后宋辽维持了长期和平，北宋没有灭亡！"><span class="opt-letter">A</span> 北宋灭亡</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：赢得战争" aria-pressed="false" data-feedback="❌ 北宋被迫纳岁币，是屈辱求和，不是赢得战争！"><span class="opt-letter">B</span> 赢得战争</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：换取和平，但负担沉重" aria-pressed="false"><span class="opt-letter">C</span> 换取和平，但负担沉重</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -273,21 +295,31 @@
     <section class="section" id="core-content">
       <h2 class="section-title"><span class="num">📚</span> 核心内容</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>一、辽的建立</h3>
         <p><strong>时间</strong>：916年</p>
         <p><strong>建立者</strong>：耶律阿保机（辽太祖）</p>
         <p><strong>民族</strong>：契丹族</p>
         <p><strong>都城</strong>：上京（今内蒙古巴林左旗）</p>
         <p><strong>制度特点</strong>：蕃汉分治（南北面官制）</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>二、西夏的建立</h3>
         <p><strong>时间</strong>：1038年</p>
         <p><strong>建立者</strong>：元昊</p>
         <p><strong>民族</strong>：党项族</p>
         <p><strong>都城</strong>：兴庆府（今宁夏银川）</p>
         <p><strong>制度特点</strong>：仿宋制，同时保留党项习俗</p>
-      </div>
+      
+</details>
+</div>
       <div class="card" style="margin-top: 20px;">
         <h3>三、澶渊之盟（1005年）</h3>
         <p><strong>背景</strong>：辽军南下，逼近澶州（今河南濮阳）</p>
@@ -347,12 +379,12 @@
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
         <span style="margin-left: 12px; color: var(--accent);">⚡ 含中考真题</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】西夏的建立民族是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 契丹族建立的是辽，不是西夏！"><span class="opt-letter">A</span> 契丹族</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 党项族</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 女真族建立的是金，不是西夏！"><span class="opt-letter">C</span> 女真族</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：契丹族" aria-pressed="false" data-feedback="❌ 契丹族建立的是辽，不是西夏！"><span class="opt-letter">A</span> 契丹族</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：党项族" aria-pressed="false"><span class="opt-letter">B</span> 党项族</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：女真族" aria-pressed="false" data-feedback="❌ 女真族建立的是金，不是西夏！"><span class="opt-letter">C</span> 女真族</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -360,12 +392,12 @@
           <p>西夏是由<strong>党项族</strong>建立的国家，建立者元昊，定都兴庆府（今银川）。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐ 基础】辽的都城是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')"><span class="opt-letter">A</span> 上京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 兴庆府是西夏都城，不是辽！"><span class="opt-letter">B</span> 兴庆府</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 东京是北宋都城，不是辽！"><span class="opt-letter">C</span> 东京</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：上京" aria-pressed="false"><span class="opt-letter">A</span> 上京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：兴庆府" aria-pressed="false" data-feedback="❌ 兴庆府是西夏都城，不是辽！"><span class="opt-letter">B</span> 兴庆府</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：东京" aria-pressed="false" data-feedback="❌ 东京是北宋都城，不是辽！"><span class="opt-letter">C</span> 东京</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -373,12 +405,12 @@
           <p>辽的都城是<strong>上京</strong>（今内蒙古巴林左旗），西夏都城是兴庆府（今银川）。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】"蕃汉分治"是哪个政权的制度？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'A')"><span class="opt-letter">A</span> 辽</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'B')" data-feedback="❌ 西夏仿宋制，没有实行蕃汉分治！"><span class="opt-letter">B</span> 西夏</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="❌ 北宋是中央集权制，不是蕃汉分治！"><span class="opt-letter">C</span> 北宋</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：辽" aria-pressed="false"><span class="opt-letter">A</span> 辽</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：西夏" aria-pressed="false" data-feedback="❌ 西夏仿宋制，没有实行蕃汉分治！"><span class="opt-letter">B</span> 西夏</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：北宋" aria-pressed="false" data-feedback="❌ 北宋是中央集权制，不是蕃汉分治！"><span class="opt-letter">C</span> 北宋</div>
         </div>
         <div class="feedback" id="feedback-7"></div>
         <div class="answer-explanation" id="explanation-7">
@@ -386,12 +418,12 @@
           <p><strong>辽</strong>实行<strong>蕃汉分治</strong>（南北面官制），因俗而治，统治多民族国家。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】澶渊之盟在历史上起的作用是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'A')" data-feedback="❌ 澶渊之盟是妥协求和，不是统一全国！"><span class="opt-letter">A</span> 统一全国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'B')"><span class="opt-letter">B</span> 维持长期和平</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 澶渊之盟后宋辽是兄弟之国，不是臣属关系！"><span class="opt-letter">C</span> 辽成为北宋属国</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：统一全国" aria-pressed="false" data-feedback="❌ 澶渊之盟是妥协求和，不是统一全国！"><span class="opt-letter">A</span> 统一全国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：维持长期和平" aria-pressed="false"><span class="opt-letter">B</span> 维持长期和平</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：辽成为北宋属国" aria-pressed="false" data-feedback="❌ 澶渊之盟后宋辽是兄弟之国，不是臣属关系！"><span class="opt-letter">C</span> 辽成为北宋属国</div>
         </div>
         <div class="feedback" id="feedback-8"></div>
         <div class="answer-explanation" id="explanation-8">
@@ -569,6 +601,8 @@
   </script>
     <!-- 标准模块脚本（必须） -->
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

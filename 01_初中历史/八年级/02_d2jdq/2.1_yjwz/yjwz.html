@@ -560,6 +560,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- ① 品牌栏 -->
 <div class="brand-bar">
@@ -580,6 +592,10 @@
 
 <!-- ③ 导航栏 -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
   <div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
     <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
@@ -731,17 +747,17 @@
       <!-- 前测题1 -->
       <div class="quiz-question">
         <h4>1. 洋务运动发生在哪个历史时期？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。鸦片战争（1840-1842）发生时洋务运动尚未开始，这一时期林则徐领导了抗英斗争。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：鸦片战争时期（1840-1842年）" aria-pressed="false" data-feedback="❌ 错误。鸦片战争（1840-1842）发生时洋务运动尚未开始，这一时期林则徐领导了抗英斗争。">
             <span class="opt-letter">A</span> 鸦片战争时期（1840-1842年）
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。太平天国运动（1851-1864）是农民起义，洋务运动是在太平天国被镇压后兴起的。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：太平天国时期（1851-1864年）" aria-pressed="false" data-feedback="❌ 错误。太平天国运动（1851-1864）是农民起义，洋务运动是在太平天国被镇压后兴起的。">
             <span class="opt-letter">B</span> 太平天国时期（1851-1864年）
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动发生在19世纪60-90年代。1861年安庆内军械所的创办标志着洋务运动的开始。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：19世纪60-90年代" aria-pressed="false" data-feedback="✅ 正确！洋务运动发生在19世纪60-90年代。1861年安庆内军械所的创办标志着洋务运动的开始。">
             <span class="opt-letter">C</span> 19世纪60-90年代
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。甲午战争时期（1894-1895）是洋务运动的末期，此时运动已经走向破产。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：甲午战争时期（1894-1895年）" aria-pressed="false" data-feedback="❌ 错误。甲午战争时期（1894-1895）是洋务运动的末期，此时运动已经走向破产。">
             <span class="opt-letter">D</span> 甲午战争时期（1894-1895年）
           </button>
         </div>
@@ -751,17 +767,17 @@
       <!-- 前测题2 -->
       <div class="quiz-question">
         <h4>2. 以下哪一口号属于洋务运动？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「师夷长技以制夷」是魏源在《海国图志》中提出的思想，是洋务运动的理论来源，但并非洋务运动本身的口号。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：师夷长技以制夷" aria-pressed="false" data-feedback="❌ 错误。「师夷长技以制夷」是魏源在《海国图志》中提出的思想，是洋务运动的理论来源，但并非洋务运动本身的口号。">
             <span class="opt-letter">A</span> 师夷长技以制夷
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「变法图强」是戊戌变法（1898年）的口号，由康有为、梁启超等人提出，比洋务运动晚。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：变法图强" aria-pressed="false" data-feedback="❌ 错误。「变法图强」是戊戌变法（1898年）的口号，由康有为、梁启超等人提出，比洋务运动晚。">
             <span class="opt-letter">B</span> 变法图强
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动分为两个阶段：前期「自强」（创办军事工业），后期「求富」（创办民用工业）。这是洋务运动最核心的口号。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：自强、求富" aria-pressed="false" data-feedback="✅ 正确！洋务运动分为两个阶段：前期「自强」（创办军事工业），后期「求富」（创办民用工业）。这是洋务运动最核心的口号。">
             <span class="opt-letter">C</span> 自强、求富
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「民主科学」是1915年新文化运动的口号，由陈独秀、李大钊等人提出，距洋务运动已过去50多年。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：民主、科学" aria-pressed="false" data-feedback="❌ 错误。「民主科学」是1915年新文化运动的口号，由陈独秀、李大钊等人提出，距洋务运动已过去50多年。">
             <span class="opt-letter">D</span> 民主、科学
           </button>
         </div>
@@ -771,17 +787,17 @@
       <!-- 前测题3 -->
       <div class="quiz-question">
         <h4>3. 洋务运动属于什么性质的运动？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。农民起义（如太平天国、义和团）的目的是推翻清朝统治，洋务运动恰恰是地主阶级为维护清朝统治而发起的。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：农民起义运动" aria-pressed="false" data-feedback="❌ 错误。农民起义（如太平天国、义和团）的目的是推翻清朝统治，洋务运动恰恰是地主阶级为维护清朝统治而发起的。">
             <span class="opt-letter">A</span> 农民起义运动
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动是地主阶级洋务派（曾国藩、李鸿章等）为了维护清朝封建统治而发起的自救运动，其根本目的是「中学为体，西学为用」。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：地主阶级的自救运动" aria-pressed="false" data-feedback="✅ 正确！洋务运动是地主阶级洋务派（曾国藩、李鸿章等）为了维护清朝封建统治而发起的自救运动，其根本目的是「中学为体，西学为用」。">
             <span class="opt-letter">B</span> 地主阶级的自救运动
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。资产阶级维新运动（如戊戌变法）是由资产阶级改良派发起的，要求学习西方政治制度，与洋务运动有本质区别。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：资产阶级维新运动" aria-pressed="false" data-feedback="❌ 错误。资产阶级维新运动（如戊戌变法）是由资产阶级改良派发起的，要求学习西方政治制度，与洋务运动有本质区别。">
             <span class="opt-letter">C</span> 资产阶级维新运动
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。洋务运动虽然引进了西方技术，但其目的是维护封建制度，而非发展资本主义，因此不是资产阶级革命运动。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：资产阶级革命运动" aria-pressed="false" data-feedback="❌ 错误。洋务运动虽然引进了西方技术，但其目的是维护封建制度，而非发展资本主义，因此不是资产阶级革命运动。">
             <span class="opt-letter">D</span> 资产阶级革命运动
           </button>
         </div>
@@ -1216,17 +1232,17 @@
       <!-- 后测题1 -->
       <div class="quiz-question">
         <h4>1. 洋务运动的主要口号是什么？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「民主科学」是新文化运动（1915年）的口号，不是洋务运动。洋务运动的口号是「自强」「求富」。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：民主、科学" aria-pressed="false" data-feedback="❌ 错误。「民主科学」是新文化运动（1915年）的口号，不是洋务运动。洋务运动的口号是「自强」「求富」。">
             <span class="opt-letter">A</span> 民主、科学
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动前期口号是「自强」（创办军事工业），后期是「求富」（创办民用工业）。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：自强、求富" aria-pressed="false" data-feedback="✅ 正确！洋务运动前期口号是「自强」（创办军事工业），后期是「求富」（创办民用工业）。">
             <span class="opt-letter">B</span> 自强、求富
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「变法图强」是戊戌变法（1898年）的口号，代表人物是康有为、梁启超。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：变法图强" aria-pressed="false" data-feedback="❌ 错误。「变法图强」是戊戌变法（1898年）的口号，代表人物是康有为、梁启超。">
             <span class="opt-letter">C</span> 变法图强
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。「扶清灭洋」是义和团运动的口号，具有盲目排外性。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：扶清灭洋" aria-pressed="false" data-feedback="❌ 错误。「扶清灭洋」是义和团运动的口号，具有盲目排外性。">
             <span class="opt-letter">D</span> 扶清灭洋
           </button>
         </div>
@@ -1236,17 +1252,17 @@
       <!-- 后测题2 -->
       <div class="quiz-question">
         <h4>2. 洋务运动的根本目的是什么？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。洋务派并不主张推翻封建制度，而是要维护清朝统治。他们是地主阶级代表，不是农民起义领袖。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：推翻封建制度" aria-pressed="false" data-feedback="❌ 错误。洋务派并不主张推翻封建制度，而是要维护清朝统治。他们是地主阶级代表，不是农民起义领袖。">
             <span class="opt-letter">A</span> 推翻封建制度
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。虽然洋务运动客观上促进了中国资本主义的发展，但这不是洋务派的根本目的。他们的出发点是维护清朝统治。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：发展资本主义" aria-pressed="false" data-feedback="❌ 错误。虽然洋务运动客观上促进了中国资本主义的发展，但这不是洋务派的根本目的。他们的出发点是维护清朝统治。">
             <span class="opt-letter">B</span> 发展资本主义
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动的根本目的是通过学习西方先进技术，维护清朝的封建统治。「中学为体，西学为用」体现了这一点。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：维护清朝统治" aria-pressed="false" data-feedback="✅ 正确！洋务运动的根本目的是通过学习西方先进技术，维护清朝的封建统治。「中学为体，西学为用」体现了这一点。">
             <span class="opt-letter">C</span> 维护清朝统治
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。洋务运动主要是学习西方技术，不主张学习西方政治制度。学习西方政治制度的是后来的维新派和革命派。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：学习西方制度" aria-pressed="false" data-feedback="❌ 错误。洋务运动主要是学习西方技术，不主张学习西方政治制度。学习西方政治制度的是后来的维新派和革命派。">
             <span class="opt-letter">D</span> 学习西方制度
           </button>
         </div>
@@ -1256,17 +1272,17 @@
       <!-- 后测题3 -->
       <div class="quiz-question">
         <h4>3. 下列哪项是洋务运动在"自强"阶段创办的？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！江南制造总局是1865年李鸿章在上海创办的军事工业，属于「自强」阶段，是当时国内最大的军事工业。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项A：江南制造总局" aria-pressed="false" data-feedback="✅ 正确！江南制造总局是1865年李鸿章在上海创办的军事工业，属于「自强」阶段，是当时国内最大的军事工业。">
             <span class="opt-letter">A</span> 江南制造总局
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。轮船招商局是1872年李鸿章创办的民用工业，属于「求富」阶段，目的是解决军事工业的运输问题。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：轮船招商局" aria-pressed="false" data-feedback="❌ 错误。轮船招商局是1872年李鸿章创办的民用工业，属于「求富」阶段，目的是解决军事工业的运输问题。">
             <span class="opt-letter">B</span> 轮船招商局
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。汉阳铁厂是1890年张之洞在湖北创办的民用工业，属于「求富」阶段，是中国第一个近代钢铁企业。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：汉阳铁厂" aria-pressed="false" data-feedback="❌ 错误。汉阳铁厂是1890年张之洞在湖北创办的民用工业，属于「求富」阶段，是中国第一个近代钢铁企业。">
             <span class="opt-letter">C</span> 汉阳铁厂
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。开平矿务局是1878年李鸿章创办的民用工业，属于「求富」阶段，主要开采煤矿。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：开平矿务局" aria-pressed="false" data-feedback="❌ 错误。开平矿务局是1878年李鸿章创办的民用工业，属于「求富」阶段，主要开采煤矿。">
             <span class="opt-letter">D</span> 开平矿务局
           </button>
         </div>
@@ -1276,17 +1292,17 @@
       <!-- 后测题4 -->
       <div class="quiz-question">
         <h4>4. 洋务运动失败的标志是什么？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。鸦片战争（1840-1842）发生在洋务运动之前，是洋务运动兴起的背景之一。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：鸦片战争失败" aria-pressed="false" data-feedback="❌ 错误。鸦片战争（1840-1842）发生在洋务运动之前，是洋务运动兴起的背景之一。">
             <span class="opt-letter">A</span> 鸦片战争失败
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。第二次鸦片战争（1856-1860）也发生在洋务运动之前，洋务运动正是为了应对这种危机而兴起的。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：第二次鸦片战争失败" aria-pressed="false" data-feedback="❌ 错误。第二次鸦片战争（1856-1860）也发生在洋务运动之前，洋务运动正是为了应对这种危机而兴起的。">
             <span class="opt-letter">B</span> 第二次鸦片战争失败
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1894-1895年甲午中日战争中，北洋水师全军覆没，标志着洋务运动的破产。洋务派「自强」「求富」的目标没有实现。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：甲午中日战争失败" aria-pressed="false" data-feedback="✅ 正确！1894-1895年甲午中日战争中，北洋水师全军覆没，标志着洋务运动的破产。洋务派「自强」「求富」的目标没有实现。">
             <span class="opt-letter">C</span> 甲午中日战争失败
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。八国联军侵华（1900年）发生在洋务运动失败之后，导致《辛丑条约》签订。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：八国联军侵华" aria-pressed="false" data-feedback="❌ 错误。八国联军侵华（1900年）发生在洋务运动失败之后，导致《辛丑条约》签订。">
             <span class="opt-letter">D</span> 八国联军侵华
           </button>
         </div>
@@ -1296,17 +1312,17 @@
       <!-- 后测题5 -->
       <div class="quiz-question">
         <h4>5. 提出"中学为体，西学为用"主张的是哪位洋务派代表人物？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。曾国藩是洋务运动的开创者之一，创办安庆内军械所，但他没有明确提出这一主张。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：曾国藩" aria-pressed="false" data-feedback="❌ 错误。曾国藩是洋务运动的开创者之一，创办安庆内军械所，但他没有明确提出这一主张。">
             <span class="opt-letter">A</span> 曾国藩
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。李鸿章是洋务运动最主要的实践者，创办众多企业，但「中学为体，西学为用」不是他提出的。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：李鸿章" aria-pressed="false" data-feedback="❌ 错误。李鸿章是洋务运动最主要的实践者，创办众多企业，但「中学为体，西学为用」不是他提出的。">
             <span class="opt-letter">B</span> 李鸿章
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。左宗棠创办福州船政局，收复新疆，但他没有提出这一著名主张。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：左宗棠" aria-pressed="false" data-feedback="❌ 错误。左宗棠创办福州船政局，收复新疆，但他没有提出这一著名主张。">
             <span class="opt-letter">C</span> 左宗棠
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！张之洞在《劝学篇》中明确提出「中学为体，西学为用」，主张在维护封建制度的前提下学习西方技术。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项D：张之洞" aria-pressed="false" data-feedback="✅ 正确！张之洞在《劝学篇》中明确提出「中学为体，西学为用」，主张在维护封建制度的前提下学习西方技术。">
             <span class="opt-letter">D</span> 张之洞
           </button>
         </div>
@@ -1500,6 +1516,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

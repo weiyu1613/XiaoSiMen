@@ -438,10 +438,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">第二单元</div></div></div>
   <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
   <div class="progress-label">第二单元 · 7/7课已完成</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../01_d1sy/d1sy.html" class="nav-btn"><i class="fa-solid fa-chevron-left"></i> 上一单元</a>
     <a href="../03_d3sy/d3sy.html" class="nav-btn">下一单元 <i class="fa-solid fa-chevron-right"></i></a>
@@ -637,5 +653,6 @@
   </footer>
 
   <script src="../shared/mascot.js?v=8.0"></script>
+  <script src="../shared/badges.js?v=8.0"></script>
 </body>
 </html>

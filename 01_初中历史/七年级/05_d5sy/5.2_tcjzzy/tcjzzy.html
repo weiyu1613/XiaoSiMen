@@ -135,10 +135,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="container"><div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div><div class="brand-tag">互动课件 v7.14</div></div></div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d5sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第五单元：繁荣与开放的社会</div>
@@ -194,6 +210,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道<strong>唐朝建立</strong>的史实</li>
@@ -205,41 +227,41 @@
     </section>
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝 1. 【⭐ 基础】唐朝是谁建立的？<span class="difficulty-badge difficulty-基础">基础</span></h2>
-      <div class="quiz-box">
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 唐朝是李渊建立的，不是李世民！"><span class="opt-letter">A</span> 李世民</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 李渊</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 唐朝是李渊建立的，不是李隆基！"><span class="opt-letter">C</span> 李隆基</div>
+      <div class="quiz-box" data-difficulty="basic">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：李世民" aria-pressed="false" data-feedback="❌ 唐朝是李渊建立的，不是李世民！"><span class="opt-letter">A</span> 李世民</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李渊" aria-pressed="false"><span class="opt-letter">B</span> 李渊</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李隆基" aria-pressed="false" data-feedback="❌ 唐朝是李渊建立的，不是李隆基！"><span class="opt-letter">C</span> 李隆基</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 李渊</strong></p><p style="margin-top: 8px;"><strong>唐朝</strong>是<strong>李渊</strong>（唐高祖）建立的。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】"贞观之治"是哪位皇帝的统治？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 唐太宗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ '贞观之治'是唐太宗的统治，不是唐高宗！"><span class="opt-letter">B</span> 唐高宗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ '贞观之治'是唐太宗的统治，不是唐玄宗！"><span class="opt-letter">C</span> 唐玄宗</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐太宗" aria-pressed="false"><span class="opt-letter">A</span> 唐太宗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：唐高宗" aria-pressed="false" data-feedback="❌ '贞观之治'是唐太宗的统治，不是唐高宗！"><span class="opt-letter">B</span> 唐高宗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：唐玄宗" aria-pressed="false" data-feedback="❌ '贞观之治'是唐太宗的统治，不是唐玄宗！"><span class="opt-letter">C</span> 唐玄宗</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 唐太宗</strong></p><p style="margin-top: 8px;"><strong>"贞观之治"</strong>是<strong>唐太宗李世民</strong>的统治。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】武则天统治时期的国号是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 武则天统治时期的国号是周，不是唐！"><span class="opt-letter">A</span> 唐</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 周</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 武则天统治时期的国号是周，不是隋！"><span class="opt-letter">C</span> 隋</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐" aria-pressed="false" data-feedback="❌ 武则天统治时期的国号是周，不是唐！"><span class="opt-letter">A</span> 唐</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：周" aria-pressed="false"><span class="opt-letter">B</span> 周</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：隋" aria-pressed="false" data-feedback="❌ 武则天统治时期的国号是周，不是隋！"><span class="opt-letter">C</span> 隋</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 周</strong></p><p style="margin-top: 8px;">武则天统治时期，改国号为<strong>周</strong>，史称<strong>武周</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列哪一项不是贞观之治的内容？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ '虚心纳谏'是贞观之治的内容，不符合题意！"><span class="opt-letter">A</span> 虚心纳谏</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ '轻徭薄赋'是贞观之治的内容，不符合题意！"><span class="opt-letter">B</span> 轻徭薄赋</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')"><span class="opt-letter">C</span> 严刑峻法</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：虚心纳谏" aria-pressed="false" data-feedback="❌ '虚心纳谏'是贞观之治的内容，不符合题意！"><span class="opt-letter">A</span> 虚心纳谏</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：轻徭薄赋" aria-pressed="false" data-feedback="❌ '轻徭薄赋'是贞观之治的内容，不符合题意！"><span class="opt-letter">B</span> 轻徭薄赋</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：严刑峻法" aria-pressed="false"><span class="opt-letter">C</span> 严刑峻法</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 严刑峻法</strong></p><p style="margin-top: 8px;"><strong>严刑峻法</strong>是<strong>秦朝</strong>的统治特点，<strong>不是</strong>贞观之治的内容。</p></div>
@@ -248,6 +270,9 @@
     <section class="section" id="section-tang-establishment">
       <h2 class="section-title"><span class="num">📍</span> 唐朝的建立</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 唐朝建立</h3>
         <div class="event-box">
           <div class="event-title">📍 唐朝的建立（618年）</div>
@@ -260,11 +285,16 @@
         <h3 style="margin-top: 20px; color: #8b4513;">📖 唐朝统一全国</h3>
         <p>李渊建立唐朝后，次子<strong>李世民</strong>率军平定<strong>割据势力</strong>，统一全国。</p>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 唐朝建立</div><p>✅ <strong>时间：</strong>618年</p><p style="margin-top: 6px;">✅ <strong>建立者：</strong>李渊（唐高祖）</p><p style="margin-top: 6px;">✅ <strong>都城：</strong>长安（今西安）</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-zhenguan">
       <h2 class="section-title"><span class="num">👑</span> 贞观之治</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 唐太宗的统治</h3>
         <p><strong>唐太宗李世民</strong>（626-649年在位），年号<strong>贞观</strong>，史称<strong>"贞观之治"</strong>。</p>
         <h3 style="margin-top: 20px; color: #8b4513;">📖 贞观之治的主要内容</h3>
@@ -299,11 +329,16 @@
           </svg>
           <p class="svg-caption">图5-3 从贞观之治到开元盛世</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-wuzetian">
       <h2 class="section-title"><span class="num">👩</span> 武则天的统治</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 武则天生平</h3>
         <p><strong>武则天</strong>（624-705年），中国历史上<strong>唯一的女皇帝</strong>。</p>
         <h3 style="margin-top: 20px; color: #8b4513;">📖 主要贡献</h3>
@@ -321,49 +356,51 @@
           <li>② 为<strong>开元盛世</strong>准备了条件</li>
         </ul>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 武则天</div><p>✅ <strong>地位：</strong>中国历史上唯一的女皇帝</p><p style="margin-top: 6px;">✅ <strong>贡献：</strong>发展科举（殿试、武举），重视农业</p><p style="margin-top: 6px;">✅ <strong>评价：</strong>政启开元，治宏贞观</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】唐朝是谁建立的？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 唐朝是李渊建立的，不是李世民！"><span class="opt-letter">A</span> 李世民</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')"><span class="opt-letter">B</span> 李渊</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 唐朝是李渊建立的，不是李隆基！"><span class="opt-letter">C</span> 李隆基</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：李世民" aria-pressed="false" data-feedback="❌ 唐朝是李渊建立的，不是李世民！"><span class="opt-letter">A</span> 李世民</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李渊" aria-pressed="false"><span class="opt-letter">B</span> 李渊</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李隆基" aria-pressed="false" data-feedback="❌ 唐朝是李渊建立的，不是李隆基！"><span class="opt-letter">C</span> 李隆基</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 李渊</strong></p><p style="margin-top: 8px;"><strong>唐朝</strong>是<strong>李渊</strong>（唐高祖）建立的。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）"贞观之治"是哪位皇帝的统治？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'A')"><span class="opt-letter">A</span> 唐太宗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'B')" data-feedback="❌ '贞观之治'是唐太宗的统治，不是唐高宗！"><span class="opt-letter">B</span> 唐高宗</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ '贞观之治'是唐太宗的统治，不是唐玄宗！"><span class="opt-letter">C</span> 唐玄宗</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐太宗" aria-pressed="false"><span class="opt-letter">A</span> 唐太宗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：唐高宗" aria-pressed="false" data-feedback="❌ '贞观之治'是唐太宗的统治，不是唐高宗！"><span class="opt-letter">B</span> 唐高宗</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：唐玄宗" aria-pressed="false" data-feedback="❌ '贞观之治'是唐太宗的统治，不是唐玄宗！"><span class="opt-letter">C</span> 唐玄宗</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 唐太宗</strong></p><p style="margin-top: 8px;"><strong>"贞观之治"</strong>是<strong>唐太宗李世民</strong>的统治。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）武则天统治时期的国号是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 武则天统治时期的国号是周，不是唐！"><span class="opt-letter">A</span> 唐</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')"><span class="opt-letter">B</span> 周</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 武则天统治时期的国号是周，不是隋！"><span class="opt-letter">C</span> 隋</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：唐" aria-pressed="false" data-feedback="❌ 武则天统治时期的国号是周，不是唐！"><span class="opt-letter">A</span> 唐</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：周" aria-pressed="false"><span class="opt-letter">B</span> 周</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：隋" aria-pressed="false" data-feedback="❌ 武则天统治时期的国号是周，不是隋！"><span class="opt-letter">C</span> 隋</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 周</strong></p><p style="margin-top: 8px;">武则天统治时期，改国号为<strong>周</strong>，史称<strong>武周</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"政启开元，治宏贞观。"——郭沫若评价武则天</div>
         <p style="margin-bottom:10px;font-weight:600;">材料反映武则天统治的什么特点？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'A')"><span class="opt-letter">A</span> 承上启下，继往开来</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'B')" data-feedback="❌ 材料说'政启开元，治宏贞观'，不是暴政！"><span class="opt-letter">B</span> 暴政统治</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料说'政启开元，治宏贞观'，不是无为而治！"><span class="opt-letter">C</span> 无为而治</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：承上启下，继往开来" aria-pressed="false"><span class="opt-letter">A</span> 承上启下，继往开来</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：暴政统治" aria-pressed="false" data-feedback="❌ 材料说'政启开元，治宏贞观'，不是暴政！"><span class="opt-letter">B</span> 暴政统治</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：无为而治" aria-pressed="false" data-feedback="❌ 材料说'政启开元，治宏贞观'，不是无为而治！"><span class="opt-letter">C</span> 无为而治</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 承上启下，继往开来</strong></p><p style="margin-top: 8px;">材料反映了武则天统治<strong>承上启下，继往开来</strong>的特点。</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 材料分析题方法</div><ol style="padding-left: 20px; line-height: 1.8;"><li><strong>先读材料：</strong>圈出关键词（"政启开元"、"治宏贞观"）</li><li><strong>再联系课本：</strong>回忆武则天的历史评价</li><li><strong>排除无中生有：</strong>材料没提到的选项不选</li></ol></div></div>
@@ -440,6 +477,8 @@
       console.log('📚 《唐朝的建立与贞观之治》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

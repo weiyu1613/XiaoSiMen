@@ -215,6 +215,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -228,6 +240,10 @@
 
   <!-- ③ 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d10dyc.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -353,17 +369,17 @@
             <div class="quiz-question">
               <span class="star">★</span>十月革命发生在俄历哪一年？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre1', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1917年" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 1917年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'B')" data-feedback="❌ 1918年是苏俄签订《布列斯特和约》的时间，不是十月革命！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1918年" aria-pressed="false" data-feedback="❌ 1918年是苏俄签订《布列斯特和约》的时间，不是十月革命！">
                 <span class="opt-letter">B</span><label>B. 1918年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'C')" data-feedback="❌ 1919年已经是一战结束后的事了！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1919年" aria-pressed="false" data-feedback="❌ 1919年已经是一战结束后的事了！">
                 <span class="opt-letter">C</span><label>C. 1919年</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre1', 'D')" data-feedback="❌ 1920年已经是苏俄内战时期了！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.1920年" aria-pressed="false" data-feedback="❌ 1920年已经是苏俄内战时期了！">
                 <span class="opt-letter">D</span><label>D. 1920年</label>
               </div>
             </div>
@@ -383,17 +399,17 @@
             <div class="quiz-question">
               <span class="star">★</span>二月革命后，俄国的实际权力落入谁手中？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'A')" data-feedback="❌ 二月革命已经推翻了沙皇政府！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.沙皇政府" aria-pressed="false" data-feedback="❌ 二月革命已经推翻了沙皇政府！">
                 <span class="opt-letter">A</span><label>A. 沙皇政府</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre2', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.资产阶级临时政府" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 资产阶级临时政府</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'C')" data-feedback="❌ 工兵代表苏维埃拥有武装，但实际权力在临时政府手中，形成"两个政权并存"局面。">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.工兵代表苏维埃" aria-pressed="false" data-feedback="❌ 工兵代表苏维埃拥有武装，但实际权力在临时政府手中，形成"两个政权并存"局面。">
                 <span class="opt-letter">C</span><label>C. 工兵代表苏维埃</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre2', 'D')" data-feedback="❌ 二月革命时布尔什维克还没有掌握政权！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.布尔什维克" aria-pressed="false" data-feedback="❌ 二月革命时布尔什维克还没有掌握政权！">
                 <span class="opt-letter">D</span><label>D. 布尔什维克</label>
               </div>
             </div>
@@ -409,17 +425,17 @@
             <div class="quiz-question">
               <span class="star">★</span>《四月提纲》是谁提出的？<span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'A')" data-feedback="❌ 斯大林当时还不是主要领导人！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.斯大林" aria-pressed="false" data-feedback="❌ 斯大林当时还不是主要领导人！">
                 <span class="opt-letter">A</span><label>A. 斯大林</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre3', 'B')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.列宁" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">B</span><label>B. 列宁</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'C')" data-feedback="❌ 托洛茨基是十月革命的重要领导人，但《四月提纲》是列宁提出的！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.托洛茨基" aria-pressed="false" data-feedback="❌ 托洛茨基是十月革命的重要领导人，但《四月提纲》是列宁提出的！">
                 <span class="opt-letter">C</span><label>C. 托洛茨基</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre3', 'D')" data-feedback="❌ 克伦斯基是资产阶级临时政府总理，是列宁的政治对手！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.克伦斯基" aria-pressed="false" data-feedback="❌ 克伦斯基是资产阶级临时政府总理，是列宁的政治对手！">
                 <span class="opt-letter">D</span><label>D. 克伦斯基</label>
               </div>
             </div>
@@ -442,17 +458,17 @@
             <div class="quiz-question">
               <span class="star">★</span>新经济政策允许？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'A')" data-feedback="❌ 余粮收集制是战时共产主义政策的内容！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.实行余粮收集制" aria-pressed="false" data-feedback="❌ 余粮收集制是战时共产主义政策的内容！">
                 <span class="opt-letter">A</span><label>A. 实行余粮收集制</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'B')" data-feedback="❌ 高度集中的计划经济是斯大林时期的特点！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.高度集中的计划经济" aria-pressed="false" data-feedback="❌ 高度集中的计划经济是斯大林时期的特点！">
                 <span class="opt-letter">B</span><label>B. 高度集中的计划经济</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'pre4', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'pre4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.允许多种经济成分存在，发展商品经济" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 允许多种经济成分存在，发展商品经济</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'pre4', 'D')" data-feedback="❌ 取消一切私有制是战时共产主义的特点！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'pre4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.取消一切私有制" aria-pressed="false" data-feedback="❌ 取消一切私有制是战时共产主义的特点！">
                 <span class="opt-letter">D</span><label>D. 取消一切私有制</label>
               </div>
             </div>
@@ -657,17 +673,17 @@
             <div class="quiz-question">
               <span class="star">★</span>十月革命的时间是？<span class="difficulty-badge difficulty-基础">基础</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'A')" data-feedback="❌ 1917年3月是二月革命！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.1917年3月" aria-pressed="false" data-feedback="❌ 1917年3月是二月革命！">
                 <span class="opt-letter">A</span><label>A. 1917年3月</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'B')" data-feedback="❌ 1917年7月是七月流血事件！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.1917年7月" aria-pressed="false" data-feedback="❌ 1917年7月是七月流血事件！">
                 <span class="opt-letter">B</span><label>B. 1917年7月</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post1', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post1', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.1917年11月" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 1917年11月</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post1', 'D')" data-feedback="❌ 1918年3月是《布列斯特和约》签订时间！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post1', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.1918年3月" aria-pressed="false" data-feedback="❌ 1918年3月是《布列斯特和约》签订时间！">
                 <span class="opt-letter">D</span><label>D. 1918年3月</label>
               </div>
             </div>
@@ -683,17 +699,17 @@
             <div class="quiz-question">
               <span class="star">★</span>（2023·山东中考改编）十月革命的历史意义不包括？<span class="exam-tag">📝 中考真题</span><span class="difficulty-badge difficulty-提高">提高</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'A')" data-feedback="❌ 这确实是十月革命的历史意义！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.建立了世界上第一个社会主义国家" aria-pressed="false" data-feedback="❌ 这确实是十月革命的历史意义！">
                 <span class="opt-letter">A</span><label>A. 建立了世界上第一个社会主义国家</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'B')" data-feedback="❌ 这确实是十月革命的历史意义！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.开辟了人类历史新纪元" aria-pressed="false" data-feedback="❌ 这确实是十月革命的历史意义！">
                 <span class="opt-letter">B</span><label>B. 开辟了人类历史新纪元</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post2', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post2', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.标志着第一次世界大战的结束" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 标志着第一次世界大战的结束</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post2', 'D')" data-feedback="❌ 这确实是十月革命的历史意义！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post2', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.推动了国际共产主义运动的发展" aria-pressed="false" data-feedback="❌ 这确实是十月革命的历史意义！">
                 <span class="opt-letter">D</span><label>D. 推动了国际共产主义运动的发展</label>
               </div>
             </div>
@@ -714,17 +730,17 @@
             <div class="quiz-question">
               <span class="star">★</span>材料分析：列宁说"布尔什维克从资产阶级手中夺取了政权，这次革命不仅决定俄国革命的命运，而且决定全世界工人阶级的命运。"这描述的是？<span class="difficulty-badge difficulty-挑战">挑战</span><span class="exam-tag">📝 材料题</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'A')" data-feedback="❌ 二月革命后政权落在资产阶级临时政府手中！">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.二月革命" aria-pressed="false" data-feedback="❌ 二月革命后政权落在资产阶级临时政府手中！">
                 <span class="opt-letter">A</span><label>A. 二月革命</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'B')" data-feedback="❌ 七月流血事件不是布尔什维克夺取政权！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.七月流血事件" aria-pressed="false" data-feedback="❌ 七月流血事件不是布尔什维克夺取政权！">
                 <span class="opt-letter">B</span><label>B. 七月流血事件</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post3', 'C')" data-feedback="">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post3', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.十月革命" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">C</span><label>C. 十月革命</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post3', 'D')" data-feedback="❌ 俄国退出一战是十月革命后通过《和平法令》实现的！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post3', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.俄国退出一战" aria-pressed="false" data-feedback="❌ 俄国退出一战是十月革命后通过《和平法令》实现的！">
                 <span class="opt-letter">D</span><label>D. 俄国退出一战</label>
               </div>
             </div>
@@ -746,17 +762,17 @@
             <div class="quiz-question">
               <span class="star">★</span>战时共产主义政策和新经济政策的主要区别是？<span class="difficulty-badge difficulty-挑战">挑战</span>
             </div>
-            <div class="quiz-options">
-              <div class="quiz-option" onclick="checkAnswer(this, true, 'post4', 'A')" data-feedback="">
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 'post4', 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.前者实行余粮收集制，后者允许多种经济并存" aria-pressed="false" data-feedback="">
                 <span class="opt-letter">A</span><label>A. 前者实行余粮收集制，后者允许多种经济并存</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'B')" data-feedback="❌ 说反了！战时共产主义取消商品经济，新经济政策才发展商品经济！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.前者发展商品经济" aria-pressed="false" data-feedback="❌ 说反了！战时共产主义取消商品经济，新经济政策才发展商品经济！">
                 <span class="opt-letter">B</span><label>B. 前者发展商品经济</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'C')" data-feedback="❌ 说反了！新经济政策才恢复商品货币关系！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.后者取消商品货币关系" aria-pressed="false" data-feedback="❌ 说反了！新经济政策才恢复商品货币关系！">
                 <span class="opt-letter">C</span><label>C. 后者取消商品货币关系</label>
               </div>
-              <div class="quiz-option" onclick="checkAnswer(this, false, 'post4', 'D')" data-feedback="❌ 战时共产主义是1918-1921年，新经济政策从1921年开始，时间不同！">
+              <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 'post4', 'D')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：D.两者时间相同" aria-pressed="false" data-feedback="❌ 战时共产主义是1918-1921年，新经济政策从1921年开始，时间不同！">
                 <span class="opt-letter">D</span><label>D. 两者时间相同</label>
               </div>
             </div>
@@ -781,6 +797,9 @@
     <!-- ⑩ 必考分析 -->
     <section class="section">
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="card-header">🏆 必考分析与考点总结</div>
         <div class="card-body">
           <div class="exam-cards">
@@ -827,7 +846,9 @@
             <p style="margin-top: 6px;"><strong>易错5：</strong>新经济政策的实质 = 利用市场和商品货币关系（不是取消商品经济）</p>
           </div>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -922,6 +943,8 @@
       console.log('📚 《列宁与十月革命》课件加载完成（v7.14.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -79,10 +79,26 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 2/3 节 · 67%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第二单元：中国的自然资源</div>
@@ -136,6 +152,12 @@
 
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
 <li>✅ 了解我国土地资源的特点</li>
 <li>✅ 掌握耕地、林地、草地的分布</li>
@@ -146,32 +168,32 @@
 
 <section class="section" id="section-prequiz">
 <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1. 【⭐ 基础】我国土地资源的特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 我国耕地面积不是最多的！"><span class="opt-letter">A</span> 耕地面积世界最多</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 总量丰富，人均不足，类型齐全</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 我国土地类型齐全！"><span class="opt-letter">C</span> 类型单一</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：耕地面积世界最多" aria-pressed="false" data-feedback="❌ 我国耕地面积不是最多的！"><span class="opt-letter">A</span> 耕地面积世界最多</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：总量丰富，人均不足，类型齐全" aria-pressed="false"><span class="opt-letter">B</span> 总量丰富，人均不足，类型齐全</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：类型单一" aria-pressed="false" data-feedback="❌ 我国土地类型齐全！"><span class="opt-letter">C</span> 类型单一</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;">我国土地资源<strong>总量丰富、类型齐全</strong>，但<strong>人均不足</strong>，且耕地比重小、难利用土地比重大。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2. 【⭐⭐ 提高】我国耕地主要分布在？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'A')"><span class="opt-letter">A</span> 东部季风区平原和盆地</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'B')" data-feedback="❌ 西北内陆以草地和荒漠为主！"><span class="opt-letter">B</span> 西北内陆</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 青藏高原以高寒荒漠和草地为主！"><span class="opt-letter">C</span> 青藏高原</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：东部季风区平原和盆地" aria-pressed="false"><span class="opt-letter">A</span> 东部季风区平原和盆地</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：西北内陆" aria-pressed="false" data-feedback="❌ 西北内陆以草地和荒漠为主！"><span class="opt-letter">B</span> 西北内陆</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：青藏高原" aria-pressed="false" data-feedback="❌ 青藏高原以高寒荒漠和草地为主！"><span class="opt-letter">C</span> 青藏高原</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A</strong></p><p style="margin-top:8px;">耕地主要分布在<strong>东部季风区的平原和盆地</strong>，如东北平原、华北平原、长江中下游平原。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3. 【⭐⭐⭐ 挑战】我国土地资源面临的突出问题不包括？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 水土流失是我国土地面临的重大问题！"><span class="opt-letter">A</span> 水土流失</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 土地面积不断扩大</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 土地荒漠化是我国土地面临的重大问题！"><span class="opt-letter">C</span> 土地荒漠化</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：水土流失" aria-pressed="false" data-feedback="❌ 水土流失是我国土地面临的重大问题！"><span class="opt-letter">A</span> 水土流失</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：土地面积不断扩大" aria-pressed="false"><span class="opt-letter">B</span> 土地面积不断扩大</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：土地荒漠化" aria-pressed="false" data-feedback="❌ 土地荒漠化是我国土地面临的重大问题！"><span class="opt-letter">C</span> 土地荒漠化</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;">我国土地面积不会扩大，反而面临<strong>水土流失、土地荒漠化、耕地减少</strong>等问题。</p></div>
@@ -239,32 +261,32 @@
 
 <section class="section" id="section-postquiz">
 <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1. 【⭐ 基础】我国面积最大的土地利用类型是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 耕地不是面积最大的！"><span class="opt-letter">A</span> 耕地</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 草地</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 林地不是面积最大的！"><span class="opt-letter">C</span> 林地</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：耕地" aria-pressed="false" data-feedback="❌ 耕地不是面积最大的！"><span class="opt-letter">A</span> 耕地</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：草地" aria-pressed="false"><span class="opt-letter">B</span> 草地</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：林地" aria-pressed="false" data-feedback="❌ 林地不是面积最大的！"><span class="opt-letter">C</span> 林地</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 草地</strong></p><p style="margin-top:8px;"><strong>草地</strong>是我国面积最大的土地利用类型，主要分布在西部内陆和青藏高原。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2. 【⭐⭐ 提高·中考真题】（2023·四川中考）我国土地资源的基本国策是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'A')"><span class="opt-letter">A</span> 十分珍惜、合理利用土地和切实保护耕地</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 这不是我国土地资源的基本国策！"><span class="opt-letter">B</span> 开发利用，优先建设</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 这不是完整的国策表述！"><span class="opt-letter">C</span> 节约用水</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：十分珍惜、合理利用土地和切实保护耕地" aria-pressed="false"><span class="opt-letter">A</span> 十分珍惜、合理利用土地和切实保护耕地</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：开发利用，优先建设" aria-pressed="false" data-feedback="❌ 这不是我国土地资源的基本国策！"><span class="opt-letter">B</span> 开发利用，优先建设</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：节约用水" aria-pressed="false" data-feedback="❌ 这不是完整的国策表述！"><span class="opt-letter">C</span> 节约用水</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A</strong></p><p style="margin-top:8px;">我国土地资源的基本国策是<strong>"十分珍惜、合理利用土地和切实保护耕地"</strong>。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3. 【⭐⭐⭐ 挑战】（2022·湖北中考）北方旱地与南方水田的分界线是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'A')"><span class="opt-letter">A</span> 秦岭—淮河</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'B')" data-feedback="❌ 大兴安岭不是旱地水田分界线！"><span class="opt-letter">B</span> 大兴安岭</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 天山不是旱地水田分界线！"><span class="opt-letter">C</span> 天山</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：秦岭—淮河" aria-pressed="false"><span class="opt-letter">A</span> 秦岭—淮河</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：大兴安岭" aria-pressed="false" data-feedback="❌ 大兴安岭不是旱地水田分界线！"><span class="opt-letter">B</span> 大兴安岭</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：天山" aria-pressed="false" data-feedback="❌ 天山不是旱地水田分界线！"><span class="opt-letter">C</span> 天山</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 秦岭—淮河</strong></p><p style="margin-top:8px;">秦岭—淮河一线是<strong>水田与旱地</strong>的分界线，以北为旱地、以南为水田。</p></div>
@@ -303,5 +325,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《土地资源》课件加载完成')});
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

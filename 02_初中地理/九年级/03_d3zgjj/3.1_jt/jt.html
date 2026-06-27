@@ -79,10 +79,26 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 1/3 节 · 33%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第三单元：中国的经济发展</div>
@@ -142,6 +158,12 @@
 
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
 <li>✅ 了解五种交通运输方式的特点</li>
 <li>✅ 学会根据实际需要选择运输方式</li>
@@ -152,32 +174,32 @@
 
 <section class="section" id="section-prequiz">
 <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1. 【⭐ 基础】我国最重要的运输方式是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'A')"><span class="opt-letter">A</span> 铁路运输</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'B')" data-feedback="❌ 公路虽灵活但不是最主要的！"><span class="opt-letter">B</span> 公路运输</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 水运速度慢！"><span class="opt-letter">C</span> 水路运输</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：铁路运输" aria-pressed="false"><span class="opt-letter">A</span> 铁路运输</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：公路运输" aria-pressed="false" data-feedback="❌ 公路虽灵活但不是最主要的！"><span class="opt-letter">B</span> 公路运输</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：水路运输" aria-pressed="false" data-feedback="❌ 水运速度慢！"><span class="opt-letter">C</span> 水路运输</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 铁路运输</strong></p><p style="margin-top:8px;"><strong>铁路</strong>是我国最重要的运输方式，运量较大、速度较快、运费较低。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2. 【⭐⭐ 提高】急需将急救药品从北京运往拉萨，应选择？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 水运太慢且北京到拉萨不通水运！"><span class="opt-letter">A</span> 水运</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 航空</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 铁路速度不如航空！"><span class="opt-letter">C</span> 铁路</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：水运" aria-pressed="false" data-feedback="❌ 水运太慢且北京到拉萨不通水运！"><span class="opt-letter">A</span> 水运</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：航空" aria-pressed="false"><span class="opt-letter">B</span> 航空</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：铁路" aria-pressed="false" data-feedback="❌ 铁路速度不如航空！"><span class="opt-letter">C</span> 铁路</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 航空</strong></p><p style="margin-top:8px;"><strong>急救药品</strong>需要最快速度，应选择<strong>航空</strong>运输，速度最快。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3. 【⭐⭐⭐ 挑战】下列运输方式选择最合理的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 鲜活易腐货物不宜用慢速水运！"><span class="opt-letter">A</span> 从海南运新鲜蔬菜到北京——水运</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 从山西运煤到广州——铁路</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 2吨茶叶量少，不必用铁路！"><span class="opt-letter">C</span> 从杭州运2吨茶叶到上海——铁路</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：从海南运新鲜蔬菜到北京——水运" aria-pressed="false" data-feedback="❌ 鲜活易腐货物不宜用慢速水运！"><span class="opt-letter">A</span> 从海南运新鲜蔬菜到北京——水运</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：从山西运煤到广州——铁路" aria-pressed="false"><span class="opt-letter">B</span> 从山西运煤到广州——铁路</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：从杭州运2吨茶叶到上海——铁路" aria-pressed="false" data-feedback="❌ 2吨茶叶量少，不必用铁路！"><span class="opt-letter">C</span> 从杭州运2吨茶叶到上海——铁路</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B</strong></p><p style="margin-top:8px;">大量煤炭长距离运输应选<strong>铁路</strong>（运量大、运费较低）；海南蔬菜到北京应选<strong>航空</strong>或<strong>铁路冷藏</strong>；少量茶叶到上海应选<strong>公路</strong>。</p></div>
@@ -207,6 +229,9 @@
 <section class="section" id="section-railway">
 <h2 class="section-title"><span class="num">🗺️</span> 我国铁路网</h2>
 <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 <h3 style="margin-top:20px;color:#2471a3;">📖 铁路网特点</h3>
 <ul style="padding-left:20px;line-height:1.8;">
 <li>分布<strong>东密西疏</strong></li>
@@ -233,6 +258,8 @@
 <p><strong>徐州</strong>：京沪线与陇海线交汇</p>
 <p><strong>兰州</strong>：陇海线与兰新线、包兰线交汇</p>
 </div>
+
+</details>
 </div>
 </section>
 
@@ -252,32 +279,32 @@
 
 <section class="section" id="section-postquiz">
 <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1. 【⭐ 基础】速度最快的运输方式是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 铁路不是最快的！"><span class="opt-letter">A</span> 铁路</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 航空</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 公路不是最快的！"><span class="opt-letter">C</span> 公路</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：铁路" aria-pressed="false" data-feedback="❌ 铁路不是最快的！"><span class="opt-letter">A</span> 铁路</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：航空" aria-pressed="false"><span class="opt-letter">B</span> 航空</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：公路" aria-pressed="false" data-feedback="❌ 公路不是最快的！"><span class="opt-letter">C</span> 公路</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 航空</strong></p><p style="margin-top:8px;"><strong>航空</strong>是速度最快的运输方式，但运量小、运费最高。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）我国铁路网分布特点是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'A')"><span class="opt-letter">A</span> 东密西疏</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 西部铁路网稀疏！"><span class="opt-letter">B</span> 西密东疏</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 铁路网分布不均匀！"><span class="opt-letter">C</span> 均匀分布</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：东密西疏" aria-pressed="false"><span class="opt-letter">A</span> 东密西疏</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：西密东疏" aria-pressed="false" data-feedback="❌ 西部铁路网稀疏！"><span class="opt-letter">B</span> 西密东疏</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：均匀分布" aria-pressed="false" data-feedback="❌ 铁路网分布不均匀！"><span class="opt-letter">C</span> 均匀分布</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 东密西疏</strong></p><p style="margin-top:8px;">东部人口密集、经济发达，铁路网<strong>密集</strong>；西部人口少、地形复杂，铁路网<strong>稀疏</strong>。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3. 【⭐⭐⭐ 挑战】全国最大的铁路枢纽是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'A')"><span class="opt-letter">A</span> 北京</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'B')" data-feedback="❌ 上海虽是重要枢纽但不是最大的！"><span class="opt-letter">B</span> 上海</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 广州不是最大的！"><span class="opt-letter">C</span> 广州</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：北京" aria-pressed="false"><span class="opt-letter">A</span> 北京</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：上海" aria-pressed="false" data-feedback="❌ 上海虽是重要枢纽但不是最大的！"><span class="opt-letter">B</span> 上海</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：广州" aria-pressed="false" data-feedback="❌ 广州不是最大的！"><span class="opt-letter">C</span> 广州</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 北京</strong></p><p style="margin-top:8px;"><strong>北京</strong>是全国最大的铁路枢纽，京哈、京沪、京广等多条干线在此交汇。</p></div>
@@ -312,5 +339,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《交通运输》课件加载完成')});
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

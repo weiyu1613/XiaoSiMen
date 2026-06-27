@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -467,6 +467,18 @@
   <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- ========== 1. 品牌栏 ========== -->
 <header class="brand-bar">
@@ -494,6 +506,10 @@
 
 <!-- ========== 3. 导航栏 ========== -->
 <nav class="nav-bar" id="navBar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <a class="nav-item active" data-target="hero">📚 课程概览</a>
     <a class="nav-item" data-target="objective">🎯 学习目标</a>
     <a class="nav-item" data-target="pretest">📝 前测练习</a>
@@ -581,6 +597,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
             课前 · 学习目标
         </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
         <ul class="objective-list">
             <li class="objective-item">
                 <div class="objective-icon">1</div>
@@ -619,11 +641,11 @@
         <!-- 前测题1 -->
         <div class="quiz-card" id="q1">
             <div class="quiz-question"><span class="q-num">1.</span>辛亥革命爆发的地点是？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。广州是戊戌变法相关人物康有为、梁启超的主要活动地区，不是辛亥革命的爆发地。" onclick="checkAnswer(this)">A. 广州</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1911年10月10日，革命党人在武昌发动起义，迅速占领武汉三镇，史称"武昌起义"，标志着辛亥革命的爆发。" onclick="checkAnswer(this)">B. 武昌</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。上海是辛亥革命后重要的革命活动中心，但不是起义爆发的地点。" onclick="checkAnswer(this)">C. 上海</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。南京是1912年中华民国临时政府成立之地，不辛亥革命的爆发地点。" onclick="checkAnswer(this)">D. 南京</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：广州" aria-pressed="false" data-feedback="❌ 错误。广州是戊戌变法相关人物康有为、梁启超的主要活动地区，不是辛亥革命的爆发地。" onclick="checkAnswer(this)">A. 广州</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：武昌" aria-pressed="false" data-feedback="✅ 正确！1911年10月10日，革命党人在武昌发动起义，迅速占领武汉三镇，史称"武昌起义"，标志着辛亥革命的爆发。" onclick="checkAnswer(this)">B. 武昌</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：上海" aria-pressed="false" data-feedback="❌ 错误。上海是辛亥革命后重要的革命活动中心，但不是起义爆发的地点。" onclick="checkAnswer(this)">C. 上海</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：南京" aria-pressed="false" data-feedback="❌ 错误。南京是1912年中华民国临时政府成立之地，不辛亥革命的爆发地点。" onclick="checkAnswer(this)">D. 南京</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -631,11 +653,11 @@
         <!-- 前测题2 -->
         <div class="quiz-card" id="q2">
             <div class="quiz-question"><span class="q-num">2.</span>"三民主义"不包括以下哪一项？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。民族主义是三民主义的重要组成部分之一，旨在推翻满清统治，实现民族独立。" onclick="checkAnswer(this)">A. 民族主义</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。民权主义是三民主义的核心之一，主张建立民主共和政体。" onclick="checkAnswer(this)">B. 民权主义</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。民生主义是三民主义的组成部分之一，关注人民的生活和经济利益。" onclick="checkAnswer(this)">C. 民生主义</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！三民主义包括民族、民权、民生三大主义。"民主集中"不属于三民主义，是政治体制原则。" onclick="checkAnswer(this)">D. 民主集中</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：民族主义" aria-pressed="false" data-feedback="❌ 错误。民族主义是三民主义的重要组成部分之一，旨在推翻满清统治，实现民族独立。" onclick="checkAnswer(this)">A. 民族主义</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：民权主义" aria-pressed="false" data-feedback="❌ 错误。民权主义是三民主义的核心之一，主张建立民主共和政体。" onclick="checkAnswer(this)">B. 民权主义</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：民生主义" aria-pressed="false" data-feedback="❌ 错误。民生主义是三民主义的组成部分之一，关注人民的生活和经济利益。" onclick="checkAnswer(this)">C. 民生主义</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项D：民主集中" aria-pressed="false" data-feedback="✅ 正确！三民主义包括民族、民权、民生三大主义。"民主集中"不属于三民主义，是政治体制原则。" onclick="checkAnswer(this)">D. 民主集中</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -643,11 +665,11 @@
         <!-- 前测题3 -->
         <div class="quiz-card" id="q3">
             <div class="quiz-question"><span class="q-num">3.</span>中华民国临时政府成立于？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1912年1月1日，中华民国临时政府在南京成立，孙中山就任临时大总统。" onclick="checkAnswer(this)">A. 1911年10月10日</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1911年12月是各省代表在南京召开会议的时间，临时政府尚未正式成立。" onclick="checkAnswer(this)">B. 1911年12月</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1912年1月1日，孙中山在南京就任中华民国临时大总统，标志着中华民国正式成立。" onclick="checkAnswer(this)">C. 1912年1月1日</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1912年4月是袁世凯窃取革命果实、迁都北京的时间。" onclick="checkAnswer(this)">D. 1912年4月</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1911年10月10日" aria-pressed="false" data-feedback="❌ 错误。1912年1月1日，中华民国临时政府在南京成立，孙中山就任临时大总统。" onclick="checkAnswer(this)">A. 1911年10月10日</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：1911年12月" aria-pressed="false" data-feedback="❌ 错误。1911年12月是各省代表在南京召开会议的时间，临时政府尚未正式成立。" onclick="checkAnswer(this)">B. 1911年12月</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：1912年1月1日" aria-pressed="false" data-feedback="✅ 正确！1912年1月1日，孙中山在南京就任中华民国临时大总统，标志着中华民国正式成立。" onclick="checkAnswer(this)">C. 1912年1月1日</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：1912年4月" aria-pressed="false" data-feedback="❌ 错误。1912年4月是袁世凯窃取革命果实、迁都北京的时间。" onclick="checkAnswer(this)">D. 1912年4月</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -655,11 +677,11 @@
         <!-- 前测题4 -->
         <div class="quiz-card" id="q4">
             <div class="quiz-question"><span class="q-num">4.</span>辛亥革命的主要历史意义是？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命推翻了清朝统治，但并未实现国家完全独立，中国半殖民地半封建社会的性质没有根本改变。" onclick="checkAnswer(this)">A. 实现了国家完全独立</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！辛亥革命推翻了清王朝的统治，结束了两千多年的封建君主专制制度，建立了亚洲第一个民主共和国。" onclick="checkAnswer(this)">B. 推翻君主专制，建立民主共和</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命传播了民主共和观念，但其成果很快被袁世凯窃取，经济建设并非其主要意义。" onclick="checkAnswer(this)">C. 彻底改变了中国的经济面貌</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命推翻了封建帝制，而不是推翻马克思主义在中国的传播——后者是五四运动后的事。" onclick="checkAnswer(this)">D. 推翻了马克思主义</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：实现了国家完全独立" aria-pressed="false" data-feedback="❌ 错误。辛亥革命推翻了清朝统治，但并未实现国家完全独立，中国半殖民地半封建社会的性质没有根本改变。" onclick="checkAnswer(this)">A. 实现了国家完全独立</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：推翻君主专制，建立民主共和" aria-pressed="false" data-feedback="✅ 正确！辛亥革命推翻了清王朝的统治，结束了两千多年的封建君主专制制度，建立了亚洲第一个民主共和国。" onclick="checkAnswer(this)">B. 推翻君主专制，建立民主共和</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：彻底改变了中国的经济面貌" aria-pressed="false" data-feedback="❌ 错误。辛亥革命传播了民主共和观念，但其成果很快被袁世凯窃取，经济建设并非其主要意义。" onclick="checkAnswer(this)">C. 彻底改变了中国的经济面貌</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：推翻了马克思主义" aria-pressed="false" data-feedback="❌ 错误。辛亥革命推翻了封建帝制，而不是推翻马克思主义在中国的传播——后者是五四运动后的事。" onclick="checkAnswer(this)">D. 推翻了马克思主义</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -872,11 +894,11 @@
         <!-- 后测题1 -->
         <div class="quiz-card" id="q5">
             <div class="quiz-question"><span class="q-num">1.</span>中国同盟会成立的地点是？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误檀香山是孙中山创立兴中会的地方，不是同盟会成立的地点。" onclick="checkAnswer(this)">A. 檀香山</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1905年8月，孙中山在日本东京成立中国同盟会，这是中国第一个全国性资产阶级革命政党。" onclick="checkAnswer(this)">B. 日本东京</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。香港是孙中山早期革命活动的地方，但不是同盟会成立地点。" onclick="checkAnswer(this)">C. 香港</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。广州多次成为革命起义的地点，但不是同盟会成立地。" onclick="checkAnswer(this)">D. 广州</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：檀香山" aria-pressed="false" data-feedback="❌ 错误檀香山是孙中山创立兴中会的地方，不是同盟会成立的地点。" onclick="checkAnswer(this)">A. 檀香山</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：日本东京" aria-pressed="false" data-feedback="✅ 正确！1905年8月，孙中山在日本东京成立中国同盟会，这是中国第一个全国性资产阶级革命政党。" onclick="checkAnswer(this)">B. 日本东京</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：香港" aria-pressed="false" data-feedback="❌ 错误。香港是孙中山早期革命活动的地方，但不是同盟会成立地点。" onclick="checkAnswer(this)">C. 香港</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：广州" aria-pressed="false" data-feedback="❌ 错误。广州多次成为革命起义的地点，但不是同盟会成立地。" onclick="checkAnswer(this)">D. 广州</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -884,11 +906,11 @@
         <!-- 后测题2 -->
         <div class="quiz-card" id="q6">
             <div class="quiz-question"><span class="q-num">2.</span>辛亥革命结束的标志是？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1912年2月12日，清帝退位，结束了清朝268年的统治，也标志着辛亥革命政治目标的完成。" onclick="checkAnswer(this)">A. 武昌起义</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1912年1月1日中华民国成立时，革命尚未结束，清朝皇帝仍在位。" onclick="checkAnswer(this)">B. 中华民国成立</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1912年2月12日，清帝溥仪颁布退位诏书，清朝正式结束，封建君主专制制度在中国画上句号。" onclick="checkAnswer(this)">C. 清帝退位</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。袁世凯就任大总统是革命果实被窃取的标志，不是辛亥革命结束的标志。" onclick="checkAnswer(this)">D. 袁世凯就任大总统</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：武昌起义" aria-pressed="false" data-feedback="❌ 错误。1912年2月12日，清帝退位，结束了清朝268年的统治，也标志着辛亥革命政治目标的完成。" onclick="checkAnswer(this)">A. 武昌起义</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：中华民国成立" aria-pressed="false" data-feedback="❌ 错误。1912年1月1日中华民国成立时，革命尚未结束，清朝皇帝仍在位。" onclick="checkAnswer(this)">B. 中华民国成立</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：清帝退位" aria-pressed="false" data-feedback="✅ 正确！1912年2月12日，清帝溥仪颁布退位诏书，清朝正式结束，封建君主专制制度在中国画上句号。" onclick="checkAnswer(this)">C. 清帝退位</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：袁世凯就任大总统" aria-pressed="false" data-feedback="❌ 错误。袁世凯就任大总统是革命果实被窃取的标志，不是辛亥革命结束的标志。" onclick="checkAnswer(this)">D. 袁世凯就任大总统</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -896,11 +918,11 @@
         <!-- 后测题3 -->
         <div class="quiz-card" id="q7">
             <div class="quiz-question"><span class="q-num">3.</span>《中华民国临时约法》的性质是？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《临时约法》是中国第一部资产阶级共和国宪法性文件，不是封建性质的法律。" onclick="checkAnswer(this)">A. 封建性质的法律</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1912年3月颁布的《临时约法》是中国第一部资产阶级共和国宪法性文件，确立了民主共和的政治体制。" onclick="checkAnswer(this)">B. 资产阶级共和国宪法性文件</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《临时约法》是资产阶级性质的，不是社会主义类型的法律。" onclick="checkAnswer(this)">C. 社会主义类型的法律</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。《临时约法》具有法律效力，是正式的宪法性文件，不是临时过渡性文件。" onclick="checkAnswer(this)">D. 没有任何法律效力的文件</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：封建性质的法律" aria-pressed="false" data-feedback="❌ 错误。《临时约法》是中国第一部资产阶级共和国宪法性文件，不是封建性质的法律。" onclick="checkAnswer(this)">A. 封建性质的法律</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：资产阶级共和国宪法性文件" aria-pressed="false" data-feedback="✅ 正确！1912年3月颁布的《临时约法》是中国第一部资产阶级共和国宪法性文件，确立了民主共和的政治体制。" onclick="checkAnswer(this)">B. 资产阶级共和国宪法性文件</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：社会主义类型的法律" aria-pressed="false" data-feedback="❌ 错误。《临时约法》是资产阶级性质的，不是社会主义类型的法律。" onclick="checkAnswer(this)">C. 社会主义类型的法律</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：没有任何法律效力的文件" aria-pressed="false" data-feedback="❌ 错误。《临时约法》具有法律效力，是正式的宪法性文件，不是临时过渡性文件。" onclick="checkAnswer(this)">D. 没有任何法律效力的文件</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -908,11 +930,11 @@
         <!-- 后测题4 -->
         <div class="quiz-card" id="q8">
             <div class="quiz-question"><span class="q-num">4.</span>下列关于辛亥革命的评价，正确的是？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命没有彻底完成反帝反封建任务，半殖民地半封建社会性质没有根本改变。" onclick="checkAnswer(this)">A. 彻底完成了反帝反封建任务</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！辛亥革命推翻了封建君主专制制度，建立了民主共和国，但因资产阶级的软弱性，革命果实被袁世凯窃取，革命任务并未彻底完成。" onclick="checkAnswer(this)">B. 推翻了君主专制制度，但未彻底完成革命任务</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命具有重大历史意义，是20世纪中国社会的第一次巨变，不能说没有取得任何成果。" onclick="checkAnswer(this)">C. 辛亥革命没有取得任何成果</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命建立了中华民国，传播了民主共和观念，是中国近代史上一次伟大的历史变革。" onclick="checkAnswer(this)">D. 辛亥革命是完全失败的</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：彻底完成了反帝反封建任务" aria-pressed="false" data-feedback="❌ 错误。辛亥革命没有彻底完成反帝反封建任务，半殖民地半封建社会性质没有根本改变。" onclick="checkAnswer(this)">A. 彻底完成了反帝反封建任务</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：推翻了君主专制制度，但未彻底完成革命任务" aria-pressed="false" data-feedback="✅ 正确！辛亥革命推翻了封建君主专制制度，建立了民主共和国，但因资产阶级的软弱性，革命果实被袁世凯窃取，革命任务并未彻底完成。" onclick="checkAnswer(this)">B. 推翻了君主专制制度，但未彻底完成革命任务</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：辛亥革命没有取得任何成果" aria-pressed="false" data-feedback="❌ 错误。辛亥革命具有重大历史意义，是20世纪中国社会的第一次巨变，不能说没有取得任何成果。" onclick="checkAnswer(this)">C. 辛亥革命没有取得任何成果</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：辛亥革命是完全失败的" aria-pressed="false" data-feedback="❌ 错误。辛亥革命建立了中华民国，传播了民主共和观念，是中国近代史上一次伟大的历史变革。" onclick="checkAnswer(this)">D. 辛亥革命是完全失败的</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -920,11 +942,11 @@
         <!-- 后测题5（附加） -->
         <div class="quiz-card" id="q9">
             <div class="quiz-question"><span class="q-num">5.</span>"民族、民权、民生"三大主义合称为什么？</div>
-            <div class="quiz-options">
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。"三大政策"是孙中山在国共合作时期提出的联俄、联共、扶助农工的政策。" onclick="checkAnswer(this)">A. 三大政策</button>
-                <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！"民族、民权、民生"合称"三民主义"，是孙中山提出的资产阶级民主革命纲领，于1905年在《民报》发刊词中首次提出。" onclick="checkAnswer(this)">B. 三民主义</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。"民主共和"是革命后建立的国家制度，不是三民主义的别称。" onclick="checkAnswer(this)">C. 民主共和</button>
-                <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。"平均地权"是三民主义中民生主义的内容，不是三者的合称。" onclick="checkAnswer(this)">D. 平均地权</button>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：三大政策" aria-pressed="false" data-feedback="❌ 错误。"三大政策"是孙中山在国共合作时期提出的联俄、联共、扶助农工的政策。" onclick="checkAnswer(this)">A. 三大政策</button>
+                <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：三民主义" aria-pressed="false" data-feedback="✅ 正确！"民族、民权、民生"合称"三民主义"，是孙中山提出的资产阶级民主革命纲领，于1905年在《民报》发刊词中首次提出。" onclick="checkAnswer(this)">B. 三民主义</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：民主共和" aria-pressed="false" data-feedback="❌ 错误。"民主共和"是革命后建立的国家制度，不是三民主义的别称。" onclick="checkAnswer(this)">C. 民主共和</button>
+                <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：平均地权" aria-pressed="false" data-feedback="❌ 错误。"平均地权"是三民主义中民生主义的内容，不是三者的合称。" onclick="checkAnswer(this)">D. 平均地权</button>
             </div>
             <div class="quiz-feedback" onclick="this.classList.remove('show')"></div>
         </div>
@@ -946,12 +968,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】辛亥革命爆发于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1898年是戊戌变法的时间，不是辛亥革命！"><span class="opt-letter">A</span> 1898年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 1911年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1919年是五四运动的时间！"><span class="opt-letter">C</span> 1919年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1898年" aria-pressed="false" data-feedback="❌ 1898年是戊戌变法的时间，不是辛亥革命！"><span class="opt-letter">A</span> 1898年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1911年" aria-pressed="false"><span class="opt-letter">B</span> 1911年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1919年" aria-pressed="false" data-feedback="❌ 1919年是五四运动的时间！"><span class="opt-letter">C</span> 1919年</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -960,12 +982,12 @@
           <p style="margin-top: 8px;">1911年10月10日<strong>武昌起义</strong>爆发，因这一年是农历辛亥年，史称"<strong>辛亥革命</strong>"。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】辛亥革命的领导人是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 孙中山</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 陈独秀是新文化运动和中国共产党早期领导人！"><span class="opt-letter">B</span> 陈独秀</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 李大钊是马克思主义传播者！"><span class="opt-letter">C</span> 李大钊</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：孙中山" aria-pressed="false"><span class="opt-letter">A</span> 孙中山</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：陈独秀" aria-pressed="false" data-feedback="❌ 陈独秀是新文化运动和中国共产党早期领导人！"><span class="opt-letter">B</span> 陈独秀</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李大钊" aria-pressed="false" data-feedback="❌ 李大钊是马克思主义传播者！"><span class="opt-letter">C</span> 李大钊</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -974,12 +996,12 @@
           <p style="margin-top: 8px;">孙中山被称为"<strong>民主革命先行者</strong>"，创立兴中会、同盟会，提出三民主义思想，领导了辛亥革命。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】辛亥革命最大的历史意义是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 辛亥革命没有改变半殖民地半封建社会性质，这是它的局限性！"><span class="opt-letter">A</span> 结束了半殖民地社会</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 推翻清朝统治，结束了两千多年帝制</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 建立中华民国是成果之一，但不是最核心的意义！"><span class="opt-letter">C</span> 建立了中华民国</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：结束了半殖民地社会" aria-pressed="false" data-feedback="❌ 辛亥革命没有改变半殖民地半封建社会性质，这是它的局限性！"><span class="opt-letter">A</span> 结束了半殖民地社会</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：推翻清朝统治，结束了两千多年帝制" aria-pressed="false"><span class="opt-letter">B</span> 推翻清朝统治，结束了两千多年帝制</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：建立了中华民国" aria-pressed="false" data-feedback="❌ 建立中华民国是成果之一，但不是最核心的意义！"><span class="opt-letter">C</span> 建立了中华民国</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -994,12 +1016,12 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: #8b4513; margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】武昌起义发生在哪座城市？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')"><span class="opt-letter">A</span> 武汉（武昌）</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 南京是后来中华民国临时政府所在地！"><span class="opt-letter">B</span> 南京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 广州是黄花岗起义发生地！"><span class="opt-letter">C</span> 广州</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：武汉（武昌）" aria-pressed="false"><span class="opt-letter">A</span> 武汉（武昌）</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：南京" aria-pressed="false" data-feedback="❌ 南京是后来中华民国临时政府所在地！"><span class="opt-letter">B</span> 南京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：广州" aria-pressed="false" data-feedback="❌ 广州是黄花岗起义发生地！"><span class="opt-letter">C</span> 广州</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -1008,12 +1030,12 @@
           <p style="margin-top: 8px;">1911年10月10日，革命党人在湖北<strong>武昌</strong>发动起义，随后占领汉阳、汉口，武汉三镇光复。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖北）辛亥革命失败的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 袁世凯窃取果实是表现，不是根本原因！"><span class="opt-letter">A</span> 袁世凯窃取革命果实</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 资产阶级的软弱性和妥协性</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 帝国主义干涉是外部原因，不是根本原因！"><span class="opt-letter">C</span> 帝国主义的干涉破坏</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：袁世凯窃取革命果实" aria-pressed="false" data-feedback="❌ 袁世凯窃取果实是表现，不是根本原因！"><span class="opt-letter">A</span> 袁世凯窃取革命果实</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：资产阶级的软弱性和妥协性" aria-pressed="false"><span class="opt-letter">B</span> 资产阶级的软弱性和妥协性</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：帝国主义的干涉破坏" aria-pressed="false" data-feedback="❌ 帝国主义干涉是外部原因，不是根本原因！"><span class="opt-letter">C</span> 帝国主义的干涉破坏</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -1022,12 +1044,12 @@
           <p style="margin-top: 8px;">这是中考高频考点！资产阶级不敢发动群众、对帝国主义和封建势力妥协，导致革命果实被袁世凯窃取。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】中华民国成立于何时何地？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 1911年10月是武昌起义时间！"><span class="opt-letter">A</span> 1911年10月，武昌</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')"><span class="opt-letter">B</span> 1912年1月1日，南京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 1912年是正确的，但地点不对！"><span class="opt-letter">C</span> 1912年，北京</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1911年10月，武昌" aria-pressed="false" data-feedback="❌ 1911年10月是武昌起义时间！"><span class="opt-letter">A</span> 1911年10月，武昌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1912年1月1日，南京" aria-pressed="false"><span class="opt-letter">B</span> 1912年1月1日，南京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1912年，北京" aria-pressed="false" data-feedback="❌ 1912年是正确的，但地点不对！"><span class="opt-letter">C</span> 1912年，北京</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -1087,12 +1109,12 @@
         <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → 
         <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span>
       </p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】辛亥革命爆发于哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1898年是戊戌变法的时间，不是辛亥革命！"><span class="opt-letter">A</span> 1898年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')"><span class="opt-letter">B</span> 1911年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1919年是五四运动的时间！"><span class="opt-letter">C</span> 1919年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1898年" aria-pressed="false" data-feedback="❌ 1898年是戊戌变法的时间，不是辛亥革命！"><span class="opt-letter">A</span> 1898年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1911年" aria-pressed="false"><span class="opt-letter">B</span> 1911年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1919年" aria-pressed="false" data-feedback="❌ 1919年是五四运动的时间！"><span class="opt-letter">C</span> 1919年</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -1101,12 +1123,12 @@
           <p style="margin-top: 8px;">1911年10月10日<strong>武昌起义</strong>爆发，因这一年是农历辛亥年，史称"<strong>辛亥革命</strong>"。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】辛亥革命的领导人是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')"><span class="opt-letter">A</span> 孙中山</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 陈独秀是新文化运动和中国共产党早期领导人！"><span class="opt-letter">B</span> 陈独秀</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 李大钊是马克思主义传播者！"><span class="opt-letter">C</span> 李大钊</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：孙中山" aria-pressed="false"><span class="opt-letter">A</span> 孙中山</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：陈独秀" aria-pressed="false" data-feedback="❌ 陈独秀是新文化运动和中国共产党早期领导人！"><span class="opt-letter">B</span> 陈独秀</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李大钊" aria-pressed="false" data-feedback="❌ 李大钊是马克思主义传播者！"><span class="opt-letter">C</span> 李大钊</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -1115,12 +1137,12 @@
           <p style="margin-top: 8px;">孙中山被称为"<strong>民主革命先行者</strong>"，创立兴中会、同盟会，提出三民主义思想，领导了辛亥革命。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】辛亥革命最大的历史意义是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 辛亥革命没有改变半殖民地半封建社会性质，这是它的局限性！"><span class="opt-letter">A</span> 结束了半殖民地社会</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 推翻清朝统治，结束了两千多年帝制</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 建立中华民国是成果之一，但不是最核心的意义！"><span class="opt-letter">C</span> 建立了中华民国</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：结束了半殖民地社会" aria-pressed="false" data-feedback="❌ 辛亥革命没有改变半殖民地半封建社会性质，这是它的局限性！"><span class="opt-letter">A</span> 结束了半殖民地社会</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：推翻清朝统治，结束了两千多年帝制" aria-pressed="false"><span class="opt-letter">B</span> 推翻清朝统治，结束了两千多年帝制</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：建立了中华民国" aria-pressed="false" data-feedback="❌ 建立中华民国是成果之一，但不是最核心的意义！"><span class="opt-letter">C</span> 建立了中华民国</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -1135,12 +1157,12 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: #8b4513; margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】武昌起义发生在哪座城市？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')"><span class="opt-letter">A</span> 武汉（武昌）</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 南京是后来中华民国临时政府所在地！"><span class="opt-letter">B</span> 南京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 广州是黄花岗起义发生地！"><span class="opt-letter">C</span> 广州</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：武汉（武昌）" aria-pressed="false"><span class="opt-letter">A</span> 武汉（武昌）</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：南京" aria-pressed="false" data-feedback="❌ 南京是后来中华民国临时政府所在地！"><span class="opt-letter">B</span> 南京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：广州" aria-pressed="false" data-feedback="❌ 广州是黄花岗起义发生地！"><span class="opt-letter">C</span> 广州</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -1149,12 +1171,12 @@
           <p style="margin-top: 8px;">1911年10月10日，革命党人在湖北<strong>武昌</strong>发动起义，随后占领汉阳、汉口，武汉三镇光复。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·湖北）辛亥革命失败的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 袁世凯窃取果实是表现，不是根本原因！"><span class="opt-letter">A</span> 袁世凯窃取革命果实</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'B')"><span class="opt-letter">B</span> 资产阶级的软弱性和妥协性</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 帝国主义干涉是外部原因，不是根本原因！"><span class="opt-letter">C</span> 帝国主义的干涉破坏</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：袁世凯窃取革命果实" aria-pressed="false" data-feedback="❌ 袁世凯窃取果实是表现，不是根本原因！"><span class="opt-letter">A</span> 袁世凯窃取革命果实</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：资产阶级的软弱性和妥协性" aria-pressed="false"><span class="opt-letter">B</span> 资产阶级的软弱性和妥协性</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：帝国主义的干涉破坏" aria-pressed="false" data-feedback="❌ 帝国主义干涉是外部原因，不是根本原因！"><span class="opt-letter">C</span> 帝国主义的干涉破坏</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -1163,12 +1185,12 @@
           <p style="margin-top: 8px;">这是中考高频考点！资产阶级不敢发动群众、对帝国主义和封建势力妥协，导致革命果实被袁世凯窃取。</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战】中华民国成立于何时何地？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'A')" data-feedback="❌ 1911年10月是武昌起义时间！"><span class="opt-letter">A</span> 1911年10月，武昌</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'B')"><span class="opt-letter">B</span> 1912年1月1日，南京</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 1912年是正确的，但地点不对！"><span class="opt-letter">C</span> 1912年，北京</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1911年10月，武昌" aria-pressed="false" data-feedback="❌ 1911年10月是武昌起义时间！"><span class="opt-letter">A</span> 1911年10月，武昌</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1912年1月1日，南京" aria-pressed="false"><span class="opt-letter">B</span> 1912年1月1日，南京</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1912年，北京" aria-pressed="false" data-feedback="❌ 1912年是正确的，但地点不对！"><span class="opt-letter">C</span> 1912年，北京</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -1336,6 +1358,7 @@
 })();
 </script>
 
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>
 

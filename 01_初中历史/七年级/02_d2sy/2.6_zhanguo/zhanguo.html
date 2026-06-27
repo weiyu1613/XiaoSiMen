@@ -135,6 +135,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -143,7 +155,11 @@
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d2sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第二单元：夏商周时期</div>
@@ -201,6 +217,12 @@
     </section>
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道战国七雄的名称和地理位置</li>
@@ -213,42 +235,42 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】战国七雄中，位于最西边的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 齐国在东方（今山东），不是最西边！"><span class="opt-letter">A</span> 齐国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 楚国在南方（今湖北湖南），不是最西边！"><span class="opt-letter">B</span> 楚国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'C')"><span class="opt-letter">C</span> 秦国</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：齐国" aria-pressed="false" data-feedback="❌ 齐国在东方（今山东），不是最西边！"><span class="opt-letter">A</span> 齐国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：楚国" aria-pressed="false" data-feedback="❌ 楚国在南方（今湖北湖南），不是最西边！"><span class="opt-letter">B</span> 楚国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：秦国" aria-pressed="false"><span class="opt-letter">C</span> 秦国</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：C. 秦国</strong></p><p style="margin-top: 8px;">战国七雄中，<strong>秦国</strong>位于最西边（今陕西、甘肃一带），<strong>齐国</strong>位于最东边（今山东），<strong>楚国</strong>位于最南边（今湖北、湖南），<strong>燕国</strong>位于最北边（今北京、河北）。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】商鞅变法发生在哪个国家？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 齐国没有商鞅变法！"><span class="opt-letter">A</span> 齐国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')"><span class="opt-letter">B</span> 秦国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 楚国没有商鞅变法！"><span class="opt-letter">C</span> 楚国</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：齐国" aria-pressed="false" data-feedback="❌ 齐国没有商鞅变法！"><span class="opt-letter">A</span> 齐国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：秦国" aria-pressed="false"><span class="opt-letter">B</span> 秦国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：楚国" aria-pressed="false" data-feedback="❌ 楚国没有商鞅变法！"><span class="opt-letter">C</span> 楚国</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 秦国</strong></p><p style="margin-top: 8px;"><strong>商鞅变法</strong>发生在<strong>秦国</strong>，秦孝公任用<strong>商鞅</strong>进行变法，使秦国强大起来，为后来<strong>秦统一六国</strong>奠定了基础。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】都江堰的修建者是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 李冰是都江堰的修建者，不是郑国！"><span class="opt-letter">A</span> 郑国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'B')"><span class="opt-letter">B</span> 李冰</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 商鞅是变法的，不是修都江堰的！"><span class="opt-letter">C</span> 商鞅</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：郑国" aria-pressed="false" data-feedback="❌ 李冰是都江堰的修建者，不是郑国！"><span class="opt-letter">A</span> 郑国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李冰" aria-pressed="false"><span class="opt-letter">B</span> 李冰</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：商鞅" aria-pressed="false" data-feedback="❌ 商鞅是变法的，不是修都江堰的！"><span class="opt-letter">C</span> 商鞅</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 李冰</strong></p><p style="margin-top: 8px;"><strong>都江堰</strong>是<strong>秦国蜀郡太守李冰</strong>修建的<strong>水利工程</strong>，位于今<strong>四川成都平原</strong>。它使成都平原成为"天府之国"。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】"合纵连横"中，"合纵"是指？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')"><span class="opt-letter">A</span> 六国联合对抗秦国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ '连横'是秦国拉拢其他国家，'合纵'是六国联合！"><span class="opt-letter">B</span> 秦国拉拢其他国家</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ '合纵'是政治策略，不是修水利！"><span class="opt-letter">C</span> 各国一起修水利</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：六国联合对抗秦国" aria-pressed="false"><span class="opt-letter">A</span> 六国联合对抗秦国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：秦国拉拢其他国家" aria-pressed="false" data-feedback="❌ '连横'是秦国拉拢其他国家，'合纵'是六国联合！"><span class="opt-letter">B</span> 秦国拉拢其他国家</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：各国一起修水利" aria-pressed="false" data-feedback="❌ '合纵'是政治策略，不是修水利！"><span class="opt-letter">C</span> 各国一起修水利</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 六国联合对抗秦国</strong></p><p style="margin-top: 8px;"><strong>合纵</strong>：六国（齐、楚、燕、韩、赵、魏）联合起来对抗<strong>秦国</strong>。<strong>连横</strong>：秦国拉拢其中一个国家，破坏六国的联合。</p></div>
@@ -290,6 +312,9 @@
     <section class="section" id="section-shangyang">
       <h2 class="section-title"><span class="num">📜</span> 商鞅变法</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 商鞅变法的主要内容</h3>
         <ul style="padding-left: 20px; line-height: 1.8;">
           <li><strong>政治上：</strong>确立县制，废除贵族世袭特权</li>
@@ -298,7 +323,9 @@
         </ul>
         <div class="concept-box" style="margin-top: 16px;"><div class="label">核心概念 · 商鞅变法的意义</div><p><strong>意义：</strong>使秦国<strong>经济得到发展</strong>，<strong>军队战斗力增强</strong>，成为<strong>战国后期最强大的国家</strong>，为<strong>秦统一六国</strong>奠定了基础。</p></div>
         <div class="warn-box" style="margin-top: 16px;"><div class="label">⚠️ 必背结论 · 商鞅变法</div><p>✅ <strong>时间：</strong>公元前356年（秦孝公时期）</p><p style="margin-top: 6px;">✅ <strong>人物：</strong>商鞅（公孙鞅）</p><p style="margin-top: 6px;">✅ <strong>意义：</strong>使秦国强大，为秦统一六国奠定基础</p></div>
-      </div>
+      
+</details>
+</div>
     </section>
     <section class="section" id="section-dujiangyan">
       <h2 class="section-title"><span class="num">🌊</span> 都江堰</h2>
@@ -316,44 +343,44 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
       <p style="color: var(--text-light); margin-bottom: 16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】战国七雄中，位于最东边的是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'A')"><span class="opt-letter">A</span> 齐国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'B')" data-feedback="❌ 秦国在最西边，不是最东边！"><span class="opt-letter">B</span> 秦国</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 楚国在最南边，不是最东边！"><span class="opt-letter">C</span> 楚国</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：齐国" aria-pressed="false"><span class="opt-letter">A</span> 齐国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：秦国" aria-pressed="false" data-feedback="❌ 秦国在最西边，不是最东边！"><span class="opt-letter">B</span> 秦国</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：楚国" aria-pressed="false" data-feedback="❌ 楚国在最南边，不是最东边！"><span class="opt-letter">C</span> 楚国</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 齐国</strong></p><p style="margin-top: 8px;">战国七雄中，<strong>齐国</strong>位于最东边（今山东），<strong>秦国</strong>位于最西边（今陕西、甘肃）。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·河南中考）商鞅变法的意义是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 商鞅变法使秦国强大，不是使六国强大！"><span class="opt-letter">A</span> 使六国强大</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')"><span class="opt-letter">B</span> 使秦国强大，为秦统一六国奠定基础</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 商鞅变法不是水利工程！"><span class="opt-letter">C</span> 修建了都江堰</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：使六国强大" aria-pressed="false" data-feedback="❌ 商鞅变法使秦国强大，不是使六国强大！"><span class="opt-letter">A</span> 使六国强大</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：使秦国强大，为秦统一六国奠定基础" aria-pressed="false"><span class="opt-letter">B</span> 使秦国强大，为秦统一六国奠定基础</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：修建了都江堰" aria-pressed="false" data-feedback="❌ 商鞅变法不是水利工程！"><span class="opt-letter">C</span> 修建了都江堰</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 使秦国强大，为秦统一六国奠定基础</strong></p><p style="margin-top: 8px;"><strong>商鞅变法</strong>使秦国<strong>经济得到发展</strong>，<strong>军队战斗力增强</strong>，成为<strong>战国后期最强大的国家</strong>。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·山东中考）都江堰的作用是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 都江堰是水利工程，不是军事设施！"><span class="opt-letter">A</span> 防御匈奴</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')"><span class="opt-letter">B</span> 防洪灌溉，使成都平原成为"天府之国"</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 都江堰是水利工程，不是变法！"><span class="opt-letter">C</span> 推行商鞅变法</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：防御匈奴" aria-pressed="false" data-feedback="❌ 都江堰是水利工程，不是军事设施！"><span class="opt-letter">A</span> 防御匈奴</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：防洪灌溉，使成都平原成为&quot;天府之国&quot;" aria-pressed="false"><span class="opt-letter">B</span> 防洪灌溉，使成都平原成为"天府之国"</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：推行商鞅变法" aria-pressed="false" data-feedback="❌ 都江堰是水利工程，不是变法！"><span class="opt-letter">C</span> 推行商鞅变法</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 防洪灌溉，使成都平原成为"天府之国"</strong></p><p style="margin-top: 8px;"><strong>都江堰</strong>是<strong>水利工程</strong>，作用是<strong>防洪、灌溉</strong>，使成都平原成为"天府之国"。</p></div>
       </div>
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;"><strong>【材料】</strong>"商鞅变法规定：废除贵族世袭特权，奖励军功，按军功授爵；废除井田制，允许土地自由买卖；确立县制。"</div>
         <p style="margin-bottom:10px;font-weight:600;">根据材料，商鞅变法在政治上采取了哪些措施？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料没有提到'修都江堰'，这是无中生有！"><span class="opt-letter">A</span> 修都江堰</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'B')"><span class="opt-letter">B</span> 废除贵族世袭特权，确立县制</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'C')" data-feedback="❌ 材料没有提到'合纵连横'，这是无中生有！"><span class="opt-letter">C</span> 合纵连横</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：修都江堰" aria-pressed="false" data-feedback="❌ 材料没有提到'修都江堰'，这是无中生有！"><span class="opt-letter">A</span> 修都江堰</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：废除贵族世袭特权，确立县制" aria-pressed="false"><span class="opt-letter">B</span> 废除贵族世袭特权，确立县制</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：合纵连横" aria-pressed="false" data-feedback="❌ 材料没有提到'合纵连横'，这是无中生有！"><span class="opt-letter">C</span> 合纵连横</div>
         </div>
         <div class="feedback" id="feedback-13"></div>
         <div class="answer-explanation" id="explanation-13"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 废除贵族世袭特权，确立县制</strong></p><p style="margin-top: 8px;">材料明确说：<strong>"废除贵族世袭特权""确立县制"</strong>。这就是商鞅变法在<strong>政治上</strong>的措施。</p><div class="warn-box" style="margin-top: 12px;"><div class="label">💡 答题技巧 · 材料分析题方法</div><ol style="padding-left: 20px; line-height: 1.8;"><li><strong>先读材料：</strong>圈出关键词（"废除贵族世袭特权""确立县制"）</li><li><strong>再联系课本：</strong>回忆商鞅变法的政治措施</li><li><strong>排除无中生有：</strong>材料没提到的选项不选</li></ol></div></div>
@@ -430,6 +457,8 @@
       console.log('📚 《战国时期的社会变化》课件加载完成（v1.0）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

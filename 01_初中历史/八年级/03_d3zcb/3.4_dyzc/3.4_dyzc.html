@@ -472,6 +472,18 @@
   <link rel="stylesheet" href="../../shared/styles.css?v=8.0">
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- 1. 品牌栏 -->
 <header class="brand-bar">
@@ -484,6 +496,10 @@
 
 <!-- 3. 导航栏 -->
 <nav class="nav-bar" id="navBar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
   <a href="#hero">课程概览</a>
   <a href="#svg-map">知识图谱</a>
   <a href="#objectives">学习目标</a>
@@ -587,6 +603,12 @@
 <section class="objectives-section" id="objectives">
   <div class="section-wrap">
     <h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
     <div class="objectives-grid">
       <div class="obj-card" data-num="1">
         掌握北伐战争的<strong>目的、时间、对象</strong>，能准确陈述基本史实。
@@ -751,7 +773,7 @@
       <div class="quiz-card" id="q1">
         <div class="quiz-num">1</div>
         <div class="quiz-q">北伐战争正式开始的时间是？</div>
-        <ul class="quiz-options" data-answer="B">
+        <ul class="quiz-options" role="radiogroup" aria-label="选择题" data-answer="B">
           <li class="quiz-opt" data-opt="A">
             <span class="opt-letter">A</span>
             <span>1924年1月</span>
@@ -780,7 +802,7 @@
       <div class="quiz-card" id="q2">
         <div class="quiz-num">2</div>
         <div class="quiz-q">北伐战争中，以下哪位人物不属于"三大军阀"之列？</div>
-        <ul class="quiz-options" data-answer="D">
+        <ul class="quiz-options" role="radiogroup" aria-label="选择题" data-answer="D">
           <li class="quiz-opt" data-opt="A">
             <span class="opt-letter">A</span>
             <span>吴佩孚</span>
@@ -809,7 +831,7 @@
       <div class="quiz-card" id="q3">
         <div class="quiz-num">3</div>
         <div class="quiz-q">"四一二"政变发生在哪座城市？</div>
-        <ul class="quiz-options" data-answer="C">
+        <ul class="quiz-options" role="radiogroup" aria-label="选择题" data-answer="C">
           <li class="quiz-opt" data-opt="A">
             <span class="opt-letter">A</span>
             <span>武汉</span>
@@ -838,7 +860,7 @@
       <div class="quiz-card" id="q4">
         <div class="quiz-num">4</div>
         <div class="quiz-q">北伐战争的主要成果是？</div>
-        <ul class="quiz-options" data-answer="B">
+        <ul class="quiz-options" role="radiogroup" aria-label="选择题" data-answer="B">
           <li class="quiz-opt" data-opt="A">
             <span class="opt-letter">A</span>
             <span>彻底推翻了北洋军阀的统治</span>
@@ -867,7 +889,7 @@
       <div class="quiz-card" id="q5">
         <div class="quiz-num">5</div>
         <div class="quiz-q">国共第一次合作破裂的标志性事件是？</div>
-        <ul class="quiz-options" data-answer="D">
+        <ul class="quiz-options" role="radiogroup" aria-label="选择题" data-answer="D">
           <li class="quiz-opt" data-opt="A">
             <span class="opt-letter">A</span>
             <span>黄埔军校的建立</span>
@@ -900,16 +922,16 @@
     <!-- Section: 前测 -->
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】北伐战争开始于哪一年？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1926年" aria-pressed="false">
             <span class="opt-letter">A</span> 1926年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 答错了，正确答案是：1926年">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1924年" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：1926年">
             <span class="opt-letter">B</span> 1924年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 答错了，正确答案是：1926年">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1927年" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：1926年">
             <span class="opt-letter">C</span> 1927年
           </div>
         </div>
@@ -919,16 +941,16 @@
           <p><strong>正确答案：A. 1926年</strong></p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】北伐的主要对象是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：吴佩孚、孙传芳、张作霖" aria-pressed="false">
             <span class="opt-letter">A</span> 吴佩孚、孙传芳、张作霖
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 答错了，正确答案是：吴佩孚、孙传芳、张作霖">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：清政府、列强" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：吴佩孚、孙传芳、张作霖">
             <span class="opt-letter">B</span> 清政府、列强
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 答错了，正确答案是：吴佩孚、孙传芳、张作霖">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：国民党右派" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：吴佩孚、孙传芳、张作霖">
             <span class="opt-letter">C</span> 国民党右派
           </div>
         </div>
@@ -938,16 +960,16 @@
           <p><strong>正确答案：A. 吴佩孚、孙传芳、张作霖</strong></p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐ 基础】北伐战争中被誉为"铁军"的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：叶挺独立团" aria-pressed="false">
             <span class="opt-letter">A</span> 叶挺独立团
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 答错了，正确答案是：叶挺独立团">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：黄埔学生军" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：叶挺独立团">
             <span class="opt-letter">B</span> 黄埔学生军
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'C')" data-feedback="❌ 答错了，正确答案是：叶挺独立团">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：工农革命军" aria-pressed="false" data-feedback="❌ 答错了，正确答案是：叶挺独立团">
             <span class="opt-letter">C</span> 工农革命军
           </div>
         </div>
@@ -962,16 +984,16 @@
     <!-- Section: 后测 -->
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐⭐ 提高·中考真题】下列关于北伐战争的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1926年，北伐战争开始" aria-pressed="false">
             <span class="opt-letter">A</span> 1926年，北伐战争开始
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：1926年，北伐战争开始">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：1926年，北伐战争开始">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：1926年，北伐战争开始">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：1926年，北伐战争开始">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -982,16 +1004,16 @@
           <p style="margin-top: 8px;">1926年，北伐战争开始</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】下列关于北伐战争的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：主要对象：吴佩孚、孙传芳、张作霖" aria-pressed="false">
             <span class="opt-letter">A</span> 主要对象：吴佩孚、孙传芳、张作霖
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：主要对象：吴佩孚、孙传芳、张作霖">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：主要对象：吴佩孚、孙传芳、张作霖">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：主要对象：吴佩孚、孙传芳、张作霖">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：主要对象：吴佩孚、孙传芳、张作霖">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -1002,16 +1024,16 @@
           <p style="margin-top: 8px;">主要对象：吴佩孚、孙传芳、张作霖</p>
         </div>
       </div>
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高·中考真题】下列关于北伐战争的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：叶挺独立团被誉为&quot;铁军&quot;" aria-pressed="false">
             <span class="opt-letter">A</span> 叶挺独立团被誉为"铁军"
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 这个选项不正确，正确答案应该是：叶挺独立团被誉为"铁军"">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：干扰选项B" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：叶挺独立团被誉为"铁军"">
             <span class="opt-letter">B</span> 干扰选项B
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 这个选项不正确，正确答案应该是：叶挺独立团被誉为"铁军"">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：干扰选项C" aria-pressed="false" data-feedback="❌ 这个选项不正确，正确答案应该是：叶挺独立团被誉为"铁军"">
             <span class="opt-letter">C</span> 干扰选项C
           </div>
         </div>
@@ -1153,5 +1175,6 @@ document.querySelectorAll('.quiz-card').forEach(card => {
     }
 
   </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

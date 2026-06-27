@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 26/31 节 · 83.9%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d7zjtzc.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第七单元：在集体中成长</div>
@@ -127,6 +143,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解个人意愿与集体规则的关系 <span class="tag tag-theory">关联：冲突理论</span></li>
         <li>✅ 学会处理个人意愿与集体要求的冲突 <span class="tag tag-theory">关联：冲突管理</span></li>
@@ -140,12 +162,12 @@
       <p style="color:#4caf50;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】让集体和声更美，需要每个人？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 只关注自己声部是<strong>各唱各的</strong>，不是和声。<br><span class='tag tag-mistake'>归因：缺乏整体意识</span>"><span class="opt-letter">A</span> 只关注自己的声部</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：保持单音准确，遵守规则</span>"><span class="opt-letter">B</span> 保持单音准确，尽力做好自己</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 不遵守规则会<strong>破坏和声</strong>。<br><span class='tag tag-mistake'>归因：无规则意识</span>"><span class="opt-letter">C</span> 可以不遵守规则</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只关注自己的声部" aria-pressed="false" data-fb="❌ 只关注自己声部是<strong>各唱各的</strong>，不是和声。<br><span class='tag tag-mistake'>归因：缺乏整体意识</span>"><span class="opt-letter">A</span> 只关注自己的声部</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：保持单音准确，尽力做好自己" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：保持单音准确，遵守规则</span>"><span class="opt-letter">B</span> 保持单音准确，尽力做好自己</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：可以不遵守规则" aria-pressed="false" data-fb="❌ 不遵守规则会<strong>破坏和声</strong>。<br><span class='tag tag-mistake'>归因：无规则意识</span>"><span class="opt-letter">C</span> 可以不遵守规则</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -157,12 +179,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】当个人意愿与集体规则发生冲突时，正确的做法是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 坚持个人意愿是<strong>个人主义</strong>，会破坏集体。<br><span class='tag tag-mistake'>归因：个人中心，缺乏集体意识</span>"><span class="opt-letter">A</span> 坚持个人意愿，不顾集体规则</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：找到解决冲突的平衡点</span>"><span class="opt-letter">B</span> 理解集体要求的合理性，找到平衡点</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 完全服从集体规则而<strong>不表达意见</strong>，不是正确做法。<br><span class='tag tag-mistake'>归因：盲目服从，缺乏主体性</span>"><span class="opt-letter">C</span> 完全服从集体规则，不表达意见</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：坚持个人意愿，不顾集体规则" aria-pressed="false" data-fb="❌ 坚持个人意愿是<strong>个人主义</strong>，会破坏集体。<br><span class='tag tag-mistake'>归因：个人中心，缺乏集体意识</span>"><span class="opt-letter">A</span> 坚持个人意愿，不顾集体规则</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：理解集体要求的合理性，找到平衡点" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：找到解决冲突的平衡点</span>"><span class="opt-letter">B</span> 理解集体要求的合理性，找到平衡点</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：完全服从集体规则，不表达意见" aria-pressed="false" data-fb="❌ 完全服从集体规则而<strong>不表达意见</strong>，不是正确做法。<br><span class='tag tag-mistake'>归因：盲目服从，缺乏主体性</span>"><span class="opt-letter">C</span> 完全服从集体规则，不表达意见</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -174,12 +196,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于集体主义，下列理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 集体主义<strong>不是</strong>不关注个人利益，而是<strong>在承认个人利益合理性前提下</strong>反对极端个人主义。<br><span class='tag tag-mistake'>归因：将集体主义与个人利益对立起来</span>"><span class="opt-letter">A</span> 集体主义就是不关注个人利益</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 集体主义<strong>不是</strong>要求个人完全服从集体，而是<strong>在保护个人正当利益前提下</strong>强调集体利益。<br><span class='tag tag-mistake'>归因：将集体主义误解为极权主义</span>"><span class="opt-letter">B</span> 集体主义要求个人完全服从集体</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体主义反对极端个人主义</span>"><span class="opt-letter">C</span> 集体主义反对只顾自己不顾他人的极端个人主义</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：集体主义就是不关注个人利益" aria-pressed="false" data-fb="❌ 集体主义<strong>不是</strong>不关注个人利益，而是<strong>在承认个人利益合理性前提下</strong>反对极端个人主义。<br><span class='tag tag-mistake'>归因：将集体主义与个人利益对立起来</span>"><span class="opt-letter">A</span> 集体主义就是不关注个人利益</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：集体主义要求个人完全服从集体" aria-pressed="false" data-fb="❌ 集体主义<strong>不是</strong>要求个人完全服从集体，而是<strong>在保护个人正当利益前提下</strong>强调集体利益。<br><span class='tag tag-mistake'>归因：将集体主义误解为极权主义</span>"><span class="opt-letter">B</span> 集体主义要求个人完全服从集体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：集体主义反对只顾自己不顾他人的极端个人主义" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体主义反对极端个人主义</span>"><span class="opt-letter">C</span> 集体主义反对只顾自己不顾他人的极端个人主义</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -194,6 +216,9 @@
     <!-- ===== 正文知识 ===== -->
     <section><h2 class="section-title">📚 一、个人意愿与集体规则</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#4caf50;">📖 个人意愿与集体规则的关系</h3>
         <div class="concept-box"><div class="label">💡 核心理解 <span class="tag tag-theory">关联：冲突理论</span></div>
           <p>让和声更美需要：</p>
@@ -207,7 +232,9 @@
           <p>② <strong>和声</strong>：集体的和谐、集体的规则</p>
           <p>③ <strong>好的和声</strong>：不是所有单音都一样，而是<strong>各尽其美、协调和谐</strong>。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">📚 二、如何处理个人意愿与集体要求的冲突</h2>
@@ -234,6 +261,9 @@
 
     <section><h2 class="section-title">📚 三、让集体和声更美</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color:#4caf50;">📖 如何让集体和声更美？</h3>
         <div class="concept-box"><div class="label">🌟 让和声更美的四个做法 <span class="tag tag-theory">关联：系统优化理论</span></div>
           <p>① <strong>尽力做好自己，遵守规则</strong> <span class="tag tag-theory">自我管理</span></p>
@@ -247,7 +277,9 @@
           <p style="margin-top:6px;">当集体规则<strong>存在不合理因素</strong>时，我们有权利也有责任通过<strong>恰当方式</strong>表达意见、提出改进建议。</p>
           <p style="margin-top:6px;">但这不是<strong>随意破坏规则</strong>的理由，而是要通过<strong>建设性方式</strong>推动集体完善。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">📚 四、集体主义</h2>
@@ -282,12 +314,12 @@
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
       <p style="color:#4caf50;margin-bottom:16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】让集体和声更美，需要每个人？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 只关注自己<strong>不是</strong>和声。<br><span class='tag tag-mistake'>归因：缺乏整体意识</span>"><span class="opt-letter">A</span> 只关注自己的声部</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：保持单音准确</span>"><span class="opt-letter">B</span> 保持单音准确，尽力做好自己</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 不遵守规则会<strong>破坏和声</strong>。<br><span class='tag tag-mistake'>归因：无规则意识</span>"><span class="opt-letter">C</span> 可以不遵守规则</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：只关注自己的声部" aria-pressed="false" data-fb="❌ 只关注自己<strong>不是</strong>和声。<br><span class='tag tag-mistake'>归因：缺乏整体意识</span>"><span class="opt-letter">A</span> 只关注自己的声部</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：保持单音准确，尽力做好自己" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：保持单音准确</span>"><span class="opt-letter">B</span> 保持单音准确，尽力做好自己</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：可以不遵守规则" aria-pressed="false" data-fb="❌ 不遵守规则会<strong>破坏和声</strong>。<br><span class='tag tag-mistake'>归因：无规则意识</span>"><span class="opt-letter">C</span> 可以不遵守规则</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -295,12 +327,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】当个人意愿与集体规则冲突时，下列做法正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 坚持己见是<strong>个人主义</strong>。<br><span class='tag tag-mistake'>归因：个人中心</span>"><span class="opt-letter">A</span> 坚持己见，不顾集体</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：找到平衡点</span>"><span class="opt-letter">B</span> 理解集体要求，找到解决冲突的平衡点</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 盲目服从<strong>不是</strong>正确做法。<br><span class='tag tag-mistake'>归因：缺乏主体性</span>"><span class="opt-letter">C</span> 盲目服从集体规则</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：坚持己见，不顾集体" aria-pressed="false" data-fb="❌ 坚持己见是<strong>个人主义</strong>。<br><span class='tag tag-mistake'>归因：个人中心</span>"><span class="opt-letter">A</span> 坚持己见，不顾集体</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：理解集体要求，找到解决冲突的平衡点" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：找到平衡点</span>"><span class="opt-letter">B</span> 理解集体要求，找到解决冲突的平衡点</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：盲目服从集体规则" aria-pressed="false" data-fb="❌ 盲目服从<strong>不是</strong>正确做法。<br><span class='tag tag-mistake'>归因：缺乏主体性</span>"><span class="opt-letter">C</span> 盲目服从集体规则</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -308,12 +340,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考真题】关于集体主义，下列观点正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 集体主义<strong>不是</strong>否定个人利益。<br><span class='tag tag-mistake'>归因：对立思维</span>"><span class="opt-letter">A</span> 集体主义否定个人利益</div>
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体主义反对极端个人主义</span>"><span class="opt-letter">B</span> 集体主义反对极端个人主义</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 个人利益<strong>不是</strong>都要服从集体。<br><span class='tag tag-mistake'>归因：误解集体主义</span>"><span class="opt-letter">C</span> 个人利益都要服从集体</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：集体主义否定个人利益" aria-pressed="false" data-fb="❌ 集体主义<strong>不是</strong>否定个人利益。<br><span class='tag tag-mistake'>归因：对立思维</span>"><span class="opt-letter">A</span> 集体主义否定个人利益</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：集体主义反对极端个人主义" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：集体主义反对极端个人主义</span>"><span class="opt-letter">B</span> 集体主义反对极端个人主义</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：个人利益都要服从集体" aria-pressed="false" data-fb="❌ 个人利益<strong>不是</strong>都要服从集体。<br><span class='tag tag-mistake'>归因：误解集体主义</span>"><span class="opt-letter">C</span> 个人利益都要服从集体</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -326,6 +358,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -371,7 +406,9 @@
           <p style="margin-top:10px;font-size:13px;color:#065f46;"><span class="tag tag-mistake">常见陷阱</span> 将集体主义<strong>误解为</strong>否定个人利益。</p>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -401,6 +438,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

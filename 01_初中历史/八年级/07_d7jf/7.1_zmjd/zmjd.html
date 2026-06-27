@@ -493,6 +493,18 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- 1. 品牌栏 -->
 <div class="brand-bar">
@@ -511,6 +523,10 @@
 
 <!-- 3. 导航栏 -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-left">
         <a href="../../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
         <a href="../d7jf.html" class="nav-btn"><i class="fas fa-layer-group"></i> 章节目录</a>
@@ -662,6 +678,12 @@
 <!-- 7. 学习目标 -->
 <section id="objectives">
     <h2 class="section-title"><i class="fas fa-bullseye"></i> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
     <div class="objective-grid">
         <div class="objective-card">
             <div class="obj-icon"><i class="fa-solid fa-landmark"></i></div>
@@ -710,11 +732,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"蒋介石内心并不真心希望和平建国。他坚持一党专政，不愿与中共分享政权，和平建国只是表面文章。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"蒋介石对和谈并无诚意，他电邀毛泽东的真实目的是为内战准备争取时间、争取政治主动。","D":"国际压力虽有，但不是蒋介石电邀毛泽东的主要原因。真正目的是争取内战准备时间，在政治上争取主动。"}'>
             <span class="quiz-badge">基础</span>
             <h4>1. 日本投降后，蒋介石三次电邀毛泽东赴重庆谈判的真实目的是？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 和平建国，共商国是</div>
-                <div class="quiz-option" data-value="B">B. 争取内战准备时间，在政治上争取主动</div>
-                <div class="quiz-option" data-value="C">C. 真心诚意与中共和谈</div>
-                <div class="quiz-option" data-value="D">D. 屈服于国际社会的压力</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.和平建国，共商国是" aria-pressed="false" data-value="A">A. 和平建国，共商国是</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.争取内战准备时间，在政治上争取主动" aria-pressed="false" data-value="B">B. 争取内战准备时间，在政治上争取主动</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.真心诚意与中共和谈" aria-pressed="false" data-value="C">C. 真心诚意与中共和谈</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.屈服于国际社会的压力" aria-pressed="false" data-value="D">D. 屈服于国际社会的压力</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -722,11 +744,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"停战协定并非重庆谈判的主要成果。重庆谈判的直接成果是《双十协定》，停战协定是在后续军事冲突中达成的。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"政治协商会议是在《双十协定》签订后（1946年1月）召开的，不是重庆谈判的直接成果。","D":"共同纲领是1949年中国人民政治协商会议制定的，与重庆谈判无关。"}'>
             <span class="quiz-badge">提高</span>
             <h4>2. 重庆谈判中，国共双方达成的重要成果是？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 停战协定</div>
-                <div class="quiz-option" data-value="B">B. 《双十协定》</div>
-                <div class="quiz-option" data-value="C">C. 政治协商会议决议</div>
-                <div class="quiz-option" data-value="D">D. 共同纲领</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.停战协定" aria-pressed="false" data-value="A">A. 停战协定</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.《双十协定》" aria-pressed="false" data-value="B">B. 《双十协定》</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.政治协商会议决议" aria-pressed="false" data-value="C">C. 政治协商会议决议</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.共同纲领" aria-pressed="false" data-value="D">D. 共同纲领</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -734,11 +756,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"重庆谈判破裂后并未立即爆发全面内战，国民党还在继续准备。全面内战的爆发有明确的时间和军事标志。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"撕毁双十协定是全面内战爆发的背景和原因之一，但不是爆发标志。标志是具体的军事行动。","D":"国民党占领延安发生在1947年3月，是重点进攻阶段的标志性事件，而非全面内战开始的标志。"}'>
             <span class="quiz-badge challenge">挑战</span>
             <h4>3. 全面内战爆发的标志是？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 重庆谈判破裂</div>
-                <div class="quiz-option" data-value="B">B. 1946年6月，国民党军队大举进攻中原解放区</div>
-                <div class="quiz-option" data-value="C">C. 国民党撕毁《双十协定》</div>
-                <div class="quiz-option" data-value="D">D. 国民党军队占领延安</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.重庆谈判破裂" aria-pressed="false" data-value="A">A. 重庆谈判破裂</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.1946年6月，国民党军队大举进攻中原解放区" aria-pressed="false" data-value="B">B. 1946年6月，国民党军队大举进攻中原解放区</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.国民党撕毁《双十协定》" aria-pressed="false" data-value="C">C. 国民党撕毁《双十协定》</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.国民党军队占领延安" aria-pressed="false" data-value="D">D. 国民党军队占领延安</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -825,22 +847,22 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"周恩来是重庆谈判中共代表团的成员之一，但不是唯一代表。中共代表团由毛泽东、周恩来、王若飞三人组成。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"朱德是八路军总司令，没有参加重庆谈判。他当时在延安主持中央军委工作。","D":"刘少奇在毛泽东赴重庆谈判期间留在延安主持中共中央日常工作，没有参加重庆谈判。"}'>
             <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
             <h4>1.（中考真题）1945年重庆谈判中，中共代表团的成员是？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 周恩来</div>
-                <div class="quiz-option" data-value="B">B. 毛泽东、周恩来、王若飞</div>
-                <div class="quiz-option" data-value="C">C. 朱德</div>
-                <div class="quiz-option" data-value="D">D. 刘少奇</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.周恩来" aria-pressed="false" data-value="A">A. 周恩来</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.毛泽东、周恩来、王若飞" aria-pressed="false" data-value="B">B. 毛泽东、周恩来、王若飞</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.朱德" aria-pressed="false" data-value="C">C. 朱德</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.刘少奇" aria-pressed="false" data-value="D">D. 刘少奇</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
 
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"1945年是重庆谈判和《双十协定》签订的时间，全面内战尚未爆发。全面内战开始于1946年6月。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"1947年全面内战已经进入第二年，人民解放军开始战略反攻。全面内战开始于1946年。","D":"1948年解放战争已进入战略决战阶段（三大战役），远早于全面内战爆发的1946年。"}'>
             <h4>2. 国民党撕毁《双十协定》和政协决议，发动全面内战开始于哪一年？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 1945年</div>
-                <div class="quiz-option" data-value="B">B. 1946年</div>
-                <div class="quiz-option" data-value="C">C. 1947年</div>
-                <div class="quiz-option" data-value="D">D. 1948年</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.1945年" aria-pressed="false" data-value="A">A. 1945年</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.1946年" aria-pressed="false" data-value="B">B. 1946年</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.1947年" aria-pressed="false" data-value="C">C. 1947年</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.1948年" aria-pressed="false" data-value="D">D. 1948年</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -848,11 +870,11 @@
         <div class="quiz-question" data-correct="B" data-feedback='{"A":"毛泽东赴重庆并非向国民党妥协。恰恰相反，是为了揭露国民党假和平真内战的阴谋，在政治上争取主动。","B":"✅ 答对了！可以点错误选项看看它们错在哪～","C":"中共坚决不交出人民军队，这是谈判中双方的根本分歧之一。毛泽东赴渝正是为了争取人民军队的合法地位。","D":"中共从未承认国民党的独裁统治。重庆谈判的目的是争取和平民主、建立联合政府，而非承认国民党一党专政。"}'>
             <span class="quiz-badge exam"><i class="fas fa-star"></i> 中考真题</span>
             <h4>3.（中考真题）毛泽东赴重庆谈判的根本目的是？</h4>
-            <div class="quiz-options">
-                <div class="quiz-option" data-value="A">A. 向国民党妥协让步</div>
-                <div class="quiz-option" data-value="B">B. 争取和平民主，揭露国民党假和平真内战的面目</div>
-                <div class="quiz-option" data-value="C">C. 交出人民军队</div>
-                <div class="quiz-option" data-value="D">D. 承认国民党的统治地位</div>
+            <div class="quiz-options" role="radiogroup" aria-label="选择题">
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：A.向国民党妥协让步" aria-pressed="false" data-value="A">A. 向国民党妥协让步</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：B.争取和平民主，揭露国民党假和平真内战的面目" aria-pressed="false" data-value="B">B. 争取和平民主，揭露国民党假和平真内战的面目</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：C.交出人民军队" aria-pressed="false" data-value="C">C. 交出人民军队</div>
+                <div class="quiz-option" role="button" tabindex="0" onclick="" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项：D.承认国民党的统治地位" aria-pressed="false" data-value="D">D. 承认国民党的统治地位</div>
             </div>
             <div class="quiz-feedback"></div>
         </div>
@@ -987,6 +1009,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
 });
 </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

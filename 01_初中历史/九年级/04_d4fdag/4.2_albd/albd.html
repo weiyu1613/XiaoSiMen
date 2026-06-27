@@ -116,6 +116,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar">
     <div class="container">
       <div class="brand-logo"><i class="fa-solid fa-landmark"></i><span>TeachAny · 初中历史</span></div>
@@ -125,6 +137,10 @@
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-label" id="progress-label">第 1/6 节 · 17%</div>
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d4fdag.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -191,6 +207,12 @@
     <!-- 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">&#127936;</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2;">
           <li>&#10003; 知道穆罕默德的主要活动及伊斯兰教的创立过程</li>
@@ -205,12 +227,12 @@
     <section class="section" id="section-prequiz">
       <h2 class="section-title"><span class="num">&#128221;</span> 前测：检验先备知识</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【&#11088; 基础】伊斯兰教创立于？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="&#10060; 公元1世纪是基督教创立时间！">A. 公元1世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">B. 公元7世纪</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="&#10060; 公元6世纪是佛教创立时间！">C. 公元6世纪</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.公元1世纪" aria-pressed="false" data-feedback="&#10060; 公元1世纪是基督教创立时间！">A. 公元1世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.公元7世纪" aria-pressed="false">B. 公元7世纪</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.公元6世纪" aria-pressed="false" data-feedback="&#10060; 公元6世纪是佛教创立时间！">C. 公元6世纪</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -229,12 +251,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>2. 【&#11088; 基础】穆罕默德创立伊斯兰教时，主要在哪个城市传教？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="&#10060; 麦地那是穆罕默德后期迁居的城市，不是最初传教的地方！">A. 麦地那</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">B. 麦加</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="&#10060; 巴格达是阿拉伯帝国繁荣时期的首都，不是穆罕默德传教的地方！">C. 巴格达</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.麦地那" aria-pressed="false" data-feedback="&#10060; 麦地那是穆罕默德后期迁居的城市，不是最初传教的地方！">A. 麦地那</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.麦加" aria-pressed="false">B. 麦加</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.巴格达" aria-pressed="false" data-feedback="&#10060; 巴格达是阿拉伯帝国繁荣时期的首都，不是穆罕默德传教的地方！">C. 巴格达</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -244,12 +266,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="basic">
         <h3>3. 【&#11088;&#11088; 提高】阿拉伯帝国鼎盛时期的疆域不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="&#10060; 阿拉伯帝国曾征服西班牙南部！">A. 西班牙</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="&#10060; 阿拉伯帝国征服了北非和埃及！">B. 埃及</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">C. 印度河流域全境</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.西班牙" aria-pressed="false" data-feedback="&#10060; 阿拉伯帝国曾征服西班牙南部！">A. 西班牙</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.埃及" aria-pressed="false" data-feedback="&#10060; 阿拉伯帝国征服了北非和埃及！">B. 埃及</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.印度河流域全境" aria-pressed="false">C. 印度河流域全境</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -264,6 +286,9 @@
     <section class="section" id="section-content">
       <h2 class="section-title"><span class="num">&#129504;</span> 穆罕默德与伊斯兰教</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="svg-container">
           <svg viewBox="0 0 700 320" width="700" height="320" xmlns="http://www.w3.org/2000/svg">
             <rect x="20" y="20" width="660" height="280" rx="10" fill="#fafcfb" stroke="#e8dcc8" stroke-width="1.5"/>
@@ -309,7 +334,9 @@
           <p>4. <strong>课功：</strong>缴纳天课（财产税）</p>
           <p>5. <strong>朝功：</strong>有条件的信徒一生至少去麦加朝觐一次</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- 核心知识2: 阿拉伯帝国的形成与扩张 -->
@@ -421,12 +448,12 @@
     <section class="section" id="section-postquiz">
       <h2 class="section-title"><span class="num">&#10004;</span> 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【&#11088; 基础】伊斯兰教历元年是哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="&#10060; 610年是穆罕默德开始传教的时间，不是伊斯兰历元年！">A. 610年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">B. 622年</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="&#10060; 632年是穆罕默德去世的时间！">C. 632年</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.610年" aria-pressed="false" data-feedback="&#10060; 610年是穆罕默德开始传教的时间，不是伊斯兰历元年！">A. 610年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.622年" aria-pressed="false">B. 622年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.632年" aria-pressed="false" data-feedback="&#10060; 632年是穆罕默德去世的时间！">C. 632年</div>
         </div>
         <div class="feedback" id="feedback-10"></div>
         <div class="answer-explanation" id="explanation-10">
@@ -436,12 +463,12 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>2. 【&#11088;&#11088; 提高·中考真题】（2023·多地中考）关于阿拉伯帝国，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">&#128220; 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="&#10060; 倭马亚王朝定都大马士革，不是巴格达！">A. 倭马亚王朝定都巴格达</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">B. 8世纪中期帝国疆域达到极盛</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="&#10060; 阿拉伯帝国是在阿拉伯半岛原有基础上扩张，不是直接在罗马帝国废墟上！">C. 直接在罗马帝国废墟上建立</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.倭马亚王朝定都巴格达" aria-pressed="false" data-feedback="&#10060; 倭马亚王朝定都大马士革，不是巴格达！">A. 倭马亚王朝定都巴格达</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.8世纪中期帝国疆域达到极盛" aria-pressed="false">B. 8世纪中期帝国疆域达到极盛</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.直接在罗马帝国废墟上建立" aria-pressed="false" data-feedback="&#10060; 阿拉伯帝国是在阿拉伯半岛原有基础上扩张，不是直接在罗马帝国废墟上！">C. 直接在罗马帝国废墟上建立</div>
         </div>
         <div class="feedback" id="feedback-11"></div>
         <div class="answer-explanation" id="explanation-11">
@@ -455,13 +482,13 @@
         </div>
       </div>
 
-      <div class="quiz-box" style="margin-top:16px;">
+      <div class="quiz-box" style="margin-top:16px;" data-difficulty="advanced">
         <h3>3. 【&#11088;&#11088;&#11088; 挑战】比较分析：<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
         <p style="font-weight:600;font-size:0.9rem;margin-bottom:10px;">伊斯兰教与基督教在传播方式上有什么相同点和不同点？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="&#10060; 都宣称普世性，"只在一个地区传播"是错的！">A. 基督教普世传播，伊斯兰教只在一个地区传播</div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">B. 都靠武力扩张和商业贸易传播</div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="&#10060; 基督教早期也借助武力传播，"只靠宗教热情"是错的！">C. 基督教只靠宗教热情，伊斯兰教只靠武力</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：A.基督教普世传播，伊斯兰教只在一个地区传播" aria-pressed="false" data-feedback="&#10060; 都宣称普世性，"只在一个地区传播"是错的！">A. 基督教普世传播，伊斯兰教只在一个地区传播</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：B.都靠武力扩张和商业贸易传播" aria-pressed="false">B. 都靠武力扩张和商业贸易传播</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：C.基督教只靠宗教热情，伊斯兰教只靠武力" aria-pressed="false" data-feedback="&#10060; 基督教早期也借助武力传播，"只靠宗教热情"是错的！">C. 基督教只靠宗教热情，伊斯兰教只靠武力</div>
         </div>
         <div class="feedback" id="feedback-12"></div>
         <div class="answer-explanation" id="explanation-12">
@@ -568,6 +595,8 @@
       updateProgressBar();
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

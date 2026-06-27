@@ -261,6 +261,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -277,6 +289,10 @@
 
   <!-- ========== 导航栏 ========== -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../d7gy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章目录</a>
@@ -383,12 +399,12 @@
       </p>
 
       <!-- 题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】马克思主义诞生的标志是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 巴黎公社是1871年，是马克思主义指导下的实践，不是诞生标志。"><span class="opt-letter">A</span> 巴黎公社的建立</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 《共产党宣言》的发表</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 第一国际成立于1864年，在《宣言》发表之后。"><span class="opt-letter">C</span> 第一国际的成立</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：巴黎公社的建立" aria-pressed="false" data-feedback="❌ 巴黎公社是1871年，是马克思主义指导下的实践，不是诞生标志。"><span class="opt-letter">A</span> 巴黎公社的建立</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：《共产党宣言》的发表" aria-pressed="false"><span class="opt-letter">B</span> 《共产党宣言》的发表</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：第一国际的成立" aria-pressed="false" data-feedback="❌ 第一国际成立于1864年，在《宣言》发表之后。"><span class="opt-letter">C</span> 第一国际的成立</div>
         </div>
         <div class="feedback" id="feedback-1"></div>
         <div class="answer-explanation" id="explanation-1">
@@ -399,12 +415,12 @@
       </div>
 
       <!-- 题2 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】《共产党宣言》的作者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 恩格斯是《宣言》的作者之一，但非单独作者。"><span class="opt-letter">A</span> 恩格斯</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,2,'B')" data-feedback="❌ 列宁是马克思主义的发展者（列宁主义），不是《共产党宣言》的作者。"><span class="opt-letter">B</span> 列宁</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,2,'C')"><span class="opt-letter">C</span> 马克思和恩格斯</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：恩格斯" aria-pressed="false" data-feedback="❌ 恩格斯是《宣言》的作者之一，但非单独作者。"><span class="opt-letter">A</span> 恩格斯</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：列宁" aria-pressed="false" data-feedback="❌ 列宁是马克思主义的发展者（列宁主义），不是《共产党宣言》的作者。"><span class="opt-letter">B</span> 列宁</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：马克思和恩格斯" aria-pressed="false"><span class="opt-letter">C</span> 马克思和恩格斯</div>
         </div>
         <div class="feedback" id="feedback-2"></div>
         <div class="answer-explanation" id="explanation-2">
@@ -415,12 +431,12 @@
       </div>
 
       <!-- 题3 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】马克思主义诞生的根本原因是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 工人运动兴起是直接原因之一，但不是根本原因。"><span class="opt-letter">A</span> 欧洲工人运动的蓬勃发展</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 工业革命深入发展，资本主义基本矛盾日益暴露</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 德意志古典哲学是马克思主义的理论来源之一，但不是根本原因。"><span class="opt-letter">C</span> 德意志古典哲学的影响</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：欧洲工人运动的蓬勃发展" aria-pressed="false" data-feedback="❌ 工人运动兴起是直接原因之一，但不是根本原因。"><span class="opt-letter">A</span> 欧洲工人运动的蓬勃发展</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：工业革命深入发展，资本主义基本矛盾日益暴露" aria-pressed="false"><span class="opt-letter">B</span> 工业革命深入发展，资本主义基本矛盾日益暴露</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：德意志古典哲学的影响" aria-pressed="false" data-feedback="❌ 德意志古典哲学是马克思主义的理论来源之一，但不是根本原因。"><span class="opt-letter">C</span> 德意志古典哲学的影响</div>
         </div>
         <div class="feedback" id="feedback-3"></div>
         <div class="answer-explanation" id="explanation-3">
@@ -439,12 +455,12 @@
       </div>
 
       <!-- 题4 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】关于巴黎公社的表述，全部正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,4,'A')" data-feedback="❌ 巴黎公社是无产阶级政权，不是资产阶级政权！"><span class="opt-letter">A</span> 建立于1789年，是法国大革命时期建立的</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,4,'B')" data-feedback="❌ 巴黎公社存在了72天，不是长期政权。"><span class="opt-letter">B</span> 建立了长期稳定的无产阶级政权</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,4,'C')"><span class="opt-letter">C</span> 建立于1871年，是人类历史上第一个工人阶级政权</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：建立于1789年，是法国大革命时期建立的" aria-pressed="false" data-feedback="❌ 巴黎公社是无产阶级政权，不是资产阶级政权！"><span class="opt-letter">A</span> 建立于1789年，是法国大革命时期建立的</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：建立了长期稳定的无产阶级政权" aria-pressed="false" data-feedback="❌ 巴黎公社存在了72天，不是长期政权。"><span class="opt-letter">B</span> 建立了长期稳定的无产阶级政权</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：建立于1871年，是人类历史上第一个工人阶级政权" aria-pressed="false"><span class="opt-letter">C</span> 建立于1871年，是人类历史上第一个工人阶级政权</div>
         </div>
         <div class="feedback" id="feedback-4"></div>
         <div class="answer-explanation" id="explanation-4">
@@ -618,12 +634,12 @@
       </div>
 
       <!-- 题5 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>5. 【中考真题·2022 江苏】马克思主义诞生的历史意义不包括？<span class="exam-tag">中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,5,'A')" data-feedback="❌ "为无产阶级提供了思想武器"是正确的，是马克思主义的历史意义之一。"><span class="opt-letter">A</span> 为国际无产阶级提供了强大的思想武器</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,5,'B')" data-feedback="❌ "推动了国际共产主义运动的发展"是正确的。"><span class="opt-letter">B</span> 推动了国际共产主义运动的发展</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,5,'C')"><span class="opt-letter">C</span> 直接建立了世界上第一个社会主义国家</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：为国际无产阶级提供了强大的思想武器" aria-pressed="false" data-feedback="❌ "为无产阶级提供了思想武器"是正确的，是马克思主义的历史意义之一。"><span class="opt-letter">A</span> 为国际无产阶级提供了强大的思想武器</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：推动了国际共产主义运动的发展" aria-pressed="false" data-feedback="❌ "推动了国际共产主义运动的发展"是正确的。"><span class="opt-letter">B</span> 推动了国际共产主义运动的发展</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,5,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：直接建立了世界上第一个社会主义国家" aria-pressed="false"><span class="opt-letter">C</span> 直接建立了世界上第一个社会主义国家</div>
         </div>
         <div class="feedback" id="feedback-5"></div>
         <div class="answer-explanation" id="explanation-5">
@@ -634,12 +650,12 @@
       </div>
 
       <!-- 题6 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>6. 【⭐⭐】下列关于《共产党宣言》的表述，正确的是？</h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this,false,6,'A')" data-feedback="❌ 《共产党宣言》发表于1848年，不是1864年。1864年成立的是第一国际。"><span class="opt-letter">A</span> 发表于1864年</div>
-          <div class="quiz-option" onclick="checkAnswer(this,true,6,'B')"><span class="opt-letter">B</span> 发表于1848年</div>
-          <div class="quiz-option" onclick="checkAnswer(this,false,6,'C')" data-feedback="❌ 《共产党宣言》是马克思和恩格斯共同起草的，不只是马克思。"><span class="opt-letter">C</span> 只由马克思一人撰写</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,6,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：发表于1864年" aria-pressed="false" data-feedback="❌ 《共产党宣言》发表于1848年，不是1864年。1864年成立的是第一国际。"><span class="opt-letter">A</span> 发表于1864年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,6,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：发表于1848年" aria-pressed="false"><span class="opt-letter">B</span> 发表于1848年</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,6,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只由马克思一人撰写" aria-pressed="false" data-feedback="❌ 《共产党宣言》是马克思和恩格斯共同起草的，不只是马克思。"><span class="opt-letter">C</span> 只由马克思一人撰写</div>
         </div>
         <div class="feedback" id="feedback-6"></div>
         <div class="answer-explanation" id="explanation-6">
@@ -810,6 +826,8 @@
       console.log('📚 第19课页面加载完成（v7.14）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

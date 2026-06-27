@@ -100,10 +100,26 @@
     </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <div class="brand-bar"><div class="brand-logo"><i class="fas fa-landmark"></i> TeachAny · 初中历史</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-container"><div class="progress-inner"><div class="progress-info"><span>第七单元</span><span>学习进度 80%</span></div><div class="progress-track"><div class="progress-fill"></div></div></div></div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
     <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
     <a href="../06_d6zhn/d6zhn.html" class="nav-btn"><i class="fas fa-arrow-left"></i> 上一单元</a>
@@ -198,25 +214,25 @@
 <section class="section" id="prequiz"><div class="prequiz-section">
 <h2><i class="fas fa-question-circle"></i> 单元前测</h2>
 <div class="quiz-question"><h4>1. 重庆谈判的时间是？</h4>
-<div class="quiz-options">
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1944年抗战尚未结束，重庆谈判发生在抗战胜利后的1945年。"><span class="opt-letter">A</span> 1944年</button>
-<button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1945年8月，毛泽东赴重庆与国民党谈判，经过43天艰苦谈判，双方签署了"双十协定"。"><span class="opt-letter">B</span> 1945年</button>
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1946年是全面内战爆发的年份，重庆谈判发生在1945年抗战胜利后。"><span class="opt-letter">C</span> 1946年</button>
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1947年是刘邓大军挺进大别山、战略反攻开始的年份，重庆谈判在1945年。"><span class="opt-letter">D</span> 1947年</button>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1944年" aria-pressed="false" data-feedback="❌ 错误。1944年抗战尚未结束，重庆谈判发生在抗战胜利后的1945年。"><span class="opt-letter">A</span> 1944年</button>
+<button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：1945年" aria-pressed="false" data-feedback="✅ 正确！1945年8月，毛泽东赴重庆与国民党谈判，经过43天艰苦谈判，双方签署了"双十协定"。"><span class="opt-letter">B</span> 1945年</button>
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：1946年" aria-pressed="false" data-feedback="❌ 错误。1946年是全面内战爆发的年份，重庆谈判发生在1945年抗战胜利后。"><span class="opt-letter">C</span> 1946年</button>
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：1947年" aria-pressed="false" data-feedback="❌ 错误。1947年是刘邓大军挺进大别山、战略反攻开始的年份，重庆谈判在1945年。"><span class="opt-letter">D</span> 1947年</button>
 </div><div class="feedback"></div></div>
 <div class="quiz-question"><h4>2. 全面内战爆发的标志是？</h4>
-<div class="quiz-options">
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。重庆谈判是争取和平的努力，不是内战爆发的标志。全面内战爆发是1946年6月国民党进攻中原解放区。"><span class="opt-letter">A</span> 重庆谈判</button>
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。双十协定是重庆谈判的成果，体现和平民主的努力，不是内战爆发的标志。"><span class="opt-letter">B</span> 双十协定</button>
-<button class="quiz-option" data-correct="true" data-feedback="✅ 正确！1946年6月，国民党军队大举进攻中原解放区，标志着全面内战的爆发。"><span class="opt-letter">C</span> 国民党进攻中原解放区</button>
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。三大战役发生在1948-1949年，是战略决战阶段，不是全面内战爆发的标志。"><span class="opt-letter">D</span> 三大战役</button>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：重庆谈判" aria-pressed="false" data-feedback="❌ 错误。重庆谈判是争取和平的努力，不是内战爆发的标志。全面内战爆发是1946年6月国民党进攻中原解放区。"><span class="opt-letter">A</span> 重庆谈判</button>
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：双十协定" aria-pressed="false" data-feedback="❌ 错误。双十协定是重庆谈判的成果，体现和平民主的努力，不是内战爆发的标志。"><span class="opt-letter">B</span> 双十协定</button>
+<button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：国民党进攻中原解放区" aria-pressed="false" data-feedback="✅ 正确！1946年6月，国民党军队大举进攻中原解放区，标志着全面内战的爆发。"><span class="opt-letter">C</span> 国民党进攻中原解放区</button>
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：三大战役" aria-pressed="false" data-feedback="❌ 错误。三大战役发生在1948-1949年，是战略决战阶段，不是全面内战爆发的标志。"><span class="opt-letter">D</span> 三大战役</button>
 </div><div class="feedback"></div></div>
 <div class="quiz-question"><h4>3. 三大战役不包括？</h4>
-<div class="quiz-options">
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辽沈战役是三大战役之一（1948年9-11月），使东北全境解放。"><span class="opt-letter">A</span> 辽沈战役</button>
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。淮海战役是三大战役之一（1948年11月-1949年1月），是规模最大的战役。"><span class="opt-letter">B</span> 淮海战役</button>
-<button class="quiz-option" data-correct="false" data-feedback="❌ 错误。平津战役是三大战役之一（1948年11月-1949年1月），使华北基本解放。"><span class="opt-letter">C</span> 平津战役</button>
-<button class="quiz-option" data-correct="true" data-feedback="✅ 正确！百团大战发生在抗日战争时期（1940年），是敌后战场的重大战役，不属于解放战争时期的三大战役。三大战役是辽沈、淮海、平津战役。"><span class="opt-letter">D</span> 百团大战</button>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：辽沈战役" aria-pressed="false" data-feedback="❌ 错误。辽沈战役是三大战役之一（1948年9-11月），使东北全境解放。"><span class="opt-letter">A</span> 辽沈战役</button>
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：淮海战役" aria-pressed="false" data-feedback="❌ 错误。淮海战役是三大战役之一（1948年11月-1949年1月），是规模最大的战役。"><span class="opt-letter">B</span> 淮海战役</button>
+<button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：平津战役" aria-pressed="false" data-feedback="❌ 错误。平津战役是三大战役之一（1948年11月-1949年1月），使华北基本解放。"><span class="opt-letter">C</span> 平津战役</button>
+<button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项D：百团大战" aria-pressed="false" data-feedback="✅ 正确！百团大战发生在抗日战争时期（1940年），是敌后战场的重大战役，不属于解放战争时期的三大战役。三大战役是辽沈、淮海、平津战役。"><span class="opt-letter">D</span> 百团大战</button>
 </div><div class="feedback"></div></div>
 </div></section>
 
@@ -238,3 +254,4 @@
 <script>
 function scrollToSection(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"})}
 function initPrequiz(){const qs=document.querySelectorAll(".quiz-question");qs.forEach(q=>{const opts=q.querySelectorAll(".quiz-option"),fb=q.querySelector(".feedback");opts.forEach(o=>{o.addEventListener("click",function(){const c=this.dataset.correct==="true",ft=this.dataset.feedback;opts.forEach(x=>{if(x.dataset.correct==="true")x.classList.add("correct");else if(x===this&&!c)x.classList.add("wrong")});fb.innerHTML=ft;fb.className="feedback show "+(c?"correct-fb":"wrong-fb")})})})}
+  <script src="../shared/badges.js?v=8.0"></script>

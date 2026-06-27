@@ -110,6 +110,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-leaf"></i> TeachAny · 初中生物</div>
@@ -122,6 +134,10 @@
 
   <!-- ③ 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../rttljkjy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -209,6 +225,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 描述肺通气的过程（呼吸运动）</li>
@@ -225,12 +247,12 @@
       <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
 
       <!-- 基础题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 肺通气是通过（  ）实现的</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">A</span> 呼吸运动</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 气体扩散作用</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 血液循环</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 消化作用</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：呼吸运动" aria-pressed="false"><span class="opt-letter">A</span> 呼吸运动</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：气体扩散作用" aria-pressed="false"><span class="opt-letter">B</span> 气体扩散作用</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：血液循环" aria-pressed="false"><span class="opt-letter">C</span> 血液循环</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：消化作用" aria-pressed="false"><span class="opt-letter">D</span> 消化作用</div>
         <div class="feedback" id="fb-1"></div>
         <div class="answer-explanation" id="exp-1">
           <strong>解析：</strong>肺通气（肺与外界的气体交换）是通过<strong>呼吸运动</strong>实现的。吸气时，肋间肌和膈肌收缩，胸廓扩大，肺扩张，气体进入肺；呼气时相反。
@@ -238,12 +260,12 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 肺泡与血液的气体交换是通过（  ）实现的</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 呼吸运动</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">B</span> 气体扩散作用</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 主动运输</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 渗透作用</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：呼吸运动" aria-pressed="false"><span class="opt-letter">A</span> 呼吸运动</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：气体扩散作用" aria-pressed="false"><span class="opt-letter">B</span> 气体扩散作用</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：主动运输" aria-pressed="false"><span class="opt-letter">C</span> 主动运输</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：渗透作用" aria-pressed="false"><span class="opt-letter">D</span> 渗透作用</div>
         <div class="feedback" id="fb-2"></div>
         <div class="answer-explanation" id="exp-2">
           <strong>解析：</strong>肺泡与血液的气体交换是通过<strong>气体扩散作用</strong>实现的：氧气从肺泡扩散到血液，二氧化碳从血液扩散到肺泡。
@@ -251,12 +273,12 @@
       </div>
 
       <!-- 挑战题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关肺内气体交换的叙述，<strong>错误</strong>的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 吸气时，肋间肌和膈肌收缩</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 肺泡壁和毛细血管壁都很薄，有利于气体交换</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 氧气从血液扩散到肺泡</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 呼出的气体中，二氧化碳含量比吸入的气体高</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：吸气时，肋间肌和膈肌收缩" aria-pressed="false"><span class="opt-letter">A</span> 吸气时，肋间肌和膈肌收缩</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：肺泡壁和毛细血管壁都很薄，有利于气体交换" aria-pressed="false"><span class="opt-letter">B</span> 肺泡壁和毛细血管壁都很薄，有利于气体交换</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：氧气从血液扩散到肺泡" aria-pressed="false"><span class="opt-letter">C</span> 氧气从血液扩散到肺泡</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：呼出的气体中，二氧化碳含量比吸入的气体高" aria-pressed="false"><span class="opt-letter">D</span> 呼出的气体中，二氧化碳含量比吸入的气体高</div>
         <div class="feedback" id="fb-3"></div>
         <div class="answer-explanation" id="exp-3">
           <strong>解析：</strong>C是错误的。氧气从<strong>肺泡扩散到血液</strong>，二氧化碳从<strong>血液扩散到肺泡</strong>。
@@ -331,24 +353,24 @@
       <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
       <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">1. 下列关于呼吸运动的叙述，正确的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">A</span> 吸气时，肋间肌收缩，胸廓扩大</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 吸气时，肺内气压高于大气压</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">C</span> 呼气时，膈肌收缩，膈顶部下降</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 呼气时，胸廓容积扩大</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：吸气时，肋间肌收缩，胸廓扩大" aria-pressed="false"><span class="opt-letter">A</span> 吸气时，肋间肌收缩，胸廓扩大</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：吸气时，肺内气压高于大气压" aria-pressed="false"><span class="opt-letter">B</span> 吸气时，肺内气压高于大气压</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：呼气时，膈肌收缩，膈顶部下降" aria-pressed="false"><span class="opt-letter">C</span> 呼气时，膈肌收缩，膈顶部下降</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：呼气时，胸廓容积扩大" aria-pressed="false"><span class="opt-letter">D</span> 呼气时，胸廓容积扩大</div>
         <div class="feedback" id="fb-4"></div>
         <div class="answer-explanation" id="exp-4">
           <strong>解析：</strong>吸气时，肋间肌和膈肌<strong>收缩</strong>，胸廓<strong>扩大</strong>，肺内气压<strong>低于</strong>大气压，气体进入肺。
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】肺泡与血液的气体交换后，血液的变化是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">A</span> 由动脉血变为静脉血</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">B</span> 由静脉血变为动脉血</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 氧气含量减少，二氧化碳含量增加</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 氧气含量增加，二氧化碳含量增加</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：由动脉血变为静脉血" aria-pressed="false"><span class="opt-letter">A</span> 由动脉血变为静脉血</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：由静脉血变为动脉血" aria-pressed="false"><span class="opt-letter">B</span> 由静脉血变为动脉血</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：氧气含量减少，二氧化碳含量增加" aria-pressed="false"><span class="opt-letter">C</span> 氧气含量减少，二氧化碳含量增加</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：氧气含量增加，二氧化碳含量增加" aria-pressed="false"><span class="opt-letter">D</span> 氧气含量增加，二氧化碳含量增加</div>
         <div class="feedback" id="fb-5"></div>
         <div class="answer-explanation" id="exp-5">
           <strong>解析：</strong>肺泡与血液的气体交换后，血液中<strong>氧气含量增加</strong>，<strong>二氧化碳含量减少</strong>，由含氧少的静脉血变为含氧丰富的动脉血。
@@ -478,6 +500,8 @@
   <div id="mentor-card-placeholder"></div>
   <script>renderMentorCard('mentor-card-placeholder');</script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

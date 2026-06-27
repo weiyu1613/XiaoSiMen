@@ -87,6 +87,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
   <!-- ① 品牌栏 -->
   <div class="brand-bar">
@@ -100,6 +112,10 @@
 
   <!-- ③ 导航栏 -->
   <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
     <div class="nav-inner">
       <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
       <a href="../rttljkjy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
@@ -188,6 +204,12 @@
     <!-- ⑥ 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span>学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style:none;padding-left:0;line-height:2.2;">
           <li>✅ 说出男性生殖系统的组成和主要功能</li>
@@ -205,12 +227,12 @@
       <p style="color:var(--text-muted);margin-bottom:16px;">先测一下自己的基础，再开始学习。</p>
 
       <!-- 基础题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-base">基础</span> 1. 男性产生精子的器官是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,1)"><span class="opt-letter">A</span> 睾丸</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">B</span> 卵巢</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">C</span> 输卵管</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,1)"><span class="opt-letter">D</span> 子宫</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：睾丸" aria-pressed="false"><span class="opt-letter">A</span> 睾丸</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：卵巢" aria-pressed="false"><span class="opt-letter">B</span> 卵巢</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：输卵管" aria-pressed="false"><span class="opt-letter">C</span> 输卵管</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：子宫" aria-pressed="false"><span class="opt-letter">D</span> 子宫</div>
         <div class="feedback" id="fb-1"></div>
         <div class="answer-explanation" id="exp-1">
           <strong>解析：</strong>睾丸是男性最主要的生殖器官（性腺），功能是<strong>产生精子，分泌雄性激素</strong>。卵巢是女性的性腺。
@@ -218,12 +240,12 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-raise">提高</span> 2. 受精作用发生的部位是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">A</span> 卵巢</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,2)"><span class="opt-letter">B</span> 输卵管</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">C</span> 子宫</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,2)"><span class="opt-letter">D</span> 阴道</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：卵巢" aria-pressed="false"><span class="opt-letter">A</span> 卵巢</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：输卵管" aria-pressed="false"><span class="opt-letter">B</span> 输卵管</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：子宫" aria-pressed="false"><span class="opt-letter">C</span> 子宫</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：阴道" aria-pressed="false"><span class="opt-letter">D</span> 阴道</div>
         <div class="feedback" id="fb-2"></div>
         <div class="answer-explanation" id="exp-2">
           <strong>解析：</strong>精子和卵细胞在<strong>输卵管</strong>中结合，形成受精卵，标志着新生命的开始。子宫是胚胎发育的场所。
@@ -231,12 +253,12 @@
       </div>
 
       <!-- 挑战题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <p style="font-weight:700;margin-bottom:12px;"><span class="difficulty-badge difficulty-challenge">挑战</span> 3.（中考真题）下列有关生殖的叙述，<strong>错误</strong>的是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">A</span> 睾丸和卵巢是主要的生殖器官</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">B</span> 受精作用发生在输卵管</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,3)"><span class="opt-letter">C</span> 胎儿的血液和母体的血液是直接相通的</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,3)"><span class="opt-letter">D</span> 精子和卵细胞都是生殖细胞</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：睾丸和卵巢是主要的生殖器官" aria-pressed="false"><span class="opt-letter">A</span> 睾丸和卵巢是主要的生殖器官</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：受精作用发生在输卵管" aria-pressed="false"><span class="opt-letter">B</span> 受精作用发生在输卵管</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：胎儿的血液和母体的血液是直接相通的" aria-pressed="false"><span class="opt-letter">C</span> 胎儿的血液和母体的血液是直接相通的</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：精子和卵细胞都是生殖细胞" aria-pressed="false"><span class="opt-letter">D</span> 精子和卵细胞都是生殖细胞</div>
         <div class="feedback" id="fb-3"></div>
         <div class="answer-explanation" id="exp-3">
           <strong>解析：</strong>C是错误的。胎儿和母体的血液<strong>并不直接相通</strong>，而是通过胎盘进行物质交换，这样可以避免母体血液中的抗体攻击胎儿。
@@ -315,24 +337,24 @@
       <h2 class="section-title"><span class="num">✅</span>课后检测</h2>
       <p style="color:var(--text-muted);margin-bottom:16px;">学完后检测一下掌握情况。</p>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">1. 胚胎发育的场所是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">A</span> 卵巢</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">B</span> 输卵管</div>
-        <div class="quiz-option" onclick="checkAnswer(this,true,4)"><span class="opt-letter">C</span> 子宫</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,4)"><span class="opt-letter">D</span> 阴道</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：卵巢" aria-pressed="false"><span class="opt-letter">A</span> 卵巢</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：输卵管" aria-pressed="false"><span class="opt-letter">B</span> 输卵管</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：子宫" aria-pressed="false"><span class="opt-letter">C</span> 子宫</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,4)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：阴道" aria-pressed="false"><span class="opt-letter">D</span> 阴道</div>
         <div class="feedback" id="fb-4"></div>
         <div class="answer-explanation" id="exp-4">
           <strong>解析：</strong><strong>子宫</strong>是胚胎发育的场所。卵巢产生卵细胞，输卵管是受精场所，阴道是胎儿产出的通道。
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <p style="font-weight:700;margin-bottom:12px;">2.【中考真题】胎儿与母体进行物质交换的器官是（  ）</p>
-        <div class="quiz-option" onclick="checkAnswer(this,true,5)"><span class="opt-letter">A</span> 胎盘</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">B</span> 脐带</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">C</span> 子宫</div>
-        <div class="quiz-option" onclick="checkAnswer(this,false,5)"><span class="opt-letter">D</span> 输卵管</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：胎盘" aria-pressed="false"><span class="opt-letter">A</span> 胎盘</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：脐带" aria-pressed="false"><span class="opt-letter">B</span> 脐带</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：子宫" aria-pressed="false"><span class="opt-letter">C</span> 子宫</div>
+        <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,5)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项D：输卵管" aria-pressed="false"><span class="opt-letter">D</span> 输卵管</div>
         <div class="feedback" id="fb-5"></div>
         <div class="answer-explanation" id="exp-5">
           <strong>解析：</strong><strong>胎盘</strong>是胎儿和母体进行物质交换的器官。脐带是运输通道，子宫是发育场所，输卵管是受精场所。
@@ -464,6 +486,8 @@
     }
   </script>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

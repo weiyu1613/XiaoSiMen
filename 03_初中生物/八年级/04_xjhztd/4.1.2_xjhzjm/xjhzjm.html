@@ -66,11 +66,27 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-dna"></i> TeachAny · 初中生物</div><div class="brand-tag">互动课件 v7.14</div></div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 2/8 节 · 25%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../xjhztd.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第四章：细菌和真菌</div>
@@ -142,32 +158,32 @@
 <section class="section" id="section-prequiz">
 <h2 class="stitle">📝 前测：检验先备知识</h2>
 <p style="color:var(--primary);margin-bottom:16px;">难度递进：<span class="difficulty-badge d1"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge d2"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge d3"><i class="fa-solid fa-star"></i> 挑战</span></p>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1.【⭐基础】下列属于真菌的是？<span class="difficulty-badge d1">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 大肠杆菌是细菌！"><span class="opt-letter">A</span> 大肠杆菌</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 酵母菌</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 肺炎双球菌是细菌！"><span class="opt-letter">C</span> 肺炎双球菌</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：大肠杆菌" aria-pressed="false" data-feedback="❌ 大肠杆菌是细菌！"><span class="opt-letter">A</span> 大肠杆菌</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：酵母菌" aria-pressed="false"><span class="opt-letter">B</span> 酵母菌</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：肺炎双球菌" aria-pressed="false" data-feedback="❌ 肺炎双球菌是细菌！"><span class="opt-letter">C</span> 肺炎双球菌</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="et">📖 详细解析</div><p><strong>正确答案：B</strong>。酵母菌是真菌，大肠杆菌和肺炎双球菌都是细菌。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2.【⭐⭐提高】细菌和真菌最根本的区别是？<span class="difficulty-badge d2">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 细菌也有细胞壁！"><span class="opt-letter">A</span> 细菌没有细胞壁</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 细菌没有成形的细胞核（原核），真菌有成形的细胞核（真核）</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 不是所有真菌都有叶绿体！"><span class="opt-letter">C</span> 真菌有叶绿体</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌没有细胞壁" aria-pressed="false" data-feedback="❌ 细菌也有细胞壁！"><span class="opt-letter">A</span> 细菌没有细胞壁</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细菌没有成形的细胞核（原核），真菌有成形的细胞核（真核）" aria-pressed="false"><span class="opt-letter">B</span> 细菌没有成形的细胞核（原核），真菌有成形的细胞核（真核）</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：真菌有叶绿体" aria-pressed="false" data-feedback="❌ 不是所有真菌都有叶绿体！"><span class="opt-letter">C</span> 真菌有叶绿体</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="et">📖 详细解析</div><p><strong>正确答案：B</strong>。细菌是<strong>原核生物</strong>（无成形细胞核），真菌是<strong>真核生物</strong>（有成形细胞核），这是最根本的区别。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3.【⭐⭐⭐挑战】下列关于霉菌的说法，正确的是？<span class="difficulty-badge d3">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 霉菌是多细胞真菌！"><span class="opt-letter">A</span> 霉菌是单细胞真菌</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 霉菌是多细胞真菌，由菌丝构成</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 霉菌靠孢子生殖，不是分裂生殖！"><span class="opt-letter">C</span> 霉菌靠分裂生殖</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：霉菌是单细胞真菌" aria-pressed="false" data-feedback="❌ 霉菌是多细胞真菌！"><span class="opt-letter">A</span> 霉菌是单细胞真菌</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：霉菌是多细胞真菌，由菌丝构成" aria-pressed="false"><span class="opt-letter">B</span> 霉菌是多细胞真菌，由菌丝构成</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：霉菌靠分裂生殖" aria-pressed="false" data-feedback="❌ 霉菌靠孢子生殖，不是分裂生殖！"><span class="opt-letter">C</span> 霉菌靠分裂生殖</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="et">📖 详细解析</div><p><strong>正确答案：B</strong>。霉菌是多细胞真菌，由菌丝构成，靠<strong>孢子</strong>生殖。</p></div>
@@ -327,32 +343,32 @@
 <section class="section" id="section-postquiz">
 <h2 class="stitle">✅ 后测：检验学习成果</h2>
 <p style="color:var(--primary);margin-bottom:16px;">包含中考真题与高频考点分析！</p>
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1.【⭐基础】下列生物中，属于原核生物的是？<span class="difficulty-badge d1">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 酵母菌是真菌，是真核生物！"><span class="opt-letter">A</span> 酵母菌</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 大肠杆菌</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 蘑菇是真菌，是真核生物！"><span class="opt-letter">C</span> 蘑菇</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：酵母菌" aria-pressed="false" data-feedback="❌ 酵母菌是真菌，是真核生物！"><span class="opt-letter">A</span> 酵母菌</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：大肠杆菌" aria-pressed="false"><span class="opt-letter">B</span> 大肠杆菌</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：蘑菇" aria-pressed="false" data-feedback="❌ 蘑菇是真菌，是真核生物！"><span class="opt-letter">C</span> 蘑菇</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="et">📖 详细解析</div><p><strong>正确答案：B</strong>。大肠杆菌是细菌，属于<strong>原核生物</strong>；酵母菌和蘑菇是真菌，属于<strong>真核生物</strong>。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2.【⭐⭐提高·中考真题】（2023·江苏）青霉的生殖方式是？<span class="difficulty-badge d2">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'A')" data-feedback="❌ 分裂生殖是细菌的方式！"><span class="opt-letter">A</span> 分裂生殖</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'B')"><span class="opt-letter">B</span> 孢子生殖</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 出芽生殖是酵母菌的方式！"><span class="opt-letter">C</span> 出芽生殖</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：分裂生殖" aria-pressed="false" data-feedback="❌ 分裂生殖是细菌的方式！"><span class="opt-letter">A</span> 分裂生殖</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：孢子生殖" aria-pressed="false"><span class="opt-letter">B</span> 孢子生殖</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：出芽生殖" aria-pressed="false" data-feedback="❌ 出芽生殖是酵母菌的方式！"><span class="opt-letter">C</span> 出芽生殖</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="et">📖 详细解析</div><p><strong>正确答案：B</strong>。青霉是多细胞真菌，靠<strong>孢子</strong>生殖。扫帚状结构顶端产生的就是孢子。</p></div>
 </div>
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3.【⭐⭐⭐挑战·中考真题】（2022·湖南）下列关于细菌和真菌的说法，正确的是？<span class="difficulty-badge d3">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 两者都没有叶绿体！"><span class="opt-letter">A</span> 细菌没有叶绿体，真菌有叶绿体</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'B')" data-feedback="❌ 两者都没有成形的细胞核？错！真菌有！"><span class="opt-letter">B</span> 两者都没有成形的细胞核</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'C')"><span class="opt-letter">C</span> 两者都没有叶绿体，都不能进行光合作用</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细菌没有叶绿体，真菌有叶绿体" aria-pressed="false" data-feedback="❌ 两者都没有叶绿体！"><span class="opt-letter">A</span> 细菌没有叶绿体，真菌有叶绿体</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：两者都没有成形的细胞核" aria-pressed="false" data-feedback="❌ 两者都没有成形的细胞核？错！真菌有！"><span class="opt-letter">B</span> 两者都没有成形的细胞核</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：两者都没有叶绿体，都不能进行光合作用" aria-pressed="false"><span class="opt-letter">C</span> 两者都没有叶绿体，都不能进行光合作用</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="et">📖 详细解析</div><p><strong>正确答案：C</strong>。细菌和真菌<strong>都没有叶绿体</strong>，都不能进行光合作用。但细菌无成形的细胞核（原核），真菌有成形的细胞核（真核）。</p></div>
@@ -395,6 +411,8 @@ function handleCustomQuestion(q){if(q.trim()){document.getElementById('anchor-di
 function checkAnswer(el,ok,qn,letter){var box=el.closest('.quiz-box');var fb=box.querySelector('.feedback');var exp=document.getElementById('explanation-'+qn);box.querySelectorAll('.quiz-option').forEach(function(o){o.classList.remove('correct','wrong')});if(ok){el.classList.add('correct');if(fb){fb.innerHTML='<strong>✅ 答对了！</strong>';fb.className='feedback show correct-fb';}if(exp)exp.classList.add('show');}else{el.classList.add('wrong');var sf=el.dataset.feedback||'❌ 不对哦，再想想！';if(fb){fb.innerHTML=sf+'<br><br>💡 换一个选项试试？';fb.className='feedback show wrong-fb';}if(exp)exp.classList.add('show');}}
 document.addEventListener('DOMContentLoaded',function(){var pf=document.getElementById('progress-fill');var pl=document.getElementById('progress-label');if(pf)pf.style.width=(COURSE_INFO.currentSection/COURSE_INFO.totalSections*100)+'%';if(pl)pl.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(COURSE_INFO.currentSection/COURSE_INFO.totalSections*100)+'%';});
 </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

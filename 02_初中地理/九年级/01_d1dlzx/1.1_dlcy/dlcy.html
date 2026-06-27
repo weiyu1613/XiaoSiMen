@@ -94,13 +94,29 @@
 </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 <div class="brand-bar">
 <div class="brand-logo"><i class="fa-solid fa-globe"></i> TeachAny · 初中地理</div>
 <div class="brand-tag">互动课件 v7.14</div>
 </div>
 <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
 <div class="progress-label" id="progress-label">第 1/2 节 · 50%</div>
-<nav class="nav-bar"><div class="nav-inner">
+<nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
 <a href="../index.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
 <div class="nav-center">第一单元：中国的地理差异</div>
@@ -159,6 +175,12 @@
 <!-- 2. 学习目标 -->
 <section class="section" id="objectives">
 <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">区域认知</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">综合思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">人地协调</span>
+</div>
+
 <div class="card">
 <ul style="list-style:none;padding-left:0;line-height:2;">
 <li>✅ 了解我国气温、降水分布的主要差异</li>
@@ -174,34 +196,34 @@
 <h2 class="section-title"><span class="num">📝</span> 前测：检验先备知识</h2>
 <p style="color:#2471a3;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础"><i class="fa-solid fa-star"></i> 基础</span> → <span class="difficulty-badge difficulty-提高"><i class="fa-solid fa-star-half-alt"></i> 提高</span> → <span class="difficulty-badge difficulty-挑战"><i class="fa-solid fa-star"></i> 挑战</span></p>
 
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="basic">
 <h3>1. 【⭐ 基础】我国冬季气温分布特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'A')" data-feedback="❌ 我国冬季南北温差大，不是普遍高温！"><span class="opt-letter">A</span> 南北普遍高温</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,1,'B')"><span class="opt-letter">B</span> 南北温差大，南方温暖北方寒冷</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,1,'C')" data-feedback="❌ 北方不是炎热，冬季北方非常寒冷！"><span class="opt-letter">C</span> 北方炎热南方寒冷</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：南北普遍高温" aria-pressed="false" data-feedback="❌ 我国冬季南北温差大，不是普遍高温！"><span class="opt-letter">A</span> 南北普遍高温</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,1,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：南北温差大，南方温暖北方寒冷" aria-pressed="false"><span class="opt-letter">B</span> 南北温差大，南方温暖北方寒冷</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,1,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：北方炎热南方寒冷" aria-pressed="false" data-feedback="❌ 北方不是炎热，冬季北方非常寒冷！"><span class="opt-letter">C</span> 北方炎热南方寒冷</div>
 </div>
 <div class="feedback" id="feedback-1"></div>
 <div class="answer-explanation" id="explanation-1"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 南北温差大，南方温暖北方寒冷</strong></p><p style="margin-top:8px;">冬季，我国南北温差可达<strong>50℃</strong>以上。1月0℃等温线大致沿<strong>秦岭—淮河</strong>一线分布。</p></div>
 </div>
 
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>2. 【⭐⭐ 提高】我国降水的空间分布特点是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'A')" data-feedback="❌ 我国降水不是从南向北递增！"><span class="opt-letter">A</span> 从南向北递增</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,2,'B')"><span class="opt-letter">B</span> 从东南沿海向西北内陆递减</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,2,'C')" data-feedback="❌ 降水不是从西向东递减！"><span class="opt-letter">C</span> 从西向东递减</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：从南向北递增" aria-pressed="false" data-feedback="❌ 我国降水不是从南向北递增！"><span class="opt-letter">A</span> 从南向北递增</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,2,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：从东南沿海向西北内陆递减" aria-pressed="false"><span class="opt-letter">B</span> 从东南沿海向西北内陆递减</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,2,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：从西向东递减" aria-pressed="false" data-feedback="❌ 降水不是从西向东递减！"><span class="opt-letter">C</span> 从西向东递减</div>
 </div>
 <div class="feedback" id="feedback-2"></div>
 <div class="answer-explanation" id="explanation-2"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 从东南沿海向西北内陆递减</strong></p><p style="margin-top:8px;">我国降水受<strong>海陆位置</strong>和<strong>季风</strong>影响，东南沿海降水多，西北内陆降水少。</p></div>
 </div>
 
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="basic">
 <h3>3. 【⭐⭐⭐ 挑战】秦岭—淮河一线是哪条等温线？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'A')" data-feedback="❌ 20℃等温线在更南的位置！"><span class="opt-letter">A</span> 1月20℃等温线</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,3,'B')"><span class="opt-letter">B</span> 1月0℃等温线</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,3,'C')" data-feedback="❌ 10℃等温线位置偏北！"><span class="opt-letter">C</span> 1月10℃等温线</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1月20℃等温线" aria-pressed="false" data-feedback="❌ 20℃等温线在更南的位置！"><span class="opt-letter">A</span> 1月20℃等温线</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,3,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1月0℃等温线" aria-pressed="false"><span class="opt-letter">B</span> 1月0℃等温线</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,3,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1月10℃等温线" aria-pressed="false" data-feedback="❌ 10℃等温线位置偏北！"><span class="opt-letter">C</span> 1月10℃等温线</div>
 </div>
 <div class="feedback" id="feedback-3"></div>
 <div class="answer-explanation" id="explanation-3"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 1月0℃等温线</strong></p><p style="margin-top:8px;">秦岭—淮河一线是我国<strong>1月0℃等温线</strong>经过的地方，也是<strong>800mm等降水量线</strong>经过的地方。</p></div>
@@ -335,34 +357,34 @@
 <h2 class="section-title"><span class="num">✅</span> 后测：检验学习成果</h2>
 <p style="color:#2471a3;margin-bottom:16px;">包含中考真题与高频考点分析，答错了会详细讲解错因！</p>
 
-<div class="quiz-box">
+<div class="quiz-box" data-difficulty="advanced">
 <h3>1. 【⭐ 基础】我国夏季气温分布特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'A')" data-feedback="❌ 夏季不是南北温差大，那是冬季特点！"><span class="opt-letter">A</span> 南北温差大</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,10,'B')"><span class="opt-letter">B</span> 南北普遍高温</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,10,'C')" data-feedback="❌ 西部不是低温，青藏高原除外全国普遍高温！"><span class="opt-letter">C</span> 东热西冷</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：南北温差大" aria-pressed="false" data-feedback="❌ 夏季不是南北温差大，那是冬季特点！"><span class="opt-letter">A</span> 南北温差大</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,10,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：南北普遍高温" aria-pressed="false"><span class="opt-letter">B</span> 南北普遍高温</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,10,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：东热西冷" aria-pressed="false" data-feedback="❌ 西部不是低温，青藏高原除外全国普遍高温！"><span class="opt-letter">C</span> 东热西冷</div>
 </div>
 <div class="feedback" id="feedback-10"></div>
 <div class="answer-explanation" id="explanation-10"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 南北普遍高温</strong></p><p style="margin-top:8px;">夏季全国普遍高温，南北温差小。青藏高原因海拔高而气温较低。</p></div>
 </div>
 
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>2. 【⭐⭐ 提高·中考真题】（2023·广东中考）秦岭—淮河一线是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,true,11,'A')"><span class="opt-letter">A</span> 湿润区与半湿润区分界线</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'B')" data-feedback="❌ 季风区与非季风区分界线是大兴安岭—阴山—贺兰山！"><span class="opt-letter">B</span> 季风区与非季风区分界线</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,11,'C')" data-feedback="❌ 第二、三级阶梯分界线是大兴安岭—太行山—巫山—雪峰山！"><span class="opt-letter">C</span> 第二、三级阶梯分界线</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,11,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：湿润区与半湿润区分界线" aria-pressed="false"><span class="opt-letter">A</span> 湿润区与半湿润区分界线</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：季风区与非季风区分界线" aria-pressed="false" data-feedback="❌ 季风区与非季风区分界线是大兴安岭—阴山—贺兰山！"><span class="opt-letter">B</span> 季风区与非季风区分界线</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,11,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：第二、三级阶梯分界线" aria-pressed="false" data-feedback="❌ 第二、三级阶梯分界线是大兴安岭—太行山—巫山—雪峰山！"><span class="opt-letter">C</span> 第二、三级阶梯分界线</div>
 </div>
 <div class="feedback" id="feedback-11"></div>
 <div class="answer-explanation" id="explanation-11"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：A. 湿润区与半湿润区分界线</strong></p><p style="margin-top:8px;">秦岭—淮河一线是800mm等降水量线，也是湿润区与半湿润区的分界线。</p></div>
 </div>
 
-<div class="quiz-box" style="margin-top:20px;">
+<div class="quiz-box" style="margin-top:20px;" data-difficulty="advanced">
 <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·河南中考）造成我国南方与北方地理差异的主导因素是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-<div class="quiz-options">
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'A')" data-feedback="❌ 地形不是造成南北方差异的主导因素！"><span class="opt-letter">A</span> 地形因素</div>
-<div class="quiz-option" onclick="checkAnswer(this,true,12,'B')"><span class="opt-letter">B</span> 气候因素（纬度位置和季风）</div>
-<div class="quiz-option" onclick="checkAnswer(this,false,12,'C')" data-feedback="❌ 海陆位置不是造成南北差异的主导因素！"><span class="opt-letter">C</span> 海陆位置</div>
+<div class="quiz-options" role="radiogroup" aria-label="选择题">
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：地形因素" aria-pressed="false" data-feedback="❌ 地形不是造成南北方差异的主导因素！"><span class="opt-letter">A</span> 地形因素</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,true,12,'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：气候因素（纬度位置和季风）" aria-pressed="false"><span class="opt-letter">B</span> 气候因素（纬度位置和季风）</div>
+<div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this,false,12,'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：海陆位置" aria-pressed="false" data-feedback="❌ 海陆位置不是造成南北差异的主导因素！"><span class="opt-letter">C</span> 海陆位置</div>
 </div>
 <div class="feedback" id="feedback-12"></div>
 <div class="answer-explanation" id="explanation-12"><div class="explain-title">📖 详细解析</div><p><strong>正确答案：B. 气候因素（纬度位置和季风）</strong></p><p style="margin-top:8px;">南北方地理差异的主要原因是<strong>纬度位置</strong>（南北跨纬度大）和<strong>季风影响</strong>（冬季风对北方影响大）。</p></div>
@@ -419,5 +441,6 @@ function checkAnswer(element,isCorrect,questionNum,optionLetter){const parent=el
 document.addEventListener('DOMContentLoaded',function(){updateProgressBar();console.log('📚 《地理差异》课件加载完成（v1.0）')});
 function updateProgressBar(){const progress=(COURSE_INFO.currentSection/COURSE_INFO.totalSections)*100;const progressFill=document.getElementById('progress-fill');const progressLabel=document.getElementById('progress-label');if(progressFill)progressFill.style.width=progress+'%';if(progressLabel)progressLabel.textContent='第 '+COURSE_INFO.currentSection+'/'+COURSE_INFO.totalSections+' 节 · '+Math.round(progress)+'%'}
 </script>
+  <script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

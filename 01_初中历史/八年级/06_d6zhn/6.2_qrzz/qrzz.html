@@ -216,6 +216,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
     <div class="brand-logo"><i class="fa-solid fa-landmark-open"></i> TeachAny · 初中历史</div>
@@ -227,7 +239,11 @@
   <div class="progress-label" id="progress-label">第 2/5 节 · 40%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d6zhn.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六单元：中华民族的抗日战争</div>
@@ -338,6 +354,12 @@
     <!-- Section 2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="objective-cards">
         <div class="objective-card">
           <div class="icon">📖</div>
@@ -371,16 +393,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】七七事变发生在哪一年？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 1931年是九一八事变，不是七七事变！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1931年" aria-pressed="false" data-feedback="❌ 1931年是九一八事变，不是七七事变！">
             <span class="opt-letter">A</span> 1931年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1937年" aria-pressed="false">
             <span class="opt-letter">B</span> 1937年
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 1945年是抗日战争胜利，不是七七事变！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1945年" aria-pressed="false" data-feedback="❌ 1945年是抗日战争胜利，不是七七事变！">
             <span class="opt-letter">C</span> 1945年
           </div>
         </div>
@@ -393,16 +415,16 @@
       </div>
 
       <!-- 提高题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐⭐ 提高】七七事变中，哪位将领壮烈牺牲？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 张学良是西安事变的发动者，不是七七事变中牺牲的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：张学良" aria-pressed="false" data-feedback="❌ 张学良是西安事变的发动者，不是七七事变中牺牲的！">
             <span class="opt-letter">A</span> 张学良
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：佟麟阁、赵登禹" aria-pressed="false">
             <span class="opt-letter">B</span> 佟麟阁、赵登禹
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 杨靖宇是东北抗日联军的领导人，不是七七事变中牺牲的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：杨靖宇" aria-pressed="false" data-feedback="❌ 杨靖宇是东北抗日联军的领导人，不是七七事变中牺牲的！">
             <span class="opt-letter">C</span> 杨靖宇
           </div>
         </div>
@@ -415,16 +437,16 @@
       </div>
       
       <!-- 挑战题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐⭐ 挑战】标志着中国全民族抗战开始的历史事件是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 九一八事变是中国局部抗战的开始，不是全民族抗战！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：九一八事变" aria-pressed="false" data-feedback="❌ 九一八事变是中国局部抗战的开始，不是全民族抗战！">
             <span class="opt-letter">A</span> 九一八事变
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 西安事变是国共合作抗日的前提，不是全民族抗战开始的标志！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：西安事变" aria-pressed="false" data-feedback="❌ 西安事变是国共合作抗日的前提，不是全民族抗战开始的标志！">
             <span class="opt-letter">B</span> 西安事变
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：七七事变" aria-pressed="false">
             <span class="opt-letter">C</span> 七七事变
           </div>
         </div>
@@ -442,6 +464,9 @@
       <h2 class="section-title"><span class="num">🔥</span> 七七事变（卢沟桥事变）</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: var(--primary);">📖 事变经过</h3>
         
         <div class="timeline">
@@ -476,7 +501,9 @@
           <p><strong>记忆口诀：</strong>"九一八，局部战；七七事，全民族"</p>
           <p style="margin-top: 6px;"><strong>考试陷阱：</strong>"九一八事变标志着全民族抗战的开始"→ 错误！应该是<strong>七七事变</strong>！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: 核心知识讲解 - 第二次国共合作 -->
@@ -567,16 +594,16 @@
       </p>
 
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】七七事变发生在？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 1931年是九一八事变，不是七七事变！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：1931年9月18日" aria-pressed="false" data-feedback="❌ 1931年是九一八事变，不是七七事变！">
             <span class="opt-letter">A</span> 1931年9月18日
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：1937年7月7日" aria-pressed="false">
             <span class="opt-letter">B</span> 1937年7月7日
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 1936年是西安事变，不是七七事变！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：1936年12月12日" aria-pressed="false" data-feedback="❌ 1936年是西安事变，不是七七事变！">
             <span class="opt-letter">C</span> 1936年12月12日
           </div>
         </div>
@@ -589,16 +616,16 @@
       </div>
 
       <!-- 后测题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）标志着中国全民族抗战开始的历史事件是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 九一八事变是中国局部抗战的开始，不是全民族抗战！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：九一八事变" aria-pressed="false" data-feedback="❌ 九一八事变是中国局部抗战的开始，不是全民族抗战！">
             <span class="opt-letter">A</span> 九一八事变
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：七七事变" aria-pressed="false">
             <span class="opt-letter">B</span> 七七事变
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 西安事变是国共合作抗日的前提，不是全民族抗战开始的标志！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：西安事变" aria-pressed="false" data-feedback="❌ 西安事变是国共合作抗日的前提，不是全民族抗战开始的标志！">
             <span class="opt-letter">C</span> 西安事变
           </div>
         </div>
@@ -611,16 +638,16 @@
       </div>
 
       <!-- 后测题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·广东中考）淞沪会战的历史意义是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 平型关大捷是八路军首次胜利，不是淞沪会战！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：八路军首次胜利" aria-pressed="false" data-feedback="❌ 平型关大捷是八路军首次胜利，不是淞沪会战！">
             <span class="opt-letter">A</span> 八路军首次胜利
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'B')" data-feedback="❌ 台儿庄战役是正面战场最大胜利，不是淞沪会战！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：正面战场最大胜利" aria-pressed="false" data-feedback="❌ 台儿庄战役是正面战场最大胜利，不是淞沪会战！">
             <span class="opt-letter">B</span> 正面战场最大胜利
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：粉碎了日军&quot;三个月灭亡中国&quot;的计划" aria-pressed="false">
             <span class="opt-letter">C</span> 粉碎了日军"三个月灭亡中国"的计划
           </div>
         </div>
@@ -821,6 +848,8 @@
       console.log('📚 《七七事变与全民族抗战》课件加载完成（v7.14）');
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

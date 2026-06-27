@@ -231,6 +231,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -250,7 +262,11 @@
   <div class="progress-label" id="progress-label">第 1/8 节 · 12%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d6sy.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第六单元：辽宋夏金元时期</div>
@@ -357,6 +373,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 知道宋词、元曲的代表人物和作品</li>
@@ -379,16 +401,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】"婉约派"宋词的代表人物是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 苏轼是豪放派代表，不是婉约派！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：苏轼" aria-pressed="false" data-feedback="❌ 苏轼是豪放派代表，不是婉约派！">
             <span class="opt-letter">A</span> 苏轼
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：李清照" aria-pressed="false">
             <span class="opt-letter">B</span> 李清照
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 辛弃疾是豪放派代表，不是婉约派！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：辛弃疾" aria-pressed="false" data-feedback="❌ 辛弃疾是豪放派代表，不是婉约派！">
             <span class="opt-letter">C</span> 辛弃疾
           </div>
         </div>
@@ -400,16 +422,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>2. 【⭐ 基础】《资治通鉴》的作者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'A')" data-feedback="❌ 司马迁是《史记》作者，不是《资治通鉴》！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：司马迁" aria-pressed="false" data-feedback="❌ 司马迁是《史记》作者，不是《资治通鉴》！">
             <span class="opt-letter">A</span> 司马迁
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：司马光" aria-pressed="false">
             <span class="opt-letter">B</span> 司马光
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 苏轼是词人，不是史学家！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：苏轼" aria-pressed="false" data-feedback="❌ 苏轼是词人，不是史学家！">
             <span class="opt-letter">C</span> 苏轼
           </div>
         </div>
@@ -421,16 +443,16 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】"宋四家"不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 苏轼是'宋四家'之一，题目问'不包括'！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：苏轼" aria-pressed="false" data-feedback="❌ 苏轼是'宋四家'之一，题目问'不包括'！">
             <span class="opt-letter">A</span> 苏轼
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 黄庭坚是'宋四家'之一，题目问'不包括'！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：黄庭坚" aria-pressed="false" data-feedback="❌ 黄庭坚是'宋四家'之一，题目问'不包括'！">
             <span class="opt-letter">B</span> 黄庭坚
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：赵孟頫" aria-pressed="false">
             <span class="opt-letter">C</span> 赵孟頫
           </div>
         </div>
@@ -442,16 +464,16 @@
       </div>
 
       <!-- 挑战题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】《清明上河图》的作者是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：张择端" aria-pressed="false">
             <span class="opt-letter">A</span> 张择端
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 吴道子是唐朝画家，不是《清明上河图》作者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：吴道子" aria-pressed="false" data-feedback="❌ 吴道子是唐朝画家，不是《清明上河图》作者！">
             <span class="opt-letter">B</span> 吴道子
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'C')" data-feedback="❌ 顾恺之是东晋画家，不是《清明上河图》作者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：顾恺之" aria-pressed="false" data-feedback="❌ 顾恺之是东晋画家，不是《清明上河图》作者！">
             <span class="opt-letter">C</span> 顾恺之
           </div>
         </div>
@@ -530,20 +552,30 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>宋词繁荣的原因</h3>
         <p><strong>1. 经济基础</strong>：商品经济繁荣，城市生活丰富</p>
         <p><strong>2. 阶级基础</strong>：市民阶层壮大，需要通俗文学</p>
         <p><strong>3. 文化政策</strong>：重文轻武，文化氛围宽松</p>
         <p><strong>4. 技术条件</strong>：印刷术普及，宋词得以广泛传播</p>
-      </div>
+      
+</details>
+</div>
 
       <div class="card" style="margin-top: 20px;">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3>《清明上河图》的历史价值</h3>
         <p><strong>1. 艺术价值</strong>：中国古代风俗画巅峰之作</p>
         <p><strong>2. 史料价值</strong>：真实再现北宋东京城市风貌</p>
         <p><strong>3. 社会价值</strong>：反映北宋商品经济繁荣、市民生活丰富</p>
         <p><strong>4. 世界影响</strong>：被誉为"中国的蒙娜丽莎"，享誉世界</p>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section6: 后测 -->
@@ -559,16 +591,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】"豪放派"宋词的代表人物不包括？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'A')" data-feedback="❌ 苏轼是豪放派代表，题目问'不包括'！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：苏轼" aria-pressed="false" data-feedback="❌ 苏轼是豪放派代表，题目问'不包括'！">
             <span class="opt-letter">A</span> 苏轼
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 5, 'B')" data-feedback="❌ 辛弃疾是豪放派代表，题目问'不包括'！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 5, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：辛弃疾" aria-pressed="false" data-feedback="❌ 辛弃疾是豪放派代表，题目问'不包括'！">
             <span class="opt-letter">B</span> 辛弃疾
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 5, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 5, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：柳永" aria-pressed="false">
             <span class="opt-letter">C</span> 柳永
           </div>
         </div>
@@ -580,16 +612,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>2. 【⭐ 基础】元曲《窦娥冤》的作者是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 6, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 6, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：关汉卿" aria-pressed="false">
             <span class="opt-letter">A</span> 关汉卿
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'B')" data-feedback="❌ 马致远是元曲四大家之一，但不是《窦娥冤》作者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：马致远" aria-pressed="false" data-feedback="❌ 马致远是元曲四大家之一，但不是《窦娥冤》作者！">
             <span class="opt-letter">B</span> 马致远
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 6, 'C')" data-feedback="❌ 李清照是宋词婉约派代表，不是元曲作者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 6, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：李清照" aria-pressed="false" data-feedback="❌ 李清照是宋词婉约派代表，不是元曲作者！">
             <span class="opt-letter">C</span> 李清照
           </div>
         </div>
@@ -601,16 +633,16 @@
       </div>
 
       <!-- 提高题 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>3. 【⭐⭐ 提高】《资治通鉴》记载的历史起止时间是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'A')" data-feedback="❌ 黄帝到汉武帝是《史记》记载范围，不是《资治通鉴》！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：黄帝—汉武帝" aria-pressed="false" data-feedback="❌ 黄帝到汉武帝是《史记》记载范围，不是《资治通鉴》！">
             <span class="opt-letter">A</span> 黄帝—汉武帝
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 7, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 7, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：战国—五代" aria-pressed="false">
             <span class="opt-letter">B</span> 战国—五代
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 7, 'C')" data-feedback="❌ 秦朝到唐朝不是《资治通鉴》记载范围！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 7, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：秦朝—唐朝" aria-pressed="false" data-feedback="❌ 秦朝到唐朝不是《资治通鉴》记载范围！">
             <span class="opt-letter">C</span> 秦朝—唐朝
           </div>
         </div>
@@ -622,7 +654,7 @@
       </div>
 
       <!-- 挑战题（中考真题） -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战 · 中考真题】阅读材料，回答问题：<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
         <div style="background: #f9fafb; border-left: 4px solid #8b4513; padding: 16px; margin-bottom: 16px; border-radius: 0 8px 8px 0;">
           <p><strong>材料</strong>：</p>
@@ -630,14 +662,14 @@
           <p>——人教版《中国历史》七年级下册</p>
           <p><strong>问题</strong>：宋词分为哪两大流派？（　）</p>
         </div>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 8, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 8, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：婉约派和豪放派" aria-pressed="false">
             <span class="opt-letter">A</span> 婉约派和豪放派
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'B')" data-feedback="❌ 山水派和边塞派是唐诗流派，不是宋词！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：山水派和边塞派" aria-pressed="false" data-feedback="❌ 山水派和边塞派是唐诗流派，不是宋词！">
             <span class="opt-letter">B</span> 山水派和边塞派
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 8, 'C')" data-feedback="❌ 现实派和浪漫派是文学整体分类，不是宋词特有流派！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 8, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：现实派和浪漫派" aria-pressed="false" data-feedback="❌ 现实派和浪漫派是文学整体分类，不是宋词特有流派！">
             <span class="opt-letter">C</span> 现实派和浪漫派
           </div>
         </div>
@@ -843,6 +875,8 @@
   </script>
     <!-- 标准模块脚本（必须） -->
 
-    <script src="../../shared/mascot.js?v=8.0"></script>
+    <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
   </body>
 </html>

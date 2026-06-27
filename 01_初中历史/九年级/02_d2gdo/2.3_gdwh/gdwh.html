@@ -243,6 +243,18 @@
 </head>
 
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== ① 品牌栏 ========== -->
   <div class="brand-bar">
@@ -262,7 +274,11 @@
   <div class="progress-label" id="progress-label">第 3/3 节 · 100%</div>
   
   <!-- ========== ③ 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../d2gdo.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第二单元：古代欧洲文明</div>
@@ -380,6 +396,12 @@
       <h2 class="section-title">
         <span class="num">🎯</span> 学习目标
       </h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">史料实证</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">时空观念</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">历史解释</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 了解希腊古典文化的主要成就（文学、雕塑、建筑、哲学）</li>
@@ -403,16 +425,16 @@
       </p>
       
       <!-- 基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】《荷马史诗》属于哪个国家的文学成就？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：希腊" aria-pressed="false">
             <span class="opt-letter">A</span> 希腊
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'B')" data-feedback="❌ 《荷马史诗》是希腊的文学成就，不是罗马的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：罗马" aria-pressed="false" data-feedback="❌ 《荷马史诗》是希腊的文学成就，不是罗马的！">
             <span class="opt-letter">B</span> 罗马
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 《荷马史诗》是希腊的文学成就，不是埃及的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：埃及" aria-pressed="false" data-feedback="❌ 《荷马史诗》是希腊的文学成就，不是埃及的！">
             <span class="opt-letter">C</span> 埃及
           </div>
         </div>
@@ -430,16 +452,16 @@
       </div>
 
       <!-- 基础题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】罗马第一部成文法是什么？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《十二铜表法》" aria-pressed="false">
             <span class="opt-letter">A</span> 《十二铜表法》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 《汉谟拉比法典》是古巴比伦的成文法，不是罗马的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：《汉谟拉比法典》" aria-pressed="false" data-feedback="❌ 《汉谟拉比法典》是古巴比伦的成文法，不是罗马的！">
             <span class="opt-letter">B</span> 《汉谟拉比法典》
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 《查士丁尼法典》是东罗马帝国（拜占庭）时期的法典，不是罗马共和国时期的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：《查士丁尼法典》" aria-pressed="false" data-feedback="❌ 《查士丁尼法典》是东罗马帝国（拜占庭）时期的法典，不是罗马共和国时期的！">
             <span class="opt-letter">C</span> 《查士丁尼法典》
           </div>
         </div>
@@ -453,16 +475,16 @@
       </div>
       
       <!-- 提高题3 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>3. 【⭐⭐ 提高】下列关于希腊哲学家的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'A')" data-feedback="❌ 苏格拉底是柏拉图的老师，不是学生！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：苏格拉底是柏拉图的学生" aria-pressed="false" data-feedback="❌ 苏格拉底是柏拉图的老师，不是学生！">
             <span class="opt-letter">A</span> 苏格拉底是柏拉图的学生
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 3, 'B')" data-feedback="❌ 亚里士多德是柏拉图的学生，不是老师！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 3, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：亚里士多德是柏拉图的老师" aria-pressed="false" data-feedback="❌ 亚里士多德是柏拉图的学生，不是老师！">
             <span class="opt-letter">B</span> 亚里士多德是柏拉图的老师
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 3, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 3, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：柏拉图是苏格拉底的学生，亚里士多德是柏拉图的学生" aria-pressed="false">
             <span class="opt-letter">C</span> 柏拉图是苏格拉底的学生，亚里士多德是柏拉图的学生
           </div>
         </div>
@@ -507,16 +529,16 @@
       </div>
 
       <!-- 挑战题4 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>4. 【⭐⭐⭐ 挑战】下列关于希腊罗马建筑的表述，全部正确的是？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'A')" data-feedback="❌ 帕特农神庙是希腊建筑，不是罗马建筑！万神殿才是罗马建筑。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：帕特农神庙是罗马建筑的代表" aria-pressed="false" data-feedback="❌ 帕特农神庙是希腊建筑，不是罗马建筑！万神殿才是罗马建筑。">
             <span class="opt-letter">A</span> 帕特农神庙是罗马建筑的代表
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 4, 'B')" data-feedback="❌ 希腊建筑擅长运用柱式（多立克、爱奥尼、科林斯），拱顶和穹顶是罗马建筑的创新！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 4, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：希腊建筑以拱顶和穹顶为主要特色" aria-pressed="false" data-feedback="❌ 希腊建筑擅长运用柱式（多立克、爱奥尼、科林斯），拱顶和穹顶是罗马建筑的创新！">
             <span class="opt-letter">B</span> 希腊建筑以拱顶和穹顶为主要特色
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 4, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 4, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：罗马建筑在希腊柱式基础上发展了拱顶和穹顶" aria-pressed="false">
             <span class="opt-letter">C</span> 罗马建筑在希腊柱式基础上发展了拱顶和穹顶
           </div>
         </div>
@@ -547,6 +569,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">📖 文学：《荷马史诗》</h3>
         <p>《荷马史诗》是古希腊最伟大的文学作品，包括：</p>
         <ul style="padding-left: 20px; line-height: 1.8;">
@@ -594,7 +619,9 @@
           <div class="label">核心概念</div>
           <p><strong>希腊哲学的成就：</strong>奠定了西方哲学的基础，提出了关于真理、美德、政治、逻辑的深刻思考，影响了后世2000多年。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 5: ⑧ 核心内容 - 罗马文化 -->
@@ -604,6 +631,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="margin-top: 20px; color: #8b4513;">🏛️ 建筑：继承与创新</h3>
         <p>罗马建筑在继承希腊柱式的基础上，发展了<strong>拱顶、穹顶和混凝土技术</strong>。</p>
         <ul style="padding-left: 20px; line-height: 1.8; margin-top: 8px;">
@@ -672,7 +702,9 @@
           <div class="label">核心概念</div>
           <p><strong>罗马对希腊文化的传承：</strong>罗马征服了希腊，但希腊文化却"征服"了罗马。罗马人在文学、艺术、哲学上学习希腊，但在建筑、法学、历法上做出了自己的创新。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 6: ⑧ 核心内容 - 影响 -->
@@ -682,6 +714,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- SVG:古典文化传承时间线 -->
         <div class="svg-container">
           <svg viewBox="0 0 1000 300" width="1000" height="300" xmlns="http://www.w3.org/2000/svg">
@@ -737,7 +772,9 @@
           <div class="label">核心概念</div>
           <p><strong>希腊罗马古典文化的影响：</strong>作为西方文明的精神源泉，其哲学、政治学、法学、历法、建筑、文学……深刻影响了后世2000多年的文明发展。</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- Section 7: ⑨ 后测 -->
@@ -750,16 +787,16 @@
       </p>
 
       <!-- 后测基础题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【⭐ 基础】苏格拉底、柏拉图、亚里士多德的师承关系是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'A')" data-feedback="❌ 顺序反了！苏格拉底是最早的，亚里士多德是最晚的。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：亚里士多德→柏拉图→苏格拉底" aria-pressed="false" data-feedback="❌ 顺序反了！苏格拉底是最早的，亚里士多德是最晚的。">
             <span class="opt-letter">A</span> 亚里士多德 → 柏拉图 → 苏格拉底
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 10, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 10, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：苏格拉底→柏拉图→亚里士多德" aria-pressed="false">
             <span class="opt-letter">B</span> 苏格拉底 → 柏拉图 → 亚里士多德
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 10, 'C')" data-feedback="❌ 柏拉图是苏格拉底的学生，不是老师！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 10, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：柏拉图→苏格拉底→亚里士多德" aria-pressed="false" data-feedback="❌ 柏拉图是苏格拉底的学生，不是老师！">
             <span class="opt-letter">C</span> 柏拉图 → 苏格拉底 → 亚里士多德
           </div>
         </div>
@@ -772,16 +809,16 @@
       </div>
 
       <!-- 后测提高题2（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【⭐⭐ 提高·中考真题】（2023·江苏中考）下列关于罗马法的表述，正确的是？<span class="difficulty-badge difficulty-提高">提高</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'A')" data-feedback="❌ 《汉谟拉比法典》是古巴比伦的法典，不是罗马的！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：《汉谟拉比法典》是罗马第一部成文法" aria-pressed="false" data-feedback="❌ 《汉谟拉比法典》是古巴比伦的法典，不是罗马的！">
             <span class="opt-letter">A</span> 《汉谟拉比法典》是罗马第一部成文法
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 11, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 11, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：《十二铜表法》限制了贵族随意解释法律的权力" aria-pressed="false">
             <span class="opt-letter">B</span> 《十二铜表法》限制了贵族随意解释法律的权力
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 11, 'C')" data-feedback="❌ 罗马法对后世影响深远，尤其是欧美法律体系！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 11, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：罗马法对后世没有影响" aria-pressed="false" data-feedback="❌ 罗马法对后世影响深远，尤其是欧美法律体系！">
             <span class="opt-letter">C</span> 罗马法对后世没有影响
           </div>
         </div>
@@ -805,16 +842,16 @@
       </div>
 
       <!-- 后测挑战题3（中考真题改编） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>3. 【⭐⭐⭐ 挑战·中考真题】（2022·广东中考）希腊雕塑《掷铁饼者》的创作者是？<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#fef3c7;color:#92400e;">📝 中考真题</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'A')" data-feedback="❌ 菲迪亚斯是帕特农神庙雕塑的创作者，不是《掷铁饼者》的作者！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：菲迪亚斯" aria-pressed="false" data-feedback="❌ 菲迪亚斯是帕特农神庙雕塑的创作者，不是《掷铁饼者》的作者！">
             <span class="opt-letter">A</span> 菲迪亚斯
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 12, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 12, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：米隆" aria-pressed="false">
             <span class="opt-letter">B</span> 米隆
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 12, 'C')" data-feedback="❌ 普拉克西特列斯是希腊雕塑家，但不是《掷铁饼者》的作者！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 12, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：普拉克西特列斯" aria-pressed="false" data-feedback="❌ 普拉克西特列斯是希腊雕塑家，但不是《掷铁饼者》的作者！">
             <span class="opt-letter">C</span> 普拉克西特列斯
           </div>
         </div>
@@ -832,20 +869,20 @@
       </div>
 
       <!-- 后测挑战题4（材料分析型） -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>4. 【⭐⭐⭐ 挑战·材料分析】阅读材料回答问题<span class="difficulty-badge difficulty-挑战">挑战</span> <span class="difficulty-badge" style="background:#dbeafe;color:#1d4ed8;">📋 材料题</span></h3>
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:12px;font-size:14px;line-height:1.8;">
           <strong>【材料】</strong>"①'认识你自己。'——苏格拉底 ②'吾爱吾师，吾更爱真理。'——亚里士多德 ③'法律是理性的体现。'——西塞罗（罗马政治家）"
         </div>
         <p style="margin-bottom:10px;font-weight:600;">以上名言分别属于哪家思想？反映了希腊罗马文化的什么特点？</p>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'A')" data-feedback="❌ 材料包含了希腊和罗马两个文化圈的思想，不能只说希腊文化！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：全部属于希腊文化，与罗马无关" aria-pressed="false" data-feedback="❌ 材料包含了希腊和罗马两个文化圈的思想，不能只说希腊文化！">
             <span class="opt-letter">A</span> 全部属于希腊文化，与罗马无关
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 13, 'B')" data-feedback="❌ 材料③的西塞罗是罗马人，"全部属于罗马文化"是错的！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 13, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：全部属于罗马文化，与希腊无关" aria-pressed="false" data-feedback="❌ 材料③的西塞罗是罗马人，"全部属于罗马文化"是错的！">
             <span class="opt-letter">B</span> 全部属于罗马文化，与希腊无关
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 13, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 13, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：①②属于希腊文化，③属于罗马文化，体现希腊罗马文化的传承与影响" aria-pressed="false">
             <span class="opt-letter">C</span> ①②属于希腊文化，③属于罗马文化，体现希腊罗马文化的传承与影响
           </div>
         </div>
@@ -878,6 +915,9 @@
       </h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <!-- 考点1:最高频 -->
         <div class="exam-card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -936,7 +976,9 @@
             <tr style="background:#fdf4ff;"><td>填空题</td><td>★★☆☆☆</td><td>填《十二铜表法》、儒略历</td><td>记住罗马法+历法关键词</td></tr>
           </table>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- AI学伴 -->
@@ -1083,6 +1125,8 @@
   </script>
 
   <!-- 标准模块脚本（必须） -->
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

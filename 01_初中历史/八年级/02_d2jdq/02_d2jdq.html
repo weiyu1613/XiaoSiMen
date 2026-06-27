@@ -675,6 +675,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
 
 <!-- 1. Brand Bar -->
 <div class="brand-bar">
@@ -695,6 +707,10 @@
 
 <!-- 3. Nav Bar -->
 <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+
   <div class="nav-inner">
     <a href="../index.html" class="nav-btn"><i class="fas fa-home"></i> 首页</a>
     <a href="../../index.html" class="nav-btn"><i class="fas fa-list"></i> 目录</a>
@@ -1184,17 +1200,17 @@
       
       <div class="quiz-question">
         <h4>1. 你知道中国近代史开始于哪一年吗？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1840年鸦片战争是中国近代史的开端。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：1840年" aria-pressed="false" data-feedback="❌ 错误。1840年鸦片战争是中国近代史的开端。">
             <span class="opt-letter">A</span> 1840年
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1860年是第二次鸦片战争结束的年份。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：1860年" aria-pressed="false" data-feedback="❌ 错误。1860年是第二次鸦片战争结束的年份。">
             <span class="opt-letter">B</span> 1860年
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。1900年是八国联军侵华的年份。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：1900年" aria-pressed="false" data-feedback="❌ 错误。1900年是八国联军侵华的年份。">
             <span class="opt-letter">C</span> 1900年
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 前测不作评分。正确答案是1840年鸦片战争，标志着中国近代史的开端。现在开始本单元学习吧！">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项D：不确定" aria-pressed="false" data-feedback="✅ 前测不作评分。正确答案是1840年鸦片战争，标志着中国近代史的开端。现在开始本单元学习吧！">
             <span class="opt-letter">D</span> 不确定
           </button>
         </div>
@@ -1203,17 +1219,17 @@
 
       <div class="quiz-question">
         <h4>2. 你听说过"洋务运动"吗？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 很好！你已经有一些基础，继续学习会更有收获。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项A：听说过，了解一些内容" aria-pressed="false" data-feedback="✅ 很好！你已经有一些基础，继续学习会更有收获。">
             <span class="opt-letter">A</span> 听说过，了解一些内容
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 没关系！本单元会系统学习洋务运动。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：听说过，但不太了解" aria-pressed="false" data-feedback="✅ 没关系！本单元会系统学习洋务运动。">
             <span class="opt-letter">B</span> 听说过，但不太了解
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 没关系！本单元会系统学习洋务运动。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：没听说过" aria-pressed="false" data-feedback="✅ 没关系！本单元会系统学习洋务运动。">
             <span class="opt-letter">C</span> 没听说过
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 让我们一起学习洋务运动的历史。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项D：不确定" aria-pressed="false" data-feedback="✅ 让我们一起学习洋务运动的历史。">
             <span class="opt-letter">D</span> 不确定
           </button>
         </div>
@@ -1222,17 +1238,17 @@
 
       <div class="quiz-question">
         <h4>3. 你知道辛亥革命的历史意义吗？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 很棒！你已经掌握了辛亥革命的重要意义。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项A：推翻了清朝统治，建立了中华民国" aria-pressed="false" data-feedback="✅ 很棒！你已经掌握了辛亥革命的重要意义。">
             <span class="opt-letter">A</span> 推翻了清朝统治，建立了中华民国
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 继续学习，你会更深入了解辛亥革命。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项B：知道一些，但不太清楚" aria-pressed="false" data-feedback="✅ 继续学习，你会更深入了解辛亥革命。">
             <span class="opt-letter">B</span> 知道一些，但不太清楚
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 没关系！本单元会系统学习辛亥革命。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：不太了解" aria-pressed="false" data-feedback="✅ 没关系！本单元会系统学习辛亥革命。">
             <span class="opt-letter">C</span> 不太了解
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 本单元会详细讲解辛亥革命。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项D：完全不知道" aria-pressed="false" data-feedback="✅ 本单元会详细讲解辛亥革命。">
             <span class="opt-letter">D</span> 完全不知道
           </button>
         </div>
@@ -1257,17 +1273,17 @@
 
       <div class="quiz-question">
         <h4>1. 中国近代化的开端是什么运动？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！洋务运动（1861-1895年）是中国近代化的开端，主张"师夷长技以自强"。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项A：洋务运动" aria-pressed="false" data-feedback="✅ 正确！洋务运动（1861-1895年）是中国近代化的开端，主张"师夷长技以自强"。">
             <span class="opt-letter">A</span> 洋务运动
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。戊戌变法发生在1898年，比洋务运动晚，不是近代化的开端。正确答案是洋务运动。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：戊戌变法" aria-pressed="false" data-feedback="❌ 错误。戊戌变法发生在1898年，比洋务运动晚，不是近代化的开端。正确答案是洋务运动。">
             <span class="opt-letter">B</span> 戊戌变法
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命发生在1911年，推翻了清朝统治，但不是近代化的开端。正确答案是洋务运动。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：辛亥革命" aria-pressed="false" data-feedback="❌ 错误。辛亥革命发生在1911年，推翻了清朝统治，但不是近代化的开端。正确答案是洋务运动。">
             <span class="opt-letter">C</span> 辛亥革命
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。新文化运动发生在1915年之后，是思想文化领域的革新运动。正确答案是洋务运动。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：新文化运动" aria-pressed="false" data-feedback="❌ 错误。新文化运动发生在1915年之后，是思想文化领域的革新运动。正确答案是洋务运动。">
             <span class="opt-letter">D</span> 新文化运动
           </button>
         </div>
@@ -1276,17 +1292,17 @@
 
       <div class="quiz-question">
         <h4>2. 下列哪一项不是洋务运动的内容？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。创办军事工业是洋务运动"自强"阶段的主要内容，如江南制造总局。正确答案是C。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：创办军事工业" aria-pressed="false" data-feedback="❌ 错误。创办军事工业是洋务运动"自强"阶段的主要内容，如江南制造总局。正确答案是C。">
             <span class="opt-letter">A</span> 创办军事工业
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。创办民用工业是洋务运动"求富"阶段的内容，如轮船招商局。正确答案是C。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：创办民用工业" aria-pressed="false" data-feedback="❌ 错误。创办民用工业是洋务运动"求富"阶段的内容，如轮船招商局。正确答案是C。">
             <span class="opt-letter">B</span> 创办民用工业
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！废除科举制度是戊戌变法的内容，不是洋务运动的内容。洋务运动时期仍然维持科举制度。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：废除科举制度" aria-pressed="false" data-feedback="✅ 正确！废除科举制度是戊戌变法的内容，不是洋务运动的内容。洋务运动时期仍然维持科举制度。">
             <span class="opt-letter">C</span> 废除科举制度
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。筹建近代海军是洋务运动的重要内容，建立了北洋、南洋、福建三支海军。正确答案是C。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：筹建近代海军" aria-pressed="false" data-feedback="❌ 错误。筹建近代海军是洋务运动的重要内容，建立了北洋、南洋、福建三支海军。正确答案是C。">
             <span class="opt-letter">D</span> 筹建近代海军
           </button>
         </div>
@@ -1295,17 +1311,17 @@
 
       <div class="quiz-question">
         <h4>3. 戊戌变法最重要的历史意义是什么？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。戊戌变法最终失败，没有实现君主立宪。正确答案是C。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：建立了君主立宪制度" aria-pressed="false" data-feedback="❌ 错误。戊戌变法最终失败，没有实现君主立宪。正确答案是C。">
             <span class="opt-letter">A</span> 建立了君主立宪制度
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。推翻清朝统治的是辛亥革命，不是戊戌变法。正确答案是C。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：推翻了清朝统治" aria-pressed="false" data-feedback="❌ 错误。推翻清朝统治的是辛亥革命，不是戊戌变法。正确答案是C。">
             <span class="opt-letter">B</span> 推翻了清朝统治
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！戊戌变法虽然失败，但传播了资产阶级维新思想，批判了封建文化，是中国近代第一次思想启蒙运动。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：起到了思想启蒙的作用" aria-pressed="false" data-feedback="✅ 正确！戊戌变法虽然失败，但传播了资产阶级维新思想，批判了封建文化，是中国近代第一次思想启蒙运动。">
             <span class="opt-letter">C</span> 起到了思想启蒙的作用
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。完成反帝反封建任务的是新民主主义革命，不是戊戌变法。正确答案是C。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：完成了反帝反封建任务" aria-pressed="false" data-feedback="❌ 错误。完成反帝反封建任务的是新民主主义革命，不是戊戌变法。正确答案是C。">
             <span class="opt-letter">D</span> 完成了反帝反封建任务
           </button>
         </div>
@@ -1314,17 +1330,17 @@
 
       <div class="quiz-question">
         <h4>4. 辛亥革命的历史功绩不包括下列哪一项？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命确实推翻了清朝统治，这是它的历史功绩之一。正确答案是D。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：推翻了清朝统治" aria-pressed="false" data-feedback="❌ 错误。辛亥革命确实推翻了清朝统治，这是它的历史功绩之一。正确答案是D。">
             <span class="opt-letter">A</span> 推翻了清朝统治
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命结束了中国两千多年的封建帝制，建立了中华民国。正确答案是D。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：结束了封建帝制" aria-pressed="false" data-feedback="❌ 错误。辛亥革命结束了中国两千多年的封建帝制，建立了中华民国。正确答案是D。">
             <span class="opt-letter">B</span> 结束了封建帝制
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。辛亥革命使民主共和的观念深入人心，这是它的重要历史意义。正确答案是D。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项C：使民主共和观念深入人心" aria-pressed="false" data-feedback="❌ 错误。辛亥革命使民主共和的观念深入人心，这是它的重要历史意义。正确答案是D。">
             <span class="opt-letter">C</span> 使民主共和观念深入人心
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！辛亥革命没有改变中国半殖民地半封建的社会性质，这是它的局限性。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项D：改变了半殖民地半封建的社会性质" aria-pressed="false" data-feedback="✅ 正确！辛亥革命没有改变中国半殖民地半封建的社会性质，这是它的局限性。">
             <span class="opt-letter">D</span> 改变了半殖民地半封建的社会性质
           </button>
         </div>
@@ -1333,17 +1349,17 @@
 
       <div class="quiz-question">
         <h4>5. 洋务运动、戊戌变法、辛亥革命的共同点是？</h4>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。只有辛亥革命推翻了清朝，洋务运动和戊戌变法都没有。正确答案是C。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项A：都推翻了清朝统治" aria-pressed="false" data-feedback="❌ 错误。只有辛亥革命推翻了清朝，洋务运动和戊戌变法都没有。正确答案是C。">
             <span class="opt-letter">A</span> 都推翻了清朝统治
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。这三场运动最终都失败了，没有实现其目标。正确答案是C。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项B：都取得了成功" aria-pressed="false" data-feedback="❌ 错误。这三场运动最终都失败了，没有实现其目标。正确答案是C。">
             <span class="opt-letter">B</span> 都取得了成功
           </button>
-          <button class="quiz-option" data-correct="true" data-feedback="✅ 正确！这三场运动都推动了中国近代化进程，都具有一定的历史进步意义。">
+          <button class="quiz-option" data-correct="true" data-correct="true" data-correct="true" aria-label="选项C：都推动了中国近代化进程" aria-pressed="false" data-feedback="✅ 正确！这三场运动都推动了中国近代化进程，都具有一定的历史进步意义。">
             <span class="opt-letter">C</span> 都推动了中国近代化进程
           </button>
-          <button class="quiz-option" data-correct="false" data-feedback="❌ 错误。戊戌变法和辛亥革命触及了政治制度，洋务运动没有。正确答案是C。">
+          <button class="quiz-option" data-correct="false" data-correct="false" data-correct="false" aria-label="选项D：都没有触及政治制度" aria-pressed="false" data-feedback="❌ 错误。戊戌变法和辛亥革命触及了政治制度，洋务运动没有。正确答案是C。">
             <span class="opt-letter">D</span> 都没有触及政治制度
           </button>
         </div>
@@ -1581,5 +1597,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
   <script src="../shared/mascot.js?v=8.0"></script>
+  <script src="../shared/badges.js?v=8.0"></script>
 </body>
 </html>

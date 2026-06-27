@@ -75,10 +75,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-scale-balanced"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 1/31 节 · 3.2%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d1zy.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第一单元：成长的节拍</div>
@@ -127,6 +143,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 了解中学生活的新变化 <span class="tag tag-theory">关联：环境适应理论</span></li>
         <li>✅ 认识新校园，主动适应新环境 <span class="tag tag-theory">关联：社会融入理论</span></li>
@@ -140,12 +162,12 @@
       <p style="color:#27ae60;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】进入中学后，最大的变化是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 教室变化只是<strong>表象</strong>，不是最核心的变化。<br><span class='tag tag-mistake'>归因：只看到表层现象，忽略了学习本质的变化</span>"><span class="opt-letter">A</span> 教室变多了</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：中学学习内容更深更广</span>"><span class="opt-letter">B</span> 学习内容更丰富、难度增加</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 放学时间<strong>差别不大</strong>，这不是显著变化。<br><span class='tag tag-mistake'>归因：时间变化不是中学阶段的核心特征</span>"><span class="opt-letter">C</span> 放学更早了</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：教室变多了" aria-pressed="false" data-fb="❌ 教室变化只是<strong>表象</strong>，不是最核心的变化。<br><span class='tag tag-mistake'>归因：只看到表层现象，忽略了学习本质的变化</span>"><span class="opt-letter">A</span> 教室变多了</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：学习内容更丰富、难度增加" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：中学学习内容更深更广</span>"><span class="opt-letter">B</span> 学习内容更丰富、难度增加</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：放学更早了" aria-pressed="false" data-fb="❌ 放学时间<strong>差别不大</strong>，这不是显著变化。<br><span class='tag tag-mistake'>归因：时间变化不是中学阶段的核心特征</span>"><span class="opt-letter">C</span> 放学更早了</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -157,12 +179,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】怎样更快适应新环境？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 被动等待是典型的<strong>逃避型应对方式</strong>，会错失融入集体的最佳时机。<br><span class='tag tag-mistake'>归因：消极应对策略，缺乏主动性</span>"><span class="opt-letter">A</span> 等同学来找我</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：主动适应是融入新环境的关键</span>"><span class="opt-letter">B</span> 主动认识新同学、参加集体活动</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 只学习不社交会导致<strong>人际适应困难</strong>，不利于全面发展。<br><span class='tag tag-mistake'>归因：片面认知，忽视社会性需求</span>"><span class="opt-letter">C</span> 只顾学习就行</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：等同学来找我" aria-pressed="false" data-fb="❌ 被动等待是典型的<strong>逃避型应对方式</strong>，会错失融入集体的最佳时机。<br><span class='tag tag-mistake'>归因：消极应对策略，缺乏主动性</span>"><span class="opt-letter">A</span> 等同学来找我</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：主动认识新同学、参加集体活动" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：主动适应是融入新环境的关键</span>"><span class="opt-letter">B</span> 主动认识新同学、参加集体活动</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：只顾学习就行" aria-pressed="false" data-fb="❌ 只学习不社交会导致<strong>人际适应困难</strong>，不利于全面发展。<br><span class='tag tag-mistake'>归因：片面认知，忽视社会性需求</span>"><span class="opt-letter">C</span> 只顾学习就行</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -174,12 +196,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】中学生活为人生奠定重要基础，以下理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 中学时代本身不是人生<strong>全部</strong>，但它确实是一段<strong>重要阶段</strong>。"决定一切"说法过于绝对。<br><span class='tag tag-mistake'>归因：绝对化思维，夸大了中学阶段的作用</span>"><span class="opt-letter">A</span> 中学时代决定人的一生</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 中学生活虽然压力大，但并不意味着<strong>只有压力</strong>，也有很多快乐和成长。<br><span class='tag tag-mistake'>归因：片面认知，只看到挑战忽略了机遇</span>"><span class="opt-letter">B</span> 中学只有压力没有快乐</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：中学时代是人生新阶段，奠定重要基础</span>"><span class="opt-letter">C</span> 中学时代是人生发展的新阶段</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：中学时代决定人的一生" aria-pressed="false" data-fb="❌ 中学时代本身不是人生<strong>全部</strong>，但它确实是一段<strong>重要阶段</strong>。"决定一切"说法过于绝对。<br><span class='tag tag-mistake'>归因：绝对化思维，夸大了中学阶段的作用</span>"><span class="opt-letter">A</span> 中学时代决定人的一生</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：中学只有压力没有快乐" aria-pressed="false" data-fb="❌ 中学生活虽然压力大，但并不意味着<strong>只有压力</strong>，也有很多快乐和成长。<br><span class='tag tag-mistake'>归因：片面认知，只看到挑战忽略了机遇</span>"><span class="opt-letter">B</span> 中学只有压力没有快乐</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：中学时代是人生发展的新阶段" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：中学时代是人生新阶段，奠定重要基础</span>"><span class="opt-letter">C</span> 中学时代是人生发展的新阶段</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -222,6 +244,9 @@
 
     <section><h2 class="section-title">🤝 结交新朋友</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box"><div class="label">✨ 交友方法 <span class="tag tag-theory">关联：社会心理学</span></div>
           <p>① <strong>主动微笑</strong>：主动打招呼，介绍自己 <span class="tag tag-theory">首因效应</span></p>
           <p>② <strong>真诚待人</strong>：以真心换取真心 <span class="tag tag-theory">人际信任理论</span></p>
@@ -231,18 +256,20 @@
         <div style="background:#f0faf0;border-radius:8px;padding:16px;margin-top:16px;font-style:italic;color:#1e8449;">
           "独学而无友，则孤陋而寡闻。" —— 《礼记·学记》<span class="tag tag-kp">学习的社会性</span>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】中学学习最需要具备的能力是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 被动学习导致成绩下滑。<br><span class='tag tag-mistake'>归因：未理解中学学习方式的转变</span>"><span class="opt-letter">A</span> 等老师安排</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：自主学习</span>"><span class="opt-letter">B</span> 自主学习能力</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 不努力必然导致落后。<br><span class='tag tag-mistake'>归因：消极学习态度</span>"><span class="opt-letter">C</span> 不需要太努力</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：等老师安排" aria-pressed="false" data-fb="❌ 被动学习导致成绩下滑。<br><span class='tag tag-mistake'>归因：未理解中学学习方式的转变</span>"><span class="opt-letter">A</span> 等老师安排</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：自主学习能力" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：自主学习</span>"><span class="opt-letter">B</span> 自主学习能力</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：不需要太努力" aria-pressed="false" data-fb="❌ 不努力必然导致落后。<br><span class='tag tag-mistake'>归因：消极学习态度</span>"><span class="opt-letter">C</span> 不需要太努力</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -250,12 +277,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】交友时应避免的做法是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 真诚是交友的基础，不应避免！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">A</span> 真诚相待</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 以自我为中心会让人反感。<br><span class='tag tag-kp'>知识点：换位思考</span>"><span class="opt-letter">B</span> 以自我为中心</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 尊重他人是基本要求，不应避免！<br><span class='tag tag-mistake'>归因：误将正确做法视为错误</span>"><span class="opt-letter">C</span> 尊重他人</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：真诚相待" aria-pressed="false" data-fb="❌ 真诚是交友的基础，不应避免！<br><span class='tag tag-mistake'>归因：混淆了正确做法和错误做法</span>"><span class="opt-letter">A</span> 真诚相待</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：以自我为中心" aria-pressed="false" data-fb="✅ 以自我为中心会让人反感。<br><span class='tag tag-kp'>知识点：换位思考</span>"><span class="opt-letter">B</span> 以自我为中心</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：尊重他人" aria-pressed="false" data-fb="❌ 尊重他人是基本要求，不应避免！<br><span class='tag tag-mistake'>归因：误将正确做法视为错误</span>"><span class="opt-letter">C</span> 尊重他人</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -263,12 +290,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】以下关于中学生活的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！主动适应是最佳策略。<br><span class='tag tag-kp'>知识点：主动适应</span>"><span class="opt-letter">A</span> 中学为我们提供新的发展机会</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 中学有新挑战也有新机遇，不是"只有痛苦"。<br><span class='tag tag-mistake'>归因：消极归因，以偏概全</span>"><span class="opt-letter">B</span> 中学只有痛苦没有收获</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 中学不是终点，还有高中、大学等阶段。<br><span class='tag tag-mistake'>归因：认知局限，不了解教育体系的连续性</span>"><span class="opt-letter">C</span> 中学毕业就不用学习了</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：中学为我们提供新的发展机会" aria-pressed="false" data-fb="✅ 正确！主动适应是最佳策略。<br><span class='tag tag-kp'>知识点：主动适应</span>"><span class="opt-letter">A</span> 中学为我们提供新的发展机会</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：中学只有痛苦没有收获" aria-pressed="false" data-fb="❌ 中学有新挑战也有新机遇，不是"只有痛苦"。<br><span class='tag tag-mistake'>归因：消极归因，以偏概全</span>"><span class="opt-letter">B</span> 中学只有痛苦没有收获</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：中学毕业就不用学习了" aria-pressed="false" data-fb="❌ 中学不是终点，还有高中、大学等阶段。<br><span class='tag tag-mistake'>归因：认知局限，不了解教育体系的连续性</span>"><span class="opt-letter">C</span> 中学毕业就不用学习了</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -281,6 +308,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -326,7 +356,9 @@
           </ul>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -356,6 +388,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

@@ -201,6 +201,18 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   
   <!-- ========== 品牌栏 ========== -->
   <div class="brand-bar">
@@ -213,7 +225,11 @@
   <div class="progress-label" id="progress-label">第 4/6 节 · 66.7%</div>
   
   <!-- ========== 导航栏 ========== -->
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn"><i class="fa-solid fa-house"></i> 首页</a>
     <a href="../swhxb.html" class="nav-btn"><i class="fa-solid fa-list"></i> 章节目录</a>
     <div class="nav-center">第一单元：生物和细胞</div>
@@ -304,6 +320,12 @@
     <!-- Section2: 学习目标 -->
     <section class="section" id="objectives">
       <h2 class="section-title"><span class="num">🎯</span> 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">生命观念</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学思维</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">科学探究</span>
+</div>
+
       <div class="card">
         <ul style="list-style: none; padding-left: 0; line-height: 2;">
           <li>✅ 学会制作植物细胞临时装片</li>
@@ -324,16 +346,16 @@
       </p>
       
       <!-- 基础题1：临时装片步骤 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="basic">
         <h3>1. 【⭐ 基础】制作洋葱鳞片叶内表皮细胞临时装片的正确顺序是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'A')" data-feedback="❌ 顺序错误！应该是：擦→滴→撕→展→盖→染→吸。">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：擦→滴→撕→盖→展→染" aria-pressed="false" data-feedback="❌ 顺序错误！应该是：擦→滴→撕→展→盖→染→吸。">
             <span class="opt-letter">A</span> 擦→滴→撕→盖→展→染
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 1, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 1, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：擦→滴→撕→展→盖→染→吸" aria-pressed="false">
             <span class="opt-letter">B</span> 擦→滴→撕→展→盖→染→吸
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 1, 'C')" data-feedback="❌ 顺序错误！撕取材料应该在滴加清水之后。">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 1, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：擦→撕→滴→展→盖→染" aria-pressed="false" data-feedback="❌ 顺序错误！撕取材料应该在滴加清水之后。">
             <span class="opt-letter">C</span> 擦→撕→滴→展→盖→染
           </div>
         </div>
@@ -355,16 +377,16 @@
       </div>
 
       <!-- 基础题2：细胞结构 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="basic">
         <h3>2. 【⭐ 基础】植物细胞特有的结构是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, true, 2, 'A')">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 2, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞壁、叶绿体、液泡" aria-pressed="false">
             <span class="opt-letter">A</span> 细胞壁、叶绿体、液泡
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'B')" data-feedback="❌ 细胞膜、细胞质、细胞核是动植物细胞共有的结构！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：细胞膜、细胞质、细胞核" aria-pressed="false" data-feedback="❌ 细胞膜、细胞质、细胞核是动植物细胞共有的结构！">
             <span class="opt-letter">B</span> 细胞膜、细胞质、细胞核
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 2, 'C')" data-feedback="❌ 线粒体是动植物细胞共有的能量转换器！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 2, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：线粒体" aria-pressed="false" data-feedback="❌ 线粒体是动植物细胞共有的能量转换器！">
             <span class="opt-letter">C</span> 线粒体
           </div>
         </div>
@@ -492,16 +514,16 @@
       <h2 class="section-title"><span class="num">📝</span> 后测：巩固与应用</h2>
       
       <!-- 后测题1 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="advanced">
         <h3>1. 【中考真题】下列关于植物细胞结构的说法，正确的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'A')" data-feedback="❌ 细胞壁具有保护和支持作用，细胞膜才控制物质进出！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞壁控制物质进出细胞" aria-pressed="false" data-feedback="❌ 细胞壁具有保护和支持作用，细胞膜才控制物质进出！">
             <span class="opt-letter">A</span> 细胞壁控制物质进出细胞
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 101, 'B')" data-feedback="❌ 线粒体是动植物细胞共有的，不是植物细胞特有！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 101, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：线粒体是植物细胞特有的结构" aria-pressed="false" data-feedback="❌ 线粒体是动植物细胞共有的，不是植物细胞特有！">
             <span class="opt-letter">B</span> 线粒体是植物细胞特有的结构
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 101, 'C')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 101, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：叶绿体是能量转换器" aria-pressed="false">
             <span class="opt-letter">C</span> 叶绿体是能量转换器
           </div>
         </div>
@@ -519,16 +541,16 @@
       </div>
 
       <!-- 后测题2 -->
-      <div class="quiz-box" style="margin-top: 20px;">
+      <div class="quiz-box" style="margin-top: 20px;" data-difficulty="advanced">
         <h3>2. 【应用题】小明制作临时装片时，盖盖玻片的方法不当，会导致？<span class="difficulty-badge difficulty-挑战">挑战</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'A')" data-feedback="❌ 染色不当才会导致细胞被染色过深，不是盖盖玻片的问题！">
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'A')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：细胞被染色过深" aria-pressed="false" data-feedback="❌ 染色不当才会导致细胞被染色过深，不是盖盖玻片的问题！">
             <span class="opt-letter">A</span> 细胞被染色过深
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, true, 102, 'B')">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, true, 102, 'B')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：产生气泡，影响观察" aria-pressed="false">
             <span class="opt-letter">B</span> 产生气泡，影响观察
           </div>
-          <div class="quiz-option" onclick="checkAnswer(this, false, 102, 'C')" data-feedback="❌ 细胞重叠是因为没有展平材料，不是盖盖玻片的问题！">
+          <div class="quiz-option" role="button" tabindex="0" onclick="checkAnswer(this, false, 102, 'C')" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：细胞重叠，看不清" aria-pressed="false" data-feedback="❌ 细胞重叠是因为没有展平材料，不是盖盖玻片的问题！">
             <span class="opt-letter">C</span> 细胞重叠，看不清
           </div>
         </div>
@@ -552,6 +574,9 @@
       <h2 class="section-title"><span class="num">📊</span> 必考分析与考点总结</h2>
       
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <h3 style="color: #2e7d32; margin-bottom: 16px;">📈 中考考频统计</h3>
         
         <div class="exam-card" style="background: #e8f5e9; border-left: 4px solid #2e7d32;">
@@ -600,7 +625,9 @@
             <li><strong>所有植物细胞都有叶绿体？</strong>：错误！只有<strong>绿色部分</strong>的细胞才有叶绿体（如叶肉细胞），根尖细胞没有叶绿体</li>
           </ul>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -863,6 +890,8 @@
     </div>
   </div>
 
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>

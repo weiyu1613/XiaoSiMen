@@ -74,10 +74,26 @@
   </style>
 </head>
 <body>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:80px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--primary,#8B4513);color:white;border:none;cursor:pointer;font-size:18px;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:88;opacity:0;pointer-events:none;transition:opacity 0.3s;" aria-label="返回顶部">↑</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){btn.style.opacity='1';btn.style.pointerEvents='auto';}
+    else{btn.style.opacity='0';btn.style.pointerEvents='none';}
+  });
+})();
+</script>
+
   <div class="brand-bar"><div class="brand-logo"><i class="fa-solid fa-house-chimney"></i> TeachAny · 初中道德与法治</div><div class="brand-tag">v7.14</div></div>
   <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
   <div class="progress-label" id="pl">第 11/31 节 · 35.5%</div>
-  <nav class="nav-bar"><div class="nav-inner">
+  <nav class="nav-bar">
+<div class="breadcrumb" style="font-size:12px;color:#888;padding:4px 16px;max-width:1100px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--primary,#8B4513);text-decoration:none;">首页</a> <span style="margin:0 4px;">›</span> <span style="color:#666;">当前课件</span>
+</div>
+<div class="nav-inner">
     <a href="../../index.html" class="nav-btn">首页</a>
     <a href="../d3sz.html" class="nav-btn">单元导航</a>
     <div class="nav-center">第三单元：师长情谊</div>
@@ -126,6 +142,12 @@
 
     <!-- 学习目标 -->
     <section><h2 class="section-title">🎯 学习目标</h2>
+<div class="competency-tags" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px;">
+  <span class="comp-tag" style="background:var(--primary,#8B4513);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">政治认同</span>
+  <span class="comp-tag" style="background:var(--accent,#D4A574);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">道德修养</span>
+  <span class="comp-tag" style="background:var(--success,#27ae60);color:white;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;">法治意识</span>
+</div>
+
       <div class="card"><ul style="list-style:none;padding-left:0;line-height:2;">
         <li>✅ 理解家的内涵 <span class="tag tag-theory">关联：家庭社会学</span></li>
         <li>✅ 掌握家的特点 <span class="tag tag-theory">关联：家庭系统理论</span></li>
@@ -139,12 +161,12 @@
       <p style="color:#f39c12;margin-bottom:16px;">难度递进：<span class="difficulty-badge difficulty-基础">基础</span> → <span class="difficulty-badge difficulty-提高">提高</span> → <span class="difficulty-badge difficulty-中考">中考</span></p>
 
       <!-- 前测1 基础 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】家的最主要特点是？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 有房子<strong>不等于</strong>有家，家更重要的是情感。<br><span class='tag tag-mistake'>归因：只看到物质层面，忽略精神层面</span>"><span class="opt-letter">A</span> 有房子</div>
-          <div class="quiz-option" onclick="chk(this,true,1)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：家是身心寄居之所、亲情港湾</span>"><span class="opt-letter">B</span> 有亲人、有亲情</div>
-          <div class="quiz-option" onclick="chk(this,false,1)" data-fb="❌ 有钱<strong>买不来</strong>亲情和温暖。<br><span class='tag tag-mistake'>归因：物质主义误区，忽视情感价值</span>"><span class="opt-letter">C</span> 有钱</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：有房子" aria-pressed="false" data-fb="❌ 有房子<strong>不等于</strong>有家，家更重要的是情感。<br><span class='tag tag-mistake'>归因：只看到物质层面，忽略精神层面</span>"><span class="opt-letter">A</span> 有房子</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：有亲人、有亲情" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：家是身心寄居之所、亲情港湾</span>"><span class="opt-letter">B</span> 有亲人、有亲情</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,1)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：有钱" aria-pressed="false" data-fb="❌ 有钱<strong>买不来</strong>亲情和温暖。<br><span class='tag tag-mistake'>归因：物质主义误区，忽视情感价值</span>"><span class="opt-letter">C</span> 有钱</div>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="answer-explanation" id="exp1"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -156,12 +178,12 @@
       </div>
 
       <!-- 前测2 提高 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】家庭关系确立的方式不包括？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 婚姻是家庭关系确立的方式之一！<br><span class='tag tag-mistake'>归因：未掌握家庭关系确立的四种方式</span>"><span class="opt-letter">A</span> 婚姻</div>
-          <div class="quiz-option" onclick="chk(this,false,2)" data-fb="❌ 血缘是家庭关系确立的方式之一！<br><span class='tag tag-mistake'>归因：未掌握家庭关系确立的四种方式</span>"><span class="opt-letter">B</span> 血缘</div>
-          <div class="quiz-option" onclick="chk(this,true,2)" data-fb="✅ 正确！租房不是家庭关系确立的方式。<br><span class='tag tag-kp'>知识点：婚姻、血缘、收养、重组</span>"><span class="opt-letter">C</span> 租房</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：婚姻" aria-pressed="false" data-fb="❌ 婚姻是家庭关系确立的方式之一！<br><span class='tag tag-mistake'>归因：未掌握家庭关系确立的四种方式</span>"><span class="opt-letter">A</span> 婚姻</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：血缘" aria-pressed="false" data-fb="❌ 血缘是家庭关系确立的方式之一！<br><span class='tag tag-mistake'>归因：未掌握家庭关系确立的四种方式</span>"><span class="opt-letter">B</span> 血缘</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,2)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：租房" aria-pressed="false" data-fb="✅ 正确！租房不是家庭关系确立的方式。<br><span class='tag tag-kp'>知识点：婚姻、血缘、收养、重组</span>"><span class="opt-letter">C</span> 租房</div>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="answer-explanation" id="exp2"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -173,12 +195,12 @@
       </div>
 
       <!-- 前测3 中考 -->
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】关于家的意义，以下理解正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 家<strong>不是</strong>只有物质功能，更重要的是情感功能。<br><span class='tag tag-mistake'>归因：片面理解家的功能</span>"><span class="opt-letter">A</span> 家只提供物质保障</div>
-          <div class="quiz-option" onclick="chk(this,true,3)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：家是身心寄居之所、心灵的港湾</span>"><span class="opt-letter">B</span> 家是身心的寄居之所</div>
-          <div class="quiz-option" onclick="chk(this,false,3)" data-fb="❌ 没有亲情<strong>也可以</strong>有家，但这样的家不完整。<br><span class='tag tag-mistake'>归因：低估亲情的必要性</span>"><span class="opt-letter">C</span> 没有亲情也可以有家</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：家只提供物质保障" aria-pressed="false" data-fb="❌ 家<strong>不是</strong>只有物质功能，更重要的是情感功能。<br><span class='tag tag-mistake'>归因：片面理解家的功能</span>"><span class="opt-letter">A</span> 家只提供物质保障</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：家是身心的寄居之所" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：家是身心寄居之所、心灵的港湾</span>"><span class="opt-letter">B</span> 家是身心的寄居之所</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,3)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：没有亲情也可以有家" aria-pressed="false" data-fb="❌ 没有亲情<strong>也可以</strong>有家，但这样的家不完整。<br><span class='tag tag-mistake'>归因：低估亲情的必要性</span>"><span class="opt-letter">C</span> 没有亲情也可以有家</div>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="answer-explanation" id="exp3"><div class="explain-title">📖 详细解析 + 归因分析 + 知识关联</div>
@@ -223,6 +245,9 @@
 
     <section><h2 class="section-title">📚 中国家庭文化</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
         <div class="concept-box"><div class="label">✨ 孝亲敬长是传统美德 <span class="tag tag-theory">关联：传统文化理论</span></div>
           <p>① <strong>孝亲敬长</strong>：孝顺父母、尊敬长辈是中华民族的传统美德 <span class="tag tag-theory">儒家伦理</span></p>
           <p>② <strong>法律义务</strong>：孝亲敬长不仅是道德要求，也是法律规定 <span class="tag tag-theory">家庭法理</span></p>
@@ -232,7 +257,9 @@
           <p><strong>记忆口诀：</strong>"<strong>孝亲敬长，道德法律</strong>"</p>
           <p style="margin-top:6px;"><strong>考试陷阱：</strong>"孝亲敬长只是道德要求"→ 错误！<strong>也是法律义务</strong>！</p>
         </div>
-      </div>
+      
+</details>
+</div>
     </section>
 
     <section><h2 class="section-title">👨‍👩‍👧‍👦 家庭关系的确立</h2>
@@ -254,12 +281,12 @@
     <!-- ===== 后测 ===== -->
     <section><h2 class="section-title">✅ 后测：检验学习成果</h2>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>1. 【⭐ 基础】家庭关系确立的方式有几种？<span class="difficulty-badge difficulty-基础">基础</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 两种不全面！<br><span class='tag tag-mistake'>归因：未掌握全部四种方式</span>"><span class="opt-letter">A</span> 两种</div>
-          <div class="quiz-option" onclick="chk(this,true,10)" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：婚姻、血缘、收养、重组</span>"><span class="opt-letter">B</span> 四种</div>
-          <div class="quiz-option" onclick="chk(this,false,10)" data-fb="❌ 六种太多了！<br><span class='tag tag-mistake'>归因：记忆错误</span>"><span class="opt-letter">C</span> 六种</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：两种" aria-pressed="false" data-fb="❌ 两种不全面！<br><span class='tag tag-mistake'>归因：未掌握全部四种方式</span>"><span class="opt-letter">A</span> 两种</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：四种" aria-pressed="false" data-fb="✅ 正确！<br><span class='tag tag-kp'>知识点：婚姻、血缘、收养、重组</span>"><span class="opt-letter">B</span> 四种</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,10)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：六种" aria-pressed="false" data-fb="❌ 六种太多了！<br><span class='tag tag-mistake'>归因：记忆错误</span>"><span class="opt-letter">C</span> 六种</div>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="answer-explanation" id="exp10"><div class="explain-title">📖 解析 + 归因</div>
@@ -267,12 +294,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>2. 【⭐⭐ 提高】关于家的意义，错误的是？<span class="difficulty-badge difficulty-提高">提高</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 家是身心寄居之所，这是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确和错误表述</span>"><span class="opt-letter">A</span> 家是身心寄居之所</div>
-          <div class="quiz-option" onclick="chk(this,false,11)" data-fb="❌ 家是心灵港湾，这是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确和错误表述</span>"><span class="opt-letter">B</span> 家是心灵港湾</div>
-          <div class="quiz-option" onclick="chk(this,true,11)" data-fb="✅ 正确！家不只是一所房子。<br><span class='tag tag-kp'>知识点：家更重要的是情感和亲情</span>"><span class="opt-letter">C</span> 家只是一所房子</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：家是身心寄居之所" aria-pressed="false" data-fb="❌ 家是身心寄居之所，这是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确和错误表述</span>"><span class="opt-letter">A</span> 家是身心寄居之所</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：家是心灵港湾" aria-pressed="false" data-fb="❌ 家是心灵港湾，这是正确的！<br><span class='tag tag-mistake'>归因：混淆了正确和错误表述</span>"><span class="opt-letter">B</span> 家是心灵港湾</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,11)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：家只是一所房子" aria-pressed="false" data-fb="✅ 正确！家不只是一所房子。<br><span class='tag tag-kp'>知识点：家更重要的是情感和亲情</span>"><span class="opt-letter">C</span> 家只是一所房子</div>
         </div>
         <div class="feedback" id="fb11"></div>
         <div class="answer-explanation" id="exp11"><div class="explain-title">📖 解析 + 归因</div>
@@ -280,12 +307,12 @@
         </div>
       </div>
 
-      <div class="quiz-box">
+      <div class="quiz-box" data-difficulty="intermediate">
         <h3>3. 【⭐⭐⭐ 中考】以下关于家的说法，正确的是？<span class="difficulty-badge difficulty-中考">中考</span></h3>
-        <div class="quiz-options">
-          <div class="quiz-option" onclick="chk(this,true,12)" data-fb="✅ 正确！家是身心寄居之所和心灵港湾。<br><span class='tag tag-kp'>知识点：家的意义</span>"><span class="opt-letter">A</span> 家是身心寄居之所和心灵港湾</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 家<strong>不是</strong>只有物质功能。<br><span class='tag tag-mistake'>归因：片面理解家的功能</span>"><span class="opt-letter">B</span> 家只提供物质保障</div>
-          <div class="quiz-option" onclick="chk(this,false,12)" data-fb="❌ 没有亲情<strong>也可以</strong>有家，但这样的家不完整。<br><span class='tag tag-mistake'>归因：低估亲情的必要性</span>"><span class="opt-letter">C</span> 没有亲情也可以有家</div>
+        <div class="quiz-options" role="radiogroup" aria-label="选择题">
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,true,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项A：家是身心寄居之所和心灵港湾" aria-pressed="false" data-fb="✅ 正确！家是身心寄居之所和心灵港湾。<br><span class='tag tag-kp'>知识点：家的意义</span>"><span class="opt-letter">A</span> 家是身心寄居之所和心灵港湾</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项B：家只提供物质保障" aria-pressed="false" data-fb="❌ 家<strong>不是</strong>只有物质功能。<br><span class='tag tag-mistake'>归因：片面理解家的功能</span>"><span class="opt-letter">B</span> 家只提供物质保障</div>
+          <div class="quiz-option" role="button" tabindex="0" onclick="chk(this,false,12)" onkeydown="if(event.key==='Enter'||event.key===' '){this.click();event.preventDefault();}" aria-label="选项C：没有亲情也可以有家" aria-pressed="false" data-fb="❌ 没有亲情<strong>也可以</strong>有家，但这样的家不完整。<br><span class='tag tag-mistake'>归因：低估亲情的必要性</span>"><span class="opt-letter">C</span> 没有亲情也可以有家</div>
         </div>
         <div class="feedback" id="fb12"></div>
         <div class="answer-explanation" id="exp12"><div class="explain-title">📖 解析 + 归因 + 中考提示</div>
@@ -298,6 +325,9 @@
     <!-- ===== 必考分析与考点总结 ===== -->
     <section><h2 class="section-title">🎯 必考分析与考点总结</h2>
       <div class="card">
+<details style="margin:8px 0;">
+<summary style="cursor:pointer;font-weight:600;color:var(--primary,#8B4513);padding:8px 0;">展开详细内容</summary>
+
 
         <div class="exam-card" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border:1px solid #fca5a5;">
           <div class="exam-card-header">
@@ -342,7 +372,9 @@
           </ul>
         </div>
 
-      </div>
+      
+</details>
+</div>
     </section>
 
   </main>
@@ -372,6 +404,8 @@
       document.getElementById('pl').textContent='第 '+INFO.cur+'/'+INFO.total+' 节 · '+Math.round(INFO.cur/INFO.total*100)+'%';
     });
   </script>
-  <script src="../../shared/mascot.js?v=8.0"></script>
+  <script src="../../shared/adaptive-engine.js?v=8.0"></script>
+<script src="../../shared/mascot.js?v=8.0"></script>
+<script src="../../shared/badges.js?v=8.0"></script>
 </body>
 </html>
