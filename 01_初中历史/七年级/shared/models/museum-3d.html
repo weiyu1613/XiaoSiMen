@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>3D文物展厅 | 初中历史</title>
+<style>
+  /* ===== 历史学科棕色主题 ===== */
+  :root{
+    --primary:#8b4513;
+    --primary-light:#a0522d;
+    --primary-dark:#5c2e00;
+    --accent:#d4a574;
+    --bg:#fdf5e6;
+    --bg-elevated:#fffaf0;
+    --text:#2c1810;
+    --text-light:#6b5a44;
+    --border:#d2b48c;
+    --shadow:0 4px 20px rgba(0,0,0,.18);
+    --shadow-lg:0 12px 40px rgba(0,0,0,.28);
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;overflow:hidden;}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+    background:#1f1408;color:var(--text);line-height:1.6;
+    -webkit-tap-highlight-color:transparent;
+  }
+  #app{position:fixed;inset:0;}
+  canvas{display:block;touch-action:none;cursor:grab;}
+  canvas:active{cursor:grabbing;}
+
+  /* ===== 顶部标题栏 ===== */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:30;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+    background:linear-gradient(135deg,rgba(92,46,0,.92),rgba(139,69,19,.92));
+    backdrop-filter:blur(8px);
+    box-shadow:0 4px 18px rgba(0,0,0,.3);
+    border-bottom:1px solid rgba(212,165,116,.35);
+  }
+  .topbar .left{display:flex;align-items:center;gap:14px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:8px 16px;border-radius:30px;
+    background:rgba(255,250,240,.14);color:#fffaf0;
+    text-decoration:none;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,250,240,.25);
+    transition:.25s;white-space:nowrap;
+  }
+  .back-btn:hover{background:rgba(255,250,240,.28);transform:translateX(-2px);}
+  .title-wrap h1{
+    font-size:22px;color:#fffaf0;font-weight:700;letter-spacing:2px;
+    text-shadow:0 2px 6px rgba(0,0,0,.4);
+  }
+  .title-wrap .sub{font-size:12px;color:var(--accent);letter-spacing:3px;margin-top:2px;}
+  .hint{
+    font-size:12px;color:rgba(255,250,240,.75);
+    display:flex;gap:14px;align-items:center;
+  }
+  .hint span{display:inline-flex;align-items:center;gap:4px;}
+  .hint .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);}
+
+  /* ===== 加载层 ===== */
+  .loader{
+    position:fixed;inset:0;z-index:100;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 50% 40%,#3a2410,#1a0f04);
+    color:var(--accent);gap:18px;transition:opacity .6s;
+  }
+  .loader.hide{opacity:0;pointer-events:none;}
+  .loader .ring{
+    width:54px;height:54px;border-radius:50%;
+    border:4px solid rgba(212,165,116,.2);border-top-color:var(--accent);
+    animation:spin 1s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loader p{font-size:14px;letter-spacing:4px;}
+
+  /* ===== 右侧信息面板 ===== */
+  .panel{
+    position:fixed;top:84px;right:18px;bottom:130px;z-index:25;
+    width:340px;max-width:calc(100vw - 36px);
+    background:var(--bg-elevated);
+    border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);
+    transform:translateX(120%);transition:transform .45s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .panel.open{transform:translateX(0);}
+  .panel-head{
+    padding:18px 20px 14px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+    color:#fffaf0;position:relative;
+  }
+  .panel-head .idx{font-size:12px;letter-spacing:3px;color:var(--accent);opacity:.9;}
+  .panel-head h2{font-size:26px;margin:4px 0 8px;letter-spacing:2px;}
+  .panel-head .badge{
+    display:inline-block;padding:3px 12px;border-radius:20px;
+    background:rgba(255,250,240,.18);font-size:13px;
+    border:1px solid rgba(255,250,240,.3);
+  }
+  .panel-close{
+    position:absolute;top:14px;right:14px;
+    width:30px;height:30px;border-radius:50%;
+    background:rgba(0,0,0,.2);color:#fff;border:none;cursor:pointer;
+    font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;
+    transition:.2s;
+  }
+  .panel-close:hover{background:rgba(0,0,0,.4);transform:rotate(90deg);}
+  .panel-body{padding:18px 20px;overflow-y:auto;flex:1;}
+  .info-row{margin-bottom:16px;}
+  .info-row .label{
+    font-size:12px;color:var(--primary);font-weight:700;
+    letter-spacing:2px;margin-bottom:5px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .info-row .label::before{
+    content:'';width:3px;height:12px;background:var(--primary);border-radius:2px;
+  }
+  .info-row .val{font-size:15px;color:var(--text);}
+  .info-row.intro .val{font-size:14px;color:var(--text-light);line-height:1.8;text-indent:2em;}
+  .panel-body::-webkit-scrollbar{width:5px;}
+  .panel-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+  /* ===== 导航控制 ===== */
+  .nav-bar{
+    position:fixed;left:50%;transform:translateX(-50%);bottom:96px;z-index:25;
+    display:flex;gap:10px;align-items:center;
+  }
+  .nav-btn{
+    padding:9px 20px;border-radius:30px;cursor:pointer;
+    background:rgba(255,250,240,.92);color:var(--primary);
+    border:1px solid var(--border);font-size:14px;font-weight:600;
+    box-shadow:var(--shadow);transition:.22s;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .nav-btn:hover{background:var(--primary);color:#fffaf0;transform:translateY(-2px);}
+  .nav-btn.reset{background:var(--primary);color:#fffaf0;}
+  .nav-btn.reset:hover{background:var(--primary-dark);}
+
+  /* ===== 底部缩略图导航 ===== */
+  .thumbs{
+    position:fixed;left:0;right:0;bottom:0;z-index:25;
+    display:flex;justify-content:center;gap:12px;
+    padding:14px 16px 18px;
+    background:linear-gradient(to top,rgba(31,20,8,.92),rgba(31,20,8,.5) 70%,transparent);
+  }
+  .thumb{
+    width:96px;cursor:pointer;border-radius:12px;overflow:hidden;
+    background:rgba(255,250,240,.08);border:2px solid transparent;
+    transition:.25s;backdrop-filter:blur(4px);
+    display:flex;flex-direction:column;align-items:center;
+    padding:8px 6px 7px;
+  }
+  .thumb:hover{background:rgba(255,250,240,.18);transform:translateY(-4px);}
+  .thumb.active{
+    border-color:var(--accent);background:rgba(212,165,116,.22);
+    transform:translateY(-4px);box-shadow:0 8px 22px rgba(0,0,0,.4);
+  }
+  .thumb .swatch{
+    width:42px;height:42px;border-radius:50%;
+    box-shadow:inset 0 -6px 10px rgba(0,0,0,.3),0 2px 6px rgba(0,0,0,.4);
+    margin-bottom:5px;
+  }
+  .thumb .name{font-size:12px;color:#fffaf0;letter-spacing:1px;}
+  .thumb .dyn{font-size:10px;color:var(--accent);margin-top:1px;}
+
+  /* ===== 响应式 ===== */
+  @media (max-width:720px){
+    .topbar{padding:10px 12px;}
+    .title-wrap h1{font-size:17px;letter-spacing:1px;}
+    .title-wrap .sub{display:none;}
+    .hint{display:none;}
+    .panel{
+      top:auto;left:8px;right:8px;bottom:150px;width:auto;
+      max-height:46vh;transform:translateY(140%);
+    }
+    .panel.open{transform:translateY(0);}
+    .nav-bar{bottom:108px;}
+    .nav-btn{padding:8px 14px;font-size:13px;}
+    .thumb{width:74px;}
+    .thumb .swatch{width:34px;height:34px;}
+    .thumb .name{font-size:11px;}
+  }
+  .err-tip{
+    position:fixed;inset:0;z-index:200;display:none;
+    align-items:center;justify-content:center;flex-direction:column;
+    background:#1a0f04;color:var(--accent);padding:30px;text-align:center;gap:14px;
+  }
+  .err-tip p{font-size:15px;line-height:1.8;max-width:420px;}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- 顶部标题栏 -->
+<header class="topbar">
+  <div class="left">
+    <a href="../../index.html" class="back-btn" title="返回首页">
+      <span>&#8592;</span> 返回
+    </a>
+    <div class="title-wrap">
+      <h1>3D文物展厅</h1>
+      <div class="sub">VIRTUAL MUSEUM</div>
+    </div>
+  </div>
+  <div class="hint">
+    <span><i class="dot"></i>拖拽旋转</span>
+    <span><i class="dot"></i>滚轮缩放</span>
+    <span><i class="dot"></i>点击文物</span>
+  </div>
+</header>
+
+<!-- 加载层 -->
+<div class="loader" id="loader">
+  <div class="ring"></div>
+  <p>正在构建展厅…</p>
+</div>
+
+<!-- 右侧信息面板 -->
+<aside class="panel" id="panel">
+  <div class="panel-head">
+    <button class="panel-close" id="panelClose" title="恢复展厅">&times;</button>
+    <div class="idx" id="pIdx">No.01</div>
+    <h2 id="pName">文物名称</h2>
+    <span class="badge" id="pDyn">朝代</span>
+  </div>
+  <div class="panel-body">
+    <div class="info-row">
+      <div class="label">出土地 / 窑口</div>
+      <div class="val" id="pPlace">—</div>
+    </div>
+    <div class="info-row">
+      <div class="label">文物看点</div>
+      <div class="val" id="pPoint">—</div>
+    </div>
+    <div class="info-row intro">
+      <div class="label">文物简介</div>
+      <div class="val" id="pIntro">—</div>
+    </div>
+  </div>
+</aside>
+
+<!-- 导航控制 -->
+<div class="nav-bar" id="navBar">
+  <button class="nav-btn" id="prevBtn">&#8249; 上一件</button>
+  <button class="nav-btn reset" id="resetBtn" style="display:none;">恢复展厅</button>
+  <button class="nav-btn" id="nextBtn">下一件 &#8250;</button>
+</div>
+
+<!-- 底部缩略图 -->
+<nav class="thumbs" id="thumbs"></nav>
+
+<!-- 错误提示 -->
+<div class="err-tip" id="errTip">
+  <p>抱歉，您的浏览器不支持 WebGL，无法显示 3D 展厅。<br>请使用支持 WebGL 的现代浏览器（如 Chrome、Edge、Firefox）打开本页面。</p>
+</div>
+
+<script type="module">
+import * as THREE from '../lib/three/three.module.js';
+
+/* ============================================================
+   文物数据
+   ============================================================ */
+const ARTIFACTS = [
+  {
+    name:'青铜鼎', dynasty:'商代', place:'河南安阳殷墟',
+    point:'司母戊鼎重832.84kg',
+    intro:'商代青铜礼器，河南安阳殷墟出土。其中司母戊鼎重达832.84千克，是中国已发现的最大青铜器，反映了商代高超的青铜铸造工艺与森严的礼制。',
+    color:'#9a7b4a'
+  },
+  {
+    name:'兵马俑', dynasty:'秦代', place:'陕西临潼秦始皇陵',
+    point:'世界第八大奇迹',
+    intro:'秦代陶制陪葬俑，陕西临潼秦始皇陵出土。秦始皇陵兵马俑规模宏大、造型写实，被誉为"世界第八大奇迹"，展现了秦朝强大的军事力量与雕塑艺术。',
+    color:'#b86b3c'
+  },
+  {
+    name:'唐三彩马', dynasty:'唐代', place:'河南洛阳',
+    point:'黄、绿、白三色铅釉陶',
+    intro:'唐代低温铅釉陶器，河南洛阳出土。唐三彩以黄、绿、白三色为主，色彩绚丽，是唐代陶瓷工艺的杰出代表，生动反映了大唐盛世的文化风貌。',
+    color:'#d9b96e'
+  },
+  {
+    name:'青花瓷瓶', dynasty:'元代', place:'景德镇窑',
+    point:'钴料绘瓷胎',
+    intro:'元代景德镇窑烧制。青花瓷是中国陶瓷史上的重要品种，用钴料在瓷胎上绘画后施釉高温烧成，白地蓝花，清新雅致，影响深远，远销海外。',
+    color:'#2a5db0'
+  }
+];
+
+/* ============================================================
+   全局变量
+   ============================================================ */
+let scene, camera, renderer;
+let raycaster, pointer;
+const artifactGroups = [];   // 外层 group（位置+朝向）
+const labelSprites = [];
+let envGroup;
+
+// 视角控制
+const orbit = { theta: 0.5, phi: 1.18, radius: 13 };
+const orbitTarget = new THREE.Vector3(0, 1.4, 0);
+let mode = 'free';           // 'free' | 'focus'
+let focusedIndex = null;
+
+const desiredPos = new THREE.Vector3();
+const desiredLook = new THREE.Vector3();
+const currentLook = new THREE.Vector3(0, 1.4, 0);
+let lookInited = false;
+
+// 拖拽状态
+let pointerDown = false, dragged = false;
+let startX = 0, startY = 0, lastX = 0, lastY = 0;
+
+const ROOM = 9;               // 房间半边长
+const RING = 3.6;             // 展台圆半径
+const PED_H = 1.3;            // 展台高度
+const FOCUS_DIST = 4.3;       // 聚焦时相机距离
+
+/* ============================================================
+   初始化
+   ============================================================ */
+function init(){
+  const app = document.getElementById('app');
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1a0f06);
+  scene.fog = new THREE.Fog(0x241608, 16, 34);
+
+  camera = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 0.1, 100);
+
+  renderer = new THREE.WebGLRenderer({antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  app.appendChild(renderer.domElement);
+
+  raycaster = new THREE.Raycaster();
+  pointer = new THREE.Vector2();
+
+  buildLights();
+  buildEnvironment();
+  buildExhibits();
+
+  bindEvents();
+  updateThumbs();
+
+  computeFreeView();
+  camera.position.copy(desiredPos);
+  currentLook.copy(desiredLook);
+  lookInited = true;
+
+  // 隐藏加载层
+  setTimeout(()=>document.getElementById('loader').classList.add('hide'), 350);
+
+  animate();
+}
+
+/* ============================================================
+   光照
+   ============================================================ */
+function buildLights(){
+  scene.add(new THREE.AmbientLight(0x6b5a44, 0.45));
+  const hemi = new THREE.HemisphereLight(0xfff3da, 0x2a1a0c, 0.5);
+  hemi.position.set(0, 10, 0);
+  scene.add(hemi);
+
+  // 顶部柔和补光
+  const fill = new THREE.DirectionalLight(0xfff0d8, 0.35);
+  fill.position.set(6, 12, 8);
+  scene.add(fill);
+}
+
+/* ============================================================
+   展厅环境：地板、墙壁、天花板
+   ============================================================ */
+function buildEnvironment(){
+  envGroup = new THREE.Group();
+  scene.add(envGroup);
+
+  // 地板纹理（石质方砖）
+  const floorTex = makeFloorTexture();
+  floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping;
+  floorTex.repeat.set(5, 5);
+
+  const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(ROOM*2, ROOM*2),
+    new THREE.MeshStandardMaterial({map:floorTex, roughness:0.85, metalness:0.05})
+  );
+  floor.rotation.x = -Math.PI/2;
+  floor.receiveShadow = true;
+  envGroup.add(floor);
+
+  // 天花板
+  const ceil = new THREE.Mesh(
+    new THREE.PlaneGeometry(ROOM*2, ROOM*2),
+    new THREE.MeshStandardMaterial({color:0x2a1c0e, roughness:0.95})
+  );
+  ceil.rotation.x = Math.PI/2;
+  ceil.position.y = 6;
+  envGroup.add(ceil);
+
+  // 墙壁
+  const wallMat = new THREE.MeshStandardMaterial({color:0xcbb489, roughness:0.9});
+  const wallGeo = new THREE.PlaneGeometry(ROOM*2, 6);
+  // 后墙
+  const wBack = new THREE.Mesh(wallGeo, wallMat);
+  wBack.position.set(0, 3, -ROOM); wBack.receiveShadow = true; envGroup.add(wBack);
+  // 前墙
+  const wFront = new THREE.Mesh(wallGeo, wallMat);
+  wFront.position.set(0, 3, ROOM); wFront.rotation.y = Math.PI; wFront.receiveShadow = true; envGroup.add(wFront);
+  // 左墙
+  const wLeft = new THREE.Mesh(wallGeo, wallMat);
+  wLeft.position.set(-ROOM, 3, 0); wLeft.rotation.y = Math.PI/2; wLeft.receiveShadow = true; envGroup.add(wLeft);
+  // 右墙
+  const wRight = new THREE.Mesh(wallGeo, wallMat);
+  wRight.position.set(ROOM, 3, 0); wRight.rotation.y = -Math.PI/2; wRight.receiveShadow = true; envGroup.add(wRight);
+
+  // 墙裙（深色踢脚线）
+  const skirtMat = new THREE.MeshStandardMaterial({color:0x4a3220, roughness:0.8});
+  const skirtGeo = new THREE.BoxGeometry(ROOM*2, 0.5, 0.15);
+  const skirts = [
+    [0,0.25,-ROOM+0.05,0],
+    [0,0.25,ROOM-0.05,Math.PI],
+    [-ROOM+0.05,0.25,0,Math.PI/2],
+    [ROOM-0.05,0.25,0,-Math.PI/2]
+  ];
+  skirts.forEach(s=>{
+    const m = new THREE.Mesh(skirtGeo, skirtMat);
+    m.position.set(s[0],s[1],s[2]); m.rotation.y = s[3];
+    envGroup.add(m);
+  });
+}
+
+function makeFloorTexture(){
+  const c = document.createElement('canvas');
+  c.width = c.height = 256;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#cdb592';
+  ctx.fillRect(0,0,256,256);
+  // 方砖分隔
+  ctx.strokeStyle = '#7a5f3e';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(0,0,256,256);
+  ctx.beginPath();
+  ctx.moveTo(128,0);ctx.lineTo(128,256);
+  ctx.moveTo(0,128);ctx.lineTo(256,128);
+  ctx.stroke();
+  // 斑驳噪点
+  for(let i=0;i<600;i++){
+    ctx.fillStyle = `rgba(90,60,30,${Math.random()*0.08})`;
+    ctx.fillRect(Math.random()*256, Math.random()*256, 2, 2);
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+/* ============================================================
+   展台 + 文物
+   ============================================================ */
+function buildExhibits(){
+  const angles = [0, Math.PI/2, Math.PI, 3*Math.PI/2];
+
+  angles.forEach((a, i)=>{
+    const px = Math.sin(a) * RING;
+    const pz = Math.cos(a) * RING;
+
+    // 展台
+    const ped = new THREE.Group();
+    ped.position.set(px, 0, pz);
+    scene.add(ped);
+
+    const baseMat = new THREE.MeshStandardMaterial({color:0x3a2a18, roughness:0.75, metalness:0.1});
+    const col = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.55, 0.66, PED_H, 28),
+      baseMat
+    );
+    col.position.y = PED_H/2;
+    col.castShadow = true; col.receiveShadow = true;
+    ped.add(col);
+
+    // 台面装饰环
+    const top = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.6, 0.6, 0.1, 28),
+      new THREE.MeshStandardMaterial({color:0x5c4326, roughness:0.6, metalness:0.2})
+    );
+    top.position.y = PED_H + 0.05;
+    top.castShadow = true; top.receiveShadow = true;
+    ped.add(top);
+
+    // 地面投影圈
+    const ring = new THREE.Mesh(
+      new THREE.RingGeometry(0.7, 0.95, 40),
+      new THREE.MeshBasicMaterial({color:0x8b4513, transparent:true, opacity:0.18, side:THREE.DoubleSide})
+    );
+    ring.rotation.x = -Math.PI/2;
+    ring.position.y = 0.01;
+    ped.add(ring);
+
+    // 文物外层 group（朝向 + 缩放）
+    const outer = new THREE.Group();
+    outer.position.set(px, PED_H + 0.1, pz);
+    outer.rotation.y = a;          // 局部 +Z 朝外
+    outer.userData.isArtifact = true;
+    outer.userData.index = i;
+    outer.userData.basePos = new THREE.Vector3(px, PED_H + 0.7, pz);
+    outer.userData.centerY = PED_H + 0.7;
+    outer.userData.rotating = true;
+    outer.userData.targetScale = 1.0;
+    scene.add(outer);
+
+    // 内层旋转 group
+    const inner = new THREE.Group();
+    outer.add(inner);
+    outer.userData.inner = inner;
+
+    // 构建对应文物
+    let art;
+    if(i===0) art = buildBronzeDing();
+    else if(i===1) art = buildWarrior();
+    else if(i===2) art = buildSancaiHorse();
+    else art = buildPorcelainVase();
+    inner.add(art);
+
+    artifactGroups.push(outer);
+
+    // 聚光灯
+    const spot = new THREE.SpotLight(0xfff2d0, 38, 9, Math.PI/7, 0.45, 1.6);
+    spot.position.set(px, 5.2, pz);
+    spot.target.position.set(px, PED_H, pz);
+    spot.castShadow = true;
+    spot.shadow.mapSize.set(1024,1024);
+    spot.shadow.camera.near = 0.5;
+    spot.shadow.camera.far = 10;
+    spot.shadow.bias = -0.0005;
+    scene.add(spot);
+    scene.add(spot.target);
+
+    // 灯罩（装饰）
+    const lamp = new THREE.Mesh(
+      new THREE.ConeGeometry(0.28, 0.35, 16, 1, true),
+      new THREE.MeshStandardMaterial({color:0x2a1a0c, roughness:0.7, side:THREE.DoubleSide})
+    );
+    lamp.position.set(px, 5.45, pz);
+    scene.add(lamp);
+
+    // 名称标签
+    const label = makeLabel(ARTIFACTS[i].name);
+    label.position.set(px, PED_H + 1.95, pz);
+    scene.add(label);
+    labelSprites.push(label);
+  });
+}
+
+function makeLabel(text){
+  const c = document.createElement('canvas');
+  c.width = 256; c.height = 64;
+  const ctx = c.getContext('2d');
+  // 圆角背景
+  const r = 14;
+  ctx.fillStyle = 'rgba(92,46,0,0.88)';
+  ctx.beginPath();
+  ctx.moveTo(r,2);
+  ctx.arcTo(254,2,254,62,r);
+  ctx.arcTo(254,62,2,62,r);
+  ctx.arcTo(2,62,2,2,r);
+  ctx.arcTo(2,2,254,2,r);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(212,165,116,0.9)';
+  ctx.lineWidth = 2; ctx.stroke();
+  ctx.fillStyle = '#fffaf0';
+  ctx.font = 'bold 30px "Microsoft YaHei","PingFang SC",sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(text, 128, 34);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:false}));
+  sp.scale.set(2.1, 0.52, 1);
+  sp.renderOrder = 10;
+  return sp;
+}
+
+/* ---------- 文物1：青铜鼎（BoxGeometry 组合） ---------- */
+function buildBronzeDing(){
+  const g = new THREE.Group();
+  const mat = new THREE.MeshStandardMaterial({color:0x7d6a3a, roughness:0.45, metalness:0.7});
+  const matDark = new THREE.MeshStandardMaterial({color:0x5c5224, roughness:0.5, metalness:0.6});
+
+  // 三足（前 + 后左 + 后右）
+  const legGeo = new THREE.BoxGeometry(0.14, 0.55, 0.14);
+  const legs = [[0, 0.275, 0.24], [-0.22, 0.275, -0.16], [0.22, 0.275, -0.16]];
+  legs.forEach(p=>{
+    const leg = new THREE.Mesh(legGeo, mat);
+    leg.position.set(...p); leg.castShadow = true;
+    g.add(leg);
+  });
+
+  // 方形容器
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.58, 0.6), mat);
+  body.position.y = 0.55 + 0.29;
+  body.castShadow = true; body.receiveShadow = true;
+  g.add(body);
+
+  // 口沿（稍大薄边）
+  const rim = new THREE.Mesh(new THREE.BoxGeometry(0.78, 0.08, 0.66), matDark);
+  rim.position.y = 0.55 + 0.58 + 0.04;
+  rim.castShadow = true;
+  g.add(rim);
+
+  // 内膛（深色凹陷）
+  const inner = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.1, 0.48), matDark);
+  inner.position.y = 0.55 + 0.58 + 0.02;
+  g.add(inner);
+
+  // 双耳（前后口沿上）
+  const earGeo = new THREE.BoxGeometry(0.1, 0.3, 0.16);
+  [-1,1].forEach(s=>{
+    const ear = new THREE.Mesh(earGeo, mat);
+    ear.position.set(0, 0.55+0.58+0.2, s*0.36);
+    ear.castShadow = true;
+    g.add(ear);
+  });
+
+  // 纹饰带（浅色细环）
+  const band = new THREE.Mesh(
+    new THREE.BoxGeometry(0.74, 0.12, 0.62),
+    new THREE.MeshStandardMaterial({color:0x9a8a52, roughness:0.4, metalness:0.7})
+  );
+  band.position.y = 0.55 + 0.45;
+  g.add(band);
+
+  return g;
+}
+
+/* ---------- 文物2：兵马俑（CylinderGeometry + SphereGeometry） ---------- */
+function buildWarrior(){
+  const g = new THREE.Group();
+  const skin = new THREE.MeshStandardMaterial({color:0xb8703c, roughness:0.85, metalness:0.05});
+  const armor = new THREE.MeshStandardMaterial({color:0x8a4a22, roughness:0.75, metalness:0.1});
+  const dark = new THREE.MeshStandardMaterial({color:0x5c3320, roughness:0.8});
+
+  // 躯干（铠甲）
+  const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.34, 0.7, 18), armor);
+  torso.position.y = 0.7;
+  torso.castShadow = true; torso.receiveShadow = true;
+  g.add(torso);
+
+  // 肩部
+  const shoulder = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.3, 0.18, 18), armor);
+  shoulder.position.y = 1.08;
+  shoulder.castShadow = true;
+  g.add(shoulder);
+
+  // 双臂
+  const armGeo = new THREE.CylinderGeometry(0.1, 0.09, 0.62, 12);
+  [-1,1].forEach(s=>{
+    const arm = new THREE.Mesh(armGeo, skin);
+    arm.position.set(s*0.4, 0.92, 0);
+    arm.castShadow = true;
+    g.add(arm);
+    // 手
+    const hand = new THREE.Mesh(new THREE.SphereGeometry(0.1, 12, 10), skin);
+    hand.position.set(s*0.4, 0.6, 0.04);
+    g.add(hand);
+  });
+
+  // 颈部
+  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.13, 0.12, 12), skin);
+  neck.position.y = 1.22;
+  g.add(neck);
+
+  // 头部
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.2, 20, 18), skin);
+  head.position.y = 1.4;
+  head.scale.set(1, 1.1, 1);
+  head.castShadow = true;
+  g.add(head);
+
+  // 发髻/冠
+  const hat = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.2, 14), dark);
+  hat.position.y = 1.62;
+  hat.castShadow = true;
+  g.add(hat);
+
+  // 下摆/袍
+  const skirt = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.42, 0.5, 18), armor);
+  skirt.position.y = 0.28;
+  skirt.castShadow = true;
+  g.add(skirt);
+
+  return g;
+}
+
+/* ---------- 文物3：唐三彩马（多几何体组合） ---------- */
+function buildSancaiHorse(){
+  const g = new THREE.Group();
+  const yellow = new THREE.MeshStandardMaterial({color:0xd9b96e, roughness:0.55, metalness:0.05});
+  const green  = new THREE.MeshStandardMaterial({color:0x4a7c59, roughness:0.5, metalness:0.05});
+  const white  = new THREE.MeshStandardMaterial({color:0xeae3d2, roughness:0.5, metalness:0.05});
+  const brown  = new THREE.MeshStandardMaterial({color:0x6b4226, roughness:0.6});
+
+  // 马身
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.55, 1.15), yellow);
+  body.position.set(0, 0.95, 0);
+  body.castShadow = true; body.receiveShadow = true;
+  g.add(body);
+
+  // 鞍（绿色）
+  const saddle = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.12, 0.6), green);
+  saddle.position.set(0, 1.28, -0.05);
+  saddle.castShadow = true;
+  g.add(saddle);
+
+  // 颈（白）
+  const neck = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.5, 0.26), white);
+  neck.position.set(0, 1.2, 0.6);
+  neck.rotation.x = -0.5;
+  neck.castShadow = true;
+  g.add(neck);
+
+  // 头（黄）
+  const head = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.32, 0.5), yellow);
+  head.position.set(0, 1.42, 0.86);
+  head.rotation.x = -0.15;
+  head.castShadow = true;
+  g.add(head);
+
+  // 鬃毛（白）
+  const mane = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.4, 0.4), white);
+  mane.position.set(0, 1.35, 0.55);
+  mane.rotation.x = -0.5;
+  g.add(mane);
+
+  // 双耳
+  const earGeo = new THREE.ConeGeometry(0.05, 0.12, 8);
+  [-1,1].forEach(s=>{
+    const ear = new THREE.Mesh(earGeo, yellow);
+    ear.position.set(s*0.08, 1.6, 0.82);
+    g.add(ear);
+  });
+
+  // 四腿（绿）
+  const legGeo = new THREE.CylinderGeometry(0.08, 0.1, 0.78, 12);
+  [[0.22,0.42],[ -0.22,0.42],[0.22,-0.42],[-0.22,-0.42]].forEach(p=>{
+    const leg = new THREE.Mesh(legGeo, green);
+    leg.position.set(p[0], 0.4, p[1]);
+    leg.castShadow = true;
+    g.add(leg);
+    // 蹄
+    const hoof = new THREE.Mesh(new THREE.CylinderGeometry(0.11,0.11,0.08,12), brown);
+    hoof.position.set(p[0], 0.04, p[1]);
+    g.add(hoof);
+  });
+
+  // 尾（棕）
+  const tail = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.11, 0.5, 10), brown);
+  tail.position.set(0, 0.85, -0.62);
+  tail.rotation.x = 0.9;
+  tail.castShadow = true;
+  g.add(tail);
+
+  return g;
+}
+
+/* ---------- 文物4：青花瓷瓶（LatheGeometry 旋转生成） ---------- */
+function buildPorcelainVase(){
+  const g = new THREE.Group();
+
+  // 瓶身轮廓（x=半径，y=高度）
+  const pts = [
+    [0.00,0.00],[0.30,0.00],[0.34,0.05],[0.30,0.13],[0.27,0.22],
+    [0.31,0.36],[0.41,0.55],[0.43,0.72],[0.37,0.88],[0.27,1.0],
+    [0.24,1.12],[0.30,1.2],[0.28,1.24],[0.0,1.24]
+  ].map(p=>new THREE.Vector2(p[0], p[1]));
+
+  const geo = new THREE.LatheGeometry(pts, 48);
+  const tex = makePorcelainTexture();
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.repeat.x = 2;
+  const mat = new THREE.MeshStandardMaterial({map:tex, roughness:0.28, metalness:0.05});
+  const vase = new THREE.Mesh(geo, mat);
+  vase.castShadow = true; vase.receiveShadow = true;
+  g.add(vase);
+
+  // 瓶口内侧深色
+  const inner = new THREE.Mesh(
+    new THREE.CircleGeometry(0.26, 32),
+    new THREE.MeshStandardMaterial({color:0x1a3a6b, roughness:0.4, side:THREE.DoubleSide})
+  );
+  inner.rotation.x = -Math.PI/2;
+  inner.position.y = 1.235;
+  g.add(inner);
+
+  return g;
+}
+
+function makePorcelainTexture(){
+  const c = document.createElement('canvas');
+  c.width = 256; c.height = 512;
+  const ctx = c.getContext('2d');
+  // 白地
+  ctx.fillStyle = '#f4f6f2';
+  ctx.fillRect(0,0,256,512);
+  // 青花纹饰
+  ctx.fillStyle = '#1f4a8c';
+  ctx.strokeStyle = '#1f4a8c';
+
+  // 上下边线
+  ctx.lineWidth = 4;
+  ctx.strokeRect(0, 20, 256, 30);
+  ctx.strokeRect(0, 462, 256, 30);
+  ctx.lineWidth = 2;
+  for(let y=55;y<460;y+=42){
+    ctx.beginPath();
+    ctx.moveTo(0,y); ctx.lineTo(256,y);
+    ctx.stroke();
+  }
+  // 缠枝花卉（简化）
+  ctx.fillStyle = '#2a5db0';
+  for(let i=0;i<8;i++){
+    const cx = (i%2===0)?64:192;
+    const cy = 90 + Math.floor(i/2)*110;
+    drawFlower(ctx, cx, cy);
+  }
+  // 中间主花
+  drawFlower(ctx, 128, 256, 1.4);
+
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+function drawFlower(ctx, x, y, s=1){
+  ctx.save();
+  ctx.translate(x,y); ctx.scale(s,s);
+  ctx.fillStyle = '#2a5db0';
+  for(let i=0;i<6;i++){
+    ctx.beginPath();
+    const a = i*Math.PI/3;
+    ctx.ellipse(Math.cos(a)*12, Math.sin(a)*12, 7, 11, a, 0, Math.PI*2);
+    ctx.fill();
+  }
+  ctx.fillStyle = '#1f4a8c';
+  ctx.beginPath(); ctx.arc(0,0,6,0,Math.PI*2); ctx.fill();
+  ctx.restore();
+}
+
+/* ============================================================
+   视角与聚焦
+   ============================================================ */
+function computeFreeView(){
+  const r = orbit.radius;
+  desiredPos.set(
+    orbitTarget.x + r * Math.sin(orbit.phi) * Math.sin(orbit.theta),
+    orbitTarget.y + r * Math.cos(orbit.phi),
+    orbitTarget.z + r * Math.sin(orbit.phi) * Math.cos(orbit.theta)
+  );
+  desiredLook.copy(orbitTarget);
+}
+
+function focusArtifact(i){
+  const a = artifactGroups[i];
+  const data = a.userData;
+  const ang = a.rotation.y;
+  const out = {x:Math.sin(ang), z:Math.cos(ang)};
+  const cx = a.position.x + out.x * FOCUS_DIST;
+  const cz = a.position.z + out.z * FOCUS_DIST;
+  const cy = data.centerY + 0.35;
+
+  desiredPos.set(cx, cy, cz);
+  desiredLook.set(a.position.x, data.centerY, a.position.z);
+
+  // 之前聚焦的文物恢复自转
+  if(focusedIndex !== null && focusedIndex !== i){
+    artifactGroups[focusedIndex].userData.rotating = true;
+    artifactGroups[focusedIndex].userData.targetScale = 1.0;
+  }
+
+  focusedIndex = i;
+  mode = 'focus';
+  data.rotating = false;
+  data.targetScale = 1.35;
+
+  showPanel(i);
+  document.getElementById('resetBtn').style.display = 'inline-flex';
+  updateThumbs();
+}
+
+function unfocus(){
+  if(focusedIndex !== null){
+    const a = artifactGroups[focusedIndex];
+    a.userData.rotating = true;
+    a.userData.targetScale = 1.0;
+  }
+  focusedIndex = null;
+  mode = 'free';
+  computeFreeView();
+  hidePanel();
+  document.getElementById('resetBtn').style.display = 'none';
+  updateThumbs();
+}
+
+function showPanel(i){
+  const d = ARTIFACTS[i];
+  document.getElementById('pIdx').textContent = 'No.' + String(i+1).padStart(2,'0');
+  document.getElementById('pName').textContent = d.name;
+  document.getElementById('pDyn').textContent = d.dynasty;
+  document.getElementById('pPlace').textContent = d.place;
+  document.getElementById('pPoint').textContent = d.point;
+  document.getElementById('pIntro').textContent = d.intro;
+  document.getElementById('panel').classList.add('open');
+}
+function hidePanel(){
+  document.getElementById('panel').classList.remove('open');
+}
+
+function navTo(dir){
+  let i;
+  if(focusedIndex === null){
+    i = dir > 0 ? 0 : ARTIFACTS.length - 1;
+  }else{
+    i = (focusedIndex + dir + ARTIFACTS.length) % ARTIFACTS.length;
+  }
+  focusArtifact(i);
+}
+
+/* ============================================================
+   缩略图
+   ============================================================ */
+function updateThumbs(){
+  const wrap = document.getElementById('thumbs');
+  if(!wrap.childElementCount){
+    ARTIFACTS.forEach((d,i)=>{
+      const el = document.createElement('div');
+      el.className = 'thumb';
+      el.innerHTML =
+        `<div class="swatch" style="background:radial-gradient(circle at 35% 30%, ${shade(d.color,30)}, ${d.color} 60%, ${shade(d.color,-30)});"></div>
+         <div class="name">${d.name}</div>
+         <div class="dyn">${d.dynasty}</div>`;
+      el.addEventListener('click', ()=>focusArtifact(i));
+      wrap.appendChild(el);
+    });
+  }
+  Array.from(wrap.children).forEach((el,i)=>{
+    el.classList.toggle('active', i === focusedIndex);
+  });
+}
+function shade(hex, amt){
+  const n = parseInt(hex.slice(1),16);
+  let r = (n>>16)+amt, g = ((n>>8)&0xff)+amt, b = (n&0xff)+amt;
+  r=Math.max(0,Math.min(255,r)); g=Math.max(0,Math.min(255,g)); b=Math.max(0,Math.min(255,b));
+  return '#'+((r<<16)|(g<<8)|b).toString(16).padStart(6,'0');
+}
+
+/* ============================================================
+   事件绑定
+   ============================================================ */
+function bindEvents(){
+  const dom = renderer.domElement;
+
+  dom.addEventListener('pointerdown', e=>{
+    pointerDown = true; dragged = false;
+    startX = lastX = e.clientX; startY = lastY = e.clientY;
+  });
+  dom.addEventListener('pointermove', e=>{
+    if(!pointerDown) return;
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    if(Math.abs(e.clientX-startX) > 4 || Math.abs(e.clientY-startY) > 4) dragged = true;
+    if(dragged && mode === 'free'){
+      orbit.theta -= dx * 0.005;
+      orbit.phi   -= dy * 0.005;
+      orbit.phi = Math.max(0.28, Math.min(1.46, orbit.phi));
+    }
+    lastX = e.clientX; lastY = e.clientY;
+  });
+  dom.addEventListener('pointerup', e=>{
+    if(pointerDown && !dragged){
+      handleClick(e);
+    }
+    pointerDown = false; dragged = false;
+  });
+  dom.addEventListener('pointercancel', ()=>{ pointerDown=false; dragged=false; });
+
+  dom.addEventListener('wheel', e=>{
+    e.preventDefault();
+    if(mode !== 'free') return;
+    orbit.radius += e.deltaY * 0.012;
+    orbit.radius = Math.max(5.5, Math.min(24, orbit.radius));
+  }, {passive:false});
+
+  // 触摸双指缩放
+  let pinchDist = 0;
+  dom.addEventListener('touchstart', e=>{
+    if(e.touches.length === 2){
+      pinchDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    }
+  });
+  dom.addEventListener('touchmove', e=>{
+    if(e.touches.length === 2 && mode === 'free'){
+      const d = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      orbit.radius += (pinchDist - d) * 0.03;
+      orbit.radius = Math.max(5.5, Math.min(24, orbit.radius));
+      pinchDist = d;
+    }
+  }, {passive:true});
+
+  document.getElementById('prevBtn').addEventListener('click', ()=>navTo(-1));
+  document.getElementById('nextBtn').addEventListener('click', ()=>navTo(1));
+  document.getElementById('resetBtn').addEventListener('click', unfocus);
+  document.getElementById('panelClose').addEventListener('click', unfocus);
+
+  window.addEventListener('resize', onResize);
+}
+
+function handleClick(e){
+  const rect = renderer.domElement.getBoundingClientRect();
+  pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(artifactGroups, true);
+  if(hits.length){
+    let o = hits[0].object;
+    while(o && !o.userData.isArtifact) o = o.parent;
+    if(o){
+      const idx = o.userData.index;
+      if(focusedIndex === idx) unfocus();
+      else focusArtifact(idx);
+    }
+  }
+}
+
+function onResize(){
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+/* ============================================================
+   动画循环
+   ============================================================ */
+function lerpAngle(cur, target, t){
+  let diff = (target - cur) % (Math.PI*2);
+  if(diff > Math.PI) diff -= Math.PI*2;
+  if(diff < -Math.PI) diff += Math.PI*2;
+  return cur + diff * t;
+}
+
+function animate(){
+  requestAnimationFrame(animate);
+
+  // 视角目标
+  if(mode === 'free') computeFreeView();
+  camera.position.lerp(desiredPos, 0.1);
+  currentLook.lerp(desiredLook, 0.1);
+  camera.lookAt(currentLook);
+
+  // 文物自转 / 缩放 / 朝向
+  const tmp = new THREE.Vector3();
+  artifactGroups.forEach(a=>{
+    const u = a.userData;
+    const inner = u.inner;
+    if(u.rotating){
+      inner.rotation.y += 0.0045;
+    }else{
+      // 聚焦时缓慢回正到正面（局部 +Z 朝外）
+      inner.rotation.y = lerpAngle(inner.rotation.y, 0, 0.1);
+    }
+    // 缩放过渡
+    tmp.set(u.targetScale, u.targetScale, u.targetScale);
+    a.scale.lerp(tmp, 0.12);
+  });
+
+  // 聚焦时隐藏其它标签，突出当前
+  labelSprites.forEach((sp, i)=>{
+    if(mode === 'focus'){
+      sp.visible = (i === focusedIndex);
+    }else{
+      sp.visible = true;
+    }
+  });
+
+  renderer.render(scene, camera);
+}
+
+/* ============================================================
+   启动 + WebGL 检测
+   ============================================================ */
+try{
+  const test = document.createElement('canvas').getContext('webgl') ||
+               document.createElement('canvas').getContext('experimental-webgl');
+  if(!test){
+    throw new Error('no webgl');
+  }
+  init();
+}catch(err){
+  document.getElementById('loader').classList.add('hide');
+  document.getElementById('errTip').style.display = 'flex';
+  console.error('展厅初始化失败：', err);
+}
+</script>
+</body>
+</html>

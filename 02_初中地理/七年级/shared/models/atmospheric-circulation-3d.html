@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>三圈环流 3D 可视化</title>
+<style>
+  :root{
+    --primary:#1565C0; --primary-light:#42A5F5; --primary-dark:#0D47A1;
+    --accent:#00BCD4; --bg:#e8f4fd; --text:#2c3e50; --white:#f0f8ff;
+    --card-bg:rgba(240,248,255,0.96); --border:#90caf9; --shadow:0 6px 24px rgba(13,71,161,0.18);
+    --radius:14px;
+    --c-low:#E53935;   /* 低纬环流 红 */
+    --c-mid:#43A047;   /* 中纬环流 绿 */
+    --c-high:#1E88E5;  /* 高纬环流 蓝 */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'Noto Sans SC',-apple-system,"Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); overflow:hidden;
+  }
+  /* 顶部标题栏 */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 20px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));
+    color:#fff;box-shadow:var(--shadow);
+  }
+  .topbar h1{font-size:20px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+  .topbar h1 .logo{font-size:24px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.16);color:#fff;text-decoration:none;
+    padding:8px 16px;border-radius:30px;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,255,255,0.35);transition:all .25s;
+  }
+  .back-btn:hover{background:rgba(255,255,255,0.3);transform:translateX(-2px);}
+  /* 3D 画布 */
+  #scene{position:fixed;inset:0;}
+  #scene canvas{display:block;cursor:grab;}
+  #scene canvas:active{cursor:grabbing;}
+  /* 通用面板 */
+  .panel{
+    position:fixed;z-index:15;background:var(--card-bg);
+    border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);backdrop-filter:blur(6px);
+  }
+  /* 左侧图例 */
+  .legend{top:74px;left:16px;padding:14px 16px;width:228px;}
+  .legend h3{font-size:14px;color:var(--primary-dark);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .legend .sec{font-size:12px;color:var(--primary-dark);font-weight:700;margin:10px 0 4px;}
+  .legend-row{display:flex;align-items:center;gap:8px;font-size:12.5px;margin:5px 0;}
+  .sw{width:18px;height:12px;border-radius:3px;flex:none;border:1px solid rgba(0,0,0,.1);}
+  .sw.line{height:0;border-top:3px solid;background:none;}
+  .sw.dot{height:12px;width:12px;border-radius:50%;}
+  .tag{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex:none;}
+  /* 右侧原理说明 */
+  .info{top:74px;right:16px;padding:14px 16px;width:262px;max-height:calc(100vh - 96px);overflow-y:auto;}
+  .info h3{font-size:14px;color:var(--primary-dark);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .info p{font-size:12.5px;line-height:1.62;margin:5px 0;}
+  .info b{color:var(--primary-dark);}
+  .info .cell{border-left:3px solid;padding-left:8px;margin:7px 0;border-radius:2px;}
+  .info .cell.low{border-color:var(--c-low);}
+  .info .cell.mid{border-color:var(--c-mid);}
+  .info .cell.high{border-color:var(--c-high);}
+  /* 底部控制 */
+  .controls{bottom:18px;left:50%;transform:translateX(-50%);padding:12px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:calc(100% - 32px);}
+  .ctrl-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;}
+  .ctrl-label{font-size:12px;color:var(--primary-dark);font-weight:700;opacity:.85;}
+  .btn{
+    border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;
+    padding:8px 14px;border-radius:30px;transition:all .2s;
+    background:#fff;color:var(--primary);border:1.5px solid var(--primary);
+  }
+  .btn:hover{background:var(--bg);}
+  .btn.active{background:var(--primary);color:#fff;}
+  .chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;cursor:pointer;user-select:none;}
+  .chk input{display:none;}
+  .chk .box{width:18px;height:18px;border-radius:5px;border:2px solid var(--primary);display:inline-flex;align-items:center;justify-content:center;transition:.2s;flex:none;background:#fff;}
+  .chk input:checked + .box{background:var(--primary);}
+  .chk input:checked + .box::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px);}
+  .chk .ci{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:2px;}
+  .switch{position:relative;width:42px;height:22px;display:inline-block;}
+  .switch input{opacity:0;width:0;height:0;}
+  .slider{position:absolute;inset:0;background:#bbb;border-radius:22px;transition:.3s;cursor:pointer;}
+  .slider:before{content:"";position:absolute;height:16px;width:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;}
+  .switch input:checked + .slider{background:var(--primary);}
+  .switch input:checked + .slider:before{transform:translateX(20px);}
+  .toggle{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;}
+  .divider{width:1px;height:28px;background:var(--border);}
+  .hint{position:fixed;bottom:92px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--text);opacity:.55;z-index:10;pointer-events:none;white-space:nowrap;}
+  @media (max-width:880px){
+    .info{display:none;}
+    .hint{display:none;}
+  }
+  @media (max-width:640px){
+    .legend{display:none;}
+    .topbar h1{font-size:16px;}
+    .controls{gap:8px;padding:10px;width:calc(100% - 16px);}
+    .divider{display:none;}
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <h1><span class="logo">环流</span>三圈环流 3D 可视化</h1>
+    <a class="back-btn" href="../../index.html">← 返回首页</a>
+  </header>
+
+  <div id="scene"></div>
+
+  <!-- 左侧图例 -->
+  <aside class="panel legend">
+    <h3>图例说明</h3>
+    <div class="sec">环流圈</div>
+    <div class="legend-row"><span class="sw line" style="border-top-color:var(--c-low)"></span>低纬环流（0°-30°）</div>
+    <div class="legend-row"><span class="sw line" style="border-top-color:var(--c-mid)"></span>中纬环流（30°-60°）</div>
+    <div class="legend-row"><span class="sw line" style="border-top-color:var(--c-high)"></span>高纬环流（60°-90°）</div>
+    <div class="sec">垂直气流粒子</div>
+    <div class="legend-row"><span class="sw dot" style="background:#FF3B30"></span>赤道上升（热）</div>
+    <div class="legend-row"><span class="sw dot" style="background:#FF9800"></span>副热带下沉（30°）</div>
+    <div class="legend-row"><span class="sw dot" style="background:#29B6F6"></span>副极地上升（60°）</div>
+    <div class="legend-row"><span class="sw dot" style="background:#FFFFFF"></span>极地下沉（90°）</div>
+    <div class="sec">近地面风带</div>
+    <div class="legend-row"><span class="sw" style="background:#FF7043"></span>信风带</div>
+    <div class="legend-row"><span class="sw" style="background:#66BB6A"></span>西风带</div>
+    <div class="legend-row"><span class="sw" style="background:#90CAF9"></span>极地东风带</div>
+    <div class="sec">气压带</div>
+    <div class="legend-row"><span class="tag" style="background:#E53935">L</span>低压</div>
+    <div class="legend-row"><span class="tag" style="background:#1565C0">H</span>高压</div>
+  </aside>
+
+  <!-- 右侧原理说明 -->
+  <aside class="panel info">
+    <h3>三圈环流原理</h3>
+    <p>太阳辐射在<b>赤道</b>最强，空气受热膨胀上升，近地面形成<b>赤道低压带</b>，高空空气向两极流动。</p>
+    <p>受<b>地转偏向力</b>作用，气流约在南北纬 30° 高空下沉，形成<b>副热带高压带</b>。</p>
+    <div class="cell low"><b>低纬环流（0°-30°）</b>：赤道上升 → 高空向极 → 30°下沉 → 近地面信风返回赤道。</div>
+    <div class="cell mid"><b>中纬环流（30°-60°）</b>：30°高压近地面气流一部分向高纬流动（西风带），在 60°附近上升形成<b>副极地低压</b>。</div>
+    <div class="cell high"><b>高纬环流（60°-90°）</b>：极地冷空气下沉形成<b>极地高压</b>，近地面极地东风流向低纬，在 60°上升。</div>
+    <p>全球共形成<b>七个气压带、六个风带</b>，称为"七压六风"。</p>
+    <p style="opacity:.72;margin-top:8px;">拖拽旋转 · 滚轮缩放 · 切换视角观察不同纬度的环流结构。</p>
+  </aside>
+
+  <div class="hint">鼠标拖拽旋转地球 · 滚轮缩放</div>
+
+  <!-- 底部控制 -->
+  <div class="panel controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">视角</span>
+      <button class="btn" data-view="side">侧视视角</button>
+      <button class="btn" data-view="equator">赤道视角</button>
+      <button class="btn" data-view="polar">极地视角</button>
+    </div>
+    <div class="divider"></div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">显示环流</span>
+      <label class="chk"><input type="checkbox" data-cell="hadley" checked><span class="box"></span><span class="ci" style="background:var(--c-low)"></span>低纬</label>
+      <label class="chk"><input type="checkbox" data-cell="ferrel" checked><span class="box"></span><span class="ci" style="background:var(--c-mid)"></span>中纬</label>
+      <label class="chk"><input type="checkbox" data-cell="polar" checked><span class="box"></span><span class="ci" style="background:var(--c-high)"></span>高纬</label>
+      <label class="chk"><input type="checkbox" id="chk-labels" checked><span class="box"></span>气压带标注</label>
+    </div>
+    <div class="divider"></div>
+    <label class="toggle">
+      <span class="switch"><input type="checkbox" id="chk-spin" checked><span class="slider"></span></span>自动旋转
+    </label>
+  </div>
+
+<script type="module">
+import * as THREE from '../lib/three/three.module.js';
+
+/* ============ 基础场景 ============ */
+const container = document.getElementById('scene');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x070d1a);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.set(0, 3.2, 9.6);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+/* ============ 灯光 ============ */
+scene.add(new THREE.AmbientLight(0x6688aa, 0.75));
+const sunLight = new THREE.DirectionalLight(0xfff2d8, 1.15);
+sunLight.position.set(6, 4, 5);
+scene.add(sunLight);
+const rim = new THREE.DirectionalLight(0x4477ff, 0.4);
+rim.position.set(-6, -2, -4);
+scene.add(rim);
+
+/* ============ 星空 ============ */
+function makeStars(){
+  const g = new THREE.BufferGeometry();
+  const n = 1400, pos = new Float32Array(n*3);
+  for(let i=0;i<n;i++){
+    const r = 80 + Math.random()*120;
+    const t = Math.random()*Math.PI*2, p = Math.acos(2*Math.random()-1);
+    pos[i*3]=r*Math.sin(p)*Math.cos(t);
+    pos[i*3+1]=r*Math.sin(p)*Math.sin(t);
+    pos[i*3+2]=r*Math.cos(p);
+  }
+  g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  return new THREE.Points(g, new THREE.PointsMaterial({color:0xffffff, size:0.5, sizeAttenuation:true, transparent:true, opacity:0.8}));
+}
+scene.add(makeStars());
+
+/* ============ 程序化地球纹理（简化大陆轮廓） ============ */
+function makeEarthTexture(){
+  const w=2048, h=1024;
+  const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+  const ctx=cv.getContext('2d');
+  // 海洋渐变
+  const og=ctx.createLinearGradient(0,0,0,h);
+  og.addColorStop(0,'#0a2f55'); og.addColorStop(0.5,'#1a5c97'); og.addColorStop(1,'#0a2f55');
+  ctx.fillStyle=og; ctx.fillRect(0,0,w,h);
+  for(let i=0;i<2400;i++){
+    ctx.fillStyle='rgba(255,255,255,'+(Math.random()*0.04)+')';
+    ctx.fillRect(Math.random()*w, Math.random()*h, 2, 2);
+  }
+  const toX=lon=>(lon+180)/360*w;
+  const toY=lat=>(90-lat)/180*h;
+  function drawShape(pts){
+    if(pts.length<3) return;
+    ctx.beginPath();
+    const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
+    let start=mid(pts[pts.length-1],pts[0]);
+    ctx.moveTo(toX(start[0]),toY(start[1]));
+    for(let i=0;i<pts.length;i++){
+      const cur=pts[i], nxt=pts[(i+1)%pts.length], m=mid(cur,nxt);
+      ctx.quadraticCurveTo(toX(cur[0]),toY(cur[1]),toX(m[0]),toY(m[1]));
+    }
+    ctx.closePath();
+  }
+  function continent(pts, base){
+    drawShape(pts);
+    ctx.fillStyle=base; ctx.fill();
+    ctx.lineWidth=2; ctx.strokeStyle='rgba(40,60,30,0.5)'; ctx.stroke();
+  }
+  const green='#3d6b2e', greenDry='#7a8b3a';
+  continent([[-17,21],[11,37],[33,32],[43,11],[51,12],[42,-2],[40,-18],[34,-28],[20,-35],[18,-34],[12,-6],[9,3],[-3,4],[-9,6],[-16,14]], green);
+  continent([[-10,36],[-9,43],[2,46],[8,54],[16,58],[26,62],[40,66],[60,70],[80,73],[110,72],[140,72],[170,66],[178,60],[160,55],[140,45],[135,35],[122,30],[110,21],[102,11],[97,16],[88,22],[78,8],[76,20],[72,10],[68,22],[60,24],[52,16],[48,12],[43,12],[34,28],[28,36],[22,40],[14,46],[5,44],[-2,40],[-9,38]], green);
+  continent([[-168,66],[-150,70],[-128,57],[-124,40],[-117,32],[-105,30],[-97,26],[-90,29],[-82,27],[-80,25],[-83,15],[-92,16],[-97,19],[-104,22],[-114,30],[-124,38],[-132,52],[-152,60],[-168,66]], green);
+  continent([[-78,11],[-62,9],[-50,1],[-37,-5],[-35,-10],[-39,-22],[-48,-26],[-58,-38],[-70,-53],[-74,-50],[-72,-38],[-76,-18],[-80,0],[-80,8]], green);
+  continent([[114,-12],[133,-12],[140,-14],[146,-18],[152,-25],[150,-34],[143,-38],[135,-35],[120,-35],[114,-28],[113,-22]], greenDry);
+  continent([[-52,60],[-30,60],[-15,70],[-20,80],[-40,83],[-55,78],[-58,68]], '#cfe0e6');
+  continent([[-180,-65],[-150,-70],[-120,-67],[-90,-70],[-60,-68],[-30,-72],[0,-70],[30,-73],[60,-68],[90,-71],[120,-67],[150,-72],[180,-66],[180,-90],[-180,-90]], '#e6eef2');
+  function island(cx,cy,rx,ry,col){
+    ctx.beginPath(); ctx.ellipse(toX(cx),toY(cy),rx,ry,0,0,Math.PI*2);
+    ctx.fillStyle=col; ctx.fill();
+  }
+  island(140,38,16,9,green);
+  island(-3,55,10,18,green);
+  island(120,-1,28,9,green);
+  const tex=new THREE.CanvasTexture(cv);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = 8;
+  return tex;
+}
+
+/* ============ 地球本体（自转） ============ */
+const R = 2.2;
+const earthGroup = new THREE.Group();
+scene.add(earthGroup);
+
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(R, 96, 96),
+  new THREE.MeshPhongMaterial({ map: makeEarthTexture(), specular:0x223355, shininess:16 })
+);
+earthGroup.add(earth);
+
+// 大气光晕
+const atmosphere = new THREE.Mesh(
+  new THREE.SphereGeometry(R*1.06, 64, 64),
+  new THREE.MeshBasicMaterial({ color:0x4a90e2, transparent:true, opacity:0.12, side:THREE.BackSide, blending:THREE.AdditiveBlending })
+);
+earthGroup.add(atmosphere);
+
+/* ============ 环流组（不随地球自转，固定于纬度） ============ */
+const circGroup = new THREE.Group();
+scene.add(circGroup);
+
+// 高度参数
+const aS = 0.16;   // 近地面气流高度
+const aT = 0.66;   // 高空气流高度
+const PLANES = [0, 90]; // 两个互相垂直的经圈平面，保证任意角度可见
+
+/* 将(纬度,高度)转换为经圈平面(XY)上的点 */
+function latAltToVec(latDeg, alt){
+  const phi = latDeg*Math.PI/180;
+  const r = R + alt;
+  return new THREE.Vector3(r*Math.cos(phi), r*Math.sin(phi), 0);
+}
+
+/* 根据航点(经度,高度)序列生成沿弧线的点序列 */
+function makeArcPoints(wps, segH, segV){
+  const pts=[];
+  for(let i=0;i<wps.length-1;i++){
+    const A=wps[i], B=wps[i+1];
+    const sameAlt = Math.abs(A.alt-B.alt) < 1e-4;
+    const seg = sameAlt ? segH : segV;
+    for(let s=0;s<seg;s++){
+      const t=s/seg;
+      let lat, r;
+      if(sameAlt){ lat=A.lat+(B.lat-A.lat)*t; r=R+A.alt; }
+      else { lat=A.lat; r=R+A.alt+(B.alt-A.alt)*t; }
+      const phi=lat*Math.PI/180;
+      pts.push(new THREE.Vector3(r*Math.cos(phi), r*Math.sin(phi), 0));
+    }
+  }
+  const L=wps[wps.length-1];
+  pts.push(latAltToVec(L.lat, L.alt));
+  return pts;
+}
+
+/* 粒子点纹理 */
+function makeDotTexture(){
+  const c=document.createElement('canvas'); c.width=64; c.height=64;
+  const x=c.getContext('2d');
+  const g=x.createRadialGradient(32,32,0,32,32,32);
+  g.addColorStop(0,'rgba(255,255,255,1)');
+  g.addColorStop(0.4,'rgba(255,255,255,0.85)');
+  g.addColorStop(1,'rgba(255,255,255,0)');
+  x.fillStyle=g; x.fillRect(0,0,64,64);
+  return new THREE.CanvasTexture(c);
+}
+const dotTex = makeDotTexture();
+
+/* ============ 气流流类（沿曲线运动的粒子/箭头） ============ */
+class Stream{
+  constructor(curve, color, count, speed, type, lonDeg){
+    this.curve=curve; this.count=count; this.speed=speed; this.type=type;
+    this.ts=new Float32Array(count);
+    for(let i=0;i<count;i++) this.ts[i]=i/count;
+    const up = new THREE.Vector3(0,1,0);
+    if(type==='points'){
+      const g=new THREE.BufferGeometry();
+      const pos=new Float32Array(count*3);
+      g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+      const mat=new THREE.PointsMaterial({
+        map:dotTex, color, size:0.14, transparent:true, opacity:0.95,
+        depthWrite:false, blending:THREE.AdditiveBlending, sizeAttenuation:true
+      });
+      this.obj=new THREE.Points(g,mat);
+      this._pos=pos;
+    } else { // arrows
+      const matTail=new THREE.MeshBasicMaterial({color, transparent:true, opacity:0.8, depthWrite:false});
+      const matHead=new THREE.MeshBasicMaterial({color, transparent:true, opacity:0.95, depthWrite:false});
+      const tailGeo=new THREE.CylinderGeometry(0.012,0.012,0.18,6);
+      const headGeo=new THREE.ConeGeometry(0.055,0.13,8);
+      this.obj=new THREE.Group();
+      this.cones=[];
+      for(let i=0;i<count;i++){
+        const g=new THREE.Group();
+        const tail=new THREE.Mesh(tailGeo,matTail); tail.position.y=-0.08;
+        const head=new THREE.Mesh(headGeo,matHead); head.position.y=0.07;
+        g.add(tail,head);
+        this.obj.add(g); this.cones.push(g);
+      }
+    }
+    this.obj.rotation.y = lonDeg*Math.PI/180;
+    circGroup.add(this.obj);
+  }
+  setVisible(v){ this.obj.visible=v; }
+  update(dt){
+    if(this.type==='points'){
+      const pos=this._pos;
+      for(let i=0;i<this.count;i++){
+        this.ts[i]=(this.ts[i]+this.speed*dt)%1;
+        if(this.ts[i]<0) this.ts[i]+=1;
+        const p=this.curve.getPointAt(this.ts[i]);
+        pos[i*3]=p.x; pos[i*3+1]=p.y; pos[i*3+2]=p.z;
+      }
+      this.obj.geometry.attributes.position.needsUpdate=true;
+    } else {
+      const up=new THREE.Vector3(0,1,0);
+      const q=new THREE.Quaternion();
+      for(let i=0;i<this.count;i++){
+        this.ts[i]=(this.ts[i]+this.speed*dt)%1;
+        const p=this.curve.getPointAt(this.ts[i]);
+        const tan=this.curve.getTangentAt(this.ts[i]);
+        this.cones[i].position.copy(p);
+        q.setFromUnitVectors(up, tan.normalize());
+        this.cones[i].quaternion.copy(q);
+      }
+    }
+  }
+}
+
+/* ============ 环流圈管道 ============ */
+function addTube(wps, color, groupName, store){
+  const closed = wps.concat([wps[0]]);
+  const pts = makeArcPoints(closed, 18, 10);
+  const curve = new THREE.CatmullRomCurve3(pts, false, 'catmullrom', 0.5);
+  const geo = new THREE.TubeGeometry(curve, 160, 0.04, 8, false);
+  const mat = new THREE.MeshBasicMaterial({ color, transparent:true, opacity:0.22, depthWrite:false, side:THREE.DoubleSide });
+  for(const lon of PLANES){
+    const m=new THREE.Mesh(geo,mat);
+    m.rotation.y=lon*Math.PI/180;
+    circGroup.add(m);
+    store[groupName].push({ setVisible:v=>{ m.visible=v; } });
+  }
+}
+
+/* ============ 气流流（粒子/箭头）注册 ============ */
+const streams=[];
+const groups={ hadley:[], ferrel:[], polar:[] };
+
+function addStream(wps, color, count, speed, type, groupName, segH=12, segV=8){
+  const pts=makeArcPoints(wps, segH, segV);
+  const curve=new THREE.CatmullRomCurve3(pts, false, 'catmullrom', 0.5);
+  for(const lon of PLANES){
+    const s=new Stream(curve, color, count, speed, type, lon);
+    streams.push(s);
+    groups[groupName].push(s);
+  }
+}
+
+/* ---- 垂直气流（粒子） ---- */
+// 赤道上升（红）— 低纬
+addStream([{lat:0,alt:aS},{lat:0,alt:aT}], 0xFF3B30, 10, 0.28, 'points', 'hadley', 1, 10);
+// 副热带下沉 30°N/S（橙）— 低纬
+addStream([{lat:30,alt:aT},{lat:30,alt:aS}], 0xFF9800, 10, 0.28, 'points', 'hadley', 1, 10);
+addStream([{lat:-30,alt:aT},{lat:-30,alt:aS}], 0xFF9800, 10, 0.28, 'points', 'hadley', 1, 10);
+// 副极地上升 60°N/S（蓝）— 高纬
+addStream([{lat:60,alt:aS},{lat:60,alt:aT}], 0x29B6F6, 10, 0.28, 'points', 'polar', 1, 10);
+addStream([{lat:-60,alt:aS},{lat:-60,alt:aT}], 0x29B6F6, 10, 0.28, 'points', 'polar', 1, 10);
+// 极地下沉 90°N/S（白）— 高纬
+addStream([{lat:90,alt:aT},{lat:90,alt:aS}], 0xFFFFFF, 8, 0.28, 'points', 'polar', 1, 8);
+addStream([{lat:-90,alt:aT},{lat:-90,alt:aS}], 0xFFFFFF, 8, 0.28, 'points', 'polar', 1, 8);
+
+/* ---- 近地面风带（箭头） ---- */
+// 信风带：30°→赤道（低纬）
+addStream([{lat:30,alt:aS},{lat:0,alt:aS}], 0xFF7043, 4, 0.20, 'arrows', 'hadley', 14, 1);
+addStream([{lat:-30,alt:aS},{lat:0,alt:aS}], 0xFF7043, 4, 0.20, 'arrows', 'hadley', 14, 1);
+// 西风带：30°→60°（中纬）
+addStream([{lat:30,alt:aS},{lat:60,alt:aS}], 0x66BB6A, 4, 0.20, 'arrows', 'ferrel', 14, 1);
+addStream([{lat:-30,alt:aS},{lat:-60,alt:aS}], 0x66BB6A, 4, 0.20, 'arrows', 'ferrel', 14, 1);
+// 极地东风带：90°→60°（高纬）
+addStream([{lat:90,alt:aS},{lat:60,alt:aS}], 0x90CAF9, 4, 0.20, 'arrows', 'polar', 14, 1);
+addStream([{lat:-90,alt:aS},{lat:-60,alt:aS}], 0x90CAF9, 4, 0.20, 'arrows', 'polar', 14, 1);
+
+/* ---- 高空回流（淡色粒子，体现环流闭合） ---- */
+addStream([{lat:0,alt:aT},{lat:30,alt:aT}], 0xFFCDD2, 5, 0.20, 'points', 'hadley', 14, 1);
+addStream([{lat:0,alt:aT},{lat:-30,alt:aT}], 0xFFCDD2, 5, 0.20, 'points', 'hadley', 14, 1);
+addStream([{lat:60,alt:aT},{lat:30,alt:aT}], 0xC8E6C9, 5, 0.20, 'points', 'ferrel', 14, 1);
+addStream([{lat:-60,alt:aT},{lat:-30,alt:aT}], 0xC8E6C9, 5, 0.20, 'points', 'ferrel', 14, 1);
+addStream([{lat:60,alt:aT},{lat:90,alt:aT}], 0xBBDEFB, 5, 0.20, 'points', 'polar', 14, 1);
+addStream([{lat:-60,alt:aT},{lat:-90,alt:aT}], 0xBBDEFB, 5, 0.20, 'points', 'polar', 14, 1);
+
+/* ---- 环流圈管道 ---- */
+addTube([{lat:30,alt:aS},{lat:0,alt:aS},{lat:0,alt:aT},{lat:30,alt:aT}], 0xE53935, 'hadley', groups);
+addTube([{lat:-30,alt:aS},{lat:0,alt:aS},{lat:0,alt:aT},{lat:-30,alt:aT}], 0xE53935, 'hadley', groups);
+addTube([{lat:30,alt:aS},{lat:60,alt:aS},{lat:60,alt:aT},{lat:30,alt:aT}], 0x43A047, 'ferrel', groups);
+addTube([{lat:-30,alt:aS},{lat:-60,alt:aS},{lat:-60,alt:aT},{lat:-30,alt:aT}], 0x43A047, 'ferrel', groups);
+addTube([{lat:90,alt:aS},{lat:60,alt:aS},{lat:60,alt:aT},{lat:90,alt:aT}], 0x1E88E5, 'polar', groups);
+addTube([{lat:-90,alt:aS},{lat:-60,alt:aS},{lat:-60,alt:aT},{lat:-90,alt:aT}], 0x1E88E5, 'polar', groups);
+
+/* ============ 纬度辅助线（赤道/30°/60°） ============ */
+function latCircle(latDeg, color, opacity){
+  const lat=latDeg*Math.PI/180;
+  const r=R+0.004, rr=r*Math.cos(lat), y=r*Math.sin(lat);
+  const pts=[], seg=140;
+  for(let i=0;i<=seg;i++){ const t=i/seg*Math.PI*2; pts.push(new THREE.Vector3(Math.cos(t)*rr, y, Math.sin(t)*rr)); }
+  return new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({color, transparent:true, opacity}));
+}
+circGroup.add(latCircle(0, 0xE53935, 0.55));
+circGroup.add(latCircle(30, 0xFF9800, 0.4));
+circGroup.add(latCircle(-30, 0xFF9800, 0.4));
+circGroup.add(latCircle(60, 0x29B6F6, 0.4));
+circGroup.add(latCircle(-60, 0x29B6F6, 0.4));
+
+/* ============ 气压带标注 ============ */
+const labelGroup = new THREE.Group();
+circGroup.add(labelGroup);
+
+function pressureLabel(name, type, latDeg){
+  // type: 'L'(低压,红) / 'H'(高压,蓝)
+  const color = type==='L' ? '#E53935' : '#1565C0';
+  const cv=document.createElement('canvas'); cv.width=300; cv.height=84;
+  const c=cv.getContext('2d');
+  // 圆角背景
+  const x=6,y=6,w=288,h=72,rr=16;
+  c.fillStyle='rgba(255,255,255,0.94)';
+  c.beginPath();
+  c.moveTo(x+rr,y); c.arcTo(x+w,y,x+w,y+h,rr); c.arcTo(x+w,y+h,x,y+h,rr); c.arcTo(x,y+h,x,y,rr); c.arcTo(x,y,x+w,y,rr);
+  c.closePath(); c.fill();
+  c.strokeStyle=color; c.lineWidth=2.5; c.stroke();
+  // 左侧圆形 L/H 标记
+  c.fillStyle=color;
+  c.beginPath(); c.arc(40,42,22,0,Math.PI*2); c.fill();
+  c.fillStyle='#fff'; c.font='bold 26px "Microsoft YaHei",sans-serif';
+  c.textAlign='center'; c.textBaseline='middle'; c.fillText(type,40,43);
+  // 文字
+  c.fillStyle=color; c.font='bold 20px "Microsoft YaHei",sans-serif';
+  c.textAlign='left'; c.textBaseline='middle'; c.fillText(name,74,42);
+  const tex=new THREE.CanvasTexture(cv);
+  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex, depthTest:false, transparent:true, depthWrite:false}));
+  sp.scale.set(2.0,0.56,1);
+  const phi=latDeg*Math.PI/180;
+  const off=0.18;
+  sp.position.set((R+off)*Math.cos(phi), (R+off)*Math.sin(phi), 0);
+  return sp;
+}
+const labels=[
+  pressureLabel('赤道低压','L',0),
+  pressureLabel('副热带高压','H',30),
+  pressureLabel('副热带高压','H',-30),
+  pressureLabel('副极地低压','L',60),
+  pressureLabel('副极地低压','L',-60),
+  pressureLabel('极地高压','H',90),
+  pressureLabel('极地高压','H',-90),
+];
+labels.forEach(l=>labelGroup.add(l));
+
+/* ============ 自实现轨道控制器 ============ */
+class Orbit{
+  constructor(cam,dom){this.cam=cam;this.dom=dom;this.target=new THREE.Vector3(0,0,0);
+    this.sph=new THREE.Spherical().setFromVector3(cam.position.clone().sub(this.target));
+    this.minD=4;this.maxD=20;this.minP=0.1;this.maxP=Math.PI-0.1;
+    this.dTheta=0;this.dPhi=0;this.scale=1;this.damp=0.86;this.drag=false;this.prev={x:0,y:0};
+    this._bind();}
+  _bind(){const d=this.dom;
+    d.addEventListener('pointerdown',e=>{this.drag=true;this.prev={x:e.clientX,y:e.clientY};d.setPointerCapture(e.pointerId);});
+    d.addEventListener('pointerup',()=>this.drag=false);
+    d.addEventListener('pointercancel',()=>this.drag=false);
+    d.addEventListener('pointermove',e=>{if(!this.drag)return;this.dTheta-=(e.clientX-this.prev.x)*0.006;this.dPhi-=(e.clientY-this.prev.y)*0.006;this.prev={x:e.clientX,y:e.clientY};});
+    d.addEventListener('wheel',e=>{e.preventDefault();this.scale*=e.deltaY>0?1.08:0.93;},{passive:false});
+  }
+  update(){this.sph.theta+=this.dTheta;this.sph.phi+=this.dPhi;
+    this.sph.phi=Math.max(this.minP,Math.min(this.maxP,this.sph.phi));
+    this.sph.radius*=this.scale;this.sph.radius=Math.max(this.minD,Math.min(this.maxD,this.sph.radius));
+    this.cam.position.setFromSpherical(this.sph).add(this.target);this.cam.lookAt(this.target);
+    this.dTheta*=this.damp;this.dPhi*=this.damp;this.scale=1;}
+}
+const orbit=new Orbit(camera, renderer.domElement);
+
+/* ============ 视角切换（平滑过渡） ============ */
+const VIEWS={
+  side:    { x:0, y:3.2, z:9.6 },
+  equator: { x:0, y:0.1, z:9.6 },
+  polar:   { x:0, y:9.0, z:1.4 }
+};
+let camTween=null;
+function setView(name){
+  const v=VIEWS[name]; if(!v) return;
+  const s=new THREE.Spherical().setFromVector3(new THREE.Vector3(v.x,v.y,v.z));
+  camTween={ theta:s.theta, phi:s.phi, radius:s.radius };
+  // 高亮按钮
+  document.querySelectorAll('.btn[data-view]').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
+}
+document.querySelectorAll('.btn[data-view]').forEach(b=>{
+  b.addEventListener('click',()=>setView(b.dataset.view));
+});
+setView('side'); // 默认侧视
+
+/* ============ 复选框：显示/隐藏环流圈 ============ */
+document.querySelectorAll('.chk input[data-cell]').forEach(inp=>{
+  inp.addEventListener('change',e=>{
+    const g=groups[inp.dataset.cell];
+    const v=e.target.checked;
+    g.forEach(o=>o.setVisible(v));
+  });
+});
+
+/* 气压带标注开关 */
+const chkLabels=document.getElementById('chk-labels');
+chkLabels.addEventListener('change',e=>{ labelGroup.visible=e.target.checked; });
+
+/* 自动旋转开关 */
+let autoRotate=true;
+const chkSpin=document.getElementById('chk-spin');
+chkSpin.addEventListener('change',e=>{ autoRotate=e.target.checked; });
+
+/* ============ 动画循环 ============ */
+const clock=new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  const dt=Math.min(clock.getDelta(),0.05);
+
+  if(autoRotate) earthGroup.rotation.y += 0.15*dt; // 缓慢自转
+
+  // 视角平滑过渡
+  if(camTween){
+    const k=1-Math.pow(0.0001,dt);
+    orbit.sph.theta += (camTween.theta-orbit.sph.theta)*k;
+    orbit.sph.phi   += (camTween.phi  -orbit.sph.phi  )*k;
+    orbit.sph.radius+= (camTween.radius-orbit.sph.radius)*k;
+    if(Math.abs(camTween.theta-orbit.sph.theta)<0.001 &&
+       Math.abs(camTween.phi-orbit.sph.phi)<0.001 &&
+       Math.abs(camTween.radius-orbit.sph.radius)<0.001){
+      camTween=null;
+    }
+  }
+
+  for(const s of streams) s.update(dt);
+  orbit.update();
+  renderer.render(scene,camera);
+}
+animate();
+
+/* ============ 响应式 ============ */
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
+</script>
+</body>
+</html>

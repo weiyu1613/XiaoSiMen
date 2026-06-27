@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>光合作用 3D 分子动画 | 初中生物</title>
+  <style>
+    :root {
+      --primary: #558B2F;
+      --primary-light: #8BC34A;
+      --primary-dark: #33691E;
+      --bg-light: #f1f8e9;
+      --text-dark: #1a1a2e;
+      --text-muted: #5d6d7e;
+      --shadow-md: 0 4px 20px rgba(46,125,50,0.12);
+      --shadow-lg: 0 8px 32px rgba(46,125,50,0.18);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== 顶部标题栏 ===== */
+    .header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+      color: #fff; padding: 14px 20px; box-shadow: var(--shadow-md);
+      position: relative; z-index: 20; flex-shrink: 0;
+    }
+    .header-row {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.18); color: #fff; text-decoration: none;
+      padding: 8px 16px; border-radius: 22px; font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.35); backdrop-filter: blur(8px);
+      transition: background 0.25s; white-space: nowrap;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.32); }
+    .back-btn svg { width: 16px; height: 16px; }
+    .title-block { flex: 1; min-width: 200px; }
+    .title { font-size: 1.45rem; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.18); }
+    .subtitle { font-size: 0.85rem; opacity: 0.92; margin-top: 2px; }
+
+    /* ===== 3D 舞台 ===== */
+    .stage { flex: 1; position: relative; overflow: hidden; min-height: 0; }
+    #canvas-container { position: absolute; inset: 0; }
+    #canvas-container canvas { display: block; }
+
+    .hint {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,0.88); color: var(--primary-dark);
+      padding: 6px 16px; border-radius: 18px; font-size: 0.8rem;
+      box-shadow: var(--shadow-md); pointer-events: none; z-index: 10; white-space: nowrap;
+    }
+
+    /* ===== 左侧方程式面板 ===== */
+    .eq-panel {
+      position: absolute; top: 56px; left: 16px; z-index: 14;
+      width: 320px; max-width: calc(100% - 32px);
+      background: #fff; border-radius: 14px; box-shadow: var(--shadow-lg);
+      padding: 14px 16px; border-top: 4px solid var(--primary);
+    }
+    .ep-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .ep-sun {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: radial-gradient(circle at 35% 35%, #fff59d, #fbc02d 60%, #f57f17);
+      box-shadow: 0 0 10px rgba(251,192,45,0.7);
+    }
+    .ep-title { font-size: 0.95rem; font-weight: 700; color: var(--primary-dark); }
+    .ep-formula {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 4px 6px; font-size: 1.02rem; font-weight: 600; color: var(--text-dark);
+      padding: 4px 0;
+    }
+    .ep-arrow { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.1; margin: 0 2px; }
+    .ep-cond { font-size: 0.6rem; color: var(--text-muted); font-weight: 600; }
+    .ep-arrow-line { font-size: 1.2rem; color: var(--primary); font-weight: 700; }
+    .m-co2 { color: #9E9E9E; } .m-h2o { color: #42A5F5; }
+    .m-glu { color: #2E7D32; } .m-o2 { color: #E53935; }
+
+    .ep-stage-detail { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .ep-stage-row { font-size: 0.7rem; padding: 6px 9px; border-radius: 8px; line-height: 1.45; }
+    .ep-stage-row.light { background: #FFF8E1; color: #7a5a00; border-left: 3px solid #FFC107; }
+    .ep-stage-row.dark  { background: #E8F5E9; color: #2E7D32; border-left: 3px solid #66BB6A; }
+    .ep-stage-row b { font-weight: 700; }
+
+    /* ===== 右侧图例面板 ===== */
+    .legend-panel {
+      position: absolute; top: 56px; right: 16px; z-index: 14;
+      width: 188px; max-width: calc(100% - 32px);
+      background: #fff; border-radius: 14px; box-shadow: var(--shadow-lg);
+      padding: 14px 16px; border-top: 4px solid var(--primary);
+    }
+    .lp-title { font-size: 0.92rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .lp-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 5px 0; font-size: 0.8rem; cursor: pointer;
+      border-bottom: 1px dashed #eee; transition: opacity 0.2s;
+    }
+    .lp-item:last-child { border-bottom: none; }
+    .lp-item:hover { opacity: 0.7; }
+    .lp-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+    .lp-name { font-weight: 600; }
+
+    /* ===== 底部控制条 ===== */
+    .controls {
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 14;
+      background: rgba(255,255,255,0.97); border-radius: 26px; box-shadow: var(--shadow-lg);
+      padding: 8px 18px; display: flex; align-items: center; gap: 14px;
+    }
+    .play-btn {
+      width: 42px; height: 42px; border-radius: 50%; border: none; cursor: pointer;
+      background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 3px 8px rgba(46,125,50,0.35); transition: background 0.2s;
+    }
+    .play-btn:hover { background: var(--primary-dark); }
+    .play-btn svg { width: 18px; height: 18px; }
+    .play-label { font-size: 0.82rem; font-weight: 600; color: var(--text-dark); min-width: 30px; }
+    .ctrl-divider { width: 1px; height: 26px; background: #e0e0e0; }
+    .speed-wrap { display: flex; align-items: center; gap: 8px; }
+    .speed-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+    #speedSlider { width: 120px; accent-color: var(--primary); cursor: pointer; }
+    .speed-value { font-size: 0.8rem; color: var(--primary-dark); font-weight: 700; min-width: 36px; }
+
+    /* ===== 信息卡 ===== */
+    .info-card {
+      position: absolute; top: 56px; right: 16px; width: 290px; max-width: calc(100% - 32px);
+      background: #fff; border-radius: 14px; box-shadow: var(--shadow-lg);
+      padding: 16px 18px; z-index: 16;
+      transform: translateX(120%); transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+      border-top: 4px solid var(--primary);
+    }
+    .info-card.show { transform: translateX(0); }
+    .info-card .ic-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .info-card .ic-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
+    .info-card .ic-name { font-size: 1.05rem; font-weight: 700; color: var(--primary-dark); }
+    .info-card .ic-func { font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; }
+    .info-card .ic-close {
+      position: absolute; top: 10px; right: 12px;
+      width: 24px; height: 24px; line-height: 22px; text-align: center;
+      border: none; background: #f1f8e9; color: var(--primary-dark);
+      border-radius: 50%; font-size: 1rem; cursor: pointer;
+    }
+    .info-card .ic-close:hover { background: #dcedc8; }
+
+    /* ===== 3D 标签 ===== */
+    .label3d {
+      position: absolute; transform: translate(-50%, -120%);
+      background: rgba(255,255,255,0.92); color: var(--text-dark);
+      font-size: 0.72rem; padding: 2px 8px; border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15); pointer-events: none;
+      white-space: nowrap; z-index: 8; border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    @media (max-width: 820px) {
+      .eq-panel { width: 250px; top: 52px; left: 8px; padding: 10px 12px; }
+      .eq-panel .ep-formula { font-size: 0.85rem; }
+      .legend-panel { width: 150px; top: 52px; right: 8px; padding: 10px 12px; }
+      .lp-name { font-size: 0.74rem; }
+      .controls { bottom: 10px; padding: 6px 14px; gap: 10px; }
+      #speedSlider { width: 90px; }
+      .hint { font-size: 0.7rem; padding: 5px 12px; }
+      .title { font-size: 1.2rem; }
+    }
+    @media (max-width: 560px) {
+      .eq-panel { width: 200px; }
+      .eq-panel .ep-stage-row { font-size: 0.62rem; padding: 5px 7px; }
+      .legend-panel { width: 128px; }
+      .lp-name { font-size: 0.68rem; }
+      .play-label { display: none; }
+      .speed-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部标题栏 -->
+  <header class="header">
+    <div class="header-row">
+      <a href="../../index.html" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        返回目录
+      </a>
+      <div class="title-block">
+        <div class="title">光合作用 3D 分子动画</div>
+        <div class="subtitle">叶绿体 · 光反应与暗反应 · 分子沿路径流动 · 拖拽旋转 / 滚轮缩放</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3D 舞台 -->
+  <div class="stage">
+    <div class="hint">拖拽旋转视角 · 滚轮缩放 · 点击分子或结构查看说明</div>
+    <div id="canvas-container"></div>
+
+    <!-- 左侧方程式 -->
+    <div class="eq-panel">
+      <div class="ep-head">
+        <span class="ep-sun"></span>
+        <span class="ep-title">光合作用总反应（光照条件下）</span>
+      </div>
+      <div class="ep-formula">
+        <span>6<span class="m-co2">CO₂</span></span>
+        <span>+</span>
+        <span>6<span class="m-h2o">H₂O</span></span>
+        <span class="ep-arrow">
+          <span class="ep-cond">光能·叶绿体</span>
+          <span class="ep-arrow-line">⟶</span>
+        </span>
+        <span class="m-glu">C₆H₁₂O₆</span>
+        <span>+</span>
+        <span>6<span class="m-o2">O₂</span></span>
+      </div>
+      <div class="ep-stage-detail">
+        <div class="ep-stage-row light"><b>光反应</b>（类囊体膜）：H₂O → O₂ + H⁺ + e⁻，生成 ATP 与 NADPH</div>
+        <div class="ep-stage-row dark"><b>暗反应</b>（基质）：CO₂ + C₅ → 2C₃ → C₅ + C₆H₁₂O₆</div>
+      </div>
+    </div>
+
+    <!-- 右侧图例 -->
+    <div class="legend-panel">
+      <div class="lp-title">分子图例</div>
+      <div id="legendList"></div>
+    </div>
+
+    <!-- 底部控制 -->
+    <div class="controls">
+      <button class="play-btn" id="playBtn" aria-label="播放或暂停动画"></button>
+      <span class="play-label" id="playLabel">暂停</span>
+      <div class="ctrl-divider"></div>
+      <div class="speed-wrap">
+        <span class="speed-label">速度</span>
+        <input type="range" id="speedSlider" min="0.25" max="2" step="0.25" value="1">
+        <span class="speed-value" id="speedValue">1x</span>
+      </div>
+    </div>
+
+    <!-- 信息卡 -->
+    <div class="info-card" id="infoCard">
+      <button class="ic-close" id="icClose">&times;</button>
+      <div class="ic-head">
+        <span class="ic-dot" id="icDot"></span>
+        <span class="ic-name" id="icName">名称</span>
+      </div>
+      <div class="ic-func" id="icFunc">说明</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from '../lib/three/three.module.js';
+
+    // ===== 分子定义 =====
+    const MOLECULES = {
+      H2O:  { name: '水 (H₂O)',          color: '#42A5F5', radius: 0.17, desc: '光反应的原料。在类囊体膜上被光能分解，释放出 O₂、H⁺ 和电子 e⁻。' },
+      O2:   { name: '氧气 (O₂)',          color: '#E53935', radius: 0.21, desc: '光反应中水分解的产物，通过气孔释放到大气中。' },
+      CO2:  { name: '二氧化碳 (CO₂)',     color: '#9E9E9E', radius: 0.23, desc: '暗反应的原料。在基质中被固定，最终被还原合成葡萄糖。' },
+      GLU:  { name: '葡萄糖 (C₆H₁₂O₆)',  color: '#2E7D32', radius: 0.29, desc: '光合作用的最终产物，储存着由光能转化而来的化学能。' },
+      ATP:  { name: 'ATP',                color: '#FB8C00', radius: 0.22, desc: '光反应产生的能量载体，为暗反应提供能量。' },
+      NADPH:{ name: 'NADPH',              color: '#FDD835', radius: 0.24, desc: '光反应产生的还原力，为暗反应提供氢和电子。' }
+    };
+
+    // ===== 渲染基础设置 =====
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf1f8e9);
+
+    const camera = new THREE.PerspectiveCamera(50, container.clientWidth / Math.max(1, container.clientHeight), 0.1, 1000);
+    camera.position.set(0, 2, 13);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // 光照：暖色阳光 + 环境 + 补光
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+    const sunLight = new THREE.DirectionalLight(0xfff3d0, 0.95);
+    sunLight.position.set(6, 12, 5);
+    scene.add(sunLight);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.35);
+    fillLight.position.set(-6, -3, -5);
+    scene.add(fillLight);
+
+    // ===== 叶绿体组 =====
+    const chloroGroup = new THREE.Group();
+    scene.add(chloroGroup);
+    const particleGroup = new THREE.Group();
+    chloroGroup.add(particleGroup);
+
+    const clickableMeshes = [];
+    const labelData = [];
+    function addLabel(mesh, name, color, offsetVec) {
+      labelData.push({ mesh, name, color, offset: offsetVec.clone() });
+    }
+
+    // --- 叶绿体外被（双层膜，椭圆体） ---
+    const ENVELOPE_INFO = { name: '叶绿体（外被）', color: '#558B2F', func: '光合作用的场所。外被为双层膜，内部充满基质，基质中分布着由类囊体堆叠成的基粒。' };
+    const envelope = new THREE.Mesh(
+      new THREE.SphereGeometry(4.3, 48, 36),
+      new THREE.MeshPhysicalMaterial({ color: 0x7CB342, transparent: true, opacity: 0.13, roughness: 0.25, metalness: 0, transmission: 0.7, side: THREE.DoubleSide, clearcoat: 0.3 })
+    );
+    envelope.scale.set(1, 0.55, 0.72);
+    envelope.userData = ENVELOPE_INFO;
+    chloroGroup.add(envelope);
+    clickableMeshes.push(envelope);
+    addLabel(envelope, '叶绿体', '#558B2F', new THREE.Vector3(0, 2.6, 0));
+
+    // --- 基质（内部体积） ---
+    const STROMA_INFO = { name: '基质', color: '#AED581', func: '暗反应（卡尔文循环）的场所。含多种酶，利用 ATP 和 NADPH 将 CO₂ 固定并还原为葡萄糖。' };
+    const stroma = new THREE.Mesh(
+      new THREE.SphereGeometry(4.0, 40, 32),
+      new THREE.MeshPhysicalMaterial({ color: 0xAED581, transparent: true, opacity: 0.10, roughness: 0.4, side: THREE.DoubleSide })
+    );
+    stroma.scale.set(1, 0.55, 0.72);
+    stroma.userData = STROMA_INFO;
+    chloroGroup.add(stroma);
+    clickableMeshes.push(stroma);
+
+    // --- 类囊体基粒（堆叠的圆盘） ---
+    const GRANUM_INFO = { name: '类囊体（基粒）', color: '#2E7D32', func: '光反应的场所。膜上分布着光合色素和酶，吸收光能将水分解，产生 ATP、NADPH 和 O₂。' };
+    const discMat = new THREE.MeshStandardMaterial({ color: 0x2E7D32, roughness: 0.5, emissive: 0x1B5E20, emissiveIntensity: 0.15 });
+    function makeGranum(x, y, z, count, radius, tilt) {
+      const grp = new THREE.Group();
+      const g = new THREE.CylinderGeometry(radius, radius, 0.07, 26);
+      for (let i = 0; i < count; i++) {
+        const d = new THREE.Mesh(g, discMat);
+        d.position.y = i * 0.115;
+        d.userData = GRANUM_INFO;
+        grp.add(d);
+        clickableMeshes.push(d);
+      }
+      grp.position.set(x, y, z);
+      grp.rotation.set(tilt.x || 0, tilt.y || 0, tilt.z || 0);
+      return grp;
+    }
+    const granumA = makeGranum(1.30, 0.05, 0.70, 6, 0.42, { x: 0.12, y: 0.20, z: 0 });
+    const granumB = makeGranum(-1.50, 0.10, -0.50, 5, 0.38, { x: -0.10, y: -0.30, z: 0.05 });
+    const granumC = makeGranum(0.40, -0.10, 1.60, 5, 0.34, { x: 0.05, y: 0.50, z: -0.10 });
+    const granumD = makeGranum(-0.70, 0.20, -1.50, 4, 0.32, { x: -0.15, y: 0.10, z: 0.12 });
+    chloroGroup.add(granumA, granumB, granumC, granumD);
+    addLabel(granumA, '类囊体（光反应）', '#2E7D32', new THREE.Vector3(0, 0.9, 0));
+
+    // --- 基粒间基质类囊体（连接细管） ---
+    function makeLamella(p1, p2) {
+      const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(...p1), new THREE.Vector3(...p2)]);
+      const geo = new THREE.TubeGeometry(curve, 20, 0.05, 8, false);
+      const mat = new THREE.MeshStandardMaterial({ color: 0x388E3C, roughness: 0.5, transparent: true, opacity: 0.7 });
+      return new THREE.Mesh(geo, mat);
+    }
+    chloroGroup.add(makeLamella([1.30, 0.45, 0.70], [-1.50, 0.35, -0.50]));
+    chloroGroup.add(makeLamella([0.40, 0.05, 1.60], [-0.70, 0.40, -1.50]));
+
+    // ===== 反应位点（光反应在类囊体上，暗反应在基质中） =====
+    const LIGHT_SITE = new THREE.Vector3(1.30, 0.85, 0.70);
+    const DARK_SITE  = new THREE.Vector3(-0.30, 0.15, 0.20);
+
+    function makeGlow(color, pos, baseR) {
+      const m = new THREE.MeshBasicMaterial({ color: new THREE.Color(color), transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false });
+      const mesh = new THREE.Mesh(new THREE.SphereGeometry(baseR, 24, 18), m);
+      mesh.position.copy(pos);
+      return mesh;
+    }
+    const lightGlow = makeGlow('#FFF176', LIGHT_SITE, 0.55);
+    const darkGlow  = makeGlow('#A5D6A7', DARK_SITE, 0.55);
+    chloroGroup.add(lightGlow, darkGlow);
+
+    const lightCore = new THREE.Mesh(
+      new THREE.SphereGeometry(0.16, 16, 14),
+      new THREE.MeshStandardMaterial({ color: 0xFBC02D, emissive: 0xFBC02D, emissiveIntensity: 0.7 })
+    );
+    lightCore.position.copy(LIGHT_SITE);
+    const darkCore = new THREE.Mesh(
+      new THREE.SphereGeometry(0.16, 16, 14),
+      new THREE.MeshStandardMaterial({ color: 0x66BB6A, emissive: 0x66BB6A, emissiveIntensity: 0.7 })
+    );
+    darkCore.position.copy(DARK_SITE);
+    darkCore.userData = STROMA_INFO;
+    chloroGroup.add(lightCore, darkCore);
+    clickableMeshes.push(darkCore);
+    addLabel(darkCore, '基质（暗反应）', '#388E3C', new THREE.Vector3(0, 0.7, 0));
+
+    // 反应位点辅助点光，增强光反应处的明亮感
+    const reactLight = new THREE.PointLight(0xffeb3b, 0.4, 7, 2);
+    reactLight.position.copy(LIGHT_SITE);
+    chloroGroup.add(reactLight);
+
+    // ===== 分子流动系统 =====
+    const sphereGeoCache = {};
+    function getSphereGeo(r) {
+      const k = r.toFixed(3);
+      if (!sphereGeoCache[k]) sphereGeoCache[k] = new THREE.SphereGeometry(r, 16, 14);
+      return sphereGeoCache[k];
+    }
+
+    class Stream {
+      constructor(type, pts, duration, count) {
+        this.type = type;
+        this.curve = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(...p)));
+        this.duration = duration;
+        this.particles = [];
+        const info = MOLECULES[type];
+        for (let i = 0; i < count; i++) {
+          // 每个粒子独立材质，便于单独控制透明度淡入淡出
+          const mat = new THREE.MeshStandardMaterial({
+            color: new THREE.Color(info.color), roughness: 0.3, metalness: 0.1,
+            emissive: new THREE.Color(info.color), emissiveIntensity: 0.3, transparent: true
+          });
+          const mesh = new THREE.Mesh(getSphereGeo(info.radius), mat);
+          mesh.userData = { type, name: info.name, color: info.color, func: info.desc };
+          mesh.scale.setScalar(0.001);
+          particleGroup.add(mesh);
+          clickableMeshes.push(mesh);
+          this.particles.push({ mesh, offset: (i / count) * duration });
+        }
+      }
+      update(time) {
+        for (const p of this.particles) {
+          let t = (((time + p.offset) % this.duration) + this.duration) % this.duration;
+          t = t / this.duration;
+          p.mesh.position.copy(this.curve.getPointAt(t));
+          let s = 1;
+          if (t < 0.08) s = t / 0.08;
+          else if (t > 0.92) s = (1 - t) / 0.08;
+          s = Math.max(0.001, s);
+          p.mesh.scale.setScalar(s);
+          p.mesh.material.opacity = s;
+        }
+      }
+    }
+
+    const streams = [];
+    // 光反应：H2O 从外部流入 → 到达类囊体（光反应位点）→ 分解
+    streams.push(new Stream('H2O', [[-3.2, 3.8, -1.0], [-2.1, 2.5, -0.3], [-0.8, 1.6, 0.3], [0.4, 1.1, 0.6], [1.30, 0.85, 0.70]], 6.0, 4));
+    // 光反应：O2 从类囊体生成 → 流出叶绿体
+    streams.push(new Stream('O2', [[1.30, 0.85, 0.70], [1.9, 1.9, 0.5], [2.7, 3.0, 0.8], [3.4, 3.9, 0.4]], 6.0, 4));
+    // 光反应产物：ATP 从类囊体流向基质（暗反应位点）
+    streams.push(new Stream('ATP', [[1.30, 0.85, 0.70], [0.7, 0.45, 0.55], [0.1, 0.25, 0.35], [-0.30, 0.15, 0.20]], 4.0, 3));
+    // 光反应产物：NADPH 从类囊体流向基质
+    streams.push(new Stream('NADPH', [[1.30, 0.85, 0.70], [0.6, 0.55, 1.0], [0.0, 0.25, 0.6], [-0.30, 0.15, 0.20]], 4.2, 3));
+    // 暗反应：CO2 从外部流入 → 到达基质（暗反应位点）→ 与 C5 结合
+    streams.push(new Stream('CO2', [[4.9, 0.7, 1.5], [3.4, 0.55, 1.0], [1.9, 0.35, 0.65], [0.7, 0.25, 0.35], [-0.30, 0.15, 0.20]], 6.5, 4));
+    // 暗反应：葡萄糖从基质生成 → 流出叶绿体
+    streams.push(new Stream('GLU', [[-0.30, 0.15, 0.20], [-1.7, 0.4, -0.1], [-2.7, 0.75, -0.4], [-3.9, 1.05, -0.9]], 6.0, 3));
+
+    // ===== 标签 DOM =====
+    const labelElements = [];
+    labelData.forEach(ld => {
+      const el = document.createElement('div');
+      el.className = 'label3d';
+      el.textContent = ld.name;
+      el.style.borderLeft = `3px solid ${ld.color}`;
+      container.appendChild(el);
+      labelElements.push(el);
+    });
+
+    // ===== 图例 =====
+    const legendList = document.getElementById('legendList');
+    ['H2O', 'O2', 'CO2', 'GLU', 'ATP', 'NADPH'].forEach(k => {
+      const m = MOLECULES[k];
+      const item = document.createElement('div');
+      item.className = 'lp-item';
+      item.innerHTML = `<span class="lp-dot" style="background:${m.color}"></span><span class="lp-name">${m.name}</span>`;
+      item.addEventListener('click', () => showInfo({ name: m.name, color: m.color, func: m.desc }));
+      legendList.appendChild(item);
+    });
+
+    // ===== 信息卡 =====
+    const infoCard = document.getElementById('infoCard');
+    const icDot = document.getElementById('icDot');
+    const icName = document.getElementById('icName');
+    const icFunc = document.getElementById('icFunc');
+    function showInfo(o) {
+      if (!o || !o.name) return;
+      icDot.style.background = o.color;
+      icName.textContent = o.name;
+      icFunc.textContent = o.func;
+      infoCard.style.borderTopColor = o.color;
+      infoCard.classList.add('show');
+    }
+    document.getElementById('icClose').addEventListener('click', () => infoCard.classList.remove('show'));
+
+    // ===== 交互：拖拽旋转 / 滚轮缩放 / 点击 =====
+    const dom = renderer.domElement;
+    dom.style.touchAction = 'none';
+
+    let isDragging = false;
+    let downX = 0, downY = 0, prevX = 0, prevY = 0;
+    let targetRotX = 0.15, targetRotY = 0;
+    let curRotX = 0.15, curRotY = 0;
+
+    dom.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      downX = prevX = e.clientX;
+      downY = prevY = e.clientY;
+      dom.setPointerCapture(e.pointerId);
+    });
+    dom.addEventListener('pointerup', (e) => {
+      isDragging = false;
+      const moved = Math.abs(e.clientX - downX) + Math.abs(e.clientY - downY);
+      if (moved < 6) handleClick(e);
+    });
+    dom.addEventListener('pointercancel', () => { isDragging = false; });
+    dom.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      targetRotY += (e.clientX - prevX) * 0.008;
+      targetRotX += (e.clientY - prevY) * 0.008;
+      targetRotX = Math.max(-1.3, Math.min(1.3, targetRotX));
+      prevX = e.clientX; prevY = e.clientY;
+    });
+    dom.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      camera.position.z = Math.max(7, Math.min(26, camera.position.z + e.deltaY * 0.012));
+    }, { passive: false });
+
+    // ===== 射线点击 =====
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    // 半透明外壳会遮挡内部结构，点击时优先跳过外壳，命中内部分子/类囊体/反应核心
+    const shellMeshes = new Set([envelope, stroma]);
+    function handleClick(e) {
+      const rect = dom.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(clickableMeshes, false);
+      if (hits.length === 0) return;
+      let chosen = null;
+      for (const h of hits) {
+        if (!shellMeshes.has(h.object)) { chosen = h.object; break; }
+      }
+      if (!chosen) chosen = hits[0].object;
+      showInfo(chosen.userData);
+    }
+
+    // ===== 播放/暂停 + 速度 =====
+    let isPlaying = true;
+    let speedMult = 1;
+    let animTime = 0;
+    const clock = new THREE.Clock();
+
+    const playBtn = document.getElementById('playBtn');
+    const playLabel = document.getElementById('playLabel');
+    const SVG_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+    const SVG_PLAY  = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+    function updatePlayUI() {
+      if (isPlaying) { playBtn.innerHTML = SVG_PAUSE; playLabel.textContent = '暂停'; }
+      else { playBtn.innerHTML = SVG_PLAY; playLabel.textContent = '播放'; }
+    }
+    playBtn.addEventListener('click', () => { isPlaying = !isPlaying; updatePlayUI(); });
+    updatePlayUI();
+
+    const speedSlider = document.getElementById('speedSlider');
+    const speedValue = document.getElementById('speedValue');
+    speedSlider.addEventListener('input', () => {
+      speedMult = parseFloat(speedSlider.value);
+      speedValue.textContent = speedMult + 'x';
+    });
+
+    // ===== 标签位置更新 =====
+    const tmpVec = new THREE.Vector3();
+    function updateLabels() {
+      labelData.forEach((ld, i) => {
+        const el = labelElements[i];
+        ld.mesh.getWorldPosition(tmpVec);
+        tmpVec.add(ld.offset);
+        tmpVec.project(camera);
+        if (tmpVec.z > 1) { el.style.display = 'none'; return; }
+        const x = (tmpVec.x * 0.5 + 0.5) * container.clientWidth;
+        const y = (-tmpVec.y * 0.5 + 0.5) * container.clientHeight;
+        el.style.display = 'block';
+        el.style.left = x + 'px'; el.style.top = y + 'px';
+      });
+    }
+
+    // ===== 窗口适配 =====
+    function onResize() {
+      const w = container.clientWidth, h = container.clientHeight;
+      camera.aspect = w / Math.max(1, h);
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    window.addEventListener('resize', onResize);
+
+    // ===== 动画循环 =====
+    function animate() {
+      requestAnimationFrame(animate);
+      const dt = clock.getDelta();
+      if (isPlaying) {
+        animTime += dt * speedMult;
+        targetRotY += 0.0025 * speedMult; // 缓慢自转
+      }
+      curRotX += (targetRotX - curRotX) * 0.12;
+      curRotY += (targetRotY - curRotY) * 0.12;
+      chloroGroup.rotation.x = curRotX;
+      chloroGroup.rotation.y = curRotY;
+
+      // 分子流动
+      for (const s of streams) s.update(animTime);
+
+      // 反应位点呼吸光效
+      const pl = 1 + 0.18 * Math.sin(animTime * 3);
+      const pd = 1 + 0.18 * Math.sin(animTime * 3 + 1.5);
+      lightGlow.scale.setScalar(pl);
+      darkGlow.scale.setScalar(pd);
+      lightGlow.material.opacity = 0.28 + 0.16 * Math.sin(animTime * 3);
+      darkGlow.material.opacity  = 0.28 + 0.16 * Math.sin(animTime * 3 + 1.5);
+      lightCore.scale.setScalar(1 + 0.12 * Math.sin(animTime * 3));
+      darkCore.scale.setScalar(1 + 0.12 * Math.sin(animTime * 3 + 1.5));
+
+      updateLabels();
+      renderer.render(scene, camera);
+    }
+    onResize();
+    animate();
+  </script>
+</body>
+</html>

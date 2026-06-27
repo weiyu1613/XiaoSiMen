@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>3D历史场景漫游：秦朝咸阳宫 | 初中历史</title>
+<style>
+  /* ===== 历史学科棕色主题 ===== */
+  :root{
+    --primary:#8b4513;
+    --primary-light:#a0522d;
+    --primary-dark:#5c2e00;
+    --accent:#d4a574;
+    --bg:#fdf5e6;
+    --bg-elevated:#fffaf0;
+    --text:#2c1810;
+    --text-light:#6b5a44;
+    --border:#d2b48c;
+    --shadow:0 4px 20px rgba(0,0,0,.18);
+    --shadow-lg:0 12px 40px rgba(0,0,0,.28);
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;overflow:hidden;}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+    background:#1f1408;color:var(--text);line-height:1.6;
+    -webkit-tap-highlight-color:transparent;
+  }
+  #app{position:fixed;inset:0;}
+  canvas{display:block;touch-action:none;cursor:grab;}
+  canvas:active{cursor:grabbing;}
+
+  /* ===== 顶部标题栏 ===== */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:30;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+    background:linear-gradient(135deg,rgba(92,46,0,.92),rgba(139,69,19,.92));
+    backdrop-filter:blur(8px);
+    box-shadow:0 4px 18px rgba(0,0,0,.3);
+    border-bottom:1px solid rgba(212,165,116,.35);
+  }
+  .topbar .left{display:flex;align-items:center;gap:14px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:8px 16px;border-radius:30px;
+    background:rgba(255,250,240,.14);color:#fffaf0;
+    text-decoration:none;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,250,240,.25);
+    transition:.25s;white-space:nowrap;
+  }
+  .back-btn:hover{background:rgba(255,250,240,.28);transform:translateX(-2px);}
+  .title-wrap h1{
+    font-size:21px;color:#fffaf0;font-weight:700;letter-spacing:1.5px;
+    text-shadow:0 2px 6px rgba(0,0,0,.4);
+  }
+  .title-wrap .sub{font-size:12px;color:var(--accent);letter-spacing:3px;margin-top:2px;}
+  .hint{
+    font-size:12px;color:rgba(255,250,240,.78);
+    display:flex;gap:14px;align-items:center;
+  }
+  .hint span{display:inline-flex;align-items:center;gap:4px;}
+  .hint .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);}
+
+  /* ===== 加载层 ===== */
+  .loader{
+    position:fixed;inset:0;z-index:100;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 50% 40%,#3a2410,#1a0f04);
+    color:var(--accent);gap:18px;transition:opacity .6s;
+  }
+  .loader.hide{opacity:0;pointer-events:none;}
+  .loader .ring{
+    width:54px;height:54px;border-radius:50%;
+    border:4px solid rgba(212,165,116,.2);border-top-color:var(--accent);
+    animation:spin 1s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loader p{font-size:14px;letter-spacing:4px;}
+
+  /* ===== 左侧视角控制面板 ===== */
+  .view-panel{
+    position:fixed;top:84px;left:18px;z-index:25;
+    width:170px;
+    background:rgba(255,250,240,.94);
+    border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:12px 12px 10px;
+    backdrop-filter:blur(6px);
+  }
+  .view-panel .vp-title{
+    font-size:12px;color:var(--primary);font-weight:700;letter-spacing:2px;
+    margin-bottom:8px;display:flex;align-items:center;gap:6px;
+  }
+  .view-panel .vp-title::before{
+    content:'';width:3px;height:12px;background:var(--primary);border-radius:2px;
+  }
+  .view-btn{
+    display:block;width:100%;text-align:left;
+    padding:8px 12px;margin-bottom:6px;border-radius:8px;cursor:pointer;
+    background:#fff;color:var(--text);
+    border:1px solid var(--border);font-size:13px;font-weight:500;
+    transition:.2s;display:flex;align-items:center;gap:8px;
+  }
+  .view-btn:hover{background:var(--primary);color:#fffaf0;border-color:var(--primary);}
+  .view-btn.active{background:var(--primary);color:#fffaf0;border-color:var(--primary-dark);}
+  .view-btn .ic{font-size:15px;width:18px;text-align:center;}
+  .view-btn.autotour{
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+    color:#fffaf0;border-color:var(--primary-dark);margin-top:8px;
+    justify-content:center;font-weight:600;
+  }
+  .view-btn.autotour:hover{background:linear-gradient(135deg,var(--primary),var(--primary-light));}
+  .view-btn.autotour.running{background:linear-gradient(135deg,#6b3a1a,#8a4a22);}
+
+  /* ===== 右侧信息面板 ===== */
+  .panel{
+    position:fixed;top:84px;right:18px;bottom:96px;z-index:25;
+    width:360px;max-width:calc(100vw - 36px);
+    background:var(--bg-elevated);
+    border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);
+    transform:translateX(120%);transition:transform .45s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .panel.open{transform:translateX(0);}
+  .panel-head{
+    padding:18px 20px 14px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+    color:#fffaf0;position:relative;
+  }
+  .panel-head .idx{font-size:12px;letter-spacing:3px;color:var(--accent);opacity:.9;}
+  .panel-head h2{font-size:23px;margin:4px 0 8px;letter-spacing:1.5px;}
+  .panel-head .badge{
+    display:inline-block;padding:3px 12px;border-radius:20px;
+    background:rgba(255,250,240,.18);font-size:13px;
+    border:1px solid rgba(255,250,240,.3);
+  }
+  .panel-close{
+    position:absolute;top:14px;right:14px;
+    width:30px;height:30px;border-radius:50%;
+    background:rgba(0,0,0,.2);color:#fff;border:none;cursor:pointer;
+    font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;
+    transition:.2s;
+  }
+  .panel-close:hover{background:rgba(0,0,0,.4);transform:rotate(90deg);}
+  .panel-body{padding:18px 20px;overflow-y:auto;flex:1;}
+  .panel-body::-webkit-scrollbar{width:5px;}
+  .panel-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+  .info-block{margin-bottom:16px;}
+  .info-block .label{
+    font-size:12px;color:var(--primary);font-weight:700;
+    letter-spacing:2px;margin-bottom:6px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .info-block .label::before{
+    content:'';width:3px;height:12px;background:var(--primary);border-radius:2px;
+  }
+  .info-block .val{font-size:14px;color:var(--text-light);line-height:1.85;text-indent:2em;}
+  .info-block.tags .tag{
+    display:inline-block;padding:3px 10px;margin:3px 4px 0 0;
+    background:rgba(139,69,19,.1);color:var(--primary);
+    border:1px solid rgba(139,69,19,.25);border-radius:14px;font-size:12px;
+  }
+
+  /* ===== 右下角小地图 ===== */
+  .minimap{
+    position:fixed;right:18px;bottom:62px;z-index:25;
+    width:178px;height:158px;
+    background:rgba(31,20,8,.88);
+    border:1px solid rgba(212,165,116,.45);border-radius:12px;
+    box-shadow:var(--shadow-lg);overflow:hidden;
+    backdrop-filter:blur(4px);
+  }
+  .minimap .mm-title{
+    position:absolute;top:5px;left:9px;z-index:2;
+    font-size:11px;color:var(--accent);letter-spacing:2px;font-weight:600;
+  }
+  .minimap canvas{display:block;width:100%;height:100%;cursor:default;}
+
+  /* ===== 底部操作提示 ===== */
+  .footbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:25;
+    display:flex;justify-content:center;gap:20px;flex-wrap:wrap;
+    padding:11px 16px 12px;
+    background:linear-gradient(to top,rgba(31,20,8,.94),rgba(31,20,8,.55) 70%,transparent);
+    pointer-events:none;
+  }
+  .footbar .tip{
+    font-size:12px;color:rgba(255,250,240,.82);
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(0,0,0,.25);padding:5px 12px;border-radius:20px;
+    border:1px solid rgba(212,165,116,.3);
+  }
+  .footbar .tip b{color:var(--accent);font-weight:600;letter-spacing:1px;}
+
+  /* ===== 漫游模式提示气泡 ===== */
+  .walk-indicator{
+    position:fixed;left:50%;top:84px;transform:translateX(-50%);z-index:24;
+    padding:6px 16px;border-radius:20px;
+    background:rgba(139,69,19,.9);color:#fffaf0;font-size:13px;letter-spacing:1px;
+    border:1px solid rgba(212,165,116,.5);box-shadow:var(--shadow);
+    opacity:0;transition:opacity .3s;pointer-events:none;
+  }
+  .walk-indicator.show{opacity:1;}
+
+  /* ===== 响应式 ===== */
+  @media (max-width:760px){
+    .topbar{padding:10px 12px;}
+    .title-wrap h1{font-size:16px;letter-spacing:1px;}
+    .title-wrap .sub{display:none;}
+    .hint{display:none;}
+    .view-panel{top:78px;left:8px;width:138px;padding:10px 10px 8px;}
+    .view-btn{padding:7px 9px;font-size:12px;}
+    .panel{
+      top:auto;left:8px;right:8px;bottom:118px;width:auto;
+      max-height:42vh;transform:translateY(140%);
+    }
+    .panel.open{transform:translateY(0);}
+    .minimap{width:130px;height:116px;bottom:70px;right:8px;}
+    .footbar{gap:8px;padding:8px 8px 9px;}
+    .footbar .tip{font-size:11px;padding:4px 9px;}
+  }
+  .err-tip{
+    position:fixed;inset:0;z-index:200;display:none;
+    align-items:center;justify-content:center;flex-direction:column;
+    background:#1a0f04;color:var(--accent);padding:30px;text-align:center;gap:14px;
+  }
+  .err-tip p{font-size:15px;line-height:1.8;max-width:420px;}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- 顶部标题栏 -->
+<header class="topbar">
+  <div class="left">
+    <a href="../../index.html" class="back-btn" title="返回首页">
+      <span>&#8592;</span> 返回
+    </a>
+    <div class="title-wrap">
+      <h1>3D历史场景漫游：秦朝咸阳宫</h1>
+      <div class="sub">XIANYANG PALACE · QIN DYNASTY</div>
+    </div>
+  </div>
+  <div class="hint">
+    <span><i class="dot"></i>拖拽旋转</span>
+    <span><i class="dot"></i>滚轮缩放</span>
+    <span><i class="dot"></i>WASD移动</span>
+    <span><i class="dot"></i>点击热点</span>
+  </div>
+</header>
+
+<!-- 加载层 -->
+<div class="loader" id="loader">
+  <div class="ring"></div>
+  <p>正在构建咸阳宫场景…</p>
+</div>
+
+<!-- 漫游模式提示 -->
+<div class="walk-indicator" id="walkInd">漫游模式 · WASD 移动中</div>
+
+<!-- 左侧视角控制 -->
+<aside class="view-panel" id="viewPanel">
+  <div class="vp-title">视角切换</div>
+  <button class="view-btn active" data-view="0"><span class="ic">&#9974;</span>俯瞰全景</button>
+  <button class="view-btn" data-view="1"><span class="ic">&#9961;</span>宫殿正门</button>
+  <button class="view-btn" data-view="2"><span class="ic">&#9678;</span>广场中央</button>
+  <button class="view-btn" data-view="3"><span class="ic">&#127968;</span>远眺宫阙</button>
+  <button class="view-btn autotour" id="autoTourBtn"><span class="ic">&#9658;</span>自动游览</button>
+</aside>
+
+<!-- 右侧信息面板 -->
+<aside class="panel" id="panel">
+  <div class="panel-head">
+    <button class="panel-close" id="panelClose" title="关闭">&times;</button>
+    <div class="idx" id="pIdx">热点 01</div>
+    <h2 id="pTitle">热点标题</h2>
+    <span class="badge" id="pBadge">知识点</span>
+  </div>
+  <div class="panel-body">
+    <div class="info-block tags">
+      <div class="label">关键词</div>
+      <div id="pTags"></div>
+    </div>
+    <div class="info-block">
+      <div class="label">历史解读</div>
+      <div class="val" id="pContent">—</div>
+    </div>
+  </div>
+</aside>
+
+<!-- 右下角小地图 -->
+<div class="minimap" id="minimap">
+  <div class="mm-title">场景地图</div>
+  <canvas id="mmCanvas" width="356" height="316"></canvas>
+</div>
+
+<!-- 底部操作提示 -->
+<nav class="footbar">
+  <span class="tip"><b>拖拽</b> 旋转视角</span>
+  <span class="tip"><b>滚轮</b> 缩放</span>
+  <span class="tip"><b>W A S D</b> 前后左右移动</span>
+  <span class="tip"><b>点击</b> 发光热点查看知识</span>
+</nav>
+
+<!-- 错误提示 -->
+<div class="err-tip" id="errTip">
+  <p>抱歉，您的浏览器不支持 WebGL，无法显示 3D 场景。<br>请使用支持 WebGL 的现代浏览器（如 Chrome、Edge、Firefox）打开本页面。</p>
+</div>
+
+<script type="module">
+import * as THREE from '../lib/three/three.module.js';
+
+/* ============================================================
+   热点数据：咸阳宫历史知识
+   ============================================================ */
+const HOTSPOTS = [
+  {
+    title:'宫殿建筑特点',
+    badge:'建筑形制',
+    tags:['高台建筑','夯土台基','层台叠筑'],
+    content:'咸阳宫是秦朝都城咸阳的核心宫殿建筑群，采用高台建筑形制。宫殿建于高大的夯土台基之上，层台叠筑，巍峨壮观，体现帝王至高无上的威严。夯土技术是中国古代建筑的一大创造，将泥土分层夯实，坚固耐久，至今仍可见秦汉夯土遗址。高台建筑既具瞭望、防潮的实用功能，更象征王权至上，深刻影响了后世宫殿建筑的形制。',
+    pos:{x:0, y:6.2, z:-13}
+  },
+  {
+    title:'秦朝政治制度',
+    badge:'政治制度',
+    tags:['中央集权','三公九卿','郡县制'],
+    content:'秦朝确立了中央集权制度。皇帝至高无上，总揽全国军政大权。中央设"三公九卿"：三公为丞相（辅佐皇帝处理政务）、太尉（掌管军事）、御史大夫（监察百官）；九卿分掌各项具体事务。地方废除分封制，全面推行郡县制，全国分为三十六郡，郡县长官由皇帝直接任免，从而大大加强了中央对地方的控制，奠定此后两千余年专制主义中央集权制度的基本格局。',
+    pos:{x:0, y:2.8, z:-3}
+  },
+  {
+    title:'咸阳城布局',
+    badge:'都城规划',
+    tags:['仿天象','渭水贯都','天人合一'],
+    content:'咸阳城布局独特，仿照天象建造，有"渭水贯都以象天汉，横桥南渡以法牵牛"之说。渭水穿城而过，象征天上的银河；渭水上的横桥象征银河之上的牵牛星。咸阳宫位于渭水北岸，象征紫微垣（北极星所在），体现"天人合一"的都城规划理念。随着秦国不断扩建，咸阳城规模宏大、宫殿林立，成为当时世界上最繁华的都城之一。',
+    pos:{x:17, y:2.8, z:8}
+  },
+  {
+    title:'秦始皇统一措施',
+    badge:'巩固统一',
+    tags:['统一文字','统一货币','统一度量衡','车同轨'],
+    content:'秦始皇统一六国后，为巩固统一的多民族国家，推行一系列措施：统一文字（小篆），便利政令通行与文化交融；统一货币（圆形方孔钱），促进经济交流；统一度量衡，便利税收与贸易；统一车轨（车同轨），修建驰道与直道连通全国；统一法律与伦理（行同伦）。这些措施消除了分裂割据的残余影响，对后世影响深远，奠定了中国两千多年大一统国家的基础。',
+    pos:{x:-14, y:2.8, z:14}
+  }
+];
+
+/* ============================================================
+   预设视角
+   ============================================================ */
+const VIEWS = [
+  {name:'俯瞰全景', cam:{x:0,y:42,z:46}, look:{x:0,y:3,z:-6}},
+  {name:'宫殿正门', cam:{x:0,y:5.2,z:10}, look:{x:0,y:6,z:-16}},
+  {name:'广场中央', cam:{x:0,y:3.6,z:15}, look:{x:0,y:4.5,z:-10}},
+  {name:'远眺宫阙', cam:{x:30,y:11,z:32}, look:{x:0,y:6,z:-12}}
+];
+
+/* ============================================================
+   全局变量
+   ============================================================ */
+let scene, camera, renderer;
+let raycaster, pointer;
+const clock = new THREE.Clock();
+
+// 视角控制：环绕目标点的球坐标
+const camTarget = new THREE.Vector3(0, 3, -6);
+const orbit = { theta: 0, phi: 0.95, radius: 60 };
+const desiredPos = new THREE.Vector3();
+const desiredLook = new THREE.Vector3().copy(camTarget);
+const currentLook = new THREE.Vector3().copy(camTarget);
+let viewMode = 'free';        // 'free' | 'preset' | 'autotour'
+let activeView = 0;
+
+// 拖拽
+let pointerDown = false, dragged = false;
+let startX = 0, startY = 0, lastX = 0, lastY = 0;
+
+// WASD 按键
+const keys = { w:false, a:false, s:false, d:false };
+let walking = false;
+
+// 热点
+const hotspotObjs = [];   // {group, beam, glow, index}
+const hotspotMeshes = []; // 可被 raycaster 命中的网格
+let focusedHotspot = null;
+
+// 自动游览
+let autoTourRunning = false;
+let autoTourTimer = null;
+
+// 小地图
+const mmCanvas = document.getElementById('mmCanvas');
+const mmCtx = mmCanvas.getContext('2d');
+
+/* 场景尺度常量 */
+const GROUND = 130;            // 地面边长
+const WALL_X = 40;             // 墙垣半宽(x)
+const WALL_Z = 36;             // 墙垣半长(z)
+const PLAT_FRONT = -10;        // 宫殿台基前缘 z
+const PLAT_BACK = -28;         // 台基后缘 z
+const PLAT_HALF = 10;          // 台基半宽 x
+
+/* ============================================================
+   初始化
+   ============================================================ */
+function init(){
+  const app = document.getElementById('app');
+
+  scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0xcdbfa3, 70, 180);
+
+  camera = new THREE.PerspectiveCamera(58, window.innerWidth/window.innerHeight, 0.1, 600);
+
+  renderer = new THREE.WebGLRenderer({antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  app.appendChild(renderer.domElement);
+
+  raycaster = new THREE.Raycaster();
+  pointer = new THREE.Vector2();
+
+  buildSky();
+  buildLights();
+  buildGround();
+  buildWalls();
+  buildPalace();
+  buildMountains();
+  buildHotspots();
+  buildDecorations();
+
+  bindEvents();
+
+  // 默认俯瞰视角
+  setView(0, true);
+
+  setTimeout(()=>document.getElementById('loader').classList.add('hide'), 350);
+
+  animate();
+}
+
+/* ============================================================
+   天空（渐变 ShaderMaterial 天穹）
+   ============================================================ */
+function buildSky(){
+  const sky = new THREE.Mesh(
+    new THREE.SphereGeometry(300, 32, 24),
+    new THREE.ShaderMaterial({
+      side: THREE.BackSide,
+      uniforms:{
+        topColor:    {value:new THREE.Color(0x4a7bb5)},
+        midColor:    {value:new THREE.Color(0xbcd2e8)},
+        bottomColor: {value:new THREE.Color(0xe8d9b8)}
+      },
+      vertexShader:`
+        varying vec3 vPos;
+        void main(){
+          vPos = position;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+        }`,
+      fragmentShader:`
+        uniform vec3 topColor;
+        uniform vec3 midColor;
+        uniform vec3 bottomColor;
+        varying vec3 vPos;
+        void main(){
+          float h = normalize(vPos).y;
+          float t = clamp(h, 0.0, 1.0);
+          vec3 col;
+          if(t < 0.35){
+            col = mix(bottomColor, midColor, t/0.35);
+          }else{
+            col = mix(midColor, topColor, (t-0.35)/0.65);
+          }
+          gl_FragColor = vec4(col, 1.0);
+        }`
+    })
+  );
+  scene.add(sky);
+}
+
+/* ============================================================
+   光照
+   ============================================================ */
+function buildLights(){
+  scene.add(new THREE.AmbientLight(0xb8a888, 0.55));
+
+  const hemi = new THREE.HemisphereLight(0xcfe2f3, 0x6b4a28, 0.6);
+  hemi.position.set(0, 50, 0);
+  scene.add(hemi);
+
+  const sun = new THREE.DirectionalLight(0xfff2d0, 1.15);
+  sun.position.set(38, 50, 30);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.camera.left = -55;
+  sun.shadow.camera.right = 55;
+  sun.shadow.camera.top = 55;
+  sun.shadow.camera.bottom = -55;
+  sun.shadow.camera.near = 1;
+  sun.shadow.camera.far = 160;
+  sun.shadow.bias = -0.0004;
+  scene.add(sun);
+
+  const fill = new THREE.DirectionalLight(0xb8c8e0, 0.35);
+  fill.position.set(-30, 20, -20);
+  scene.add(fill);
+}
+
+/* ============================================================
+   地面 / 广场
+   ============================================================ */
+function buildGround(){
+  // 大地（夯土黄褐色）
+  const groundTex = makeGroundTexture();
+  groundTex.wrapS = groundTex.wrapT = THREE.RepeatWrapping;
+  groundTex.repeat.set(10, 10);
+
+  const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(GROUND, GROUND),
+    new THREE.MeshStandardMaterial({map:groundTex, roughness:0.95, metalness:0.0})
+  );
+  ground.rotation.x = -Math.PI/2;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  // 宫前广场（青石板，颜色稍深）
+  const plazaTex = makePlazaTexture();
+  plazaTex.wrapS = plazaTex.wrapT = THREE.RepeatWrapping;
+  plazaTex.repeat.set(6, 6);
+  const plaza = new THREE.Mesh(
+    new THREE.PlaneGeometry(64, 44),
+    new THREE.MeshStandardMaterial({map:plazaTex, roughness:0.8, metalness:0.05})
+  );
+  plaza.rotation.x = -Math.PI/2;
+  plaza.position.set(0, 0.02, 8);
+  plaza.receiveShadow = true;
+  scene.add(plaza);
+
+  // 广场中轴线（御道）
+  const path = new THREE.Mesh(
+    new THREE.PlaneGeometry(5, 40),
+    new THREE.MeshStandardMaterial({color:0x9a8460, roughness:0.85})
+  );
+  path.rotation.x = -Math.PI/2;
+  path.position.set(0, 0.04, 6);
+  path.receiveShadow = true;
+  scene.add(path);
+}
+
+function makeGroundTexture(){
+  const c = document.createElement('canvas');
+  c.width = c.height = 128;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#b89a6e';
+  ctx.fillRect(0,0,128,128);
+  for(let i=0;i<500;i++){
+    ctx.fillStyle = `rgba(${80+Math.random()*40},${60+Math.random()*30},${30+Math.random()*20},${Math.random()*0.18})`;
+    ctx.fillRect(Math.random()*128, Math.random()*128, 2, 2);
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+function makePlazaTexture(){
+  const c = document.createElement('canvas');
+  c.width = c.height = 128;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#a89678';
+  ctx.fillRect(0,0,128,128);
+  ctx.strokeStyle = '#6e5a3e';
+  ctx.lineWidth = 2;
+  for(let i=0;i<=128;i+=32){
+    ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,128);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(128,i);ctx.stroke();
+  }
+  for(let i=0;i<300;i++){
+    ctx.fillStyle = `rgba(80,60,30,${Math.random()*0.12})`;
+    ctx.fillRect(Math.random()*128, Math.random()*128, 2, 2);
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+/* ============================================================
+   周围墙垣
+   ============================================================ */
+function buildWalls(){
+  const wallMat = new THREE.MeshStandardMaterial({color:0x8a6a44, roughness:0.9});
+  const capMat = new THREE.MeshStandardMaterial({color:0x5c3e22, roughness:0.85});
+  const wallH = 4;
+
+  // 四面墙
+  const walls = [
+    {x:0, z:WALL_Z, w:WALL_X*2, d:1},        // 北墙（宫殿后方）
+    {x:0, z:-WALL_Z, w:WALL_X*2, d:1},       // 南墙
+    {x:-WALL_X, z:0, w:1, d:WALL_Z*2},       // 西墙
+    {x:WALL_X, z:0, w:1, d:WALL_Z*2}         // 东墙
+  ];
+  walls.forEach(w=>{
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w.w, wallH, w.d), wallMat);
+    m.position.set(w.x, wallH/2, w.z);
+    m.castShadow = true; m.receiveShadow = true;
+    scene.add(m);
+    // 墙顶压条
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(w.w+0.2, 0.4, w.d+0.2), capMat);
+    cap.position.set(w.x, wallH+0.2, w.z);
+    cap.castShadow = true;
+    scene.add(cap);
+  });
+
+  // 南墙开阙门（在正前方留缺口）—— 实际做法：南墙分两段
+  // 由于上面已画整面南墙，这里覆盖一个缺口：用广场御道延伸处放两个阙
+  const queMat = new THREE.MeshStandardMaterial({color:0x7a5a38, roughness:0.85});
+  [-3.2, 3.2].forEach(x=>{
+    const que = new THREE.Mesh(new THREE.BoxGeometry(2.4, 6.5, 2.4), queMat);
+    que.position.set(x, 3.25, -WALL_Z);
+    que.castShadow = true; que.receiveShadow = true;
+    scene.add(que);
+    // 阙顶
+    const queTop = new THREE.Mesh(new THREE.ConeGeometry(2.0, 1.6, 4), capMat);
+    queTop.position.set(x, 7.3, -WALL_Z);
+    queTop.rotation.y = Math.PI/4;
+    queTop.castShadow = true;
+    scene.add(queTop);
+  });
+}
+
+/* ============================================================
+   宫殿建筑：夯土台基 + 台阶 + 柱子 + 殿身 + 屋顶 + 飞檐
+   ============================================================ */
+
+/* 构建庑殿顶（四面坡）几何体：4个檐角 + 2个脊端 */
+function buildHipRoof(eaveW, eaveD, ridgeW, eaveY, ridgeY){
+  const hw = eaveW/2, hd = eaveD/2, rw = ridgeW/2;
+  // 4个檐角（底）
+  const A=[-hw,eaveY, hd], B=[hw,eaveY, hd], C=[hw,eaveY,-hd], D=[-hw,eaveY,-hd];
+  // 2个脊端（顶）
+  const E=[-rw,ridgeY, 0], F=[rw,ridgeY, 0];
+  const verts = [];
+  const push = (p,q,r)=>{ verts.push(p[0],p[1],p[2], q[0],q[1],q[2], r[0],r[1],r[2]); };
+  // 前坡（梯形）
+  push(A,B,F); push(A,F,E);
+  // 后坡（梯形）
+  push(C,D,E); push(C,E,F);
+  // 右坡（三角形）
+  push(B,C,F);
+  // 左坡（三角形）
+  push(D,A,E);
+  // 底面（封闭，避免从下方看到穿透）
+  push(A,D,C); push(A,C,B);
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
+  geo.computeVertexNormals();
+  return geo;
+}
+
+function buildPalace(){
+  const palace = new THREE.Group();
+  scene.add(palace);
+
+  const earthMat = new THREE.MeshStandardMaterial({color:0x9a7a4e, roughness:0.95});
+  const earthDark = new THREE.MeshStandardMaterial({color:0x7a5e3a, roughness:0.95});
+  const colMat = new THREE.MeshStandardMaterial({color:0x8a2e1a, roughness:0.6, metalness:0.05});   // 朱红柱
+  const wallMat = new THREE.MeshStandardMaterial({color:0xcdb07a, roughness:0.85});                  // 殿墙
+  const roofMat = new THREE.MeshStandardMaterial({color:0x4a4a4a, roughness:0.7, metalness:0.1});    // 青灰瓦
+  const ridgeMat = new THREE.MeshStandardMaterial({color:0x2e2e2e, roughness:0.7});
+  const goldMat = new THREE.MeshStandardMaterial({color:0xb8862a, roughness:0.4, metalness:0.6});    // 金色脊饰
+
+  /* ---- 三层夯土台基（高台建筑） ---- */
+  const tiers = [
+    {w:24, d:20, h:1.6, y:0.8},
+    {w:21, d:17, h:1.4, y:2.3},
+    {w:18, d:14, h:1.2, y:3.6}
+  ];
+  tiers.forEach((t,i)=>{
+    const tier = new THREE.Mesh(new THREE.BoxGeometry(t.w, t.h, t.d), i%2? earthDark: earthMat);
+    tier.position.set(0, t.y, -19);
+    tier.castShadow = true; tier.receiveShadow = true;
+    palace.add(tier);
+    // 台基边沿压条
+    const edge = new THREE.Mesh(new THREE.BoxGeometry(t.w+0.4, 0.25, t.d+0.4), earthDark);
+    edge.position.set(0, t.y + t.h/2 - 0.05, -19);
+    palace.add(edge);
+  });
+
+  // 台基顶部高度
+  const topY = 3.6 + 0.6; // = 4.2
+
+  /* ---- 前方台阶（踏道） ---- */
+  const stepsCount = 8;
+  for(let i=0;i<stepsCount;i++){
+    const step = new THREE.Mesh(
+      new THREE.BoxGeometry(7 - i*0.15, 0.28, 0.9),
+      earthMat
+    );
+    step.position.set(0, 0.14 + i*0.5, PLAT_FRONT + 0.5 + i*0.9);
+    step.castShadow = true; step.receiveShadow = true;
+    palace.add(step);
+  }
+  // 台阶两侧垂带
+  [-3.6, 3.6].forEach(x=>{
+    const rail = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.4, stepsCount*0.9+0.5), earthDark);
+    rail.position.set(x, 0.2, PLAT_FRONT + 0.5 + stepsCount*0.45);
+    rail.castShadow = true;
+    palace.add(rail);
+  });
+
+  /* ---- 殿身柱廊（四周朱红柱） ---- */
+  const colH = 4.2;
+  const colR = 0.32;
+  const hallW = 15;     // 殿身宽 x
+  const hallD = 10;     // 殿身深 z
+  const colY = topY + colH/2;
+  const colZ = -19;
+
+  // 前排柱（南面，z = colZ + hallD/2）
+  const frontZ = colZ + hallD/2;
+  const backZ = colZ - hallD/2;
+  const colPositions = [];
+  const colCountX = 7;
+  for(let i=0;i<colCountX;i++){
+    const x = -hallW/2 + (i/(colCountX-1))*hallW;
+    colPositions.push([x, frontZ]);
+    colPositions.push([x, backZ]);
+  }
+  // 两侧柱
+  const colCountZ = 5;
+  for(let i=1;i<colCountZ-1;i++){
+    const z = colZ - hallD/2 + (i/(colCountZ-1))*hallD;
+    colPositions.push([-hallW/2, z]);
+    colPositions.push([ hallW/2, z]);
+  }
+  colPositions.forEach(p=>{
+    const col = new THREE.Mesh(new THREE.CylinderGeometry(colR, colR*1.12, colH, 16), colMat);
+    col.position.set(p[0], colY, p[1]);
+    col.castShadow = true; col.receiveShadow = true;
+    palace.add(col);
+    // 柱础（石础）
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(colR*1.4, colR*1.5, 0.25, 16), earthDark);
+    base.position.set(p[0], topY + 0.13, p[1]);
+    palace.add(base);
+  });
+
+  /* ---- 殿身墙体（半高墙 + 门窗洞） ---- */
+  const wallY = topY + colH*0.45;
+  // 后墙
+  const backWall = new THREE.Mesh(new THREE.BoxGeometry(hallW-0.6, colH*0.7, 0.3), wallMat);
+  backWall.position.set(0, wallY, backZ + 0.2);
+  backWall.castShadow = true; backWall.receiveShadow = true;
+  palace.add(backWall);
+  // 两侧墙
+  [-1,1].forEach(s=>{
+    const sw = new THREE.Mesh(new THREE.BoxGeometry(0.3, colH*0.7, hallD-0.6), wallMat);
+    sw.position.set(s*(hallW/2 - 0.15), wallY, colZ);
+    sw.castShadow = true; sw.receiveShadow = true;
+    palace.add(sw);
+  });
+
+  // 正门（深色门洞）
+  const doorMat = new THREE.MeshStandardMaterial({color:0x3a1f10, roughness:0.7});
+  const door = new THREE.Mesh(new THREE.BoxGeometry(4, colH*0.62, 0.25), doorMat);
+  door.position.set(0, wallY - 0.1, frontZ + 0.1);
+  palace.add(door);
+  // 门钉装饰（金色点）
+  for(let r=0;r<4;r++){
+    for(let c=0;c<6;c++){
+      const nail = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 6), goldMat);
+      nail.position.set(-1.7 + c*0.68, wallY - 0.5 + r*0.55, frontZ + 0.23);
+      palace.add(nail);
+    }
+  }
+  // 两侧窗
+  [-1,1].forEach(s=>{
+    const win = new THREE.Mesh(new THREE.BoxGeometry(2.4, colH*0.4, 0.2), doorMat);
+    win.position.set(s*5, wallY, frontZ + 0.1);
+    palace.add(win);
+  });
+
+  /* ---- 屋顶：庑殿顶（金字塔形）+ 出檐 ---- */
+  const eaveY = topY + colH;          // 檐口高度
+  const eaveW = hallW + 3.2;          // 出檐宽
+  const eaveD = hallD + 3.2;          // 出檐深
+  const ridgeY = eaveY + 4.2;         // 正脊高度
+  const ridgeW = hallW - 1;
+
+  // 檐口板（出檐）
+  const eave = new THREE.Mesh(new THREE.BoxGeometry(eaveW, 0.35, eaveD), roofMat);
+  eave.position.set(0, eaveY, colZ);
+  eave.castShadow = true; eave.receiveShadow = true;
+  palace.add(eave);
+
+  // 屋面（庑殿顶 四面坡）：用自定义 BufferGeometry 拼出正确的高耸屋面
+  const roofFaceMat = new THREE.MeshStandardMaterial({
+    color:0x4a4a4a, roughness:0.7, metalness:0.1,
+    side:THREE.DoubleSide, flatShading:true
+  });
+  const hipRoof = new THREE.Mesh(buildHipRoof(eaveW, eaveD, ridgeW, eaveY, ridgeY), roofFaceMat);
+  hipRoof.position.set(0, 0, colZ);
+  hipRoof.castShadow = true; hipRoof.receiveShadow = true;
+  palace.add(hipRoof);
+
+  // 檐口装饰线（屋檐边缘深色加重）
+  const eaveEdgeMat = new THREE.MeshStandardMaterial({color:0x2e2e2e, roughness:0.7});
+  const eaveEdge = new THREE.Mesh(new THREE.BoxGeometry(eaveW + 0.3, 0.18, eaveD + 0.3), eaveEdgeMat);
+  eaveEdge.position.set(0, eaveY + 0.28, colZ);
+  palace.add(eaveEdge);
+
+  // 正脊（屋脊横木）
+  const ridge = new THREE.Mesh(new THREE.BoxGeometry(ridgeW + 1, 0.4, 0.5), ridgeMat);
+  ridge.position.set(0, ridgeY + 0.15, colZ);
+  ridge.castShadow = true;
+  palace.add(ridge);
+
+  // 屋脊吻兽（两端鸱吻）
+  [-1,1].forEach(s=>{
+    const chiwen = new THREE.Mesh(new THREE.ConeGeometry(0.45, 1.1, 6), goldMat);
+    chiwen.position.set(s*(ridgeW/2 + 0.3), ridgeY + 0.8, colZ);
+    chiwen.rotation.z = s*0.5;
+    chiwen.castShadow = true;
+    palace.add(chiwen);
+  });
+
+  // 中心宝顶
+  const baoding = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 12), goldMat);
+  baoding.position.set(0, ridgeY + 0.45, colZ);
+  palace.add(baoding);
+  const badingTop = new THREE.Mesh(new THREE.ConeGeometry(0.22, 0.7, 8), goldMat);
+  badingTop.position.set(0, ridgeY + 1.0, colZ);
+  palace.add(badingTop);
+
+  /* ---- 飞檐角翘（四角上翘的飞檐效果） ---- */
+  const cornerOffset = eaveW/2 - 0.3;
+  const cornerOffsetZ = eaveD/2 - 0.3;
+  [[1,1],[1,-1],[-1,1],[-1,-1]].forEach(c=>{
+    const cx = c[0]*cornerOffset;
+    const cz = colZ + c[1]*cornerOffsetZ;
+    // 翘角小椎
+    const fly = new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.9, 6), ridgeMat);
+    fly.position.set(cx, eaveY + 0.7, cz);
+    fly.rotation.z = c[0]*0.5;
+    fly.rotation.x = c[1]*0.5;
+    fly.castShadow = true;
+    palace.add(fly);
+  });
+
+  /* ---- 殿内地面 ---- */
+  const floor = new THREE.Mesh(new THREE.BoxGeometry(hallW-0.8, 0.2, hallD-0.8), earthDark);
+  floor.position.set(0, topY + 0.1, colZ);
+  floor.receiveShadow = true;
+  palace.add(floor);
+
+  /* ---- 殿前月台栏杆 ---- */
+  const railMat = new THREE.MeshStandardMaterial({color:0xb8a070, roughness:0.8});
+  for(let i=-3;i<=3;i++){
+    const bal = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.7, 0.18), railMat);
+    bal.position.set(i*1.0, topY + 0.35, frontZ + 0.8);
+    palace.add(bal);
+  }
+  const railTop = new THREE.Mesh(new THREE.BoxGeometry(7, 0.16, 0.2), railMat);
+  railTop.position.set(0, topY + 0.75, frontZ + 0.8);
+  palace.add(railTop);
+}
+
+/* ============================================================
+   远处山脉（ConeGeometry 排列）
+   ============================================================ */
+function buildMountains(){
+  const mountainGroup = new THREE.Group();
+  scene.add(mountainGroup);
+
+  const mtnMatA = new THREE.MeshStandardMaterial({color:0x6e7a5a, roughness:0.95});
+  const mtnMatB = new THREE.MeshStandardMaterial({color:0x5a6650, roughness:0.95});
+  const mtnMatC = new THREE.MeshStandardMaterial({color:0x8a8a78, roughness:0.95});
+
+  // 环形分布的山脉
+  const ringR = 78;
+  const count = 28;
+  for(let i=0;i<count;i++){
+    const ang = (i/count)*Math.PI*2 + (Math.random()-0.5)*0.15;
+    const r = ringR + (Math.random()-0.5)*16;
+    const x = Math.cos(ang)*r;
+    const z = Math.sin(ang)*r;
+    const h = 14 + Math.random()*22;
+    const rad = 9 + Math.random()*7;
+    const mat = [mtnMatA, mtnMatB, mtnMatC][i%3];
+    const mtn = new THREE.Mesh(new THREE.ConeGeometry(rad, h, 6 + Math.floor(Math.random()*3)), mat);
+    mtn.position.set(x, h/2 - 1, z);
+    mtn.rotation.y = Math.random()*Math.PI;
+    mountainGroup.add(mtn);
+  }
+
+  // 后方加一排更高的远山（层次感）
+  for(let i=0;i<14;i++){
+    const ang = Math.PI*0.6 + (i/14)*Math.PI*0.8;
+    const r = 110 + Math.random()*10;
+    const x = Math.cos(ang)*r;
+    const z = Math.sin(ang)*r;
+    const h = 28 + Math.random()*18;
+    const mtn = new THREE.Mesh(new THREE.ConeGeometry(12 + Math.random()*6, h, 6), mtnMatC);
+    mtn.position.set(x, h/2 - 1, z);
+    mountainGroup.add(mtn);
+  }
+}
+
+/* ============================================================
+   场景装饰：旗杆、石灯、宫门石阶
+   ============================================================ */
+function buildDecorations(){
+  // 广场两侧旗杆
+  const poleMat = new THREE.MeshStandardMaterial({color:0x5c3e22, roughness:0.7});
+  const flagMat = new THREE.MeshStandardMaterial({color:0x8a2e1a, roughness:0.7, side:THREE.DoubleSide});
+  [-12, 12].forEach(x=>{
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 9, 12), poleMat);
+    pole.position.set(x, 4.5, 0);
+    pole.castShadow = true;
+    scene.add(pole);
+    const flag = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 1.4), flagMat);
+    flag.position.set(x + 1.1, 8.2, 0);
+    scene.add(flag);
+  });
+
+  // 御道两侧石灯
+  const stoneMat = new THREE.MeshStandardMaterial({color:0x9a8a70, roughness:0.85});
+  for(let i=0;i<5;i++){
+    [-3.5, 3.5].forEach(x=>{
+      const z = 0 + i*4;
+      const base = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.5, 0.6), stoneMat);
+      base.position.set(x, 0.25, z);
+      base.castShadow = true;
+      scene.add(base);
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.18, 1.6, 10), stoneMat);
+      pole.position.set(x, 1.3, z);
+      scene.add(pole);
+      const lamp = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.55, 0.4), new THREE.MeshStandardMaterial({color:0x3a2f20, roughness:0.6, emissive:0x6a4220, emissiveIntensity:0.4}));
+      lamp.position.set(x, 2.35, z);
+      scene.add(lamp);
+    });
+  }
+
+  // 几棵树点缀
+  const trunkMat = new THREE.MeshStandardMaterial({color:0x5a3e22, roughness:0.9});
+  const leafMat = new THREE.MeshStandardMaterial({color:0x4a6e3a, roughness:0.9});
+  const treePos = [
+    [-30, 18],[30, 20],[-28, -22],[28, -24],[-34, 4],[34, -6],
+    [-22, 26],[24, 28]
+  ];
+  treePos.forEach(p=>{
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 3, 8), trunkMat);
+    trunk.position.set(p[0], 1.5, p[1]);
+    trunk.castShadow = true;
+    scene.add(trunk);
+    const leaf = new THREE.Mesh(new THREE.ConeGeometry(1.8, 4.5, 8), leafMat);
+    leaf.position.set(p[0], 4.2, p[1]);
+    leaf.castShadow = true;
+    scene.add(leaf);
+  });
+}
+
+/* ============================================================
+   信息热点（发光标记 + 光柱 + 标签）
+   ============================================================ */
+function buildHotspots(){
+  HOTSPOTS.forEach((d, i)=>{
+    const g = new THREE.Group();
+    g.position.set(d.pos.x, d.pos.y, d.pos.z);
+
+    // 发光球
+    const glow = new THREE.Mesh(
+      new THREE.SphereGeometry(0.6, 24, 18),
+      new THREE.MeshStandardMaterial({
+        color:0xffcc44, emissive:0xffaa22, emissiveIntensity:1.2,
+        roughness:0.3, metalness:0.1, transparent:true, opacity:0.92
+      })
+    );
+    glow.userData.hotspotIndex = i;
+    g.add(glow);
+    hotspotMeshes.push(glow);
+
+    // 外圈光环
+    const ring = new THREE.Mesh(
+      new THREE.RingGeometry(0.8, 1.1, 32),
+      new THREE.MeshBasicMaterial({color:0xffcc44, transparent:true, opacity:0.6, side:THREE.DoubleSide})
+    );
+    ring.rotation.x = -Math.PI/2;
+    ring.position.y = -0.5;
+    g.add(ring);
+
+    // 光柱（垂直发光柱）
+    const beam = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.18, 0.28, 7, 16, 1, true),
+      new THREE.MeshBasicMaterial({color:0xffdd66, transparent:true, opacity:0.22, side:THREE.DoubleSide, depthWrite:false})
+    );
+    beam.position.y = 3.5;
+    g.add(beam);
+
+    // 地面光圈
+    const ground = new THREE.Mesh(
+      new THREE.CircleGeometry(1.4, 32),
+      new THREE.MeshBasicMaterial({color:0xffcc44, transparent:true, opacity:0.18, side:THREE.DoubleSide})
+    );
+    ground.rotation.x = -Math.PI/2;
+    ground.position.y = -d.pos.y + 0.05;
+    g.add(ground);
+
+    // 编号标签
+    const label = makeHotspotLabel(String(i+1));
+    label.position.y = 1.8;
+    g.add(label);
+
+    g.userData = {index:i, glow, ring, beam, ground, label, phase: Math.random()*Math.PI*2};
+    scene.add(g);
+    hotspotObjs.push(g);
+  });
+}
+
+function makeHotspotLabel(text){
+  const c = document.createElement('canvas');
+  c.width = 96; c.height = 96;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = 'rgba(92,46,0,0.9)';
+  ctx.beginPath(); ctx.arc(48,48,40,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle = 'rgba(255,204,68,0.95)'; ctx.lineWidth = 3; ctx.stroke();
+  ctx.fillStyle = '#fffaf0';
+  ctx.font = 'bold 44px "Microsoft YaHei",sans-serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(text, 48, 50);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({map:tex, transparent:true, depthTest:false}));
+  sp.scale.set(1.1, 1.1, 1);
+  sp.renderOrder = 20;
+  return sp;
+}
+
+/* ============================================================
+   视角控制：环绕目标点
+   ============================================================ */
+function computeFreeView(){
+  const r = orbit.radius;
+  desiredPos.set(
+    camTarget.x + r * Math.sin(orbit.phi) * Math.sin(orbit.theta),
+    camTarget.y + r * Math.cos(orbit.phi),
+    camTarget.z + r * Math.sin(orbit.phi) * Math.cos(orbit.theta)
+  );
+  desiredLook.copy(camTarget);
+}
+
+function setView(idx, instant){
+  activeView = idx;
+  const v = VIEWS[idx];
+  viewMode = 'free';
+  // 计算新的 camTarget 与 orbit 参数，使相机落在 v.cam，看向 v.look
+  camTarget.set(v.look.x, v.look.y, v.look.z);
+  const dx = v.cam.x - v.look.x;
+  const dy = v.cam.y - v.look.y;
+  const dz = v.cam.z - v.look.z;
+  orbit.radius = Math.max(2, Math.hypot(dx, dy, dz));
+  orbit.phi = Math.acos(Math.max(-1, Math.min(1, dy/orbit.radius)));
+  orbit.theta = Math.atan2(dx, dz);
+  computeFreeView();
+  if(instant){
+    camera.position.copy(desiredPos);
+    currentLook.copy(desiredLook);
+  }
+  updateViewButtons();
+}
+
+function updateViewButtons(){
+  document.querySelectorAll('.view-btn[data-view]').forEach(b=>{
+    b.classList.toggle('active', parseInt(b.dataset.view) === activeView);
+  });
+}
+
+/* ============================================================
+   信息面板
+   ============================================================ */
+function showHotspotPanel(i){
+  const d = HOTSPOTS[i];
+  document.getElementById('pIdx').textContent = '热点 ' + String(i+1).padStart(2,'0');
+  document.getElementById('pTitle').textContent = d.title;
+  document.getElementById('pBadge').textContent = d.badge;
+  document.getElementById('pContent').textContent = d.content;
+  const tagsWrap = document.getElementById('pTags');
+  tagsWrap.innerHTML = '';
+  d.tags.forEach(t=>{
+    const s = document.createElement('span');
+    s.className = 'tag'; s.textContent = t;
+    tagsWrap.appendChild(s);
+  });
+  document.getElementById('panel').classList.add('open');
+  focusedHotspot = i;
+}
+function hidePanel(){
+  document.getElementById('panel').classList.remove('open');
+  focusedHotspot = null;
+}
+
+/* ============================================================
+   聚焦热点：飞到热点附近
+   ============================================================ */
+function focusHotspot(i){
+  const d = HOTSPOTS[i];
+  viewMode = 'free';
+  // 设置目标为热点位置，相机在其南侧（广场方向）斜上方观察
+  camTarget.set(d.pos.x, d.pos.y, d.pos.z);
+  orbit.radius = 6.5;
+  orbit.phi = 1.25;
+  // theta=0：相机位于热点 +z（南侧广场）方向，看向热点与宫殿
+  orbit.theta = 0;
+  computeFreeView();
+  showHotspotPanel(i);
+}
+
+/* ============================================================
+   事件绑定
+   ============================================================ */
+function bindEvents(){
+  const dom = renderer.domElement;
+
+  dom.addEventListener('pointerdown', e=>{
+    pointerDown = true; dragged = false;
+    startX = lastX = e.clientX; startY = lastY = e.clientY;
+  });
+  dom.addEventListener('pointermove', e=>{
+    if(!pointerDown) return;
+    const dx = e.clientX - lastX, dy = e.clientY - lastY;
+    if(Math.abs(e.clientX-startX) > 4 || Math.abs(e.clientY-startY) > 4) dragged = true;
+    if(dragged){
+      viewMode = 'free';
+      orbit.theta -= dx * 0.005;
+      orbit.phi   -= dy * 0.005;
+      orbit.phi = Math.max(0.18, Math.min(1.50, orbit.phi));
+      updateViewButtons();
+    }
+    lastX = e.clientX; lastY = e.clientY;
+  });
+  dom.addEventListener('pointerup', e=>{
+    if(pointerDown && !dragged){
+      handleClick(e);
+    }
+    pointerDown = false; dragged = false;
+  });
+  dom.addEventListener('pointercancel', ()=>{ pointerDown=false; dragged=false; });
+
+  dom.addEventListener('wheel', e=>{
+    e.preventDefault();
+    viewMode = 'free';
+    orbit.radius += e.deltaY * 0.04;
+    orbit.radius = Math.max(3, Math.min(95, orbit.radius));
+  }, {passive:false});
+
+  // 触摸双指缩放
+  let pinchDist = 0;
+  dom.addEventListener('touchstart', e=>{
+    if(e.touches.length === 2){
+      pinchDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+    }
+  });
+  dom.addEventListener('touchmove', e=>{
+    if(e.touches.length === 2){
+      viewMode = 'free';
+      const d = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      orbit.radius += (pinchDist - d) * 0.08;
+      orbit.radius = Math.max(3, Math.min(95, orbit.radius));
+      pinchDist = d;
+    }
+  }, {passive:true});
+
+  // 视角按钮
+  document.querySelectorAll('.view-btn[data-view]').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      if(autoTourRunning) stopAutoTour();
+      setView(parseInt(b.dataset.view), false);
+    });
+  });
+
+  // 自动游览
+  document.getElementById('autoTourBtn').addEventListener('click', ()=>{
+    if(autoTourRunning) stopAutoTour();
+    else startAutoTour();
+  });
+
+  // 面板关闭
+  document.getElementById('panelClose').addEventListener('click', ()=>{
+    hidePanel();
+    if(autoTourRunning) stopAutoTour();
+  });
+
+  // 键盘
+  window.addEventListener('keydown', e=>{
+    const k = e.key.toLowerCase();
+    if(k in keys){ keys[k] = true; setWalking(true); }
+    if(k === 'escape'){ hidePanel(); if(autoTourRunning) stopAutoTour(); }
+    if(k >= '1' && k <= '4'){
+      const idx = parseInt(k) - 1;
+      if(autoTourRunning) stopAutoTour();
+      focusHotspot(idx);
+    }
+  });
+  window.addEventListener('keyup', e=>{
+    const k = e.key.toLowerCase();
+    if(k in keys){ keys[k] = false; if(!anyKey()) setWalking(false); }
+  });
+
+  window.addEventListener('resize', onResize);
+}
+
+function anyKey(){ return keys.w||keys.a||keys.s||keys.d; }
+function setWalking(on){
+  walking = on;
+  document.getElementById('walkInd').classList.toggle('show', on);
+}
+
+function handleClick(e){
+  const rect = renderer.domElement.getBoundingClientRect();
+  pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+  pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(hotspotMeshes, false);
+  if(hits.length){
+    const obj = hits[0].object;
+    const idx = obj.userData.hotspotIndex;
+    if(autoTourRunning) stopAutoTour();
+    focusHotspot(idx);
+  }
+}
+
+function onResize(){
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+/* ============================================================
+   WASD 第一人称漫游
+   ============================================================ */
+function applyWalk(dt){
+  if(!anyKey()) return;
+  viewMode = 'free';
+  updateViewButtons();
+
+  // 相机水平朝向（forward = target - camPos 投影到 xz）
+  const fwd = new THREE.Vector3().subVectors(camTarget, camera.position);
+  fwd.y = 0;
+  if(fwd.lengthSq() < 1e-4){
+    fwd.set(Math.sin(orbit.theta), 0, Math.cos(orbit.theta));
+  }
+  fwd.normalize();
+  const right = new THREE.Vector3().crossVectors(fwd, new THREE.Vector3(0,1,0)).normalize();
+
+  const speed = 12 * dt;
+  const move = new THREE.Vector3();
+  if(keys.w) move.add(fwd);
+  if(keys.s) move.sub(fwd);
+  if(keys.d) move.add(right);
+  if(keys.a) move.sub(right);
+  if(move.lengthSq() > 0){
+    move.normalize().multiplyScalar(speed);
+    camTarget.add(move);
+    // 限制在场景范围内
+    camTarget.x = Math.max(-WALL_X-4, Math.min(WALL_X+4, camTarget.x));
+    camTarget.z = Math.max(-WALL_Z-4, Math.min(WALL_Z+4, camTarget.z));
+    camTarget.y = Math.max(1.5, Math.min(20, camTarget.y));
+  }
+}
+
+/* ============================================================
+   自动游览
+   ============================================================ */
+function startAutoTour(){
+  autoTourRunning = true;
+  const btn = document.getElementById('autoTourBtn');
+  btn.classList.add('running');
+  btn.innerHTML = '<span class="ic">&#9632;</span>停止游览';
+  hidePanel();
+  runTourStep(0);
+}
+
+function runTourStep(i){
+  if(!autoTourRunning) return;
+  if(i >= HOTSPOTS.length){
+    // 游览结束，回到俯瞰
+    stopAutoTour();
+    setView(0, false);
+    return;
+  }
+  focusHotspot(i);
+  autoTourTimer = setTimeout(()=>runTourStep(i+1), 6500);
+}
+
+function stopAutoTour(){
+  autoTourRunning = false;
+  if(autoTourTimer){ clearTimeout(autoTourTimer); autoTourTimer = null; }
+  const btn = document.getElementById('autoTourBtn');
+  btn.classList.remove('running');
+  btn.innerHTML = '<span class="ic">&#9658;</span>自动游览';
+}
+
+/* ============================================================
+   小地图
+   ============================================================ */
+const MM_RANGE_X = WALL_X + 8;   // 地图覆盖范围
+const MM_RANGE_Z = WALL_Z + 10;
+function drawMinimap(){
+  const W = mmCanvas.width, H = mmCanvas.height;
+  mmCtx.clearRect(0,0,W,H);
+
+  // 背景
+  mmCtx.fillStyle = 'rgba(45,30,16,0.85)';
+  mmCtx.fillRect(0,0,W,H);
+
+  // 坐标变换：世界 -> 画布
+  const cx = W/2, cy = H/2;
+  const sx = (W-30) / (MM_RANGE_X*2);
+  const sz = (H-40) / (MM_RANGE_Z*2);
+  const toX = (wx)=> cx + wx * sx;
+  const toY = (wz)=> cy + wz * sz;
+
+  // 墙垣
+  mmCtx.strokeStyle = 'rgba(212,165,116,0.7)';
+  mmCtx.lineWidth = 2;
+  mmCtx.strokeRect(toX(-WALL_X), toY(-WALL_Z),
+    (WALL_X*2)*sx, (WALL_Z*2)*sz);
+
+  // 宫殿
+  mmCtx.fillStyle = '#8b4513';
+  mmCtx.fillRect(toX(-PLAT_HALF), toY(PLAT_BACK),
+    (PLAT_HALF*2)*sx, (PLAT_FRONT - PLAT_BACK)*sz);
+
+  // 御道
+  mmCtx.strokeStyle = 'rgba(212,165,116,0.35)';
+  mmCtx.lineWidth = 4;
+  mmCtx.beginPath();
+  mmCtx.moveTo(toX(0), toY(PLAT_FRONT));
+  mmCtx.lineTo(toX(0), toY(22));
+  mmCtx.stroke();
+
+  // 热点
+  hotspotObjs.forEach((g, i)=>{
+    const hx = toX(g.position.x), hy = toY(g.position.z);
+    mmCtx.fillStyle = (i === focusedHotspot) ? '#ffeb6b' : '#ffcc44';
+    mmCtx.beginPath();
+    mmCtx.arc(hx, hy, i===focusedHotspot?6:4.5, 0, Math.PI*2);
+    mmCtx.fill();
+    mmCtx.strokeStyle = 'rgba(0,0,0,0.5)';
+    mmCtx.lineWidth = 1; mmCtx.stroke();
+    // 编号
+    mmCtx.fillStyle = '#2c1810';
+    mmCtx.font = 'bold 9px sans-serif';
+    mmCtx.textAlign='center'; mmCtx.textBaseline='middle';
+    mmCtx.fillText(i+1, hx, hy);
+  });
+
+  // 相机位置
+  const px = toX(camera.position.x), py = toY(camera.position.z);
+  // 朝向：target - pos
+  const dx = camTarget.x - camera.position.x;
+  const dz = camTarget.z - camera.position.z;
+  const ang = Math.atan2(dx, -dz);  // 转为画布角度
+  mmCtx.save();
+  mmCtx.translate(px, py);
+  mmCtx.rotate(ang);
+  mmCtx.fillStyle = '#fffaf0';
+  mmCtx.strokeStyle = '#8b4513';
+  mmCtx.lineWidth = 1.5;
+  mmCtx.beginPath();
+  mmCtx.moveTo(0, -7);
+  mmCtx.lineTo(5, 5);
+  mmCtx.lineTo(0, 2);
+  mmCtx.lineTo(-5, 5);
+  mmCtx.closePath();
+  mmCtx.fill(); mmCtx.stroke();
+  mmCtx.restore();
+
+  // 视野范围圆
+  mmCtx.strokeStyle = 'rgba(255,250,240,0.25)';
+  mmCtx.lineWidth = 1;
+  mmCtx.beginPath();
+  mmCtx.arc(px, py, orbit.radius * sx * 0.35, 0, Math.PI*2);
+  mmCtx.stroke();
+}
+
+/* ============================================================
+   动画循环
+   ============================================================ */
+function animate(){
+  requestAnimationFrame(animate);
+  const dt = Math.min(clock.getDelta(), 0.05);
+
+  // WASD 移动
+  applyWalk(dt);
+
+  // 视角更新
+  computeFreeView();
+  camera.position.lerp(desiredPos, 0.12);
+  currentLook.lerp(desiredLook, 0.12);
+  camera.lookAt(currentLook);
+
+  // 热点动画
+  const t = performance.now() * 0.001;
+  hotspotObjs.forEach(h=>{
+    const u = h.userData;
+    const p = t * 2 + u.phase;
+    // 发光球脉动
+    const s = 1 + Math.sin(p) * 0.12;
+    u.glow.scale.setScalar(s);
+    u.glow.material.emissiveIntensity = 1.0 + Math.sin(p) * 0.4;
+    // 光环旋转 + 缩放
+    u.ring.rotation.z = p * 0.5;
+    u.ring.scale.setScalar(1 + Math.sin(p) * 0.15);
+    u.ring.material.opacity = 0.4 + Math.sin(p) * 0.2;
+    // 光柱
+    u.beam.material.opacity = 0.18 + Math.sin(p*1.3) * 0.08;
+    // 标签漂浮
+    u.label.position.y = 1.8 + Math.sin(p*0.8) * 0.12;
+  });
+
+  // 小地图
+  drawMinimap();
+
+  renderer.render(scene, camera);
+}
+
+/* ============================================================
+   启动 + WebGL 检测
+   ============================================================ */
+try{
+  const test = document.createElement('canvas').getContext('webgl') ||
+               document.createElement('canvas').getContext('experimental-webgl');
+  if(!test){
+    throw new Error('no webgl');
+  }
+  init();
+}catch(err){
+  document.getElementById('loader').classList.add('hide');
+  document.getElementById('errTip').style.display = 'flex';
+  console.error('场景初始化失败：', err);
+}
+</script>
+</body>
+</html>

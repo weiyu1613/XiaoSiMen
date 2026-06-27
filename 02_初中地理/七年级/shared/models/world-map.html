@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>世界国家互动地图</title>
+<style>
+  :root{
+    --primary:#1565C0; --primary-light:#42A5F5; --primary-dark:#0D47A1;
+    --accent:#FFB300; --accent-dark:#E65100;
+    --bg:#e8f4fd; --text:#2c3e50; --white:#f0f8ff;
+    --card-bg:rgba(240,248,255,0.98); --border:#90caf9;
+    --shadow:0 6px 24px rgba(13,71,161,0.18); --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:'Noto Sans SC',-apple-system,"Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh;
+  }
+  /* 顶部栏 */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;flex:none;
+    padding:12px 20px;
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary) 55%,var(--primary-light));
+    color:#fff;box-shadow:var(--shadow);
+  }
+  .topbar h1{font-size:20px;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:10px;}
+  .topbar h1 .logo{font-size:24px;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.16);color:#fff;text-decoration:none;
+    padding:8px 16px;border-radius:30px;font-size:14px;font-weight:500;
+    border:1px solid rgba(255,255,255,0.35);transition:all .25s;
+  }
+  .back-btn:hover{background:rgba(255,255,255,0.3);transform:translateX(-2px);}
+  /* 工具栏 */
+  .toolbar{
+    flex:none;display:flex;align-items:center;flex-wrap:wrap;gap:10px;
+    padding:12px 20px;background:var(--card-bg);border-bottom:1px solid var(--border);
+    box-shadow:0 2px 10px rgba(13,71,161,0.06);
+  }
+  .filter-group{display:flex;flex-wrap:wrap;gap:6px;}
+  .filter-btn{
+    border:1px solid var(--border);background:#fff;color:var(--primary-dark);
+    cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;
+    padding:7px 14px;border-radius:30px;transition:all .2s;
+  }
+  .filter-btn:hover{background:#e3f2fd;border-color:var(--primary-light);}
+  .filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary-dark);box-shadow:0 3px 10px rgba(21,101,192,0.35);}
+  .search-box{
+    margin-left:auto;display:flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--border);border-radius:30px;padding:6px 14px;
+  }
+  .search-box input{
+    border:none;outline:none;font-family:inherit;font-size:14px;width:180px;background:transparent;color:var(--text);
+  }
+  .search-box .icon{font-size:15px;color:var(--primary);}
+  /* 地图区 */
+  .map-wrap{
+    flex:1;position:relative;overflow:auto;
+    background:linear-gradient(160deg,#dcefff,#cfe8fd);
+    padding:10px;
+  }
+  #map{width:100%;height:auto;display:block;min-height:360px;}
+  .land{fill:#bbdefb;stroke:#64b5f6;stroke-width:1;transition:fill .2s;}
+  .grid-line{stroke:#cfe8fd;stroke-width:0.6;fill:none;}
+  /* 国家热点 */
+  .country{cursor:pointer;transition:fill .15s,stroke .15s,opacity .2s;}
+  .country circle{fill:rgba(21,101,192,0.45);stroke:var(--primary-dark);stroke-width:1;transition:all .15s;}
+  .country:hover circle{fill:var(--accent);stroke:var(--accent-dark);stroke-width:1.6;}
+  .country.dim{opacity:.16;}
+  .country.active circle{fill:var(--accent);stroke:var(--accent-dark);stroke-width:1.6;}
+  .country.active:hover circle{fill:var(--accent-dark);}
+  .country-label{fill:#0D47A1;font-size:9px;font-weight:600;pointer-events:none;text-anchor:middle;dominant-baseline:central;opacity:.85;}
+  /* tooltip */
+  #tooltip{
+    position:fixed;z-index:30;pointer-events:none;opacity:0;transition:opacity .12s;
+    background:rgba(13,71,161,0.95);color:#fff;padding:8px 12px;border-radius:8px;
+    font-size:13px;box-shadow:0 4px 14px rgba(0,0,0,0.25);max-width:240px;line-height:1.5;
+  }
+  #tooltip .t-flag{font-size:18px;margin-right:4px;}
+  #tooltip .t-cap{opacity:.85;font-size:12px;}
+  /* 信息卡片 */
+  .modal-mask{
+    position:fixed;inset:0;z-index:40;background:rgba(13,71,161,0.35);
+    display:flex;align-items:center;justify-content:center;padding:20px;
+    opacity:0;pointer-events:none;transition:opacity .2s;
+  }
+  .modal-mask.show{opacity:1;pointer-events:auto;}
+  .info-card{
+    width:380px;max-width:100%;background:var(--card-bg);border-radius:var(--radius);
+    box-shadow:0 18px 50px rgba(13,71,161,0.35);overflow:hidden;
+    transform:translateY(20px) scale(.96);transition:transform .25s;border:1px solid var(--border);
+  }
+  .modal-mask.show .info-card{transform:translateY(0) scale(1);}
+  .card-head{
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));
+    color:#fff;padding:18px 20px;display:flex;align-items:center;gap:14px;position:relative;
+  }
+  .card-head .flag{font-size:42px;line-height:1;}
+  .card-head .name{font-size:22px;font-weight:700;}
+  .card-head .continent{font-size:12px;opacity:.9;margin-top:3px;background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:20px;display:inline-block;}
+  .card-close{
+    position:absolute;top:10px;right:14px;background:rgba(255,255,255,0.2);border:none;color:#fff;
+    width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;
+  }
+  .card-close:hover{background:rgba(255,255,255,0.4);}
+  .card-body{padding:18px 20px;}
+  .card-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--border);font-size:14px;}
+  .card-row:last-child{border-bottom:none;}
+  .card-row .k{color:var(--primary-dark);font-weight:600;}
+  .card-row .v{color:var(--text);text-align:right;}
+  .card-intro{margin-top:12px;padding:12px;background:#e3f2fd;border-radius:10px;font-size:13px;line-height:1.7;color:#37474f;}
+  /* 底部统计栏 */
+  .statsbar{
+    flex:none;display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;
+    padding:12px 20px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+    color:#fff;box-shadow:0 -3px 14px rgba(13,71,161,0.18);
+  }
+  .stat{display:flex;align-items:center;gap:8px;font-size:14px;}
+  .stat .lab{opacity:.85;}
+  .stat .val{font-size:18px;font-weight:700;color:var(--accent);}
+  .hint{font-size:12px;opacity:.8;text-align:center;padding:4px 20px 8px;background:var(--card-bg);}
+  @media (max-width:640px){
+    .search-box{margin-left:0;width:100%;}
+    .search-box input{flex:1;width:auto;}
+    .statsbar{gap:16px;}
+    .stat .val{font-size:15px;}
+    .info-card{width:100%;}
+  }
+</style>
+</head>
+<body>
+  <!-- 顶部栏 -->
+  <header class="topbar">
+    <a href="../../index.html" class="back-btn">← 返回</a>
+    <h1><span class="logo">🌍</span>世界国家互动地图</h1>
+    <span style="width:72px;"></span>
+  </header>
+
+  <!-- 工具栏：大洲筛选 + 搜索 -->
+  <div class="toolbar">
+    <div class="filter-group" id="filterGroup">
+      <button class="filter-btn active" data-continent="全部">全部</button>
+      <button class="filter-btn" data-continent="亚洲">亚洲</button>
+      <button class="filter-btn" data-continent="欧洲">欧洲</button>
+      <button class="filter-btn" data-continent="非洲">非洲</button>
+      <button class="filter-btn" data-continent="北美洲">北美洲</button>
+      <button class="filter-btn" data-continent="南美洲">南美洲</button>
+      <button class="filter-btn" data-continent="大洋洲">大洋洲</button>
+      <button class="filter-btn" data-continent="南极洲">南极洲</button>
+    </div>
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="输入国家名定位…" autocomplete="off" />
+    </div>
+  </div>
+
+  <!-- 地图区 -->
+  <div class="map-wrap">
+    <svg id="map" viewBox="0 0 1000 510" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#eaf4fc"/>
+          <stop offset="1" stop-color="#d6e9fb"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="1000" height="510" fill="url(#oceanGrad)"/>
+      <!-- 经纬网格 -->
+      <g class="grid">
+        <line class="grid-line" x1="0" y1="85" x2="1000" y2="85"/>
+        <line class="grid-line" x1="0" y1="170" x2="1000" y2="170"/>
+        <line class="grid-line" x1="0" y1="255" x2="1000" y2="255"/>
+        <line class="grid-line" x1="0" y1="340" x2="1000" y2="340"/>
+        <line class="grid-line" x1="0" y1="425" x2="1000" y2="425"/>
+        <line class="grid-line" x1="250" y1="0" x2="250" y2="510"/>
+        <line class="grid-line" x1="500" y1="0" x2="500" y2="510"/>
+        <line class="grid-line" x1="750" y1="0" x2="750" y2="510"/>
+        <line class="grid-line" x1="500" y1="0" x2="500" y2="510" stroke="#9fc7e8" stroke-width="1"/>
+        <line class="grid-line" x1="0" y1="255" x2="1000" y2="255" stroke="#9fc7e8" stroke-width="1"/>
+      </g>
+
+      <!-- 简化大陆轮廓 -->
+      <g id="continents">
+        <!-- 北美洲 -->
+        <path class="land" d="M150,68 L168,62 L195,60 L225,62 L252,70 L270,85 L274,105 L268,128 L256,145 L248,160 L240,172 L230,182 L222,190 L212,196 L200,196 L188,188 L178,175 L168,158 L158,138 L150,115 L146,92 Z"/>
+        <path class="land" d="M230,182 L242,188 L250,198 L256,212 L250,218 L242,210 L233,198 Z"/>
+        <!-- 格陵兰 -->
+        <path class="land" d="M298,48 L332,46 L348,58 L344,76 L326,84 L308,78 L298,64 Z"/>
+        <!-- 南美洲 -->
+        <path class="land" d="M285,205 L305,200 L328,202 L348,210 L360,225 L365,245 L362,268 L355,290 L348,315 L338,338 L325,358 L312,372 L300,368 L290,352 L285,330 L282,305 L280,278 L280,250 L282,225 Z"/>
+        <!-- 非洲 -->
+        <path class="land" d="M505,170 L530,165 L560,166 L588,172 L610,185 L620,205 L622,228 L618,250 L608,272 L595,292 L580,312 L565,328 L552,338 L540,336 L528,322 L518,305 L510,283 L505,258 L500,232 L496,205 L500,182 Z"/>
+        <!-- 欧亚大陆主体 -->
+        <path class="land" d="M470,98 L478,82 L500,74 L525,70 L548,72 L558,60 L550,54 L535,57 L525,68 L545,75 L580,72 L620,70 L670,68 L720,66 L770,66 L810,70 L845,76 L875,84 L895,95 L905,108 L900,120 L882,128 L868,132 L850,138 L825,140 L800,140 L775,138 L750,135 L725,132 L700,130 L675,128 L650,128 L625,130 L600,132 L575,135 L550,138 L535,140 L520,138 L505,132 L490,125 L478,115 Z"/>
+        <!-- 伊比利亚半岛 -->
+        <path class="land" d="M478,120 L495,118 L502,128 L500,142 L488,148 L478,140 Z"/>
+        <!-- 亚平宁半岛（意大利） -->
+        <path class="land" d="M528,128 L535,128 L540,140 L545,150 L540,153 L535,148 L530,138 Z"/>
+        <!-- 印度半岛 -->
+        <path class="land" d="M705,138 L720,142 L728,158 L724,175 L715,185 L706,175 L700,160 L700,148 Z"/>
+        <!-- 阿拉伯半岛 -->
+        <path class="land" d="M600,150 L625,148 L645,158 L652,175 L645,192 L628,200 L612,195 L600,180 Z"/>
+        <!-- 中南半岛 -->
+        <path class="land" d="M770,150 L785,152 L795,168 L790,185 L782,200 L775,210 L770,195 L765,178 L762,162 Z"/>
+        <!-- 英国 -->
+        <path class="land" d="M488,90 L500,88 L504,100 L498,108 L488,104 L486,96 Z"/>
+        <!-- 日本 -->
+        <path class="land" d="M878,132 L890,135 L897,145 L893,155 L884,158 L878,148 Z"/>
+        <!-- 印度尼西亚群岛 -->
+        <path class="land" d="M800,250 L835,248 L850,254 L845,262 L815,262 L800,258 Z"/>
+        <path class="land" d="M855,250 L875,250 L878,258 L862,260 Z"/>
+        <path class="land" d="M880,258 L895,258 L895,266 L882,266 Z"/>
+        <!-- 菲律宾 -->
+        <path class="land" d="M855,210 L865,212 L868,225 L860,232 L855,222 Z"/>
+        <!-- 澳大利亚 -->
+        <path class="land" d="M825,300 L860,296 L895,300 L918,310 L922,325 L905,338 L875,340 L845,335 L828,322 Z"/>
+        <!-- 新西兰 -->
+        <path class="land" d="M975,352 L985,351 L988,362 L980,366 L974,360 Z"/>
+        <path class="land" d="M978,370 L990,371 L992,382 L982,384 L976,378 Z"/>
+        <!-- 马达加斯加 -->
+        <path class="land" d="M615,265 L624,266 L627,285 L620,295 L614,283 Z"/>
+        <!-- 南极洲 -->
+        <path class="land" d="M30,455 L150,450 L300,448 L450,450 L600,448 L750,450 L880,452 L970,458 L970,495 L30,495 Z"/>
+      </g>
+
+      <!-- 国家热点（JS 动态生成） -->
+      <g id="hotspots"></g>
+      <g id="labels"></g>
+    </svg>
+  </div>
+
+  <div class="hint">💡 提示：鼠标悬停查看国家信息，点击查看详情；使用上方按钮按大洲筛选，或搜索国家名称。</div>
+
+  <!-- 底部统计栏 -->
+  <footer class="statsbar">
+    <div class="stat"><span class="lab">当前国家数</span><span class="val" id="stCount">0</span></div>
+    <div class="stat"><span class="lab">总人口</span><span class="val" id="stPop">0</span></div>
+    <div class="stat"><span class="lab">总面积</span><span class="val" id="stArea">0</span></div>
+  </footer>
+
+  <!-- 悬浮提示 -->
+  <div id="tooltip"></div>
+
+  <!-- 信息卡片 -->
+  <div class="modal-mask" id="modalMask">
+    <div class="info-card">
+      <div class="card-head">
+        <div class="flag" id="cFlag">🏳️</div>
+        <div>
+          <div class="name" id="cName">国名</div>
+          <span class="continent" id="cContinent">大洲</span>
+        </div>
+        <button class="card-close" id="cClose">×</button>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="k">🏛️ 首都</span><span class="v" id="cCapital">—</span></div>
+        <div class="card-row"><span class="k">📐 面积</span><span class="v" id="cArea">—</span></div>
+        <div class="card-row"><span class="k">👥 人口</span><span class="v" id="cPopulation">—</span></div>
+        <div class="card-row"><span class="k">🗺️ 所在大洲</span><span class="v" id="cContinent2">—</span></div>
+        <div class="card-intro" id="cIntro">简介</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+// 国家数据：含国名、首都、国旗emoji、面积(km²)、人口、所在大洲、SVG坐标与半径、简介
+const countries = [
+  {name:'中国',capital:'北京',flag:'🇨🇳',area:9596961,population:1412000000,continent:'亚洲',x:792,y:153,r:20,intro:'位于东亚，是世界上人口最多的国家之一，拥有悠久的历史和灿烂的文化。地形多样，气候复杂，长城、故宫等闻名世界。'},
+  {name:'日本',capital:'东京',flag:'🇯🇵',area:377975,population:125800000,continent:'亚洲',x:883,y:150,r:12,intro:'位于东亚的岛国，由四大岛及众多小岛组成，多火山地震，经济发达，科技和文化产业世界领先。'},
+  {name:'韩国',capital:'首尔',flag:'🇰🇷',area:100210,population:51780000,continent:'亚洲',x:855,y:150,r:9,intro:'位于朝鲜半岛南部，经济发达，电子、汽车工业领先，韩流文化享誉全球。'},
+  {name:'印度',capital:'新德里',flag:'🇮🇳',area:3287263,population:1417000000,continent:'亚洲',x:717,y:189,r:16,intro:'位于南亚次大陆，是世界上人口最多的国家之一，文明古国，种姓文化独特，软件产业发达。'},
+  {name:'印度尼西亚',capital:'雅加达',flag:'🇮🇩',area:1904569,population:273520000,continent:'亚洲',x:828,y:256,r:14,intro:'东南亚群岛国家，由上万个岛屿组成，是世界最大的群岛国家，火山众多，热带雨林广布。'},
+  {name:'泰国',capital:'曼谷',flag:'🇹🇭',area:513120,population:71690000,continent:'亚洲',x:781,y:208,r:11,intro:'位于中南半岛中部，旅游业发达，佛教文化浓厚，盛产稻米和热带水果。'},
+  {name:'沙特阿拉伯',capital:'利雅得',flag:'🇸🇦',area:2149690,population:35340000,continent:'亚洲',x:625,y:183,r:14,intro:'位于阿拉伯半岛，是世界最大石油出口国之一，伊斯兰教发源地，麦加、麦地那为圣城。'},
+  {name:'土耳其',capital:'安卡拉',flag:'🇹🇷',area:783562,population:84680000,continent:'亚洲',x:597,y:142,r:11,intro:'地跨亚欧两洲，连接黑海与地中海，历史悠久，伊斯坦布尔曾是拜占庭与奥斯曼帝国都城。'},
+  {name:'哈萨克斯坦',capital:'阿斯塔纳',flag:'🇰🇿',area:2724900,population:18990000,continent:'亚洲',x:675,y:118,r:13,intro:'位于中亚，世界最大内陆国，草原广布，石油、铀矿资源丰富，地跨亚欧两大洲。'},
+  {name:'俄罗斯',capital:'莫斯科',flag:'🇷🇺',area:17098242,population:143400000,continent:'欧洲',x:700,y:82,r:20,intro:'世界上面积最大的国家，地跨亚欧两大洲，自然资源丰富，森林广布，横跨11个时区。'},
+  {name:'英国',capital:'伦敦',flag:'🇬🇧',area:243610,population:67220000,continent:'欧洲',x:494,y:100,r:9,intro:'位于欧洲西部的岛国，曾建立“日不落帝国”，工业革命发源地，金融业发达。'},
+  {name:'法国',capital:'巴黎',flag:'🇫🇷',area:551695,population:67390000,continent:'欧洲',x:506,y:122,r:10,intro:'位于欧洲西部，文化艺术之都，葡萄酒、时装、旅游业闻名，埃菲尔铁塔为地标。'},
+  {name:'德国',capital:'柏林',flag:'🇩🇪',area:357022,population:83200000,continent:'欧洲',x:530,y:110,r:11,intro:'位于欧洲中部，工业制造业强国，汽车、机械工业领先，啤酒文化盛行。'},
+  {name:'意大利',capital:'罗马',flag:'🇮🇹',area:301340,population:59030000,continent:'欧洲',x:533,y:133,r:10,intro:'位于欧洲南部亚平宁半岛，靴形国度，文艺复兴发源地，美食、艺术、古迹丰富。'},
+  {name:'西班牙',capital:'马德里',flag:'🇪🇸',area:505990,population:47350000,continent:'欧洲',x:489,y:139,r:11,intro:'位于伊比利亚半岛，斗牛、弗拉门戈文化闻名，足球、旅游业发达，阳光海岸迷人。'},
+  {name:'荷兰',capital:'阿姆斯特丹',flag:'🇳🇱',area:41850,population:17450000,continent:'欧洲',x:510,y:103,r:6,intro:'位于欧洲西部低地国家，以风车、郁金香、围海造田闻名，贸易与农业科技发达。'},
+  {name:'瑞典',capital:'斯德哥尔摩',flag:'🇸🇪',area:450295,population:10380000,continent:'欧洲',x:542,y:78,r:10,intro:'北欧国家，森林湖泊广布，高福利社会，诺贝尔奖故乡，工业与创新产业发达。'},
+  {name:'埃及',capital:'开罗',flag:'🇪🇬',area:1001449,population:109260000,continent:'非洲',x:583,y:175,r:11,intro:'位于非洲东北部，古埃及文明发祥地，金字塔、狮身人面像闻名，尼罗河贯穿全境。'},
+  {name:'尼日利亚',capital:'阿布贾',flag:'🇳🇬',area:923768,population:213400000,continent:'非洲',x:522,y:225,r:12,intro:'位于西非，是非洲人口最多的国家，石油资源丰富，电影产业“诺莱坞”蓬勃发展。'},
+  {name:'肯尼亚',capital:'内罗毕',flag:'🇰🇪',area:580367,population:53770000,continent:'非洲',x:606,y:250,r:11,intro:'位于东非，赤道横贯，东非大裂谷穿过，野生动物保护区闻名，长跑健将辈出。'},
+  {name:'南非',capital:'比勒陀利亚',flag:'🇿🇦',area:1221037,population:59890000,continent:'非洲',x:567,y:331,r:13,intro:'位于非洲大陆最南端，矿产资源丰富（黄金、钻石），好望角为航海要冲，多元文化交融。'},
+  {name:'美国',capital:'华盛顿',flag:'🇺🇸',area:9833517,population:331900000,continent:'北美洲',x:231,y:144,r:20,intro:'位于北美洲中部，世界最大经济体，科技、军事、文化影响力强大，由50个州组成。'},
+  {name:'加拿大',capital:'渥太华',flag:'🇨🇦',area:9984670,population:38250000,continent:'北美洲',x:206,y:83,r:20,intro:'位于北美洲北部，面积世界第二，森林、湖泊广布，枫糖浆、冰球为特色，多元文化。'},
+  {name:'墨西哥',capital:'墨西哥城',flag:'🇲🇽',area:1964375,population:128900000,continent:'北美洲',x:217,y:186,r:12,intro:'位于北美洲南部，玛雅、阿兹特克文明故地，仙人掌之国，玉米与辣椒文化源远流长。'},
+  {name:'巴西',capital:'巴西利亚',flag:'🇧🇷',area:8515767,population:215300000,continent:'南美洲',x:356,y:278,r:18,intro:'位于南美洲东部，面积与人口均居南美之首，亚马逊雨林占国土大部分，足球与桑巴闻名。'},
+  {name:'阿根廷',capital:'布宜诺斯艾利斯',flag:'🇦🇷',area:2780400,population:45810000,continent:'南美洲',x:322,y:344,r:13,intro:'位于南美洲南部，潘帕斯草原广布，探戈、足球、烤肉文化盛行，南美第二大国。'},
+  {name:'智利',capital:'圣地亚哥',flag:'🇨🇱',area:756102,population:19490000,continent:'南美洲',x:300,y:333,r:8,intro:'位于南美洲西海岸，国土狭长如丝带，北有沙漠、南有冰川，铜矿资源丰富。'},
+  {name:'秘鲁',capital:'利马',flag:'🇵🇪',area:1285216,population:33720000,continent:'南美洲',x:289,y:278,r:12,intro:'位于南美洲西部，安第斯山脉纵贯，马丘比丘等印加文明遗迹闻名，渔业资源丰富。'},
+  {name:'澳大利亚',capital:'堪培拉',flag:'🇦🇺',area:7692024,population:25760000,continent:'大洋洲',x:872,y:319,r:17,intro:'位于南半球，独占一个大陆，地广人稀，东部多山、中部平原、西部高原，袋鼠与考拉闻名。'},
+  {name:'新西兰',capital:'惠灵顿',flag:'🇳🇿',area:270467,population:5120000,continent:'大洋洲',x:983,y:364,r:8,intro:'位于太平洋西南部，由南北两岛组成，风景秀丽，毛利文化独特，农牧业发达。'}
+];
+
+const SVG_NS='http://www.w3.org/2000/svg';
+const hotspots=document.getElementById('hotspots');
+const labels=document.getElementById('labels');
+const tooltip=document.getElementById('tooltip');
+const modalMask=document.getElementById('modalMask');
+const searchInput=document.getElementById('searchInput');
+const filterGroup=document.getElementById('filterGroup');
+
+let activeContinent='全部';
+let searchTerm='';
+
+// 渲染国家热点
+countries.forEach(c=>{
+  const g=document.createElementNS(SVG_NS,'g');
+  g.classList.add('country');
+  g.setAttribute('data-name',c.name);
+  g.setAttribute('data-continent',c.continent);
+  const circle=document.createElementNS(SVG_NS,'circle');
+  circle.setAttribute('cx',c.x);
+  circle.setAttribute('cy',c.y);
+  circle.setAttribute('r',c.r);
+  g.appendChild(circle);
+  hotspots.appendChild(g);
+
+  // 大国显示标签
+  if(c.r>=14){
+    const t=document.createElementNS(SVG_NS,'text');
+    t.classList.add('country-label');
+    t.setAttribute('x',c.x);
+    t.setAttribute('y',c.y);
+    t.textContent=c.name;
+    labels.appendChild(t);
+  }
+
+  // 事件
+  g.addEventListener('mouseenter',()=>showTip(c));
+  g.addEventListener('mousemove',moveTip);
+  g.addEventListener('mouseleave',hideTip);
+  g.addEventListener('click',()=>openCard(c));
+});
+
+// tooltip
+function showTip(c){
+  tooltip.innerHTML=`<span class="t-flag">${c.flag}</span><b>${c.name}</b><br><span class="t-cap">首都：${c.capital} · ${c.continent}</span>`;
+  tooltip.style.opacity='1';
+}
+function moveTip(e){
+  const x=Math.min(e.clientX+14,window.innerWidth-250);
+  const y=Math.min(e.clientY+14,window.innerHeight-80);
+  tooltip.style.left=x+'px';
+  tooltip.style.top=y+'px';
+}
+function hideTip(){tooltip.style.opacity='0';}
+
+// 信息卡片
+function openCard(c){
+  document.getElementById('cFlag').textContent=c.flag;
+  document.getElementById('cName').textContent=c.name;
+  document.getElementById('cContinent').textContent=c.continent;
+  document.getElementById('cCapital').textContent=c.capital;
+  document.getElementById('cArea').textContent=c.area.toLocaleString('en-US')+' km²';
+  document.getElementById('cPopulation').textContent=fmtPop(c.population);
+  document.getElementById('cContinent2').textContent=c.continent;
+  document.getElementById('cIntro').textContent=c.intro;
+  modalMask.classList.add('show');
+}
+document.getElementById('cClose').addEventListener('click',closeCard);
+modalMask.addEventListener('click',e=>{if(e.target===modalMask)closeCard();});
+function closeCard(){modalMask.classList.remove('show');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCard();});
+
+// 大洲筛选
+filterGroup.addEventListener('click',e=>{
+  const btn=e.target.closest('.filter-btn');
+  if(!btn)return;
+  filterGroup.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activeContinent=btn.dataset.continent;
+  updateView();
+});
+
+// 搜索
+searchInput.addEventListener('input',e=>{
+  searchTerm=e.target.value.trim();
+  updateView();
+});
+
+// 更新视图与统计
+function updateView(){
+  let count=0,popSum=0,areaSum=0;
+  hotspots.querySelectorAll('.country').forEach(node=>{
+    const name=node.getAttribute('data-name');
+    const cont=node.getAttribute('data-continent');
+    const c=countries.find(x=>x.name===name);
+    const matchCont=(activeContinent==='全部'||cont===activeContinent);
+    const matchSearch=(searchTerm===''||name.includes(searchTerm));
+    const active=matchCont&&matchSearch;
+    node.classList.toggle('active',active&&(activeContinent!=='全部'||searchTerm!==''));
+    node.classList.toggle('dim',!(activeContinent==='全部'&&searchTerm==='')&&!active);
+    if(active){count++;popSum+=c.population;areaSum+=c.area;}
+  });
+  document.getElementById('stCount').textContent=count+' 个';
+  document.getElementById('stPop').textContent=fmtPop(popSum);
+  document.getElementById('stArea').textContent=fmtArea(areaSum);
+}
+
+// 格式化
+function fmtPop(n){
+  if(n>=1e8)return (n/1e8).toFixed(2)+' 亿';
+  if(n>=1e4)return (n/1e4).toFixed(0)+' 万';
+  return n.toLocaleString('en-US');
+}
+function fmtArea(n){
+  if(n>=1e8)return (n/1e8).toFixed(2)+' 亿 km²';
+  if(n>=1e4)return (n/1e4).toFixed(1)+' 万 km²';
+  return n.toLocaleString('en-US')+' km²';
+}
+
+// 初始化统计（全部）
+updateView();
+</script>
+</body>
+</html>

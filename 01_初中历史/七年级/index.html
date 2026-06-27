@@ -653,54 +653,22 @@
     </div>
 
   </main>
+    <!-- 3D 模型入口 -->
+    <div style="max-width:1400px;margin:0 auto;padding:24px 20px;">
+      <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:16px;color:var(--primary,#8b4513);">🏛️ 3D 交互模型</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+        <a href="shared/models/museum-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#fdf6e3);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">🏛️</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">3D 文物展厅</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+        <a href="shared/models/historical-scene-3d.html" class="lesson-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-light,#fdf6e3);border-radius:12px;text-decoration:none;color:var(--text-dark,#333);transition:all 0.3s ease;border:1px solid transparent;">
+          <span style="font-size:28px;">🏯</span>
+          <div class="lesson-info"><div class="lesson-title" style="font-size:0.95rem;font-weight:600;">3D 历史场景漫游：咸阳宫</div></div>
+          <span style="color:var(--primary);">→</span>
+        </a>
+      </div>
+    </div>
+
 
   <!-- Footer -->
-  <footer class="footer">
-    <p class="footer-text">初中7年级历史互动课件系统 · 人教版 · TeachAny v7.14.0</p>
-    <div class="footer-tech">
-      <span><i class="fas fa-brain"></i> AI智能</span>
-      <span><i class="fas fa-chart-line"></i> 中考真题</span>
-      <span><i class="fas fa-mobile-alt"></i> 响应式设计</span>
-    </div>
-  </footer>
-
-  <script>
-    function toggleAccordion(id) {
-      const item = document.getElementById(id);
-      const wasActive = item.classList.contains('active');
-      
-      // Close all
-      document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
-      
-      // Open clicked if it was closed
-      if (!wasActive) {
-        item.classList.add('active');
-        // 手动计算滚动位置，避开顶部 sticky 导航栏
-        const nav = document.querySelector('.timeline-nav');
-        const navH = nav ? nav.offsetHeight : 0;
-        const itemTop = item.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: Math.max(0, itemTop - navH - 20), behavior: 'smooth' });
-      }
-      
-      // Update timeline
-      const unitNum = id.replace('unit-', '');
-      document.querySelectorAll('.timeline-node').forEach(node => {
-        node.classList.toggle('active', node.dataset.unit === unitNum);
-      });
-    }
-
-    // Timeline click handlers
-    document.querySelectorAll('.timeline-node').forEach(node => {
-      node.addEventListener('click', () => {
-        const unit = node.dataset.unit;
-        toggleAccordion('unit-' + unit);
-      });
-    });
-  </script>
-
-
-  <script src="shared/mascot.js?v=8.0"></script>
-  <script src="shared/badges.js?v=8.0"></script>
-<script src="shared/subject-signature.js?v=1.0"></script>
-</body>
-</html>
